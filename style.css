@@ -13,6 +13,13 @@ header {
   text-align: center;
 }
 
+.logo {
+  height: 40px;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 1rem;
+}
+
 nav {
   background: #e0e0e0;
   padding: 0.5rem;
