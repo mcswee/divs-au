@@ -47,6 +47,10 @@ main {
   margin: auto;
 }
 
+#map {
+  height: 90vh;
+}
+
 h2 {
   border-bottom: 2px solid #ccc;
   padding-bottom: 0.3rem;
