@@ -13,6 +13,12 @@ header {
   text-align: center;
 }
 
+@media (min-width: 1024px) {
+  #map {
+    border-radius: 4px;
+  }
+}
+
 .logo {
   height: 40px;
   width: auto;
@@ -61,7 +67,7 @@ main {
 }
 
 section {
-  max-width:1100px;
+  max-width:1260px;
 }
 
 h2 {
