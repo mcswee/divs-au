@@ -18,7 +18,8 @@ header {
   width: auto;
   vertical-align: middle;
   margin-right: 1rem;
-  border-right: 4px solid #eee;
+  padding-right: 12px;
+  border-right: 2px solid #eee;
 }
 
 nav {
