@@ -1,4 +1,4 @@
-const map = L.map('map').setView([-25, 135], 4); // Centre of Aus
+const map = L.map('map').setView([-25.25, 135], 6); // Centre of Aus
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: 'Map data © OpenStreetMap contributors'
 }).addTo(map);
