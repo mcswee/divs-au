@@ -1,6 +1,8 @@
-const map = L.map('map').setView([-26.25, 135], 5); // Centre of Aus
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: 'Map data © OpenStreetMap contributors'
+const map = L.map('map').setView([-27, 135], 5); // Centre of Aus
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap &copy; CartoDB',
+  subdomains: 'abcd',
+  maxZoom: 19
 }).addTo(map);
 
 let geoLayer = null;
