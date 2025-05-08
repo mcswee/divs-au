@@ -5,7 +5,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   maxZoom: 19
 }).addTo(map);
 
-map.attributionControl.setPrefix('')
+map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet </a>')
 
 let geoLayer = null;
 
