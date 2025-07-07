@@ -102,7 +102,7 @@ footer {
   border-collapse: collapse;
   margin-top: 1em;
   font-family: sans-serif;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 #suburb-table thead {
@@ -128,7 +128,7 @@ footer {
 
 #suburb-table tbody tr:hover {
   background-color: #0099fc; /* subtle highlight on hover */
-  color: #fafafa;
+  color: #fcfcfc;
 }
 
 @media (max-width: 600px) {
