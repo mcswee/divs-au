@@ -97,3 +97,35 @@ footer {
 .key-table th {
   background-color: #f2f2f2;
 }
+
+#suburb-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+#suburb-table thead {
+  background-color: #f0f0f0; /* light grey for header */
+}
+
+#suburb-table th, 
+#suburb-table td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+#suburb-table th {
+  font-weight: bold;
+  text-align: left;
+}
+
+#suburb-table tbody tr:nth-child(even) {
+  background-color: #fafafa; /* banded rows */
+}
+
+#suburb-table tbody tr:hover {
+  background-color: #f5f5f5; /* subtle highlight on hover */
+}
