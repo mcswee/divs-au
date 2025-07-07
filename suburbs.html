@@ -70,7 +70,7 @@ fetch('suburbs.csv')
 
     data.forEach(row => {
       const tr = document.createElement('tr');
-      ['Suburb', 'Pronunciation', 'Postcode', 'Region'].forEach(col => {
+      ['Suburb', 'Pronunciation', 'LGA', 'Postcode'].forEach(col => {
         const td = document.createElement('td');
         td.textContent = row[col];
         tr.appendChild(td);
