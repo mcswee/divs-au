@@ -45,7 +45,10 @@
       <p>There are a couple of suburb pronunciation guides around and sure, they'll list Prahran and Malvern and Reservoir and maybe even Truganina. But then they'll have whacky phonetics and you can tell they were written by someone with no concept of Melbourne or with no understanding of English phonology. Not that I'm claiming to be an expert in linguistics. But here is a full, comprehensive list of every Melbourne suburb, with a consistent and reliable phonology.</p>
    <p>Pronunciations are shown using a custom transliteration system. For symbol meanings, see the 
   <a href="#pronunciation-key">pronunciation key</a> below.
-   </p> </section>
+   </p>
+      <label for="suburb-search"><strong>Search for a suburb:</strong></label><br>
+<input type="text" id="suburb-search" placeholder="Start typing..." style="margin-bottom: 1em; padding: 6px; width: 100%; max-width: 400px;">
+    </section>
     <section>
 <table id="suburb-table" class="sortable">
   <thead>
@@ -83,6 +86,22 @@ fetch('suburbs.csv')
     new Tablesort(document.getElementById('suburb-table'));
   });
 </script>
+      <script>
+  const searchInput = document.getElementById('suburb-search');
+  const table = document.getElementById('suburb-table');
+  const tbody = table.querySelector('tbody');
+
+  searchInput.addEventListener('input', function () {
+    const query = this.value.trim().toLowerCase();
+    const rows = tbody.querySelectorAll('tr');
+
+    rows.forEach(row => {
+      const suburbCell = row.cells[0];
+      const suburbName = suburbCell ? suburbCell.textContent.toLowerCase() : '';
+      row.style.display = suburbName.includes(query) ? '' : 'none';
+    });
+  });
+      </script>
     </section>
     
     <section>
