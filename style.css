@@ -126,7 +126,7 @@ footer {
 }
 
 #suburb-table tbody tr:hover {
-  background-color: #0099fc; /* subtle highlight on hover */
+  background-color: #003366; /* subtle highlight on hover */
   color: #fcfcfc;
 }
 
