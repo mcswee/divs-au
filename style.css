@@ -98,6 +98,7 @@ footer {
 }
 
 #suburb-table {
+  width: 75%;
   border-collapse: collapse;
   margin-top: 1em;
   font-family: sans-serif;
