@@ -1,58 +1,320 @@
 ﻿Suburb,Pronunciation,LGA,Postcode
-Point Lonsdale,poin(t)·lønz·dayl,Borough of Queenscliff,3225
-Queenscliff,kweenz·klihf,Borough of Queenscliff,3225
-Swan Island,swøn·iyl·@nd,Borough of Queenscliff,3225
-Bellfield,behl·feeld,City of Banyule,3081
-Briar Hill,briy·@·hihl,City of Banyule,3088
-Bundoora,buhnd·u@·ruh,City of Banyule,3083
-Eaglemont,eeg·@l·mønt,City of Banyule,3084
-Eltham North,æl+·@m·naw+,City of Banyule,3095
-Greensborough,greenz·b@·r@,City of Banyule,3088
-Heidelberg,hiyd·@l·bœg,City of Banyule,3084
-Heidelberg Heights,hiyd·@l·bœg·hiyts,City of Banyule,3081
-Heidelberg West,hiyd·@l·bœg·west,City of Banyule,3081
-Ivanhoe,iyv·@n·hoh,City of Banyule,3079
-Ivanhoe East,iyv·@n·hoh·eest,City of Banyule,3079
-Lower Plenty,loh·w@·plehn·tee,City of Banyule,3093
-Macleod,m@·klowd,City of Banyule,3085
-Montmorency,mønt·m@·rehn·see,City of Banyule,3094
-Rosanna,rohz·æn·@,City of Banyule,3084
-St Helena,s@n·t@·lee·n@,City of Banyule,3088
-Viewbank,vyew·bayñk,City of Banyule,3084
-Watsonia,wøts·ohn·ee·@,City of Banyule,3087
-Watsonia North,wøts·ohn·ee·@·naw+,City of Banyule,3087
-Yallambie,y@·læm·bee,City of Banyule,3085
-Beaumaris,boh·mø·r@s,City of Bayside,3193
-Black Rock,blæk·røk,City of Bayside,3193
-Brighton,briyt·@n,City of Bayside,3186
-Brighton East,briyt·@n·sow+,City of Bayside,3187
-Hampton,hæmp·t@n,City of Bayside,3188
-Hampton East,hæmp·t@n·eest,City of Bayside,3188
-Highett,hiy·@t,City of Bayside,3190
-Sandringham,sænj·rihñ·h@m,City of Bayside,3191
+Abbotsford,æb·@ts·f@d,City of Yarra,3067
+Aberfeldie,æb·@·fehl·dee,City of Moonee Valley,3040
+Aintree,ayn·tree,City of Melton,3336
+Airport West,eh@·pawt·west,City of Moonee Valley,3042
+Albanvale,ælb·@n·vayl,City of Brimbank,3021
+Albert Park,ælb·@t·pahk,City of Port Phillip,3206
+Albion,ælb·ee·@n,City of Brimbank,3020
+Alphington,ælf·ihñ·t@n,City of Darebin,3078
+Altona,æl·toh·n@,City of Hobsons Bay,3018
+Altona Meadows,æl·toh·n@·mehd·ohz,City of Hobsons Bay,3028
+Altona North,æl·toh·n@·naw+,City of Hobsons Bay,3025
+Anakie,æn·@·kee,City of Greater Geelong,3213
+Ardeer,ah·dee@,City of Brimbank,3022
+Armadale,ahm·@·dayl,City of Stonnington,3143
+Armstrong Creek,ahm·s¢røñ·kreek,City of Greater Geelong,3217
+Arthurs Creek,ah+·@z·kreek,Shire of Nillumbik,3099
+Arthurs Seat,ah+·@z·seet,Shire of Mornington Peninsula,3936
+Ascot Vale,æsk·øt·vayl,City of Moonee Valley,3032
 Ashburton,æ$·bœt·@n,City of Boroondara,3147
+Ashwood,æ$·wuud,City of Monash,3147
+Aspendale,æs·p@n·dayl,City of Kingston,3195
+Aspendale Gardens,æs·p@n·dayl·gah·d@nz,City of Kingston,3195
+Attwood,æt·wuud,City of Hume,3049
+Avalon,æv·@·løñ,City of Greater Geelong,3212
+Avondale Heights,æv·@n·dayl·hiyts,City of Moonee Valley,3034
+Avonsleigh,ayv·@nz·lee,Shire of Cardinia,3782
+Bacchus Marsh,bæk·@s·mah$,Shire of Moorabool,3340
+Badger Creek,bæj·@·kreek,Shire of Yarra Ranges,3777
+Balaclava,bæl·@·klah·v@,City of Port Phillip,3183
+Ballan,buh·læn,Shire of Moorabool,3342
+Balliang,bæl·ee·æñ,Shire of Moorabool,3340
+Balliang East,bæl·ee·æñ·eest,Shire of Moorabool,3340
+Balnarring,bæl·næ·rihñ,Shire of Mornington Peninsula,3926
+Balnarring Beach,bæl·næ·rihñ·bee¢,Shire of Mornington Peninsula,3926
 Balwyn,baw(l)·w@n,City of Boroondara,3103
 Balwyn North,baw(l)·w@n·naw+,City of Boroondara,3104
-Camberwell,kæm·b@·wehl,City of Boroondara,3124
-Canterbury,kænt·@·bree,City of Boroondara,3126
-Deepdene,deep·deen,City of Boroondara,3103
-Glen Iris,glehn·iy·r@s,City of Boroondara,3146
-Hawthorn,haw+·awn,City of Boroondara,3122
-Hawthorn East,haw+·awn·eest,City of Boroondara,3123
-Kew,kyew,City of Boroondara,3101
-Kew East,kyew·eest,City of Boroondara,3102
-Mont Albert,mønt·ælb·@t,City of Boroondara,3127
-Surrey Hills,suh·ree·hihlz,City of Boroondara,3127
-Albanvale,ælb·@n·vayl,City of Brimbank,3021
-Albion,ælb·ee·@n,City of Brimbank,3020
-Ardeer,ah·dee@,City of Brimbank,3022
+Bangholme,bæñ·hohm,City of Greater Dandenong,3175
+Barwon Heads,bah·w@n·hehdz,City of Greater Geelong,3227
+Batesford,bayts·f@d,City of Greater Geelong,3213
+Baxter,bækst·@,Shire of Mornington Peninsula,3911
+Bayles,baylz,Shire of Cardinia,3981
+Bayswater,bayz·waht·@,City of Knox,3153
+Bayswater North,bayz·waht·@·naw+,City of Maroondah,3153
+Beaconsfield,beek·@nz·feeld,Shire of Cardinia,3807
+Beaconsfield Upper,beek·@nz·feeld·uhp@,Shire of Cardinia,3808
+Beaumaris,boh·mø·r@s,City of Bayside,3193
+Beenak,bee·næk,Shire of Yarra Ranges,3139
+Belgrave,behl·grayv,Shire of Yarra Ranges,3160
+Belgrave Heights,behl·grayv·hiyts,Shire of Yarra Ranges,3160
+Belgrave South,behl·grayv·sow+,Shire of Yarra Ranges,3160
+Bell Park,behl·pahk,City of Greater Geelong,3215
+Bell Post Hill,behl·pohst·hihl,City of Greater Geelong,3215
+Bellarine,behl·@·reen,City of Greater Geelong,3223
+Bellbrae,behl·bray,Shire of Surf Coast,3228
+Bellfield,behl·feeld,City of Banyule,3081
+Bells Beach,behlz·bee¢,Shire of Surf Coast,3228
+Belmont,behl·mønt,City of Greater Geelong,3216
+Bend Of Islands,behnd·øv·iyl·@ndz,Shire of Nillumbik,3097
+Bentleigh,behnt·lee,City of Glen Eira,3204
+Bentleigh East,behnt·lee·eest,City of Glen Eira,3165
+Berwick,beh·rihk,City of Casey,3806
+Beveridge,behv·rihj,City of Whittlesea,3753
+Big Pats Creek,bihg·pætz·kreek,Shire of Yarra Ranges,3799
+Bittern,biht·@n,Shire of Mornington Peninsula,3918
+Black Rock,blæk·røk,City of Bayside,3193
+Blackburn,blæk·bœn,City of Whitehorse,3130
+Blackburn North,blæk·bœn·naw+,City of Whitehorse,3130
+Blackburn South,blæk·bœn·sow+,City of Whitehorse,3130
+Blairgowrie,bleh@·gow·ree,Shire of Mornington Peninsula,3942
+Blind Bight,bliynd·biyt,City of Casey,3980
+Bolinda,b@·lihn·d@,Shire of Macdeon Ranges,3432
+Bonbeach,bøn·bee¢,City of Kingston,3196
+Boneo,bohn·ee·oh,Shire of Mornington Peninsula,3939
+Bonnie Brook,bøn·ee·bruuk,City of Melton,3335
+Boronia,b@·rohn·ee·@,City of Knox,3155
+Botanic Ridge,b@·tæn·@k·rihj,City of Casey,3977
+Box Hill,bøks·hihl,City of Whitehorse,3128
+Box Hill North,bøks·hihl·naw+,City of Whitehorse,3129
+Box Hill South,bøks·hihl·sow+,City of Whitehorse,3128
+Braeside,bray·siyd,City of Kingston,3195
+Braybrook,bray·bruuk,City of Maribyrnong,3019
+Breakwater,brayk·waw·t@,City of Greater Geelong,3219
+Breamlea,brehm·lee,City of Greater Geelong,3227
+Briar Hill,briy·@·hihl,City of Banyule,3088
+Brighton,briyt·@n,City of Bayside,3186
+Brighton East,briyt·@n·sow+,City of Bayside,3187
+Broadmeadows,brawd·mehd·ohz,City of Hume,3047
+Brookfield,bruuk·feeld,City of Melton,3338
 Brooklyn,bruuk·l@n,City of Brimbank,3012
+Brunswick,bruhnz·wihk,City of Merri-bek,3056
+Brunswick East,bruhnz·wihk·eest,City of Merri-bek,3057
+Brunswick West,bruhnz·wihk·west,City of Merri-bek,3055
+Bulla,buul·uh,City of Hume,3428
+Bulleen,buul·een,City of Manningham,3105
+Bundoora,buhnd·u@·ruh,City of Banyule,3083
+Bunyip,buhn·yihp,Shire of Cardinia,3815
+Bunyip North,buhn·yihp·naw+,Shire of Cardinia,3815
+Burnley,bœn·lee,City of Yarra,3121
+Burnside,bœn·siyd,City of Melton,3023
+Burnside Heights,bœn·siyd·hiyts,City of Melton,3023
+Burwood,bœ·wuud,City of Whitehorse,3125
+Burwood East,bœ·wuud·eest,City of Whitehorse,3151
+Bylands,biy·lændz,Shire of Mitchell,3762
 Cairnlea,keh@n·lee,City of Brimbank,3023
 Calder Park,kawl·d@·pahk,City of Brimbank,3037
+Caldermeade,kawl·d@·meed,Shire of Cardinia,3984
+Camberwell,kæm·b@·wehl,City of Boroondara,3124
+Campbellfield,kæm·b@l·feeld,City of Hume,3061
+Cannons Creek,kæn·@nz·kreek,City of Casey,3977
+Canterbury,kænt·@·bree,City of Boroondara,3126
+Cape Schanck,kayp·$æñk,Shire of Mornington Peninsula,3939
+Cape Woolamai,kayp·wuul·@·miy,Shire of Bass Coast,3925
+Capel Sound,kay·p@l·sownd,Shire of Mornington Peninsula,3940
+Cardinia,kah·dihn·ee·@,Shire of Cardinia,3978
+Carlton,kahl·t@n,City of Melbourne,3053
+Carlton North,kahl·t@n·naw+,City of Melbourne,3054
+Carnegie,kah·nehg·ee,City of Glen Eira,3163
+Caroline Springs,kæ·r@·liyn·sprihñz,City of Melton,3023
+Carrum,kæ·r@m,City of Kingston,3197
+Carrum Downs,kæ·r@m·downz,City of Frankston,3201
+Castella,kæst·ehl·@,Shire of Murrndindi,3777
+Catani,k@·tah·nee,Shire of Cardinia,3981
+Caulfield,kaw(l)·feeld,City of Glen Eira,3162
+Caulfield East,kaw(l)·feeld·eest,City of Glen Eira,3145
+Caulfield North,kaw(l)·feeld·naw+,City of Glen Eira,3161
+Caulfield South,kaw(l)·feeld·sow+,City of Glen Eira,3162
+Ceres,see@·reez,City of Greater Geelong,3221
+Chadstone,¢æd·st@n,City of Monash,3148
+Charlemont,¢ahl·mønt,City of Greater Geelong,3217
+Chelsea,¢ehl·see,City of Kingston,3196
+Chelsea Heights,¢ehl·see·hiyts,City of Kingston,3196
+Cheltenham,¢ehlt·n@m,City of Kingston,3192
+Cheltenham East,¢ehlt·n@m·eest,City of Kingston,3192
+Cheltenham North,¢ehlt·n@m·naw+,City of Kingston,3192
+Cherokee,¢eh·r@·kee,Shire of Macdeon Ranges,3434
+Chintin,¢ihn·t@n,Shire of Macdeon Ranges,3756
+Chirnside Park,¢œn·siyd·pahk,Shire of Yarra Ranges,3116
+Christmas Hills,krihs·m@s·hihlz,Shire of Nillumbik,3775
+Chum Creek,¢uhm·kreek,Shire of Yarra Ranges,3777
+Churchill Island,¢œ¢·@l·iyl·@nd,Shire of Bass Coast,3925
+Clarinda,kl@·rihn·duh,City of Kingston,3169
+Clarkefield,klahk·feeld,City of Hume,3430
+Clayton,klayt·@n,City of Monash,3168
+Clayton South,klayt·@n·sow+,City of Kingston,3169
+Clematis,kl@·may·t@s,Shire of Cardinia,3782
+Clifton Hill,klihft·@n·hihl,City of Yarra,3068
+Clifton Springs,klihf·t@n·sprihñz,City of Greater Geelong,3222
+Clonbinane,kløn·b@n·ayn,Shire of Mitchell,3658
+Clyde,kliyd,City of Casey,3978
+Clyde North,kliyd·naw+,City of Casey,3978
+Cobblebank,køb·@l·bayñk,City of Melton,3338
+Coburg,koh·bœg,City of Merri-bek,3058
+Coburg North,koh·bœg·naw+,City of Merri-bek,3058
+Cockatoo,køk·@·tew,Shire of Cardinia,3781
+Cocoroc,køk·@·røk,City of Wyndham,3030
+Coimadai,cø·miy·d@,Shire of Moorabool,3340
+Coldstream,køld·streem,Shire of Yarra Ranges,3770
+Collingwood,køl·ihñ·wuud,City of Yarra,3066
+Connewarre,køn·@·wø·ree,City of Greater Geelong,3227
+Coolaroo,kewl·@·rew,City of Hume,3048
+Cora Lynn,kaw·ruh·lihn,Shire of Cardinia,3814
+Corio,k@·riy·oh,City of Greater Geelong,3214
+Cottles Bridge,køt·@lz·brihj,Shire of Nillumbik,3099
+Cowes,kowz,Shire of Bass Coast,3922
+Craigieburn,krayg·ee·bœn,City of Hume,3064
+Cranbourne,kræn·bœn,City of Casey,3977
+Cranbourne East,kræn·bœn·eest,City of Casey,3977
+Cranbourne North,kræn·bœn·nawt+,City of Casey,3977
+Cranbourne South,kræn·bœn·sow+,City of Casey,3977
+Cranbourne West,kræn·bœn·west,City of Casey,3977
+Cremorne,kr@·mawn,City of Yarra,3121
+Crib Point,krihb·point,Shire of Mornington Peninsula,3919
+Croydon,kroi·d@n,City of Maroondah,3136
+Croydon Hills,kroi·d@n·hihlz,City of Maroondah,3136
+Croydon North,kroi·d@n·naw+,City of Maroondah,3136
+Croydon South,kroi·d@n·sow+,City of Maroondah,3136
+Curlewis,kœ·lew·ihs,City of Greater Geelong,3222
+Dallas,dæl·@s,City of Hume,3047
+Dalmore,dæl·maw,Shire of Cardinia,3981
+Dandenong,dænd·ee·nøñ,City of Greater Dandenong,3175
+Dandenong North,dænd·ee·nøñ·naw+,City of Greater Dandenong,3175
+Dandenong South,dænd·ee·nøñ·sow+,City of Greater Dandenong,3175
+Darley,dah·lee,Shire of Moorabool,3340
+Darraweit Guim,dæ·r@·weet·gwihm,Shire of Macdeon Ranges,3756
+Deanside,deen-siyd,City of Melton,3336
+Deepdene,deep·deen,City of Boroondara,3103
 Deer Park,dee@·pahk,City of Brimbank,3023
 Delahey,dæl·@·hay,City of Brimbank,3037
 Derrimut,deh·r@·m@t,City of Brimbank,3026
+Devon Meadows,dehv·@n·mehd·owz,City of Casey,3977
+Dewhurst,jyew·hœst,Shire of Cardinia,3809
+Diamond Creek,diym·@nd·kreek,Shire of Nillumbik,3089
+Diggers Rest,dihg·@z·rehst,City of Hume,3427
+Dingley,dihñ·lee,City of Kingston,3172
+Dingley Village,dihñ·lee·vihl·@j,City of Kingston,3172
+Dixons Creek,dihks·@nz·kreek,Shire of Yarra Ranges,3775
+Docklands,døk·lændz,City of Melbourne,3008
+Don Valley,døn·væl·ee,Shire of Yarra Ranges,3139
+Doncaster,døn·kah·st@,City of Manningham,3108
+Doncaster East,døn·kah·st@·eest,City of Manningham,3109
+Donnybrook,døn·ee·bruuk,City of Whittlesea,3064
+Donvale,døn·vayl,City of Manningham,3111
+Doreen,daw·reen,City of Whittlesea,3754
+Doveton,duhv·t@n,City of Casey,3177
+Dromana,dr@·mah·n@,Shire of Mornington Peninsula,3936
+Drumconda,jruhm·køn·d@,City of Greater Geelong,3215
+Drysdale,jriyz·dayl,City of Greater Geelong,3222
+Eaglemont,eeg·@l·mønt,City of Banyule,3084
+East Geelong,eest·j@·løñ,City of Greater Geelong,3219
+East Melbourne,eest·mælb·@n,City of Melbourne,3002
+East Warburton,eest·wawb·@·t@n,Shire of Yarra Ranges,3799
+Eden Park,eed·@n·pahk,City of Whittlesea,3757
+Edithvale,eed·@+·vayl,City of Kingston,3196
+Elizabeth Island,@·lihz·@·b@+·iyl·l@nd,French Island Unincorporated,3921
+Elsternwick,ælst·@n·wihk,City of Glen Eira,3185
+Eltham,æl+·@m,Shire of Nillumbik,3095
+Eltham North,æl+·@m·naw+,City of Banyule,3095
+Elwood,æl·wuud,City of Port Phillip,3184
+Emerald,ehm·r@ld,Shire of Yarra Ranges,3782
+Endeavour Hills,ehnd·ehv·@·hihlz,City of Casey,3802
+Epping,ehp·ihñ,City of Whittlesea,3076
+Essendon,ehs·@n·d@n,City of Moonee Valley,3040
+Essendon Fields,ehs·@n·d@n·feeldz,City of Moonee Valley,3041
+Essendon North,ehs·@n·d@n·naw+,City of Moonee Valley,3041
+Essendon West,ehs·@n·d@n·west,City of Moonee Valley,3040
+Eumemmerring,yew·mehm·@·rihñ,City of Casey,3177
+Exford,ehks·f@d,City of Melton,3338
+Eynesbury,iyns·bree,City of Melton,3338
+Fairfield,feh@·feeld,City of Darebin,3078
+Fawkner,fawk·n@,City of Merri-bek,3060
+Fernshaw,fœn·$aw,Shire of Yarra Ranges,3778
+Ferntree Gully,fœn¢·ree·guhl·ee,City of Knox,3156
+Ferny Creek,fœn·ee·kreek,Shire of Yarra Ranges,3786
+Fieldstone,feeld·st@n,City of Melton,3024
+Fingal,fihñ·g@l,Shire of Mornington Peninsula,3939
+Fitzroy,fihtz·roi,City of Yarra,3065
+Fitzroy North,fihtz·roi·naw+,City of Yarra,3068
+Flemington,flehm·ihñ·t@n,City of Melbourne,3031
+Flinders,flihnd·@z,Shire of Mornington Peninsula,3929
+Footscray,fuutz·gray,City of Maribyrnong,3011
+Forbes,fawbz,Shire of Mitchell,3764
+Forest Hill,før·@st·hihlz,City of Whitehorse,3131
+Frankston,frayñk·st@n,City of Frankston,3199
+Frankston North,frayñk·st@n·naw+,City of Frankston,3200
+Frankston South,frayñk·st@n·sow+,City of Frankston,3199
+Fraser Rise,frayz·@·riyz,City of Melton,3336
+French Island,frehn¢·iyl·@nd,French Island Unincorporated,3921
+Fyansford,fiy·@nz·f@d,City of Greater Geelong,3218
+Gardenvale,gahd·@n·vayl,City of Glen Eira,3185
+Garfield,gah·feeld,Shire of Cardinia,3814
+Garfield North,gah·feeld·naw+,Shire of Cardinia,3814
+Geelong,j@·løñ,City of Greater Geelong,3220
+Geelong West,j@·løñ·west,City of Greater Geelong,3218
+Gembrook,jehm·bruuk,Shire of Cardinia,3783
+Gilderoy,gihld·@·roi,Shire of Yarra Ranges,3797
+Gisborne,gihz·b@n,Shire of Macdeon Ranges,3437
+Gisborne South,gihz·b@n·sow+,Shire of Macdeon Ranges,3437
+Gladstone Park,glæd·st@n·pahk,City of Hume,3043
+Gladysdale,glæd·@s·dayl,Shire of Yarra Ranges,3797
+Glen Huntly,glehn·huhnt·lee,City of Glen Eira,3163
+Glen Iris,glehn·iy·r@s,City of Boroondara,3146
+Glen Waverley,glehn·wayv·@·lee,City of Monash,3150
+Glenmore,glehn·maw,Shire of Moorabool,3340
+Glenroy,glehn·roi,City of Merri-bek,3046
+Gowanbrae,gow·@n·bray,City of Merri-bek,3043
+Grangefields,graynj·feeldz,City of Melton,3335
+Greensborough,greenz·b@·r@,City of Banyule,3088
+Greenvale,green·vayl,City of Hume,3059
+Grovedale,grohv·dayl,City of Greater Geelong,3216
+Gruyere,gree·yeh@,Shire of Yarra Ranges,3770
+Guys Hill,giyz·hihl,Shire of Cardinia,3807
+Hadfield,hæd·feeld,City of Merri-bek,3046
+Hallam,hæl·@m,City of Casey,3803
+Hamlyn Heights,hæm·l@n·hiyts,City of Greater Geelong,3215
+Hampton,hæmp·t@n,City of Bayside,3188
+Hampton East,hæmp·t@n·eest,City of Bayside,3188
+Hampton Park,hæmp·t@n·pahk,City of Casey,3976
+Harkaway,hahk·@·way,City of Casey,3806
+Harkness,hahk·nehs,City of Melton,3337
+Hastings,hayst·ihñz,Shire of Mornington Peninsula,3915
+Hawksburn,hawks·bœn,City of Stonnington,3141
+Hawthorn,haw+·awn,City of Boroondara,3122
+Hawthorn East,haw+·awn·eest,City of Boroondara,3123
+Healesville,heelz·vihl,Shire of Yarra Ranges,3777
+Heath Hill,hee+·hihl,Shire of Cardinia,3981
+Heathcote Junction,hee+·k@t·juhñk·$@n,Shire of Mitchell,3758
+Heatherton,heh‡·@·t@n,City of Kingston,3202
+Heathmont,hee+·mønt,City of Maroondah,3135
+Heidelberg,hiyd·@l·bœg,City of Banyule,3084
+Heidelberg Heights,hiyd·@l·bœg·hiyts,City of Banyule,3081
+Heidelberg West,hiyd·@l·bœg·west,City of Banyule,3081
+Herne Hill,hœn·hihl,City of Greater Geelong,3218
+Hesket,hehsk·@t,Shire of Macdeon Ranges,3442
+Highett,hiy·@t,City of Bayside,3190
+Highton,hiyt·@n,City of Greater Geelong,3216
 Hillside,hihl·siyd,City of Brimbank,3037
+HMAS Cerberus,(h)ay¢·em·ay·es·sœb·@·r@s,Shire of Mornington Peninsula,3920
+Hoddles Creek,hød·@lz·kreek,Shire of Yarra Ranges,3139
+Hopetoun Park,hohp·t@n·pahk,Shire of Moorabool,3340
+Hoppers Crossing,høp·@z·krøs·ihñ,City of Wyndham,3029
+Hughesdale,hyewz·dayl,City of Monash,3166
+Humevale,hyewm·vayl,City of Whittlesea,3757
+Huntingdale,huhnt·ihñ·dayl,City of Monash,3166
+Hurstbridge,hœst·brihj,Shire of Nillumbik,3099
+Indented Head,ihn·dehnt·@d·hehd,City of Greater Geelong,3223
+Ingliston,ihñ·glihst·@n,Shire of Moorabool,3342
+Iona,iy·ohn·@,Shire of Cardinia,3815
+Ivanhoe,iyv·@n·hoh,City of Banyule,3079
+Ivanhoe East,iyv·@n·hoh·eest,City of Banyule,3079
+Jacana,j@·cah·n@,City of Hume,3047
+Jan Juc,jæn·juhk,Shire of Surf Coast,3228
+Junction Village,juhñk·$@n·vihl·@j,City of Casey,3977
+Kalkallo,kæl·kæl·oh,City of Hume,3064
+Kallista,k@·lihst·@,Shire of Yarra Ranges,3791
+Kalorama,kæl·@·rah·m@,Shire of Yarra Ranges,3766
+Kangaroo Ground,kañ·g@·rew·grownd,Shire of Nillumbik,3097
 Kealba,kee·æl·bah,City of Brimbank,3021
 Keilor,keel·aw,City of Brimbank,3036
 Keilor Downs,keel·aw·downz,City of Brimbank,3038
@@ -60,616 +322,354 @@ Keilor East,keel·aw·eest,City of Brimbank,3033
 Keilor Lodge,keel·aw·løj,City of Brimbank,3038
 Keilor North,keel·aw·naw+,City of Brimbank,3036
 Keilor Park,keel·aw·pahk,City of Brimbank,3042
-Kings Park,kihñz·pahk,City of Brimbank,3021
-St Albans,s@n·aw(l)·b@nz,City of Brimbank,3021
-Sunshine,suhn·$iyn,City of Brimbank,3020
-Sunshine North,suhn·$iyn·naw+,City of Brimbank,3020
-Sunshine West,suhn·$iyn·west,City of Brimbank,3020
-Sydenham,sihd·n@m,City of Brimbank,3037
-Taylors Lakes,tay·l@z·layks,City of Brimbank,3038
-Berwick,beh·rihk,City of Casey,3806
-Blind Bight,bliynd·biyt,City of Casey,3980
-Botanic Ridge,b@·tæn·@k·rihj,City of Casey,3977
-Cannons Creek,kæn·@nz·kreek,City of Casey,3977
-Clyde,kliyd,City of Casey,3978
-Clyde North,kliyd·naw+,City of Casey,3978
-Cranbourne,kræn·bœn,City of Casey,3977
-Cranbourne East,kræn·bœn·eest,City of Casey,3977
-Cranbourne North,kræn·bœn·nawt+,City of Casey,3977
-Cranbourne South,kræn·bœn·sow+,City of Casey,3977
-Cranbourne West,kræn·bœn·west,City of Casey,3977
-Devon Meadows,dehv·@n·mehd·owz,City of Casey,3977
-Doveton,duhv·t@n,City of Casey,3177
-Endeavour Hills,ehnd·ehv·@·hihlz,City of Casey,3802
-Eumemmerring,yew·mehm·@·rihñ,City of Casey,3177
-Hallam,hæl·@m,City of Casey,3803
-Hampton Park,hæmp·t@n·pahk,City of Casey,3976
-Harkaway,hahk·@·way,City of Casey,3806
-Junction Village,juhñk·$@n·vihl·@j,City of Casey,3977
-Lynbrook,lihn·bruuk,City of Casey,3975
-Lyndhurst,lihnd·hœst,City of Casey,3975
-Lysterfield South,lihst·@·feeld·sow+,City of Casey,3156
-Narre Warren,næ·ree·wø·r@n,City of Casey,3805
-Narre Warren North,næ·ree·wø·r@n·naw+,City of Casey,3804
-Narre Warren South,næ·ree·wø·r@n·sow+,City of Casey,3805
-Pearcedale,pee@s·dayl,City of Casey,3912
-Tooradin,tu@·r@·d@n,City of Casey,3980
-Warneet,waw·neet,City of Casey,3980
-Alphington,ælf·ihñ·t@n,City of Darebin,3078
-Fairfield,feh@·feeld,City of Darebin,3078
-Kingsbury,kihñz·bree,City of Darebin,3083
-Northcote,naw+·k@t,City of Darebin,3070
-Preston,prehs·t@n,City of Darebin,3072
-Reservoir,rehz·@·vaw,City of Darebin,3073
-Thornbury,#NAME?,City of Darebin,3071
-Carrum Downs,kæ·r@m·downz,City of Frankston,3201
-Frankston,frayñk·st@n,City of Frankston,3199
-Frankston North,frayñk·st@n·naw+,City of Frankston,3200
-Frankston South,frayñk·st@n·sow+,City of Frankston,3199
-Langwarrin,læñ·wø·r@n,City of Frankston,3910
-Langwarrin South,læñ·wø·r@n·sow+,City of Frankston,3911
-Sandhurst,sænd·hœst,City of Frankston,3977
-Seaford,see·f@d,City of Frankston,3198
-Skye,skiy,City of Frankston,3977
-Bentleigh,behnt·lee,City of Glen Eira,3204
-Bentleigh East,behnt·lee·eest,City of Glen Eira,3165
-Carnegie,kah·nehg·ee,City of Glen Eira,3163
-Caulfield,kaw(l)·feeld,City of Glen Eira,3162
-Caulfield East,kaw(l)·feeld·eest,City of Glen Eira,3145
-Caulfield North,kaw(l)·feeld·naw+,City of Glen Eira,3161
-Caulfield South,kaw(l)·feeld·sow+,City of Glen Eira,3162
-Elsternwick,ælst·@n·wihk,City of Glen Eira,3185
-Gardenvale,gahd·@n·vayl,City of Glen Eira,3185
-Glen Huntly,glehn·huhnt·lee,City of Glen Eira,3163
-McKinnon,m@·kihn·@n,City of Glen Eira,3204
-Murrumbeena,muh·r@m·been·@,City of Glen Eira,3163
-Ormond,aw·m@nd,City of Glen Eira,3204
-Bangholme,bæñ·hohm,City of Greater Dandenong,3175
-Dandenong,dænd·ee·nøñ,City of Greater Dandenong,3175
-Dandenong North,dænd·ee·nøñ·naw+,City of Greater Dandenong,3175
-Dandenong South,dænd·ee·nøñ·sow+,City of Greater Dandenong,3175
+Kensington,kehnz·ihñ·t@n,City of Melbourne,3031
+Kerrie,keh·ree,Shire of Macdeon Ranges,3434
+Kew,kyew,City of Boroondara,3101
+Kew East,kyew·eest,City of Boroondara,3102
 Keysborough,keez·b@·r@,City of Greater Dandenong,3173
-Noble Park,nohb·@l·pahk,City of Greater Dandenong,3174
-Noble Park North,nohb·@l·pahk·naw+,City of Greater Dandenong,3174
-Springvale,sprihñ·vayl,City of Greater Dandenong,3171
-Springvale South,sprihñ·vayl·sow+,City of Greater Dandenong,3172
-Anakie,æn·@·kee,City of Greater Geelong,3213
-Armstrong Creek,ahm·s¢røñ·kreek,City of Greater Geelong,3217
-Avalon,æv·@·løñ,City of Greater Geelong,3212
-Barwon Heads,bah·w@n·hehdz,City of Greater Geelong,3227
-Batesford,bayts·f@d,City of Greater Geelong,3213
-Bell Park,behl·pahk,City of Greater Geelong,3215
-Bell Post Hill,behl·pohst·hihl,City of Greater Geelong,3215
-Bellarine,behl·@·reen,City of Greater Geelong,3223
-Belmont,behl·mønt,City of Greater Geelong,3216
-Breakwater,brayk·waw·t@,City of Greater Geelong,3219
-Breamlea,brehm·lee,City of Greater Geelong,3227
-Ceres,see@·reez,City of Greater Geelong,3221
-Charlemont,¢ahl·mønt,City of Greater Geelong,3217
-Clifton Springs,klihf·t@n·sprihñz,City of Greater Geelong,3222
-Connewarre,køn·@·wø·ree,City of Greater Geelong,3227
-Corio,k@·riy·oh,City of Greater Geelong,3214
-Curlewis,kœ·lew·ihs,City of Greater Geelong,3222
-Drumconda,jruhm·køn·d@,City of Greater Geelong,3215
-Drysdale,jriyz·dayl,City of Greater Geelong,3222
-East Geelong,eest·j@·løñ,City of Greater Geelong,3219
-Fyansford,fiy·@nz·f@d,City of Greater Geelong,3218
-Geelong,j@·løñ,City of Greater Geelong,3220
-Geelong West,j@·løñ·west,City of Greater Geelong,3218
-Grovedale,grohv·dayl,City of Greater Geelong,3216
-Hamlyn Heights,hæm·l@n·hiyts,City of Greater Geelong,3215
-Herne Hill,hœn·hihl,City of Greater Geelong,3218
-Highton,hiyt·@n,City of Greater Geelong,3216
-Indented Head,ihn·dehnt·@d·hehd,City of Greater Geelong,3223
-Lara,lah·r@,City of Greater Geelong,3212
-Leopold,lee·@·pøl(d),City of Greater Geelong,3224
-Lovely Banks,luhv·lee·bayñks,City of Greater Geelong,3213
-Manifold Heights,mæn·@·føld·hiyts,City of Greater Geelong,3218
-Mannerim,mæn·@·r@m,City of Greater Geelong,3222
-Marcus Hill,mah·k@s·hihl,City of Greater Geelong,3222
-Marshall,mah·$@l,City of Greater Geelong,3216
-Moolap,mew·læp,City of Greater Geelong,3224
-Moorabool,muu·r@·buul,City of Greater Geelong,3213
-Mount Duneed,mown·duhn·eed,City of Greater Geelong,3217
-Newcomb,new·k@m,City of Greater Geelong,3219
-Newtown,new·town,City of Greater Geelong,3220
-Norlane,naw·layn,City of Greater Geelong,3214
-North Geelong,naw+·j@·løñ,City of Greater Geelong,3215
-North Shore,naw+·$aw,City of Greater Geelong,3214
-Ocean Grove,oh$·@n·grohv,City of Greater Geelong,3226
-Point Wilson,poin(t)·wihl·s@n,City of Greater Geelong,3212
-Portarlington,pawt·ah·lihñ·t@n,City of Greater Geelong,3223
-Rippleside,rihp·@l·siyd,City of Greater Geelong,3215
-South Geelong,sow+·j@·løñ,City of Greater Geelong,3220
-St Albans Park,s@n·aw(l)·b@nz·pahk,City of Greater Geelong,3219
-St Leondards,s@n·lehn·@dz,City of Greater Geelong,3223
-Staughton Vale,staw·t@n·vayl,City of Greater Geelong,3340
-Swan Bay,swøn·bay,City of Greater Geelong,3225
-Thomson,tøm·s@n,City of Greater Geelong,3219
-Wallington,wøl·ihñ·t@n,City of Greater Geelong,3222
-Wandana Heights,wøn·dah·n@·hiyts,City of Greater Geelong,3216
-Waurn Ponds,wawn·pøndz,City of Greater Geelong,3216
-Whittington,wiht·ihñ·t@n,City of Greater Geelong,3219
-Altona,æl·toh·n@,City of Hobsons Bay,3018
-Altona Meadows,æl·toh·n@·mehd·ohz,City of Hobsons Bay,3028
-Altona North,æl·toh·n@·naw+,City of Hobsons Bay,3025
-Laverton,læv·@·t@n,City of Hobsons Bay,3028
-Newport,nyew·pawt,City of Hobsons Bay,3015
-Seabrook,see·bruuk,City of Hobsons Bay,3028
-Seaholme,see·hohm,City of Hobsons Bay,3018
-South Kingsville,sow+·kihñz·vihl,City of Hobsons Bay,3015
-Spotswood,spøtz·wuud,City of Hobsons Bay,3015
-Williamstown,wihl·y@mz·town,City of Hobsons Bay,3016
-Williamstown North,wihl·y@mz·town·naw+,City of Hobsons Bay,3016
-Attwood,æt·wuud,City of Hume,3049
-Broadmeadows,brawd·mehd·ohz,City of Hume,3047
-Bulla,buul·uh,City of Hume,3428
-Campbellfield,kæm·b@l·feeld,City of Hume,3061
-Clarkefield,klahk·feeld,City of Hume,3430
-Coolaroo,kewl·@·rew,City of Hume,3048
-Craigieburn,krayg·ee·bœn,City of Hume,3064
-Dallas,dæl·@s,City of Hume,3047
-Diggers Rest,dihg·@z·rehst,City of Hume,3427
-Gladstone Park,glæd·st@n·pahk,City of Hume,3043
-Greenvale,green·vayl,City of Hume,3059
-Jacana,j@·cah·n@,City of Hume,3047
-Kalkallo,kæl·kæl·oh,City of Hume,3064
-Meadow Heights,mehd·oh·hiyts,City of Hume,3048
-Melbourne Airport,mehl·b@n·eh@·pawt,City of Hume,3045
-Mickleham,mihk·@l·@m,City of Hume,3064
-Oaklands Junction,ohk·l@ndz·juhñk·$@n,City of Hume,3063
-Roxburgh Park,røks·br@·pahk,City of Hume,3064
-Somerton,suhm·@·t@n,City of Hume,3062
-Sunbury,suhn·bree,City of Hume,3429
-Tullamarine,tuhl·@·m@·reen,City of Hume,3043
-Westmeadows,west·mehd·ohz,City of Hume,3049
-Wildwood,wiyld·wuud,City of Hume,3429
-Yuroke,yew·roh·kee,City of Hume,3063
-Aspendale,æs·p@n·dayl,City of Kingston,3195
-Aspendale Gardens,æs·p@n·dayl·gah·d@nz,City of Kingston,3195
-Bonbeach,bøn·bee¢,City of Kingston,3196
-Braeside,bray·siyd,City of Kingston,3195
-Carrum,kæ·r@m,City of Kingston,3197
-Chelsea,¢ehl·see,City of Kingston,3196
-Chelsea Heights,¢ehl·see·hiyts,City of Kingston,3196
-Cheltenham,¢ehlt·n@m,City of Kingston,3192
-Cheltenham East,¢ehlt·n@m·eest,City of Kingston,3192
-Cheltenham North,¢ehlt·n@m·naw+,City of Kingston,3192
-Clarinda,kl@·rihn·duh,City of Kingston,3169
-Clayton South,klayt·@n·sow+,City of Kingston,3169
-Dingley,dihñ·lee,City of Kingston,3172
-Dingley Village,dihñ·lee·vihl·@j,City of Kingston,3172
-Edithvale,eed·@+·vayl,City of Kingston,3196
-Heatherton,heh‡·@·t@n,City of Kingston,3202
-Mentone,mehn·tohn,City of Kingston,3194
-Moorabbin,m@·ræb·@n,City of Kingston,3189
-Moorabbin Airport,m@·ræb·@n·eh@·pawt,City of Kingston,3194
-Mordialloc,mawd·ee·æl·@k,City of Kingston,3195
-Parkdale,pahk·dayl,City of Kingston,3195
-Patterson Lakes,pæt·@·s@n·layks,City of Kingston,3197
-Waterways,waw·t@·wayz,City of Kingston,3195
-Bayswater,bayz·waht·@,City of Knox,3153
-Boronia,b@·rohn·ee·@,City of Knox,3155
-Ferntree Gully,fœn¢·ree·guhl·ee,City of Knox,3156
-Knoxfield,nøks·feeld,City of Knox,3180
-Lysterfield,lihst·@·feeld,City of Knox,3156
-Rowville,roh·vihl,City of Knox,3178
-Sassafras,sæs·@·fræs,City of Knox,3787
-Scoresby,skawz·bee,City of Knox,3179
-The Basin,‡@·bay·s@n,City of Knox,3154
-Upper Ferntree Gully,uhp·@·fœn¢·ree·guh·lee,City of Knox,3156
-Wantirna,wøn·tœn·@,City of Knox,3152
-Wantirna South,wøn·tœn·@·sow+,City of Knox,3152
-Bulleen,buul·een,City of Manningham,3105
-Doncaster,døn·kah·st@,City of Manningham,3108
-Doncaster East,døn·kah·st@·eest,City of Manningham,3109
-Donvale,døn·vayl,City of Manningham,3111
-Park Orchards,pahk·aw¢·@dz,City of Manningham,3114
-Ringwood North,rihñ·wuud·naw+,City of Manningham,3134
-Templestowe,tehmp·@l·stoh,City of Manningham,3106
-Templestowe Lower,tehmp·@l·stoh·loh·w@,City of Manningham,3107
-Warrandyte,wø·r@n·diyt,City of Manningham,3113
-Warrandyte South,wø·r@n·diyt·sow+,City of Manningham,3134
-Wonga Park,wøñ·g@·pahk,City of Manningham,3115
-Braybrook,bray·bruuk,City of Maribyrnong,3019
-Footscray,fuutz·gray,City of Maribyrnong,3011
-Kingsville,kihñz·vihl,City of Maribyrnong,3012
-Maidstone,mayd·st@n,City of Maribyrnong,3012
-Maribyrnong,mæ·r@·b@·nøñ,City of Maribyrnong,3032
-Seddon,sehd·@n,City of Maribyrnong,3011
-Tottenham,tøt·@n·@m,City of Maribyrnong,3012
-West Footscray,west·fuutz·gray,City of Maribyrnong,3012
-Yarraville,yæ·r@·vihl,City of Maribyrnong,3013
-Bayswater North,bayz·waht·@·naw+,City of Maroondah,3153
-Croydon,kroi·d@n,City of Maroondah,3136
-Croydon Hills,kroi·d@n·hihlz,City of Maroondah,3136
-Croydon North,kroi·d@n·naw+,City of Maroondah,3136
-Croydon South,kroi·d@n·sow+,City of Maroondah,3136
-Heathmont,hee+·mønt,City of Maroondah,3135
+Kilmore,kihl·maw,Shire of Mitchell,3764
+Kilmore East,kihl·maw·eest,Shire of Mitchell,3764
 Kilsyth,kihl·siy+,City of Maroondah,3137
 Kilsyth South,kihl·siy+·sow+,City of Maroondah,3137
-Ringwood,rihñ·wuud,City of Maroondah,3134
-Ringwood East,rihñ·wuud·eest,City of Maroondah,3135
-Vermont,vœ·mønt,City of Maroondah,3133
-Warranwood,wø·r@n·wuud,City of Maroondah,3134
-Carlton,kahl·t@n,City of Melbourne,3053
-Carlton North,kahl·t@n·naw+,City of Melbourne,3054
-Docklands,døk·lændz,City of Melbourne,3008
-East Melbourne,eest·mælb·@n,City of Melbourne,3002
-Flemington,flehm·ihñ·t@n,City of Melbourne,3031
-Kensington,kehnz·ihñ·t@n,City of Melbourne,3031
-Melbourne,mehl·b@n,City of Melbourne,3000
-North Melbourne,naw+·mehl·b@n,City of Melbourne,3051
-Parkville,pahk·vihl,City of Melbourne,3052
-South Wharf,sow+·wawf,City of Melbourne,3006
-Southbank,sow+·bayñk,City of Melbourne,3006
-West Melbourne,west·mehl·b@n,City of Melbourne,3003
-Aintree,ayn·tree,City of Melton,3336
-Bonnie Brook,bøn·ee·bruuk,City of Melton,3335
-Brookfield,bruuk·feeld,City of Melton,3338
-Burnside,bœn·siyd,City of Melton,3023
-Burnside Heights,bœn·siyd·hiyts,City of Melton,3023
-Caroline Springs,kæ·r@·liyn·sprihñz,City of Melton,3023
-Cobblebank,køb·@l·bayñk,City of Melton,3338
-Deanside,deen-siyd,City of Melton,3336
-Exford,ehks·f@d,City of Melton,3338
-Eynesbury,iyns·bree,City of Melton,3338
-Fieldstone,feeld·st@n,City of Melton,3024
-Fraser Rise,frayz·@·riyz,City of Melton,3336
-Grangefields,graynj·feeldz,City of Melton,3335
-Harkness,hahk·nehs,City of Melton,3337
+Kinglake,kihñ·layk,Shire of Nillumbik,3763
+Kinglake Central,kihñ·layk·sehn·¢r@l,Shire of Murrndindi,3757
+Kinglake West,kihñ·layk·west,Shire of Nillumbik,3778
+Kings Park,kihñz·pahk,City of Brimbank,3021
+Kingsbury,kihñz·bree,City of Darebin,3083
+Kingsville,kihñz·vihl,City of Maribyrnong,3012
+Knoxfield,nøks·feeld,City of Knox,3180
+Koo Wee Rup,kew·wee·ruhp,Shire of Cardinia,3981
+Koo Wee Rup North,kew·wee·ruhp·naw+,Shire of Cardinia,3891
+Kooyong,kew·yøñ,City of Stonnington,3144
+Korobeit,kø·r@·beet,Shire of Moorabool,3341
 Kurunjang,kuh·r@n·jæñ,City of Melton,3337
+Lalor,lay·law,City of Whittlesea,3075
+Lancefield,læns·feeld,Shire of Macdeon Ranges,3435
+Lang Lang,læñ·læñ,Shire of Cardinia,3984
+Lang Lang East,læñ·læñ·eest,Shire of Cardinia,3894
+Langwarrin,læñ·wø·r@n,City of Frankston,3910
+Langwarrin South,læñ·wø·r@n·sow+,City of Frankston,3911
+Lara,lah·r@,City of Greater Geelong,3212
+Launching Place,lawn¢·ihñ·plays,Shire of Yarra Ranges,3139
+Laverton,læv·@·t@n,City of Hobsons Bay,3028
+Laverton North,læv·@·t@n·naw+,City of Wyndham,3026
+Leopold,lee·@·pøl(d),City of Greater Geelong,3224
+Lilydale,lihl·ee·dayl,Shire of Yarra Ranges,3140
+Little River,lihd·@l·rihv·@,City of Wyndham,3211
+Long Forest,løñ·fø·r@st,Shire of Moorabool,3340
+Longwarry,løñ·wø·ree,Shire of Cardinia,3816
+Lovely Banks,luhv·lee·bayñks,City of Greater Geelong,3213
+Lower Plenty,loh·w@·plehn·tee,City of Banyule,3093
+Lynbrook,lihn·bruuk,City of Casey,3975
+Lyndhurst,lihnd·hœst,City of Casey,3975
+Lysterfield,lihst·@·feeld,City of Knox,3156
+Lysterfield South,lihst·@·feeld·sow+,City of Casey,3156
+Macclesfield,mak·@lz·feeld,Shire of Yarra Ranges,3782
+Macedon,mæs·@·d@n,Shire of Macedon Ranges,3440
+Macleod,m@·klowd,City of Banyule,3085
+Maddingley,mæd·ihñ·lee,Shire of Moorabool,3340
+Maidstone,mayd·st@n,City of Maribyrnong,3012
+Main Ridge,mayn·rihj,Shire of Mornington Peninsula,3928
+Malvern,møl·v@n,City of Stonnington,3144
+Malvern East,møl·v@n·eest,City of Stonnington,3145
+Mambourin,mæm·b@·r@n,City of Wyndham,3024
+Manifold Heights,mæn·@·føld·hiyts,City of Greater Geelong,3218
+Mannerim,mæn·@·r@m,City of Greater Geelong,3222
+Manor Lakes,mæn·@·layks,City of Wyndham,3024
+Marcus Hill,mah·k@s·hihl,City of Greater Geelong,3222
+Maribyrnong,mæ·r@·b@·nøñ,City of Maribyrnong,3032
+Marshall,mah·$@l,City of Greater Geelong,3216
+Maryknoll,meh@·ree·nøl,Shire of Cardinia,3812
+Marysville,meh@·reez·vihl,Shire of Murrndindi,3779
+McCrae,m@·kray,Shire of Mornington Peninsula,3938
+McKinnon,m@·kihn·@n,City of Glen Eira,3204
+McMahons Creek,m@k·mahnz·kreek,Shire of Yarra Ranges,3799
+Meadow Heights,mehd·oh·hiyts,City of Hume,3048
+Melbourne,mehl·b@n,City of Melbourne,3000
+Melbourne Airport,mehl·b@n·eh@·pawt,City of Hume,3045
 Melton,mehl·t@n,City of Melton,3337
 Melton South,mehl·t@n·sow+,City of Melton,3338
 Melton West,mehl·t@n·naw+,City of Melton,3337
-Mount Cottrell,mownt·kø¢·r@l,City of Melton,3024
-Parwan,pah·w@n,City of Melton,3340
-Plumpton,pluhmp·t@n,City of Melton,3335
-Ravenhall,ray·v@n·hawl,City of Melton,3023
-Rockbank,røk·bayñk,City of Melton,3335
-Strathtulloh,s¢æ+·tuhl·@,City of Melton,3338
-Taylors Hill,tay·l@z·hihl,City of Melton,3037
-Thornhill Park,#NAME?,City of Melton,3335
-Toolern Vale,tewl·œn·vayl,City of Melton,3337
-Truganina,¢ruhg·@·niyn·@,City of Melton,3029
-Weir Views,wee@·vyewz,City of Melton,3338
-Brunswick,bruhnz·wihk,City of Merri-bek,3056
-Brunswick East,bruhnz·wihk·eest,City of Merri-bek,3057
-Brunswick West,bruhnz·wihk·west,City of Merri-bek,3055
-Coburg,koh·bœg,City of Merri-bek,3058
-Coburg North,koh·bœg·naw+,City of Merri-bek,3058
-Fawkner,fawk·n@,City of Merri-bek,3060
-Glenroy,glehn·roi,City of Merri-bek,3046
-Gowanbrae,gow·@n·bray,City of Merri-bek,3043
-Hadfield,hæd·feeld,City of Merri-bek,3046
-Oak Park,ohk·pahk,City of Merri-bek,3046
-Pascoe Vale,pæs·koh·vayl,City of Merri-bek,3044
-Pascoe Vale South,pæs·koh·vayl·sow+,City of Merri-bek,3044
-Ashwood,æ$·wuud,City of Monash,3147
-Chadstone,¢æd·st@n,City of Monash,3148
-Clayton,klayt·@n,City of Monash,3168
-Glen Waverley,glehn·wayv·@·lee,City of Monash,3150
-Hughesdale,hyewz·dayl,City of Monash,3166
-Huntingdale,huhnt·ihñ·dayl,City of Monash,3166
-Mount Waverley,mownt·wayv·@·lee,City of Monash,3149
-Mulgrave,muhl·grayv,City of Monash,3170
-Notting Hill,nøt·ihñ·hihl,City of Monash,3168
-Oakleigh,ohk·lee,City of Monash,3166
-Oakleigh East,ohk·lee·eest,City of Monash,3166
-Oakleigh South,ohk·lee·sow+,City of Monash,3167
-Wheelers Hill,weel·@z·hihl,City of Monash,3150
-Aberfeldie,æb·@·fehl·dee,City of Moonee Valley,3040
-Airport West,eh@·pawt·west,City of Moonee Valley,3042
-Ascot Vale,æsk·øt·vayl,City of Moonee Valley,3032
-Avondale Heights,æv·@n·dayl·hiyts,City of Moonee Valley,3034
-Essendon,ehs·@n·d@n,City of Moonee Valley,3040
-Essendon Fields,ehs·@n·d@n·feeldz,City of Moonee Valley,3041
-Essendon North,ehs·@n·d@n·naw+,City of Moonee Valley,3041
-Essendon West,ehs·@n·d@n·west,City of Moonee Valley,3040
-Moonee Ponds,mew·nee·pøn(d)z,City of Moonee Valley,3039
-Niddrie,nihj·ree,City of Moonee Valley,3042
-Strathmore,s¢æ+·maw,City of Moonee Valley,3041
-Strathmore Heights,s¢æ+·maw·hiyts,City of Moonee Valley,3041
-Travancore,¢rayv·@n·kaw,City of Moonee Valley,3032
-Albert Park,ælb·@t·pahk,City of Port Phillip,3206
-Balaclava,bæl·@·klah·v@,City of Port Phillip,3183
-Elwood,æl·wuud,City of Port Phillip,3184
-Middle Park,mihd·@l·pahk,City of Port Phillip,3206
-Port Melbourne,pawt·mehl·b@n,City of Port Phillip,3207
-Ripponlea,rihp·@n·lee,City of Port Phillip,3185
-South Melbourne,sow+·mehl·b@n,City of Port Phillip,3205
-St Kilda,s@n·kihl·duh,City of Port Phillip,3182
-St Kilda East,s@n·kihl·duh·eest,City of Port Phillip,3183
-St Kilda West,s@n·kihl·duh·west,City of Port Phillip,3182
-Armadale,ahm·@·dayl,City of Stonnington,3143
-Hawksburn,hawks·bœn,City of Stonnington,3141
-Kooyong,kew·yøñ,City of Stonnington,3144
-Malvern,møl·v@n,City of Stonnington,3144
-Malvern East,møl·v@n·eest,City of Stonnington,3145
-Prahran,p@·ræn,City of Stonnington,3181
-South Yarra,sow+·yæ·r@,City of Stonnington,3141
-Toorak,tu@·ræk,City of Stonnington,3142
-Windsor,wihnz·@,City of Stonnington,3181
-Blackburn,blæk·bœn,City of Whitehorse,3130
-Blackburn North,blæk·bœn·naw+,City of Whitehorse,3130
-Blackburn South,blæk·bœn·sow+,City of Whitehorse,3130
-Box Hill,bøks·hihl,City of Whitehorse,3128
-Box Hill North,bøks·hihl·naw+,City of Whitehorse,3129
-Box Hill South,bøks·hihl·sow+,City of Whitehorse,3128
-Burwood,bœ·wuud,City of Whitehorse,3125
-Burwood East,bœ·wuud·eest,City of Whitehorse,3151
-Forest Hill,før·@st·hihlz,City of Whitehorse,3131
-Mitcham,mih¢·@m,City of Whitehorse,3132
-Mont Albert North,mønt·ælb·@t·naw+,City of Whitehorse,3129
-Nunawading,nuhn·@·wød·ihñ,City of Whitehorse,3131
-Vermont South,vœ·mønt·sow+,City of Whitehorse,3133
-Beveridge,behv·rihj,City of Whittlesea,3753
-Donnybrook,døn·ee·bruuk,City of Whittlesea,3064
-Doreen,daw·reen,City of Whittlesea,3754
-Eden Park,eed·@n·pahk,City of Whittlesea,3757
-Epping,ehp·ihñ,City of Whittlesea,3076
-Humevale,hyewm·vayl,City of Whittlesea,3757
-Lalor,lay·law,City of Whittlesea,3075
+Mentone,mehn·tohn,City of Kingston,3194
+Menzies Creek,mehnz·eez·kreek,Shire of Yarra Ranges,3159
 Mernda,mœn·d@,City of Whittlesea,3754
-Mill Park,mihl·pahk,City of Whittlesea,3082
-South Morang,sow+·m@·rayñ,City of Whittlesea,3752
-Thomastown,tøm·@s·town,City of Whittlesea,3074
-Whittlesea,wiht·@l·see,City of Whittlesea,3757
-Wollert,wøl·œt,City of Whittlesea,3750
-Woodstock,wuud·støk,City of Whittlesea,3755
-Yan Yean,yæn·yeen,City of Whittlesea,3755
-Cocoroc,køk·@·røk,City of Wyndham,3030
-Hoppers Crossing,høp·@z·krøs·ihñ,City of Wyndham,3029
-Laverton North,læv·@·t@n·naw+,City of Wyndham,3026
-Little River,lihd·@l·rihv·@,City of Wyndham,3211
-Mambourin,mæm·b@·r@n,City of Wyndham,3024
-Manor Lakes,mæn·@·layks,City of Wyndham,3024
-Point Cook,poin(t)·kuuk,City of Wyndham,3030
-Quandong,kwøñ·døñ,City of Wyndham,3340
-Sanctuary Lakes,sayñk·$@·ree·layks,City of Wyndham,3030
-Tarneit,tah·neet,City of Wyndham,3029
-Werribee,weh·r@·bee,City of Wyndham,3030
-Werribee South,weh·r@·bee·sow+,City of Wyndham,3030
-Williams Landing,wihl·y@mz·lænd·ihñ,City of Wyndham,3027
-Wyndham Vale,wihn·d@m·vayl,City of Wyndham,3024
-Abbotsford,æb·@ts·f@d,City of Yarra,3067
-Burnley,bœn·lee,City of Yarra,3121
-Clifton Hill,klihft·@n·hihl,City of Yarra,3068
-Collingwood,køl·ihñ·wuud,City of Yarra,3066
-Cremorne,kr@·mawn,City of Yarra,3121
-Fitzroy,fihtz·roi,City of Yarra,3065
-Fitzroy North,fihtz·roi·naw+,City of Yarra,3068
-Princes Hill,prihn·s@s·hihl,City of Yarra,3054
-Richmond,rih¢·m@nd,City of Yarra,3121
-Elizabeth Island,@·lihz·@·b@+·iyl·l@nd,French Island Unincorporated,3921
-French Island,frehn¢·iyl·@nd,French Island Unincorporated,3921
-Sandstone Island,sænd·stohn·iyl·l@nd,French Island Unincorporated,3918
-Tankerton,tayñk·@·t@n,French Island Unincorporated,3921
-Cape Woolamai,kayp·wuul·@·miy,Shire of Bass Coast,3925
-Churchill Island,¢œ¢·@l·iyl·@nd,Shire of Bass Coast,3925
-Cowes,kowz,Shire of Bass Coast,3922
-Newhaven,nyew·hayv·@n,Shire of Bass Coast,3925
-Rhyll,rihl,Shire of Bass Coast,3923
-Silverleaves,sihl·v@·leevz,Shire of Bass Coast,3922
-Smiths Beach,smih+s·bee¢,Shire of Bass Coast,3922
-Summerlands,suhm·@·lændz,Shire of Bass Coast,3922
-Sunderland Bay,suhnd·@·l@nd·bay,Shire of Bass Coast,3922
-Sunset Strip,suhn·seht·s¢rihp,Shire of Bass Coast,3922
-Surf Beach,sœf·bee¢,Shire of Bass Coast,3922
-Ventnor,vehnt·naw,Shire of Bass Coast,3922
-Wimbledon Heights,wihm·b@l·d@n·hiyts,Shire of Bass Coast,3922
-Avonsleigh,ayv·@nz·lee,Shire of Cardinia,3782
-Bayles,baylz,Shire of Cardinia,3981
-Beaconsfield,beek·@nz·feeld,Shire of Cardinia,3807
-Beaconsfield Upper,beek·@nz·feeld·uhp@,Shire of Cardinia,3808
-Bunyip,buhn·yihp,Shire of Cardinia,3815
-Bunyip North,buhn·yihp·naw+,Shire of Cardinia,3815
-Caldermeade,kawl·d@·meed,Shire of Cardinia,3984
-Cardinia,kah·dihn·ee·@,Shire of Cardinia,3978
-Catani,k@·tah·nee,Shire of Cardinia,3981
-Clematis,kl@·may·t@s,Shire of Cardinia,3782
-Cockatoo,køk·@·tew,Shire of Cardinia,3781
-Cora Lynn,kaw·ruh·lihn,Shire of Cardinia,3814
-Dalmore,dæl·maw,Shire of Cardinia,3981
-Dewhurst,jyew·hœst,Shire of Cardinia,3809
-Garfield,gah·feeld,Shire of Cardinia,3814
-Garfield North,gah·feeld·naw+,Shire of Cardinia,3814
-Gembrook,jehm·bruuk,Shire of Cardinia,3783
-Guys Hill,giyz·hihl,Shire of Cardinia,3807
-Heath Hill,hee+·hihl,Shire of Cardinia,3981
-Iona,iy·ohn·@,Shire of Cardinia,3815
-Koo Wee Rup,kew·wee·ruhp,Shire of Cardinia,3981
-Koo Wee Rup North,kew·wee·ruhp·naw+,Shire of Cardinia,3891
-Lang Lang,læñ·læñ,Shire of Cardinia,3984
-Lang Lang East,læñ·læñ·eest,Shire of Cardinia,3894
-Longwarry,løñ·wø·ree,Shire of Cardinia,3816
-Maryknoll,meh@·ree·nøl,Shire of Cardinia,3812
-Modella,m@·dehl·@,Shire of Cardinia,3816
-Monomeith,møn·uh·mee+,Shire of Cardinia,3984
-Nangana,næñ·gahn·@,Shire of Cardinia,3781
-Nar Nar Goon,nah·nah·gewn,Shire of Cardinia,3812
-Nar Nar Goon North,nah·nah·gewn·naw+,Shire of Cardinia,3812
-Nyora,niy·aw·r@,Shire of Cardinia,3987
-Officer,øf·@·s@,Shire of Cardinia,3809
-Officer South,øf·@·s@·sow+,Shire of Cardinia,3809
-Pakenham,pæk·@·n@m,Shire of Cardinia,3810
-Pakenham South,pæk·@·n@m·sow+,Shire of Cardinia,3810
-Pakenham Upper,pæk·@·n@m·uhp·@,Shire of Cardinia,3810
-Rythdale,riy‡·dayl,Shire of Cardinia,3810
-Tonimbuk,tøn·@m·buuk,Shire of Cardinia,3815
-Tynong,tiy·nøñ,Shire of Cardinia,3813
-Tynong North,tiy·nøñ·naw+,Shire of Cardinia,3813
-Vervale,vœ·vayl,Shire of Cardinia,3814
-Yannathan,yæn·@·+@n,Shire of Cardinia,3894
-Bolinda,b@·lihn·d@,Shire of Macdeon Ranges,3432
-Cherokee,¢eh·r@·kee,Shire of Macdeon Ranges,3434
-Chintin,¢ihn·t@n,Shire of Macdeon Ranges,3756
-Darraweit Guim,dæ·r@·weet·gwihm,Shire of Macdeon Ranges,3756
-Gisborne,gihz·b@n,Shire of Macdeon Ranges,3437
-Gisborne South,gihz·b@n·sow+,Shire of Macdeon Ranges,3437
-Hesket,hehsk·@t,Shire of Macdeon Ranges,3442
-Kerrie,keh·ree,Shire of Macdeon Ranges,3434
-Lancefield,læns·feeld,Shire of Macdeon Ranges,3435
-Monegeetta,møn·@·gee·t@,Shire of Macdeon Ranges,3433
-Mount Macedon,mownt·mæs·@·d@n,Shire of Macdeon Ranges,3441
-New Gisborne,nyew·gihz·b@n,Shire of Macdeon Ranges,3438
-Riddells Creek,rihd·@lz·kreek,Shire of Macdeon Ranges,3431
-Rochford,rø¢·f@d,Shire of Macdeon Ranges,3442
-Romsey,rømz·ee,Shire of Macdeon Ranges,3434
-Springfield,sprihñ·feeld,Shire of Macdeon Ranges,3434
-Macedon,mæs·@·d@n,Shire of Macedon Ranges,3440
-Bylands,biy·lændz,Shire of Mitchell,3762
-Clonbinane,kløn·b@n·ayn,Shire of Mitchell,3658
-Forbes,fawbz,Shire of Mitchell,3764
-Heathcote Junction,hee+·k@t·juhñk·$@n,Shire of Mitchell,3758
-Kilmore,kihl·maw,Shire of Mitchell,3764
-Kilmore East,kihl·maw·eest,Shire of Mitchell,3764
-Upper Plenty,uhp·@·plehn·tee,Shire of Mitchell,3756
-Wallan,wøl·@n,Shire of Mitchell,3756
-Wandong,wøñ·døñ,Shire of Mitchell,3758
-Waterford Park,wawt·@·f@d·pahk,Shire of Mitchell,3658
-Bacchus Marsh,bæk·@s·mah$,Shire of Moorabool,3340
-Ballan,buh·læn,Shire of Moorabool,3342
-Balliang,bæl·ee·æñ,Shire of Moorabool,3340
-Balliang East,bæl·ee·æñ·eest,Shire of Moorabool,3340
-Coimadai,cø·miy·d@,Shire of Moorabool,3340
-Darley,dah·lee,Shire of Moorabool,3340
-Glenmore,glehn·maw,Shire of Moorabool,3340
-Hopetoun Park,hohp·t@n·pahk,Shire of Moorabool,3340
-Ingliston,ihñ·glihst·@n,Shire of Moorabool,3342
-Korobeit,kø·r@·beet,Shire of Moorabool,3341
-Long Forest,løñ·fø·r@st,Shire of Moorabool,3340
-Maddingley,mæd·ihñ·lee,Shire of Moorabool,3340
-Merrimu,meh·r@·mew,Shire of Moorabool,3340
-Myrniong,mœn·ee·øñ,Shire of Moorabool,3341
-Pentland Hills,pehnt·l@nd·hihlz,Shire of Moorabool,3341
-Rowsley,rohs·lee,Shire of Moorabool,3340
-Arthurs Seat,ah+·@z·seet,Shire of Mornington Peninsula,3936
-Balnarring,bæl·næ·rihñ,Shire of Mornington Peninsula,3926
-Balnarring Beach,bæl·næ·rihñ·bee¢,Shire of Mornington Peninsula,3926
-Baxter,bækst·@,Shire of Mornington Peninsula,3911
-Bittern,biht·@n,Shire of Mornington Peninsula,3918
-Blairgowrie,bleh@·gow·ree,Shire of Mornington Peninsula,3942
-Boneo,bohn·ee·oh,Shire of Mornington Peninsula,3939
-Cape Schanck,kayp·$æñk,Shire of Mornington Peninsula,3939
-Capel Sound,kay·p@l·sownd,Shire of Mornington Peninsula,3940
-Crib Point,krihb·point,Shire of Mornington Peninsula,3919
-Dromana,dr@·mah·n@,Shire of Mornington Peninsula,3936
-Fingal,fihñ·g@l,Shire of Mornington Peninsula,3939
-Flinders,flihnd·@z,Shire of Mornington Peninsula,3929
-Hastings,hayst·ihñz,Shire of Mornington Peninsula,3915
-HMAS Cerberus,(h)ay¢·em·ay·es·sœb·@·r@s,Shire of Mornington Peninsula,3920
-Main Ridge,mayn·rihj,Shire of Mornington Peninsula,3928
-McCrae,m@·kray,Shire of Mornington Peninsula,3938
 Merricks,meh·rihks,Shire of Mornington Peninsula,3916
 Merricks Beach,meh·rihks·bee¢,Shire of Mornington Peninsula,3926
 Merricks North,meh·rihks·naw+,Shire of Mornington Peninsula,3926
+Merrimu,meh·r@·mew,Shire of Moorabool,3340
+Mickleham,mihk·@l·@m,City of Hume,3064
+Middle Park,mihd·@l·pahk,City of Port Phillip,3206
+Mill Park,mihl·pahk,City of Whittlesea,3082
+Millgrove,mihl·grohv,Shire of Yarra Ranges,3799
+Mitcham,mih¢·@m,City of Whitehorse,3132
+Modella,m@·dehl·@,Shire of Cardinia,3816
+Monbulk,møn·buhlk,Shire of Yarra Ranges,3793
+Monegeetta,møn·@·gee·t@,Shire of Macdeon Ranges,3433
+Monomeith,møn·uh·mee+,Shire of Cardinia,3984
+Mont Albert,mønt·ælb·@t,City of Boroondara,3127
+Mont Albert North,mønt·ælb·@t·naw+,City of Whitehorse,3129
+Montmorency,mønt·m@·rehn·see,City of Banyule,3094
+Montrose,møn¢·rohz,Shire of Yarra Ranges,3765
+Moolap,mew·læp,City of Greater Geelong,3224
+Moonee Ponds,mew·nee·pøn(d)z,City of Moonee Valley,3039
+Moorabbin,m@·ræb·@n,City of Kingston,3189
+Moorabbin Airport,m@·ræb·@n·eh@·pawt,City of Kingston,3194
+Moorabool,muu·r@·buul,City of Greater Geelong,3213
 Moorooduc,mu@·a·duhk,Shire of Mornington Peninsula,3933
+Mooroolbark,mu@·@l·bahk,Shire of Yarra Ranges,3138
+Mordialloc,mawd·ee·æl·@k,City of Kingston,3195
 Mornington,mawn·ihñ·t@n,Shire of Mornington Peninsula,3931
+Mount Cottrell,mownt·kø¢·r@l,City of Melton,3024
+Mount Dandenong,mownt·dænd·ee·nøñ,Shire of Yarra Ranges,3767
+Mount Duneed,mown·duhn·eed,City of Greater Geelong,3217
 Mount Eliza,mown·t@·liyz·@,Shire of Mornington Peninsula,3930
+Mount Evelyn,mownt·ehv·@·lihn,Shire of Yarra Ranges,3796
+Mount Macedon,mownt·mæs·@·d@n,Shire of Macdeon Ranges,3441
 Mount Martha,mown(t)·mah+·@,Shire of Mornington Peninsula,3934
+Mount Toolebewong,mown·tewl·b@·wøñ,Shire of Yarra Ranges,3777
+Mount Waverley,mownt·wayv·@·lee,City of Monash,3149
+Mulgrave,muhl·grayv,City of Monash,3170
+Murrumbeena,muh·r@m·been·@,City of Glen Eira,3163
+Myrniong,mœn·ee·øñ,Shire of Moorabool,3341
+Nangana,næñ·gahn·@,Shire of Cardinia,3781
+Nar Nar Goon,nah·nah·gewn,Shire of Cardinia,3812
+Nar Nar Goon North,nah·nah·gewn·naw+,Shire of Cardinia,3812
+Narbethong,nah·b@·+øñ,Shire of Murrndindi,3778
+Narre Warren,næ·ree·wø·r@n,City of Casey,3805
+Narre Warren East,næ·ree·wø·r@n·eest,Shire of Yarra Ranges,3804
+Narre Warren North,næ·ree·wø·r@n·naw+,City of Casey,3804
+Narre Warren South,næ·ree·wø·r@n·sow+,City of Casey,3805
+New Gisborne,nyew·gihz·b@n,Shire of Macdeon Ranges,3438
+Newcomb,new·k@m,City of Greater Geelong,3219
+Newhaven,nyew·hayv·@n,Shire of Bass Coast,3925
+Newport,nyew·pawt,City of Hobsons Bay,3015
+Newtown,new·town,City of Greater Geelong,3220
+Niddrie,nihj·ree,City of Moonee Valley,3042
+Noble Park,nohb·@l·pahk,City of Greater Dandenong,3174
+Noble Park North,nohb·@l·pahk·naw+,City of Greater Dandenong,3174
+Norlane,naw·layn,City of Greater Geelong,3214
+North Geelong,naw+·j@·løñ,City of Greater Geelong,3215
+North Melbourne,naw+·mehl·b@n,City of Melbourne,3051
+North Shore,naw+·$aw,City of Greater Geelong,3214
+North Warrandyte,naw+·wø·r@n·diyt,Shire of Nillumbik,3113
+Northcote,naw+·k@t,City of Darebin,3070
+Notting Hill,nøt·ihñ·hihl,City of Monash,3168
+Nunawading,nuhn·@·wød·ihñ,City of Whitehorse,3131
+Nutfield,nuht·feeld,Shire of Nillumbik,3099
+Nyora,niy·aw·r@,Shire of Cardinia,3987
+Oak Park,ohk·pahk,City of Merri-bek,3046
+Oaklands Junction,ohk·l@ndz·juhñk·$@n,City of Hume,3063
+Oakleigh,ohk·lee,City of Monash,3166
+Oakleigh East,ohk·lee·eest,City of Monash,3166
+Oakleigh South,ohk·lee·sow+,City of Monash,3167
+Ocean Grove,oh$·@n·grohv,City of Greater Geelong,3226
+Officer,øf·@·s@,Shire of Cardinia,3809
+Officer South,øf·@·s@·sow+,Shire of Cardinia,3809
+Olinda,@·lihnd·@,Shire of Yarra Ranges,3788
+Ormond,aw·m@nd,City of Glen Eira,3204
+Pakenham,pæk·@·n@m,Shire of Cardinia,3810
+Pakenham South,pæk·@·n@m·sow+,Shire of Cardinia,3810
+Pakenham Upper,pæk·@·n@m·uhp·@,Shire of Cardinia,3810
+Panton Hill,pænt·@n·hihlz,Shire of Nillumbik,3759
+Park Orchards,pahk·aw¢·@dz,City of Manningham,3114
+Parkdale,pahk·dayl,City of Kingston,3195
+Parkville,pahk·vihl,City of Melbourne,3052
+Parwan,pah·w@n,City of Melton,3340
+Pascoe Vale,pæs·koh·vayl,City of Merri-bek,3044
+Pascoe Vale South,pæs·koh·vayl·sow+,City of Merri-bek,3044
+Patterson Lakes,pæt·@·s@n·layks,City of Kingston,3197
+Pearcedale,pee@s·dayl,City of Casey,3912
+Pentland Hills,pehnt·l@nd·hihlz,Shire of Moorabool,3341
+Pheasant Creek,fehz·@nt·kreek,Shire of Murrndindi,3757
+Plenty,plehn·tee,Shire of Nillumbik,3090
+Plumpton,pluhmp·t@n,City of Melton,3335
+Point Cook,poin(t)·kuuk,City of Wyndham,3030
 Point Leo,poin(t)·lee·oh,Shire of Mornington Peninsula,3916
+Point Lonsdale,poin(t)·lønz·dayl,Borough of Queenscliff,3225
+Point Wilson,poin(t)·wihl·s@n,City of Greater Geelong,3212
+Port Melbourne,pawt·mehl·b@n,City of Port Phillip,3207
+Portarlington,pawt·ah·lihñ·t@n,City of Greater Geelong,3223
 Portsea,paw(t)·see,Shire of Mornington Peninsula,3944
+Powelltown,pow·@l·town,Shire of Yarra Ranges,3797
+Prahran,p@·ræn,City of Stonnington,3181
+Preston,prehs·t@n,City of Darebin,3072
+Princes Hill,prihn·s@s·hihl,City of Yarra,3054
+Quandong,kwøñ·døñ,City of Wyndham,3340
+Queenscliff,kweenz·klihf,Borough of Queenscliff,3225
+Ravenhall,ray·v@n·hawl,City of Melton,3023
 Red Hill,rehd·hihl,Shire of Mornington Peninsula,3937
 Red Hill South,rehd·hihl·sow+,Shire of Mornington Peninsula,3937
-Rosebud,rohz·buhd,Shire of Mornington Peninsula,3939
-Rye,riy,Shire of Mornington Peninsula,3941
-Safety Beach,sayf·tee·bee¢,Shire of Mornington Peninsula,3936
-Shoreham,$aw·@m,Shire of Mornington Peninsula,3916
-Somers,suhm·@z,Shire of Mornington Peninsula,3927
-Somerville,suhm·@·vihl,Shire of Mornington Peninsula,3912
-Sorrento,s@·rehn·toh,Shire of Mornington Peninsula,3943
-St Andrews Beach,s@n·ænj·rewz·bee¢,Shire of Mornington Peninsula,3941
-Tootgarook,tuut·g@·ruuk,Shire of Mornington Peninsula,3941
-Tuerong,tew·røñ,Shire of Mornington Peninsula,3915
-Tyabb,tiy·æb,Shire of Mornington Peninsula,3913
-Castella,kæst·ehl·@,Shire of Murrndindi,3777
-Kinglake Central,kihñ·layk·sehn·¢r@l,Shire of Murrndindi,3757
-Marysville,meh@·reez·vihl,Shire of Murrndindi,3779
-Narbethong,nah·b@·+øñ,Shire of Murrndindi,3778
-Pheasant Creek,fehz·@nt·kreek,Shire of Murrndindi,3757
-Toolangi,t@·læñ·ee,Shire of Murrndindi,3777
-Arthurs Creek,ah+·@z·kreek,Shire of Nillumbik,3099
-Bend Of Islands,behnd·øv·iyl·@ndz,Shire of Nillumbik,3097
-Christmas Hills,krihs·m@s·hihlz,Shire of Nillumbik,3775
-Cottles Bridge,køt·@lz·brihj,Shire of Nillumbik,3099
-Diamond Creek,diym·@nd·kreek,Shire of Nillumbik,3089
-Eltham,æl+·@m,Shire of Nillumbik,3095
-Hurstbridge,hœst·brihj,Shire of Nillumbik,3099
-Kangaroo Ground,kañ·g@·rew·grownd,Shire of Nillumbik,3097
-Kinglake,kihñ·layk,Shire of Nillumbik,3763
-Kinglake West,kihñ·layk·west,Shire of Nillumbik,3778
-North Warrandyte,naw+·wø·r@n·diyt,Shire of Nillumbik,3113
-Nutfield,nuht·feeld,Shire of Nillumbik,3099
-Panton Hill,pænt·@n·hihlz,Shire of Nillumbik,3759
-Plenty,plehn·tee,Shire of Nillumbik,3090
-Research,ree·sœ¢,Shire of Nillumbik,3095
-Smiths Gully,smih+s·guh·lee,Shire of Nillumbik,3760
-St Andrews,s@n·ænj·rewz,Shire of Nillumbik,3761
-Strathewen,s¢ræ+·ew·@n,Shire of Nillumbik,3099
-Watsons Creek,wøts·@nz·kreek,Shire of Nillumbik,3097
-Wattle Glen,wøt·@l·glehn,Shire of Nillumbik,3096
-Yarrambat,yæ·r@m·bæt,Shire of Nillumbik,3091
-Bellbrae,behl·bray,Shire of Surf Coast,3228
-Bells Beach,behlz·bee¢,Shire of Surf Coast,3228
-Jan Juc,jæn·juhk,Shire of Surf Coast,3228
-Torquay,taw·kee,Shire of Surf Coast,3228
-Badger Creek,bæj·@·kreek,Shire of Yarra Ranges,3777
-Beenak,bee·næk,Shire of Yarra Ranges,3139
-Belgrave,behl·grayv,Shire of Yarra Ranges,3160
-Belgrave Heights,behl·grayv·hiyts,Shire of Yarra Ranges,3160
-Belgrave South,behl·grayv·sow+,Shire of Yarra Ranges,3160
-Big Pats Creek,bihg·pætz·kreek,Shire of Yarra Ranges,3799
-Chirnside Park,¢œn·siyd·pahk,Shire of Yarra Ranges,3116
-Chum Creek,¢uhm·kreek,Shire of Yarra Ranges,3777
-Coldstream,køld·streem,Shire of Yarra Ranges,3770
-Dixons Creek,dihks·@nz·kreek,Shire of Yarra Ranges,3775
-Don Valley,døn·væl·ee,Shire of Yarra Ranges,3139
-East Warburton,eest·wawb·@·t@n,Shire of Yarra Ranges,3799
-Emerald,ehm·r@ld,Shire of Yarra Ranges,3782
-Fernshaw,fœn·$aw,Shire of Yarra Ranges,3778
-Ferny Creek,fœn·ee·kreek,Shire of Yarra Ranges,3786
-Gilderoy,gihld·@·roi,Shire of Yarra Ranges,3797
-Gladysdale,glæd·@s·dayl,Shire of Yarra Ranges,3797
-Gruyere,gree·yeh@,Shire of Yarra Ranges,3770
-Healesville,heelz·vihl,Shire of Yarra Ranges,3777
-Hoddles Creek,hød·@lz·kreek,Shire of Yarra Ranges,3139
-Kallista,k@·lihst·@,Shire of Yarra Ranges,3791
-Kalorama,kæl·@·rah·m@,Shire of Yarra Ranges,3766
-Launching Place,lawn¢·ihñ·plays,Shire of Yarra Ranges,3139
-Lilydale,lihl·ee·dayl,Shire of Yarra Ranges,3140
-Macclesfield,mak·@lz·feeld,Shire of Yarra Ranges,3782
-McMahons Creek,m@k·mahnz·kreek,Shire of Yarra Ranges,3799
-Menzies Creek,mehnz·eez·kreek,Shire of Yarra Ranges,3159
-Millgrove,mihl·grohv,Shire of Yarra Ranges,3799
-Monbulk,møn·buhlk,Shire of Yarra Ranges,3793
-Montrose,møn¢·rohz,Shire of Yarra Ranges,3765
-Mooroolbark,mu@·@l·bahk,Shire of Yarra Ranges,3138
-Mount Dandenong,mownt·dænd·ee·nøñ,Shire of Yarra Ranges,3767
-Mount Evelyn,mownt·ehv·@·lihn,Shire of Yarra Ranges,3796
-Mount Toolebewong,mown·tewl·b@·wøñ,Shire of Yarra Ranges,3777
-Narre Warren East,næ·ree·wø·r@n·eest,Shire of Yarra Ranges,3804
-Olinda,@·lihnd·@,Shire of Yarra Ranges,3788
-Powelltown,pow·@l·town,Shire of Yarra Ranges,3797
 Reefton,reef·t@n,Shire of Yarra Ranges,3799
+Research,ree·sœ¢,Shire of Nillumbik,3095
+Reservoir,rehz·@·vaw,City of Darebin,3073
+Rhyll,rihl,Shire of Bass Coast,3923
+Richmond,rih¢·m@nd,City of Yarra,3121
+Riddells Creek,rihd·@lz·kreek,Shire of Macdeon Ranges,3431
+Ringwood,rihñ·wuud,City of Maroondah,3134
+Ringwood East,rihñ·wuud·eest,City of Maroondah,3135
+Ringwood North,rihñ·wuud·naw+,City of Manningham,3134
+Rippleside,rihp·@l·siyd,City of Greater Geelong,3215
+Ripponlea,rihp·@n·lee,City of Port Phillip,3185
+Rochford,rø¢·f@d,Shire of Macdeon Ranges,3442
+Rockbank,røk·bayñk,City of Melton,3335
+Romsey,rømz·ee,Shire of Macdeon Ranges,3434
+Rosanna,rohz·æn·@,City of Banyule,3084
+Rosebud,rohz·buhd,Shire of Mornington Peninsula,3939
+Rowsley,rohs·lee,Shire of Moorabool,3340
+Rowville,roh·vihl,City of Knox,3178
+Roxburgh Park,røks·br@·pahk,City of Hume,3064
+Rye,riy,Shire of Mornington Peninsula,3941
+Rythdale,riy‡·dayl,Shire of Cardinia,3810
+Safety Beach,sayf·tee·bee¢,Shire of Mornington Peninsula,3936
+Sanctuary Lakes,sayñk·$@·ree·layks,City of Wyndham,3030
+Sandhurst,sænd·hœst,City of Frankston,3977
+Sandringham,sænj·rihñ·h@m,City of Bayside,3191
+Sandstone Island,sænd·stohn·iyl·l@nd,French Island Unincorporated,3918
+Sassafras,sæs·@·fræs,City of Knox,3787
+Scoresby,skawz·bee,City of Knox,3179
+Seabrook,see·bruuk,City of Hobsons Bay,3028
+Seaford,see·f@d,City of Frankston,3198
+Seaholme,see·hohm,City of Hobsons Bay,3018
+Seddon,sehd·@n,City of Maribyrnong,3011
 Selby,sehl·bee,Shire of Yarra Ranges,3159
 Seville,seh·vihl,Shire of Yarra Ranges,3139
 Seville East,seh·vihl·eest,Shire of Yarra Ranges,3139
 Sherbrooke,$œ·bruuk,Shire of Yarra Ranges,3789
+Shoreham,$aw·@m,Shire of Mornington Peninsula,3916
 Silvan,sihl·v@n,Shire of Yarra Ranges,3795
+Silverleaves,sihl·v@·leevz,Shire of Bass Coast,3922
+Skye,skiy,City of Frankston,3977
+Smiths Beach,smih+s·bee¢,Shire of Bass Coast,3922
+Smiths Gully,smih+s·guh·lee,Shire of Nillumbik,3760
+Somers,suhm·@z,Shire of Mornington Peninsula,3927
+Somerton,suhm·@·t@n,City of Hume,3062
+Somerville,suhm·@·vihl,Shire of Mornington Peninsula,3912
+Sorrento,s@·rehn·toh,Shire of Mornington Peninsula,3943
+South Geelong,sow+·j@·løñ,City of Greater Geelong,3220
+South Kingsville,sow+·kihñz·vihl,City of Hobsons Bay,3015
+South Melbourne,sow+·mehl·b@n,City of Port Phillip,3205
+South Morang,sow+·m@·rayñ,City of Whittlesea,3752
+South Wharf,sow+·wawf,City of Melbourne,3006
+South Yarra,sow+·yæ·r@,City of Stonnington,3141
+Southbank,sow+·bayñk,City of Melbourne,3006
+Spotswood,spøtz·wuud,City of Hobsons Bay,3015
+Springfield,sprihñ·feeld,Shire of Macdeon Ranges,3434
+Springvale,sprihñ·vayl,City of Greater Dandenong,3171
+Springvale South,sprihñ·vayl·sow+,City of Greater Dandenong,3172
+St Albans,s@n·aw(l)·b@nz,City of Brimbank,3021
+St Albans Park,s@n·aw(l)·b@nz·pahk,City of Greater Geelong,3219
+St Andrews,s@n·ænj·rewz,Shire of Nillumbik,3761
+St Andrews Beach,s@n·ænj·rewz·bee¢,Shire of Mornington Peninsula,3941
+St Helena,s@n·t@·lee·n@,City of Banyule,3088
+St Kilda,s@n·kihl·duh,City of Port Phillip,3182
+St Kilda East,s@n·kihl·duh·eest,City of Port Phillip,3183
+St Kilda West,s@n·kihl·duh·west,City of Port Phillip,3182
+St Leondards,s@n·lehn·@dz,City of Greater Geelong,3223
+Staughton Vale,staw·t@n·vayl,City of Greater Geelong,3340
 Steels Creek,steelz·kreek,Shire of Yarra Ranges,3775
+Strathewen,s¢ræ+·ew·@n,Shire of Nillumbik,3099
+Strathmore,s¢æ+·maw,City of Moonee Valley,3041
+Strathmore Heights,s¢æ+·maw·hiyts,City of Moonee Valley,3041
+Strathtulloh,s¢æ+·tuhl·@,City of Melton,3338
+Summerlands,suhm·@·lændz,Shire of Bass Coast,3922
+Sunbury,suhn·bree,City of Hume,3429
+Sunderland Bay,suhnd·@·l@nd·bay,Shire of Bass Coast,3922
+Sunset Strip,suhn·seht·s¢rihp,Shire of Bass Coast,3922
+Sunshine,suhn·$iyn,City of Brimbank,3020
+Sunshine North,suhn·$iyn·naw+,City of Brimbank,3020
+Sunshine West,suhn·$iyn·west,City of Brimbank,3020
+Surf Beach,sœf·bee¢,Shire of Bass Coast,3922
+Surrey Hills,suh·ree·hihlz,City of Boroondara,3127
+Swan Bay,swøn·bay,City of Greater Geelong,3225
+Swan Island,swøn·iyl·@nd,Borough of Queenscliff,3225
+Sydenham,sihd·n@m,City of Brimbank,3037
+Tankerton,tayñk·@·t@n,French Island Unincorporated,3921
+Tarneit,tah·neet,City of Wyndham,3029
 Tarrawarra,tæ·r@·wø·r@,Shire of Yarra Ranges,3775
+Taylors Hill,tay·l@z·hihl,City of Melton,3037
+Taylors Lakes,tay·l@z·layks,City of Brimbank,3038
 Tecoma,t@·kohm·@,Shire of Yarra Ranges,3160
+Templestowe,tehmp·@l·stoh,City of Manningham,3106
+Templestowe Lower,tehmp·@l·stoh·loh·w@,City of Manningham,3107
+The Basin,‡@·bay·s@n,City of Knox,3154
 The Patch,‡@·pæ¢,Shire of Yarra Ranges,3792
+Thomastown,tøm·@s·town,City of Whittlesea,3074
+Thomson,tøm·s@n,City of Greater Geelong,3219
+Thornbury,+awn·bree,City of Darebin,3071
+Thornhill Park,+awn·hihl·pahk,City of Melton,3335
 Three Bridges,+ree·brij·@z,Shire of Yarra Ranges,3797
+Tonimbuk,tøn·@m·buuk,Shire of Cardinia,3815
+Toolangi,t@·læñ·ee,Shire of Murrndindi,3777
+Toolern Vale,tewl·œn·vayl,City of Melton,3337
+Tooradin,tu@·r@·d@n,City of Casey,3980
+Toorak,tu@·ræk,City of Stonnington,3142
+Tootgarook,tuut·g@·ruuk,Shire of Mornington Peninsula,3941
+Torquay,taw·kee,Shire of Surf Coast,3228
+Tottenham,tøt·@n·@m,City of Maribyrnong,3012
+Travancore,¢rayv·@n·kaw,City of Moonee Valley,3032
 Tremont,¢r@·mønt,Shire of Yarra Ranges,3785
+Truganina,¢ruhg·@·niyn·@,City of Melton,3029
+Tuerong,tew·røñ,Shire of Mornington Peninsula,3915
+Tullamarine,tuhl·@·m@·reen,City of Hume,3043
+Tyabb,tiy·æb,Shire of Mornington Peninsula,3913
+Tynong,tiy·nøñ,Shire of Cardinia,3813
+Tynong North,tiy·nøñ·naw+,Shire of Cardinia,3813
+Upper Ferntree Gully,uhp·@·fœn¢·ree·guh·lee,City of Knox,3156
+Upper Plenty,uhp·@·plehn·tee,Shire of Mitchell,3756
 Upwey,uhp·way,Shire of Yarra Ranges,3158
+Ventnor,vehnt·naw,Shire of Bass Coast,3922
+Vermont,vœ·mønt,City of Maroondah,3133
+Vermont South,vœ·mønt·sow+,City of Whitehorse,3133
+Vervale,vœ·vayl,Shire of Cardinia,3814
+Viewbank,vyew·bayñk,City of Banyule,3084
+Wallan,wøl·@n,Shire of Mitchell,3756
+Wallington,wøl·ihñ·t@n,City of Greater Geelong,3222
+Wandana Heights,wøn·dah·n@·hiyts,City of Greater Geelong,3216
 Wandin East,wøn·d@n·eest,Shire of Yarra Ranges,3139
 Wandin North,wøn·d@n·naw+,Shire of Yarra Ranges,3139
+Wandong,wøñ·døñ,Shire of Mitchell,3758
+Wantirna,wøn·tœn·@,City of Knox,3152
+Wantirna South,wøn·tœn·@·sow+,City of Knox,3152
 Warburton,waw·b@·t@n,Shire of Yarra Ranges,3799
+Warneet,waw·neet,City of Casey,3980
+Warrandyte,wø·r@n·diyt,City of Manningham,3113
+Warrandyte South,wø·r@n·diyt·sow+,City of Manningham,3134
+Warranwood,wø·r@n·wuud,City of Maroondah,3134
+Waterford Park,wawt·@·f@d·pahk,Shire of Mitchell,3658
+Waterways,waw·t@·wayz,City of Kingston,3195
+Watsonia,wøts·ohn·ee·@,City of Banyule,3087
+Watsonia North,wøts·ohn·ee·@·naw+,City of Banyule,3087
+Watsons Creek,wøts·@nz·kreek,Shire of Nillumbik,3097
+Wattle Glen,wøt·@l·glehn,Shire of Nillumbik,3096
+Waurn Ponds,wawn·pøndz,City of Greater Geelong,3216
+Weir Views,wee@·vyewz,City of Melton,3338
+Werribee,weh·r@·bee,City of Wyndham,3030
+Werribee South,weh·r@·bee·sow+,City of Wyndham,3030
 Wesburn,wehs·bœn,Shire of Yarra Ranges,3799
+West Footscray,west·fuutz·gray,City of Maribyrnong,3012
+West Melbourne,west·mehl·b@n,City of Melbourne,3003
+Westmeadows,west·mehd·ohz,City of Hume,3049
+Wheelers Hill,weel·@z·hihl,City of Monash,3150
+Whittington,wiht·ihñ·t@n,City of Greater Geelong,3219
+Whittlesea,wiht·@l·see,City of Whittlesea,3757
+Wildwood,wiyld·wuud,City of Hume,3429
+Williams Landing,wihl·y@mz·lænd·ihñ,City of Wyndham,3027
+Williamstown,wihl·y@mz·town,City of Hobsons Bay,3016
+Williamstown North,wihl·y@mz·town·naw+,City of Hobsons Bay,3016
+Wimbledon Heights,wihm·b@l·d@n·hiyts,Shire of Bass Coast,3922
+Windsor,wihnz·@,City of Stonnington,3181
+Wollert,wøl·œt,City of Whittlesea,3750
+Wonga Park,wøñ·g@·pahk,City of Manningham,3115
+Woodstock,wuud·støk,City of Whittlesea,3755
 Woori Yallock,waw·ree·yæl·@k,Shire of Yarra Ranges,3139
+Wyndham Vale,wihn·d@m·vayl,City of Wyndham,3024
+Yallambie,y@·læm·bee,City of Banyule,3085
+Yan Yean,yæn·yeen,City of Whittlesea,3755
+Yannathan,yæn·@·+@n,Shire of Cardinia,3894
 Yarra Glen,yæ·r@·glehn,Shire of Yarra Ranges,3775
 Yarra Junction,yæ·r@·juhñk·$@n,Shire of Yarra Ranges,3797
+Yarrambat,yæ·r@m·bæt,Shire of Nillumbik,3091
+Yarraville,yæ·r@·vihl,City of Maribyrnong,3013
 Yellingbo,yeh·lihñ·boh,Shire of Yarra Ranges,3139
 Yering,yeh·rihñ,Shire of Yarra Ranges,3770
+Yuroke,yew·roh·kee,City of Hume,3063
