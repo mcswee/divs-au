@@ -45,6 +45,45 @@
       <p>There are a couple of suburb pronunciation guides around and sure, they'll list Prahran and Malvern and Reservoir and maybe even Truganina. But then they'll have whacky phonetics and you can tell they were written by someone with no concept of Melbourne or with no understanding of English phonology. Not that I'm claiming to be an expert in linguistics. But here is a full, comprehensive list of every Melbourne suburb, with a consistent and reliable phonology.</p>
     </section>
     <section>
+<table id="suburb-table" class="sortable">
+  <thead>
+    <tr>
+      <th>Suburb</th>
+      <th>Pronunciation</th>
+      <th>LGA</th>
+      <th>Postcode</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<!-- Include required JS libs -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://unpkg.com/tablesort@5.2.1/dist/tablesort.min.js"></script>
+
+<script>
+fetch('suburbs.csv')
+  .then(response => response.text())
+  .then(csv => {
+    const data = Papa.parse(csv, { header: true }).data;
+    const tbody = document.querySelector('#suburb-table tbody');
+
+    data.forEach(row => {
+      const tr = document.createElement('tr');
+      ['Suburb', 'Pronunciation', 'LGA', 'Postcode'].forEach(col => {
+        const td = document.createElement('td');
+        td.textContent = row[col];
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+
+    new Tablesort(document.getElementById('suburb-table'));
+  });
+</script>
+    </section>
+    
+    <section>
       <h3>Vowel Pronunciation Key</h3>
 <table class="key-table">
   <thead>
@@ -117,44 +156,6 @@
     <tr><td>j</td><td>dʒ</td><td>JUST, LARGE</td><td>juhst, lahj</td></tr>
   </tbody>
 </table> 
-    </section>
-    <section>
-<table id="suburb-table" class="sortable">
-  <thead>
-    <tr>
-      <th>Suburb</th>
-      <th>Pronunciation</th>
-      <th>LGA</th>
-      <th>Postcode</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
-
-<!-- Include required JS libs -->
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-<script src="https://unpkg.com/tablesort@5.2.1/dist/tablesort.min.js"></script>
-
-<script>
-fetch('suburbs.csv')
-  .then(response => response.text())
-  .then(csv => {
-    const data = Papa.parse(csv, { header: true }).data;
-    const tbody = document.querySelector('#suburb-table tbody');
-
-    data.forEach(row => {
-      const tr = document.createElement('tr');
-      ['Suburb', 'Pronunciation', 'LGA', 'Postcode'].forEach(col => {
-        const td = document.createElement('td');
-        td.textContent = row[col];
-        tr.appendChild(td);
-      });
-      tbody.appendChild(tr);
-    });
-
-    new Tablesort(document.getElementById('suburb-table'));
-  });
-</script>
     </section>
     <section>
       <h2>Disclaimer</h2>
