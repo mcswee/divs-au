@@ -48,8 +48,11 @@ nav a {
   color: #003366;
 }
 
+nav a:hover {
+   color: #996600;
+
 main {
-  padding: 2rem;
+  padding: 1rem;
   margin: 0;
 }
 
@@ -77,6 +80,10 @@ h2 {
   margin-top: 2rem;
 }
 
+h3 {
+  color: #333;
+}
+
 footer {
   text-align: center;
   padding: 1rem;
@@ -84,16 +91,19 @@ footer {
   background: #eee;
   color: #666;
 }
+  
 .key-table {
   width: 50%;
   border-collapse: collapse;
   margin: 1em 0;
 }
+  
 .key-table th, .key-table td {
   border: 1px solid #ccc;
   padding: 2px 2px;
   text-align: left;
 }
+  
   .key-table th {
   background-color: #f2f2f2;
 }
@@ -128,11 +138,11 @@ footer {
 }
 
 #suburb-table tbody tr:hover {
-  background-color: #006699; /* distinct highlight on hover */
+  background-color: #003399; /* distinct highlight on hover */
   color: #fcfcfc;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   #suburb-table, .key-table {
     font-size: 14px;
   }
