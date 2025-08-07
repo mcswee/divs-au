@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>divs.au</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <!-- Standard Meta Tags -->
-<meta name="description" content="Welcome to divs.au, your go-to source for Australian electoral division data, pronunciation guides, and reports on redistributions.">
-<meta name="keywords" content="divisions, Australia, electoral boundaries, maps, pronunciation, redistribution reports">
+<meta name="description" content="Welcome to divs.au, your go-to source for Australian electoral division data and reports on redistributions.">
+<meta name="keywords" content="divisions, Australia, electoral boundaries, maps, redistribution reports">
 <meta name="author" content="Darren McSweeney">
 
 <!-- Open Graph Meta Tags (for social sharing) -->
@@ -27,15 +27,15 @@
 </head>
 <body>
   <header>
-    <h1><img src="star.svg" alt="Logo of divs.au" height="32" width="32" class="logo">divs.au</h1>
+    <h1><img src="/star.svg" alt="divs.au star" height="32" width="32" class="logo">divs.au</h1>
     <p>Independent maps and history of Australia’s federal electoral divisions since 1901.</p>
   </header>
 
   <nav>
     <ul>
-      <li><a href="index.html">Divisions</a></li>
-      <li><a href="diversions.html">Diversions</a></li>
-      <li><a href="divulgence.html">Divulgence</a></li>
+      <li><a href="/">Divisions</a></li>
+      <li><a href="/diversions">Diversions</a></li>
+      <li><a href="/divulgence">Divulgence</a></li>
     </ul>
   </nav>
 
@@ -66,7 +66,7 @@
 <script src="https://unpkg.com/tablesort@5.2.1/dist/tablesort.min.js"></script>
 
 <script>
-fetch('suburbs.csv')
+fetch('/diversions/suburbs.csv')
   .then(response => response.text())
   .then(csv => {
     const data = Papa.parse(csv, { header: true }).data;
@@ -160,7 +160,7 @@ fetch('suburbs.csv')
     <tr><td>l</td><td>l</td><td>LEG, LITTLE</td><td>lehg, lihd·@l</td></tr>
     <tr><td>m</td><td>m</td><td>MAN, LEMON</td><td>man, leh·m@n</td></tr>
     <tr><td>n</td><td>n</td><td>NO, TEN</td><td>noh, tehn</td></tr>
-    <tr><td>ñ</td><td>ŋ</td><td>SING, FINGER</td><td>sihñ, fihñ·g@</td></tr>
+    <tr><td>£</td><td>ŋ</td><td>SING, FINGER</td><td>sih£, fih£·g@</td></tr>
     <tr><td>p</td><td>p</td><td>PET, MAP</td><td>peht, mæp</td></tr>
     <tr><td>r</td><td>ɹ</td><td>RED, TRY</td><td>rehd, ¢riy</td></tr>
     <tr><td>s</td><td>s</td><td>SUN, MISS</td><td>suhn, mihs</td></tr>
@@ -172,7 +172,7 @@ fetch('suburbs.csv')
     <tr><td>v</td><td>v</td><td>VOICE, FIVE</td><td>vois, fiyv</td></tr>
     <tr><td>w</td><td>w</td><td>WET, WINDOW</td><td>weht, wihn·doh</td></tr>
     <tr><td>z</td><td>z</td><td>ZOO, LAZY</td><td>zew, lay·zee</td></tr>
-    <tr><td>£</td><td>ʒ</td><td>PLEASURE, VISION</td><td>pleh£·@, vih£·@n</td></tr>
+    <tr><td>§</td><td>ʒ</td><td>PLEASURE, VISION</td><td>pleh§·@, vih§·@n</td></tr>
     <tr><td>j</td><td>dʒ</td><td>JUST, LARGE</td><td>juhst, lahj</td></tr>
   </tbody>
 </table> 
@@ -184,7 +184,7 @@ fetch('suburbs.csv')
   </main>
 
   <footer>
-    <p>© 2025 Darren McSweeney. Built without funding, influence, or patience.</p>
+    <p>© 2025 Darren McSweeney.</p>
   </footer>
 </body>
 </html>
