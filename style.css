@@ -51,6 +51,7 @@ nav a {
 nav a:hover {
    text-decoration: underline;
    color: #996600;
+}
 
 main {
   padding: 1rem;
