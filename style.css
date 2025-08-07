@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   background: #f8f8f8;
-  color: #222000;
+  color: #222;
 }
 
 header {
@@ -136,7 +136,7 @@ footer {
     font-size: 14px;
   }
 }
-
+/*
 .flag-block {
   margin-bottom: 2rem;
   border-bottom: 1px solid #ccc;
@@ -169,6 +169,4 @@ footer {
 .flag-commentary {
   max-width: 600px;
 }
-* {
-  outline: 1px solid red;
-} 
+*/
