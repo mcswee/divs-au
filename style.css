@@ -145,6 +145,7 @@ footer {
 
 .flag-pair {
   display: flex;
+  gap: 2rem;
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 1rem;
