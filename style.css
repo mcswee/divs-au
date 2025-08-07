@@ -136,3 +136,36 @@ footer {
     font-size: 14px;
   }
 }
+
+.flag-block {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 2rem;
+}
+
+.flag-pair {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.flag-pair img {
+  max-height: 150px;
+  height: auto;
+  width: auto;
+  border: 1px solid #999;
+  background: white;
+}
+
+.flag-label {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.flag-commentary {
+  max-width: 600px;
+}
