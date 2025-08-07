@@ -169,3 +169,7 @@ footer {
 .flag-commentary {
   max-width: 600px;
 }
+
+.flag-pair.single-flag {
+  justify-content: center;
+}
