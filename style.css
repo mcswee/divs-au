@@ -84,7 +84,7 @@ footer {
   color: #666;
 }
 .key-table {
-  width: 45%;
+  width: 50%;
   border-collapse: collapse;
   margin: 1em 0;
 }
@@ -127,7 +127,7 @@ footer {
 }
 
 #suburb-table tbody tr:hover {
-  background-color: #003366; /* subtle highlight on hover */
+  background-color: #006699; /* distinct highlight on hover */
   color: #fcfcfc;
 }
 
@@ -136,7 +136,7 @@ footer {
     font-size: 14px;
   }
 }
-/*
+
 .flag-block {
   margin-bottom: 2rem;
   border-bottom: 1px solid #ccc;
@@ -165,8 +165,3 @@ footer {
   color: #666;
   margin-top: 0.5rem;
 }
-
-.flag-commentary {
-  max-width: 600px;
-}
-*/
