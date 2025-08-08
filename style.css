@@ -162,6 +162,7 @@ footer {
 
 .flag-pair img {
   max-height: 150px;
+  max-width: 200px ;
   height: auto;
   width: auto;
   border: 1px solid #999;
