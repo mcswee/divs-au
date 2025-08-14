@@ -168,6 +168,22 @@ footer {
   border: 1px solid #999;
   background: white;
 }
+.flag-ohio {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.flag-ohio img {
+  max-height: 120px;
+  max-width: 180px ;
+  height: auto;
+  width: auto;
+  border: 0px;
+  background: white;
+}
 
 .flag-label {
   text-align: center;
