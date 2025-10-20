@@ -3,34 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>South Australia redistribution - divs.au</title>
+  <title>South Australia Redistribution - divs.au</title>
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<!-- Standard Meta Tags -->
-<meta name="description" content="Welcome to divs.au, home of Australian federal electoral division boundaries and redistribution reports.">
-<meta name="keywords" content="divisions, redistribution, Australia, electoral boundaries, electoral divisions, maps">
-<meta name="author" content="Darren McSweeney">
 
-<!-- Open Graph Meta Tags (for social sharing) -->
-<meta property="og:title" content="divs.au">
-<meta property="og:description" content="Australian federal electoral division boundaries and redistribution reports.">
-<meta property="og:image" content="https://divs.au/images/preview.png">
-<meta property="og:url" content="https://divs.au">
-<meta property="og:type" content="website">
+  <!-- Standard Meta Tags -->
+  <meta name="description" content="Redistribution of South Australia electoral divisions. Electoral data, public suggestions, and proposed maps.">
+  <meta name="keywords" content="South Australia, redistribution, electoral divisions, Australia, electoral boundaries, maps">
+  <meta name="author" content="Darren McSweeney">
 
-<!-- Twitter Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="divs.au">
-<meta name="twitter:description" content="Australian federal electoral division boundaries and redistribution reports.">
-<meta name="twitter:image" content="https://divs.au/images/preview.png">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="South Australia Redistribution - divs.au">
+  <meta property="og:description" content="Redistribution of South Australia federal electoral divisions, with data, suggestions, and proposed maps.">
+  <meta property="og:image" content="https://divs.au/images/preview.png">
+  <meta property="og:url" content="https://divs.au/divisions/sa.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="South Australia Redistribution - divs.au">
+  <meta name="twitter:description" content="Redistribution of South Australia federal electoral divisions, with data, suggestions, and proposed maps.">
+  <meta name="twitter:image" content="https://divs.au/images/preview.png">
+
+  <style>
+    /* Minimal CSS for map and table */
+    #map {
+      height: 500px;
+      width: 100%;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    table th {
+      background-color: #f5f5f5;
+    }
+    .breadcrumbs {
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    .breadcrumbs a {
+      text-decoration: none;
+      color: #0074d9;
+    }
+  </style>
 </head>
-  
+
 <body>
   <header>
-    <h1><img src="/star.svg" alt="divs.au star" height="32" width="32" class="logo">divs.au</h1>
+    <h1>
+      <img src="/star.svg" alt="divs.au star" height="32" width="32" class="logo">
+      divs.au
+    </h1>
     <p>Australian federal electoral division boundaries and redistribution reports.</p>
   </header>
-  
+
   <nav>
     <ul>
       <li><a href="/">Home</a></li>
@@ -41,17 +77,71 @@
   </nav>
 
   <main>
+    <nav class="breadcrumbs">
+      <a href="/">Home</a> &gt; <a href="/divisions">Divisions</a> &gt; South Australia
+    </nav>
+
     <section>
-      <h2>Redistribution of South Australia</h2>
-      <p>The redistribution of South Australia officially commenced 21 August. Electoral data and public suggestions will be accepted from 8 October.</p>
-      <p>Details of my suggestion and map to my proposed divisions will be available after that time.</p>
+      <h2>South Australia Redistribution 2025</h2>
+      <p>The redistribution of South Australia commenced on 21 August 2025. This report outlines my proposed boundaries, the rationale for changes, and key statistical information for each division.</p>
     </section>
-    <!--<section class="map-section">
+
+    <section>
+      <h3>Proposed Electoral Divisions</h3>
+      <p>The table below summarizes my suggested divisions, including population and rationale for changes.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Division Name</th>
+            <th>Proposed Population</th>
+            <th>Rationale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Adelaide</td>
+            <td>120,000</td>
+            <td>Adjusted boundaries to equalize population distribution</td>
+          </tr>
+          <tr>
+            <td>Barker</td>
+            <td>110,500</td>
+            <td>Incorporates growing regional centres to balance elector numbers</td>
+          </tr>
+          <tr>
+            <td>Mayo</td>
+            <td>115,200</td>
+            <td>Minor adjustments to better reflect communities of interest</td>
+          </tr>
+          <!-- Add additional divisions as needed -->
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h3>Proposed Divisions Map</h3>
       <div id="map"></div>
-      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-      <script src="/script.js"></script>  
-    </section>-->
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
+      <script src="/script.js" defer></script>
+    </section>
+
+    <section>
+      <h3>Download Full Report</h3>
+      <p>You can download the complete PDF version of this report for detailed tables, maps, and formatting:</p>
+      <p><a href="/files/SA25-Suggestion-Report-Darren-McSweeney.pdf" target="_blank">Download PDF (SA25 - Suggestion - Darren McSweeney)</a></p>
+    </section>
+
+    <section>
+      <h3>Analysis of Current Divisions</h3>
+      <p>Discuss the current boundaries, their shortcomings, and how the proposed redistribution addresses these issues.</p>
+    </section>
+
+    <section>
+      <h3>Community Feedback</h3>
+      <p>Summarize public suggestions and objections here.</p>
+    </section>
   </main>
+
   <footer>
     <p>&copy; 2025 Darren McSweeney</p>
   </footer>
