@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }).addTo(map);
 
   // Fetch the GeoJSON
-  const response = await fetch('2025-SA-Proposed.geojson');
+  const response = await fetch('/sa/2025-SA-Proposed.geojson');
   const data = await response.json();
 
   // Style for divisions
