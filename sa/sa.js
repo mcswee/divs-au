@@ -69,6 +69,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }).addTo(map);
 
+      // sa.js (inside the final .then block)
+// ...
+const geoLayer = L.geoJSON(data, {
+  // ... styling and onEachFeature ...
+}).addTo(map);
+
+map.invalidateSize(); // <--- ADD THIS LINE HERE
+
+map.fitBounds(geoLayer.getBounds());
+// .
+      ..
+
       map.fitBounds(geoLayer.getBounds());
     })
     .catch(err => console.error('Failed to load GeoJSON:', err));
