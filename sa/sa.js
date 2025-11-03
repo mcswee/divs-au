@@ -2,9 +2,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   const map = L.map('map').setView([-30.5, 135.5], 6);
 
   // Base map
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+    attribution: '© CartoDB, © OpenStreetMap contributors'
+}).addTo(map);
+  
 
   // Fetch the GeoJSON
   const response = await fetch('/sa/2025-SA-Proposed.geojson');
