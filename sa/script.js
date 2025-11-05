@@ -26,11 +26,6 @@ function loadGeoJSON(file) {
 // Default load
 loadGeoJSON('2025-SA-Proposed.geojson');
 
-// If you still want year navigation later:
-document.querySelectorAll('#year-nav a').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const year = link.dataset.year;
-    loadGeoJSON(`data/divisions-${year}.geojson`);
+
   });
 });
