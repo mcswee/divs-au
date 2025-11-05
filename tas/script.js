@@ -24,7 +24,7 @@ function loadGeoJSON(file) {
 }
 
 // Default load
-loadGeoJSON('2025-TAS-Proposed.geojson');
+loadGeoJSON('2025-TAS-Proposed-simplified.geojson');
 
 // If you still want year navigation later:
 document.querySelectorAll('#year-nav a').forEach(link => {
