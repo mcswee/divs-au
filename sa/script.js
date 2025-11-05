@@ -18,15 +18,15 @@ function loadGeoJSON(file) {
       geoLayer = L.geoJSON(data, {
         style: { color: "#d51c38", weight: 1 },
 
-  onEachFeature: function (feature, layer) {
-    const props = feature.properties || {};
-    const tooltip =
-      "<strong>" + (props.Elect_div || "Unknown Division") + "</strong><br>" +
-      "Numccds: " + (props.Numccds || "—") + "<br>" +
-      "Actual: " + (props.Actual || "—") + "<br>" +
-      "Projected: " + (props.Projected || "—");
-    layer.bindTooltip(tooltip, { sticky: true });
-  }
+//  onEachFeature: function (feature, layer) {
+//  const props = feature.properties || {};
+//    const tooltip =
+//      "<strong>" + (props.Elect_div || "Unknown Division") + "</strong><br>" +
+//      "Numccds: " + (props.Numccds || "—") + "<br>" +
+//      "Actual: " + (props.Actual || "—") + "<br>" +
+//      "Projected: " + (props.Projected || "—");
+//    layer.bindTooltip(tooltip, { sticky: true });
+//  }
         
       }).addTo(map);
       map.fitBounds(geoLayer.getBounds());
