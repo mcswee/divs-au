@@ -19,10 +19,6 @@ function loadGeoJSON(file) {
         style: { color: "#d51c38", weight: 1 }
       }).addTo(map);
       map.fitBounds(geoLayer.getBounds());
-    
-      }).addTo(map);
-
-      map.fitBounds(geoLayer.getBounds());
     })
     .catch(err => console.error(`Failed to load ${file}`, err));
 }
@@ -30,6 +26,11 @@ function loadGeoJSON(file) {
 // Default load
 loadGeoJSON('2025-SA-Proposed.geojson');
 
-
+// If you still want year navigation later:
+document.querySelectorAll('#year-nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const year = link.dataset.year;
+    loadGeoJSON(`data/divisions-${year}.geojson`);
   });
 });
