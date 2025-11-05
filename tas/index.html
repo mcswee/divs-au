@@ -3,55 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tasmania redistribution - divs.au</title>
+  <title>Tasmania Redistribution - divs.au</title>
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<!-- Standard Meta Tags -->
-<meta name="description" content="Welcome to divs.au, home of Australian federal electoral division boundaries and redistribution reports.">
-<meta name="keywords" content="divisions, redistribution, Australia, electoral boundaries, electoral divisions, maps">
-<meta name="author" content="Darren McSweeney">
 
-<!-- Open Graph Meta Tags (for social sharing) -->
-<meta property="og:title" content="divs.au">
-<meta property="og:description" content="Australian federal electoral division boundaries and redistribution reports.">
-<meta property="og:image" content="https://divs.au/images/preview.png">
-<meta property="og:url" content="https://divs.au">
-<meta property="og:type" content="website">
+  <!-- Standard Meta Tags -->
+  <meta name="description" content="Redistribution of Tasmanian electoral divisions. Electoral data, public suggestions, and proposed maps.">
+  <meta name="keywords" content="Tasmania, redistribution, electoral divisions, Australia, electoral boundaries, maps">
+  <meta name="author" content="Darren McSweeney">
 
-<!-- Twitter Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="divs.au">
-<meta name="twitter:description" content="Australian federal electoral division boundaries and redistribution reports.">
-<meta name="twitter:image" content="https://divs.au/images/preview.png">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Tasmania Redistribution - divs.au">
+  <meta property="og:description" content="Redistribution of Tasmania federal electoral divisions, with data, suggestions, and proposed maps.">
+  <meta property="og:image" content="https://divs.au/images/preview.png">
+  <meta property="og:url" content="https://divs.au/tas/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tasmania Redistribution - divs.au">
+  <meta name="twitter:description" content="Redistribution of Tasmania federal electoral divisions, with data, suggestions, and proposed maps.">
+  <meta name="twitter:image" content="https://divs.au/images/preview.png">
 </head>
-  
+
 <body>
   <header>
-    <h1><img src="/star.svg" alt="divs.au star" height="32" width="32" class="logo">divs.au</h1>
+    <h1>
+      <img src="/star.svg" alt="divs.au star" height="32" width="32" class="logo">
+      divs.au
+    </h1>
     <p>Australian federal electoral division boundaries and redistribution reports.</p>
   </header>
   
-  <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/divisions">Divisions</a></li>
-      <li><a href="/diversions">Diversions</a></li>
-      <li><a href="/divulgence">Divulgence</a></li>
-    </ul>
-  </nav>
+    <nav class="breadcrumbs">
+      <a href="/">Home</a> &gt; <a href="/divisions">Divisions</a> &gt; Tasmania 
+    </nav>
 
   <main>
+
     <section>
-      <h2>Redistribution of Tasmania</h2>
-      <p>The redistribution of Tasmania officially commenced 21 August. Electoral data and public suggestions will be accepted from 8 October.</p>
-      <p>Details of my suggestion and map to my proposed divisions will be available after that time.</p>
+      <h2>Tasmania redistribution 2025</h2>
+      <p>The redistribution of Tasmania commenced on 12 August 2025.</p>
     </section>
-    <!--<section class="map-section">
+
+    <section>
+      <h3>Proposed electoral divisions</h3>
+      <p>The table below summarises my suggested divisions, including electoral data and summary of changes.</p>
+      <table class="key-table">
+        <thead>
+          <tr>
+            <th>Division name</th>
+            <th>Actual enrolment</th>
+            <th>Projected enrolment</th>
+            <th>Summary of changes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bass</td>
+            <td>85,931</td>
+            <td>86,180</td>
+            <td>Adds Prospect Vale. </td>
+          </tr>
+          <tr>
+            <td>Braddon</td>
+            <td>84,612</td>
+            <td>86,021</td>
+            <td>No changes.</td>
+          </tr>
+          <tr>
+            <td>Clark</td>
+            <td>83,567</td>
+            <td>85,509</td>
+            <td>Adds Huon Valley and rest of Kingborough. Loses Glenorchy. </td>
+          </tr>
+          <tr>
+            <td>Franklin</td>
+            <td>0</td>
+            <td>0</td>
+            <td>Abolished.</td>
+          </tr>
+          <tr>
+            <td>Lyons</td>
+            <td>78,798</td>
+            <td>81,747</td>
+            <td>Loses Prospect Vale to Bass. Loses Gagebrook to West.</td>
+          </tr>          
+          <tr>
+            <td>West</td>
+            <td>80,268</td>
+            <td>83,328</td>
+            <td>Gains Clarence from Franklin, Glenorchy from Clark, and small part of Hobart, east of the Brooker Hwy.</td>
+          </tr> 
+
+        </tbody>
+      </table>
+    </section>
+
+    <section class="state-map-section">
+      <h3>Map of proposed divisions</h3>
       <div id="map"></div>
       <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-      <script src="/script.js"></script>  
-    </section>-->
-  </main>
+      <script src="script.js"></script>  
+    </section>
+    
+    <section>
+      <h3>Download report</h3>
+      <p>My complete report, including all maps, tables and explanations can be 
+      <a href="Darren McSweeney Suggestion Tas Redistribution 2025.pdf">downloaded as a PDF</a>.</p>
+    </section>
+
+
   <footer>
     <p>&copy; 2025 Darren McSweeney</p>
   </footer>
