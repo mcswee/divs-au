@@ -95,6 +95,10 @@ footer {
   background: #eee;
   color: #666;
 }
+
+.leaflet-interactive:focus {
+  outline: none;
+}
   
 .key-table {
   width: 50%;
@@ -111,6 +115,23 @@ footer {
 .key-table th {
   background-color: #f2f2f2;
 }
+
+.state-table {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+  
+.state-table th, .state-table td {
+  border: 1px solid #ccc;
+  padding: 2px 2px;
+  text-align: left;
+}
+  
+.state-table th {
+  background-color: #f2f2f2;
+}
+
 
 #suburb-table {
   width: 75%;
