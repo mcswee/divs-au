@@ -19,6 +19,17 @@ function loadGeoJSON(file) {
         style: { color: "#d51c38", weight: 1 }
       }).addTo(map);
       map.fitBounds(geoLayer.getBounds());
+    onEachFeature: (feature, layer) => {
+          const props = feature.properties;
+          const tooltip = `
+            <strong>${props.Elect_div || 'Unknown Division'}</strong><br>
+            Numccds: ${props.Numccds ?? '—'}<br>
+            Actual: ${props.Actual ?? '—'}<br>
+            Projected: ${props.Projected ?? '—'}
+          `;
+          layer.bindTooltip(tooltip, { sticky: true });
+    }
+    
     })
     .catch(err => console.error(`Failed to load ${file}`, err));
 }
