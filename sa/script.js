@@ -16,7 +16,7 @@ function loadGeoJSON(file) {
     .then(data => {
       if (geoLayer) map.removeLayer(geoLayer);
       geoLayer = L.geoJSON(data, {
-        style: { color: "#d51c38", weight: 1 },
+        style: { color: "#d51c38", weight: 1 }//,
 
 //  onEachFeature: function (feature, layer) {
 //  const props = feature.properties || {};
