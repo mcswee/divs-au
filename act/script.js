@@ -13,11 +13,30 @@ let geoLayer = null;
 function loadGeoJSON(file) {
   fetch(file)
     .then(res => res.json())
-    .then(data => {
-      if (geoLayer) map.removeLayer(geoLayer);
-      geoLayer = L.geoJSON(data, {
-        style: { color: "#003895", weight: 1 }
-      }).addTo(map);
+.then(function (data) {
+  if (geoLayer) {
+    map.removeLayer(geoLayer);
+  }
+
+  geoLayer = L.geoJSON(data, {
+    style: {
+      color: "#003895",
+      weight: 1
+    },
+    onEachFeature: function (feature, layer) {
+      if (feature.properties) {
+        var p = feature.properties;
+        var tooltip = "<b>" + (p.Elect_div || "Unknown Division") + "</b><br>" +
+                      "Numccds: " + (p.Numccds || "—") + "<br>" +
+                      "Actual: " + (p.Actual || "—") + "<br>" +
+                      "Projected: " + (p.Projected || "—");
+        layer.bindTooltip(tooltip, { sticky: true });
+      }
+    }
+  }).addTo(map);
+
+  map.fitBounds(geoLayer.getBounds());
+})
       map.fitBounds(geoLayer.getBounds());
     })
     .catch(err => console.error(`Failed to load ${file}`, err));
