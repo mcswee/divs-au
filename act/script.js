@@ -35,9 +35,7 @@ function loadGeoJSON(file) {
     }
   }).addTo(map);
 
-  map.fitBounds(geoLayer.getBounds());
-})
-      map.fitBounds(geoLayer.getBounds());
+ map.fitBounds(geoLayer.getBounds());
     })
     .catch(err => console.error(`Failed to load ${file}`, err));
 }
