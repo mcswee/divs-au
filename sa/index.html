@@ -24,38 +24,6 @@
   <meta name="twitter:title" content="South Australia Redistribution - divs.au">
   <meta name="twitter:description" content="Redistribution of South Australia federal electoral divisions, with data, suggestions, and proposed maps.">
   <meta name="twitter:image" content="https://divs.au/images/preview.png">
-
-  <style>
-    /* Minimal CSS for map and table */
-    #map {
-      height: 500px;
-      width: 100%;
-      margin-top: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin-top: 1rem;
-    }
-    table th, table td {
-      border: 1px solid #ccc;
-      padding: 0.5rem;
-      text-align: left;
-    }
-    table th {
-      background-color: #f5f5f5;
-    }
-    .breadcrumbs {
-      margin: 1rem 0;
-      font-size: 0.9rem;
-    }
-    .breadcrumbs a {
-      text-decoration: none;
-      color: #0074d9;
-    }
-  </style>
 </head>
 
 <body>
@@ -161,13 +129,12 @@
       </table>
     </section>
 
-    <section>
-      <h3>Map of proposed divisions</h3>
-    <div id="map"></div>  
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="sa.js" defer></script>
+    <section class="map-section">
+      <div id="map"></div>
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+      <script src="script.js"></script>  
     </section>
-
+    
     <section>
       <h3>Download report</h3>
       <p>My complete report, including all maps, tables and explanations can be 
