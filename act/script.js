@@ -16,7 +16,7 @@ function loadGeoJSON(file) {
     .then(data => {
       if (geoLayer) map.removeLayer(geoLayer);
       geoLayer = L.geoJSON(data, {
-        style: { color: "#0000c8", weight: 1 }
+        style: { color: "#003895", weight: 1 }
       }).addTo(map);
       map.fitBounds(geoLayer.getBounds());
     })
