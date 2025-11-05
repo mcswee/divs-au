@@ -28,8 +28,10 @@ function loadGeoJSON(file) {
             Projected: ${props.Projected ?? '—'}
           `;
           layer.bindTooltip(tooltip, { sticky: true });
-    }
-    
+      }
+      }).addTo(map);
+
+      map.fitBounds(geoLayer.getBounds());
     })
     .catch(err => console.error(`Failed to load ${file}`, err));
 }
