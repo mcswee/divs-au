@@ -15,26 +15,9 @@ function loadGeoJSON(file) {
     .then(res => res.json())
     .then(data => {
       if (geoLayer) map.removeLayer(geoLayer);
-
       geoLayer = L.geoJSON(data, {
-       style: { 
-           color: "#d51c38",   // border
-           weight: 1,
-           fillColor: "#d51c38", 
-           fillOpacity: 0.3 
-        }
-        onEachFeature: (feature, layer) => {
-          const props = feature.properties;
-          const tooltip = `
-            <strong>${props.Elect_div || 'Unknown Division'}</strong><br>
-            Numccds: ${props.Numccds ?? '—'}<br>
-            Actual: ${props.Actual ?? '—'}<br>
-            Projected: ${props.Projected ?? '—'}
-          `;
-          layer.bindTooltip(tooltip, { sticky: true });
-        }
+        style: { color: "#d51c38", weight: 1 }
       }).addTo(map);
-
       map.fitBounds(geoLayer.getBounds());
     })
     .catch(err => console.error(`Failed to load ${file}`, err));
@@ -43,7 +26,7 @@ function loadGeoJSON(file) {
 // Default load
 loadGeoJSON('2025-SA-Proposed.geojson');
 
-// Optional: year navigation
+// If you still want year navigation later:
 document.querySelectorAll('#year-nav a').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
