@@ -3,55 +3,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Australian Capital Territory redistribution - divs.au</title>
+  <title>Australian Capital Territory Redistribution - divs.au</title>
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<!-- Standard Meta Tags -->
-<meta name="description" content="Welcome to divs.au, home of Australian federal electoral division boundaries and redistribution reports.">
-<meta name="keywords" content="divisions, redistribution, Australia, electoral boundaries, electoral divisions, maps">
-<meta name="author" content="Darren McSweeney">
 
-<!-- Open Graph Meta Tags (for social sharing) -->
-<meta property="og:title" content="divs.au">
-<meta property="og:description" content="Australian federal electoral division boundaries and redistribution reports.">
-<meta property="og:image" content="https://divs.au/images/preview.png">
-<meta property="og:url" content="https://divs.au">
-<meta property="og:type" content="website">
+  <!-- Standard Meta Tags -->
+  <meta name="description" content="Redistribution of Australian  Capital Territory electoral divisions. Electoral data, public suggestions, and proposed maps.">
+  <meta name="keywords" content="Australian Capital Territory, ACT, Canberra, redistribution, electoral divisions, Australia, electoral boundaries, maps">
+  <meta name="author" content="Darren McSweeney">
 
-<!-- Twitter Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="divs.au">
-<meta name="twitter:description" content="Australian federal electoral division boundaries and redistribution reports.">
-<meta name="twitter:image" content="https://divs.au/images/preview.png">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Australian Capital Territory Redistribution - divs.au">
+  <meta property="og:description" content="Redistribution of Australian Capital Territory federal electoral divisions, with data, suggestions, and proposed maps.">
+  <meta property="og:image" content="https://divs.au/images/preview.png">
+  <meta property="og:url" content="https://divs.au/act/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Australian Capital Territory Redistribution - divs.au">
+  <meta name="twitter:description" content="Redistribution of Australian Capital Territory federal electoral divisions, with data, suggestions, and proposed maps.">
+  <meta name="twitter:image" content="https://divs.au/images/preview.png">
 </head>
-  
+
 <body>
   <header>
-    <h1><img src="/star.svg" alt="divs.au star" height="32" width="32" class="logo">divs.au</h1>
+    <h1>
+      <img src="/star.svg" alt="divs.au star" height="32" width="32" class="logo">
+      divs.au
+    </h1>
     <p>Australian federal electoral division boundaries and redistribution reports.</p>
   </header>
   
-  <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/divisions">Divisions</a></li>
-      <li><a href="/diversions">Diversions</a></li>
-      <li><a href="/divulgence">Divulgence</a></li>
-    </ul>
-  </nav>
+    <nav class="breadcrumbs">
+      <a href="/">Home</a> &gt; <a href="/divisions">Divisions</a> &gt; Australian Capital Territory 
+    </nav>
 
   <main>
+
     <section>
-      <h2>Redistribution of the Australian Capital Territory</h2>
-      <p>The redistribution of the Australian Capital Territory officially commenced 21 August. Electoral data and public suggestions will be accepted from 8 October.</p>
-      <p>Details of my suggestion and map to my proposed divisions will be available after that time.</p>
+      <h2>Australian Capital Territory redistribution 2025</h2>
+      <p>The redistribution of the Australian Capital Territory commenced on 12 August 2025.</p>
     </section>
-    <!--<section class="map-section">
+
+    <section>
+      <h3>Proposed electoral divisions</h3>
+      <p>The table below summarises my suggested divisions, including electoral data and summary of changes.</p>
+      <table class="key-table">
+        <thead>
+          <tr>
+            <th>Division name</th>
+            <th>Actual enrolment</th>
+            <th>Projected enrolment</th>
+            <th>Summary of changes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bean</td>
+            <td>114,037</td>
+            <td>117,983</td>
+            <td>Adds rest of Woden, loses Molonglo Valley and Jerrabomberra.</td>
+          </tr>
+          <tr>
+            <td>Canberra</td>
+            <td>102,571</td>
+            <td>114,800</td>
+            <td>Adds Molonglo Valley and Jerrabomberra. Loses Woden.</td>
+          </tr>
+          <tr>
+            <td>Fenner</td>
+            <td>105,271</td>
+            <td>111,742</td>
+            <td>No changes. </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="state-map-section">
+      <h3>Map of proposed divisions</h3>
       <div id="map"></div>
       <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-      <script src="/script.js"></script>  
-    </section>-->
-  </main>
+      <script src="script.js"></script>  
+    </section>
+    
+    <section>
+      <h3>Download report</h3>
+      <p>My complete report, including all maps, tables and explanations can be 
+      <a href="Darren McSweeney Suggestion ACT Redistribution 2025.pdf">downloaded as a PDF</a>.</p>
+    </section>
+
+
   <footer>
     <p>&copy; 2025 Darren McSweeney</p>
   </footer>
