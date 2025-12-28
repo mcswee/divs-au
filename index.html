@@ -163,6 +163,36 @@
     letter-spacing: 0.05em;
 }
 
+/* Legend Styling */
+.info.legend {
+    padding: 10px;
+    background: white;
+    background: rgba(255, 255, 255, 0.9);
+    line-height: 1.5em;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+.info.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+
+/* Custom Search Box */
+#search-container {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    z-index: 1000;
+}
+#division-search {
+    padding: 10px;
+    width: 200px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
     </style>
 </head>
 <body>
@@ -184,6 +214,9 @@
     </header>
 
     <main id="app-viewport">
+        <div id="search-container">
+            <input type="text" id="division-search" placeholder="Search Division...">
+        </div>
         <div id="map"></div>
     </main>
 
@@ -213,54 +246,119 @@
         }).addTo(map);
 
 // 3. Load CSV, then GeoJSON
-        Papa.parse('2025_results.csv', {
-            download: true,
-            header: true,
-            skipEmptyLines: true,
-            complete: function(results) {
-                const stats = {};
-                
-                results.data.forEach(row => {
-                    if (row.index) {
-                        stats[String(row.index).trim()] = row;
-                    }
-                });
+Papa.parse('2025_results.csv', {
+    download: true,
+    header: true,
+    skipEmptyLines: true,
+    complete: function(results) {
+        const stats = {};
+        const parties = {}; // To build the legend automatically
 
-                fetch('2025_electoral_divisions.geojson')
-                    .then(res => {
-                        if (!res.ok) throw new Error('GeoJSON missing');
-                        return res.json();
-                    })
-                    .then(geoData => {
-                        L.geoJSON(geoData, {
-                            style: (feature) => {
-                                const lookupKey = String(feature.properties.Index).trim();
-                                const row = stats[lookupKey];
-                                return {
-                                    fillColor: row ? row.colour : '#888',
-                                    weight: 1,
-                                    opacity: 1,
-                                    color: 'white',
-                                    fillOpacity: 0.7
-                                };
-                            },
-                            onEachFeature: (feature, layer) => {
-                                const lookupKey = String(feature.properties.Index).trim();
-                                const row = stats[lookupKey];
-                                if (row) {
-                                    layer.bindPopup(`
-                                        <strong>${row.division} (${row.state})</strong><br>
-                                        <strong>2025 Winner:</strong> ${row.name} ${row.surname}<br>
-                                        <strong>Party:</strong> ${row.party}<br>
-                                        <em>${row.note || ''}</em>
-                                    `);
-                                }
-                            }
-                        }).addTo(map);
-                    })
-                    .catch(err => console.error("Data error:", err));
+        results.data.forEach(row => {
+            if (row.index) {
+                const idx = String(row.index).trim();
+                stats[idx] = row;
+                // Grab party names and colors for the legend
+                if (row.party && row.colour) {
+                    parties[row.party] = row.colour;
+                }
             }
         });
+
+        fetch('2025_electoral_divisions.geojson')
+            .then(res => res.json())
+            .then(geoData => {
+                const geoJsonLayer = L.geoJSON(geoData, {
+                    style: (feature) => {
+                        const row = stats[String(feature.properties.Index).trim()];
+                        return {
+                            fillColor: row ? row.colour : '#888',
+                            weight: 1,
+                            color: 'white',
+                            fillOpacity: 0.6 // Slightly more transparent by default
+                        };
+                    },
+onEachFeature: (feature, layer) => {
+    const lookupKey = String(feature.properties.Index).trim();
+    const row = stats[lookupKey];
+    
+    if (row) {
+        const popupContent = `
+            <div style="border-top: 5px solid ${row.colour}; padding: 5px;">
+                <h3 style="margin: 0 0 5px 0; color: #333;">${row.division}</h3>
+                <div style="margin-bottom: 5px;">
+                    <strong>${row.name} ${row.surname}</strong> 
+                    <span style="color: #666;">(${row.party})</span>
+                </div>
+                <div style="font-size: 0.9em; border-top: 1px solid #eee; pt: 5px;">
+                    ${row.note ? `<em>Note: ${row.note}</em>` : ''}
+                </div>
+            </div>
+        `;
+        layer.bindPopup(popupContent);
+    }
+}
+
+                        // 2. Click Popup (The full data)
+                        if (row) {
+                            const popupContent = `
+                                <div style="border-top: 10px solid ${row.colour}; padding-top: 5px;">
+                                    <h3 style="margin:0;">${row.division}</h3>
+                                    <strong>${row.name} ${row.surname}</strong> (${row.party})<br>
+                                    <hr>
+                                    <small>${row.note || ''}</small>
+                                </div>
+                            `;
+                            layer.bindPopup(popupContent);
+                        }
+
+                        // 3. Mouseover/Out Interaction
+                        layer.on({
+                            mouseover: (e) => {
+                                const l = e.target;
+                                l.setStyle({ fillOpacity: 0.9, weight: 2 });
+                            },
+                            mouseout: (e) => {
+                                geoJsonLayer.resetStyle(e.target);
+                            }
+                        });
+                    }
+                }).addTo(map);
+
+                // --- LEGEND LOGIC ---
+                const legend = L.control({position: 'bottomright'});
+                legend.onAdd = function () {
+                    const div = L.DomUtil.create('div', 'info legend');
+                    div.innerHTML = '<strong>Parties</strong><br>';
+                    for (let p in parties) {
+                        div.innerHTML += `<i style="background:${parties[p]}"></i> ${p}<br>`;
+                    }
+                    return div;
+                };
+                legend.addTo(map);
+
+                // --- SEARCH LOGIC ---
+                document.getElementById('division-search').addEventListener('input', function(e) {
+                    const val = e.target.value.toLowerCase().trim();
+                    if (!val) return; // Don't do anything if the box is empty
+
+                    geoJsonLayer.eachLayer(layer => {
+                        // Get the Index from the GeoJSON
+                        const geoIndex = String(layer.feature.properties.Index).trim();
+                        // Look up the corresponding row in our CSV stats
+                        const row = stats[geoIndex];
+
+                        if (row && row.division.toLowerCase().includes(val)) {
+                            // Optional: You can make it snap only on exact match or partial
+                            // For now, let's just snap to the first one that matches
+                            map.fitBounds(layer.getBounds());
+                            layer.openPopup();
+                        }
+                    });
+                });
+            });
+    }
+});
     </script>
 </body>
 </html>
