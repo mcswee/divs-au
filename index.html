@@ -210,7 +210,7 @@
             maxZoom: 20
         }).addTo(map);
 
-       fetch('data/2025_electoral_divisions.geojson')
+       fetch('2025_electoral_divisions.geojson')
             .then(res => res.json())
             .then(data => {
                 L.geoJSON(data, {
