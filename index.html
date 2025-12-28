@@ -222,7 +222,8 @@
                     },
                     onEachFeature: (feature, layer) => {
                         const divId = feature.properties.Index || 'Unknown';
-                        layer.bindPopup(`<strong>Division ID:</strong> ${divId}`);
+                        layer.bindPopup(`<strong>2025 Electoral divisions</strong></br>
+                        <strong>Division ID:</strong> ${divId}`);
                     }
                 }).addTo(map);
             })
