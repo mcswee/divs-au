@@ -221,7 +221,7 @@
                         fillColor: '#888'
                     },
                     onEachFeature: (feature, layer) => {
-                        const divId = feature.properties.ID || 'Unknown';
+                        const divId = feature.properties.Index || 'Unknown';
                         layer.bindPopup(`<strong>Division ID:</strong> ${divId}`);
                     }
                 }).addTo(map);
