@@ -252,13 +252,12 @@ Papa.parse('2025_results.csv', {
     skipEmptyLines: true,
     complete: function(results) {
         const stats = {};
-        const parties = {}; // To build the legend automatically
+        const parties = {}; 
 
         results.data.forEach(row => {
             if (row.index) {
                 const idx = String(row.index).trim();
                 stats[idx] = row;
-                // Grab party names and colors for the legend
                 if (row.party && row.colour) {
                     parties[row.party] = row.colour;
                 }
@@ -275,44 +274,37 @@ Papa.parse('2025_results.csv', {
                             fillColor: row ? row.colour : '#888',
                             weight: 1,
                             color: 'white',
-                            fillOpacity: 0.6 // Slightly more transparent by default
+                            fillOpacity: 0.6 
                         };
                     },
-onEachFeature: (feature, layer) => {
-    const lookupKey = String(feature.properties.Index).trim();
-    const row = stats[lookupKey];
-    
-    if (row) {
-        const popupContent = `
-            <div style="border-top: 5px solid ${row.colour}; padding: 5px;">
-                <h3 style="margin: 0 0 5px 0; color: #333;">${row.division}</h3>
-                <div style="margin-bottom: 5px;">
-                    <strong>${row.name} ${row.surname}</strong> 
-                    <span style="color: #666;">(${row.party})</span>
-                </div>
-                <div style="font-size: 0.9em; border-top: 1px solid #eee; pt: 5px;">
-                    ${row.note ? `<em>Note: ${row.note}</em>` : ''}
-                </div>
-            </div>
-        `;
-        layer.bindPopup(popupContent);
-    }
-}
-
-                        // 2. Click Popup (The full data)
+                    onEachFeature: (feature, layer) => {
+                        const lookupKey = String(feature.properties.Index).trim();
+                        const row = stats[lookupKey];
+                        
                         if (row) {
+                            // 1. Tooltip (Hover Name)
+                            layer.bindTooltip(`<strong>${row.division}</strong>`, {
+                                sticky: true, 
+                                direction: 'top'
+                            });
+
+                            // 2. Click Popup
                             const popupContent = `
-                                <div style="border-top: 10px solid ${row.colour}; padding-top: 5px;">
-                                    <h3 style="margin:0;">${row.division}</h3>
-                                    <strong>${row.name} ${row.surname}</strong> (${row.party})<br>
-                                    <hr>
-                                    <small>${row.note || ''}</small>
+                                <div style="border-top: 5px solid ${row.colour}; padding: 5px; min-width: 150px;">
+                                    <h3 style="margin: 0 0 5px 0; color: #333;">${row.division}</h3>
+                                    <div style="margin-bottom: 5px;">
+                                        <strong>${row.name} ${row.surname}</strong> 
+                                        <span style="color: #666;">(${row.party})</span>
+                                    </div>
+                                    <div style="font-size: 0.9em; border-top: 1px solid #eee; padding-top: 5px;">
+                                        ${row.note ? `<em>${row.note}</em>` : ''}
+                                    </div>
                                 </div>
                             `;
                             layer.bindPopup(popupContent);
                         }
 
-                        // 3. Mouseover/Out Interaction
+                        // 3. Interaction Effects
                         layer.on({
                             mouseover: (e) => {
                                 const l = e.target;
@@ -325,32 +317,28 @@ onEachFeature: (feature, layer) => {
                     }
                 }).addTo(map);
 
-                // --- LEGEND LOGIC ---
+                // --- LEGEND ---
                 const legend = L.control({position: 'bottomright'});
                 legend.onAdd = function () {
                     const div = L.DomUtil.create('div', 'info legend');
                     div.innerHTML = '<strong>Parties</strong><br>';
-                    for (let p in parties) {
-                        div.innerHTML += `<i style="background:${parties[p]}"></i> ${p}<br>`;
-                    }
+                    // Sort parties alphabetically for a clean legend
+                    Object.keys(parties).sort().forEach(p => {
+                        div.innerHTML += `<i style="background:${parties[p]}; width: 12px; height: 12px; display: inline-block; margin-right: 5px;"></i> ${p}<br>`;
+                    });
                     return div;
                 };
                 legend.addTo(map);
 
-                // --- SEARCH LOGIC ---
+                // --- SEARCH ---
                 document.getElementById('division-search').addEventListener('input', function(e) {
                     const val = e.target.value.toLowerCase().trim();
-                    if (!val) return; // Don't do anything if the box is empty
+                    if (!val) return;
 
                     geoJsonLayer.eachLayer(layer => {
-                        // Get the Index from the GeoJSON
                         const geoIndex = String(layer.feature.properties.Index).trim();
-                        // Look up the corresponding row in our CSV stats
                         const row = stats[geoIndex];
-
                         if (row && row.division.toLowerCase().includes(val)) {
-                            // Optional: You can make it snap only on exact match or partial
-                            // For now, let's just snap to the first one that matches
                             map.fitBounds(layer.getBounds());
                             layer.openPopup();
                         }
