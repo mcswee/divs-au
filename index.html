@@ -1,64 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>divs.au</title>
-  <link rel="stylesheet" href="/style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<!-- Standard Meta Tags -->
-<meta name="description" content="Welcome to divs.au, home of Australian federal electoral division boundaries and redistribution reports.">
-<meta name="keywords" content="divisions, redistribution, Australia, electoral boundaries, electoral divisions, maps">
-<meta name="author" content="Darren McSweeney">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>divs.au | Australian historical electoral division data</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-<!-- Open Graph Meta Tags (for social sharing) -->
-<meta property="og:title" content="divs.au">
-<meta property="og:description" content="Australian federal electoral division boundaries and redistribution reports.">
-<meta property="og:image" content="https://divs.au/images/preview.png">
-<meta property="og:url" content="https://divs.au">
-<meta property="og:type" content="website">
+    <style>
+        /* 1. RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<!-- Twitter Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="divs.au">
-<meta name="twitter:description" content="Australian federal electoral division boundaries and redistribution reports.">
-<meta name="twitter:image" content="https://divs.au/images/preview.png">
+        body, html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Keeps the app-frame solid */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #333;
+        }
+
+        /* 2. THE HEADER */
+        #main-header {
+            height: 70px;
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1001; /* Must be higher than Leaflet's z-index */
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .header-logo {
+            height: 45px;
+            width: 45px;
+            background: #222; /* Placeholder if you don't have the file yet */
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+
+        .text-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .site-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.5px;
+        }
+
+        .site-subtitle {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #000;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 10px 16px;
+            border-radius: 6px;
+            transition: background 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: #f5f5f5;
+            border-color: #ddd;
+        }
+
+        /* 3. THE VIEWPORT (THE GAP) */
+        #app-viewport {
+            height: calc(100vh - 105px); /* Header (70px) + Footer (35px) */
+            width: 100%;
+            position: relative;
+            background: #f0f0f0;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+        }
+
+        /* 4. THE FOOTER */
+        #main-footer {
+            height: 35px;
+            background: #ffffff;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 1001;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-nav a {
+            text-decoration: none;
+            color: #888;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .footer-nav a:hover {
+            color: #000;
+        }
+    </style>
 </head>
-  
 <body>
-  <header>
-    <h1><img src="/star.svg" alt="divs.au star" height="32" width="32" class="logo">divs.au</h1>
-    <p>Australian federal electoral division boundaries and redistribution reports.</p>
-  </header>
-  
-  <nav>
-    <ul>
-      <li><a href="/divisions">Divisions</a></li>
-      <li><a href="/diversions">Diversions</a></li>
-      <li><a href="/divulgence">Divulgence</a></li>
-    </ul>
-  </nav>
 
-  <main>
-    <section>
-      <h2>Current redistributions</h2>
-      <p>At the moment, I have my suggestions for the redistributions of <a href="/sa/">South Australia</a>, <a href="/tas/">Tasmania</a>, and <a href="/act/">the Australian Capital Territory</a>.</p>
-    </section>
-   <!-- <section>
-      <h2>Current electoral divisions</h2>
-      <p>The following electoral divisions were used in the 2025 federal election.</p>
-    </section>
-    <section class="map-section">
-      <div id="map"></div>
-      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-      <script src="/script.js"></script>  
-    </section>-->
-  </main>
+    <header id="main-header">
+        <div class="brand-container">
+            <a href="/" class="brand-link">
+                <img src="/star.svg" alt="Logo" class="header-logo">
+                <div class="text-group">
+                    <span class="site-title">divs.au</span>
+                    <span class="site-subtitle">Australian historical electoral division data</span>
+                </div>
+            </a>
+        </div>
 
-  <footer>
-    <ul>
-      <li>&copy; 2025 Darren McSweeney.</li>
-    </ul>
-  </footer>
+        <nav class="nav-container">
+            <a href="/divisions" class="nav-link">Reports</a>
+        </nav>
+    </header>
+
+    <main id="app-viewport">
+        <div id="map"></div>
+    </main>
+
+    <footer id="main-footer">
+        <nav class="footer-nav">
+            <a href="/diversions">Side Projects</a>
+            <a href="/divilgence">Disclaimers &amp; Privacy Policy</a>
+        </nav>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // 1. Initialize the map centered on Australia
+        // [lat, lng], zoom level
+        var map = L.map('map', {
+            zoomControl: true,
+            minZoom: 4
+        }).setView([-27.00, 133.00], 4);
+
+        // 2. Add the Tile Layer (Carto Positron)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
+        }).addTo(map);
+
+        // Map is ready for your GeoJSON data or boundary layers
+    </script>
 </body>
 </html>
