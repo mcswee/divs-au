@@ -210,50 +210,55 @@
             maxZoom: 20
         }).addTo(map);
 
-Papa.parse('2025_results.csv', {
-    download: true,
-    header: true,
-    complete: function(results) {
-        const stats = {};
-        
-        results.data.forEach(row => {
-            // Mapping to the lowercase 'index' header
-            if (row.index) {
-                stats[row.index] = row;
+// 3. Load CSV, then GeoJSON
+        Papa.parse('2025_results.csv', {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function(results) {
+                const stats = {};
+                
+                results.data.forEach(row => {
+                    if (row.index) {
+                        stats[String(row.index).trim()] = row;
+                    }
+                });
+
+                fetch('2025_electoral_divisions.geojson')
+                    .then(res => {
+                        if (!res.ok) throw new Error('GeoJSON missing');
+                        return res.json();
+                    })
+                    .then(geoData => {
+                        L.geoJSON(geoData, {
+                            style: (feature) => {
+                                const lookupKey = String(feature.properties.Index).trim();
+                                const row = stats[lookupKey];
+                                return {
+                                    fillColor: row ? row.colour : '#888',
+                                    weight: 1,
+                                    opacity: 1,
+                                    color: 'white',
+                                    fillOpacity: 0.7
+                                };
+                            },
+                            onEachFeature: (feature, layer) => {
+                                const lookupKey = String(feature.properties.Index).trim();
+                                const row = stats[lookupKey];
+                                if (row) {
+                                    layer.bindPopup(`
+                                        <strong>${row.division} (${row.state})</strong><br>
+                                        <strong>2025 Winner:</strong> ${row.name} ${row.surname}<br>
+                                        <strong>Party:</strong> ${row.party}<br>
+                                        <em>${row.note || ''}</em>
+                                    `);
+                                }
+                            }
+                        }).addTo(map);
+                    })
+                    .catch(err => console.error("Data error:", err));
             }
         });
-
-        fetch('2025_electoral_divisions.geojson')
-            .then(res => res.json())
-            .then(geoData => {
-                L.geoJSON(geoData, {
-                    style: (feature) => {
-                        // Matching the GeoJSON 'Index' property to CSV 'index' key
-                        const row = stats[feature.properties.Index];
-                        return {
-                            fillColor: row ? row.colour : '#888',
-                            weight: 1,
-                            opacity: 1,
-                            color: 'white',
-                            fillOpacity: 0.7
-                        };
-                    },
-                    onEachFeature: (feature, layer) => {
-                        const row = stats[feature.properties.Index];
-                        if (row) {
-                            layer.bindPopup(`
-                                <strong>${row.division} (${row.state})</strong><br>
-                                <strong>2025 Winner:</strong> ${row.name} ${row.surname}<br>
-                                <strong>Party:</strong> ${row.party}<br>
-                                <em>${row.note || ''}</em>
-                            `);
-                        }
-                    }
-                }).addTo(map);
-            });
-    }
-});
-            .catch(err => console.error("GeoJSON fetch failed:", err));
     </script>
 </body>
 </html>
