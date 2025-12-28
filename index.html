@@ -210,23 +210,49 @@
             maxZoom: 20
         }).addTo(map);
 
-       fetch('2025_electoral_divisions.geojson')
+Papa.parse('2025_results.csv', {
+    download: true,
+    header: true,
+    complete: function(results) {
+        const stats = {};
+        
+        results.data.forEach(row => {
+            // Mapping to the lowercase 'index' header
+            if (row.index) {
+                stats[row.index] = row;
+            }
+        });
+
+        fetch('2025_electoral_divisions.geojson')
             .then(res => res.json())
-            .then(data => {
-                L.geoJSON(data, {
-                    style: {
-                        color: '#333',
-                        weight: 1,
-                        fillOpacity: 0.4,
-                        fillColor: '#888'
+            .then(geoData => {
+                L.geoJSON(geoData, {
+                    style: (feature) => {
+                        // Matching the GeoJSON 'Index' property to CSV 'index' key
+                        const row = stats[feature.properties.Index];
+                        return {
+                            fillColor: row ? row.colour : '#888',
+                            weight: 1,
+                            opacity: 1,
+                            color: 'white',
+                            fillOpacity: 0.7
+                        };
                     },
                     onEachFeature: (feature, layer) => {
-                        const divId = feature.properties.Index || 'Unknown';
-                        layer.bindPopup(`<strong>2025 Electoral divisions</strong></br>
-                        <strong>Division ID:</strong> ${divId}`);
+                        const row = stats[feature.properties.Index];
+                        if (row) {
+                            layer.bindPopup(`
+                                <strong>${row.division} (${row.state})</strong><br>
+                                <strong>2025 Winner:</strong> ${row.name} ${row.surname}<br>
+                                <strong>Party:</strong> ${row.party}<br>
+                                <em>${row.note || ''}</em>
+                            `);
+                        }
                     }
                 }).addTo(map);
-            })
+            });
+    }
+});
             .catch(err => console.error("GeoJSON fetch failed:", err));
     </script>
 </body>
