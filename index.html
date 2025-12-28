@@ -108,7 +108,7 @@
         /* 4. THE FOOTER */
         #main-footer {
             height: 35px;
-            background: #99a;
+            background: #999;
             border-top: 1px solid #e0e0e0;
             display: flex;
             align-items: center;
@@ -123,13 +123,13 @@
 
         .footer-nav a {
             text-decoration: none;
-            color: #888;
+            color: #f8f8f8;
             font-size: 0.75rem;
             font-weight: 500;
         }
 
         .footer-nav a:hover {
-            color: #000;
+            color: #;
         }
     </style>
 </head>
@@ -140,7 +140,7 @@
             <a href="/" class="brand-link">
                 <img src="/star.svg" alt="Logo" class="header-logo">
                 <div class="text-group">
-                    <span class="site-title">divs.au</span>
+                    <h1 class="site-title">divs.au</h1>
                     <span class="site-subtitle">Australian historical electoral division data</span>
                 </div>
             </a>
@@ -170,7 +170,7 @@
         // [lat, lng], zoom level
         var map = L.map('map', {
             zoomControl: true,
-            minZoom: 4
+            minZoom: 5
         }).setView([-27.00, 133.00], 4);
 
         // 2. Add the Tile Layer (Carto Positron)
