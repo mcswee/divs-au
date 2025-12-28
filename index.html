@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>divs.au | Australian historical electoral division data</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <style>
@@ -19,8 +22,11 @@
             height: 100%;
             width: 100%;
             overflow: hidden; /* Keeps the app-frame solid */
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', sans-serif; 
             color: #333;
+            /* This makes Inter look even smoother on modern screens */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* 2. THE HEADER */
@@ -63,9 +69,9 @@
 
         .site-title {
             font-size: 1.4rem;
-            font-weight: 800;
+            font-weight: 200;
             line-height: 1;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.02px;
         }
 
         .site-subtitle {
@@ -73,12 +79,13 @@
             color: #fafafa;
             margin-top: 2px;
             font-weight: 400;
+            letter-spacing: 0.01em;
         }
 
         .nav-link {
             text-decoration: none;
             color: #f8f8f8;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.95rem;
             padding: 10px 16px;
             border-radius: 6px;
