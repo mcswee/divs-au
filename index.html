@@ -283,7 +283,7 @@ Papa.parse('2025_results.csv', {
                         
                         if (row) {
                             // 1. Tooltip (Hover Name)
-                            layer.bindTooltip(`<strong>${row.division}</strong>`, {
+                            layer.bindTooltip(`<strong>${row.division} (${row.state})</strong>`, {
                                 sticky: true, 
                                 direction: 'top'
                             });
@@ -291,9 +291,9 @@ Papa.parse('2025_results.csv', {
                             // 2. Click Popup
                             const popupContent = `
                                 <div style="border-top: 5px solid ${row.colour}; padding: 5px; min-width: 150px;">
-                                    <h3 style="margin: 0 0 5px 0; color: #333;">${row.division}</h3>
+                                    <h3 style="margin: 0 0 5px 0; color: #333;">${row.division} (${row.state})</h3>
                                     <div style="margin-bottom: 5px;">
-                                        <strong>${row.name} ${row.surname}</strong> 
+                                        <strong>Won by: </strong>${row.name} ${row.surname} 
                                         <span style="color: #666;">(${row.party})</span>
                                     </div>
                                     <div style="font-size: 0.9em; border-top: 1px solid #eee; padding-top: 5px;">
