@@ -210,7 +210,23 @@
             maxZoom: 20
         }).addTo(map);
 
-        // Map is ready for your GeoJSON data or boundary layers
+       fetch('data/2025_electoral_divisions.geojson')
+            .then(res => res.json())
+            .then(data => {
+                L.geoJSON(data, {
+                    style: {
+                        color: '#333',
+                        weight: 1,
+                        fillOpacity: 0.4,
+                        fillColor: '#888'
+                    },
+                    onEachFeature: (feature, layer) => {
+                        const divId = feature.properties.ID || 'Unknown';
+                        layer.bindPopup(`<strong>Division ID:</strong> ${divId}`);
+                    }
+                }).addTo(map);
+            })
+            .catch(err => console.error("GeoJSON fetch failed:", err));
     </script>
 </body>
 </html>
