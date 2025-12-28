@@ -114,45 +114,56 @@
         }
 
         /* 4. THE FOOTER */
-        #main-footer {
-            height: 35px;
-            background: #999;
-            border-top: 1px solid #e0e0e0;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            z-index: 1001;
-        }
+#main-footer {
+    height: 35px;
+    background: #999;
+    border-top: 1px solid #777;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
 
-        .footer-nav {
-            display: flex;
-            gap: 20px;
-        }
+.footer-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between items */
+    margin: 0;
+    padding: 0;
+    font-size: 0.75rem;
+    color: #eee; /* Off-white for the copyright text */
+}
 
-        .footer-nav ul {
-            list-style: none;
-            display: flex;    
-            gap: 10px;        
-            margin: 0;
-            padding: 0;
-        }
-        
-        .footer-nav ul li {
-            display: flex;
-            align-items: center;
-            font-size: 0.75rem;
-            font-weight: 300;
-            color: #dadada;
-        }
+.footer-list li {
+    display: flex;
+    align-items: center;
+}
 
-        .footer-nav a {
-            text-decoration: none;
-            color: #f0f0f0;
-        }
+/* Add a small separator between the list items, but not after the last one */
+.footer-list li:not(:last-child)::after {
+    content: "•";
+    margin-left: 15px;
+    color: #ccc;
+    font-size: 0.6rem;
+}
 
-        .footer-nav a:hover {
-            color: #003;
-        }
+.footer-list a {
+    text-decoration: none;
+    color: #eee;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.footer-list a:hover {
+    color: #fff;
+}
+
+.copyright {
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
     </style>
 </head>
 <body>
@@ -177,15 +188,13 @@
         <div id="map"></div>
     </main>
 
-    <footer id="main-footer">
-       <nav class="footer-nav">
-            <ul>
-            <li> &copy; 2025 Darren McSweeney </li>
-            <li><a href="/diversions">Side Projects</a></li>
-            <li><a href="/divilgence">Disclaimers &amp; Privacy Policy</a></li>
-            </ul>
-       </nav>
-    </footer>
+<footer id="main-footer">
+    <ul class="footer-list">
+        <li class="copyright">&copy; 2025 Darren McSweeney</li>
+        <li><a href="/diversions">Side Projects</a></li>
+        <li><a href="/divilgence">Disclaimer & Privacy</a></li>
+    </ul>
+</footer>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
