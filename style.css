@@ -94,105 +94,71 @@
             background: #f0f0f0;
             overflow: hidden;
         }
+#map-controls {
+    position: absolute;
+    top: 20px;
+    left: 60px;
+    z-index: 1000;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    border: 1px solid #ddd;
+    width: 240px;
+    display: flex;
+    flex-wrap: wrap; /* This is the key */
+    gap: 12px;
+}
 
-        #map-controls {
-            position: absolute;
-            top: 20px;
-            left: 60px;
-            z-index: 1000;
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            border: 1px solid #ddd;
-            width: 240px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+#map-controls h1 {
+    width: 100%; /* Keeps the H1 on its own line */
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #336;
+    margin: 0;
+}
 
-        #map-controls h1 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #336;
-            margin: 0;
-            letter-spacing: -0.01em;
-        }
+.control-group {
+    flex: 1 1 100%; /* Default to full width (stacking) */
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
 
-        .control-group {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
+#year-selector, #division-search {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
-        .control-group label {
-            font-size: 0.7rem;
-            color: #777;
-            font-weight: 500;
-        }
-
-        #year-selector, 
-        #division-search {
-            width: 100%;
-            padding: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background: #f9f9f9;
-            color: #333;
-            box-sizing: border-box;
-        }
-
-        #map {
-            height: 100%;
-            width: 100%;
-            z-index: 1;
-        }
-
-/* MOBILE OVERRIDES */
 @media (max-width: 600px) {
     #map-controls {
         top: 0;
         left: 0;
         width: 100%;
         border-radius: 0;
-        border: none;
-        border-bottom: 1px solid #ddd;
-        padding: 8px 12px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        
-        /* Change from stack to row to save height */
-        flex-direction: row; 
-        align-items: center;
-        gap: 8px;
-    }
-
-    #map-controls h1, 
-    .control-group label {
-        display: none; /* Keep these hidden to save space */
+        padding: 10px;
+        flex-direction: row; /* Allow them to sit together */
     }
 
     .control-group {
-        flex: 1; /* Makes the search and select share the width */
+        flex: 1; /* Share the row */
     }
 
-    /* Adjust the year selector to be narrower so search has more room */
-    .control-group:has(#year-selector) {
-        flex: 0 0 80px; 
+    /* Make the year selector smaller so search has more room */
+    .control-group:first-of-type {
+        flex: 0 0 80px;
     }
 
-    #year-selector, #division-search {
-        padding: 8px;
-        font-size: 0.8rem;
+    .control-group label {
+        display: none;
     }
 
-    /* Push Leaflet zoom controls down further to clear the new bar height */
     .leaflet-top.leaflet-left {
-        top: 65px !important;
+        top: 85px !important;
     }
 }
-
 
         /* 4. THE FOOTER */
 #main-footer {
