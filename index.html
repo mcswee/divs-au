@@ -27,7 +27,7 @@
         </div>
 
         <nav class="nav-container">
-            <a href="/divisions" class="nav-link">Reports</a>
+            <a href="/reports" class="nav-link">Reports</a>
         </nav>
     </header>
 
@@ -39,13 +39,16 @@
         <label for="year-selector">Election year</label>
         <select id="year-selector">
             <option value="2025" selected>2025</option>
-            <option value="2022">2022</option>
+            <option value="2022" disabled>2022</option>
+            <option value="2019" disabled>2019</option>
+            <option value="2016" disabled>2016</option>
+            <option value="2013" disabled>2013</option>
         </select>
     </div>
 
     <div class="control-group">
         <label for="division-search">Find a division</label>
-        <input type="text" id="division-search" placeholder="Search name&hellip;">
+        <input type="text" id="division-search" placeholder="Type a division name&hellip;">
     </div>
 </section>
 
@@ -57,8 +60,8 @@
 <footer id="main-footer">
     <ul class="footer-list">
         <li class="copyright">&copy; 2025 Darren McSweeney</li>
-        <li><a href="/diversions">Side Projects</a></li>
-        <li><a href="/divulgence">Disclaimer & Privacy</a></li>
+        <li><a href="/projects">Side Projects</a></li>
+        <li><a href="/disclaimer">Disclaimer & Privacy</a></li>
     </ul>
 </footer>
 
@@ -79,24 +82,24 @@
             maxZoom: 20
         }).addTo(map);
 
-// 3. Load CSV, then GeoJSON
-Papa.parse('2025_results.csv', {
-    download: true,
-    header: true,
-    skipEmptyLines: true,
-    complete: function(results) {
-        const stats = {};
-        const parties = {}; 
-
-        results.data.forEach(row => {
-            if (row.index) {
-                const idx = String(row.index).trim();
-                stats[idx] = row;
-                if (row.party && row.colour) {
-                    parties[row.party] = row.colour;
-                }
-            }
-        });
+        // 3. Load CSV, then GeoJSON
+        Papa.parse('2025_results.csv', {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function(results) {
+                const stats = {};
+                const parties = {}; 
+        
+                results.data.forEach(row => {
+                    if (row.index) {
+                        const idx = String(row.index).trim();
+                        stats[idx] = row;
+                        if (row.party && row.colour) {
+                            parties[row.party] = row.colour;
+                        }
+                    }
+                });
 
         fetch('2025_electoral_divisions.geojson')
             .then(res => res.json())
@@ -164,24 +167,24 @@ Papa.parse('2025_results.csv', {
                 };
                 legend.addTo(map);
 
-// --- SEARCH ---
-document.getElementById('division-search').addEventListener('change', function(e) {
-    const val = e.target.value.toLowerCase().trim();
-    if (!val) return;
-
-    geoJsonLayer.eachLayer(layer => {
-        const geoIndex = String(layer.feature.properties.Index).trim();
-        const row = stats[geoIndex];
-        if (row && row.division.toLowerCase() === val) { // Match exactly or use .includes
-            map.fitBounds(layer.getBounds());
-            layer.openPopup();
-        }
-    });
-});
+                // --- SEARCH ---
+                document.getElementById('division-search').addEventListener('change', function(e) {
+                    const val = e.target.value.toLowerCase().trim();
+                    if (!val) return;
+                
+                    geoJsonLayer.eachLayer(layer => {
+                        const geoIndex = String(layer.feature.properties.Index).trim();
+                        const row = stats[geoIndex];
+                        if (row && row.division.toLowerCase() === val) { // Match exactly or use .includes
+                            map.fitBounds(layer.getBounds());
+                            layer.openPopup();
+                        }
+                    });
+                });
 
             });
-    }
-});
+        }
+    });
     </script>
 </body>
 </html>
