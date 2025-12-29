@@ -414,6 +414,98 @@
             text-decoration: underline;
         }
 
+        /* Container for the search input */
+        .search-container {
+            margin: 20px 0;
+            max-width: 500px;
+        }
+        
+        #suburb-search {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #003895; /* Global Navy */
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        
+        /* Base table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 40px;
+            background: #fff;
+        }
+        
+        th {
+            background-color: #003895;
+            color: #ffffff;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #333;
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        /* Key Tables (Pronunciation Guide) */
+        .key-table {
+            font-size: 0.95rem;
+        }
+        
+        .key-table td:first-child {
+            font-weight: bold;
+            color: #003895;
+        }
+
+        th.sort-header {
+            cursor: pointer;
+        }
+        
+        th.sort-header::-moz-selection { background:transparent; }
+        th.sort-header::selection      { background:transparent; }
+        
+        th.sort-header:after {
+            content: '';
+            float: right;
+            margin-top: 7px;
+            border-width: 0 4px 4px;
+            border-style: solid;
+            border-color: #fff transparent;
+            visibility: hidden;
+        }
+        
+        th.sort-header:hover:after {
+            visibility: visible;
+        }
+        
+        th[aria-sort="ascending"]:after {
+            border-bottom: none;
+            border-width: 4px 4px 0;
+            visibility: visible;
+        }
+        
+        th[aria-sort="descending"]:after {
+            visibility: visible;
+        }
+
+
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            .table-wrapper {
+                overflow-x: auto; /* Adds horizontal scroll on tiny screens */
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
         /* MOBILE ADJUSTMENTS */
         @media (max-width: 600px) {
             .intro h1 { font-size: 1.8rem; }
