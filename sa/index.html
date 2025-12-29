@@ -1,155 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>South Australia Redistribution - divs.au</title>
-  <link rel="stylesheet" href="/style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-  <!-- Standard Meta Tags -->
-  <meta name="description" content="Redistribution of South Australia electoral divisions. Electoral data, public suggestions, and proposed maps.">
-  <meta name="keywords" content="South Australia, redistribution, electoral divisions, Australia, electoral boundaries, maps">
-  <meta name="author" content="Darren McSweeney">
-
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="South Australia Redistribution - divs.au">
-  <meta property="og:description" content="Redistribution of South Australia federal electoral divisions, with data, suggestions, and proposed maps.">
-  <meta property="og:image" content="https://divs.au/images/preview.png">
-  <meta property="og:url" content="https://divs.au/divisions/sa.html">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="South Australia Redistribution - divs.au">
-  <meta name="twitter:description" content="Redistribution of South Australia federal electoral divisions, with data, suggestions, and proposed maps.">
-  <meta name="twitter:image" content="https://divs.au/images/preview.png">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redistribution reports | divs.au</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css" />
+</head> 
 
 <body>
-  <header>
-    <h1>
-      <img src="/star.svg" alt="divs.au star" height="32" width="32" class="logo">
-      divs.au
-    </h1>
-    <p>Australian federal electoral division boundaries and redistribution reports.</p>
-  </header>
-  
-    <nav class="breadcrumbs">
-      <a href="/">Home</a> &gt; <a href="/divisions">Divisions</a> &gt; South Australia
-    </nav>
+    <header id="main-header">
+        <div class="brand-container">
+            <a href="/" class="brand-link">
+                <img src="/star.svg" alt="Logo" class="header-logo">
+                <div class="text-group">
+                    <span class="site-title">divs.au</span>
+                    <span class="site-subtitle">Australian historical electoral division data</span>
+                </div>
+            </a>
+        </div>
+        <nav class="nav-container">
+            <a href="/divisions" class="nav-link">Reports</a>
+        </nav>
+    </header>
 
-  <main>
+    <main id="app-viewport">
+        <div class="content-container text-page">
+            
+            <section class="intro">
+                <h1>South Australia redistribution 2025</h1>
+                <p>The redistribution of South Australia commenced on 12 August 2025.</p>
+            </section>
 
-    <section>
-      <h2>South Australia redistribution 2025</h2>
-      <p>The redistribution of South Australia commenced on 12 August 2025.</p>
-    </section>
+            <section class="data-section">
+                <h3>Proposed electoral divisions</h3>
+                <p>The table below summarizes my suggested divisions, including population and rationale for changes.</p>
+                
+                <div class="table-wrapper">
+                    <table class="state-table">
+                        <thead>
+                            <tr>
+                                <th>Division name</th>
+                                <th>Actual enrolment</th>
+                                <th>Projected enrolment</th>
+                                <th>Summary of changes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Adelaide</td>
+                                <td>135,956</td>
+                                <td>140,669</td>
+                                <td>Adds Marion and Unley LGA north of Cross Road. Loses part of Vale Park.</td>
+                            </tr>
+                            <tr>
+                                <td>Barker</td>
+                                <td>128,468</td>
+                                <td>131,678</td>
+                                <td>Adds Barossa LGA (and small part of Light LGA) from Spence.</td>
+                            </tr>
+                            <tr>
+                                <td>Boothby</td>
+                                <td>130,618</td>
+                                <td>135,356</td>
+                                <td>Adds Flagstaff Hill, loses all north of Cross Road.</td>
+                            </tr>
+                            <tr>
+                                <td>Grey</td>
+                                <td>130,674</td>
+                                <td>133,621</td>
+                                <td>Adds Light LGA from Spence. </td>
+                            </tr>
+                            <tr>
+                                <td>Hindmarsh</td>
+                                <td>130,799</td>
+                                <td>137,207</td>
+                                <td>No changes.</td>
+                            </tr>
+                            <tr>
+                                <td>Kingston</td>
+                                <td>132,103</td>
+                                <td>137,998</td>
+                                <td>Adds Aldinga and Sellicks Beach, loses Flagstaff Hill. </td>
+                            </tr>
+                            <tr>
+                                <td>Makin</td>
+                                <td>137,304</td>
+                                <td>139,340</td>
+                                <td>Adds Salisbury and Salisbury East. </td>
+                            </tr>
+                            <tr>
+                                <td>Mayo</td>
+                                <td>126,960</td>
+                                <td>134,484</td>
+                                <td>Loses Aldinga and Sellicks Beach. </td>
+                            </tr>
+                            <tr>
+                                <td>Spence</td>
+                                <td>123,935</td>
+                                <td>137,784</td>
+                                <td>Loses Salisbury, Salisbury East, Light LGA and Barossa LGA. </td>
+                            </tr>
+                            <tr>
+                                <td>Sturt</td>
+                                <td>131,046</td>
+                                <td>135,195</td>
+                                <td>Adds some of Vale Park. </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-    <section>
-      <h3>Proposed electoral divisions</h3>
-      <p>The table below summarizes my suggested divisions, including population and rationale for changes.</p>
-      <table class="state-table">
-        <thead>
-          <tr>
-            <th>Division name</th>
-            <th>Actual enrolment</th>
-            <th>Projected enrolment</th>
-            <th>Summary of changes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Adelaide</td>
-            <td>135,956</td>
-            <td>140,669</td>
-            <td>Adds Marion and Unley LGA north of Cross Road. Loses part of Vale Park.</td>
-          </tr>
-          <tr>
-            <td>Barker</td>
-            <td>128,468</td>
-            <td>131,678</td>
-            <td>Adds Barossa LGA (and small part of Light LGA) from Spence.</td>
-          </tr>
-          <tr>
-            <td>Boothby</td>
-            <td>130,618</td>
-            <td>135,356</td>
-            <td>Adds Flagstaff Hill, loses all north of Cross Road.</td>
-          </tr>
-          <tr>
-            <td>Boothby</td>
-            <td>130,618</td>
-            <td>135,356</td>
-            <td>Adds Flagstaff Hill, loses all north of Cross Road.</td>
-          </tr>
-          <tr>
-            <td>Grey</td>
-            <td>130,674</td>
-            <td>133,621</td>
-            <td>Adds Light LGA from Spence. </td>
-          </tr>          
-          <tr>
-            <td>Hindmarsh</td>
-            <td>130,799</td>
-            <td>137,207</td>
-            <td>No changes.</td>
-          </tr> 
-          <tr>
-            <td>Kingston</td>
-            <td>132,103</td>
-            <td>137,998</td>
-            <td>Adds Aldinga and Sellicks Beach, loses Flagstaff Hill. </td>
-          </tr>
-          <tr>
-            <td>Makin</td>
-            <td>137,304</td>
-            <td>139,340</td>
-            <td>Adds Salisbury and Salisbury East. </td>
-          </tr>
-          <tr>
-            <td>Mayo</td>
-            <td>126,960</td>
-            <td>134,484</td>
-            <td>Loses Aldinga and Sellicks Beach. </td>
-          </tr>
-          <tr>
-            <td>Spence</td>
-            <td>123,935</td>
-            <td>137,784</td>
-            <td>Loses Salisbury, Salisbury East, Light LGA and Barossa LGA. </td>
-          </tr>
-          <tr>
-            <td>Sturt</td>
-            <td>131,046</td>
-            <td>135,195</td>
-            <td>Adds some of Vale Park. </td>
-          </tr>          
-        </tbody>
-      </table>
-    </section>
+            <section class="state-map-section">
+                <h3>Map of proposed divisions</h3>
+                <div id="state-report-map"></div> 
+            </section>
+            
+            <section class="download-section">
+                <h3>Download report</h3>
+                <p>My complete report, including all maps, tables and explanations can be 
+                <a href="Darren McSweeney Suggestion SA Redistribution 2025.pdf" class="download-link">downloaded as a PDF</a>.</p>
+            </section>
+        </div>
+    </main>
 
-    <section class="state-map-section">
-      <h3>Map of proposed divisions</h3>
-      <div id="map"></div>
-      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-      <script src="script.js"></script>  
-    </section>
-    
-    <section>
-      <h3>Download report</h3>
-      <p>My complete report, including all maps, tables and explanations can be 
-      <a href="Darren McSweeney Suggestion SA Redistribution 2025.pdf">downloaded as a PDF</a>.</p>
-    </section>
+    <footer id="main-footer">
+        <ul class="footer-list">
+            <li class="copyright">&copy; 2025 Darren McSweeney</li>
+            <li><a href="/projects">Side Projects</a></li>
+            <li><a href="/disclaimer">Disclaimer & Privacy</a></li>
+        </ul>
+    </footer>
 
-
-  <footer>
-    <ul>
-      <li>&copy; 2025 Darren McSweeney.</li>
-      <li><a href="/diversions/">Diversions</a></li>
-      <li><a href="/divulgence/">Divulgence</a></li>
-    </ul>
-  </footer>
-</body>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="report-map.js"></script>  
 </body>
 </html>
