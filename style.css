@@ -1,1 +1,180 @@
+        /* 1. RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body, html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Keeps the app-frame solid */
+            font-family: 'Inter', sans-serif; 
+            color: #333;
+            /* This makes Inter look even smoother on modern screens */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 2. THE HEADER */
+        #main-header {
+            height: 70px;
+            background: #036;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            position: relative;
+            color: #f0f0f0;
+            z-index: 1001; /* Must be higher than Leaflet's z-index */
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .header-logo {
+            height: 45px;
+            width: 45px;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+
+        .text-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .site-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.02px;
+        }
+
+        .site-subtitle {
+            font-size: 0.85rem;
+            color: #fafafa;
+            margin-top: 2px;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #f8f8f8;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 10px 16px;
+            border-radius: 6px;
+            transition: background 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: #f5f5f5;
+            color: #336;
+            border-color: #ddd;
+        }
+
+        /* 3. THE VIEWPORT (THE GAP) */
+        #app-viewport {
+            height: calc(100vh - 105px); /* Header (70px) + Footer (35px) */
+            width: 100%;
+            position: relative;
+            background: #f0f0f0;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+        }
+
+        /* 4. THE FOOTER */
+#main-footer {
+    height: 35px;
+    background: #999;
+    border-top: 1px solid #777;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.footer-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between items */
+    margin: 0;
+    padding: 0;
+    font-size: 0.75rem;
+    color: #eee; /* Off-white for the copyright text */
+}
+
+.footer-list li {
+    display: flex;
+    align-items: center;
+}
+
+/* Add a small separator between the list items, but not after the last one */
+.footer-list li:not(:last-child)::after {
+    content: "•";
+    margin-left: 15px;
+    color: #ccc;
+    font-size: 0.6rem;
+}
+
+.footer-list a {
+    text-decoration: none;
+    color: #eee;
+    transition: color 0.2s;
+}
+
+.footer-list a:hover {
+    color: #333;
+}
+
+.copyright {
+    letter-spacing: 0.05em;
+}
+
+/* Legend Styling */
+.info.legend {
+    padding: 10px;
+    background: white;
+    background: rgba(255, 255, 255, 0.9);
+    line-height: 1.5em;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+.info.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+
+/* Custom Search Box */
+#search-container {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    z-index: 1000;
+}
+#division-search {
+    padding: 10px;
+    width: 200px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
