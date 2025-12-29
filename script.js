@@ -66,17 +66,43 @@ function loadMapLayer() {
                 onEachFeature: (feature, layer) => {
                     const data = masterStats[String(feature.properties.Index).trim()];
                     if (data) {
-                        layer.bindTooltip(`<strong>${data.division} (${data.state})</strong>`, { sticky: true });
+                        // 1. tooltip
+                        layer.bindTooltip(`<strong>${data.division}</strong> (${data.state})`, { 
+                            sticky: true,
+                            direction: 'top'
+                        });
+                        // 2. popup
                         const popupContent = `
-                            <div style="border-top: 5px solid ${data.colour}; padding: 5px;">
-                                <h3>${data.division} (${data.state})</h3>
-                                <strong>Won by: </strong>${data.winner_name} ${data.winner_surname} (${data.party})
-                                <p>${data.note}</p>
-                            </div>`;
+                            <div style="border-top: 5px solid ${data.colour ||'#ccc'}; padding: 5px; min-width: 130px;">
+                                <h3 style="margin: 0 0 5px 0;">${data.division} </h3>
+                                <p style="margin: 0 0 8px 0; color: #666;>${data.state}</p>
+                                <div style="margin-bottom: 8px"><strong>Won by: </strong>${data.winner_name} ${data.winner_surname}<br>
+                                    <span style="color: ${data.colour || '#333'}; font-weight: bold;">${data.party}</span>
+                                </div>
+                                ${data.note ? `<div style="font-size: 0.85em; font-style: italic; border-top: 1px solid #eee; padding-top: 5px;">${data.note}</div>` : ''}
+                            </div>
+                        `;
                         layer.bindPopup(popupContent);
+                        // 3. Hover Interaction
+                        layer.on({
+                            mouseover: (e) => {
+                                const l = e.target;
+                                l.setStyle({
+                                    fillOpacity: 0.9,
+                                    weight: 2,
+                                    color: '#666' // Slightly darker border on hover
+                                });
+                                l.bringToFront();
+                            },
+                            mouseout: (e) => {
+                                geoJsonLayer.resetStyle(e.target);
+                            }
+                        });
                     }
                 }
             }).addTo(map);
+
+            addLegend(partyColours);
             setupSearch(geoJsonLayer);
         });
 }
