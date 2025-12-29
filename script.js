@@ -14,7 +14,7 @@ const masterStats = {};
 const partyColours = {}; 
 
 // 2. The Double-Join
-Papa.parse('data/electoral_divisions_data.csv', {
+Papa.parse('/data/electoral_divisions_data.csv', {
     download: true,
     header: true,
     skipEmptyLines: true,
@@ -28,7 +28,7 @@ Papa.parse('data/electoral_divisions_data.csv', {
             };
         });
 
-        Papa.parse('data/2025_results.csv', {
+        Papa.parse('/data/2025_results.csv', {
             download: true,
             header: true,
             skipEmptyLines: true,
@@ -50,7 +50,7 @@ Papa.parse('data/electoral_divisions_data.csv', {
 });
 
 function loadMapLayer() {
-    fetch('data/2025_electoral_divisions.geojson')
+    fetch('/data/2025_electoral_divisions.geojson')
         .then(res => res.json())
         .then(geoData => {
             const geoJsonLayer = L.geoJSON(geoData, {
