@@ -92,54 +92,85 @@
             width: 100%;
             position: relative;
             background: #f0f0f0;
+            overflow: hidden;
         }
 
-#map-controls {
-    position: absolute;
-    top: 20px;
-    left: 60px;
-    z-index: 1000;
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    border: 1px solid #ddd;
-    width: 220px;
-}
+        #map-controls {
+            position: absolute;
+            top: 20px;
+            left: 60px;
+            z-index: 1000;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border: 1px solid #ddd;
+            width: 240px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-#map-controls h1 {
-    font-size: 1rem;
-    font-weight: 600; /* Matching your preference for lighter Inter weights */
-    color: #336;
-    margin: 0 0 12px 0;
-    letter-spacing: -0.01em; /* Tighter for sentence case */
-}
+        #map-controls h1 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #336;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
 
-.control-group label {
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: #666;
-    display: block;
-    margin-bottom: 4px;
-}
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
 
-#year-selector {
-    width: 100%;
-    padding: 8px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-    color: #333
-        ;
-}
+        .control-group label {
+            font-size: 0.7rem;
+            color: #777;
+            font-weight: 500;
+        }
 
+        #year-selector, 
+        #division-search {
+            width: 100%;
+            padding: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #f9f9f9;
+            color: #333;
+            box-sizing: border-box;
+        }
 
         #map {
             height: 100%;
             width: 100%;
             z-index: 1;
+        }
+
+        @media (max-width: 600px) {
+            #map-controls {
+                top: 0;
+                left: 0;
+                width: 100%;
+                border-radius: 0;
+                border: none;
+                border-bottom: 1px solid #ddd;
+                padding: 10px 15px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                gap: 8px;
+            }
+
+            #map-controls h1, 
+            .control-group label {
+                display: none;
+            }
+
+            .leaflet-top.leaflet-left {
+                top: 70px !important;
+            }
         }
 
         /* 4. THE FOOTER */
