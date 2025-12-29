@@ -150,28 +150,49 @@
             z-index: 1;
         }
 
-        @media (max-width: 600px) {
-            #map-controls {
-                top: 0;
-                left: 0;
-                width: 100%;
-                border-radius: 0;
-                border: none;
-                border-bottom: 1px solid #ddd;
-                padding: 10px 15px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-                gap: 8px;
-            }
+/* MOBILE OVERRIDES */
+@media (max-width: 600px) {
+    #map-controls {
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        padding: 8px 12px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        
+        /* Change from stack to row to save height */
+        flex-direction: row; 
+        align-items: center;
+        gap: 8px;
+    }
 
-            #map-controls h1, 
-            .control-group label {
-                display: none;
-            }
+    #map-controls h1, 
+    .control-group label {
+        display: none; /* Keep these hidden to save space */
+    }
 
-            .leaflet-top.leaflet-left {
-                top: 70px !important;
-            }
-        }
+    .control-group {
+        flex: 1; /* Makes the search and select share the width */
+    }
+
+    /* Adjust the year selector to be narrower so search has more room */
+    .control-group:has(#year-selector) {
+        flex: 0 0 80px; 
+    }
+
+    #year-selector, #division-search {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+
+    /* Push Leaflet zoom controls down further to clear the new bar height */
+    .leaflet-top.leaflet-left {
+        top: 65px !important;
+    }
+}
+
 
         /* 4. THE FOOTER */
 #main-footer {
