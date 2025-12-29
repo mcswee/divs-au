@@ -88,9 +88,9 @@ function loadMapLayer() {
                             mouseover: (e) => {
                                 const l = e.target;
                                 l.setStyle({
-                                    fillOpacity: 0.9,
+                                    fillOpacity: 0.75,
                                     weight: 2,
-                                    color: '#666' // Slightly darker border on hover
+                                    color: '#fff' // Slightly darker border on hover
                                 });
                                 l.bringToFront();
                             },
