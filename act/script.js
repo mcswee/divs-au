@@ -1,4 +1,4 @@
-const map = L.map('map').setView([-35.2, 148], 7); // Centre of Aus
+const map = L.map('state-report-map').setView([-35.2, 148], 7); // Centre of Aus
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; OpenStreetMap &copy; CartoDB',
@@ -27,9 +27,9 @@ function loadGeoJSON(file) {
       if (feature.properties) {
         var p = feature.properties;
         var tooltip = "<b>" + (p.Elect_div || "Unknown Division") + "</b><br>" +
-                      "Numccds: " + (p.Numccds || "—") + "<br>" +
-                      "Actual: " + (p.Actual || "—") + "<br>" +
-                      "Projected: " + (p.Projected || "—");
+                      "<strong>No of SA1:</strong> " + (p.Numccds || "—") + "<br>" +
+                      "<strong>Actual enrolment:</strong> " + (p.Actual || "—") + "<br>" +
+                      "<strong>Projected enrolment:</strong> " + (p.Projected || "—");
         layer.bindTooltip(tooltip, { sticky: true });
       }
     }
