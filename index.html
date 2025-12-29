@@ -83,7 +83,7 @@
         }).addTo(map);
 
         // 3. Load CSV, then GeoJSON
-        Papa.parse('2025_results.csv', {
+        Papa.parse('/data/2025_results.csv', {
             download: true,
             header: true,
             skipEmptyLines: true,
@@ -101,7 +101,7 @@
                     }
                 });
 
-        fetch('2025_electoral_divisions.geojson')
+        fetch('/data/2025_electoral_divisions.geojson')
             .then(res => res.json())
             .then(geoData => {
                 const geoJsonLayer = L.geoJSON(geoData, {
