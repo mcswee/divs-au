@@ -343,6 +343,53 @@
             color: #336;
         }
 
+        .archive-focus {
+            background: #fcfcfc;
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .report-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 14px 24px;
+            background: #336; /* Navy */
+            color: #fff !important;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.2s;
+        }
+        
+        .report-button:hover {
+            background: #448;
+            transform: translateY(-2px);
+        }
+        
+        .archive-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .archive-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .archive-list a {
+            color: #555;
+            text-decoration: none;
+        }
+        
+        .archive-list a:hover {
+            color: #336;
+            text-decoration: underline;
+        }
 
         /* MOBILE ADJUSTMENTS */
         @media (max-width: 600px) {
