@@ -1,58 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Northern Territory redistribution - divs.au</title>
-  <link rel="stylesheet" href="/style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<!-- Standard Meta Tags -->
-<meta name="description" content="Welcome to divs.au, home of Australian federal electoral division boundaries and redistribution reports.">
-<meta name="keywords" content="divisions, redistribution, Australia, electoral boundaries, electoral divisions, maps">
-<meta name="author" content="Darren McSweeney">
-
-<!-- Open Graph Meta Tags (for social sharing) -->
-<meta property="og:title" content="divs.au">
-<meta property="og:description" content="Australian federal electoral division boundaries and redistribution reports.">
-<meta property="og:image" content="https://divs.au/images/preview.png">
-<meta property="og:url" content="https://divs.au">
-<meta property="og:type" content="website">
-
-<!-- Twitter Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="divs.au">
-<meta name="twitter:description" content="Australian federal electoral division boundaries and redistribution reports.">
-<meta name="twitter:image" content="https://divs.au/images/preview.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Northern Territory redistribution | divs.au</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/style.css" />
 </head>
-  
-<body>
-  <header>
-    <h1><img src="/star.svg" alt="divs.au star" height="32" width="32" class="logo">divs.au</h1>
-    <p>Australian federal electoral division boundaries and redistribution reports.</p>
-  </header>
-  
-    <nav class="breadcrumbs">
-      <a href="/">Home</a> &gt; <a href="/divisions">Divisions</a> &gt; Northern Territory 
-    </nav>
 
-  <main>
-    <section>
-      <h2>Redistribution of the Northern Territory</h2>
-      <p>There is no current redistribution of the Northern Territory. The <a href="https://www.aec.gov.au/redistributions/2024/nt/">last redistribution</a> was finalised in 2025.</p>
-    </section>
-    <!--<section class="map-section">
-      <div id="map"></div>
-      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-      <script src="/script.js"></script>  
-    </section>-->
-  </main>
-  <footer>
-    <ul>
-      <li>&copy; 2025 Darren McSweeney.</li>
-      <li><a href="/diversions/">Diversions</a></li>
-      <li><a href="/divulgence/">Divulgence</a></li>
-    </ul>
-  </footer>
-</body>
+<body>
+    <header id="main-header">
+        <div class="brand-container">
+            <a href="/" class="brand-link">
+                <img src="/star.svg" alt="Logo" class="header-logo">
+                <div class="text-group">
+                    <span class="site-title">divs.au</span>
+                    <span class="site-subtitle">Australian historical electoral division data</span>
+                </div>
+            </a>
+        </div>
+        <nav class="nav-container">
+            <a href="/reports" class="nav-link">Reports</a>
+        </nav>
+    </header>
+
+<main id="app-viewport">
+        <div class="content-container text-page">
+            
+            <section class="intro">
+                <h1>Nothern Territory redistribution</h1>
+                <p>There is no current redistribution for the Northern Territory. The most recent redistribution started in 2024 and was determined on 4 March 2025.</p>
+            </section>
+
+            <section class="archive-focus">
+                <h3>My 2024 Submission</h3>
+                <p>My 2024 submission was basic and united all of Palmerston within the division of Solomon.</p>
+                
+                <a href="Darren McSweeney Suggestion NT Redistribution 2024.pdf" class="report-button">
+                    <span class="icon">📄</span> Download 2024 Report (PDF)
+                </a>
+            </section>
+
+            <section class="external-links">
+                <h3>More information</h3>
+                <div class="link-list">
+                    <a href="https://www.aec.gov.au/redistributions/2024/nt/final-report/maps-data.html" class="link-item">Final determination for Northern Territory 2025 redistribution</a>
+                    <a href="https://www.aec.gov.au/redistributions/" class="link-item">AEC Redistributions</a>                
+                </div>
+            </section>
+            
+            <!--<section class="archived-links">
+                <h3>Previous Reports</h3>
+                <p>Older suggestions for historical redistributions in this state:</p>
+                <ul class="archive-list">
+                    <li><a href="Darren-McSweeney-VIC-2021.pdf">2021 Redistribution Suggestion</a></li>
+                    <li><a href="Darren-McSweeney-VIC-2018.pdf">2018 Redistribution Suggestion</a></li>
+                </ul>
+            </section>-->
+        </div>
+    </main>
+    <footer id="main-footer">
+        <ul class="footer-list">
+            <li class="copyright">&copy; 2025 Darren McSweeney</li>
+            <li><a href="/projects">Side Projects</a></li>
+            <li><a href="/disclaimer">Disclaimer & Privacy</a></li>
+        </ul>
+    </footer>
+
 </body>
 </html>
