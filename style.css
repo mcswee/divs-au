@@ -540,28 +540,37 @@
         }
 
 
-        .legal-block {
-            margin-bottom: 40px;
+          .legal-block {
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
             border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
-        }
-        
-        .legal-block:last-child {
-            border-bottom: none;
         }
         
         .legal-block h3 {
             color: #336;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
         }
         
-        .legal-block p {
-            line-height: 1.7;
+        .legal-block p, .legal-block li {
+            line-height: 1.6;
             color: #444;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
         }
         
-        .legal-block strong {
-            color: #000;
+        .legal-block ul {
+            padding-left: 1.2rem;
+        }
+        
+        /* The "Safety First" highlight for the APS section */
+        .status-highlight {
+            background: #f8f9ff;
+            padding: 2rem;
+            border-left: 4px solid #336;
+            border-bottom: none;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .status-highlight h3 {
+            margin-top: 0;
         }
