@@ -14,7 +14,7 @@ const masterStats = {};
 const partyColours = {}; 
 
 // 2. The Double-Join
-Papa.parse('/data/electoral_divisions_data.csv', {
+Papa.parse('/data/electoral_division_data.csv', {
     download: true,
     header: true,
     skipEmptyLines: true,
