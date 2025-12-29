@@ -192,10 +192,12 @@
         }
         
         .state-card:hover {
-            border-color: #036;
-            background: #f0f4f8;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-color: var(--state-color, #036);
+            background-color: var(--state-card-bg, #f8f9fa);
+            color: var(--state-color, #333);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
         }
         
         /* STATUS BADGES */
