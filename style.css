@@ -186,16 +186,6 @@
             }
         }
 
-        /* 4. THE FOOTER */
-        #main-footer {
-            height: 35px;
-            background: #999;
-            border-top: 1px solid #777;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-        }
-
         .error-container {
             display: flex;
             flex-direction: column;
@@ -238,7 +228,15 @@
             border-color: #ddd;
         }
 
-
+        /* 4. THE FOOTER */
+        #main-footer {
+            height: 35px;
+            background: #999;
+            border-top: 1px solid #777;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
         
         .footer-list {
             list-style: none;
