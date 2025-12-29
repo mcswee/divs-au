@@ -216,6 +216,61 @@
         .status.current { background: #e6fffa; color: #2c7a7b; border: 1px solid #b2f5ea; }
         .status.deferred { background: #fffaf0; color: #9c4221; border: 1px solid #feebc8; }
         .status.archive { background: #edf2f7; color: #4a5568; border: 1px solid #e2e8f0; }
+
+        /* Container to prevent table from breaking on mobile */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 25px 0;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        
+        .state-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            background: #fff;
+        }
+        
+        .state-table th {
+            background-color: #f8f9fa;
+            color: #336; /* Your brand navy */
+            font-weight: 700;
+            text-align: left;
+            padding: 12px 15px;
+            border-bottom: 2px solid #dee2e6;
+            white-space: nowrap;
+        }
+        
+        .state-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            color: #444;
+            vertical-align: top;
+        }
+        
+        /* Zebra striping for readability */
+        .state-table tbody tr:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+        
+        /* Hover effect so you don't lose your place */
+        .state-table tbody tr:hover {
+            background-color: #f1f4f8;
+        }
+        
+        /* Align numbers to the right for easier comparison */
+        .state-table td:nth-child(2),
+        .state-table td:nth-child(3),
+        .state-table th:nth-child(2),
+        .state-table th:nth-child(3) {
+            text-align: right;
+            font-variant-numeric: tabular-nums; /* Keeps numbers aligned */
+        }
+
+
         
         /* MOBILE ADJUSTMENTS */
         @media (max-width: 600px) {
