@@ -137,6 +137,86 @@
             border-color: #ddd;
         }
 
+        /* SHARED CONTENT CONTAINER */
+        .content-container.text-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            height: 100%;
+            overflow-y: auto; /* Allows scrolling if the list gets long */
+        }
+        
+        .intro h1 {
+            font-size: 2.2rem;
+            color: #336;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 15px;
+        }
+        
+        /* GRID LAYOUT */
+        .report-grid h2 {
+            font-size: 1.2rem;
+            margin: 40px 0 15px 0;
+            color: #336;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+        
+        .card-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        /* STATE CARDS */
+        .state-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .state-card:hover {
+            border-color: #036;
+            background: #f0f4f8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* STATUS BADGES */
+        .status {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+        
+        .status.current { background: #e6fffa; color: #2c7a7b; border: 1px solid #b2f5ea; }
+        .status.deferred { background: #fffaf0; color: #9c4221; border: 1px solid #feebc8; }
+        .status.archive { background: #edf2f7; color: #4a5568; border: 1px solid #e2e8f0; }
+        
+        /* MOBILE ADJUSTMENTS */
+        @media (max-width: 600px) {
+            .intro h1 { font-size: 1.8rem; }
+            .card-wrapper { grid-template-columns: 1fr; }
+        }
 
         #map-controls {
             position: absolute;
