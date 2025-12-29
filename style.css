@@ -94,147 +94,144 @@
             background: #f0f0f0;
             overflow: hidden;
         }
-#map-controls {
-    position: absolute;
-    top: 20px;
-    left: 60px;
-    z-index: 1000;
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    border: 1px solid #ddd;
-    width: 240px;
-    display: flex;
-    flex-wrap: wrap; /* This is the key */
-    gap: 12px;
-}
 
-#map-controls h1 {
-    width: 100%; /* Keeps the H1 on its own line */
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #336;
-    margin: 0;
-}
+        #map-controls {
+            position: absolute;
+            top: 20px;
+            left: 60px;
+            z-index: 1000;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border: 1px solid #ddd;
+            width: 240px;
+            display: flex;
+            flex-wrap: wrap; 
+            gap: 12px;
+        }
 
-.control-group {
-    flex: 1 1 100%; /* Default to full width (stacking) */
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
+        #map-controls h1 {
+            width: 100%; 
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #336;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
 
-#year-selector, #division-search {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+        .control-group {
+            flex: 1 1 100%; 
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
 
-@media (max-width: 600px) {
-    #map-controls {
-        top: 0;
-        left: 0;
-        width: 100%;
-        border-radius: 0;
-        padding: 10px;
-        flex-direction: row; /* Allow them to sit together */
-    }
+        .control-group label {
+            font-size: 0.7rem;
+            color: #777;
+            font-weight: 500;
+        }
 
-    .control-group {
-        flex: 1; /* Share the row */
-    }
+        #year-selector, #division-search {
+            width: 100%;
+            padding: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #f9f9f9;
+            color: #333;
+            box-sizing: border-box;
+        }
 
-    /* Make the year selector smaller so search has more room */
-    .control-group:first-of-type {
-        flex: 0 0 80px;
-    }
+        #map {
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+        }
 
-    .control-group label {
-        display: none;
-    }
+        @media (max-width: 600px) {
+            #map-controls {
+                top: 0;
+                left: 0;
+                width: 100%;
+                border-radius: 0;
+                border: none;
+                border-bottom: 1px solid #ddd;
+                padding: 10px;
+                flex-direction: row;
+                align-items: flex-end;
+            }
 
-    .leaflet-top.leaflet-left {
-        top: 85px !important;
-    }
-}
+            #map-controls h1 {
+                font-size: 0.85rem;
+                width: 100%; /* Keeps it on top of the row on mobile */
+            }
+
+            .control-group {
+                flex: 1;
+            }
+
+            .control-group:first-of-type {
+                flex: 0 0 85px; 
+            }
+
+            .control-group label {
+                display: none;
+            }
+
+            .leaflet-top.leaflet-left {
+                top: 105px !important; /* Pushed down for H1 + Row height */
+            }
+        }
 
         /* 4. THE FOOTER */
-#main-footer {
-    height: 35px;
-    background: #999;
-    border-top: 1px solid #777;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-}
+        #main-footer {
+            height: 35px;
+            background: #999;
+            border-top: 1px solid #777;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
 
-.footer-list {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Space between items */
-    margin: 0;
-    padding: 0;
-    font-size: 0.75rem;
-    color: #eee; /* Off-white for the copyright text */
-}
+        .footer-list {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+            font-size: 0.75rem;
+            color: #eee;
+        }
 
-.footer-list li {
-    display: flex;
-    align-items: center;
-}
+        .footer-list li:not(:last-child)::after {
+            content: "•";
+            margin-left: 15px;
+            color: #ccc;
+            font-size: 0.6rem;
+        }
 
-/* Add a small separator between the list items, but not after the last one */
-.footer-list li:not(:last-child)::after {
-    content: "•";
-    margin-left: 15px;
-    color: #ccc;
-    font-size: 0.6rem;
-}
+        .footer-list a {
+            text-decoration: none;
+            color: #eee;
+        }
 
-.footer-list a {
-    text-decoration: none;
-    color: #eee;
-    transition: color 0.2s;
-}
-
-.footer-list a:hover {
-    color: #333;
-}
-
-.copyright {
-    letter-spacing: 0.05em;
-}
-
-/* Legend Styling */
-.info.legend {
-    padding: 10px;
-    background: white;
-    background: rgba(255, 255, 255, 0.9);
-    line-height: 1.5em;
-    border-radius: 5px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-}
-.info.legend i {
-    width: 18px;
-    height: 18px;
-    float: left;
-    margin-right: 8px;
-    opacity: 0.8;
-}
-
-/* Custom Search Box */
-#search-container {
-    position: absolute;
-    top: 10px;
-    right: 50px;
-    z-index: 1000;
-}
-#division-search {
-    padding: 10px;
-    width: 200px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
+        /* Legend Styling */
+        .info.legend {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            line-height: 1.5em;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            font-size: 0.75rem;
+        }
+        .info.legend i {
+            width: 12px;
+            height: 12px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.8;
+        }
