@@ -111,9 +111,9 @@
         }
 
         Promise.all([
-            loadTable('/side-projects/suburbs.csv', 'suburb-table'),
-            loadTable('/side-projects/vowels.csv', 'vowel-table'),
-            loadTable('/side-projects/consonants.csv', 'consonant-table')
+            loadTable('/suburbs/suburbs.csv', 'suburb-table'),
+            loadTable('/suburbs/vowels.csv', 'vowel-table'),
+            loadTable('/suburbs/consonants.csv', 'consonant-table')
         ]).then(() => {
             new Tablesort(document.getElementById('suburb-table'));
             
