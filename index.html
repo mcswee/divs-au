@@ -164,20 +164,21 @@ Papa.parse('2025_results.csv', {
                 };
                 legend.addTo(map);
 
-                // --- SEARCH ---
-                document.getElementById('division-search').addEventListener('input', function(e) {
-                    const val = e.target.value.toLowerCase().trim();
-                    if (!val) return;
+// --- SEARCH ---
+document.getElementById('division-search').addEventListener('change', function(e) {
+    const val = e.target.value.toLowerCase().trim();
+    if (!val) return;
 
-                    geoJsonLayer.eachLayer(layer => {
-                        const geoIndex = String(layer.feature.properties.Index).trim();
-                        const row = stats[geoIndex];
-                        if (row && row.division.toLowerCase().includes(val)) {
-                            map.fitBounds(layer.getBounds());
-                            layer.openPopup();
-                        }
-                    });
-                });
+    geoJsonLayer.eachLayer(layer => {
+        const geoIndex = String(layer.feature.properties.Index).trim();
+        const row = stats[geoIndex];
+        if (row && row.division.toLowerCase() === val) { // Match exactly or use .includes
+            map.fitBounds(layer.getBounds());
+            layer.openPopup();
+        }
+    });
+});
+
             });
     }
 });
