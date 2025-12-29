@@ -1,59 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Queensland redistribution - divs.au</title>
-  <link rel="stylesheet" href="/style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<!-- Standard Meta Tags -->
-<meta name="description" content="Welcome to divs.au, home of Australian federal electoral division boundaries and redistribution reports.">
-<meta name="keywords" content="divisions, redistribution, Australia, electoral boundaries, electoral divisions, maps">
-<meta name="author" content="Darren McSweeney">
-
-<!-- Open Graph Meta Tags (for social sharing) -->
-<meta property="og:title" content="divs.au">
-<meta property="og:description" content="Australian federal electoral division boundaries and redistribution reports.">
-<meta property="og:image" content="https://divs.au/images/preview.png">
-<meta property="og:url" content="https://divs.au">
-<meta property="og:type" content="website">
-
-<!-- Twitter Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="divs.au">
-<meta name="twitter:description" content="Australian federal electoral division boundaries and redistribution reports.">
-<meta name="twitter:image" content="https://divs.au/images/preview.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queensland suggested redistribution | divs.au</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/style.css" />
 </head>
-  
-<body>
-  <header>
-    <h1><img src="/star.svg" alt="divs.au star" height="32" width="32" class="logo">divs.au</h1>
-    <p>Australian federal electoral division boundaries and redistribution reports.</p>
-  </header>
-  
-    <nav class="breadcrumbs">
-      <a href="/">Home</a> &gt; <a href="/divisions">Divisions</a> &gt; Queensland
-    </nav>
 
-  <main>
-    <section>
-      <h2>Redistribution of Queensland</h2>
-      <p>The redistribution of Queensland has been deferred until after the entitlement determination in July 2026.</p>
-      <p>Details of my suggestion and map to my proposed divisions will be available after that time.</p>
-    </section>
-    <!--<section class="map-section">
-      <div id="map"></div>
-      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-      <script src="/script.js"></script>  
-    </section>-->
-  </main>
-  <footer>
-    <ul>
-      <li>&copy; 2025 Darren McSweeney.</li>
-      <li><a href="/diversions/">Diversions</a></li>
-      <li><a href="/divulgence/">Divulgence</a></li>
-    </ul>
-  </footer>
-</body>
+<body>
+    <header id="main-header">
+        <div class="brand-container">
+            <a href="/" class="brand-link">
+                <img src="/star.svg" alt="Logo" class="header-logo">
+                <div class="text-group">
+                    <span class="site-title">divs.au</span>
+                    <span class="site-subtitle">Australian historical electoral division data</span>
+                </div>
+            </a>
+        </div>
+        <nav class="nav-container">
+            <a href="/reports" class="nav-link">Reports</a>
+        </nav>
+    </header>
+
+    <main id="app-viewport">
+        <div class="content-container text-page">
+            
+            <section class="intro">
+                <h1>Queensland redistribution 2025</h1>
+                <p>The redistribution of Queensland has been deferred until after the entitlement determination in July 2026.</p>
+                <p>Details of my suggestion and map to my proposed divisions will be available after that time.</p>
+            </section>
+
+            <!--<section class="data-section">
+                <h3>Proposed electoral divisions</h3>
+                <p>The table below summarizes my suggested divisions, including population and rationale for changes.</p>
+                
+                <div class="table-wrapper">
+                    <table class="state-table">
+                        <thead>
+                            <tr>
+                                <th>Division name</th>
+                                <th>Actual enrolment</th>
+                                <th>Projected enrolment</th>
+                                <th>Summary of changes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Bean</td>
+                            <td>114,037</td>
+                            <td>117,983</td>
+                            <td>Adds rest of Woden, loses Molonglo Valley and Jerrabomberra.</td>
+                          </tr>
+                          <tr>
+                            <td>Canberra</td>
+                            <td>102,571</td>
+                            <td>114,800</td>
+                            <td>Adds Molonglo Valley and Jerrabomberra. Loses Woden.</td>
+                          </tr>
+                          <tr>
+                            <td>Fenner</td>
+                            <td>105,271</td>
+                            <td>111,742</td>
+                            <td>No changes. </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="state-map-section">
+                <h3>Map of proposed divisions</h3>
+                <div id="state-report-map"></div> 
+            </section>
+            
+            <section class="download-section">
+                <h3>Download report</h3>
+                <p>My complete report, including all maps, tables and explanations can be 
+                <a href="Darren McSweeney Suggestion ACT Redistribution 2025.pdf" class="download-link">downloaded as a PDF</a>.</p>
+            </section>-->
+        
+        </div>
+    </main>
+
+    <footer id="main-footer">
+        <ul class="footer-list">
+            <li class="copyright">&copy; 2025 Darren McSweeney</li>
+            <li><a href="/projects">Side Projects</a></li>
+            <li><a href="/disclaimer">Disclaimer & Privacy</a></li>
+        </ul>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
