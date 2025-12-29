@@ -538,3 +538,30 @@
             margin-right: 8px;
             opacity: 0.8;
         }
+
+
+        .legal-block {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        
+        .legal-block:last-child {
+            border-bottom: none;
+        }
+        
+        .legal-block h3 {
+            color: #336;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .legal-block p {
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 15px;
+        }
+        
+        .legal-block strong {
+            color: #000;
+        }
