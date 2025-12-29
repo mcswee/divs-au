@@ -24,7 +24,17 @@ Papa.parse('/data/electoral_division_data.csv', {
             masterStats[idx] = { 
                 division: row.division, 
                 state: row.state,
-                note: row.note || ""
+                created: row.created,
+                namesake: row.namesake,
+                fed: row.isfed,
+                fem: row.isfem,
+                ind: row.isind,
+                pm: row.ispm,
+                geo: row.isgeo,
+                aus: row.isaus,
+                old: row.iscol
+                
+                || ""
             };
         });
 
@@ -40,6 +50,7 @@ Papa.parse('/data/electoral_division_data.csv', {
                         masterStats[idx].winner_surname = row.surname;
                         masterStats[idx].party = row.party;
                         masterStats[idx].colour = row.colour;
+                        masterStats[idx].note = row.note;
                         if (row.party && row.colour) partyColours[row.party] = row.colour;
                     }
                 });
@@ -76,6 +87,8 @@ function loadMapLayer() {
                             <div style="border-top: 5px solid ${data.colour ||'#ccc'}; padding: 5px; min-width: 130px;">
                                 <h3 style="margin: 0 0 5px 0;">${data.division}</h3>
                                 <p style="margin: 0 0 8px 0; color: #666;">${data.state}</p>
+                                <p style="margin: 0 0 5px 0;"><strong>Created:</strong>${data.created}</p>
+                                <p style="margin: 0 0 5px 0;"><strong>Named for:</strong>${data.namesake}</p>
                                 <div style="margin-bottom: 8px"><strong>Won by: </strong>${data.winner_name} ${data.winner_surname}<br>
                                     <span style="color: ${data.colour || '#333'}; font-weight: bold;">${data.party}</span>
                                 </div>
