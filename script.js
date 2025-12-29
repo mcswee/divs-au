@@ -74,8 +74,8 @@ function loadMapLayer() {
                         // 2. popup
                         const popupContent = `
                             <div style="border-top: 5px solid ${data.colour ||'#ccc'}; padding: 5px; min-width: 130px;">
-                                <h3 style="margin: 0 0 5px 0;">${data.division} </h3>
-                                <p style="margin: 0 0 8px 0; color: #666;>${data.state}</p>
+                                <h3 style="margin: 0 0 5px 0;">${data.division}</h3>
+                                <p style="margin: 0 0 8px 0; color: #666;">${data.state}</p>
                                 <div style="margin-bottom: 8px"><strong>Won by: </strong>${data.winner_name} ${data.winner_surname}<br>
                                     <span style="color: ${data.colour || '#333'}; font-weight: bold;">${data.party}</span>
                                 </div>
