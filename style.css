@@ -270,7 +270,25 @@
             font-variant-numeric: tabular-nums; /* Keeps numbers aligned */
         }
 
-
+        .info-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #73182c; /* QLD Maroon */
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .info-box h3 {
+            margin-top: 0;
+            color: #73182c;
+            font-size: 1.2rem;
+        }
+        
+        .info-box p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+        }
         
         /* MOBILE ADJUSTMENTS */
         @media (max-width: 600px) {
