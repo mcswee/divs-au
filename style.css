@@ -128,7 +128,7 @@
             padding: 10px 16px;
             border-radius: 6px;
             transition: background 0.2s;
-            border: 1px solid transparent;
+            border: 1px solid #ddd;
         }
 
         .error-link:hover {
