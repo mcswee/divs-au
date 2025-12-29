@@ -1,1 +1,135 @@
-  d
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melbourne suburb pronunciation | divs.au</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css" />
+
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="brand-container">
+            <a href="/" class="brand-link">
+                <img src="/star.svg" alt="Logo" class="header-logo">
+                <div class="text-group">
+                    <span class="site-title">divs.au</span>
+                    <span class="site-subtitle">Australian historical electoral division data</span>
+                </div>
+            </a>
+        </div>
+
+        <nav class="nav-container">
+            <a href="/projects" class="nav-link">Projects</a>
+        </nav>
+    </header>
+
+  <main class="content-container text-page">
+        <section class="intro">
+            <h1>How to pronounce the names of Melbourne suburbs</h1>
+            <p>There are a couple of suburb pronunciation guides around and sure, they'll list Prahran and Malvern and Reservoir and maybe even Truganina. But then they'll have whacky phonetics and you can tell they were written by someone with no concept of Melbourne or with no understanding of English phonology. Not that I'm claiming to be an expert in linguistics. But here is a full, comprehensive list of every Melbourne suburb, with a consistent and reliable phonology. </p>
+            
+            <div class="search-container" style="margin-top: 2rem;">
+                <label for="suburb-search"><strong>Search for a suburb:</strong></label><br>
+                <input type="text" id="suburb-search" placeholder="Start typing..." style="margin-bottom: 1em; padding: 10px; width: 100%; max-width: 400px; border: 1px solid #003895; border-radius: 4px;">
+            </div>
+        </section>
+
+        <section class="table-wrapper">
+            <table id="suburb-table" class="sortable">
+                <thead>
+                    <tr>
+                        <th>Suburb</th>
+                        <th>Pronunciation</th>
+                        <th>LGA</th>
+                        <th>Postcode</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+        
+        <section id="pronunciation-key">
+            <h3 style="margin-top: 2rem;">Vowel Pronunciation Key</h3>
+            <table id="vowel-table" class="key-table">
+                <thead>
+                    <tr><th>Phoneme</th><th>IPA</th><th>Example Words</th><th>Pronunciation</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Consonant Pronunciation Key</h3>
+            <table id="consonant-table" class="key-table">
+                <thead>
+                    <tr><th>Phoneme</th><th>IPA</th><th>Example Words</th><th>Pronunciation</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </main>
+
+
+<footer id="main-footer">
+    <ul class="footer-list">
+        <li class="copyright">&copy; 2025 Darren McSweeney</li>
+        <li><a href="/projects">Side Projects</a></li>
+        <li><a href="/disclaimer">Disclaimer & Privacy</a></li>
+    </ul>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="https://unpkg.com/tablesort@5.2.1/dist/tablesort.min.js"></script>
+
+    <script>
+        function loadTable(file, tableId) {
+            return fetch(file)
+                .then(res => res.text())
+                .then(csv => {
+                    const data = Papa.parse(csv, { header: true, skipEmptyLines: true }).data;
+                    const tbody = document.querySelector(`#${tableId} tbody`);
+                    
+                    data.forEach(row => {
+                        const tr = document.createElement('tr');
+                        // Use the table headers to ensure columns match the CSV keys exactly
+                        const headers = Array.from(document.querySelectorAll(`#${tableId} thead th`)).map(th => th.textContent);
+                        
+                        headers.forEach(colName => {
+                            const td = document.createElement('td');
+                            // Map "Example Words" header to "Examples" key if your CSV uses the shorter name
+                            const key = colName === "Example Words" ? "Examples" : colName;
+                            td.textContent = row[key] || row[colName] || '';
+                            tr.appendChild(td);
+                        });
+                        tbody.appendChild(tr);
+                    });
+                });
+        }
+
+        Promise.all([
+            loadTable('/side-projects/suburbs.csv', 'suburb-table'),
+            loadTable('/side-projects/vowels.csv', 'vowel-table'),
+            loadTable('/side-projects/consonants.csv', 'consonant-table')
+        ]).then(() => {
+            new Tablesort(document.getElementById('suburb-table'));
+            
+            const searchInput = document.getElementById('suburb-search');
+            const tbody = document.querySelector('#suburb-table tbody');
+            const rows = tbody.querySelectorAll('tr');
+
+            searchInput.addEventListener('input', function () {
+                const query = this.value.toLowerCase();
+                rows.forEach(row => {
+                    const suburb = row.cells[0].textContent.toLowerCase();
+                    row.style.display = suburb.includes(query) ? '' : 'none';
+                });
+            });
+        });
+    </script>  
+
+</body>
+</html>
