@@ -143,6 +143,7 @@
 
         /* SHARED CONTENT CONTAINER */
         .content-container.text-page {
+            max-width:1200px;
             margin: 0 auto;
             padding: 40px 20px;
             height: 100%;
