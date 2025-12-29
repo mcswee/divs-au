@@ -95,6 +95,49 @@
             overflow: hidden;
         }
 
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centers horizontally */
+            justify-content: center; /* Centers vertically */
+            height: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .error-container h1 {
+            font-size: 2rem;
+            color: #336;
+            margin-bottom: 15px;
+        }
+        
+        .error-container p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .error-link {
+            text-decoration: none;
+            color: #336;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 10px 16px;
+            border-radius: 6px;
+            transition: background 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .error-link:hover {
+            background: #336;
+            color: #f5f5f5;
+            border-color: #ddd;
+        }
+
+
         #map-controls {
             position: absolute;
             top: 20px;
@@ -186,47 +229,6 @@
             }
         }
 
-        .error-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centers horizontally */
-            justify-content: center; /* Centers vertically */
-            height: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        
-        .error-container h1 {
-            font-size: 2rem;
-            color: #336;
-            margin-bottom: 15px;
-        }
-        
-        .error-container p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .error-link {
-            text-decoration: none;
-            color: #336;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 10px 16px;
-            border-radius: 6px;
-            transition: background 0.2s;
-            border: 1px solid transparent;
-        }
-
-        .error-link:hover {
-            background: #336;
-            color: #f5f5f5;
-            border-color: #ddd;
-        }
 
         /* 4. THE FOOTER */
         #main-footer {
