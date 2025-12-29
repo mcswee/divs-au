@@ -218,6 +218,28 @@
         .status.deferred { background: #fffaf0; color: #9c4221; border: 1px solid #feebc8; }
         .status.archive { background: #edf2f7; color: #4a5568; border: 1px solid #e2e8f0; }
 
+
+        /* Only affects the Diversions page cards */
+        .diversion-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 25px 20px;
+            text-align: left;
+            min-height: 120px; /* Ensures all cards stay the same height even with different text lengths */
+        }
+        
+        .diversion-card h3 {
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+        }
+        
+        .diversion-card p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #555;
+        }
+
         /* Container to prevent table from breaking on mobile */
         .table-wrapper {
             width: 100%;
