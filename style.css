@@ -561,6 +561,18 @@
         .legal-block ul {
             padding-left: 1.2rem;
         }
+
+        .legal-block a {
+            color: #336;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 1px;
+        }
+        
+        .legal-block a:hover {
+            color: #d71920;
+            text-decoration-thickness: 2px;
+        }
         
         /* The "Safety First" highlight for the APS section */
         .status-highlight {
