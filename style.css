@@ -94,7 +94,11 @@
             background: #f0f0f0;
             overflow: hidden;
         }
-
+        
+        #state-report-map {
+            height: 600px; /* Or whatever height you want */
+            width: 100%;
+        }
         .error-container {
             display: flex;
             flex-direction: column;
