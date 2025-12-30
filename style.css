@@ -118,7 +118,24 @@
             border-radius: 2px;
             border: 1px solid rgba(0,0,0,0.2);
         }
-                
+
+        .badge {
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+        }
+        
+        .badge.fed { background: #389b6f; }
+        .badge.pm { background: #ffb703; }
+        .badge.fem { background: #7209b7; }
+        .badge.ind { background: #e85d04; }
+        .badge.geo { background: #7f5539; }
+        .badge.old { background: #6c757d; }
+        .badge.nonaus { background: #b62631; }
+             
         #state-report-map {
             height: 600px; 
             width: 95%;
