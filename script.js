@@ -33,8 +33,6 @@ Papa.parse('/data/electoral_division_data.csv', {
                 geo: row.isgeo,
                 aus: row.isaus,
                 old: row.iscol
-                
-                || ""
             };
         });
 
@@ -64,10 +62,11 @@ function loadMapLayer() {
     fetch('/data/2025_electoral_divisions.geojson')
         .then(res => res.json())
         .then(geoData => {
-            // Assigning the layer to a variable so the search function can use it
             const geoJsonLayer = L.geoJSON(geoData, {
                 style: (feature) => {
-                    const data = masterStats[String(feature.properties.index).trim()];
+                    // Check for 'index' - adjust to 'Index' if the GeoJSON uses a capital I
+                    const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
+                    const data = masterStats[seatIndex];
                     return {
                         fillColor: data ? data.colour : '#888',
                         weight: 1,
@@ -76,7 +75,8 @@ function loadMapLayer() {
                     };
                 },
                 onEachFeature: (feature, layer) => {
-                    const data = masterStats[String(feature.properties.index).trim()];
+                    const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
+                    const data = masterStats[seatIndex];
                     if (data) {
                         layer.bindTooltip(`<strong>${data.division}</strong> (${data.state})`, {
                             sticky: true,
@@ -112,7 +112,6 @@ function loadMapLayer() {
                 }
             }).addTo(map);
 
-            // This is the added line to wake up the search box
             setupSearch(geoJsonLayer);
 
             if (typeof addLegend === "function") {
@@ -121,21 +120,6 @@ function loadMapLayer() {
         });
 }
 
-function setupSearch(layerGroup) {
-    const searchInput = document.getElementById('division-search');
-    if (!searchInput) return;
-    searchInput.addEventListener('input', function(e) {
-        const val = e.target.value.toLowerCase().trim();
-        if (val.length < 3) return;
-        layerGroup.eachLayer(layer => {
-            const data = masterStats[String(layer.feature.properties.Index).trim()];
-            if (data && data.division.toLowerCase().includes(val)) {
-                map.fitBounds(layer.getBounds());
-                layer.openPopup();
-            }
-        });
-    });
-}
 function setupSearch(geoJsonLayer) {
     const searchInput = document.getElementById('division-search');
     if (!searchInput) return;
@@ -144,7 +128,7 @@ function setupSearch(geoJsonLayer) {
         const value = e.target.value.toLowerCase().trim();
         
         geoJsonLayer.eachLayer((layer) => {
-            const seatIndex = String(layer.feature.properties.index).trim();
+            const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
             const seatData = masterStats[seatIndex];
             const divName = seatData ? seatData.division.toLowerCase() : "";
             
@@ -164,5 +148,4 @@ function setupSearch(geoJsonLayer) {
             }
         });
     });
-
 }
