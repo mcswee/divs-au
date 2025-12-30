@@ -78,15 +78,31 @@ function loadMapLayer() {
                     const data = masterStats[seatIndex];
                     
                     if (data) {
-                        let badgesHtml = '<div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px;">';
-                        if (data.fed === "TRUE") badgesHtml += '<span style="background: #389b6f; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">FEDERATION</span>';
-                        if (data.pm === "TRUE") badgesHtml += '<span style="background: #ffb703; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">PRIME MINISTER</span>';
-                        if (data.fem === "TRUE") badgesHtml += '<span style="background: #7209b7; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">WOMAN</span>';
-                        if (data.ind === "TRUE") badgesHtml += '<span style="background: #e85d04; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">INDIGENOUS</span>';
-                        if (data.geo === "TRUE") badgesHtml += '<span style="background: #7f5539; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">GEOGRAPHIC</span>';
-                        if (data.old === "TRUE") badgesHtml += '<span style="background: #6c757d; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">COLONIAL</span>';
-                        if (data.aus === "FALSE") badgesHtml += '<span style="background: #b62631; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">NON-AUSTRALIAN</span>';
-                        badgesHtml += '</div>';
+                        // 1. Initialize variables
+                        let badgeCount = 0;
+                        let badgesList = '';
+                        
+                        // 2. Build the badge strings
+                        if (data.fed === "TRUE") { badgesList += '<span class="badge fed">FEDERATION</span>'; badgeCount++; }
+                        if (data.pm === "TRUE") { badgesList += '<span class="badge pm">PRIME MINISTER</span>'; badgeCount++; }
+                        if (data.fem === "TRUE") { badgesList += '<span class="badge fem">WOMAN</span>'; badgeCount++; }
+                        if (data.ind === "TRUE") { badgesList += '<span class="badge ind">INDIGENOUS</span>'; badgeCount++; }
+                        if (data.geo === "TRUE") { badgesList += '<span class="badge geo">GEOGRAPHIC</span>'; badgeCount++; }
+                        if (data.old === "TRUE") { badgesList += '<span class="badge old">COLONIAL</span>'; badgeCount++; }
+                        if (data.aus === "FALSE") { badgesList += '<span class="badge nonaus">NON-AUSTRALIAN</span>'; badgeCount++; }
+                        
+                        // 3. Construct the final HTML block
+                        let badgesHtml = '';
+                        if (badgeCount > 0) {
+                            badgesHtml = `
+                                <div style="margin-top: 12px; margin-bottom: 12px;">
+                                    <div style="font-size: 0.75em; color: #888; margin-bottom: 6px; letter-spacing: 0.3px; font-weight: bold;">DIVISION NAME CLASSIFICATION</div>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+                                        ${badgesList}
+                                    </div>
+                                </div>
+                            `;
+                        }
 
                         layer.bindTooltip(`<strong>${data.division}</strong> (${data.state})`, {
                             sticky: true,
