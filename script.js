@@ -36,7 +36,7 @@ Papa.parse('/data/electoral_division_data.csv', {
             };
         });
 
-        Papa.parse('/data/2025_results.csv', {
+        Papa.parse('/data/2025.csv', {
             download: true,
             header: true,
             skipEmptyLines: true,
@@ -59,7 +59,7 @@ Papa.parse('/data/electoral_division_data.csv', {
 });
 
 function loadMapLayer() {
-    fetch('/data/2025_electoral_divisions.geojson')
+    fetch('/data/2025.geojson')
         .then(res => res.json())
         .then(geoData => {
             const geoJsonLayer = L.geoJSON(geoData, {
@@ -98,29 +98,36 @@ function loadMapLayer() {
                             direction: 'top'
                         });
 
-                  const popupContent = `
-    <div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 160px;">
-        <h3 style="margin: 0 0 2px 0;">${data.division}</h3>
-        <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px;">${data.state}</p>
-        
-        <div style="margin-bottom: 10px; font-size: 0.85em; line-height: 1.4;">
-            <strong>Created:</strong> ${data.created}<br>
-            <strong>Named for:</strong> ${data.namesake}
-        </div>
-
-        <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid #eee;">
-            <div style="font-size: 0.8em; color: #666; margin-bottom: 4px;">CURRENT MEMBER</div>
-            <span style="font-weight: bold; font-size: 1em; margin-bottom: 4px;">${data.winner_name} ${data.winner_surname}</span>
-            <span style="background: white; color: ${data.colour || '#333'}; padding: 2px 8px; border: 1px solid ${data.colour || '#333'}; border-radius: 12px; font-size: 10px; font-weight: bold; display: inline-block;">
-                ${data.party.toUpperCase()}
-            </span>
-        </div>
-
-        ${badgesHtml}
-        
-        ${data.note ? `<div style="font-size: 0.8em; font-style: italic; border-top: 1px solid #eee; padding-top: 5px; margin-top: 8px; color: #444;">${data.note}</div>` : ''}
-    </div>
-`;
+                        const popupContent = `
+                            <div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 250px;">
+                                <h3 style="margin: 0 0 2px 0;">${data.division}</h3>
+                                <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px;">${data.state}</p>
+                                
+                                <div style="font-size: 0.85em; line-height: 1.4; margin-bottom: 4px;">
+                                    <strong>Created:</strong> ${data.created}<br>
+                                    <strong>Named for:</strong> ${data.namesake}
+                                </div>
+                        
+                                <div style="margin-bottom: 12px;">
+                                    ${badgesHtml}
+                                </div>
+                        
+                                <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid #eee;">
+                                    <div style="font-size: 0.75em; color: #888; margin-bottom: 4px; letter-spacing: 0.3px;">ELECTED MEMBER</div>
+                                    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                        <span style="font-weight: bold; font-size: 0.95em;">${data.winner_name} ${data.winner_surname}</span>
+                                        <span style="background: white; color: ${data.colour || '#333'}; padding: 1px 8px; border: 1px solid ${data.colour || '#333'}; border-radius: 12px; font-size: 10px; font-weight: bold; white-space: nowrap;">
+                                            ${data.party.toUpperCase()}
+                                        </span>
+                                    </div>
+                                    
+                                    ${data.note ? `
+                                        <div style="font-size: 0.8em; margin-top: 8px; padding: 6px; background: #fff0f0; border-left: 3px solid #ccc; color: #444; line-height: 1.3;">
+                                            ${data.note}
+                                        </div>` : ''}
+                                </div>
+                            </div>
+                        `;
 
                         layer.bindPopup(popupContent);
 
