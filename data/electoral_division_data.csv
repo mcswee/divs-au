@@ -1,5 +1,5 @@
 ﻿index,division,state,namesake,created,abolished,isfed,ispm,iscol,isfem,isind,isgeo,isaus
-ADEL,Adelaide,South Australia,"City of Adelaide, est. 1836",02/10/2003,,TRUE,,,,,TRUE,FALSE
+ADEL,Adelaide,South Australia,"City of Adelaide, est. 1836",02/10/2003,,TRUE,,,,,TRUE,
 ASTN,Aston,Victoria,"Matilda 'Tilly' Ann Aston, 1873–1947",14/09/1984,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE
 BASS,Bass,Tasmania,"George Bass, 1771–1803",02/10/2003,,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE
 BDGO,Bendigo,Victoria,"City of Bendigo, est. 1851",26/09/2000,,TRUE,,,,,TRUE,TRUE
@@ -151,3 +151,4 @@ WRWA,Werriwa,New South Wales,"Lake George/Weereewa or Ngungar, Ngunnawal Country
 WTSN,Watson,New South Wales,"Hon. John Christian Watson, 1867–1941",31/01/1992,,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE
 WWTH,Wentworth,New South Wales,"William Charles Wentworth, 1790 –1872",11/12/2000,,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE
 BLWK,Bullwinkel,Western Australia,"Lt. Col. Vivian Statham (née Bullwinkel) AO MBE ARRC ED FNM FRCNA, 1915–2000",27/11/2024,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE
+
