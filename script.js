@@ -110,8 +110,8 @@ function loadMapLayer() {
 
         <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid #eee;">
             <div style="font-size: 0.8em; color: #666; margin-bottom: 4px;">CURRENT MEMBER</div>
-            <div style="font-weight: bold; font-size: 1em; margin-bottom: 4px;">${data.winner_name} ${data.winner_surname}</div>
-            <span style="background: ${data.colour || '#333'}; color: white; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: bold; display: inline-block;">
+            <span style="font-weight: bold; font-size: 1em; margin-bottom: 4px;">${data.winner_name} ${data.winner_surname}</span>
+            <span style="background: white; color: ${data.colour || '#333'}; padding: 2px 8px; border-color: ${data.colour || '#333'}; border-radius: 12px; font-size: 10px; font-weight: bold; display: inline-block;">
                 ${data.party.toUpperCase()}
             </span>
         </div>
