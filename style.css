@@ -94,7 +94,31 @@
             background: #f0f0f0;
             overflow: hidden;
         }
-        
+
+        .info.legend {
+            padding: 10px;
+            font: 12px/14px sans-serif;
+            background: white;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            line-height: 1.5;
+            color: #333;
+            max-width: 150px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            margin-right: 8px;
+            border-radius: 2px;
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+                
         #state-report-map {
             height: 600px; 
             width: 95%;
