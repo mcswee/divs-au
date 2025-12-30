@@ -64,7 +64,6 @@ function loadMapLayer() {
         .then(geoData => {
             const geoJsonLayer = L.geoJSON(geoData, {
                 style: (feature) => {
-                    // Check for 'index' - adjust to 'Index' if the GeoJSON uses a capital I
                     const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
                     const data = masterStats[seatIndex];
                     return {
@@ -77,23 +76,41 @@ function loadMapLayer() {
                 onEachFeature: (feature, layer) => {
                     const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
                     const data = masterStats[seatIndex];
+                    
                     if (data) {
+                        // Build the badges
+                        let badgesHtml = '<div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px;">';
+                        
+                        if (data.fed === "TRUE") badgesHtml += '<span style="background: #004b23; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">FEDERATION</span>';
+                        if (data.pm === "TRUE") badgesHtml += '<span style="background: #003566; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">PRIME MINISTER</span>';
+                        if (data.fem === "TRUE") badgesHtml += '<span style="background: #7209b7; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">WOMAN</span>';
+                        if (data.ind === "TRUE") badgesHtml += '<span style="background: #e85d04; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">INDIGENOUS PERSON</span>';
+                        if (data.geo === "TRUE") badgesHtml += '<span style="background: #4a4e69; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">GEOGRAPHIC</span>';
+                        if (data.old === "TRUE") badgesHtml += '<span style="background: #6c757d; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">COLONIAL</span>';
+                        
+                        // "AUS" logic: Badge shows if they are NOT Australian (False)
+                        if (data.aus === "FALSE") badgesHtml += '<span style="background: #d00000; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">NON-AUSTRALIAN</span>';
+                        
+                        badgesHtml += '</div>';
+
                         layer.bindTooltip(`<strong>${data.division}</strong> (${data.state})`, {
                             sticky: true,
                             direction: 'top'
                         });
 
                         const popupContent = `
-                            <div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 130px;">
+                            <div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 160px;">
                                 <h3 style="margin: 0 0 5px 0;">${data.division}</h3>
-                                <p style="margin: 0 0 8px 0; color: #666;">${data.state}</p>
-                                <p style="margin: 0 0 5px 0;"><strong>Created:</strong> ${data.created}</p>
-                                <p style="margin: 0 0 5px 0;"><strong>Named for:</strong> ${data.namesake}</p>
-                                <div style="margin-bottom: 8px">
-                                    <strong>Won by: </strong>${data.winner_name} ${data.winner_surname}<br>
+                                <p style="margin: 0 0 8px 0; color: #666; font-size: 0.9em;">${data.state}</p>
+                                <p style="margin: 0 0 5px 0; font-size: 0.85em;"><strong>Created:</strong> ${data.created}</p>
+                                <p style="margin: 0 0 5px 0; font-size: 0.85em;"><strong>Named for:</strong> ${data.namesake}</p>
+                                <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid #eee;">
+                                    <strong style="font-size: 0.85em;">Current MP:</strong><br>
+                                    ${data.winner_name} ${data.winner_surname}<br>
                                     <span style="color: ${data.colour || '#333'}; font-weight: bold;">${data.party}</span>
                                 </div>
-                                ${data.note ? `<div style="font-size: 0.85em; font-style: italic; border-top: 1px solid #eee; padding-top: 5px;">${data.note}</div>` : ''}
+                                ${badgesHtml}
+                                ${data.note ? `<div style="font-size: 0.8em; font-style: italic; border-top: 1px solid #eee; padding-top: 5px; margin-top: 8px;">${data.note}</div>` : ''}
                             </div>
                         `;
                         layer.bindPopup(popupContent);
@@ -119,6 +136,7 @@ function loadMapLayer() {
             }
         });
 }
+
 
 function setupSearch(geoJsonLayer) {
     const searchInput = document.getElementById('division-search');
