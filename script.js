@@ -64,47 +64,44 @@ function loadMapLayer() {
     fetch('/data/2025_electoral_divisions.geojson')
         .then(res => res.json())
         .then(geoData => {
+            // Assigning the layer to a variable so the search function can use it
             const geoJsonLayer = L.geoJSON(geoData, {
                 style: (feature) => {
-                    const data = masterStats[String(feature.properties.Index).trim()];
+                    const data = masterStats[String(feature.properties.index).trim()];
                     return {
                         fillColor: data ? data.colour : '#888',
                         weight: 1,
                         color: 'white',
-                        fillOpacity: 0.6 
+                        fillOpacity: 0.6
                     };
                 },
                 onEachFeature: (feature, layer) => {
-                    const data = masterStats[String(feature.properties.Index).trim()];
+                    const data = masterStats[String(feature.properties.index).trim()];
                     if (data) {
-                        // 1. tooltip
-                        layer.bindTooltip(`<strong>${data.division}</strong> (${data.state})`, { 
+                        layer.bindTooltip(`<strong>${data.division}</strong> (${data.state})`, {
                             sticky: true,
                             direction: 'top'
                         });
-                        // 2. popup
+
                         const popupContent = `
-                            <div style="border-top: 5px solid ${data.colour ||'#ccc'}; padding: 5px; min-width: 130px;">
+                            <div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 130px;">
                                 <h3 style="margin: 0 0 5px 0;">${data.division}</h3>
                                 <p style="margin: 0 0 8px 0; color: #666;">${data.state}</p>
-                                <p style="margin: 0 0 5px 0;"><strong>Created:</strong>${data.created}</p>
-                                <p style="margin: 0 0 5px 0;"><strong>Named for:</strong>${data.namesake}</p>
-                                <div style="margin-bottom: 8px"><strong>Won by: </strong>${data.winner_name} ${data.winner_surname}<br>
+                                <p style="margin: 0 0 5px 0;"><strong>Created:</strong> ${data.created}</p>
+                                <p style="margin: 0 0 5px 0;"><strong>Named for:</strong> ${data.namesake}</p>
+                                <div style="margin-bottom: 8px">
+                                    <strong>Won by: </strong>${data.winner_name} ${data.winner_surname}<br>
                                     <span style="color: ${data.colour || '#333'}; font-weight: bold;">${data.party}</span>
                                 </div>
                                 ${data.note ? `<div style="font-size: 0.85em; font-style: italic; border-top: 1px solid #eee; padding-top: 5px;">${data.note}</div>` : ''}
                             </div>
                         `;
                         layer.bindPopup(popupContent);
-                        // 3. Hover Interaction
+
                         layer.on({
                             mouseover: (e) => {
                                 const l = e.target;
-                                l.setStyle({
-                                    fillOpacity: 0.75,
-                                    weight: 2,
-                                    color: '#fff' // Slightly darker border on hover
-                                });
+                                l.setStyle({ fillOpacity: 0.9, weight: 2, color: 'white' });
                                 l.bringToFront();
                             },
                             mouseout: (e) => {
@@ -115,8 +112,12 @@ function loadMapLayer() {
                 }
             }).addTo(map);
 
-            addLegend(partyColours);
+            // This is the added line to wake up the search box
             setupSearch(geoJsonLayer);
+
+            if (typeof addLegend === "function") {
+                addLegend(partyColours);
+            }
         });
 }
 
@@ -134,4 +135,34 @@ function setupSearch(layerGroup) {
             }
         });
     });
+}
+function setupSearch(geoJsonLayer) {
+    const searchInput = document.getElementById('division-search');
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', (e) => {
+        const value = e.target.value.toLowerCase().trim();
+        
+        geoJsonLayer.eachLayer((layer) => {
+            const seatIndex = String(layer.feature.properties.index).trim();
+            const seatData = masterStats[seatIndex];
+            const divName = seatData ? seatData.division.toLowerCase() : "";
+            
+            if (value === "") {
+                geoJsonLayer.resetStyle(layer);
+            } else if (divName.includes(value)) {
+                layer.setStyle({
+                    fillOpacity: 0.9,
+                    weight: 2,
+                    color: 'white'
+                });
+            } else {
+                layer.setStyle({
+                    fillOpacity: 0.05,
+                    weight: 0
+                });
+            }
+        });
+    });
+
 }
