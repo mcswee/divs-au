@@ -98,21 +98,30 @@ function loadMapLayer() {
                             direction: 'top'
                         });
 
-                        const popupContent = `
-                            <div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 160px;">
-                                <h3 style="margin: 0 0 5px 0;">${data.division}</h3>
-                                <p style="margin: 0 0 8px 0; color: #666; font-size: 0.9em;">${data.state}</p>
-                                <p style="margin: 0 0 5px 0; font-size: 0.85em;"><strong>Created:</strong> ${data.created}</p>
-                                <p style="margin: 0 0 5px 0; font-size: 0.85em;"><strong>Named for:</strong> ${data.namesake}</p>
-                                <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid #eee;">
-                                    <strong style="font-size: 0.85em;">Current MP:</strong><br>
-                                    ${data.winner_name} ${data.winner_surname}<br>
-                                    <span style="color: ${data.colour || '#333'}; font-weight: bold;">${data.party}</span>
-                                </div>
-                                ${badgesHtml}
-                                ${data.note ? `<div style="font-size: 0.8em; font-style: italic; border-top: 1px solid #eee; padding-top: 5px; margin-top: 8px;">${data.note}</div>` : ''}
-                            </div>
-                        `;
+                  const popupContent = `
+    <div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 160px;">
+        <h3 style="margin: 0 0 2px 0;">${data.division}</h3>
+        <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px;">${data.state}</p>
+        
+        <div style="margin-bottom: 10px; font-size: 0.85em; line-height: 1.4;">
+            <strong>Created:</strong> ${data.created}<br>
+            <strong>Named for:</strong> ${data.namesake}
+        </div>
+
+        <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid #eee;">
+            <div style="font-size: 0.8em; color: #666; margin-bottom: 4px;">CURRENT MEMBER</div>
+            <div style="font-weight: bold; font-size: 1em; margin-bottom: 4px;">${data.winner_name} ${data.winner_surname}</div>
+            <span style="background: ${data.colour || '#333'}; color: white; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: bold; display: inline-block;">
+                ${data.party.toUpperCase()}
+            </span>
+        </div>
+
+        ${badgesHtml}
+        
+        ${data.note ? `<div style="font-size: 0.8em; font-style: italic; border-top: 1px solid #eee; padding-top: 5px; margin-top: 8px; color: #444;">${data.note}</div>` : ''}
+    </div>
+`;
+
                         layer.bindPopup(popupContent);
 
                         layer.on({
