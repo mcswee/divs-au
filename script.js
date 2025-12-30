@@ -81,15 +81,15 @@ function loadMapLayer() {
                         // Build the badges
                         let badgesHtml = '<div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px;">';
                         
-                        if (data.fed === "TRUE") badgesHtml += '<span style="background: #004b23; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">FEDERATION</span>';
-                        if (data.pm === "TRUE") badgesHtml += '<span style="background: #003566; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">PRIME MINISTER</span>';
+                        if (data.fed === "TRUE") badgesHtml += '<span style="background: #389b6f; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">FEDERATION</span>';
+                        if (data.pm === "TRUE") badgesHtml += '<span style="background: #ffb703; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">PRIME MINISTER</span>';
                         if (data.fem === "TRUE") badgesHtml += '<span style="background: #7209b7; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">WOMAN</span>';
-                        if (data.ind === "TRUE") badgesHtml += '<span style="background: #e85d04; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">INDIGENOUS PERSON</span>';
-                        if (data.geo === "TRUE") badgesHtml += '<span style="background: #4a4e69; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">GEOGRAPHIC</span>';
+                        if (data.ind === "TRUE") badgesHtml += '<span style="background: #e85d04; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">INDIGENOUS</span>';
+                        if (data.geo === "TRUE") badgesHtml += '<span style="background: #7f5539; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">GEOGRAPHIC</span>';
                         if (data.old === "TRUE") badgesHtml += '<span style="background: #6c757d; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">COLONIAL</span>';
                         
                         // "AUS" logic: Badge shows if they are NOT Australian (False)
-                        if (data.aus === "FALSE") badgesHtml += '<span style="background: #d00000; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">NON-AUSTRALIAN</span>';
+                        if (data.aus === "FALSE") badgesHtml += '<span style="background: #b62631; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">NON-AUSTRALIAN</span>';
                         
                         badgesHtml += '</div>';
 
