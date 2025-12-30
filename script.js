@@ -78,19 +78,14 @@ function loadMapLayer() {
                     const data = masterStats[seatIndex];
                     
                     if (data) {
-                        // Build the badges
                         let badgesHtml = '<div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px;">';
-                        
                         if (data.fed === "TRUE") badgesHtml += '<span style="background: #389b6f; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">FEDERATION</span>';
                         if (data.pm === "TRUE") badgesHtml += '<span style="background: #ffb703; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">PRIME MINISTER</span>';
                         if (data.fem === "TRUE") badgesHtml += '<span style="background: #7209b7; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">WOMAN</span>';
                         if (data.ind === "TRUE") badgesHtml += '<span style="background: #e85d04; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">INDIGENOUS</span>';
                         if (data.geo === "TRUE") badgesHtml += '<span style="background: #7f5539; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">GEOGRAPHIC</span>';
                         if (data.old === "TRUE") badgesHtml += '<span style="background: #6c757d; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">COLONIAL</span>';
-                        
-                        // "AUS" logic: Badge shows if they are NOT Australian (False)
                         if (data.aus === "FALSE") badgesHtml += '<span style="background: #b62631; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">NON-AUSTRALIAN</span>';
-                        
                         badgesHtml += '</div>';
 
                         layer.bindTooltip(`<strong>${data.division}</strong> (${data.state})`, {
@@ -102,16 +97,13 @@ function loadMapLayer() {
                             <div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 250px;">
                                 <h3 style="margin: 0 0 2px 0;">${data.division}</h3>
                                 <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px;">${data.state}</p>
-                                
                                 <div style="font-size: 0.85em; line-height: 1.4; margin-bottom: 4px;">
                                     <strong>Created:</strong> ${data.created}<br>
                                     <strong>Named for:</strong> ${data.namesake}
                                 </div>
-                        
                                 <div style="margin-bottom: 12px;">
                                     ${badgesHtml}
                                 </div>
-                        
                                 <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid #eee;">
                                     <div style="font-size: 0.75em; color: #888; margin-bottom: 4px; letter-spacing: 0.3px;">ELECTED MEMBER</div>
                                     <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
@@ -120,7 +112,6 @@ function loadMapLayer() {
                                             ${data.party.toUpperCase()}
                                         </span>
                                     </div>
-                                    
                                     ${data.note ? `
                                         <div style="font-size: 0.8em; margin-top: 8px; padding: 6px; background: #fff0f0; border-left: 3px solid #ccc; color: #444; line-height: 1.3;">
                                             ${data.note}
@@ -147,19 +138,16 @@ function loadMapLayer() {
 
             setupSearch(geoJsonLayer);
             updateLegend();
-            }
-        });
-}
+        }); // Correctly closing the .then(geoData => { block
+} // Correctly closing the loadMapLayer function
 
 
 function setupSearch(geoJsonLayer) {
     const searchInput = document.getElementById('division-search');
     if (!searchInput) return;
 
-    // This handles the highlighting as you type
     searchInput.addEventListener('input', (e) => {
         const value = e.target.value.toLowerCase().trim();
-        
         geoJsonLayer.eachLayer((layer) => {
             const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
             const seatData = masterStats[seatIndex];
@@ -175,56 +163,44 @@ function setupSearch(geoJsonLayer) {
         });
     });
 
-    // This handles zooming when you hit Enter
     searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             const value = e.target.value.toLowerCase().trim();
             if (value === "") return;
-
             let firstMatch = null;
-
             geoJsonLayer.eachLayer((layer) => {
                 const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
                 const seatData = masterStats[seatIndex];
                 const divName = seatData ? seatData.division.toLowerCase() : "";
-
-                // Find the first division that actually matches the search string
                 if (!firstMatch && divName.includes(value)) {
                     firstMatch = layer;
                 }
             });
-
             if (firstMatch) {
-                // Zoom to the division and pop the bubble open
                 map.fitBounds(firstMatch.getBounds(), { padding: [50, 50], maxZoom: 12 });
                 firstMatch.openPopup();
             }
         }
     });
 }
+
 let legendControl; 
 
 function updateLegend() {
     if (legendControl) {
         map.removeControl(legendControl);
     }
-
     legendControl = L.control({ position: 'bottomright' });
-
     legendControl.onAdd = function () {
         const div = L.DomUtil.create('div', 'info legend');
         const parties = {};
-
-        // Grab unique parties from the current data
         Object.values(masterStats).forEach(data => {
             if (data.party && !parties[data.party]) {
                 parties[data.party] = data.colour;
             }
         });
-
         const sortedParties = Object.keys(parties).sort();
         div.innerHTML = '<strong style="display:block; margin-bottom: 5px; border-bottom: 1px solid #ccc;">RESULTS</strong>';
-
         sortedParties.forEach(party => {
             div.innerHTML += `
                 <div class="legend-item">
@@ -232,9 +208,7 @@ function updateLegend() {
                     <span>${party.toUpperCase()}</span>
                 </div>`;
         });
-
         return div;
     };
-
     legendControl.addTo(map);
 }
