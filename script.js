@@ -146,9 +146,7 @@ function loadMapLayer() {
             }).addTo(map);
 
             setupSearch(geoJsonLayer);
-
-            if (typeof addLegend === "function") {
-                addLegend(partyColours);
+            updateLegend();
             }
         });
 }
@@ -203,4 +201,40 @@ function setupSearch(geoJsonLayer) {
             }
         }
     });
+}
+let legendControl; 
+
+function updateLegend() {
+    if (legendControl) {
+        map.removeControl(legendControl);
+    }
+
+    legendControl = L.control({ position: 'bottomright' });
+
+    legendControl.onAdd = function () {
+        const div = L.DomUtil.create('div', 'info legend');
+        const parties = {};
+
+        // Grab unique parties from the current data
+        Object.values(masterStats).forEach(data => {
+            if (data.party && !parties[data.party]) {
+                parties[data.party] = data.colour;
+            }
+        });
+
+        const sortedParties = Object.keys(parties).sort();
+        div.innerHTML = '<strong style="display:block; margin-bottom: 5px; border-bottom: 1px solid #ccc;">RESULTS</strong>';
+
+        sortedParties.forEach(party => {
+            div.innerHTML += `
+                <div class="legend-item">
+                    <div class="legend-color" style="background: ${parties[party]}"></div>
+                    <span>${party.toUpperCase()}</span>
+                </div>`;
+        });
+
+        return div;
+    };
+
+    legendControl.addTo(map);
 }
