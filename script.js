@@ -124,6 +124,7 @@ function setupSearch(geoJsonLayer) {
     const searchInput = document.getElementById('division-search');
     if (!searchInput) return;
 
+    // This handles the highlighting as you type
     searchInput.addEventListener('input', (e) => {
         const value = e.target.value.toLowerCase().trim();
         
@@ -135,17 +136,37 @@ function setupSearch(geoJsonLayer) {
             if (value === "") {
                 geoJsonLayer.resetStyle(layer);
             } else if (divName.includes(value)) {
-                layer.setStyle({
-                    fillOpacity: 0.9,
-                    weight: 2,
-                    color: 'white'
-                });
+                layer.setStyle({ fillOpacity: 0.9, weight: 2, color: 'white' });
             } else {
-                layer.setStyle({
-                    fillOpacity: 0.05,
-                    weight: 0
-                });
+                layer.setStyle({ fillOpacity: 0.05, weight: 0 });
             }
         });
+    });
+
+    // This handles zooming when you hit Enter
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const value = e.target.value.toLowerCase().trim();
+            if (value === "") return;
+
+            let firstMatch = null;
+
+            geoJsonLayer.eachLayer((layer) => {
+                const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
+                const seatData = masterStats[seatIndex];
+                const divName = seatData ? seatData.division.toLowerCase() : "";
+
+                // Find the first division that actually matches the search string
+                if (!firstMatch && divName.includes(value)) {
+                    firstMatch = layer;
+                }
+            });
+
+            if (firstMatch) {
+                // Zoom to the division and pop the bubble open
+                map.fitBounds(firstMatch.getBounds(), { padding: [50, 50], maxZoom: 12 });
+                firstMatch.openPopup();
+            }
+        }
     });
 }
