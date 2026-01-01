@@ -653,7 +653,67 @@
                 top: 105px !important; /* Pushed down for H1 + Row height */
             }
         }
+.project-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
+.app-breadcrumbs {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.division-name {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.state-label {
+    font-size: 0.85rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+
+.detail-label {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #888;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.hsr-line-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.hsr-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.schematic-stage {
+    background: #1a1a1a; /* Matches the dark SVG vibe */
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.schematic-img {
+    width: 100%;
+    height: auto;
+    display: 
+            block;
+}
 
         /* 4. THE FOOTER */
         #main-footer {
