@@ -143,16 +143,26 @@ function loadMapLayer() {
 
                         layer.bindPopup(popupContent);
 
-                        layer.on({
-                            mouseover: (e) => {
-                                const l = e.target;
-                                l.setStyle({ fillOpacity: 0.9, weight: 2, color: 'white' });
-                                l.bringToFront();
-                            },
-                            mouseout: (e) => {
-                                geoJsonLayer.resetStyle(e.target);
-                            }
-                        });
+           layer.on({
+    mouseover: (e) => {
+        const l = e.target;
+        // If a search is happening and this isn't a match, don't highlight
+        if (geoJsonLayer.searchActive && !l.isSearchMatch) return;
+
+        l.setStyle({ fillOpacity: 0.9, weight: 2, color: 'white' });
+        l.bringToFront();
+    },
+    mouseout: (e) => {
+        const l = e.target;
+        // If it's a non-match during a search, force it to stay faded
+        if (geoJsonLayer.searchActive && !l.isSearchMatch) {
+            l.setStyle({ fillOpacity: 0.05, weight: 0 });
+        } else {
+            geoJsonLayer.resetStyle(l);
+        }
+    }
+});
+
                     }
                 }
             }).addTo(map);
@@ -167,22 +177,29 @@ function setupSearch(geoJsonLayer) {
     const searchInput = document.getElementById('division-search');
     if (!searchInput) return;
 
-    searchInput.addEventListener('input', (e) => {
-        const value = e.target.value.toLowerCase().trim();
-        geoJsonLayer.eachLayer((layer) => {
-            const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
-            const seatData = masterStats[seatIndex];
-            const divName = seatData ? seatData.division.toLowerCase() : "";
-            
-            if (value === "") {
-                geoJsonLayer.resetStyle(layer);
-            } else if (divName.includes(value)) {
-                layer.setStyle({ fillOpacity: 0.9, weight: 2, color: 'white' });
-            } else {
-                layer.setStyle({ fillOpacity: 0.05, weight: 0 });
-            }
-        });
+searchInput.addEventListener('input', (e) => {
+    const value = e.target.value.toLowerCase().trim();
+    
+    // Flag if the search is active globally on the layer group
+    geoJsonLayer.searchActive = (value !== "");
+
+    geoJsonLayer.eachLayer((layer) => {
+        const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
+        const seatData = masterStats[seatIndex];
+        const divName = seatData ? seatData.division.toLowerCase() : "";
+        
+        if (value === "") {
+            layer.isSearchMatch = false;
+            geoJsonLayer.resetStyle(layer);
+        } else if (divName.includes(value)) {
+            layer.isSearchMatch = true; // Flag as a match
+            layer.setStyle({ fillOpacity: 0.9, weight: 2, color: 'white' });
+        } else {
+            layer.isSearchMatch = false; // Flag as a non-match
+            layer.setStyle({ fillOpacity: 0.05, weight: 0 });
+        }
     });
+});
 
     searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
