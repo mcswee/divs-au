@@ -539,7 +539,15 @@
             visibility: visible;
         }
 
+        /* Remove the ugly focus outline on map segments */
+        .leaflet-interactive:focus {
+            outline: none !important;
+        }
 
+        /* Remove focus box on the map container */
+        #map:focus {
+            outline: none !important;
+        }
 
         /* Mobile responsiveness */
         @media (max-width: 600px) {
