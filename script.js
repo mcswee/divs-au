@@ -1,8 +1,13 @@
-// 1. Initialize Map
+// Detect mobile and set initial zoom/view
+const isMobile = window.innerWidth < 768;
+const initialZoom = isMobile ? 4 : 5;
+const minZoom = isMobile ? 3 : 4;
+const initialCenter = [-28.0, 133.0];
+
 var map = L.map('map', {
     zoomControl: true,
-    minZoom: 4
-}).setView([-27.00, 133.00], 5);
+    minZoom: minZoom,
+}).setView(initialCenter, initialZoom);
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OSM contributors &copy; CARTO',
