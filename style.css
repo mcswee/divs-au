@@ -715,6 +715,25 @@
             block;
 }
 
+
+#acknowledgement {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #777;
+}
+
+.ack-flags {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.ack-flags img {
+    height: 40px; /* Significant enough to be respectful but doesn't dominate the H2 */
+    width: auto;
+    border-radius: 2px;
+}
+
         /* 4. THE FOOTER */
         #main-footer {
             height: 35px;
