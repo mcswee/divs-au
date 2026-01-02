@@ -128,7 +128,7 @@ offset: [0,5]
 
 // Construct and attach the full detail popup
 const popupContent = `
-<div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 360px;">
+<div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 240px;">
 <h3 style="margin: 0 0 2px 0;">${data.division}</h3>
 <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85em; letter-spacing: 0.5px;">${data.state}</p>
 <div style="font-size: 0.85em; line-height: 1.4; margin-bottom: 4px;">
