@@ -105,7 +105,7 @@ function loadMapLayer() {
                         if (data.fem === "TRUE") { badgesList += '<span class="badge fem">WOMAN</span>'; badgeCount++; }
                         if (data.ind === "TRUE") { badgesList += '<span class="badge ind">INDIGENOUS</span>'; badgeCount++; }
                         if (data.geo === "TRUE") { badgesList += '<span class="badge geo">GEOGRAPHIC</span>'; badgeCount++; }
-                        if (data.linked === "FALSE") {badgesList += '<span class="badge geo">DRIFTED</span>'; badgeCount++; }
+                        if (data.linked === "FALSE") {badgesList += '<span class="badge linked">DRIFTED</span>'; badgeCount++; }
                         if (data.old === "TRUE") { badgesList += '<span class="badge old">COLONIAL</span>'; badgeCount++; }
                         if (data.aus === "FALSE") { badgesList += '<span class="badge nonaus">NON-AUSTRALIAN</span>'; badgeCount++; }
                         
