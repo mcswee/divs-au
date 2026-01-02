@@ -748,10 +748,6 @@
             color: #eee;
         }
 
-/* Ensure the last text item doesn't have a trailing dot before the flags */
-.footer-list li:nth-last-child(2)::after {
-    display: none;
-}
 
 .footer-flags {
     margin-left: auto; /* Optional: Pushes flags to the far right if you want breathing room */
@@ -762,7 +758,7 @@
 .f-icon {
     height: 14px; /* Scaled for your 0.75rem text */
     width: auto;
-    margin-left: 8px;
+    margin-left: 2px;
         
 }
 
