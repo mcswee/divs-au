@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="historical archive of Australian federal electoral divisions with interactive maps and information about electoral redistributions.">
@@ -38,7 +39,7 @@
 
   <main id="app-viewport">
     <section id="map-controls">
-      <h2>Map of federal electoral divisions</h2>
+      <h1>Map of federal electoral divisions</h1>
       <div class="control-group">
         <label for="year-selector">Election year</label>
         <select id="year-selector">
@@ -58,6 +59,7 @@
     
     <div id="map"></div>
   </main>
+  
   <footer id="main-footer">
     <ul class="footer-list">
       <li class="copyright">&copy; 2025 Darren McSweeney</li>
@@ -73,7 +75,9 @@
       </li>
     </ul>
   </footer>
+  
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="script.js"></script>
+  
 </body>
 </html>
