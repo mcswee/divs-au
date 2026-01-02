@@ -119,10 +119,12 @@ function loadMapLayer() {
                         }
 
                         // Attach simple hover tooltip
-                        //layer.bindTooltip(`<strong>${data.division}</strong> (${data.state})`, {
-                        //    sticky: true,
-                        //    direction: 'top'
-                        //});
+                        layer.bindTooltip(`<strong>${data.division}</strong> (${data.state})`, {
+                            sticky: true,
+                            direction: 'top',
+                            className:'modern-tooltip',
+                            offset: [0,5]
+                        });
 
                         // Construct and attach the full detail popup
                         const popupContent = `
