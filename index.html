@@ -1,78 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>divs.au | Australian historical electoral division data</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>divs.au | Australian historical electoral division data</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 </head>
     
 <body>
-    <header id="main-header">
-        <div class="brand-container">
-            <a href="/" class="brand-link">
-                <img src="/images/star.svg" alt="Logo" class="header-logo">
-                <div class="text-group">
-                    <h1 class="site-title">divs.au</h1>
-                    <span class="site-subtitle">Australian historical electoral division data</span>
-                </div>
-            </a>
+  <header id="main-header">
+    <div class="brand-container">
+      <a href="/" class="brand-link">
+        <img src="/images/star.svg" alt="Logo" class="header-logo">
+        <div class="text-group">
+          <span class="site-title">divs.au</span>
+          <span class="site-subtitle">Australian historical electoral division data</span>
         </div>
+      </a>
+    </div>
 
-        <nav class="nav-container">
-            <a href="/reports" class="nav-link">Reports</a>
-        </nav>
-    </header>
+    <nav class="nav-container">
+      <a href="/reports" class="nav-link">Reports</a>
+    </nav>
+  </header>
 
-<main id="app-viewport">
-<section id="map-controls">
-    <h2>Map of federal electoral divisions</h2>
-    
-    <div class="control-group">
+  <main id="app-viewport">
+    <section id="map-controls">
+      <h2>Map of federal electoral divisions</h2>
+      <div class="control-group">
         <label for="year-selector">Election year</label>
         <select id="year-selector">
-            <option value="2025" selected>2025</option>
-            <option value="2022" disabled>2022</option>
-            <option value="2019" disabled>2019</option>
-            <option value="2016" disabled>2016</option>
-            <option value="2013" disabled>2013</option>
+          <option value="2025" selected>2025</option>
+          <option value="2022" disabled>2022</option>
+          <option value="2019" disabled>2019</option>
+          <option value="2016" disabled>2016</option>
+          <option value="2013" disabled>2013</option>
+          <option value="2010" disabled>2010</option>
         </select>
-    </div>
-
-    <div class="control-group">
+      </div>
+      <div class="control-group">
         <label for="division-search">Find a division</label>
         <input type="text" id="division-search" placeholder="Type a division name&hellip;">
-    </div>
-</section>
-
-
+      </div>
+    </section>
+    
     <div id="map"></div>
-</main>
-
-
-<footer id="main-footer">
+  </main>
+  <footer id="main-footer">
     <ul class="footer-list">
-        <li class="copyright">&copy; 2025 Darren McSweeney</li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/projects">Side Projects</a></li>
-        <li><a href="/disclaimer">Disclaimer & Privacy</a></li>
-        <li class="footer-flags">
-            <a href="/about#acknowledgement" title="Acknowledgement of Country">
-                <img src="/images/flag-aboriginal.svg" alt="Aboriginal Flag" class="f-icon">
-                <img src="/images/flag-torres-strait.svg" alt="Torres Strait Islander Flag" class="f-icon">
-                <img src="/images/flag-lgbtq.svg" alt="Progress Pride Flag" class="f-icon">
-            </a>
-        </li>
+      <li class="copyright">&copy; 2025 Darren McSweeney</li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/projects">Side Projects</a></li>
+      <li><a href="/disclaimer">Disclaimer & Privacy</a></li>
+      <li class="footer-flags">
+        <a href="/about#acknowledgement" title="Acknowledgement of Country">
+          <img src="/images/flag-aboriginal.svg" alt="Aboriginal Flag" class="f-icon">
+          <img src="/images/flag-torres-strait.svg" alt="Torres Strait Islander Flag" class="f-icon">
+          <img src="/images/flag-lgbtq.svg" alt="Progress Pride Flag" class="f-icon">
+        </a>
+      </li>
     </ul>
-</footer>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="script.js"></script>
+  </footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
