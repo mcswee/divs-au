@@ -124,7 +124,7 @@ function loadMapLayer() {
 
                         // Construct and attach the full detail popup
                         const popupContent = `
-                            <div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 250px;">
+                            <div style="border-left: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 250px;">
                                 <h3 style="margin: 0 0 2px 0;">${data.division}</h3>
                                 <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px;">${data.state}</p>
                                 <div style="font-size: 0.85em; line-height: 1.4; margin-bottom: 4px;">
@@ -241,7 +241,7 @@ function updateLegend() {
         }); // end party gather loop
         
         const sortedParties = Object.keys(parties).sort();
-        div.innerHTML = '<strong style="display:block; margin-bottom: 5px; border-bottom: 1px solid #ccc;">RESULTS</strong>';
+        div.innerHTML = '<strong style="display:block; margin-bottom: 5px; border-bottom: 1px solid #ccc;">Parties</strong>';
         
         sortedParties.forEach(party => {
             div.innerHTML += `
