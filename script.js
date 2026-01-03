@@ -1,5 +1,4 @@
 // --- 1. MAP INITIALIZATION ---
-// Setup responsive zoom and center point for Australia
 const isMobile = window.innerWidth < 768;
 const initialZoom = isMobile ? 4 : 5;
 const minZoom = isMobile ? 3 : 4;
@@ -10,19 +9,18 @@ var map = L.map('map', {
     minZoom: minZoom,
 }).setView(initialCenter, initialZoom);
 
-// Add the light-themed base map tiles
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OSM contributors &copy; CARTO',
     subdomains: 'abcd',
     maxZoom: 20
 }).addTo(map);
 
-// Containers for our merged CSV data
+// Persistent data container and layer tracker
 const masterStats = {};
-const partyColours = {}; 
+let geoJsonLayer = null; 
 
-// --- 2. DATA LOADING (The Double-Join) ---
-// First Parse: Get the permanent division info (namesake, history, etc.)
+// --- 2. DATA LOADING ---
+// Load static namesake/history data ONCE
 Papa.parse('/data/electoral_division_data.csv', {
     download: true,
     header: true,
@@ -45,39 +43,53 @@ Papa.parse('/data/electoral_division_data.csv', {
             }; 
         }); 
 
-        // Second Parse: Get the election results (winner, party, colour)
-        Papa.parse('/data/2025.csv', {
-            download: true,
-            header: true,
-            skipEmptyLines: true,
-            complete: function(resultsRes) {
-                resultsRes.data.forEach(row => {
-                    const idx = String(row.index).trim();
-                    if (masterStats[idx]) {
-                        masterStats[idx].winner_name = row.name;
-                        masterStats[idx].winner_surname = row.surname;
-                        masterStats[idx].party = row.party;
-                        masterStats[idx].colour = row.colour;
-                        masterStats[idx].linked = row.linked;
-                        masterStats[idx].note = row.note;
-                        if (row.party && row.colour) partyColours[row.party] = row.colour;
-                    }
-                }); 
+        // Initial load based on the dropdown's default value
+        const yearSelector = document.getElementById('year-select');
+        loadYear(yearSelector.value);
 
-                loadMapLayer();
-            } 
-        }); 
+        // Listen for user changing the year
+        yearSelector.addEventListener('change', (e) => {
+            loadYear(e.target.value);
+        });
     } 
 }); 
 
+// Core function to swap map data
+function loadYear(year) {
+    // Clear existing layer from map
+    if (geoJsonLayer) {
+        map.removeLayer(geoJsonLayer);
+    }
+
+    // Fetch the specific year's election results
+    Papa.parse(`/data/${year}.csv`, {
+        download: true,
+        header: true,
+        skipEmptyLines: true,
+        complete: function(resultsRes) {
+            resultsRes.data.forEach(row => {
+                const idx = String(row.index).trim();
+                if (masterStats[idx]) {
+                    masterStats[idx].winner_name = row.name;
+                    masterStats[idx].winner_surname = row.surname;
+                    masterStats[idx].party = row.party;
+                    masterStats[idx].colour = row.colour;
+                    masterStats[idx].linked = row.linked;
+                    masterStats[idx].note = row.note;
+                }
+            }); 
+
+            renderGeoJson(year);
+        } 
+    }); 
+}
 
 // --- 3. GEOJSON & INTERACTIVITY ---
-function loadMapLayer() {
-    fetch('/data/2025.geojson')
+function renderGeoJson(year) {
+    fetch(`/data/${year}.geojson`)
         .then(res => res.json())
         .then(geoData => {
-            const geoJsonLayer = L.geoJSON(geoData, {
-                // Set initial appearance based on CSV data
+            geoJsonLayer = L.geoJSON(geoData, {
                 style: (feature) => {
                     const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
                     const data = masterStats[seatIndex];
@@ -89,13 +101,11 @@ function loadMapLayer() {
                     };
                 }, 
 
-                // Build Tooltips, Popups, and Hover effects for every seat
                 onEachFeature: (feature, layer) => {
                     const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
                     const data = masterStats[seatIndex];
 
                     if (data) {
-                        // Build classification badges
                         let badgeCount = 0;
                         let badgesList = '';
 
@@ -117,7 +127,6 @@ function loadMapLayer() {
                                 </div>`;
                         }
 
-                        // Attach simple hover tooltip
                         layer.bindTooltip(`<strong>${data.division}</strong> (${data.state})`, {
                             sticky: true,
                             direction: 'top',
@@ -125,7 +134,6 @@ function loadMapLayer() {
                             offset: [0, 5]
                         });
 
-                        // Construct and attach the full detail popup
                         const popupContent = `
                             <div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 240px;">
                                 <h3 style="margin: 0 0 2px 0;">${data.division}</h3>
@@ -149,7 +157,6 @@ function loadMapLayer() {
 
                         layer.bindPopup(popupContent);
 
-                        // Hover events with search-state awareness
                         layer.on({
                             mouseover: (e) => {
                                 const l = e.target;
@@ -175,25 +182,23 @@ function loadMapLayer() {
         }); 
 } 
 
-
 // --- 4. SEARCH FUNCTIONALITY ---
-function setupSearch(geoJsonLayer) {
+function setupSearch(layerGroup) {
     const searchInput = document.getElementById('division-search');
     if (!searchInput) return;
 
-    // Handles live filtering as you type
     searchInput.addEventListener('input', (e) => {
         const value = e.target.value.toLowerCase().trim();
-        geoJsonLayer.searchActive = (value !== "");
+        layerGroup.searchActive = (value !== "");
 
-        geoJsonLayer.eachLayer((layer) => {
+        layerGroup.eachLayer((layer) => {
             const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
             const seatData = masterStats[seatIndex];
             const divName = seatData ? seatData.division.toLowerCase() : "";
 
             if (value === "") {
                 layer.isSearchMatch = false;
-                geoJsonLayer.resetStyle(layer);
+                layerGroup.resetStyle(layer);
             } else if (divName.includes(value)) {
                 layer.isSearchMatch = true; 
                 layer.setStyle({ fillOpacity: 0.9, weight: 2, color: 'white' });
@@ -204,14 +209,13 @@ function setupSearch(geoJsonLayer) {
         }); 
     }); 
 
-    // Handles jumping to and opening the result on Enter
     searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             const value = e.target.value.toLowerCase().trim();
             if (value === "") return;
             let firstMatch = null;
 
-            geoJsonLayer.eachLayer((layer) => {
+            layerGroup.eachLayer((layer) => {
                 const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
                 const seatData = masterStats[seatIndex];
                 const divName = seatData ? seatData.division.toLowerCase() : "";
@@ -226,7 +230,6 @@ function setupSearch(geoJsonLayer) {
     }); 
 } 
 
-
 // --- 5. LEGEND GENERATION ---
 let legendControl; 
 
@@ -239,7 +242,7 @@ function updateLegend() {
         const parties = {};
 
         Object.values(masterStats).forEach(data => {
-            if (data.party && !parties[data.party]) parties[data.party] = data.colour;
+            if (data.party && data.colour) parties[data.party] = data.colour;
         }); 
 
         const sortedParties = Object.keys(parties).sort();
