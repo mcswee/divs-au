@@ -617,7 +617,7 @@
             font-weight: 500;
         }
 
-        #year-selector, #division-search {
+        #year-select, #division-search {
             width: 100%;
             padding: 8px;
             font-family: 'Inter', sans-serif;
