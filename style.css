@@ -294,8 +294,8 @@ body, html {
 .report-grid h2 {
     font-size: 1.2rem;
     margin: 40px 0 15px 0;
-    color: #f00;
-    border-bottom: 2px solid #eee;
+    color: #336;
+    border-bottom: 2px solid #aaa;
     padding-bottom: 8px;
 }
 
