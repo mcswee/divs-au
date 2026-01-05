@@ -123,17 +123,21 @@ body, html {
 /* 4. LAYOUT MODES */
 
 /* MODE: APP (The Map) */
+/* Ensure the parent is the anchor for the absolute map */
 .mode-app #app-viewport {
+    position: relative; 
     overflow: hidden;
+    height: calc(100vh - 105px);
 }
 
+/* Force the map to fill the entire viewport background */
 .mode-app #map {
-    height: 100%;
-    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Sits behind the controls */
 }
 
 #map-controls {
