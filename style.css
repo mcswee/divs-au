@@ -8,7 +8,7 @@
 body, html {
     height: 100vh;
     width: 100vw;
-    font-family: 'Finlandica', 'Inter', sans-serif; 
+    font-family: 'Inter', sans-serif; 
     color: #333;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -182,7 +182,7 @@ body.mode-app #map-controls {
 #year-select, #division-search {
     width: 100%;
     padding: 8px;
-    font-family: 'Finlandica', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.85rem;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -193,7 +193,7 @@ body.mode-app #map-controls {
 
 .info.legend {
     padding: 10px;
-    font: 12px/14px 'Finlandica', sans-serif;
+    font: 12px/14px 'Inter', sans-serif;
     background: white;
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -515,7 +515,7 @@ body.mode-app #map-controls {
 
 /* 7. MOBILE RESPONSIVENESS */
 @media (max-width: 600px) {
-    #map-controls {
+    body.mode-app #map-controls {
         top: 0; left: 0; width: 100%;
         border-radius: 0; 
         border: none;
@@ -525,7 +525,7 @@ body.mode-app #map-controls {
         align-items: flex-end;
     }
     
-    #map-controls h1 {
+    body.mode-app #map-controls h1 {
         font-size: 0.85rem;
         width: 100%; /* Keeps it on top of the row on mobile */
     }
