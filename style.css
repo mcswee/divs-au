@@ -139,7 +139,7 @@ body, html {
 #map-controls {
     position: absolute;
     top: 20px;
-    left: 40px;
+    left: 60px;
     z-index: 1000;
     background: white;
     padding: 15px;
@@ -265,9 +265,40 @@ body, html {
     padding-top: 40px;
 }
 
+.mode-doc #app-viewport > h1 {
+    font-size: 2.2rem;
+    color: #336;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+}
+
+.mode-doc #app-viewport > h1 {
+    font-size: 1.4rem;
+    color: #336;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+}
+
+.mode-doc #app-viewport > p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+
+
 /* 5. CONTENT COMPONENTS */
 
 /* State/Report Cards */
+.report-grid h2 {
+    font-size: 1.2rem;
+    margin: 40px 0 15px 0;
+    color: #336;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 8px;
+}
+
 .card-wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -327,7 +358,7 @@ body, html {
 }
 
 .state-table th {
-    background-color: #f8f9fa;
+    background-color: var(--state-bg, #f8f9fa);
     color: #336;
     font-weight: 700;
     text-align: left;
@@ -340,7 +371,22 @@ body, html {
     border-bottom: 1px solid #eee;
 }
 
+/* Zebra striping for readability */
+.state-table tbody tr:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
 .state-table tbody tr:hover { background-color: #f1f4f8; }
+
+/* Align numbers to the right for easier comparison */
+.state-table td:nth-child(2),
+.state-table td:nth-child(3),
+.state-table th:nth-child(2),
+.state-table th:nth-child(3) {
+    text-align: right;
+    font-variant-numeric: tabular-nums; /* Keeps numbers aligned */
+}
+
 
 /* Buttons & Links */
 .report-button {
@@ -367,6 +413,55 @@ body, html {
     border: 1px solid #ddd;
     border-radius: 8px;
     z-index: 1;
+}
+
+/* More information links */
+.external-links h2 {
+    font-size: 1.1rem;
+    color: #336;
+    margin-bottom: 15px;
+    letter-spacing: 0.03em;
+}
+
+.link-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.link-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+/* Adding a little "external link" icon via CSS */
+.link-item::after {
+    content: '↗';
+    margin-left: auto;
+    font-size: 1.1rem;
+    color: #ccc;
+    transition: color 0.2s;
+}
+
+.link-item:hover {
+    background: #fcfcfc;
+    border-color: #336;
+    color: #336;
+    transform: translateX(4px); /* Subtle nudge to show it's interactive */
+}
+
+.link-item:hover::after {
+    color: #336;
 }
 
 /* 6. 404 ERROR PAGE */
@@ -446,10 +541,20 @@ body, html {
         top: 105px !important; /* Pushed down for H1 + Row height */
     }
 
+    .leaflet-interactive:focus {
+        outline: none !important;
+    }
+
     #map:focus {
         outline: none !important;
     }
     
     .card-wrapper { grid-template-columns: 1fr; }
+    
     .mode-doc #app-viewport > section { padding: 15px; }
+
+    .table-wrapper {
+        overflow-x: auto; /* Adds horizontal scroll on tiny screens */
+        -webkit-overflow-scrolling: touch;
+    }
 }
