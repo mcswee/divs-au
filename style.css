@@ -92,7 +92,21 @@
             width: 100%;
             position: relative;
             background: #f0f0f0;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #map {
+            height:100%
+            width:100%
             overflow: hidden;
+            z-index:1;
+        }
+
+        #app-viewport > section {
+           max-width: 1200px;
+           margin: 0 auto;
+           padding: 20px; /* Adjust padding as needed */
         }
 
         .info.legend {
@@ -758,6 +772,7 @@
             display: flex;
             align-items: center;
             padding: 0 20px;
+            z-index: 1001;
         }
         
         .footer-list {
