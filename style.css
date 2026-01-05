@@ -275,7 +275,7 @@ body, html {
     letter-spacing: -0.02em;
 }
 
-.mode-doc #app-viewport > h1 {
+.mode-doc #app-viewport > h2 {
     font-size: 1.4rem;
     color: #336;
     margin-bottom: 12px;
