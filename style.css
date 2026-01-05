@@ -152,9 +152,43 @@ body, html {
     gap: 12px;
 }
 
+#map-controls h1 {
+    width: 100%; 
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #336;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.control-group {
+    flex: 1 1 100%; 
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.control-group label {
+    font-size: 0.7rem;
+    color: #777;
+    font-weight: 500;
+}
+
+#year-select, #division-search {
+    width: 100%;
+    padding: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #f9f9f9;
+    color: #333;
+    box-sizing: border-box;
+}
+
 .info.legend {
     padding: 10px;
-    font: 12px/14px sans-serif;
+    font: 12px/14px 'Inter', sans-serif;
     background: white;
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -335,8 +369,7 @@ body, html {
     z-index: 1;
 }
 
-/* 6. MISC UTILITIES */
-
+/* 6. 404 ERROR PAGE */
 
 .error-container {
     display: flex;
@@ -344,7 +377,7 @@ body, html {
     align-items: center; /* Centers horizontally */
     justify-content: center; /* Centers vertically */
     height: 100%;
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 40px 20px;
     text-align: center;
@@ -384,9 +417,36 @@ body, html {
 @media (max-width: 600px) {
     #map-controls {
         top: 0; left: 0; width: 100%;
-        border-radius: 0; border: none;
+        border-radius: 0; 
+        border: none;
+        border-bottom: 1px solid #ddd;
         padding: 10px;
+        flex-direction: row;
+        align-items: flex-end;
     }
+    
+    #map-controls h1 {
+        font-size: 0.85rem;
+        width: 100%; /* Keeps it on top of the row on mobile */
+    }
+
+    .control-group {
+        flex: 1;
+    }
+
+    .control-group:first-of-type {
+        flex: 0 0 85px; 
+    }
+
+    .control-group label {
+        display: none;
+    }
+
+    .leaflet-top.leaflet-left {
+        top: 105px !important; /* Pushed down for H1 + Row height */
+    }
+
+    
     .card-wrapper { grid-template-columns: 1fr; }
     .mode-doc #app-viewport > section { padding: 15px; }
 }
