@@ -152,6 +152,65 @@ body, html {
     gap: 12px;
 }
 
+.info.legend {
+    padding: 10px;
+    font: 12px/14px sans-serif;
+    background: white;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    line-height: 1.5;
+    color: #333;
+    max-width: 150px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.legend-color {
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
+.modern-tooltip {
+    background-color: rgba(255,255,255,0.7);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 2px;
+    padding: 4px 8px;
+    color: #333;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.modern-tooltip:before {
+    display:none;
+}
+
+.badge {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+.badge.fed { background: #389b6f; }
+.badge.pm { background: #d48806; }
+.badge.fem { background: #7209b7; }
+.badge.ind { background: #e85d04; }
+.badge.geo { background: #7f5539; }
+.badge.old { background: #6c757d; }
+.badge.nonaus { background: #b62631; }
+.badge.linked { background: #2ca8b7; }
+
 /* MODE: DOC (Reports, States, 404, Projects) */
 .mode-doc #app-viewport {
     overflow-y: auto;
@@ -277,30 +336,48 @@ body, html {
 }
 
 /* 6. MISC UTILITIES */
-.modern-tooltip {
-    background-color: rgba(255,255,255,0.7);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(0,0,0,0.25);
-    border-radius: 2px;
-    padding: 4px 8px;
-    color: #333;
-    font-size: 0.8rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+
 
 .error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers horizontally */
+    justify-content: center; /* Centers vertically */
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
     text-align: center;
-    padding: 100px 20px;
+}
+
+.error-container h1 {
+    font-size: 2rem;
+    color: #336;
+    margin-bottom: 15px;
+}
+
+.error-container p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
 }
 
 .error-link {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: 1px solid #336;
     text-decoration: none;
     color: #336;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 10px 16px;
     border-radius: 6px;
+    transition: background 0.2s;
+    border: 1px solid #ddd;
+}
+
+.error-link:hover {
+    background: #336;
+    color: #f5f5f5;
+    border-color: #ddd;
 }
 
 /* 7. MOBILE RESPONSIVENESS */
