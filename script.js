@@ -261,11 +261,3 @@ function updateLegend() {
     }; 
     legendControl.addTo(map);
 }
-
-// Give the browser 200ms to finish rendering the Finlandica font and CSS calc 
-// before forcing Leaflet to recalibrate its tile grid.
-setTimeout(() => {
-    if (typeof map !== 'undefined') {
-        map.invalidateSize();
-    }
-}, 200);
