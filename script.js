@@ -123,7 +123,7 @@ function renderGeoJson(year) {
                         if (badgeCount > 0) {
                             badgesHtml = `
                                 <div style="margin-top: 12px; margin-bottom: 12px;">
-                                    <div style="font-size: 0.75em; color: #888; margin-bottom: 6px; letter-spacing: 0.3px; font-weight: bold;">DIVISION NAME CLASSIFICATION</div>
+                                    <div style="font-size: 0.85em; color: #888; margin-bottom: 6px; letter-spacing: 0.3px; font-weight: bold;">Division name classification</div>
                                     <div style="display: flex; flex-wrap: wrap; gap: 4px;">${badgesList}</div>
                                 </div>`;
                         }
@@ -137,22 +137,22 @@ function renderGeoJson(year) {
 
                         const popupContent = `
                             <div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 240px;">
-                                <h3 style="margin: 0 0 2px 0;">${data.division}</h3>
+                                <h2 style="margin: 0 0 2px 0;">${data.division}</h2>
                                 <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85em; letter-spacing: 0.5px;">${data.state}</p>
-                                <div style="font-size: 0.85em; line-height: 1.4; margin-bottom: 4px;">
+                                <div style="font-size: 0.9em; line-height: 1.4; margin-bottom: 4px;">
                                     <strong>Date created:</strong> ${data.created}<br>
                                     <strong>Named for:</strong> ${data.namesake}
                                 </div>
                                 ${badgesHtml}
                                 <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid #eee;">
-                                    <div style="font-size: 0.75em; color: #888; margin-bottom: 4px; letter-spacing: 0.3px;">Elected Member</div>
+                                    <div style="font-size: 0.85em; color: #888; margin-bottom: 4px; letter-spacing: 0.3px;">Elected Member</div>
                                     <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                                        <span style="font-weight: bold; font-size: 0.95em;">${data.winner_name} ${data.winner_surname}</span>
+                                        <span style="font-weight: bold; font-size: 1.05em;">${data.winner_name} ${data.winner_surname}</span>
                                         <span style="background: white; color: ${data.colour || '#333'}; padding: 1px 8px; border: 1px solid ${data.colour || '#333'}; border-radius: 12px; font-size: 10px; font-weight: bold; white-space: nowrap;">
                                             ${data.party.toUpperCase()}
                                         </span>
                                     </div>
-                                    ${data.note ? `<div style="font-size: 0.8em; margin-top: 8px; padding: 6px; background: #f0f0fa; border: 1px solid #ccc; border-radius: 4px; color: #444; line-height: 1.3;">${data.note}</div>` : ''}
+                                    ${data.note ? `<div style="font-size: 0.85em; margin-top: 8px; padding: 6px; background: #f5f5fa; border-left: 1px solid #ccc; border-radius: 4px; color: #444; line-height: 1.3;">${data.note}</div>` : ''}
                                 </div>
                             </div>`;
 
@@ -247,7 +247,7 @@ function updateLegend() {
         }); 
 
         const sortedParties = Object.keys(parties).sort();
-        div.innerHTML = '<strong style="display:block; margin-bottom: 5px; border-bottom: 1px solid #ccc;">Parties</strong>';
+        div.innerHTML = '<strong style="display:block; margin-bottom: 5px; background-color: #555; border: 1px solid #ccc;">Parties</strong>';
 
         sortedParties.forEach(party => {
             div.innerHTML += `
