@@ -182,7 +182,7 @@ body.mode-app #map-controls {
 #year-select, #division-search {
     width: 100%;
     padding: 8px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Finlandica', sans-serif;
     font-size: 0.85rem;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -193,7 +193,7 @@ body.mode-app #map-controls {
 
 .info.legend {
     padding: 10px;
-    font: 12px/14px 'Inter', sans-serif;
+    font: 12px/14px 'Finlandica', sans-serif;
     background: white;
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
