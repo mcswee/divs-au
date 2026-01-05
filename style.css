@@ -139,7 +139,7 @@ body, html {
 #map-controls {
     position: absolute;
     top: 20px;
-    left: 20px;
+    left: 40px;
     z-index: 1000;
     background: white;
     padding: 15px;
@@ -446,6 +446,9 @@ body, html {
         top: 105px !important; /* Pushed down for H1 + Row height */
     }
 
+    #map:focus {
+        outline: none !important;
+    }
     
     .card-wrapper { grid-template-columns: 1fr; }
     .mode-doc #app-viewport > section { padding: 15px; }
