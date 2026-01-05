@@ -123,27 +123,26 @@ body, html {
 /* 4. LAYOUT MODES */
 
 /* MODE: APP (The Map) */
-/* Ensure the parent is the anchor for the absolute map */
 .mode-app #app-viewport {
     position: relative; 
     overflow: hidden;
     height: calc(100vh - 105px);
 }
 
-/* Force the map to fill the entire viewport background */
 .mode-app #map {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Sits behind the controls */
+    z-index: 1; 
 }
 
-#map-controls {
+/* Fix: Specifically target the controls on the APP mode so they float */
+.mode-app #map-controls {
     position: absolute;
     top: 20px;
-    left: 60px;
+    left: 60px; /* Adjusted to clear Leaflet zoom buttons */
     z-index: 1000;
     background: white;
     padding: 15px;
@@ -156,7 +155,7 @@ body, html {
     gap: 12px;
 }
 
-#map-controls h1 {
+.mode-app #map-controls h1 {
     width: 100%; 
     font-size: 0.95rem;
     font-weight: 600;
