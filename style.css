@@ -180,25 +180,48 @@ p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 15px; }
 
 /* 9. FOOTER LINKS */
 
-/* Add dot between copyright and the nav links */
-.site-footer > span::after {
-    content: "•";
-    margin-left: 20px;
-    color: #ccc;
+/* 2. THE FIXED FRAME */
+.site-header {
+    flex-shrink: 0;
+    height: 70px;
+    background: #336;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 2000;
 }
 
-.site-footer nav {
+.site-footer {
+    flex-shrink: 0;
+    height: 35px;
+    background: #999;
+    color: #fff;
     display: flex;
-    gap: 20px;
     align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+    font-size: 0.75rem;
+    border-top: 1px solid #777;
+    z-index: 2000;
 }
+
+/* 9. FOOTER LINKS */
+.site-footer nav { display: flex; gap: 20px; }
 
 .site-footer a {
     color: #fff;
     text-decoration: none;
+    font-size: inherit;
+    font-weight: normal;
+    padding: 0;
+    background: none !important; /* Forces kill of header styles */
 }
 
-/* Dots between the nav links themselves */
+.site-footer a:hover { text-decoration: underline; }
+
+.site-footer span::after,
 .site-footer nav a:not(:last-child)::after {
     content: "•";
     margin-left: 20px;
