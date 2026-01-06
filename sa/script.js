@@ -1,4 +1,4 @@
-const map = L.map('state-report-map').setView([-28.5, 135], 5); // Centre of Aus
+const map = L.map('state-map').setView([-28.5, 135], 5); // Centre of Aus
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; OpenStreetMap &copy; CartoDB',
