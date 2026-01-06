@@ -305,7 +305,7 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
 .site-footer span::after,
 .site-footer nav a:not(:last-child)::after {
     content: "•";
-    margin: 0;
+    margin: 0 12px;
     color: #eee;
     font-weight: bold;
     display: inline-block; /* Helps with precise spacing */
