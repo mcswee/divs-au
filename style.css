@@ -176,7 +176,7 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: var(--state-card-bg, #f8f9fa);
+    background-color: var(--state-bg, #f8f9fa);
     border-color: var(--state-color, #336);
     border: 1px solid;
     border-radius: 8px;
