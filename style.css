@@ -176,18 +176,20 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: var(--state-bg, #f8f9fa);
-    border-color: var(--state-color, #336);
-    border: 1px solid;
+    background-color: fff;
+    border: 1px solid #ddd;
     border-radius: 8px;
     text-decoration: none;
-    color: var(--state-color, #333);
+    color: #333;
     font-weight: 600;
     transition: all 0.2s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .state-card:hover {
+    border-color: var(--state-color, #336);
+    background-color: var(--state-card-bg, #f8f9fa);
+    color: var(--state-color, #333);
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
