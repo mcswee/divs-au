@@ -487,11 +487,11 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
         height: auto; /* Allow it to grow if text wraps */
         padding: 6px;
         flex-wrap: wrap; /* Prevent horizontal overflow */
+        justify-content: center;
+        width: 100%;
      }
 
      .site-footer span { display: none; }
-
-     .site-footer nav a::after {
-        margin: 0 6px; /* Tighter spacing for small screens */
-     }
+     .site.footer nav { justify-content: center; width: 100%; }
+     .site-footer nav a::after { margin: 0 6px; } /* Tighter spacing for small screens */
 }
