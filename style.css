@@ -11,10 +11,9 @@ body {
     height: 100vh;
     font-family: 'Inter', sans-serif;
     color: #333;
-    overflow: hidden; /* Lock the frame, only <main> scrolls */
+    overflow: hidden; 
     background: #f0f0f0;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 /* 2. THE FIXED FRAME */
@@ -27,7 +26,6 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
     z-index: 2000;
 }
 
@@ -38,13 +36,14 @@ body {
     color: #fff;
     display: flex;
     align-items: center;
+    gap: 20px;
     padding: 0 20px;
     font-size: 0.75rem;
     border-top: 1px solid #777;
     z-index: 2000;
 }
 
-/* 3. SCROLLABLE CONTENT AREA */
+/* 3. SCROLLABLE CONTENT ENGINE */
 main {
     flex-grow: 1;
     overflow-y: auto;
@@ -87,14 +86,12 @@ section:first-of-type {
 .brand strong {
     font-size: 1.4rem;
     font-weight: 700;
-    letter-spacing: -0.02em;
 }
 
 .brand span {
     font-size: 0.85rem;
     font-weight: 300;
     color: #fafafa;
-    margin-top: 2px;
 }
 
 nav a {
@@ -111,14 +108,12 @@ nav a:hover {
     background: rgba(255, 255, 255, 0.15);
 }
 
-/* 5. TYPOGRAPHY (DOC STYLE) */
-h1 { font-size: 2.2rem; color: #336; margin-bottom: 20px; letter-spacing: -0.02em; }
+/* 5. TYPOGRAPHY */
+h1 { font-size: 2.2rem; color: #336; margin-bottom: 20px; }
 h2 { font-size: 1.4rem; color: #336; margin: 40px 0 15px; border-bottom: 2px solid #ccc; padding-bottom: 8px; }
 p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 15px; }
 
-/* 6.CARD COMPONENTS*/
-
-/* The shared container for any card type */
+/* 6. CARD GRID LAYOUT */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -126,7 +121,7 @@ p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 15px; }
     margin-top: 20px;
 }
 
-/* Side Projects Page */
+/* 7. PROJECT CARDS (Side Projects Page) */
 .project-card {
     display: flex;
     flex-direction: column;
@@ -146,26 +141,16 @@ p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 15px; }
     box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
-.project-card h3 { 
-    font-size: 1.1rem; 
-    color: #336; 
-    margin-bottom: 8px; 
-}
+.project-card h3 { font-size: 1.1rem; color: #336; margin-bottom: 8px; }
+.project-card p { font-size: 0.95rem; margin: 0; color: #666; line-height: 1.4; }
 
-.project-card p { 
-    font-size: 0.95rem; 
-    margin: 0; 
-    color: #666; 
-    line-height: 1.4; 
-}
-
-/* States Reports Page */
+/* 8. STATE CARDS (Reports Page) */
 .state-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background: var(--state-card-bg, #fff);
+    background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     text-decoration: none;
@@ -176,13 +161,11 @@ p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 15px; }
 }
 
 .state-card:hover {
-    border-color: var(--state-color, #336);
-    color: var(--state-color, #333);
+    border-color: #336;
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
-/* Status Badges inside State Cards */
 .status {
     font-size: 0.7rem;
     text-transform: uppercase;
@@ -195,7 +178,24 @@ p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 15px; }
 .status.deferred { background: #fffaf0; color: #9c4221; border: 1px solid #feebc8; }
 .status.archive { background: #edf2f7; color: #4a5568; border: 1px solid #e2e8f0; }
 
-/* 7. MAP SPECIFIC UI (BADGES & CONTROLS) */
+/* 9. FOOTER LINKS */
+.site-footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+.site-footer a:not(:last-child)::after {
+    content: "•";
+    margin-left: 20px;
+    color: #ccc;
+    display: inline-block;
+}
+
+/* 10. MAP SPECIFIC UI */
 #map {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -248,14 +248,10 @@ p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 15px; }
     font-size: 0.8rem;
 }
 
-/* 8. MOBILE RESPONSIVENESS */
+/* 11. RESPONSIVENESS */
 @media (max-width: 600px) {
     .brand span { display: none; }
     h1 { font-size: 1.8rem; }
     .card-grid { grid-template-columns: 1fr; }
-    
-    #map-controls {
-        top: 0; left: 0; width: 100%;
-        border-radius: 0;
-    }
+    #map-controls { top: 0; left: 0; width: 100%; border-radius: 0; }
 }
