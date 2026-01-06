@@ -415,21 +415,60 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
     text-align:center;
 }
 
+/* Remove default ring for everyone */
+.leaflet-interactive:focus, 
+#map:focus {
+    outline: none !important;
+}
 
+/* Add a clean navy ring ONLY for keyboard/tab users */
+.leaflet-interactive:focus-visible,
+#map:focus-visible {
+    outline: 2px solid #336;
+    outline-offset: 2px;
+
+}
 /* 11. RESPONSIVENESS */
 @media (max-width: 600px) {
     .brand span { display: none; }
     h1 { font-size: 1.8rem; }
     .card-grid { grid-template-columns: 1fr; }
     .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; } 
-    #map-controls { top: 0; left: 0; width: 100%; border-radius: 0; }
-    #map-controls h1 { font-size: 0.85rem; width: 100%; }
-    .control-group { flex: 1; }
-    .control-group:first-of-type { flex: 0 0 85px; }
-    .control-group label {  display: none; } 
-    .site-footer nav { gap: 4px; }
-    .site-footer span::after,
-    .site-footer nav a::after { display: none; }
-    .leaflet-interactive:focus { outline: none !important; }
-    #map:focus { outline: none !important; }
+    #map-controls {
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+        
+        /* Force them into one line */
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: flex-end;
+        gap: 8px;
+     }
+
+     #map-controls h1 {
+        display: none; /* Nukes the header to save space */
+     }
+
+     .control-group {
+        flex: 1;
+        margin: 0;
+     }
+
+     .control-group:first-of-type {
+        flex: 0 0 85px; /* Keeps the year box small */
+     }
+
+     .control-group label {
+        display: none; /* Hide labels to keep the bar slim */
+     }
+
+     /* Move Leaflet zoom buttons down so they aren't covered by the bar */
+     .leaflet-top.leaflet-left {
+        top: 75px !important; 
+     }
 }
