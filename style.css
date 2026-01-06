@@ -281,24 +281,29 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
 }
 
 /* 9. FOOTER LINKS */
-.site-footer nav { display: flex; }
+.site-footer nav {
+    display: flex;
+    align-items: center;
+}
 
 .site-footer a {
     color: #f8f8f8;
     text-decoration: none;
-    font-size: inherit;
-    font-weight: normal;
-    padding: 0;
-    background: none; 
+    transition: color 0.2s;
 }
 
-.site-footer a:hover { color:#ccc; }
+.site-footer a:hover {
+    color: #336; /* Brand navy on hover looks sharp against the gray */
+}
 
+/* Bullet Separators */
+/* This targets the span AND the nav links to ensure spacing is identical */
 .site-footer span::after,
 .site-footer nav a:not(:last-child)::after {
     content: "•";
-    margin: 6px;
-    color: #ccc;
+    margin: 0 10px;
+    color: #eee;
+    font-weight: bold;
 }
 
 /* 10. MAP SPECIFIC UI */
@@ -470,5 +475,17 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
      /* Move Leaflet zoom buttons down so they aren't covered by the bar */
      .leaflet-top.leaflet-left {
         top: 75px !important; 
+     }
+
+     .site-footer {
+        height: auto; /* Allow it to grow if text wraps */
+        padding: 10px;
+        flex-wrap: wrap; /* Prevent horizontal overflow */
+        justify-content: center;
+     }
+    
+     .site-footer span::after,
+     .site-footer nav a::after {
+        margin: 0 6px; /* Tighter spacing for small screens */
      }
 }
