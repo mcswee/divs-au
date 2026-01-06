@@ -1,4 +1,4 @@
-const map = L.map('state-report-map').setView([-35.3, 149.1], 9);
+const map = L.map('state-map').setView([-35.3, 149.1], 9);
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; OpenStreetMap &copy; CartoDB',
