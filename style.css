@@ -258,7 +258,8 @@ ul { margin-left: 1rem; }
 }
 
 .external-links {
-    margin: 30px 0;
+    max-width: 1100px;
+    margin: 30px auto;
 }
         
 .external-links h2 {
