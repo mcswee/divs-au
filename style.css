@@ -142,8 +142,9 @@ nav a:hover {
 h1 { font-size: 2.2rem; color: #336; margin-bottom: 20px; }
 h2 { font-size: 1.4rem; color: #336; margin: 40px 0 15px; border-bottom: 1px solid #ccc; padding-bottom: 8px; }
 h3 { font-size: 1.1rem; color: #336; margin: 10px; padding-bottom: 8px; }
-p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
-
+p  { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
+ul { margin-left: 1rem; }
+    
 /* 6. TABLE  LAYOUT*/
 
 /* 7. CARD GRID LAYOUTS */
