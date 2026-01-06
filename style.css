@@ -116,7 +116,9 @@ h1 { font-size: 2.2rem; color: #336; margin-bottom: 20px; letter-spacing: -0.02e
 h2 { font-size: 1.4rem; color: #336; margin: 40px 0 15px; border-bottom: 2px solid #ccc; padding-bottom: 8px; }
 p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 15px; }
 
-/* 6. CARD COMPONENT */
+/* 6.CARD COMPONENTS*/
+
+/* The shared container for any card type */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -124,7 +126,10 @@ p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 15px; }
     margin-top: 20px;
 }
 
-.card {
+/* Side Projects Page */
+.project-card {
+    display: flex;
+    flex-direction: column;
     background: #fff;
     padding: 20px;
     border: 1px solid #ddd;
@@ -135,14 +140,60 @@ p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 15px; }
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.card:hover {
+.project-card:hover {
     border-color: #336;
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
-.card h3 { font-size: 1.1rem; color: #336; margin-bottom: 8px; }
-.card p { font-size: 0.95rem; margin: 0; color: #666; line-height: 1.4; }
+.project-card h3 { 
+    font-size: 1.1rem; 
+    color: #336; 
+    margin-bottom: 8px; 
+}
+
+.project-card p { 
+    font-size: 0.95rem; 
+    margin: 0; 
+    color: #666; 
+    line-height: 1.4; 
+}
+
+/* States Reports Page */
+.state-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: var(--state-card-bg, #fff);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.state-card:hover {
+    border-color: var(--state-color, #336);
+    color: var(--state-color, #333);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* Status Badges inside State Cards */
+.status {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.status.current { background: #e6fffa; color: #2c7a7b; border: 1px solid #b2f5ea; }
+.status.deferred { background: #fffaf0; color: #9c4221; border: 1px solid #feebc8; }
+.status.archive { background: #edf2f7; color: #4a5568; border: 1px solid #e2e8f0; }
 
 /* 7. MAP SPECIFIC UI (BADGES & CONTROLS) */
 #map {
