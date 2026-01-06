@@ -59,7 +59,7 @@ section {
 }
 
 section:first-of-type {
-    padding-top: 60px;
+    padding-top: 0px;
 }
 
 /* 4. BRANDING & NAV */
