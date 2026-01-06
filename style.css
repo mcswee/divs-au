@@ -178,53 +178,25 @@ p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 15px; }
 .status.deferred { background: #fffaf0; color: #9c4221; border: 1px solid #feebc8; }
 .status.archive { background: #edf2f7; color: #4a5568; border: 1px solid #e2e8f0; }
 
-/* 9. FOOTER LINKS */
-
-/* 2. THE FIXED FRAME */
-.site-header {
-    flex-shrink: 0;
-    height: 70px;
-    background: #336;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    z-index: 2000;
-}
-
-.site-footer {
-    flex-shrink: 0;
-    height: 35px;
-    background: #999;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 0 20px;
-    font-size: 0.75rem;
-    border-top: 1px solid #777;
-    z-index: 2000;
-}
 
 /* 9. FOOTER LINKS */
-.site-footer nav { display: flex; gap: 20px; }
+.site-footer nav { display: flex; gap: 10px; }
 
 .site-footer a {
-    color: #fff;
+    color: #f8f8f8;
     text-decoration: none;
     font-size: inherit;
     font-weight: normal;
     padding: 0;
-    background: none !important; /* Forces kill of header styles */
+    background: none !important; 
 }
 
-.site-footer a:hover { text-decoration: underline; }
+.site-footer a:hover { color:#ccc; }
 
 .site-footer span::after,
 .site-footer nav a:not(:last-child)::after {
     content: "•";
-    margin-left: 20px;
+    margin-left: 10px;
     color: #ccc;
 }
 
