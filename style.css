@@ -111,9 +111,32 @@ nav a:hover {
 /* 5. TYPOGRAPHY */
 h1 { font-size: 2.2rem; color: #336; margin-bottom: 20px; }
 h2 { font-size: 1.4rem; color: #336; margin: 40px 0 15px; border-bottom: 1px solid #ccc; padding-bottom: 8px; }
+h3 { font-size: 1.1rem; color: #336; margin: 10px; padding-bottom: 8px; }
 p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
 
-/* 6. CARD GRID LAYOUT */
+/* 6. CALL OUT LAYOUT */
+.info-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid #336;
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.info-box h2 {
+    margin-top: 0;
+    color: #336;
+    font-size: 1.2rem;
+}
+
+.info-box p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+
+/* 7. CARD GRID LAYOUTS */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
