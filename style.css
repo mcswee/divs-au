@@ -305,10 +305,11 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
 .site-footer span::after,
 .site-footer nav a:not(:last-child)::after {
     content: "•";
+    margin-left: 10px;
+    margin-right: 10px;
     color: #eee;
     font-weight: bold;
     display: inline-block; /* Helps with precise spacing */
-    width: 30px;
 }
 
 /* 10. MAP SPECIFIC UI */
