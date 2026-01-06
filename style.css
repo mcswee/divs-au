@@ -488,8 +488,9 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
         padding: 6px;
         flex-wrap: wrap; /* Prevent horizontal overflow */
      }
-    
-     .site-footer span::after,
+
+     .site-footer span { display: none; }
+
      .site-footer nav a::after {
         margin: 0 6px; /* Tighter spacing for small screens */
      }
