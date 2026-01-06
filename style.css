@@ -110,8 +110,8 @@ nav a:hover {
 
 /* 5. TYPOGRAPHY */
 h1 { font-size: 2.2rem; color: #336; margin-bottom: 20px; }
-h2 { font-size: 1.4rem; color: #336; margin: 40px 0 15px; border-bottom: 2px solid #ccc; padding-bottom: 8px; }
-p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 15px; }
+h2 { font-size: 1.4rem; color: #336; margin: 40px 0 15px; border-bottom: 1px solid #ccc; padding-bottom: 8px; }
+p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
 
 /* 6. CARD GRID LAYOUT */
 .card-grid {
@@ -259,4 +259,5 @@ p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 15px; }
     h1 { font-size: 1.8rem; }
     .card-grid { grid-template-columns: 1fr; }
     #map-controls { top: 0; left: 0; width: 100%; border-radius: 0; }
+    .site-footer nav { gap: 4px; }    
 }
