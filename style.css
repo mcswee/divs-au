@@ -180,7 +180,7 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
 
 
 /* 9. FOOTER LINKS */
-.site-footer nav { display: flex; gap: 10px; }
+.site-footer nav { display: flex; }
 
 .site-footer a {
     color: #f8f8f8;
