@@ -5,143 +5,155 @@
     box-sizing: border-box;
 }
 
-body, html {
+body {
+    display: flex;
+    flex-direction: column;
     height: 100vh;
-    width: 100vw;
-    font-family: 'Inter', sans-serif; 
+    font-family: 'Inter', sans-serif;
     color: #333;
+    overflow: hidden; /* Lock the frame, only <main> scrolls */
+    background: #f0f0f0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow: hidden; /* Keeps the frame locked so only the content area scrolls */
 }
 
 /* 2. THE FIXED FRAME */
-#main-header {
+.site-header {
+    flex-shrink: 0;
     height: 70px;
     background: #336;
-    border-bottom: 1px solid #e0e0e0;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
-    position: relative;
-    color: #f0f0f0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
     z-index: 2000;
 }
 
-#main-footer {
+.site-footer {
+    flex-shrink: 0;
     height: 35px;
     background: #999;
-    border-top: 1px solid #777;
+    color: #fff;
     display: flex;
     align-items: center;
     padding: 0 20px;
-    position: relative;
+    font-size: 0.75rem;
+    border-top: 1px solid #777;
     z-index: 2000;
 }
 
-#app-viewport {
-    height: calc(100vh - 105px); 
-    width: 100%;
+/* 3. SCROLLABLE CONTENT AREA */
+main {
+    flex-grow: 1;
+    overflow-y: auto;
     position: relative;
-    background: #f0f0f0;
+    -webkit-overflow-scrolling: touch;
 }
 
-/* 3. HEADER & FOOTER COMPONENTS */
-.brand-container, .brand-link {
+section {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+section:first-of-type {
+    padding-top: 60px;
+}
+
+/* 4. BRANDING & NAV */
+.brand {
     display: flex;
     align-items: center;
+    gap: 15px;
     text-decoration: none;
     color: inherit;
 }
 
-.header-logo {
+.brand img {
     height: 45px;
-    width: 45px;
-    margin-right: 15px;
+    width: auto;
     border-radius: 4px;
 }
 
-.text-group {
+.brand-text {
     display: flex;
     flex-direction: column;
+    line-height: 1.1;
 }
 
-.site-title {
+.brand strong {
     font-size: 1.4rem;
     font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.02px;
+    letter-spacing: -0.02em;
 }
 
-.site-subtitle {
+.brand span {
     font-size: 0.85rem;
+    font-weight: 300;
     color: #fafafa;
     margin-top: 2px;
-    font-weight: 300;
-    letter-spacing: 0.01em;
 }
 
-.nav-link {
-    text-decoration: none;
+nav a {
     color: #f8f8f8;
+    text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
     padding: 10px 16px;
     border-radius: 6px;
     transition: background 0.2s;
-    border: 1px solid transparent;
 }
 
-.nav-link:hover {
-    background: #f5f5f5;
-    color: #336;
-    border-color: #ddd;
+nav a:hover {
+    background: rgba(255, 255, 255, 0.15);
 }
 
-.footer-list {
-    list-style: none;
-    display: flex;
-    align-items: center;
+/* 5. TYPOGRAPHY (DOC STYLE) */
+h1 { font-size: 2.2rem; color: #336; margin-bottom: 20px; letter-spacing: -0.02em; }
+h2 { font-size: 1.4rem; color: #336; margin: 40px 0 15px; border-bottom: 2px solid #ccc; padding-bottom: 8px; }
+p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 15px; }
+
+/* 6. CARD COMPONENT */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 15px;
-    font-size: 0.75rem;
-    color: #eee;
+    margin-top: 20px;
 }
 
-.footer-list li:not(:last-child)::after {
-    content: "•";
-    margin-left: 15px;
-    color: #ccc;
-    font-size: 0.6rem;
-}
-
-.footer-list a {
+.card {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     text-decoration: none;
-    color: #eee;
+    color: inherit;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-/* 4. LAYOUT MODES */
-
-/* MODE: APP (The Map) */
-body.mode-app #app-viewport {
-    overflow: hidden ;
-    display: block ;
+.card:hover {
+    border-color: #336;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
-body.mode-app #map {
-    position: absolute ;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.card h3 { font-size: 1.1rem; color: #336; margin-bottom: 8px; }
+.card p { font-size: 0.95rem; margin: 0; color: #666; line-height: 1.4; }
+
+/* 7. MAP SPECIFIC UI (BADGES & CONTROLS) */
+#map {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
     z-index: 1;
 }
 
-/* Fix: Float the controls so they don't shove the map out of frame */
-body.mode-app #map-controls {
-    position: absolute ;
-    top: 20px;
-    left: 60px;
+#map-controls {
+    position: absolute;
+    top: 20px; left: 60px;
     z-index: 1000;
     background: white;
     padding: 15px;
@@ -149,84 +161,6 @@ body.mode-app #map-controls {
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     border: 1px solid #ddd;
     width: 240px;
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 12px;
-}
-
-.mode-app #map-controls h1 {
-    width: 100%; 
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #336;
-    margin: 0;
-    letter-spacing: -0.01em;
-}
-
-.control-group {
-    flex: 1 1 100%; 
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.control-group label {
-    font-size: 0.7rem;
-    color: #777;
-    font-weight: 500;
-}
-
-#year-select, #division-search {
-    width: 100%;
-    padding: 8px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background: #f9f9f9;
-    color: #333;
-    box-sizing: border-box;
-}
-
-.info.legend {
-    padding: 10px;
-    font: 12px/14px 'Inter', sans-serif;
-    background: white;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    line-height: 1.5;
-    color: #333;
-    max-width: 150px;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 4px;
-}
-
-.legend-color {
-    width: 14px;
-    height: 14px;
-    margin-right: 8px;
-    border-radius: 2px;
-    border: 1px solid rgba(0,0,0,0.2);
-}
-
-.modern-tooltip {
-    background-color: rgba(255,255,255,0.7);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(0,0,0,0.25);
-    border-radius: 2px;
-    padding: 4px 8px;
-    color: #333;
-    font-size: 0.8rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.modern-tooltip:before {
-    display:none;
 }
 
 .badge {
@@ -247,327 +181,30 @@ body.mode-app #map-controls {
 .badge.nonaus { background: #b62631; }
 .badge.linked { background: #2ca8b7; }
 
-/* MODE: DOC (Reports, States, 404, Projects) */
-.mode-doc #app-viewport {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.info.legend {
+    padding: 10px;
+    font: 12px/14px 'Inter', sans-serif;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
 }
 
-.mode-doc #app-viewport > section {
-    width: 100%;
-    max-width: 1100px;
-    padding: 20px;
-    margin: 0 auto;
-}
-
-
-.mode-doc #app-viewport > section > h1 {
-    font-size: 2.2rem;
-    color: #336;
-    margin-bottom: 20px;
-    letter-spacing: -0.02em;
-    text-align:left;
-}
-
-.mode-doc #app-viewport > section:first-of-type {
-    padding-top: 40px;
-}
-
-.mode-doc #app-viewport > h1 {
-    font-size: 2.2rem;
-    color: #336;
-    margin-bottom: 20px;
-    letter-spacing: -0.02em;
-    text-align:left;
-}
-
-.mode-doc #app-viewport > h2 {
-    font-size: 1.4rem;
-    color: #336;
-    margin-bottom: 12px;
-    letter-spacing: -0.02em;
-    text-align:left;
-}
-
-.mode-doc #app-viewport > p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #444;
-    margin-bottom: 15px;
-}
-
-
-
-/* 5. CONTENT COMPONENTS */
-
-/* State/Report Cards */
-.report-grid h2 {
-    font-size: 1.2rem;
-    margin: 40px 0 15px 0;
-    color: #336;
-    border-bottom: 2px solid #aaa;
-    padding-bottom: 8px;
-}
-
-.card-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 15px;
-}
-
-.state-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.state-card:hover {
-    border-color: var(--state-color, #036);
-    background-color: var(--state-card-bg, #f8f9fa);
-    color: var(--state-color, #333);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-}
-
-.status {
-    font-size: 0.7rem;
-    text-transform: uppercase;
+.modern-tooltip {
+    background-color: rgba(255,255,255,0.7);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(0,0,0,0.25);
     padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 700;
+    font-size: 0.8rem;
 }
 
-.status.current { background: #e6fffa; color: #2c7a7b; border: 1px solid #b2f5ea; }
-.status.deferred { background: #fffaf0; color: #9c4221; border: 1px solid #feebc8; }
-.status.archive { background: #edf2f7; color: #4a5568; border: 1px solid #e2e8f0; }
-
-/* Tables */
-.table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    margin: 25px 0;
-    border: 1px solid #eee;
-    border-radius: 8px;
-}
-
-.state-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-    background: #fff;
-}
-
-.state-table th {
-    background-color: var(--state-bg, #f8f9fa);
-    color: #336;
-    font-weight: 700;
-    text-align: left;
-    padding: 12px 15px;
-    border-bottom: 2px solid #dee2e6;
-}
-
-.state-table td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #eee;
-}
-
-/* Zebra striping for readability */
-.state-table tbody tr:nth-child(even) {
-    background-color: #fcfcfc;
-}
-
-.state-table tbody tr:hover { background-color: #f1f4f8; }
-
-/* Align numbers to the right for easier comparison */
-.state-table td:nth-child(2),
-.state-table td:nth-child(3),
-.state-table th:nth-child(2),
-.state-table th:nth-child(3) {
-    text-align: right;
-    font-variant-numeric: tabular-nums; /* Keeps numbers aligned */
-}
-
-
-/* Buttons & Links */
-.report-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-    padding: 14px 24px;
-    background: #336;
-    color: #fff !important;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: background 0.2s;
-}
-
-.report-button:hover { background: #448; }
-
-/* State Page Map */
-#state-report-map {
-    height: 600px; 
-    width: 100%;
-    margin: 20px 0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    z-index: 1;
-}
-
-/* More information links */
-.external-links h2 {
-    font-size: 1.1rem;
-    color: #336;
-    margin-bottom: 15px;
-    letter-spacing: 0.03em;
-}
-
-.link-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.link-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 6px;
-    text-decoration: none;
-    color: #444;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-/* Adding a little "external link" icon via CSS */
-.link-item::after {
-    content: '↗';
-    margin-left: auto;
-    font-size: 1.1rem;
-    color: #ccc;
-    transition: color 0.2s;
-}
-
-.link-item:hover {
-    background: #fcfcfc;
-    border-color: #336;
-    color: #336;
-    transform: translateX(4px); /* Subtle nudge to show it's interactive */
-}
-
-.link-item:hover::after {
-    color: #336;
-}
-
-/* 6. 404 ERROR PAGE */
-
-.error-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers horizontally */
-    justify-content: center; /* Centers vertically */
-    height: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    text-align: center;
-}
-
-.error-container h1 {
-    font-size: 2rem;
-    color: #336;
-    margin-bottom: 15px;
-}
-
-.error-container p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-.error-link {
-    text-decoration: none;
-    color: #336;
-    font-weight: 500;
-    font-size: 0.95rem;
-    padding: 10px 16px;
-    border-radius: 6px;
-    transition: background 0.2s;
-    border: 1px solid #ddd;
-}
-
-.error-link:hover {
-    background: #336;
-    color: #f5f5f5;
-    border-color: #ddd;
-}
-
-/* 7. MOBILE RESPONSIVENESS */
+/* 8. MOBILE RESPONSIVENESS */
 @media (max-width: 600px) {
-    body.mode-app #map-controls {
+    .brand span { display: none; }
+    h1 { font-size: 1.8rem; }
+    .card-grid { grid-template-columns: 1fr; }
+    
+    #map-controls {
         top: 0; left: 0; width: 100%;
-        border-radius: 0; 
-        border: none;
-        border-bottom: 1px solid #ddd;
-        padding: 10px;
-        flex-direction: row;
-        align-items: flex-end;
-    }
-    
-    body.mode-app #map-controls h1 {
-        font-size: 0.85rem;
-        width: 100%; /* Keeps it on top of the row on mobile */
-    }
-
-    .control-group {
-        flex: 1;
-    }
-
-    .control-group:first-of-type {
-        flex: 0 0 85px; 
-    }
-
-    .control-group label {
-        display: none;
-    }
-
-    .leaflet-top.leaflet-left {
-        top: 105px !important; /* Pushed down for H1 + Row height */
-    }
-
-    .leaflet-interactive:focus {
-        outline: none !important;
-    }
-
-    #map:focus {
-        outline: none !important;
-    }
-    
-    .card-wrapper { grid-template-columns: 1fr; }
-    
-    .mode-doc #app-viewport > section { padding: 15px; }
-
-    .table-wrapper {
-        overflow-x: auto; /* Adds horizontal scroll on tiny screens */
-        -webkit-overflow-scrolling: touch;
+        border-radius: 0;
     }
 }
