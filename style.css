@@ -121,6 +121,7 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
     padding: 20px;
     margin: 30px 0;
     border-radius: 0 8px 8px 0;
+    width: 85%;
 }
 
 .info-box h2 {
