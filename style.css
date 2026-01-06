@@ -283,6 +283,7 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
 .site-footer nav {
     display: flex;
     align-items: center;
+    padding: 0;
 }
 
 .site-footer a {
