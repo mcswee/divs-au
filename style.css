@@ -124,14 +124,12 @@ body, html {
 
 /* MODE: APP (The Map) */
 body.mode-app #app-viewport {
-    position: relative !important;
-    overflow: hidden !important;
-    display: block !important;
-    height: calc(100vh - 105px) !important;
+    overflow: hidden ;
+    display: block ;
 }
 
 body.mode-app #map {
-    position: absolute !important;
+    position: absolute ;
     top: 0;
     left: 0;
     width: 100%;
@@ -141,11 +139,10 @@ body.mode-app #map {
 
 /* Fix: Float the controls so they don't shove the map out of frame */
 body.mode-app #map-controls {
-    position: absolute !important;
+    position: absolute ;
     top: 20px;
     left: 60px;
     z-index: 1000;
-    /* YOUR STYLING BELOW */
     background: white;
     padding: 15px;
     border-radius: 8px;
@@ -266,6 +263,15 @@ body.mode-app #map-controls {
     margin: 0 auto;
 }
 
+
+.mode-doc #app-viewport > section > h1 {
+    font-size: 2.2rem;
+    color: #336;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+    text-align:left;
+}
+
 .mode-doc #app-viewport > section:first-of-type {
     padding-top: 40px;
 }
@@ -275,6 +281,7 @@ body.mode-app #map-controls {
     color: #336;
     margin-bottom: 20px;
     letter-spacing: -0.02em;
+    text-align:left;
 }
 
 .mode-doc #app-viewport > h2 {
@@ -282,6 +289,7 @@ body.mode-app #map-controls {
     color: #336;
     margin-bottom: 12px;
     letter-spacing: -0.02em;
+    text-align:left;
 }
 
 .mode-doc #app-viewport > p {
