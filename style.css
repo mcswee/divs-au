@@ -485,9 +485,8 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
 
      .site-footer {
         height: auto; /* Allow it to grow if text wraps */
-        padding: 10px;
+        padding: 6px;
         flex-wrap: wrap; /* Prevent horizontal overflow */
-        justify-content: center;
      }
     
      .site-footer span::after,
