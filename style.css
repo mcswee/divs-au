@@ -176,18 +176,18 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background: #fff;
-    border: 1px solid #ddd;
+    background-color: var(--state-card-bg, #f8f9fa);
+    border-color: var(--state-color, #336);
+    border: 1px solid;
     border-radius: 8px;
     text-decoration: none;
-    color: #333;
+    color: var(--state-color, #333);
     font-weight: 600;
     transition: all 0.2s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .state-card:hover {
-    border-color: #336;
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
@@ -215,7 +215,7 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
     font-size: inherit;
     font-weight: normal;
     padding: 0;
-    background: none !important; 
+    background: none; 
 }
 
 .site-footer a:hover { color:#ccc; }
@@ -223,7 +223,7 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
 .site-footer span::after,
 .site-footer nav a:not(:last-child)::after {
     content: "•";
-    margin-left: 6px;
+    margin: 6px;
     color: #ccc;
 }
 
