@@ -30,46 +30,43 @@
   
 </head>
     
-<body class="mode-doc">
+<body>
 
-    <header id="main-header">
-        <div class="brand-container">
-            <a href="/" class="brand-link">
-                <img src="/images/star.svg" alt="Logo" class="header-logo">
-                <div class="text-group">
-                    <span class="site-title">divs.au</span>
-                    <span class="site-subtitle">Australian historical electoral division data</span>
+    <header class="site-header">
+            <a href="/" class="brand">
+                <img src="/images/star.svg" alt="divs.au star">
+                <div class="brand-text">
+                    <strong>divs.au</strong>
+                    <span>Australian historical electoral division data</span>
                 </div>
             </a>
-        </div>
-
-        <nav class="nav-container">
-            <a href="/" class="nav-link">Map</a>
+        <nav>
+            <a href="/">Map</a>
         </nav>
     </header>
 
-  <main id="app-viewport">
-        <section class="intro">
+  <main>
+        <section>
             <h1>Electoral division redistributions</h1>
             <p>A comprehensive archive of my formal suggestions to the Australian Electoral Commission. I have actively participated in every federal redistribution cycle since 2014, providing thorough and comprehensive statewide suggestions for boundaries and division names.
             <p>Select a state below to explore my current suggestions, complete with an interactive map, as well as the historical report archive.</p>
         </section>
 
-        <section class="report-grid">
+        <section>
             <h2>Current redistributions</h2>
-            <div class="card-wrapper">
+            <div class="card-grid">
                 <a href="/act/" class="state-card" style="--state-card-bg: #d5e4ff; --state-color: #003087;">ACT <span class="status current">Active</span></a>
                 <a href="/sa/" class="state-card" style="--state-card-bg: #ffd5df; --state-color: #d50032;">South Australia <span class="status current">Active</span></a>
                 <a href="/tas/" class="state-card" style="--state-card-bg: #e1f2ee; --state-color: #285d50;">Tasmania <span class="status current">Active</span></a>
             </div>
         
             <h2>Deferred redistributions</h2>
-            <div class="card-wrapper">
+            <div class="card-grid">
                 <a href="/qld/" class="state-card" style="--state-card-bg: #f9e0e5; --state-color: #73182c;">Queensland <span class="status deferred">Paused</span></a>
             </div>
         
             <h2>Previous redistributions</h2>
-            <div class="card-wrapper">
+            <div class="card-grid">
                 <a href="/nsw/" class="state-card" style="--state-card-bg: #dbe9f9; --state-color: #a0bbf0;">New South Wales <span class="status archive">Report</span></a>
                 <a href="/vic/" class="state-card" style="--state-card-bg: #e6ecff; --state-color: #001a70;">Victoria <span class="status archive">Report</span></a>
                 <a href="/wa/" class="state-card" style="--state-card-bg: #fffbeb; --state-color: #ffd100;">Western Australia <span class="status archive">Report</span></a>
@@ -79,8 +76,8 @@
 </main>
 
 
-<footer id="main-footer">
-    <ul class="footer-list">
+<footer class="site-footer">
+    <ul class="footer-links">
         <li>&copy; 2025 Darren McSweeney</li>
         <li><a href="/about">About</a></li>
         <li><a href="/projects">Side Projects</a></li>
