@@ -282,7 +282,6 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
 /* 9. FOOTER LINKS */
 .site-footer nav {
     display: flex;
-    align-items: center;
     padding: 0;
 }
 
@@ -310,6 +309,7 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
     color: #eee;
     font-weight: bold;
     display: inline-block; /* Helps with precise spacing */
+    width: 30px;
 }
 
 /* 10. MAP SPECIFIC UI */
