@@ -117,7 +117,7 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
 /* 6. CALL OUT LAYOUT */
 .info-box {
     background-color: #f8f9fa;
-    border-left: 4px solid #336;
+    border-left: 6px solid #336;
     border-radius: 0 8px 8px 0;
     max-width: 900px;
     margin: 0 auto;
@@ -128,14 +128,14 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
     color: #336;
     font-size: 1.2rem;
     border: none;
-    padding-left: 50px;
+    padding-left: 20px;
 }
 
 .info-box p {
     font-size: 0.95rem;
     color: #555;
     line-height: 1.5;
-    padding-left: 50px;
+    padding-left: 20px;
 }
 
 
@@ -147,7 +147,7 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
     margin-top: 20px;
 }
 
-/* 7. PROJECT CARDS (Side Projects Page) */
+/* Side projects cards */
 .project-card {
     display: flex;
     flex-direction: column;
@@ -170,7 +170,7 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
 .project-card h3 { font-size: 1.1rem; color: #336; margin-bottom: 8px; }
 .project-card p { font-size: 0.95rem; margin: 0; color: #666; line-height: 1.4; }
 
-/* 8. STATE CARDS (Reports Page) */
+/* State cards */
 .state-card {
     display: flex;
     justify-content: space-between;
@@ -204,6 +204,7 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
 .status.deferred { background: #fffaf0; color: #9c4221; border: 1px solid #feebc8; }
 .status.archive { background: #edf2f7; color: #4a5568; border: 1px solid #e2e8f0; }
 
+/* 8. TABLE LAYOUT */
 
 /* 9. FOOTER LINKS */
 .site-footer nav { display: flex; }
