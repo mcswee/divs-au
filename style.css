@@ -291,12 +291,14 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
     font-size: inherit;
     line-height: 1;
     transition: color 0.2s;
-    background: none !important; /* Ensures no background bleed from header styles */
+    margin: 0;
+    padding: 0;
+    background: none;/* Ensures no background bleed from header styles */
 }
 
 .site-footer a:hover {
     color: #333; /* Dark gray hover */
-    background: none !important;
+    background: none;
 }
 
 /* Perfect Bullet Centering */
