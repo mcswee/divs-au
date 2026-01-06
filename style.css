@@ -348,7 +348,7 @@ p { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
     .control-group { flex: 1; }
     .control-group:first-of-type { flex: 0 0 85px; }
     .control-group label {  display: none; } 
-    .site-footer nav { gap: none; }
+    .site-footer nav { gap: 4px; }
     .site-footer span::after,
     .site-footer nav a::after { display: none; }
     .leaflet-interactive:focus { outline: none !important; }
