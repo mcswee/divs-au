@@ -31,11 +31,26 @@ Promise.all([
     const tbody = document.querySelector('#suburb-table tbody');
     const rows = tbody.querySelectorAll('tr');
 
+    // INTEGRATED SEARCH LOGIC
     searchInput.addEventListener('input', function () {
         const query = this.value.toLowerCase();
+        let visibleCount = 0;
+
         rows.forEach(row => {
             const suburb = row.cells[0].textContent.toLowerCase();
-            row.style.display = suburb.includes(query) ? '' : 'none';
+            if (suburb.includes(query)) {
+                row.style.display = '';
+                visibleCount++;
+            } else {
+                row.style.display = 'none';
+            }
         });
+
+        // Toggle the red border class based on results
+        if (query.length > 0 && visibleCount === 0) {
+            this.classList.add('no-results');
+        } else {
+            this.classList.remove('no-results');
+        }
     });
 });
