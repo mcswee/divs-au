@@ -528,6 +528,8 @@ tbody tr:hover {
     overflow-y: auto;
     border: 1px solid #eee;
     margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Keeps the header visible while you scroll the long list */
