@@ -247,7 +247,7 @@ function updateLegend() {
         }); 
 
         const sortedParties = Object.keys(parties).sort();
-        div.innerHTML = '<strong style="display:block; margin-bottom: 5px; border: 1px solid #ccc;">Parties</strong>';
+        div.innerHTML = '<strong style="display:block; margin-bottom: 5px;">Party</strong>';
 
         sortedParties.forEach(party => {
             div.innerHTML += `
