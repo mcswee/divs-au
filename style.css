@@ -556,6 +556,36 @@ tbody tr:hover {
     outline: none;
 }
 
+/* US flags*/
+
+.state-section { padding: 2rem 0; }
+.flag-single img { max-width: 500px; }
+
+.flag-compare { 
+    display: flex; 
+    gap: 20px; 
+    align-items: flex-end; /* Aligns flags along the bottom edge */
+    margin: 1.5rem 0;
+}
+
+.flag-compare img { 
+    height: 150px; /* Sets a uniform height so different ratios don't look messy */
+    width: auto;   /* Allows the width to be determined by the flag's ratio */
+    border: 1px solid #ccc;
+    display: block;
+}
+
+dt {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+dd {
+    margin-left: 0;
+    margin-bottom: 10px;
+    font-style: italic; /* Optional: sets it apart from the intro text */
+}
+
 /* 12. RESPONSIVENESS */
 @media (max-width: 600px) {
     .brand span { display: none; }
@@ -600,15 +630,20 @@ tbody tr:hover {
         top: 75px !important; 
      }
 
-     .site-footer {
+    .flag-compare img {
+        height: auto;
+        width: 100%;
+    } 
+    
+    .site-footer {
         height: auto; /* Allow it to grow if text wraps */
         padding: 6px;
         flex-wrap: wrap; /* Prevent horizontal overflow */
         justify-content: center;
         width: 100%;
-     }
+    }
 
-     .site-footer span { display: none; }
-     .site.footer nav { justify-content: center; width: 100%; }
-     .site-footer nav a::after { margin: 0 6px; } /* Tighter spacing for small screens */
+    .site-footer span { display: none; }
+    .site.footer nav { justify-content: center; width: 100%; }
+    .site-footer nav a::after { margin: 0 6px; } /* Tighter spacing for small screens */
 }
