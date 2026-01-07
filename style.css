@@ -550,6 +550,12 @@ tbody tr:hover {
     margin-bottom: 10px;
 }
 
+#suburb-search.no-results {
+    border-color: #d11;
+    background-color: #fff8f8;
+    outline: none;
+}
+
 /* 12. RESPONSIVENESS */
 @media (max-width: 600px) {
     .brand span { display: none; }
