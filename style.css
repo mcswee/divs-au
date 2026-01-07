@@ -146,6 +146,51 @@ p  { font-size: 1rem; line-height: 1.4; color: #222; margin-bottom: 5px; }
 ul { margin-left: 1rem; }
     
 /* 6. TABLE  LAYOUT*/
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    background: #fff;
+}
+
+th {
+    background-color: #336;
+    color: #fff;
+    text-align: left;
+    padding: 12px 15px;
+    font-weight: 700;
+}
+
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    color: #444;
+}
+
+/* Zebra Stripes */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover Effect */
+tbody tr:hover {
+    background-color: #f1f4f8;
+}
+
+/* Right-align numbers (use class="num" on the <td>) */
+.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
 
 /* 7. CARD GRID LAYOUTS */
 .card-grid {
