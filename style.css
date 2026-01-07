@@ -523,7 +523,8 @@ tbody tr:hover {
 
 /* Suburb pronunciations */
 .table-wrapper.suburb-list {
-    max-height: 500px; 
+    max-height: 500px;
+    max-width: 1100px;
     overflow-y: auto;
     border: 1px solid #eee;
     margin-top: 1rem;
