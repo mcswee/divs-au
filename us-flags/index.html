@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An overhaul of state flags of the USA, replacing 'Seal on Bedsheet' and creating distinct, relevant and aesthetic flags for every state.">
+    <meta name="keywords" content="USA, states, flag, America, state, redesign, drawing, vexillology">
+    <meta name="author" content="Darren McSweeney">
+    <title>US state flags redesigns | divs.au</title>
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://divs.au/us-flags">
+    <meta property="og:title" content="US state flags redesigns | divs.au">
+    <meta property="og:description" content="An overhaul of state flags of the USA, replacing 'Seal on Bedsheet' and creating distinct, relevant and aesthetic flags for every state.">  
+    <meta property="og:image" content="https://divs.au/images/og-map.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://divs.au/us-flags">
+    <meta name="twitter:title" content="US state flags redesigns | divs.au">
+    <meta name="twitter:description" content="An overhaul of state flags of the USA, replacing 'Seal on Bedsheet' and creating distinct, relevant and aesthetic flags for every state.">  
+    <meta name="twitter:image" content="https://divs.au/images/og-map.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="icon" type="image/svg+xml" href="/images/star.svg">
+ 
+</head>
+<body>
+
+    <header class="site-header">
+            <a href="/" class="brand">
+                <img src="/images/star.svg" alt="divs.au star">
+                <div class="brand-text">
+                    <strong>divs.au</strong>
+                    <span>Australian historical electoral division data</span>
+                </div>
+            </a>
+        <nav>
+            <a href="/projects">Projects</a>
+        </nav>
+    </header>
+
+  <main>
+        <section>
+            <h1>US state flags redesigns</h1>
+            <p>Most American state flags are not great. They are either a "seal on a bedsheet" or cluttered with name tags that rely on generic "America" symbols: red, white, and blue, eagles, and stars representing their order in the Union. These don't represent a specific place; they just say "we’re a smaller piece of a bigger country."</p>
+            <p>This project is about fixing that. I’ve overhauled the designs to focus on local symbols, colors, and ideas that actually set each state apart.</p>
+
+            <dl>
+                <dt>Standardized ratio</dt>
+                    <dd>All redesigns are 2:3 for consistency.</dd>
+                <dt>No Name tags</dt>
+                    <dd>No text generally. Mottos or symbols with integrated text are acceptable, but the state name is gone.</dd>
+                <dt>De-Confederated</dt>
+                    <dd>Confederate imagery is significantly stepped back. No overt Confederacy symbols.</dd>
+                <dt>Local identity</dt>
+                    <dd>Reducing generic red, white, and blue in favor of symbols and colors unique to the state.</dd>
+            </dl>
+            <p>Use the drop down list below to go to a specific state or scroll down to see all the current official flags alongside my redesigns.</p> 
+        </section>
+        <select id="state-jump" class="state-select">
+            <option value="">Select a state...</option>
+        </select>
+        <div id="flag-gallery"></div>
+    
+    </main>
+
+<footer class="site-footer">
+    <span>&copy; 2026 Darren McSweeney</span>
+    <nav id="footer-navigation">
+        <a href="/about">About</a>
+        <a href="/projects">Side Projects</a>
+        <a href="/disclaimer">Disclaimer & Privacy</a>
+    </nav>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://unpkg.com/tablesort@5.2.1/dist/tablesort.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
