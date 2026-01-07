@@ -518,7 +518,36 @@ tbody tr:hover {
     outline-offset: 2px;
 
 }
-/* 11. RESPONSIVENESS */
+
+/* 11. PROJECT SPECIALIST */
+
+/* Suburb pronunciations */
+.table-wrapper.suburb-list {
+    max-height: 500px; 
+    overflow-y: auto;
+    border: 1px solid #eee;
+    margin-top: 1rem;
+}
+
+/* Keeps the header visible while you scroll the long list */
+.table-wrapper.suburb-list th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1); /* Slight shadow to separate from scrolling rows */
+}
+
+#suburb-search {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    font-family: inherit;
+    border: 2px solid #336;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+/* 12. RESPONSIVENESS */
 @media (max-width: 600px) {
     .brand span { display: none; }
     h1 { font-size: 1.8rem; }
