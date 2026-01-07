@@ -26,20 +26,20 @@
         </nav>
     </header>
 
-  <main class="content-container text-page">
-        <section class="intro">
+  <main>
+        <section>
             <h1>How to pronounce the names of Melbourne suburbs</h1>
             <p>Most pronunciation guides for Melbourne are useless because they lazily cover only the most popular places. They’ll list the same ten or twenty suburbs like Prahran, Malvern, or Reservoir, sometimes Truganina. They'll hedge their bets on Lalor saying it could be lay-lor or it could be law-ler. Heaven help someone who wants to know how to pronounce Clematis, Eumemmering, Kealba, or Yuroke.</p>
             <p>For the places they do cover, they manage to mangle the actual sounds of the city. Prahran is "Praan", Mebourne is "Mel-bin". They're close, but it depends on the nuances of what "aa" means, or knowing the difference between the "i" in "bin" and what a schwa sounds like.</p>
             <p>My list is a complete, systematic record of every Melbourne suburb (along with Greater Geelong and parts of Moorabool and Macedon Ranges) using a consistent phonological framework. It maps the city exactly as it's actually spoken by locals, using a one-to-one system to capture the real Melburnian accent without the guesswork of figuring out if your normal access includes a cot/caught merger or a rhotic "r".</p>         
             <p>A comprehensive <a href="#pronunciation-key">key to pronunciation</a> is provided at the bottom of this page, to help explain what all these symbols mean.</p>
-            <div class="search-container" style="margin-top: 2rem;">
+            <div class="search-container">
                 <label for="suburb-search"><strong>Search for a suburb:</strong></label><br>
-                <input type="text" id="suburb-search" placeholder="Start typing..." style="margin-bottom: 1em; padding: 10px; width: 100%; max-width: 400px; border: 1px solid #003895; border-radius: 4px;">
+                <input type="text" id="suburb-search">
             </div>
         </section>
 
-        <div class="table-wrapper" style="max-height: 600px; overflow-y: auto; display: inline-block; max-width: 100%; border: 1px solid #eee;">
+        <div class="table-wrapper suburb-list">
             <table id="suburb-table" class="sortable">
                 <thead>
                     <tr>
@@ -53,7 +53,7 @@
             </table>
         </div>
         
-        <section id="pronunciation-key" class=intro>
+        <section>
             <h2>Pronunciation key and orthography</h2>
 
             <p>This guide uses a custom phonetic system to capture the specific nuances of the Australian English accent. To avoid the ambiguity of standard English spelling, the system follows a one-to-one logic where every sound is represented by a consistent symbol.</p>
@@ -62,24 +62,36 @@
             <p><strong>Consonants:</strong> Every consonant is represented by a single, consistent letter or symbol. For example, $ represents 'sh' and £ is used specifically for the 'ng' sound.</p>
             <p>Syllables are marked with dots (·) to show the natural flow of the word.</p>
 
-            <h3 style="margin-top: 2rem;">Vowel pronunciation key</h3>
-                <table id="vowel-table" class="key-table">
-                    <thead>
-                        <tr><th>Phoneme</th><th>IPA</th><th>Examples</th><th>Pronunciation</th></tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+            <h3>Vowel pronunciation key</h3>
+                <div class="table-wrapper">
+                    <table id="vowel-table">
+                        <thead>
+                            <tr>
+                                <th>Phoneme</th>
+                                <th>IPA</th>
+                                <th>Examples</th>
+                                <th>Pronunciation</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
     
-                <h3 style="margin-top: 2rem;">Consonant pronunciation key</h3>
-                <table id="consonant-table" class="key-table">
-                    <thead>
-                        <tr><th>Phoneme</th><th>IPA</th><th>Examples</th><th>Pronunciation</th></tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <h3>Consonant pronunciation key</h3>
+                <div class=table-wrapper">
+                    <table id="consonant-table">
+                        <thead>
+                            <tr>
+                                <th>Phoneme</th>
+                                <th>IPA</th>
+                                <th>Examples</th>
+                                <th>Pronunciation</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
         </section>
     </main>
-
 
 <footer class="site-footer">
     <span>&copy; 2026 Darren McSweeney</span>
