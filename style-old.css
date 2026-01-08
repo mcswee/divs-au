@@ -876,3 +876,252 @@
         .status-highlight h3 {
             margin-top: 0;
         }
+
+
+
+
+⁴body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f8f8f8;
+  color: #222;
+}
+
+header {
+  background: #003366;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  #map {
+    border-radius: 4px;
+  }
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 1rem;
+  padding-right: 12px;
+  border-right: 2px solid #eee;
+}
+
+nav {
+  background: #e0e0e0;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #003366;
+}
+
+nav a:hover {
+   text-decoration: underline;
+   color: #996600;
+}
+
+main {
+  padding: 1rem;
+  margin: 0;
+}
+
+#map {
+  height: 90vh;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.map-section {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+
+.state-map-section {
+  max-width: 80%;
+  padding: 0;
+  margin: 0;
+}
+
+section {
+  max-width:1260px;
+  margin: auto;
+}
+
+h2 {
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.3rem;
+  margin-top: 2rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  background: #eee;
+  color: #666;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+footer a {
+  text-decoration: none;
+  color: #003366;
+}
+
+footer a:hover {
+   text-decoration: underline;
+   color: #996600;
+}
+
+
+.leaflet-interactive:focus {
+  outline: none;
+}
+  
+.key-table {
+  width: 50%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+  
+.key-table th, .key-table td {
+  border: 1px solid #ccc;
+  padding: 2px 2px;
+  text-align: left;
+}
+  
+.key-table th {
+  background-color: #f2f2f2;
+}
+
+.state-table {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+  
+.state-table th, .state-table td {
+  border: 1px solid #ccc;
+  padding: 2px 2px;
+  text-align: left;
+}
+  
+.state-table th {
+  background-color: #f2f2f2;
+}
+
+
+#suburb-table {
+  width: 75%;
+  border-collapse: collapse;
+  margin-top: 1em;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+#suburb-table thead {
+  background-color: #003366; 
+  color: #fcfcfc;
+}
+
+#suburb-table th, 
+#suburb-table td {
+  border: 1px solid #ccc;
+  padding: 6px 6px;
+  text-align: left;
+}
+
+#suburb-table th {
+  font-weight: bold;
+  text-align: left;
+}
+
+#suburb-table tbody tr:nth-child(even) {
+  background-color: #fafafa; /* banded rows */
+}
+
+#suburb-table tbody tr:hover {
+  background-color: #003399; /* distinct highlight on hover */
+  color: #fcfcfc;
+}
+
+@media (max-width: 600px) {
+  #suburb-table, .key-table {
+    font-size: 14px;
+  }
+}
+
+.flag-block {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 2rem;
+}
+
+.flag-pair {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.flag-pair img {
+  max-height: 120px;
+  max-width: 180px ;
+  height: auto;
+  width: auto;
+  border: 1px solid #999;
+  background: white;
+}
+.flag-ohio {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.flag-ohio img {
+  max-height: 120px;
+  max-width: 180px ;
+  height: auto;
+  width: auto;
+  border: 0px;
+  background: white;
+}
+
+.flag-label {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.flag-commentary {
+  color: #333;
+  text-align: left; 
+}
