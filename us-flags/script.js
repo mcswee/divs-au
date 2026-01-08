@@ -22,49 +22,45 @@ Papa.parse('us-flags.csv', {
             
             if (row.Status === 'No Change') {
                 flagHTML = `
-                    <div class="flag-single">
-                        <figure>
-                            <img src="${currentPath}" alt="${row.State} current flag">
-                            <figcaption>${row.State} current flag retained</figcaption>
-                        </figure>
-                    </div>`;
+                    <figure>
+                        <img src="${currentPath}" alt="${row.State} current flag">
+                        <figcaption>${row.State} flag retained</figcaption>
+                    </figure>`;
             } else if (row.Abbr === 'OR') {
                 flagHTML = `
-                    <div class="flag-compare">
-                        <figure>
-                            <img src="current/OR-front.svg" alt="${row.State} current flag">
-                            <figcaption>${row.State} current flag</figcaption>
-                        </figure>
-                        <figure>
-                            <img src="current/OR-back.svg" alt="${row.State} current flag (reverse)">
-                            <figcaption>${row.State} current flag (reverse)</figcaption>
-                        </figure>
-                        <figure>
-                            <img src="${redesignPath}" alt="${row.State} redesigned flag">
-                            <figcaption>My proposed ${row.State} flag</figcaption>
-                        </figure>
-                    </div>`;
+                    <figure>
+                        <img src="current/OR-front.svg" alt="${row.State} current flag front">
+                        <figcaption>Current (Front)</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="current/OR-back.svg" alt="${row.State} current flag back">
+                        <figcaption>Current (Back)</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="${redesignPath}" alt="${row.State} redesign">
+                        <figcaption>Redesign</figcaption>
+                    </figure>`;
             } else {
                 flagHTML = `
-                    <div class="flag-compare">
-                        <figure>
-                            <img src="${currentPath}" alt="${row.State} current flag">
-                            <figcaption>${row.State} current flag </figcaption>
-                        </figure>
-                        <figure>
-                            <img src="${redesignPath}" alt=${row.State} redesigned flag">
-                            <figcaption>My proposed ${row.State} flag</figcaption>
-                        </figure>
-                    </div>`;
+                    <figure>
+                        <img src="${currentPath}" alt="${row.State} current flag">
+                        <figcaption>Current Flag</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="${redesignPath}" alt="${row.State} redesign">
+                        <figcaption>Redesign</figcaption>
+                    </figure>`;
             }
-
+            
             // 3. Build the Section
             html += `
                 <section class="state-section" id="${row.Abbr}">
                     <h3>${row.State}</h3>
-                    <span class="flag-status>$(row.Status)</span>
-                    ${flagHTML}
-                    <p class="commentary">${row.Commentary}</p>
+                    <span class="flag-status status-${row.Status.toLowerCase().replace(/\s+/g, '-')}">${row.Status}</span>
+                    <div class="flag-row">
+                        ${flagHTML}
+                    </div>
+                    <div class="commentary">${row.Commentary}</div>
                     <p class="copyright">${row.Copyright}</p>
                 </section>`;
         });
