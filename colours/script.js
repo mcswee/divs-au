@@ -47,12 +47,7 @@ Papa.parse("colours.csv", {
         const data = results.data.map(item => {
             const rgb = hexToRgb(item.Hex);
             const hsl = rgbToHsl(rgb);
-            return { 
-                ...item, 
-                hue: hsl.h, 
-                lum: hsl.l, 
-                sat: hsl.s 
-            };
+            return { ...item, hue: hsl.h, lum: hsl.l, sat: hsl.s };
         });
 
         buildTable(data);
@@ -60,23 +55,30 @@ Papa.parse("colours.csv", {
         const table = document.getElementById('colour-table');
         const ts = new Tablesort(table);
 
+        // Dropdown Sort mapping
         const sortSelect = document.getElementById('sort-select');
         sortSelect.addEventListener('change', function() {
             const headers = table.querySelectorAll('th');
             const colMap = {
-                "Name": 0,
-                "Hex": 2,
-                "Year": 3,
-                "Family": 4,
-                "Hue": 5,
-                "Luminosity": 6,
-                "Saturation": 7
+                "Name": 0, "Hex": 2, "Year": 3, "Family": 4, 
+                "Hue": 5, "Luminosity": 6, "Saturation": 7
             };
-
             const index = colMap[this.value];
-            if (index !== undefined) {
-                ts.sortTable(headers[index]);
-            }
+            if (index !== undefined) ts.sortTable(headers[index]);
         });
+
+        // Search Filter (Name and Hex)
+        const searchInput = document.getElementById('colour-search');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const filter = this.value.toLowerCase().replace('#', '');
+                const rows = table.querySelectorAll('tbody tr');
+                rows.forEach(row => {
+                    const name = row.cells[0].textContent.toLowerCase();
+                    const hex = row.cells[2].textContent.toLowerCase().replace('#', '');
+                    row.style.display = (name.includes(filter) || hex.includes(filter)) ? '' : 'none';
+                });
+            });
+        }
     }
 });
