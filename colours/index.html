@@ -55,6 +55,18 @@
         
         <section>
             <h2>Colour Table</h2>
+            <div class="search-container">
+                <label for="sort-select"><strong>Sort colour list by:</strong></label><br>
+                <select id="sort-select" class="search-select" placeholder="Select a sort order&hellip;">
+                    <option>Name</option>
+                    <option>Hex</option>       
+                    <option>Hue</option>
+                    <option>Luminosity</option>
+                    <option>Saturation</option>        
+                    <option>Year</option>
+                    <option>Family</option>
+                </select>
+            </div>
             <div class="table-wrapper">
                 <table id="colour-table" class="sortable">
                     <thead>
