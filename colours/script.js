@@ -31,7 +31,7 @@ function buildTable(data) {
             <td style="background-color:${item.Hex}; width:2em;"></td>
             <td>${item.Hex}</td>
             <td>${item.Year}</td>
-            <td>${item.Family}</td>
+            <td style="display:none">${item.Family}</td>
             <td style="display:none">${item.hue}</td>
             <td style="display:none">${item.lum}</td>
             <td style="display:none">${item.sat}</td>
