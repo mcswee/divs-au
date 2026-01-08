@@ -58,7 +58,7 @@ function sortTable(data, key, numeric=false){
     });
 }
 
-Papa.parse("/colours.csv", {
+Papa.parse("colours.csv", {
     download: true,
     header: true,
     skipEmptyLines: true,
