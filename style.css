@@ -581,6 +581,17 @@ tbody tr:hover {
 }
 
 /* Flags */
+.state-select {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    font-family: inherit;
+    border: 2px solid var(--brand-main);
+    border-radius: 6px;
+    margin-bottom: 10px;
+    background: var(--highlight);
+}
+
 .state-section { padding: 2rem 0; }
 .flag-single img { max-width: 250px; }
 
