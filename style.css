@@ -583,16 +583,16 @@ tbody tr:hover {
 /* Flags */
 /* Flag Section & Row */
 .state-section {
-    padding: 3rem 0;
+    padding: 2rem 0;
     border-bottom: 1px solid var(--text-accent);
 }
 
 .flag-row {
     display: flex;
-    gap: 30px;
+    gap: 15px;
     flex-wrap: wrap; 
     align-items: flex-end;
-    margin: 2rem 0;
+    margin: 1rem 0;
 }
 
 /* Figure & image scaling */
@@ -617,7 +617,7 @@ figure img {
 figcaption {
     margin-top: 10px;
     font-size: 0.9rem;
-    color: var(--text-accent);
+    color: var(--text-highlight);
     text-align: center;
     font-style: italic;
 }
