@@ -25,15 +25,15 @@ Papa.parse('us-flags.csv', {
             } else if (row.Abbr === 'OR') {
                 flagHTML = `
                     <div class="flag-compare">
-                        <img src="current/OR-front.svg" title="Current Front">
-                        <img src="current/OR-back.svg" title="Current Back">
-                        <img src="${redesignPath}" title="Redesign">
+                        <img src="current/OR-front.svg" title="${row.State} current flag - front">
+                        <img src="current/OR-back.svg" title="${row.State} current flag - back">
+                        <img src="${redesignPath}" title="${row.State} redesign">
                     </div>`;
             } else {
                 flagHTML = `
                     <div class="flag-compare">
-                        <img src="${currentPath}" title="Current">
-                        <img src="${redesignPath}" title="Redesign">
+                        <img src="${currentPath}" title="${row.State} current flag">
+                        <img src="${redesignPath}" title="${row.State} redesign">
                     </div>`;
             }
 
@@ -42,8 +42,9 @@ Papa.parse('us-flags.csv', {
                 <section class="state-section" id="${row.Abbr}">
                     <h3>${row.State}</h3>
                     ${flagHTML}
-                    <div class="commentary"><p>${row.Commentary}</p></div>
-                </section><hr>`;
+                    <p class="commentary">${row.Commentary}</p>
+                    <p class="copyright">${row.Copyright}</p>
+                </section>`;
         });
 
         gallery.innerHTML = html;
