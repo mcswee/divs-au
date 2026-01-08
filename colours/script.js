@@ -65,7 +65,30 @@ Papa.parse("colours.csv", {
             };
             return clean(a) - clean(b);
         });
+        
+Tablesort.extend('family', function(item) {
+    return true; // Activated by data-sort-method="family"
+}, function(a, b) {
+    const familyOrder = {
+        "reds": 1,
+        "oranges": 2,
+        "yellows": 3,
+        "greens": 4,
+        "blues": 5,
+        "purples": 6,
+        "violets": 6,
+        "pinks": 7,
+        "browns": 8,
+        "whites": 9,
+        "greys": 10,
+        "blacks": 11
+    };
 
+    const getOrder = (val) => familyOrder[val.toLowerCase().trim()] || 99;
+    return getOrder(a) - getOrder(b);
+})
+    ;
+        
         const ts = new Tablesort(table);
 
         // Dropdown Sort mapping
@@ -81,17 +104,28 @@ Papa.parse("colours.csv", {
         });
 
         // Search Filter (Name and Hex)
-        const searchInput = document.getElementById('colour-search');
-        if (searchInput) {
-            searchInput.addEventListener('input', function() {
-                const filter = this.value.toLowerCase().replace('#', '');
-                const rows = table.querySelectorAll('tbody tr');
-                rows.forEach(row => {
-                    const name = row.cells[0].textContent.toLowerCase();
-                    const hex = row.cells[2].textContent.toLowerCase().replace('#', '');
-                    row.style.display = (name.includes(filter) || hex.includes(filter)) ? '' : 'none';
-                });
-            });
-        }
+const searchInput = document.getElementById('colour-search');
+const familyFilter = document.getElementById('family-filter');
+
+function filterTable() {
+    const searchTerm = searchInput.value.toLowerCase().replace('#', '');
+    const selectedFamily = familyFilter.value.toLowerCase();
+    const rows = document.querySelectorAll('#colour-table tbody tr');
+
+    rows.forEach(row => {
+        const name = row.cells[0].textContent.toLowerCase();
+        const hex = row.cells[2].textContent.toLowerCase().replace('#', '');
+        const family = row.cells[4].textContent.toLowerCase(); // Hidden Family column
+
+        const matchesSearch = name.includes(searchTerm) || hex.includes(searchTerm);
+        const matchesFamily = (selectedFamily === 'all' || family.includes(selectedFamily));
+
+        row.style.display = (matchesSearch && matchesFamily) ? '' : 'none';
+    });
+}
+
+searchInput.addEventListener('input', filterTable);
+familyFilter.addEventListener('change', filterTable);
+
     }
 });
