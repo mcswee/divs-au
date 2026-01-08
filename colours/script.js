@@ -53,6 +53,19 @@ Papa.parse("colours.csv", {
         buildTable(data);
 
         const table = document.getElementById('colour-table');
+
+        // Custom parser for Years (handles 'imm.' and 'c. 1570')
+        Tablesort.extend('number', function(item) {
+            return true; // Apply to columns with data-sort-method="number"
+        }, function(a, b) {
+            const clean = (val) => {
+                val = val.toLowerCase();
+                if (val.includes('imm')) return 0; 
+                return parseInt(val.replace(/[^\d]/g, ''), 10) || 9999;
+            };
+            return clean(a) - clean(b);
+        });
+
         const ts = new Tablesort(table);
 
         // Dropdown Sort mapping
