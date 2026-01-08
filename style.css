@@ -232,12 +232,12 @@ tbody tr:hover {
 .project-card {
     display: flex;
     flex-direction: column;
-    background: var(--brand-accent);
+    background: var(--accent);
     padding: 20px;
     border: 1px solid var(--text-accent);
     border-radius: 8px;
     text-decoration: none;
-    color: var(--highlight);
+    color: var(--text-main);
     transition: all 0.2s ease;
     box-shadow: var(--shadow-main);
 }
