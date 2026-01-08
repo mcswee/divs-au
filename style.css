@@ -320,7 +320,7 @@ tbody tr:hover {
     margin-top: 20px;
     padding: 14px 24px;
     background: var(--state-color, var(--brand-main));
-    color: var(--highlight);
+    color: var(--state-contrast, var(--highlight));
     text-decoration: none;
     border-radius: 8px;
     font-weight: 600;
