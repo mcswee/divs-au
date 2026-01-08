@@ -581,88 +581,66 @@ tbody tr:hover {
 }
 
 /* Flags */
-.state-select {
-    width: 100%;
-    max-width: 400px;
-    padding: 12px;
-    font-family: inherit;
-    border: 2px solid var(--brand-main);
-    border-radius: 6px;
-    margin-bottom: 10px;
-    background: var(--highlight);
+/* Section & typography */
+.state-section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--text-accent);
 }
 
-.state-section { padding: 2rem 0; }
-.flag-single img { max-width: 250px; }
+.commentary { margin: 1.5rem 0; line-height: 1.6; }
 
-.flag-compare { 
-    display: flex; 
-    gap: 20px; 
-    align-items: flex-end; 
-    margin: 1.5rem 0;
+.copyright {
+    font-size: 0.75rem;
+    margin-top: 1rem;
 }
 
-.flag-compare img { 
-    height: 150px;
+/* Status badges */
+.flag-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    background: var(--accent); /* Fallback */
+}
+
+/* Badge colors keep specific */
+.status-no-change { background: #2ecc71; color: var(--highlight); }
+.status-redesign  { background: #e67e22; color: var(--highlight); }
+.status-recolor   { background: #3498db; color: var(--highlight); }
+.status-tweak     { background: #9b59b6; color: var(--highlight); }
+
+/* Flag layout & ltacking */
+.flag-row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap; /* This makes flags stack on mobile */
+    align-items: flex-end;
+    margin: 2rem 0;
+}
+
+figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+figure img {
+    height: auto;
     width: auto;
-    border: 1px solid var(--text-accent);
-    display: block;
+    max-height: 150px; /* Limits height, maintains aspect ratio */
+    max-width: 100%;   /* Keeps it from overflowing mobile screens */
+    border: 1px solid var(--text-highlight);
 }
 
-/* old flag block from previous version. for comparison.
-.flag-block {
-  margin-bottom: 2rem;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 2rem;
+figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-highlight);
+    font-style: italic;  
 }
-
-.flag-pair {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.flag-pair img {
-  max-height: 120px;
-  max-width: 180px ;
-  height: auto;
-  width: auto;
-  border: 1px solid #999;
-  background: white;
-}
-.flag-ohio {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.flag-ohio img {
-  max-height: 120px;
-  max-width: 180px ;
-  height: auto;
-  width: auto;
-  border: 0px;
-  background: white;
-}
-
-.flag-label {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 0.5rem;
-}
-
-.flag-commentary {
-  color: #333;
-  text-align: lef
-t; 
-}
-
-"/
 
 /* 12. RESPONSIVENESS */
 @media (max-width: 600px) {
