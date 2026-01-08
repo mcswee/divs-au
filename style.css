@@ -631,17 +631,17 @@ figcaption {
     font-weight: 800;
     text-transform: uppercase;
     /* Using surface accent for neutral base */
-    background: var(--accent); 
-    color: var(--text-main);
+    background: var(--brand-accent); 
+    color: var(--highlight);
 }
 
 /* Placeholder Status colors - awaiting your specific hex codes */
-.status-no-change { background: #2ecc71; color: var(--highlight); }
-.status-redesign  { background: #e67e22; color: var(--highlight); }
-.status-recolor   { background: #3498db; color: var(--highlight); }
-.status-tweak     { background: #9b59b6; color: var(--highlight); }
-.status-historical{ background: #7f8c8d; color: var(--highlight); }
-.status-evolution { background: #16a085; color: var(--highlight); }
+.status-no-change { background: #1e5631; }
+.status-recolor   { background: #d4a373; }
+.status-tweak     { background: #6d597a; }
+.status-evolution { background: #bc6c25; }
+.status-redesign  { background: #9e2a2b; }
+.status-historic  { background: #4a4e69; }
 
 /* Text Content */
 .commentary { 
