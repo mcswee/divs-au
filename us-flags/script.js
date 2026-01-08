@@ -24,31 +24,31 @@ Papa.parse('us-flags.csv', {
                 flagHTML = `
                     <figure>
                         <img src="${currentPath}" alt="${row.State} current flag">
-                        <figcaption>${row.State} flag retained</figcaption>
+                        <figcaption>Existing ${row.State} flag retained</figcaption>
                     </figure>`;
             } else if (row.Abbr === 'OR') {
                 flagHTML = `
                     <figure>
+                        <img src="${redesignPath}" alt="${row.State} redesign">
+                        <figcaption>$My redesigned ${row.State} flag</figcaption>
+                    </figure>
+                    <figure>
                         <img src="current/OR-front.svg" alt="${row.State} current flag front">
-                        <figcaption>Current (Front)</figcaption>
+                        <figcaption>${row.State} current flag</figcaption>
                     </figure>
                     <figure>
                         <img src="current/OR-back.svg" alt="${row.State} current flag back">
-                        <figcaption>Current (Back)</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="${redesignPath}" alt="${row.State} redesign">
-                        <figcaption>Redesign</figcaption>
+                        <figcaption>${row.State} current flag (reverse)</figcaption>
                     </figure>`;
             } else {
                 flagHTML = `
                     <figure>
-                        <img src="${currentPath}" alt="${row.State} current flag">
-                        <figcaption>Current Flag</figcaption>
+                        <img src="${redesignPath}" alt="${row.State} redesign">
+                        <figcaption>My redesigned ${row.State} flag</figcaption>
                     </figure>
                     <figure>
-                        <img src="${redesignPath}" alt="${row.State} redesign">
-                        <figcaption>Redesign</figcaption>
+                        <img src="${currentPath}" alt="${row.State} current flag">
+                        <figcaption>${row.State} current flag</figcaption>
                     </figure>`;
             }
             
