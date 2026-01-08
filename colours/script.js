@@ -1,4 +1,3 @@
-// script.js
 
 function hexToRgb(hex) {
     hex = hex.replace('#','');
@@ -28,31 +27,34 @@ function buildTable(data){
     const tbody=document.querySelector("#colour-table tbody");
     tbody.innerHTML='';
     data.forEach(item=>{
-        const rgb=hexToRgb(item.Hex);
-        const hsl=rgbToHsl(rgb);
         const tr=document.createElement('tr');
+
         tr.dataset.family=item.Family.toLowerCase();
         tr.dataset.name=item.Name.toLowerCase();
         tr.dataset.year=parseInt(item.Year.replace(/[^\d]/g,''))||0;
         tr.dataset.hex=item.Hex.toLowerCase();
-        tr.dataset.hue=hsl.h;
-        tr.dataset.lum=hsl.l;
-        tr.dataset.sat=hsl.s;
+        tr.dataset.hue=item.hue;
+        tr.dataset.lum=item.lum;
+        tr.dataset.sat=item.sat;
 
         tr.innerHTML=`
-            <td>${item.Family}</td>
             <td>${item.Name}</td>
-            <td>${item.Year}</td>
             <td style="background-color:${item.Hex}; width:2em;"></td>
             <td>${item.Hex}</td>
+            <td>${item.Year}</td>
+            <!-- hidden columns -->
+            <td style="display:none">${item.Family}</td>
+            <td style="display:none">${item.hue}</td>
+            <td style="display:none">${item.lum}</td>
+            <td style="display:none">${item.sat}</td>
         `;
         tbody.appendChild(tr);
     });
 }
 
-function sortTable(data, key, numeric=false){
+function sortData(data, key, numeric=false){
     return data.slice().sort((a,b)=>{
-        if(['hue','lum','sat'].includes(key)) return parseFloat(a[key])-parseFloat(b[key]);
+        if(['hue','lum','sat'].includes(key)) return a[key]-b[key];
         if(numeric) return parseInt(a[key].replace(/[^\d]/g,'')) - parseInt(b[key].replace(/[^\d]/g,'')) || 0;
         return a[key].localeCompare(b[key]);
     });
@@ -63,17 +65,17 @@ Papa.parse("colours.csv", {
     header: true,
     skipEmptyLines: true,
     complete: function(results){
-        let data=results.data;
-
-        // DEFAULT SORT: HUE → LUMINOSITY → SATURATION
-        data = data.slice().map(item=>{
+        let data = results.data.map(item=>{
             const rgb=hexToRgb(item.Hex);
             const hsl=rgbToHsl(rgb);
             item.hue=hsl.h;
             item.lum=hsl.l;
             item.sat=hsl.s;
             return item;
-        }).sort((a,b)=>{
+        });
+
+        // DEFAULT SORT: Hue → Lum → Sat
+        data.sort((a,b)=>{
             if(a.hue!==b.hue) return a.hue-b.hue;
             if(a.lum!==b.lum) return a.lum-b.lum;
             return a.sat-b.sat;
@@ -81,15 +83,27 @@ Papa.parse("colours.csv", {
 
         buildTable(data);
 
-        const headers=document.querySelectorAll("#colour-table th");
-        headers.forEach((th, idx)=>{
-            th.addEventListener('click', ()=>{
-                const keyMap=['family','name','year','hex','hue','lum','sat'];
-                const key=keyMap[idx] || th.textContent.toLowerCase();
-                const numeric=['year'].includes(key);
-                data=sortTable(data,key,numeric);
-                buildTable(data);
-            });
+        // create dropdown for sorting
+        const sortContainer = document.createElement('div');
+        sortContainer.innerHTML = `
+            <label for="sort-select">Sort by: </label>
+            <select id="sort-select">
+                <option value="hue">Hue</option>
+                <option value="lum">Luminosity</option>
+                <option value="sat">Saturation</option>
+                <option value="name">Name</option>
+                <option value="hex">Hex</option>
+                <option value="year">Year</option>
+                <option value="family">Family</option>
+            </select>
+        `;
+        document.querySelector("main").insertBefore(sortContainer, document.querySelector("#colour-table"));
+
+        document.getElementById('sort-select').addEventListener('change', (e)=>{
+            const key=e.target.value;
+            const numeric=['year'].includes(key);
+            const sorted = sortData(data,key,numeric);
+            buildTable(sorted);
         });
     }
 });
