@@ -170,7 +170,7 @@ nav a:hover {
 /* 5. TYPOGRAPHY */
 h1 { font-size: 2.2rem; color: var(--brand-main); margin-bottom: 20px; }
 h2 { font-size: 1.4rem; color: var(--brand-main); margin: 40px 0 15px; border-bottom: 1px solid var(--text-accent); padding-bottom: 8px; }
-h3 { font-size: 1.1rem; color: var(--brand-main); margin: 0 10px; padding-bottom: 8px; }
+h3 { font-size: 1.1rem; color: var(--brand-main); margin: 0; padding-bottom: 8px; }
 p { font-size: 1rem; line-height: 1.4; color: var(--text-main); margin-bottom: 5px; }
 ul { margin-left: 1rem; }
     
