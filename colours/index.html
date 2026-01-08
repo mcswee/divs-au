@@ -55,26 +55,36 @@
         
         <section>
             <h2>Colour Table</h2>
-            <div class="search-container">
-                <label for="sort-select">Sort colour list by: </label>
-                <select id="sort-select" class="search-select">
-                    <option value="name">Name</option>
-                    <option value="hex">Hex</option>        
-                    <option value="hue">Hue</option>
-                    <option value="lum">Luminosity</option>
-                    <option value="sat">Saturation</option>         
-                    <option value="year">Year</option>
-                    <option value="family">Family</option>
-                </select>
-            </div>
+                <div class="search-container" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
+                    <div class="filter-group">
+                        <label for="colour-search"><strong>Search colours by name or hex code:</strong></label><br>
+                        <input type="text" id="colour-search" class="search-select" placeholder="Enter a name or hex code&hellip;">
+                    </div>
+                    <div class="sort-group">
+                        <label for="sort-select"><strong>Sort by:</strong></label><br>
+                        <select id="sort-select" class="search-select">
+                            <option value="Name">Name</option>
+                            <option value="Hex">Hex code</option>
+                            <option value="Hue">Hue</option>
+                            <option value="Luminosity">Luminosity</option>
+                            <option value="Saturation">Saturation</option>
+                            <option value="Year">Year first mentioned</option>
+                            <option value="Family">Colour family</option>
+                        </select>
+                    </div>
+                </div>
             <div class="table-wrapper">
                 <table id="colour-table" class="sortable">
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Swatch</th>
+                            <th role="columnheader" class="no-sort">Swatch</th>
                             <th>Hex</th>
                             <th>Year</th>
+                            <th style="display:none">Family</th>
+                            <th style="display:none">Hue</th>
+                            <th style="display:none">Lum</th>
+                            <th style="display:none">Sat</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
