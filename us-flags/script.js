@@ -19,21 +19,42 @@ Papa.parse('us-flags.csv', {
             let flagHTML = '';
             const currentPath = `current/${row.Abbr}.svg`;
             const redesignPath = `redesign/${row.Abbr}.svg`;
-
+            
             if (row.Status === 'No Change') {
-                flagHTML = `<div class="flag-single"><img src="${currentPath}"></div>`;
+                flagHTML = `
+                    <div class="flag-single">
+                        <figure>
+                            <img src="${currentPath}" alt="${row.State} current flag">
+                            <figcaption>${row.State} current flag retained</figcaption>
+                        </figure>
+                    </div>`;
             } else if (row.Abbr === 'OR') {
                 flagHTML = `
                     <div class="flag-compare">
-                        <img src="current/OR-front.svg" title="${row.State} current flag - front">
-                        <img src="current/OR-back.svg" title="${row.State} current flag - back">
-                        <img src="${redesignPath}" title="${row.State} redesign">
+                        <figure>
+                            <img src="current/OR-front.svg" alt="${row.State} current flag">
+                            <figcaption>${row.State} current flag</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="current/OR-back.svg" alt="${row.State} current flag (reverse)">
+                            <figcaption>${row.State} current flag (reverse)</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="${redesignPath}" alt="${row.State} redesigned flag">
+                            <figcaption>My proposed ${row.State} flag</figcaption>
+                        </figure>
                     </div>`;
             } else {
                 flagHTML = `
                     <div class="flag-compare">
-                        <img src="${currentPath}" title="${row.State} current flag">
-                        <img src="${redesignPath}" title="${row.State} redesign">
+                        <figure>
+                            <img src="${currentPath}" alt="${row.State} current flag">
+                            <figcaption>${row.State} current flag </figcaption>
+                        </figure>
+                        <figure>
+                            <img src="${redesignPath}" alt=${row.State} redesigned flag">
+                            <figcaption>My proposed ${row.State} flag</figcaption>
+                        </figure>
                     </div>`;
             }
 
@@ -41,6 +62,7 @@ Papa.parse('us-flags.csv', {
             html += `
                 <section class="state-section" id="${row.Abbr}">
                     <h3>${row.State}</h3>
+                    <span class="flag-status>$(row.Status)</span>
                     ${flagHTML}
                     <p class="commentary">${row.Commentary}</p>
                     <p class="copyright">${row.Copyright}</p>
