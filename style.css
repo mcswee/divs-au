@@ -248,8 +248,8 @@ tbody tr:hover {
     box-shadow: var(--shadow-deep);
 }
 
-.project-card h3 { font-size: 1.1rem; color: var(--highlight); margin-bottom: 8px; }
-.project-card p { font-size: 0.95rem; margin: 0; color: var(--highlight); line-height: 1.4; opacity: 0.9; }
+.project-card h3 { font-size: 1.1rem; color: var(--brand-main); margin-bottom: 8px; }
+.project-card p { font-size: 0.95rem; margin: 0; color: var(--text-main); line-height: 1.4; opacity: 0.9; }
 
 /* State cards */
 .state-card {
@@ -453,7 +453,7 @@ tbody tr:hover {
 
 .control-group label {
     font-size: 0.7rem;
-    color: var(--text-accent);
+    color: var(--text-main);
     font-weight: 500;
 }
 
@@ -491,7 +491,7 @@ tbody tr:hover {
 .info.legend {
     padding: 10px;
     font: 12px/14px 'Inter', sans-serif;
-    background: rgba(255, 255, 255, 0.8); 
+    background: rgba(255, 255, 255, 0.6); 
     box-shadow: var(--shadow-main);
     border-radius: 5px;
     line-height: 1.5;
@@ -514,7 +514,7 @@ tbody tr:hover {
 } 
 
 .modern-tooltip {
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.4);
     backdrop-filter: blur(4px);
     border: 1px solid var(--text-accent);
     padding: 4px 8px;
