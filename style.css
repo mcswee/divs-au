@@ -581,17 +581,45 @@ tbody tr:hover {
 }
 
 /* Flags */
-/* Section & typography */
+/* Flag Section & Row */
 .state-section {
     padding: 3rem 0;
     border-bottom: 1px solid var(--text-accent);
 }
 
-.commentary { margin: 1.5rem 0; line-height: 1.6; }
+.flag-row {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap; 
+    align-items: flex-end;
+    margin: 2rem 0;
+}
 
-.copyright {
-    font-size: 0.75rem;
-    margin-top: 1rem;
+/* Figure & image scaling */
+figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 250px; 
+    max-width: 400px;
+}
+
+figure img {
+    height: auto;
+    width: auto;
+    max-height: 180px; 
+    max-width: 100%;
+    border: 1px solid var(--text-accent);
+    background: var(--bg-main);
+}
+
+figcaption {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: var(--text-accent);
+    text-align: center;
+    font-style: italic;
 }
 
 /* Status badges */
@@ -602,44 +630,30 @@ tbody tr:hover {
     font-size: 0.7rem;
     font-weight: 800;
     text-transform: uppercase;
-    background: var(--accent); /* Fallback */
+    /* Using surface accent for neutral base */
+    background: var(--accent); 
+    color: var(--text-main);
 }
 
-/* Badge colors keep specific */
+/* Placeholder Status colors - awaiting your specific hex codes */
 .status-no-change { background: #2ecc71; color: var(--highlight); }
 .status-redesign  { background: #e67e22; color: var(--highlight); }
 .status-recolor   { background: #3498db; color: var(--highlight); }
 .status-tweak     { background: #9b59b6; color: var(--highlight); }
+.status-historical{ background: #7f8c8d; color: var(--highlight); }
+.status-evolution { background: #16a085; color: var(--highlight); }
 
-/* Flag layout & ltacking */
-.flag-row {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap; /* This makes flags stack on mobile */
-    align-items: flex-end;
-    margin: 2rem 0;
+/* Text Content */
+.commentary { 
+    margin: 1.5rem 0; 
+    line-height: 1.6;
+    color: var(--text-main);
 }
 
-figure {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-figure img {
-    height: auto;
-    width: auto;
-    max-height: 150px; /* Limits height, maintains aspect ratio */
-    max-width: 100%;   /* Keeps it from overflowing mobile screens */
-    border: 1px solid var(--text-highlight);
-}
-
-figcaption {
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
+.copyright {
+    font-size: 0.75rem;
     color: var(--text-highlight);
-    font-style: italic;  
+    margin-top: 1rem;
 }
 
 /* 12. RESPONSIVENESS */
