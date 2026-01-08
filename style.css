@@ -609,6 +609,61 @@ tbody tr:hover {
     display: block;
 }
 
+/* old flag block from previous version. for comparison.
+.flag-block {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 2rem;
+}
+
+.flag-pair {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.flag-pair img {
+  max-height: 120px;
+  max-width: 180px ;
+  height: auto;
+  width: auto;
+  border: 1px solid #999;
+  background: white;
+}
+.flag-ohio {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.flag-ohio img {
+  max-height: 120px;
+  max-width: 180px ;
+  height: auto;
+  width: auto;
+  border: 0px;
+  background: white;
+}
+
+.flag-label {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.flag-commentary {
+  color: #333;
+  text-align: lef
+t; 
+}
+
+"/
+
 /* 12. RESPONSIVENESS */
 @media (max-width: 600px) {
     .brand span { display: none; }
