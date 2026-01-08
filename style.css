@@ -580,7 +580,7 @@ tbody tr:hover {
 
 /* Flags */
 .state-section { padding: 2rem 0; }
-.flag-single img { max-width: 300px; }
+.flag-single img { max-width: 150px; }
 
 .flag-compare { 
     display: flex; 
