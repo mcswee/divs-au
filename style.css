@@ -271,7 +271,7 @@ tbody tr:hover {
 
 .state-card:hover {
     border-color: var(--state-color, var(--brand-main));
-    background-color: var(--state-card-bg, var(--highlight));
+    background-color: var(--state-bg, var(--highlight));
     color: var(--state-color, var(--text-main));
     transform: translateY(-3px);
     box-shadow: var(--shadow-deep);
