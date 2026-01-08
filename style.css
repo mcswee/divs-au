@@ -1,1361 +1,625 @@
 /* 0. COLOR VARIABLES */
-
 :root {
-
- /* Branding */
-
+  /* Branding */
   --brand-main: #336;
-
   --brand-accent: #448;
-
   --brand-highlight: #eeeef8;
 
- 
-
   /* Surface */
-
   --bg-main: #f0f0f0;
-
   --highlight: #fafafa;
-
-  --accent: #e8e8e8
-
- 
+  --accent: #e8e8e8;
 
   /* Typography & Lines */
-
   --text-main: #333;
-
   --text-accent: #ccc;
-
   --text-highlight: #666;
-
   --footer-main: #999;
 
- 
-
   /* Depth */
-
   --shadow-main: 0 2px 4px rgba(0, 0, 0, 0.05);
-
   --shadow-deep: 0 6px 12px rgba(0, 0, 0, 0.2);
-
   --lighten: rgba(255, 255, 255, 0.15);
 
- 
-
   /* Functional */
-
   --error-main: #d11;
-
   --error-bg: #fff8f8;
-
 }
-
- 
-
- 
 
 /* 1. RESET & BASE */
-
 * {
-
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
-
 }
-
- 
 
 body {
-
     display: flex;
-
     flex-direction: column;
-
     height: 100vh;
-
     font-family: 'Inter', sans-serif;
-
     color: var(--text-main);
-
     overflow: hidden; 
-
     background: var(--bg-main);
-
     -webkit-font-smoothing: antialiased;
-
 }
-
- 
 
 /* 2. THE FIXED FRAME */
-
 .site-header {
-
     flex-shrink: 0;
-
     height: 70px;
-
-    background: var(--brand-main)
-
+    background: var(--brand-main);
     color: var(--highlight);
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     padding: 0 20px;
-
     z-index: 2000;
-
 }
-
- 
 
 .site-footer {
-
     flex-shrink: 0;
-
     height: 35px;
-
     background: var(--footer-main);
-
     color: var(--highlight);
-
     display: flex;
-
     align-items: center;
-
     padding: 0 20px;
-
     font-size: 0.75rem;
-
     border-top: 1px solid var(--text-accent);
-
     z-index: 2000;
-
 }
-
- 
 
 /* 3. SCROLLABLE CONTENT ENGINE */
-
 main {
-
     flex-grow: 1;
-
     overflow-y: auto;
-
     position: relative;
-
     -webkit-overflow-scrolling: touch;
-
 }
-
- 
 
 section {
-
     width: 100%;
-
     max-width: 1100px;
-
     margin: 0 auto;
-
     padding: 10px 20px;
-
 }
-
- 
 
 section:first-of-type {
-
     padding-top: 16px;
-
 }
-
- 
 
 /* 4. BRANDING & NAV */
-
 .brand {
-
     display: flex;
-
     align-items: center;
-
     gap: 15px;
-
     text-decoration: none;
-
     color: inherit;
-
 }
-
- 
 
 .brand img {
-
     height: 45px;
-
     width: auto;
-
     border-radius: 4px;
-
 }
-
- 
 
 .brand-text {
-
     display: flex;
-
     flex-direction: column;
-
     line-height: 1.1;
-
 }
-
- 
 
 .brand strong {
-
     font-size: 1.4rem;
-
     font-weight: 700;
-
 }
-
- 
 
 .brand span {
-
     font-size: 0.85rem;
-
     font-weight: 300;
-
     color: var(--highlight);
-
 }
-
- 
 
 nav a {
-
     color: var(--highlight);
-
     text-decoration: none;
-
     font-weight: 500;
-
     font-size: 0.95rem;
-
     padding: 10px 16px;
-
     border-radius: 6px;
-
     transition: background 0.2s;
-
 }
-
- 
 
 nav a:hover {
-
     background: var(--lighten);
-
 }
-
- 
 
 .error-container {
-
     display: flex;
-
     flex-direction: column;
-
-    align-items: center; /* Centers horizontally */
-
-    justify-content: center; /* Centers vertically */
-
+    align-items: center;
+    justify-content: center;
     height: 100%;
-
     max-width: 800px;
-
     margin: 0 auto;
-
     padding: 40px 20px;
-
     text-align: center;
-
 }
-
         
-
 .error-container h1 { font-size: 2.4rem; }
 
- 
-
 .error-link {
-
     text-decoration: none;
-
     color: var(--brand-main);
-
     background: var(--accent);
-
     font-weight: 500;
-
     font-size: 0.95rem;
-
     padding: 10px 24px;
-
     border-radius: 6px;
-
     transition: background 0.2s;
-
     border: 1px solid var(--text-accent);
-
 }
-
- 
 
 .error-link:hover {
-
     background: var(--brand-accent);
-
     color: var(--highlight);
-
     border-color: var(--highlight);
-
 }
-
- 
 
 /* 5. TYPOGRAPHY */
-
 h1 { font-size: 2.2rem; color: var(--brand-main); margin-bottom: 20px; }
-
-h2 { font-size: 1.4rem; color: var(--brand-main); margin: 40px 0 15px; border-bottom: 1px solid #ccc; padding-bottom: 8px; }
-
+h2 { font-size: 1.4rem; color: var(--brand-main); margin: 40px 0 15px; border-bottom: 1px solid var(--text-accent); padding-bottom: 8px; }
 h3 { font-size: 1.1rem; color: var(--brand-main); margin: 10px; padding-bottom: 8px; }
-
-p { font-size: 1rem; line-height: 1.4; color: var(text-main); margin-bottom: 5px; }
-
+p { font-size: 1rem; line-height: 1.4; color: var(--text-main); margin-bottom: 5px; }
 ul { margin-left: 1rem; }
-
     
-
 /* 6. TABLE LAYOUT*/
-
 .table-wrapper {
-
     width: 100%;
-
     overflow-x: auto;
-
     margin: 20px 0;
-
     border-radius: 8px;
-
     border: 1px solid var(--accent);
-
 }
-
- 
 
 table {
-
     width: 100%;
-
     border-collapse: collapse;
-
     font-size: 0.95rem;
-
     background: var(--highlight);
-
 }
-
- 
 
 th {
-
     background-color: var(--brand-main);
-
     color: var(--highlight);
-
     text-align: left;
-
     padding: 12px 15px;
-
     font-weight: 700;
-
 }
-
- 
 
 td {
-
     padding: 12px 15px;
-
-    border-bottom: 1px solid #eee;
-
+    border-bottom: 1px solid var(--accent);
     color: var(--text-main);
-
     vertical-align:top;
-
 }
-
- 
 
 /* Zebra Stripes */
-
 tbody tr:nth-child(even) {
-
     background-color: var(--accent);
-
 }
-
- 
 
 /* Hover Effect */
-
 tbody tr:hover {
-
     background-color: var(--brand-highlight);
-
 }
-
- 
-
-/* Right-align numbers (use class="num" on the <td>) */
 
 .num {
-
     text-align: right;
-
     font-variant-numeric: tabular-nums;
-
     white-space: nowrap;
-
 }
-
- 
 
 /* 7. CARD GRID LAYOUTS */
-
 .card-grid {
-
     display: grid;
-
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-
     gap: 15px;
-
     margin-top: 20px;
-
 }
-
- 
-
-/* Side projects cards */
 
 .project-card {
-
     display: flex;
-
     flex-direction: column;
-
     background: var(--brand-accent);
-
     padding: 20px;
-
     border: 1px solid var(--text-accent);
-
     border-radius: 8px;
-
     text-decoration: none;
-
-    color: inherit;
-
+    color: var(--highlight);
     transition: all 0.2s ease;
-
     box-shadow: var(--shadow-main);
-
 }
-
- 
 
 .project-card:hover {
-
     border-color: var(--brand-main);
-
     transform: translateY(-3px);
-
     box-shadow: var(--shadow-deep);
-
 }
 
- 
-
-.project-card h3 { font-size: 1.1rem; color: var(--brand-main); margin-bottom: 8px; }
-
-.project-card p { font-size: 0.95rem; margin: 0; color: var(--text-highlight); line-height: 1.4; }
-
- 
+.project-card h3 { font-size: 1.1rem; color: var(--highlight); margin-bottom: 8px; }
+.project-card p { font-size: 0.95rem; margin: 0; color: var(--highlight); line-height: 1.4; opacity: 0.9; }
 
 /* State cards */
-
 .state-card {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     padding: 15px 20px;
-
-    background-color: var(--bg-accent);
-
+    background-color: var(--accent);
     border: 1px solid var(--text-accent);
-
     border-radius: 8px;
-
     text-decoration: none;
-
     color: var(--brand-main);
-
     font-weight: 600;
-
     transition: all 0.2s ease;
-
     box-shadow: var(--shadow-main);
-
 }
-
- 
 
 .state-card:hover {
-
     border-color: var(--state-color, var(--brand-main));
-
-    background-color: var(--state-card-bg, var(--bg-highlight));
-
+    background-color: var(--state-card-bg, var(--highlight));
     color: var(--state-color, var(--text-main));
-
     transform: translateY(-3px);
-
     box-shadow: var(--shadow-deep);
-
 }
-
- 
 
 .status {
-
     font-size: 0.7rem;
-
     text-transform: uppercase;
-
     padding: 4px 8px;
-
     border-radius: 4px;
-
     font-weight: 700;
-
 }
-
- 
-
-/* Status Cards – colour defined here */
 
 .status.current { background: #e6fffa; color: #2c7a7b; border: 1px solid #b2f5ea; }
-
 .status.deferred { background: #fffaf0; color: #9c4221; border: 1px solid #feebc8; }
-
 .status.archive { background: #edf2f7; color: #4a5568; border: 1px solid #e2e8f0; }
 
- 
-
 /* 8. HIGHLIGHTED COMPONENTS */
-
 .info-box {
-
-    background-color: var(--info-bg, var(--bg-highlight));
-
+    background-color: var(--info-bg, var(--highlight));
     border-left: 6px solid var(--info-color, var(--brand-main));
-
     border-radius: 0 8px 8px 0;
-
     max-width: 900px;
-
     margin: 0 auto;
-
 }
-
- 
 
 .info-box h2 {
-
     margin-top: 0;
-
     color: var(--info-color, var(--brand-main));
-
     font-size: 1.2rem;
-
     border: none;
-
     padding-left: 20px;
-
 }
-
- 
 
 .info-box p {
-
     font-size: 0.95rem;
-
-    color: var(--text-accent);
-
+    color: var(--text-main);
     line-height: 1.5;
-
     padding-left: 20px;
-
 }
-
- 
 
 .report-button {
-
     display: inline-flex;
-
     align-items: center;
-
     gap: 10px;
-
     margin-top: 20px;
-
     padding: 14px 24px;
-
     background: var(--state-color, var(--brand-main));
-
-    color: var(--;
-
+    color: var(--highlight);
     text-decoration: none;
-
     border-radius: 8px;
-
     font-weight: 600;
-
     transition: transform 0.2s, background 0.2s;
-
 }
-
         
-
 .report-button:hover {
-
     background: var(--state-accent, var(--brand-accent));
-
     transform: translateY(-2px);
-
 }
-
- 
 
 .external-links {
-
     max-width: 1100px;
-
     margin: 30px auto;
-
 }
-
         
-
 .external-links h2 {
-
     font-size: 1.1rem;
-
     color: var(--brand-main);
-
     margin-bottom: 15px;
-
     text-transform: uppercase;
-
     letter-spacing: 0.03em;
-
     border-bottom: none;
-
 }
-
         
-
 .link-list {
-
     list-style: none;
-
     padding: 0;
-
     display: flex;
-
     flex-direction: column;
-
     gap: 12px;
-
 }
-
         
-
 .link-item {
-
     display: flex;
-
     align-items: center;
-
     padding: 12px 16px;
-
-    background: var(--bg-highlight);
-
+    background: var(--highlight);
     border: 1px solid var(--text-accent);
-
     border-radius: 6px;
-
     text-decoration: none;
-
     color: var(--text-main);
-
     font-weight: 500;
-
     transition: all 0.2s ease;
-
 }
-
- 
-
-/* Adding a little "external link" icon via CSS */
 
 .link-item::after {
-
     content: '↗';
-
     margin-left: auto;
-
     font-size: 1.1rem;
-
     color: var(--text-accent);
-
     transition: color 0.2s;
-
 }
-
         
-
 .link-item:hover {
-
-    background: #fcfcfc;
-
+    background: var(--accent);
     border-color: var(--brand-main);
-
     color: var(--brand-main);
-
-    transform: translateX(4px); /* Subtle nudge to show it's interactive */
-
+    transform: translateX(4px);
 }
-
         
-
 .link-item:hover::after {
-
     color: var(--brand-main);
-
 }
-
- 
 
 /* 9. FOOTER LINKS */
-
 .site-footer nav {
-
     display: flex;
-
     padding: 0;
-
 }
-
- 
 
 .site-footer a {
-
-    color: var(--bg-highlight);
-
+    color: var(--highlight);
     text-decoration: none;
-
     font-size: inherit;
-
     line-height: 1;
-
     transition: color 0.2s;
-
     margin: 0;
-
     padding: 0;
-
-    background: none;/* Ensures no background bleed from header styles */
-
+    background: none;
 }
-
- 
 
 .site-footer a:hover {
-
-    color: var(--brand-main)
-
+    color: var(--brand-main);
     background: none;
-
 }
-
- 
-
-/* Perfect Bullet Centering */
 
 .site-footer span::after,
-
 .site-footer nav a:not(:last-child)::after {
-
     content: "•";
-
     margin-left: 10px;
-
     margin-right: 10px;
-
-    color: var(--bg-highlight);
-
+    color: var(--highlight);
     font-weight: bold;
-
-    display: inline-block; /* Helps with precise spacing */
-
+    display: inline-block;
 }
-
- 
 
 /* 10. MAP SPECIFIC UI */
-
 #map {
-
     position: absolute;
-
     top: 0; left: 0; width: 100%; height: 100%;
-
     z-index: 1;
-
 }
-
- 
 
 #map-controls {
-
     position: absolute;
-
     top: 12px; left: 60px;
-
     z-index: 1000;
-
-    background: white;
-
+    background: var(--highlight);
     padding: 15px;
-
     border-radius: 8px;
-
-    box-shadow: 0 4px 15px var(--shadow-deep);
-
+    box-shadow: var(--shadow-deep);
     border: 1px solid var(--text-accent);
-
     width: 240px;
-
 }
-
- 
 
 #map-controls h1 {
-
     width: 100%; 
-
     font-size: 0.95rem;
-
     font-weight: 600;
-
     color: var(--brand-main);
-
     margin: 0;
-
     letter-spacing: -0.01em;
-
 }
-
- 
 
 .control-group {
-
     flex: 1 1 100%; 
-
     display: flex;
-
     flex-direction: column;
-
     gap: 4px;
-
 }
-
- 
 
 .control-group label {
-
     font-size: 0.7rem;
-
     color: var(--text-accent);
-
     font-weight: 500;
-
 }
-
- 
 
 #year-select, #division-search {
-
     width: 100%;
-
     padding: 8px;
-
     font-family: 'Inter', sans-serif;
-
     font-size: 0.85rem;
-
     border: 1px solid var(--text-accent);
-
     border-radius: 4px;
-
     background: var(--bg-main);
-
     color: var(--text-main);
-
     box-sizing: border-box;
-
 } 
-
- 
 
 .badge {
-
     padding: 2px 6px;
-
     border-radius: 4px;
-
     font-size: 10px;
-
     font-weight: bold;
-
-    color: white; /* keep white instead of brand color for badge */
-
+    color: white;
     text-transform: uppercase;
-
 }
 
- 
-
-/* Badges have specific colors for function */
-
+/* Badge colors remain specific */
 .badge.fed { background: #389b6f; }
-
 .badge.pm { background: #d48806; }
-
 .badge.fem { background: #7209b7; }
-
 .badge.ind { background: #e85d04; }
-
 .badge.geo { background: #7f5539; }
-
 .badge.old { background: #6c757d; }
-
 .badge.nonaus { background: #b62631; }
-
 .badge.linked { background: #2ca8b7; }
 
- 
-
 .info.legend {
-
     padding: 10px;
-
     font: 12px/14px 'Inter', sans-serif;
-
-    background: rgba(255, 255, 255, 0.6); /* specific opaque background for this */
-
+    background: rgba(255, 255, 255, 0.8); 
     box-shadow: var(--shadow-main);
-
     border-radius: 5px;
-
     line-height: 1.5;
-
     color: var(--text-main);
-
     max-width: 150px; 
-
 }
 
- 
-
- .legend-item {
-
+.legend-item {
     display: flex;
-
     align-items: center;
-
     margin-bottom: 4px;
-
 }
-
- 
 
 .legend-color {
-
     width: 14px;
-
     height: 14px;
-
     margin-right: 8px;
-
     border-radius: 2px;
-
     border: 1px solid rgba(0,0,0,0.2);
-
 } 
-
- 
 
 .modern-tooltip {
-
-    background-color: rgba(255,255,255,0.5); /* Specific opaque background) */
-
+    background-color: rgba(255,255,255,0.8);
     backdrop-filter: blur(4px);
-
-    border: 1px solid rgba(0,0,0,0.25); /* specific border for this element */
-
+    border: 1px solid var(--text-accent);
     padding: 4px 8px;
-
     font-size: 0.8rem;
-
+    box-shadow: var(--shadow-main);
 }
 
- 
-
- .modern-tooltip:before {
-
+.modern-tooltip:before {
     display:none;
-
 } 
 
- 
-
 #state-map {
-
     height: 600px; 
-
     width: 99%;
-
     text-align:center;
-
 }
-
- 
-
-/* Remove default ring for everyone */
 
 .leaflet-interactive:focus, 
-
 #map:focus {
-
     outline: none !important;
-
 }
-
- 
-
-/* Add a clean navy ring ONLY for keyboard/tab users */
 
 .leaflet-interactive:focus-visible,
-
 #map:focus-visible {
-
     outline: 2px solid var(--brand-main);
-
     outline-offset: 2px;
-
- 
-
 }
-
- 
 
 /* 11. PROJECT SPECIALIST */
-
- 
-
-/* Suburb pronunciations */
-
 .table-wrapper.suburb-list {
-
     max-height: 500px;
-
     max-width: 1100px;
-
     overflow-y: auto;
-
     border: 1px solid var(--text-highlight);
-
     margin-top: 1rem;
-
     margin-left: auto;
-
     margin-right: auto;
-
 }
-
- 
-
-/* Keeps the header visible while you scroll the long list */
 
 .table-wrapper.suburb-list th {
-
     position: sticky;
-
     top: 0;
-
     z-index: 10;
-
-    box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1); /* Slight shadow to separate from scrolling rows */
-
+    box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);
 }
-
- 
 
 #suburb-search {
-
     width: 100%;
-
     max-width: 400px;
-
     padding: 12px;
-
     font-family: inherit;
-
-    border: 2px solid #336;
-
+    border: 2px solid var(--brand-main);
     border-radius: 6px;
-
     margin-bottom: 10px;
-
+    background: var(--highlight);
 }
-
- 
 
 #suburb-search.no-results {
-
     border-color: var(--error-main);
-
     background-color: var(--error-bg);
-
     outline: none;
-
 }
 
- 
-
-/* US flags*/
-
- 
-
+/* Flags */
 .state-section { padding: 2rem 0; }
-
 .flag-single img { max-width: 300px; }
 
- 
-
 .flag-compare { 
-
     display: flex; 
-
     gap: 20px; 
-
-    align-items: flex-end; /* Aligns flags along the bottom edge */
-
+    align-items: flex-end; 
     margin: 1.5rem 0;
-
 }
-
- 
 
 .flag-compare img { 
-
-    height: 150px; /* Sets a uniform height so different ratios don't look messy */
-
-    width: auto; /* Allows the width to be determined by the flag's ratio */
-
-    border: 1px solid var(--text-highlight);
-
+    height: 150px;
+    width: auto;
+    border: 1px solid var(--text-accent);
     display: block;
-
 }
 
- 
-
-dt {
-
-    font-weight: bold;
-
-    margin-top: 10px;
-
-}
-
- 
-
-dd {
-
-    margin-left: 0;
-
-    margin-bottom: 10px;
-
-    font-style: italic; /* Optional: sets it apart from the intro text */
-
-}
-
- 
+dt { font-weight: bold; margin-top: 10px; }
+dd { margin-left: 0; margin-bottom: 10px; font-style: italic; }
 
 /* 12. RESPONSIVENESS */
-
 @media (max-width: 600px) {
-
     .brand span { display: none; }
-
     h1 { font-size: 1.8rem; }
-
     .card-grid { grid-template-columns: 1fr; }
-
-    .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; } 
-
     #map-controls {
-
-        top: 0;
-
-        left: 0;
-
-        width: 100%;
-
-        border-radius: 0;
-
-        border: none;
-
+        top: 0; left: 0; width: 100%;
+        border-radius: 0; border: none;
         border-bottom: 1px solid var(--text-accent);
-
         padding: 10px;
-
-        
-
-        /* Force them into one line */
-
         display: flex !important;
-
         flex-direction: row !important;
-
         align-items: flex-end;
-
         gap: 8px;
-
      }
-
- 
-
-     #map-controls h1 {
-
-        display: none; /* Nukes the header to save space */
-
-     }
-
- 
-
-     .control-group {
-
-        flex: 1;
-
-        margin: 0;
-
-     }
-
- 
-
-     .control-group:first-of-type {
-
-        flex: 0 0 85px; /* Keeps the year box small */
-
-     }
-
- 
-
-     .control-group label {
-
-        display: none; /* Hide labels to keep the bar slim */
-
-     }
-
- 
-
-     /* Move Leaflet zoom buttons down so they aren't covered by the bar */
-
-     .leaflet-top.leaflet-left {
-
-        top: 75px !important; 
-
-     }
-
- 
-
-    .flag-compare img {
-
-        height: auto;
-
-        width: 100%;
-
-    } 
-
-    
-
-    .site-footer {
-
-        height: auto; /* Allow it to grow if text wraps */
-
-        padding: 6px;
-
-        flex-wrap: wrap; /* Prevent horizontal overflow */
-
-        justify-content: center;
-
-        width: 100%;
-
-    }
-
- 
-
+     #map-controls h1 { display: none; }
+     .control-group { flex: 1; margin: 0; }
+     .control-group:first-of-type { flex: 0 0 85px; }
+     .control-group label { display: none; }
+     .leaflet-top.leaflet-left { top: 75px !important; }
+    .site-footer { height: auto; padding: 6px; flex-wrap: wrap; justify-content: center; }
     .site-footer span { display: none; }
-
-    .site.footer nav { justify-content: center; width: 100%; }
-
-    .site-footer nav a::after { margin: 0 6px; } /* Tighter spacing for small screens */
-
+    .site-footer nav { justify-content: center; width: 100%; }
 }
