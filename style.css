@@ -183,11 +183,14 @@ dd { margin-left: 0; margin-bottom: 10px; font-style: italic; }
     margin: 20px 0;
     border-radius: 8px;
     border: 1px solid var(--accent);
+    /* Keeps the header in view if the table is long */
+    max-height: 85vh; 
 }
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate; /* Changed from collapse to preserve rounded corners */
+    border-spacing: 0;
     font-size: 0.95rem;
     background: var(--highlight);
 }
@@ -198,13 +201,22 @@ th {
     text-align: left;
     padding: 12px 15px;
     font-weight: 700;
+    /* Sticky Logic */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);
+}
+
+/* Ensure borders still look right with separate collapse */
+th, td {
+    border-bottom: 1px solid var(--accent);
 }
 
 td {
     padding: 12px 15px;
-    border-bottom: 1px solid var(--accent);
     color: var(--text-main);
-    vertical-align:top;
+    vertical-align: top;
 }
 
 /* Zebra Stripes */
@@ -216,6 +228,10 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background-color: var(--brand-highlight);
 }
+
+/* Tablesort Indicators */
+th[aria-sort="ascending"]::after { content: " ▲"; font-size: 0.7em; }
+th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 
 .num {
     text-align: right;
@@ -573,13 +589,6 @@ tbody tr:hover {
     margin-top: 1rem;
     margin-left: auto;
     margin-right: auto;
-}
-
-.table-wrapper.suburb-list th {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);
 }
 
 /* Flags */
