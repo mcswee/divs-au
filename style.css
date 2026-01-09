@@ -229,10 +229,15 @@ tbody tr:hover {
     background-color: var(--brand-highlight);
 }
 
+/* Tablesort UI indicators */
+th.sort-header { cursor: pointer; }
+th[data-sort-method="none"] { cursor: default; }
+
 /* Tablesort Indicators */
 th[aria-sort="ascending"]::after { content: " ▲"; font-size: 0.7em; }
 th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 
+/* Numeric class for right-aligned and tabulated */
 .num {
     text-align: right;
     font-variant-numeric: tabular-nums;
@@ -657,17 +662,35 @@ figcaption {
 .status-redesign  { background: #9e2a2b; }
 .status-historic  { background: #4a4e69; }
 
-/* Text Content */
+/* Text commentary content*/
 .commentary { 
     margin: 5px;; 
     line-height: 1.6;
     color: var(--text-main);
 }
 
+/* Copyright notice content */
 .copyright {
     font-size: 0.75rem;
     color: var(--text-highlight);
     margin-top: 1rem;
+}
+
+/* Colours */
+/* Remove zebra stripes and add row borders for the colour table */
+#colour-table tbody tr {
+    background-color: transparent !important;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Ensure the table doesn't have a double-border look */
+#colour-table {
+    border-collapse: collapse;
+}
+
+/* Optional: Add a slight hover effect so you don't lose your place */
+#colour-table tbody tr:hover {
+    background-color: #f9f9f9 !important;
 }
 
 /* 12. RESPONSIVENESS */
