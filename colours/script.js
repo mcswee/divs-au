@@ -72,15 +72,21 @@ Papa.parse("colours.csv", {
 
         const table = document.getElementById('colour-table');
 
-        // Step 3: Define Custom Sorting Parsers
-        // This handles "imm." as 0 and treats decimals correctly for HSL
-        Tablesort.extend('number', function(item) { return true; }, function(a, b) {
-            const clean = (val) => {
-                if (val.toLowerCase().includes('imm')) return 0; 
-                return parseFloat(val.replace(/[^\d.]/g, '')) || 9999;
-            };
-            return clean(a) - clean(b);
-        });
+// Step 3: Updated Custom Sorting Parser
+Tablesort.extend('number', function(item) { return true; }, function(a, b) {
+    const clean = (val) => {
+        if (val.toLowerCase().includes('imm')) return 0; 
+        
+        // Extract numbers and decimals
+        const parsed = parseFloat(val.replace(/[^\d.]/g, ''));
+        
+        // If it's a valid number (including 0), use it. 
+        // If it's truly empty or text, use 9999.
+        return !isNaN(parsed) ? parsed : 9999;
+    };
+    return clean(a) - clean(b);
+});
+
 
         // Sorts by the rainbow order established in the Family column
         Tablesort.extend('family', function(item) { return true; }, function(a, b) {
