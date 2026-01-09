@@ -4,96 +4,55 @@ Scarlet,#FF2400,1250,Reds
 Crimson,#DC143C,c. 1400,Reds
 Carmine,#960018,1523,Reds
 Red,#E42313,imm.,Reds
-Vermilion,#E34234,1289,Oranges
-Ochre,#C75B12,1780,Oranges
-Tangerine,#F28500,1899,Oranges
-Orange,#FF5800,1502,Oranges
-Brown,#964B00,c. 1000,Browns
-Coffee,#6F4E37,1695,Browns
-Chestnut,#954535,1555,Browns
-Russet,#80461B,1562,Browns
-Sepia,#704214,c. 1800,Browns
-Hotpink,#FF69B4,1937,Pinks
-Bubblegum,#FFC1CC,1927,Pinks
-Bronze,#CD7F32,1753,Browns
-Saffron,#F4C430,1200,Yellows
-Rust,#B7410E,1692,Browns
-Burntorange,#CC5500,1915,Oranges
-Amber,#FFC000,1500,Oranges
-Coral,#FF7F50,1513,Oranges
-Peach,#FEBAAD,1588,Oranges
-Salmon,#FA8072,1776,Pinks
-Champagne,#F7E7CE,1915,Neutrals
-Apricot,#FBCEB1,1851,Oranges
 Burgundy,#660033,1523,Reds
 Maroon,#800000,1789,Reds
 Claret,#7F1734,1547,Reds
 Wine,#722F37,1547,Reds
-Carnation,#FFA6C9,1535,Pinks
-Chocolate,#7B3F00,1737,Browns
 Bloodred,#880808,imm.,Reds
 Cardinal,#C41E3A,1698,Reds
+Murrey,#AD4379,1537,Reds
+Oxblood,#4A0000,1695,Reds
+Vermilion,#E34234,1570,Oranges
+Ochre,#C75B12,1780,Oranges
+Tangerine,#F28500,1899,Oranges
+Orange,#FF5800,1502,Oranges
+Burntorange,#CC5500,1915,Oranges
+Amber,#FFC000,1500,Oranges
+Coral,#FF7F50,1513,Oranges
+Peach,#FEBAAD,1588,Oranges
+Apricot,#FBCEB1,1851,Oranges
+Terracotta,#E2725B,1782,Oranges
+Saffron,#F4C430,1200,Yellows
 Goldenrod,#DAA520,1915,Yellows
 Yellow,#FFFF00,c. 700,Yellows
 Gold,#FFD700,1423,Yellows
-Chartreuse,#DFFF00,1892,Greens
 Lemon,#FDFD96,1598,Yellows
 Mustard,#FFDB58,1886,Yellows
-Bone,#E3DAC9,c. 1800,Neutrals
-Snow,#FFFAFA,c. 1000,Neutrals
-Ivory,#FFFFF0,1385,Neutrals
-Cream,#FFFDD0,1590,Neutrals
-White,#FFFFFF,imm.,Neutrals
-Alabaster,#EDEAE0,1594,Neutrals
-Graphite,#41424C,1789,Greys
-Grey,#A9A9A9,c. 700,Greys
-Gunmetal,#2A3439,1905,Greys
-Ash,#B2BEB5,1374,Greys
-Silver,#C0C0C0,1481,Greys
-Charcoal,#36454F,1606,Greys
-Khaki,#C3B091,1848,Neutrals
-Greige,#CCC2BA,1975,Neutrals
-Taupe,#483C32,1846,Neutrals
-Beige,#F5F5DC,1855,Neutrals
-Buff,#DAA06D,1686,Neutrals
-Fawn,#E5AA70,1789,Neutrals
-Umber,#635147,c. 1600,Browns
-Tan,#D2B48C,1590,Neutrals
-Sand,#EDC9AF,1627,Neutrals
-Sienna,#882D17,1760,Browns
+Gamboge,#EF9B0F,1604,Yellows
+Citrine,#E4D00A,1386,Yellows
+Chartreuse,#DFFF00,1892,Greens
 Forest,#228B22,1810,Greens
 Green,#00A550,c. 700,Greens
 Bottle,#006A4E,1816,Greens
 Spring,#A7FC00,1598,Greens
 Emerald,#32CD32,1598,Greens
 Viridian,#40826D,c. 1860,Greens
-Cerise,#DE3163,1858,Pinks
-Magenta,#FF0090,1859,Pinks
-Rose,#FF5CCD,1382,Pinks
-Periwinkle,#CCCCFF,1922,Blues
-Plum,#8E4585,1805,Purples
-Indigo,#351062,1289,Blues
-Pink,#FFB6C1,c. 1700,Pinks
-Sky,#87CEEB,1681,Blues
 Aquamarine,#7FFFD4,1598,Greens
 Turquoise,#40E0D0,1573,Greens
 Cyan,#00FFFF,1879,Greens
 Aqua,#08F0DA,1598,Greens
 Celeste,#B2FFFF,1750,Greens
-Copper,#B87333,1594,Browns
-Murrey,#AD4379,1537,Reds
-Lilac,#C8A2C8,1775,Purples
-Violet,#8000FF,1370,Purples
-Lavender,#B57EDC,1705,Purples
-Purple,#7851A9,c. 900,Purples
-Mauve,#E0B0FF,1796,Purples
-Ebony,#555D50,1590,Greys
-Black,#000000,imm.,Greys
-Jet,#343434,1450,Greys
-Bistre,#3D2B1F,1727,Browns
-Oxblood,#4A0000,1695,Reds
-Mulberry,#C54B8C,1776,Purples
-Byzantium,#702963,1926,Purples
+Teal,#008080,1917,Greens
+Seagreen,#2E8B57,1598,Greens
+Pine,#015F56,1923,Greens
+Jade,#00BB77,1892,Greens
+Celadon,#ACE1AF,1627,Greens
+Sage,#BCB88A,c. 1600,Greens
+Olive,#808000,c. 1400,Greens
+Eucalyptus,#66745B,1946,Greens
+Mint,#3EB489,1920,Greens
+Periwinkle,#CCCCFF,1922,Blues
+Sky,#87CEEB,1681,Blues
 Slate,#708090,1705,Blues
 Cerulean,#007BA7,1590,Blues
 Capri,#00BFFF,1920,Blues
@@ -101,29 +60,69 @@ Azure,#0080FF,1374,Blues
 Blue,#0321D3,imm.,Blues
 Ultramarine,#180CB0,1598,Blues
 Navy,#000070,1813,Blues
-Teal,#008080,1917,Greens
 Cobalt,#0047AB,1777,Blues
-Seagreen,#2E8B57,1598,Greens
 Midnight,#0F0343,1915,Blues
-Pine,#015F56,1923,Greens
-Jade,#00BB77,1892,Greens
-Celadon,#ACE1AF,1627,Greens
-Sage,#BCB88A,c. 1600,Greens
-Olive,#808000,c. 1400,Greens
-Eucalyptus,#66745B,1946,Greens
-Amaranth,#E52B50,1690,Purples
-Fuchsia,#C154C1,1892,Pinks
-Gamboge,#EF9B0F,1604,Yellows
-Mahogany,#C04000,1737,Browns
-Terracotta,#E2725B,1782,Oranges
-Onyx,#353839,1848,Greys
-Platinum,#E5E4E2,1850,Neutrals
-Pewter,#899594,1811,Greys
-Eggshell,#F0EAD6,1896,Neutrals
-Citrine,#E4D00A,1386,Yellows
 Iceblue,#99FFFF,1915,Blues
-Babypink,#F4C2C2,1928,Pinks
 Powderblue,#B0E0E6,1894,Blues
-Mint,#3EB489,1920,Greens
 Electric,#7DF9FF,1884,Blues
+Plum,#8E4585,1805,Purples
+Lilac,#C8A2C8,1775,Purples
+Violet,#8000FF,1370,Purples
+Lavender,#B57EDC,1705,Purples
+Purple,#7851A9,c. 900,Purples
+Mauve,#E0B0FF,1796,Purples
+Mulberry,#C54B8C,1776,Purples
+Byzantium,#702963,1926,Purples
+Amaranth,#E52B50,1690,Purples
 Tyrian,#66023C,1570,Purples
+Hotpink,#FF69B4,1937,Pinks
+Bubblegum,#FFC1CC,1927,Pinks
+Salmon,#FA8072,1776,Pinks
+Carnation,#FFA6C9,1535,Pinks
+Cerise,#DE3163,1858,Pinks
+Magenta,#FF0090,1859,Pinks
+Rose,#FF5CCD,1382,Pinks
+Pink,#FFB6C1,c. 1700,Pinks
+Fuchsia,#C154C1,1892,Pinks
+Babypink,#F4C2C2,1928,Pinks
+Brown,#964B00,c. 1000,Browns
+Coffee,#6F4E37,1695,Browns
+Chestnut,#954535,1555,Browns
+Russet,#80461B,1562,Browns
+Sepia,#704214,c. 1800,Browns
+Chocolate,#7B3F00,1737,Browns
+Rust,#B7410E,1692,Browns
+Bronze,#CD7F32,1753,Browns
+Umber,#635147,c. 1600,Browns
+Sienna,#882D17,1760,Browns
+Copper,#B87333,1594,Browns
+Bistre,#3D2B1F,1727,Browns
+Mahogany,#C04000,1737,Browns
+Graphite,#41424C,1789,Greys
+Grey,#A9A9A9,c. 700,Greys
+Gunmetal,#2A3439,1905,Greys
+Ash,#B2BEB5,1374,Greys
+Silver,#C0C0C0,1481,Greys
+Charcoal,#36454F,1606,Greys
+Ebony,#555D50,1590,Greys
+Black,#000000,imm.,Greys
+Jet,#343434,1450,Greys
+Onyx,#353839,1848,Greys
+Pewter,#899594,1811,Greys
+Champagne,#F7E7CE,1915,Neutrals
+Bone,#E3DAC9,c. 1800,Neutrals
+Snow,#FFFAFA,c. 1000,Neutrals
+Ivory,#FFFFF0,1385,Neutrals
+Cream,#FFFDD0,1590,Neutrals
+White,#FFFFFF,imm.,Neutrals
+Alabaster,#EDEAE0,1594,Neutrals
+Khaki,#C3B091,1848,Neutrals
+Greige,#CCC2BA,1975,Neutrals
+Taupe,#483C32,1846,Neutrals
+Beige,#F5F5DC,1855,Neutrals
+Buff,#DAA06D,1686,Neutrals
+Fawn,#E5AA70,1789,Neutrals
+Tan,#D2B48C,1590,Neutrals
+Sand,#EDC9AF,1627,Neutrals
+Platinum,#E5E4E2,1850,Neutrals
+Eggshell,#F0EAD6,1896,Neutrals
