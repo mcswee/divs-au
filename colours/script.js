@@ -1,3 +1,6 @@
+/**
+ * Convert Hex strings (#FFFFFF) to RGB objects for HSL calculation.
+ */
 function hexToRgb(hex) {
     hex = hex.replace('#', '');
     if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
@@ -5,6 +8,10 @@ function hexToRgb(hex) {
     return { r: (bigint >> 16) & 255, g: (bigint >> 8) & 255, b: bigint & 255 };
 }
 
+/**
+ * Convert RGB to HSL. 
+ * Results (h, s, l) are decimals between 0 and 1.
+ */
 function rgbToHsl({ r, g, b }) {
     r /= 255; g /= 255; b /= 255;
     const max = Math.max(r, g, b), min = Math.min(r, g, b);
@@ -22,6 +29,10 @@ function rgbToHsl({ r, g, b }) {
     return { h, s, l };
 }
 
+/**
+ * Inject rows into the table.
+ * Columns 4-7 are hidden but contain the raw data used for sorting.
+ */
 function buildTable(data) {
     const tbody = document.querySelector("#colour-table tbody");
     if (!tbody) return;
@@ -31,10 +42,10 @@ function buildTable(data) {
             <td style="background-color:${item.Hex}; width:2.5em;"></td>
             <td>${item.Hex}</td>
             <td>${item.Year}</td>
-            <td style="display:none">${item.Family}</td>
-            <td style="display:none">${item.hue}</td>
-            <td style="display:none">${item.lum}</td>
-            <td style="display:none">${item.sat}</td>
+            <td>${item.Family}</td>
+            <td>${item.hue}</td>
+            <td>${item.lum}</td>
+            <td>${item.sat}</td>
         </tr>
     `).join('');
 }
@@ -44,62 +55,61 @@ Papa.parse("colours.csv", {
     header: true,
     skipEmptyLines: true,
     complete: function(results) {
+        // Step 1: Process CSV data and calculate HSL values
         const data = results.data.map(item => {
             const rgb = hexToRgb(item.Hex);
             const hsl = rgbToHsl(rgb);
-            return { ...item, hue: hsl.h, lum: hsl.l, sat: hsl.s };
+            return { 
+                ...item, 
+                hue: hsl.h, 
+                lum: hsl.l, 
+                sat: hsl.s 
+            };
         });
 
+        // Step 2: Build the table structure
         buildTable(data);
 
         const table = document.getElementById('colour-table');
 
-        // Year Sort
-        Tablesort.extend('number', function(item) {
-            return true; 
-        }, function(a, b) {
+        // Step 3: Define Custom Sorting Parsers
+        // This handles "imm." as 0 and treats decimals correctly for HSL
+        Tablesort.extend('number', function(item) { return true; }, function(a, b) {
             const clean = (val) => {
-                val = val.toLowerCase();
-                if (val.includes('imm')) return 0; 
-                return parseInt(val.replace(/[^\d]/g, ''), 10) || 9999;
+                if (val.toLowerCase().includes('imm')) return 0; 
+                return parseFloat(val.replace(/[^\d.]/g, '')) || 9999;
             };
             return clean(a) - clean(b);
         });
 
-        // Family Sort
-        Tablesort.extend('family', function(item) {
-            return true;
-        }, function(a, b) {
+        // Sorts by the rainbow order established in the Family column
+        Tablesort.extend('family', function(item) { return true; }, function(a, b) {
             const familyOrder = {
                 "reds": 1, "oranges": 2, "yellows": 3, "greens": 4, 
                 "blues": 5, "purples": 6, "pinks": 7, "browns": 8, 
                 "greys": 9, "neutrals": 10
             };
-            const getOrder = (val) => familyOrder[val.toLowerCase().trim()] || 99;
-            return getOrder(a) - getOrder(b);
+            return (familyOrder[a.toLowerCase().trim()] || 99) - (familyOrder[b.toLowerCase().trim()] || 99);
         });
 
+        // Step 4: Initialize Tablesort and Refresh
+        // Refresh is required because rows were added after page load
         const ts = new Tablesort(table);
-        ts.refresh(); // Crucial: tell tablesort to look at the new data
+        ts.refresh();
 
-        // Sort Selector
+        // Step 5: Handle Dropdown Sort Trigger
         const sortSelect = document.getElementById('sort-select');
         sortSelect.addEventListener('change', function() {
             const headers = table.querySelectorAll('th');
             const colMap = {
-                "Name": 0,
-                "Hex": 2,
-                "Year": 3,
-                "Family": 4,
-                "Hue": 5,
-                "Luminosity": 6,
-                "Saturation": 7
+                "Name": 0, "Hex": 2, "Year": 3, "Family": 4, 
+                "Hue": 5, "Luminosity": 6, "Saturation": 7
             };
             const index = colMap[this.value];
             if (index !== undefined) ts.sortTable(headers[index]);
         });
 
-        // Filtering logic
+        // Step 6: Search and Family Filter Logic
         const searchInput = document.getElementById('colour-search');
         const familyFilter = document.getElementById('family-filter');
 
