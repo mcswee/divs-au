@@ -53,60 +53,61 @@
             <p>It exists as a practical reference for design, development, mapping, and any system that benefits from stable, named colours.</p>
         </section>
         
-        <section>
-            <h2>List of colours</h2>
-                <div class="search-container" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
-                    <div class="filter-group">
-                        <label for="colour-search">Search colours by name or hex code:</label><br>
-                        <input type="text" id="colour-search" class="search-select" placeholder="Enter a name or hex code&hellip;">
-                    </div>
-                    <div class="sort-group">
-                        <label for="sort-select">Sort by:</label><br>
-                        <select id="sort-select" class="search-select">
-                            <option value="Name">Name</option>
-                            <option value="Hex">Hex code</option>
-                            <option value="Hue">Hue</option>
-                            <option value="Luminosity">Luminosity</option>
-                            <option value="Saturation">Saturation</option>
-                            <option value="Year">Year first mentioned</option>
-                            <option value="Family">Colour family</option>
-                        </select>
-                    </div>
-<div class="filter-group">
-    <label for="family-filter">Filter by family:</label>
-    <select id="family-filter" class="search-select">
-        <option value="all">All families</option>
-        <option value="reds">Reds</option>
-        <option value="oranges">Oranges</option>
-        <option value="yellows">Yellows</option>
-        <option value="greens">Greens</option>
-        <option value="blues">Blues</option>
-        <option value="purples">Purples</option>
-        <option value="pinks">Pinks</option>
-        <option value="browns">Browns</option>
-        <option value="greys">Greys (inc. Blacks)</option>
-        <option value="neutrals">Neutrals (inc. Whites)</option>
-    </select>
-</div>
-                </div>
-            <div class="table-wrapper">
-                <table id="colour-table" class="sortable">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th role="columnheader" class="no-sort">Swatch</th>
-                            <th>Hex</th>
-                            <th data-sort-method="number">Year</th>
-                            <th style="display:none">Family</th>
-                            <th style="display:none">Hue</th>
-                            <th style="display:none">Lum</th>
-                            <th style="display:none">Sat</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-        </section>
+<section>
+    <h2>List of colours</h2>
+    <div class="search-container" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
+        <div class="filter-group">
+            <label for="colour-search">Search colours by name or hex code:</label><br>
+            <input type="text" id="colour-search" class="search-select" placeholder="Enter a name or hex code&hellip;">
+        </div>
+        <div class="sort-group">
+            <label for="sort-select">Sort by:</label><br>
+            <select id="sort-select" class="search-select">
+                <option value="Name">Name</option>
+                <option value="Hex">Hex code</option>
+                <option value="Hue">Hue</option>
+                <option value="Luminosity">Luminosity</option>
+                <option value="Saturation">Saturation</option>
+                <option value="Year">Year first mentioned</option>
+                <option value="Family">Colour family</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="family-filter">Filter by family:</label>
+            <select id="family-filter" class="search-select">
+                <option value="all">All families</option>
+                <option value="reds">Reds</option>
+                <option value="oranges">Oranges</option>
+                <option value="yellows">Yellows</option>
+                <option value="greens">Greens</option>
+                <option value="blues">Blues</option>
+                <option value="purples">Purples</option>
+                <option value="pinks">Pinks</option>
+                <option value="browns">Browns</option>
+                <option value="greys">Greys (inc. Blacks)</option>
+                <option value="neutrals">Neutrals (inc. Whites)</option>
+            </select>
+        </div>
+    </div>
+    <div class="table-wrapper">
+        <table id="colour-table" class="sortable">
+            <thead>
+                <tr>
+                    <th data-sort-method="default">Name</th>
+                    <th class="no-sort">Swatch</th>
+                    <th data-sort-method="default">Hex</th>
+                    <th data-sort-method="number">Year</th>
+                    <th style="display:none" data-sort-method="family">Family</th>
+                    <th style="display:none" data-sort-method="number">Hue</th>
+                    <th style="display:none" data-sort-method="number">Lum</th>
+                    <th style="display:none" data-sort-method="number">Sat</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
+
         
         <section>
             <h2>Rules and constraints</h2>
