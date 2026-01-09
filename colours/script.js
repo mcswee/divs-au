@@ -54,7 +54,7 @@ Papa.parse("colours.csv", {
 
         const table = document.getElementById('colour-table');
 
-        // 1. Custom parser for Years
+        // Custom parser for Years
         Tablesort.extend('number', function(item) {
             return true; 
         }, function(a, b) {
@@ -66,7 +66,7 @@ Papa.parse("colours.csv", {
             return clean(a) - clean(b);
         });
 
-        // 2. Custom parser for Family (Rainbow Order)
+        // Custom parser for Family (Rainbow Order)
         Tablesort.extend('family', function(item) {
             return true;
         }, function(a, b) {
@@ -105,14 +105,14 @@ Papa.parse("colours.csv", {
         const familyFilter = document.getElementById('family-filter');
 
         function filterTable() {
-            const searchTerm = searchInput.value.toLowerCase().replace('#', '');
+            const searchTerm = searchInput.value.toLowerCase().trim().replace('#', '');
             const selectedFamily = familyFilter.value.toLowerCase();
             const rows = document.querySelectorAll('#colour-table tbody tr');
 
             rows.forEach(row => {
                 const name = row.cells[0].textContent.toLowerCase();
                 const hex = row.cells[2].textContent.toLowerCase().replace('#', '');
-                const family = row.cells[4].textContent.toLowerCase(); 
+                const family = row.cells[4].textContent.toLowerCase().trim(); 
 
                 const matchesSearch = name.includes(searchTerm) || hex.includes(searchTerm);
                 const matchesFamily = (selectedFamily === 'all' || family === selectedFamily);
