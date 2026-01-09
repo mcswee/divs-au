@@ -28,7 +28,7 @@ function buildTable(data) {
     tbody.innerHTML = data.map(item => `
         <tr>
             <td>${item.Name}</td>
-            <td style="background-color:${item.Hex}; width:2em;"></td>
+            <td style="background-color:${item.Hex}; width:2.5em;"></td>
             <td>${item.Hex}</td>
             <td>${item.Year}</td>
             <td style="display:none">${item.Family}</td>
@@ -54,9 +54,9 @@ Papa.parse("colours.csv", {
 
         const table = document.getElementById('colour-table');
 
-        // Custom parser for Years (handles 'imm.' and 'c. 1570')
+        // 1. Custom parser for Years
         Tablesort.extend('number', function(item) {
-            return true; // Apply to columns with data-sort-method="number"
+            return true; 
         }, function(a, b) {
             const clean = (val) => {
                 val = val.toLowerCase();
@@ -65,30 +65,27 @@ Papa.parse("colours.csv", {
             };
             return clean(a) - clean(b);
         });
-        
-Tablesort.extend('family', function(item) {
-    return true; // Activated by data-sort-method="family"
-}, function(a, b) {
-    const familyOrder = {
-        "reds": 1,
-        "oranges": 2,
-        "yellows": 3,
-        "greens": 4,
-        "blues": 5,
-        "purples": 6,
-        "violets": 6,
-        "pinks": 7,
-        "browns": 8,
-        "whites": 9,
-        "greys": 10,
-        "blacks": 11
-    };
 
-    const getOrder = (val) => familyOrder[val.toLowerCase().trim()] || 99;
-    return getOrder(a) - getOrder(b);
-})
-    ;
-        
+        // 2. Custom parser for Family (Rainbow Order)
+        Tablesort.extend('family', function(item) {
+            return true;
+        }, function(a, b) {
+            const familyOrder = {
+                "reds": 1,
+                "oranges": 2,
+                "yellows": 3,
+                "greens": 4,
+                "blues": 5,
+                "purples": 6,
+                "pinks": 7,
+                "browns": 8,
+                "greys": 9,
+                "neutrals": 10
+            };
+            const getOrder = (val) => familyOrder[val.toLowerCase().trim()] || 99;
+            return getOrder(a) - getOrder(b);
+        });
+
         const ts = new Tablesort(table);
 
         // Dropdown Sort mapping
@@ -103,29 +100,28 @@ Tablesort.extend('family', function(item) {
             if (index !== undefined) ts.sortTable(headers[index]);
         });
 
-        // Search Filter (Name and Hex)
-const searchInput = document.getElementById('colour-search');
-const familyFilter = document.getElementById('family-filter');
+        // Search and Family Filter
+        const searchInput = document.getElementById('colour-search');
+        const familyFilter = document.getElementById('family-filter');
 
-function filterTable() {
-    const searchTerm = searchInput.value.toLowerCase().replace('#', '');
-    const selectedFamily = familyFilter.value.toLowerCase();
-    const rows = document.querySelectorAll('#colour-table tbody tr');
+        function filterTable() {
+            const searchTerm = searchInput.value.toLowerCase().replace('#', '');
+            const selectedFamily = familyFilter.value.toLowerCase();
+            const rows = document.querySelectorAll('#colour-table tbody tr');
 
-    rows.forEach(row => {
-        const name = row.cells[0].textContent.toLowerCase();
-        const hex = row.cells[2].textContent.toLowerCase().replace('#', '');
-        const family = row.cells[4].textContent.toLowerCase(); // Hidden Family column
+            rows.forEach(row => {
+                const name = row.cells[0].textContent.toLowerCase();
+                const hex = row.cells[2].textContent.toLowerCase().replace('#', '');
+                const family = row.cells[4].textContent.toLowerCase(); 
 
-        const matchesSearch = name.includes(searchTerm) || hex.includes(searchTerm);
-        const matchesFamily = (selectedFamily === 'all' || family.includes(selectedFamily));
+                const matchesSearch = name.includes(searchTerm) || hex.includes(searchTerm);
+                const matchesFamily = (selectedFamily === 'all' || family === selectedFamily);
 
-        row.style.display = (matchesSearch && matchesFamily) ? '' : 'none';
-    });
-}
+                row.style.display = (matchesSearch && matchesFamily) ? '' : 'none';
+            });
+        }
 
-searchInput.addEventListener('input', filterTable);
-familyFilter.addEventListener('change', filterTable);
-
+        searchInput.addEventListener('input', filterTable);
+        familyFilter.addEventListener('change', filterTable);
     }
 });
