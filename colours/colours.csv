@@ -75,11 +75,11 @@ Plum,#8E4585,1805,Purples
 Indigo,#351062,1289,Blues
 Pink,#FFB6C1,c. 1700,Pinks
 Sky,#87CEEB,1681,Blues
-Aquamarine,#7FFFD4,1598,Turquoises
-Turquoise,#40E0D0,1573,Turquoises
-Cyan,#00FFFF,1879,Turquoises
-Aqua,#08F0DA,1598,Turquoises 
-Celeste,#B2FFFF,1750,Turquoises 
+Aquamarine,#7FFFD4,1598,Greens
+Turquoise,#40E0D0,1573,Greens
+Cyan,#00FFFF,1879,Greens
+Aqua,#08F0DA,1598,Greens
+Celeste,#B2FFFF,1750,Greens
 Copper,#B87333,1594,Browns
 Murrey,#AD4379,1537,Reds
 Lilac,#C8A2C8,1775,Purples
@@ -101,7 +101,7 @@ Azure,#0080FF,1374,Blues
 Blue,#0321D3,imm.,Blues
 Ultramarine,#180CB0,1598,Blues
 Navy,#000070,1813,Blues
-Teal,#008080,1917,Turquoises
+Teal,#008080,1917,Greens
 Cobalt,#0047AB,1777,Blues
 Seagreen,#2E8B57,1598,Greens
 Midnight,#0F0343,1915,Blues
