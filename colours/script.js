@@ -42,10 +42,10 @@ function buildTable(data) {
             <td style="background-color:${item.Hex}; width:2.5em;"></td>
             <td>${item.Hex}</td>
             <td>${item.Year}</td>
-            <td>${item.Family}</td>
-            <td>${item.hue}</td>
-            <td>${item.lum}</td>
-            <td>${item.sat}</td>
+            <td style="display:none">${item.Family}</td>
+            <td style="display:none">${item.hue}</td>
+            <td style="display:none">${item.lum}</td>
+            <td style="display:none">${item.sat}</td>
         </tr>
     `).join('');
 }
