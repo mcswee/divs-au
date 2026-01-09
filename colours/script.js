@@ -54,7 +54,7 @@ Papa.parse("colours.csv", {
 
         const table = document.getElementById('colour-table');
 
-        // Custom parser for Years
+        // Year Sort
         Tablesort.extend('number', function(item) {
             return true; 
         }, function(a, b) {
@@ -66,41 +66,40 @@ Papa.parse("colours.csv", {
             return clean(a) - clean(b);
         });
 
-        // Custom parser for Family (Rainbow Order)
+        // Family Sort
         Tablesort.extend('family', function(item) {
             return true;
         }, function(a, b) {
             const familyOrder = {
-                "reds": 1,
-                "oranges": 2,
-                "yellows": 3,
-                "greens": 4,
-                "blues": 5,
-                "purples": 6,
-                "pinks": 7,
-                "browns": 8,
-                "greys": 9,
-                "neutrals": 10
+                "reds": 1, "oranges": 2, "yellows": 3, "greens": 4, 
+                "blues": 5, "purples": 6, "pinks": 7, "browns": 8, 
+                "greys": 9, "neutrals": 10
             };
             const getOrder = (val) => familyOrder[val.toLowerCase().trim()] || 99;
             return getOrder(a) - getOrder(b);
         });
 
         const ts = new Tablesort(table);
+        ts.refresh(); // Crucial: tell tablesort to look at the new data
 
-        // Dropdown Sort mapping
+        // Sort Selector
         const sortSelect = document.getElementById('sort-select');
         sortSelect.addEventListener('change', function() {
             const headers = table.querySelectorAll('th');
             const colMap = {
-                "Name": 0, "Hex": 2, "Year": 3, "Family": 4, 
-                "Hue": 5, "Luminosity": 6, "Saturation": 7
+                "Name": 0,
+                "Hex": 2,
+                "Year": 3,
+                "Family": 4,
+                "Hue": 5,
+                "Luminosity": 6,
+                "Saturation": 7
             };
             const index = colMap[this.value];
             if (index !== undefined) ts.sortTable(headers[index]);
         });
 
-        // Search and Family Filter
+        // Filtering logic
         const searchInput = document.getElementById('colour-search');
         const familyFilter = document.getElementById('family-filter');
 
