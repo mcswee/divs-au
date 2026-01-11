@@ -23,31 +23,31 @@ Papa.parse('us-flags.csv', {
             if (row.Status === 'No Change') {
                 flagHTML = `
                     <figure>
-                        <img src="${currentPath}" alt="${row.State} current flag">
+                        <img src="${currentPath}" class="us-image" alt="${row.State} current flag">
                         <figcaption>Existing ${row.State} flag retained</figcaption>
                     </figure>`;
             } else if (row.Abbr === 'OR') {
                 flagHTML = `
                     <figure>
-                        <img src="${redesignPath}" alt="${row.State} redesign">
+                        <img src="${redesignPath}" class="us-image" alt="${row.State} redesign">
                         <figcaption>$My redesigned ${row.State} flag</figcaption>
                     </figure>
                     <figure>
-                        <img src="current/OR-front.svg" alt="${row.State} current flag front">
+                        <img src="current/OR-front.svg" class="us-image" alt="${row.State} current flag front">
                         <figcaption>${row.State} current flag</figcaption>
                     </figure>
                     <figure>
-                        <img src="current/OR-back.svg" alt="${row.State} current flag back">
+                        <img src="current/OR-back.svg" class="us-image" alt="${row.State} current flag back">
                         <figcaption>${row.State} current flag (reverse)</figcaption>
                     </figure>`;
             } else {
                 flagHTML = `
                     <figure>
-                        <img src="${redesignPath}" alt="${row.State} redesign">
+                        <img src="${redesignPath}" class="us-image" alt="${row.State} redesign">
                         <figcaption>My redesigned ${row.State} flag</figcaption>
                     </figure>
                     <figure>
-                        <img src="${currentPath}" alt="${row.State} current flag">
+                        <img src="${currentPath}" class="us-image" alt="${row.State} current flag">
                         <figcaption>${row.State} current flag</figcaption>
                     </figure>`;
             }
@@ -55,12 +55,12 @@ Papa.parse('us-flags.csv', {
             // 3. Build the Section
             html += `
                 <section class="state-section" id="${row.Abbr}">
-                    <h3>${row.State}</h3>
                     <span class="flag-status status-${row.Status.toLowerCase().replace(/\s+/g, '-')}">${row.Status}</span>
+                    <h3>${row.State}</h3>
                     <div class="flag-row">
                         ${flagHTML}
                     </div>
-                    <div class="commentary">${row.Commentary}</div>
+                    <p>${row.Commentary}</p>
                     <p class="copyright">${row.Copyright}</p>
                 </section>`;
         });
