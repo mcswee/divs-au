@@ -694,6 +694,17 @@ figcaption {
     background-color: #f9f9f9 !important;
 }
 
+/* Australian flag designs */
+
+.flag-thumb {
+    height: 30px;
+    width: 60px;
+    object-fit: contain;
+    border: 1px solid var(--text-accent);
+    flex-shrink: 0;
+}
+
+
 /* 12. RESPONSIVENESS */
 @media (max-width: 600px) {
     .brand span { display: none; }
