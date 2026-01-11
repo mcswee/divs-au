@@ -597,7 +597,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     margin-right: auto;
 }
 
-/* Flags */
+/* US Flags */
 /* Flag Section & Row */
 
 .state-section {
@@ -625,7 +625,7 @@ figure {
     max-width: 400px;
 }
 
-figure img {
+.us-image {
     height: auto;
     width: auto;
     max-height: 180px; 
