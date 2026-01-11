@@ -657,18 +657,11 @@ figcaption {
 
 /* Placeholder Status colors - awaiting your specific hex codes */
 .status-no-change { background: #1e5631; }
-.status-recolor   { background: #d4a373; }
+.status-recolor   { background: #3743d3; }
 .status-tweak     { background: #6d597a; }
 .status-evolution { background: #bc6c25; }
 .status-redesign  { background: #9e2a2b; }
 .status-historic  { background: #4a4e69; }
-
-/* Text commentary content*/
-.commentary { 
-    margin: 5px;; 
-    line-height: 1.6;
-    color: var(--text-main);
-}
 
 /* Copyright notice content */
 .copyright {
@@ -704,6 +697,14 @@ figcaption {
     flex-shrink: 0;
 }
 
+flag-display {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    aspect-ratio: 2 / 1;
+    display: block;
+    border: 1px solid var(--text-accent);
+}
 
 /* 12. RESPONSIVENESS */
 @media (max-width: 600px) {
