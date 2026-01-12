@@ -586,6 +586,13 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     outline: none;
 }
 
+/* Attribution for copyrighted content */
+.copyright {
+    font-size: 0.75rem;
+    color: var(--text-highlight);
+    margin-top: 1rem;
+}
+
 /* Suburbs tables */
 .table-wrapper.suburb-list {
     max-height: 500px;
@@ -599,7 +606,6 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 
 /* US Flags */
 /* Flag Section & Row */
-
 .state-section {
     max-width:1100px;
     margin: 0 auto;
@@ -655,7 +661,7 @@ figcaption {
     color: var(--highlight);
 }
 
-/* Placeholder Status colors - awaiting your specific hex codes */
+/* Redesign status colors  */
 .status-no-change { background: #1e5631; }
 .status-recolor   { background: #3743d3; }
 .status-tweak     { background: #6d597a; }
@@ -663,14 +669,7 @@ figcaption {
 .status-redesign  { background: #9e2a2b; }
 .status-historic  { background: #4a4e69; }
 
-/* Copyright notice content */
-.copyright {
-    font-size: 0.75rem;
-    color: var(--text-highlight);
-    margin-top: 1rem;
-}
-
-/* Colours */
+/* Colours list */
 /* Remove zebra stripes and add row borders for the colour table */
 #colour-table tbody tr {
     background-color: transparent !important;
@@ -682,13 +681,13 @@ figcaption {
     border-collapse: collapse;
 }
 
-/* Optional: Add a slight hover effect so you don't lose your place */
+/*  Add a slight hover effect so you don't lose your place */
 #colour-table tbody tr:hover {
     background-color: #f9f9f9 !important;
 }
 
 /* Australian flag designs */
-
+/* Thumbs on the index page */
 .flag-thumb {
     height: 30px;
     width: 60px;
@@ -696,7 +695,7 @@ figcaption {
     border: 1px solid var(--text-accent);
     flex-shrink: 0;
 }
-
+/* Main display image on the page */
 .flag-display {
     width: 100%;
     max-width: 800px;
@@ -717,14 +716,14 @@ figcaption {
 
 .symbol-item {
     padding: 20px;
-    background: var(--accent);
-    border-left: 4px solid var(--brand-main);
+    background: var(--state-bg, var(--accent));
+    border-left: 4px solid var(--state-color, var(--brand-main));
     border-radius: 0 8px 8px 0;
 }
 
-.symbol-item strong {
+.symbol-item h3 {
     display: block;
-    color: var(--brand-main);
+    color: var(--state-color, var(--brand-main));
     margin-bottom: 8px;
     font-size: 1.1rem;
 }
@@ -736,13 +735,6 @@ figcaption {
 .variant-item p {
     margin-top: 10px;
 }
-
-/* removed this section to test if needed.
-.caption {
-    margin-top: -1rem; /* Pulls it closer to the flag-display image *"/
-    margin-bottom: 2rem;
-}
-*/
 
 .back-link {
     display: inline-block;
