@@ -698,9 +698,8 @@ figcaption {
 }
 
 flag-display {
-    width: 100%;
     max-width: 800px;
-    height: auto;
+    max-height: 500px;
     aspect-ratio: 2 / 1;
     display: block;
     border: 1px solid var(--text-accent);
