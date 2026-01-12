@@ -697,7 +697,7 @@ figcaption {
     flex-shrink: 0;
 }
 
-flag-display {
+.flag-display {
     max-width: 800px;
     max-height: 400px;
     aspect-ratio: 2 / 1;
