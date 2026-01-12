@@ -707,6 +707,53 @@ figcaption {
     border: 1px solid var(--text-accent);
 }
 
+/* National flag designs */
+.symbolism-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 2rem 0;
+}
+
+.symbol-item {
+    padding: 20px;
+    background: var(--accent);
+    border-left: 4px solid var(--brand-main);
+    border-radius: 0 8px 8px 0;
+}
+
+.symbol-item strong {
+    display: block;
+    color: var(--brand-main);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.variant-item {
+    margin-bottom: 2rem;
+}
+
+.variant-item p {
+    margin-top: 10px;
+}
+
+.caption {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-highlight);
+    font-style: italic;
+    margin-top: -1rem; /* Pulls it closer to the flag-display image */
+    margin-bottom: 2rem;
+}
+
+.back-link {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--brand-main);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
 /* 12. RESPONSIVENESS */
 @media (max-width: 600px) {
     .brand span { display: none; }
