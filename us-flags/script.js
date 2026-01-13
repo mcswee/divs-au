@@ -30,7 +30,7 @@ Papa.parse('us-flags.csv', {
                 flagHTML = `
                     <figure>
                         <img src="${redesignPath}" class="us-image" alt="${row.State} redesign">
-                        <figcaption>$My redesigned ${row.State} flag</figcaption>
+                        <figcaption>My redesigned ${row.State} flag</figcaption>
                     </figure>
                     <figure>
                         <img src="current/OR-front.svg" class="us-image" alt="${row.State} current flag front">
