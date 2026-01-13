@@ -14,7 +14,6 @@
   --text-main: #333;
   --text-accent: #ccc;
   --text-highlight: #666;
-  --footer-main: #999;
 
   /* Depth */
   --shadow-main: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -60,8 +59,8 @@ body {
 .site-footer {
     flex-shrink: 0;
     height: 35px;
-    background: var(--footer-main);
-    color: var(--highlight);
+    background: var(--accent);
+    color: var(--text-main);
     display: flex;
     align-items: center;
     padding: 0 20px;
@@ -415,7 +414,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .site-footer a {
-    color: var(--highlight);
+    color: var(--highlight-text);
     text-decoration: none;
     font-size: inherit;
     line-height: 1;
@@ -426,7 +425,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .site-footer a:hover {
-    color: var(--brand-main);
+    color: var(--brand-accent);
     background: none;
 }
 
@@ -435,7 +434,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     content: "•";
     margin-left: 10px;
     margin-right: 10px;
-    color: var(--highlight);
+    color: var(--highlight-text);
     font-weight: bold;
     display: inline-block;
 }
