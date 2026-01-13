@@ -59,8 +59,8 @@ body {
 .site-footer {
     flex-shrink: 0;
     height: 35px;
-    background: var(--accent);
-    color: var(--text-main);
+    background: var(--text-highlight);
+    color: var(--highlight);
     display: flex;
     align-items: center;
     padding: 0 20px;
@@ -414,7 +414,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .site-footer a {
-    color: var(--highlight-text);
+    color: var(--highlight);
     text-decoration: none;
     font-size: inherit;
     line-height: 1;
@@ -425,7 +425,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .site-footer a:hover {
-    color: var(--brand-accent);
+    color: var(--brand-highlight);
     background: none;
 }
 
@@ -434,7 +434,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     content: "•";
     margin-left: 10px;
     margin-right: 10px;
-    color: var(--highlight-text);
+    color: var(--highlight);
     font-weight: bold;
     display: inline-block;
 }
