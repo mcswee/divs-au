@@ -64,10 +64,11 @@ body {
     align-items: center;
     gap: 8px;
     background: #7a4a0f;
-    color: var(--highlight);
+    color: #fafafa;
     font-size: 0.75rem;
     padding: 0 20px;
     z-index: 2000;
+    border-top: 1px solid var(--text-accent);
 }
 .site-footer {
     flex-shrink: 0;
@@ -78,7 +79,6 @@ body {
     align-items: center;
     padding: 0 20px;
     font-size: 0.75rem;
-    border-top: 1px solid var(--text-accent);
     z-index: 2000;
 }
 
