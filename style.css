@@ -35,7 +35,7 @@
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100dvh;
     font-family: 'Inter', sans-serif;
     color: var(--text-main);
     overflow: hidden; 
@@ -785,4 +785,32 @@ figcaption {
     .site-footer { height: auto; padding: 6px; flex-wrap: wrap; justify-content: center; }
     .site-footer span { display: none; }
     .site-footer nav { justify-content: center; width: 100%; }
+  .footer-ack {
+        height: auto; /* Allow text to wrap */
+        padding: 8px 15px;
+        flex-direction: row; 
+        justify-content: flex-start;
+        line-height: 1.2;
+    }
+
+    /* Reduce flag size slightly for mobile to save horizontal space */
+    .footer-ack img {
+        height: 14px;
+        width: auto;
+    }
+
+    .site-footer {
+        height: auto;
+        padding: 10px;
+        flex-direction: column; /* Stack copyright and links if needed */
+        gap: 8px;
+    }
+
+    /* Since you have overflow:hidden on body, 
+       make sure the map doesn't push the footer out */
+    #app-viewport {
+        flex: 1;
+        overflow: hidden;
+        position: relative;
+    }
 }
