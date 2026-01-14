@@ -76,6 +76,16 @@ body {
     gap: 8px;
     flex-shrink: 0;
 }
+.ack-close {
+    background: none;
+    border: none;
+    color: var(--highlight);
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: auto; /* Pushes the X to the far right */
+    padding: 0 10px;
+    line-height: 1;
+}
 
 .site-footer {
     flex-shrink: 0;
@@ -810,6 +820,10 @@ figcaption {
     .footer-ack img {
         height: 16px;           /* Size for the stacked look */
         width: auto;
+    }
+    .ack-close {
+        padding: 10px;
+        font-size: 24px;
     }
 
     /* 3. Update your existing site-footer block to match this */
