@@ -70,6 +70,14 @@ body {
     z-index: 2000;
     border-top: 1px solid var(--text-accent);
 }
+
+.ack-flags-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
 .site-footer {
     flex-shrink: 0;
     height: 35px;
@@ -782,35 +790,37 @@ figcaption {
      .control-group:first-of-type { flex: 0 0 85px; }
      .control-group label { display: none; }
      .leaflet-top.leaflet-left { top: 75px !important; }
-    .site-footer { height: auto; padding: 6px; flex-wrap: wrap; justify-content: center; }
-    .site-footer span { display: none; }
-    .site-footer nav { justify-content: center; width: 100%; }
-  .footer-ack {
-        height: auto; /* Allow text to wrap */
-        padding: 8px 15px;
-        flex-direction: row; 
-        justify-content: flex-start;
-        line-height: 1.2;
+
+    /* 1. Add this for the acknowledgement row */
+    .footer-ack {
+        height: auto;           /* Allows the 3 rows of text to fit */
+        padding: 10px 20px;
+        flex-direction: row;    /* Keeps flags left, text right */
+        align-items: center;
+        gap: 12px;
     }
 
-    /* Reduce flag size slightly for mobile to save horizontal space */
+    /* 2. Add this to stack the flags */
+    .ack-flags-container {
+        display: flex;
+        flex-direction: column; 
+        gap: 4px;
+        flex-shrink: 0;
+    }
+
     .footer-ack img {
-        height: 14px;
+        height: 16px;           /* Size for the stacked look */
         width: auto;
     }
 
-    .site-footer {
-        height: auto;
-        padding: 10px;
-        flex-direction: column; /* Stack copyright and links if needed */
+    /* 3. Update your existing site-footer block to match this */
+    .site-footer { 
+        height: auto; 
+        padding: 10px 20px;     /* Increased padding for better tap targets */
+        flex-direction: column; /* Stack copyright and links vertically */
         gap: 8px;
     }
 
-    /* Since you have overflow:hidden on body, 
-       make sure the map doesn't push the footer out */
-    #app-viewport {
-        flex: 1;
-        overflow: hidden;
-        position: relative;
-    }
+    .site-footer span { display: none; }
+    .site-footer nav { justify-content: center; width: 100%; }
 }
