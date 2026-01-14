@@ -38,7 +38,7 @@ body {
     height: 100dvh;
     font-family: 'Inter', sans-serif;
     color: var(--text-main);
-    overflow: hidden; 
+    overflow: hidden;
     background: var(--bg-main);
     -webkit-font-smoothing: antialiased;
 }
