@@ -63,13 +63,13 @@ body {
     width: 100%;
     align-items: center;
     gap: 8px;
-    background: #7a4a0f;
-    color: #fafafa;
+    background: #382f23;
     font-size: 0.75rem;
     padding: 0 20px;
     z-index: 2000;
     border-top: 1px solid var(--text-accent);
 }
+.footer-ack p{ color: var(--highlight); }
 
 .ack-flags-container {
     display: flex;
