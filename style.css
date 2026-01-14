@@ -198,7 +198,10 @@ table {
 th {
     background-color: var(--brand-main);
     color: var(--highlight);
+    white-space: normal;
     text-align: left;
+    vertical-align: bottom;
+    line-height: 1.2rem;
     padding: 12px 15px;
     font-weight: 700;
     /* Sticky Logic */
