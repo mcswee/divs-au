@@ -57,17 +57,17 @@ body {
 }
 
 .footer-ack {
+    flex-shrink:0;
     display: flex;
     height: 35px;
     width: 100%;
     align-items: center;
     gap: 8px;
-    color: var(--highlight);
     background: #7a4a0f;
+    color: var(--highlight);
     font-size: 0.75rem;
     padding: 0 20px;
     z-index: 2000;
-    margin-bottom: 4px; /* Space between ack and links */
 }
 .site-footer {
     flex-shrink: 0;
