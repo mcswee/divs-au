@@ -1,29 +1,42 @@
-const map = L.map('state-map').setView([-35.3, 149.1], 9);
+/**
+ * ACT-Specific Map Script
+ * Focuses on mainland ACT while ignoring Norfolk Island/Jervis Bay.
+ */
 
+// 1. Initialize Map with dynamic zoom for mobile vs desktop
+const initialZoom = window.innerWidth < 600 ? 8 : 9;
+const map = L.map('state-map').setView([-35.47, 149.01], initialZoom);
+
+// 2. Base Layer
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; OpenStreetMap &copy; CartoDB',
   subdomains: 'abcd',
   maxZoom: 19
 }).addTo(map);
 
+// Clean up the Leaflet prefix
 map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
 
 let geoLayer = null;
 
+/**
+ * Loads GeoJSON and adds it to the map without forcing a re-zoom.
+ */
 function loadGeoJSON(file) {
   fetch(file)
     .then(res => res.json())
     .then(function (data) {
+      // Remove old layer if switching years
       if (geoLayer) {
         map.removeLayer(geoLayer);
       }
 
-      var mainlandBounds = L.latLngBounds();
-
+      // Add the new layer
       geoLayer = L.geoJSON(data, {
         style: {
           color: "#003895",
-          weight: 1
+          weight: 1,
+          fillOpacity: 0.2
         },
         onEachFeature: function (feature, layer) {
           if (feature.properties) {
@@ -32,26 +45,19 @@ function loadGeoJSON(file) {
                           "<strong>No of SA1:</strong> " + (p.Numccds || "—") + "<br>" +
                           "<strong>Actual enrolment:</strong> " + (p.Actual || "—") + "<br>" +
                           "<strong>Projected enrolment:</strong> " + (p.Projected || "—");
+            
             layer.bindTooltip(tooltip, { sticky: true });
-          }
-
-          if (layer.getBounds().getWest() < 155) {
-             mainlandBounds.extend(layer.getBounds());
           }
         }
       }).addTo(map);
-
-      if (mainlandBounds.isValid()) {
-          map.fitBounds(mainlandBounds, { padding: [30, 30] });
-      }
     })
     .catch(err => console.error(`Failed to load ${file}`, err));
 }
 
-// Default load
+// 3. Initial Load
 loadGeoJSON('2025-ACT-Proposed.geojson');
 
-// If you still want year navigation later:
+// 4. Year Navigation
 document.querySelectorAll('#year-nav a').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
