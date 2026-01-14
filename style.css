@@ -412,6 +412,15 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 /* 9. FOOTER LINKS */
+.footer-ack {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #var(--highlight);
+    background-color:#7a4a0f;
+    margin-bottom: 4px; /* Space between ack and links */
+}
+
 .site-footer nav {
     display: flex;
     padding: 0;
