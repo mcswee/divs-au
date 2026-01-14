@@ -205,6 +205,16 @@ ul { margin-left: 1rem; }
 ok { margin-left: 1rem; }
 dt { font-weight: bold; margin-top: 10px; }
 dd { margin-left: 0; margin-bottom: 10px; font-style: italic; }
+
+/* Add an arrow after links to external sites */
+.external-link::after {
+    content: '↗';
+    margin-left: 0.3em;       
+    font-size: 0.85em;     
+    text-decoration: none;   
+    display: inline-block;   
+    vertical-align: middle;  
+}
     
 /* 6. TABLE LAYOUT*/
 .table-wrapper {
