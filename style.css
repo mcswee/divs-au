@@ -56,6 +56,19 @@ body {
     z-index: 2000;
 }
 
+.footer-ack {
+    display: flex;
+    height: 35px;
+    width: 100%;
+    align-items: center;
+    gap: 8px;
+    color: var(--highlight);
+    background: #7a4a0f;
+    font-size: 0.75rem;
+    padding: 0 20px;
+    z-index: 2000;
+    margin-bottom: 4px; /* Space between ack and links */
+}
 .site-footer {
     flex-shrink: 0;
     height: 35px;
@@ -412,14 +425,6 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 /* 9. FOOTER LINKS */
-.footer-ack {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #var(--highlight);
-    background-color:#7a4a0f;
-    margin-bottom: 4px; /* Space between ack and links */
-}
 
 .site-footer nav {
     display: flex;
