@@ -455,6 +455,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 
 .site-footer nav {
     display: flex;
+    flex-wrap: wrap; /* Allows wrapping if 6 links are too wide */
     padding: 0;
 }
 
@@ -462,26 +463,26 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     color: var(--highlight);
     text-decoration: none;
     font-size: inherit;
-    line-height: 1;
-    transition: color 0.2s ease text-decoration 0.2s ease;
-    margin: 0;
-    padding: 0;
+    line-height: 1.5; /* Added breathing room for wrapped lines */
+    transition: color 0.2s ease, text-decoration 0.2s ease;
     background: none;
+    display: inline-flex;
+    align-items: center;
 }
 
 .site-footer a:hover {
     color: var(--brand-highlight);
-    background: none;
     text-decoration: underline;
+    background: none;
 }
 
-.site-footer span::after,
+/* Updated Bullet Logic: Targets only the nav links */
 .site-footer nav a:not(:last-child)::after {
     content: "•";
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 0 10px; /* Controlled spacing */
     color: var(--highlight);
     font-weight: bold;
+    text-decoration: none; /* Prevents underline on the bullet itself */
     display: inline-block;
 }
 
@@ -794,6 +795,7 @@ figcaption {
     .brand span { display: none; }
     h1 { font-size: 1.8rem; }
     .card-grid { grid-template-columns: 1fr; }
+  
     #map-controls {
         top: 0; left: 0; width: 100%;
         border-radius: 0; border: none;
@@ -810,7 +812,7 @@ figcaption {
      .control-group label { display: none; }
      .leaflet-top.leaflet-left { top: 75px !important; }
 
-    /* 1. Add this for the acknowledgement row */
+    /* Add the acknowledgement row */
     .footer-ack {
         height: auto;           /* Allows the 3 rows of text to fit */
         padding: 10px 20px;
@@ -819,7 +821,7 @@ figcaption {
         gap: 12px;
     }
 
-    /* 2. Add this to stack the flags */
+    /* Stack the flags */
     .ack-flags-container {
         display: flex;
         flex-direction: column; 
@@ -828,7 +830,7 @@ figcaption {
     }
 
     .footer-ack img {
-        height: 16px;           /* Size for the stacked look */
+        height: 16px;/* Size for the stacked look */
         width: auto;
     }
     .ack-close {
@@ -836,14 +838,21 @@ figcaption {
         font-size: 24px;
     }
 
-    /* 3. Update your existing site-footer block to match this */
-    .site-footer { 
+  .site-footer { 
         height: auto; 
-        padding: 10px 20px;     /* Increased padding for better tap targets */
-        flex-direction: column; /* Stack copyright and links vertically */
-        gap: 8px;
+        padding: 12px 20px;     
+        flex-direction: row;
     }
 
-    .site-footer span { display: none; }
-    .site-footer nav { justify-content: center; width: 100%; }
+    /* Allow links to wrap into centered rows on small screens */
+    .site-footer nav { 
+        justify-content: center; 
+        width: 100%; 
+        flex-wrap: wrap;
+    }
+
+    /* Tighter spacing for mobile tap targets */
+    .site-footer nav a:not(:last-child)::after {
+        margin: 0 6px; 
+    }
 }
