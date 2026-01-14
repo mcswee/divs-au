@@ -204,11 +204,19 @@ th {
     line-height: 1.2rem;
     padding: 12px 15px;
     font-weight: 700;
+    min-width: 75px;
+    max-width: 125px;
+    word-wrap: break-word;
     /* Sticky Logic */
     position: sticky;
     top: 0;
     z-index: 10;
     box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);
+}
+
+th:first-child {
+    max-width: 200px;
+    min-width: 100px;
 }
 
 /* Ensure borders still look right with separate collapse */
