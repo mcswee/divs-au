@@ -5,7 +5,7 @@ const minZoom = isMobile ? 3 : 4;
 const initialCenter = [-28.0, 133.0];
 
 var map = L.map('map', {
-    attribution: '&copy; OpenStreetMap &copy; CARTO',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CartoDB</a> | Data <a href="/copyright">&copy; AEC</a>',
     zoomControl: true,
     minZoom: minZoom,
 }).setView(initialCenter, initialZoom);
