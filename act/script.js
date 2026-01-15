@@ -9,7 +9,7 @@ const map = L.map('state-map').setView([-35.47, 149.01], initialZoom);
 
 // 2. Base Layer
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; OpenStreetMap &copy; CartoDB',
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CartoDB</a> | Data <a href="/copyright">&copy; AEC & ABS</a>',
   subdomains: 'abcd',
   maxZoom: 19
 }).addTo(map);
