@@ -210,11 +210,11 @@ dd { margin-left: 0; margin-bottom: 10px; font-style: italic; }
 
 .external-link::after {
     content: '↗';
-    margin-left: 0.3em;       
+    margin-left: 0.15em;       
     font-size: 0.85em;     
     text-decoration: none;   
     display: inline-block;   
-    vertical-align: middle;  
+    vertical-align: text-top;  
 }
 
 /* 6. TABLE LAYOUT */
