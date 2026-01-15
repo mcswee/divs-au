@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Block raw data and spreadsheet files
+Disallow: /data/
+Disallow: /*.csv$
+Disallow: /*.geojson$
+
+# Block images from being indexed separately
+Disallow: /images/
+Disallow: /*.png$
+Disallow: /*.jpg$
+Disallow: /*.svg$
+
+# Reference your sitemap
+Sitemap: https://divs.au/sitemap.xml
