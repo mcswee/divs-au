@@ -818,4 +818,9 @@ figcaption {
 
     .site-footer span { display: none; }
     .site-footer nav { justify-content: center; width: 100%; }
+
+    .site-footer span::after,
+    .site-footer nav a:not(:last-child)::after {
+    display: none; /* Removes the dots on mobile */
+    }
 }
