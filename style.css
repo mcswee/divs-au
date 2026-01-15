@@ -809,18 +809,17 @@ figcaption {
         font-size: 24px;
     }
 
-    .site-footer { 
-        height: auto; 
-        padding: 10px 20px;
-        flex-direction: column;
-        gap: 8px;
-    }
-
+    .site-footer { padding: 10px 0; }
     .site-footer span { display: none; }
-    .site-footer nav { justify-content: center; width: 100%; }
-
     .site-footer span::after,
-    .site-footer nav a:not(:last-child)::after {
-    display: none; /* Removes the dots on mobile */
+    .site-footer nav a:not(:last-child)::after { display: none; }
+  
+    .site-footer nav { 
+        justify-content: center; 
+        width: 100%; 
+        gap: 6px; 
+        display:flex; 
+        flex-wrap: wrap;
     }
+
 }
