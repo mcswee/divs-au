@@ -215,7 +215,8 @@ h2 { font-size: 1.4rem; color: var(--brand-main); margin: 40px 0 15px; border-bo
 h3 { font-size: 1.1rem; color: var(--brand-main); margin: 0; padding-bottom: 8px; }
 p { font-size: 1rem; line-height: 1.4; color: var(--text-main); margin-bottom: 5px; }
 ul { margin-left: 1rem; }
-ok { margin-left: 1rem; }
+ol { margin-left: 1rem; }
+li { margin-left: 0.4rem; }
 dt { font-weight: bold; margin-top: 10px; }
 dd { margin-left: 0; margin-bottom: 10px; font-style: italic; }
 
