@@ -240,7 +240,7 @@ blockquote {
 .division-name {
     font-weight: 700;
     color:var(--brand-main);
-    font-style: all-small-caps;
+    font-variant: small-caps;
 }
 
 /* 6. TABLE LAYOUT */
