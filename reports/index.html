@@ -41,20 +41,24 @@
                     <span>Australian historical electoral division data</span>
                 </div>
             </a>
-        <nav>
+        <nav aria-label="Primary">
             <a href="/">Map</a>
         </nav>
     </header>
 
   <main>
-        <section>
+        <header>
             <h1>Electoral division redistributions</h1>
             <p>A comprehensive archive of my formal suggestions to the Australian Electoral Commission. I have actively participated in every federal redistribution cycle since 2014, providing thorough and comprehensive statewide suggestions for boundaries and division names.
             <p>Select a state below to explore my current suggestions, complete with an interactive map, as well as the historical report archive.</p>
-        </section>
+        </header>
 
-        <section>
-            <h2>Current redistributions</h2>
+        <nav aria-label="Redistributions by state">
+            <h2>My approach to redistributions</h2>
+            <div class="card-grid">
+                <a href="/methodology/" class="state-card" >Methodology</a>
+                <a href="/naming/" class="state-card" >Naming conventions</a>
+            </div><h2>Current redistributions</h2>
             <div class="card-grid">
                 <a href="/act/" class="state-card" style="--state-bg: #d5e4ff; --state-color: #012b88;">ACT <span class="status current">Active</span></a>
                 <a href="/sa/" class="state-card" style="--state-bg: #ffd5df; --state-color: #d50032;">South Australia <span class="status current">Active</span></a>
@@ -78,7 +82,7 @@
               NT #c75b12 is marginally too light.
               -->
             </div>
-        </section>
+        </nav>
 </main>
 
 
@@ -92,14 +96,14 @@
     <button type="button" class="ack-close" aria-label="Close acknowledgement">&times;</button>
   </div>
   <div class="site-footer">
-      <nav id="footer-navigation">
+      <div id="footer-navigation">
           <a href="/about">About</a>
           <a href="/projects">Side Projects</a>
           <a href="/disclosure">Disclosure</a>
           <a href="/privacy">Privacy</a>
           <a href="/terms">Terms</a>
           <a href="/copyright/">&copy; 2026<span> Darren McSweeney</span></a>
-      </nav>
+      </div>
   </div>
 </footer>
 
