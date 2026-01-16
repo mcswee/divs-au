@@ -223,7 +223,7 @@ dd { margin-left: 0; margin-bottom: 10px; font-style: italic; }
 blockquote {
     margin: 2rem;
     border-left: 2px solid var(--brand-main);
-    text-style: italic;
+    font-style: italic;
     text-size: 1.05em;
     padding: 2rem;
 }
