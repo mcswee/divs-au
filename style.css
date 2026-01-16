@@ -237,6 +237,12 @@ blockquote {
     vertical-align: text-top;  
 }
 
+.division-name {
+    font-weight: 700;
+    color:var(--brand-main);
+    font-style: all-small-caps;
+}
+
 /* 6. TABLE LAYOUT */
 .table-wrapper {
     width: 100%;
