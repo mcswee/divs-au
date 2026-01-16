@@ -220,6 +220,14 @@ li { margin-left: 1rem; }
 dt { font-weight: bold; margin-top: 10px; }
 dd { margin-left: 0; margin-bottom: 10px; font-style: italic; }
 
+blockquote {
+    margin: 2rem;
+    border-left: 2px solid var(--brand-main);
+    text-style: italic;
+    text-size: 1.05em;
+    padding: 2rem;
+}
+
 .external-link::after {
     content: '↗';
     margin-left: 0.15em;       
