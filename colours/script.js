@@ -29,25 +29,49 @@ function rgbToHsl({ r, g, b }) {
     return { h, s, l };
 }
 
-/**
- * Inject rows into the table.
- * Columns 4-7 are hidden but contain the raw data used for sorting.
- */
-function buildTable(data) {
-    const tbody = document.querySelector("#colour-table tbody");
-    if (!tbody) return;
-    tbody.innerHTML = data.map(item => `
-        <tr>
-            <td>${item.Name}</td>
-            <td style="background-color:${item.Hex}; width:2.5em;"></td>
-            <td>${item.Hex}</td>
-            <td>${item.Year}</td>
-            <td style="display:none">${item.Family}</td>
-            <td style="display:none">${item.hue}</td>
-            <td style="display:none">${item.lum}</td>
-            <td style="display:none">${item.sat}</td>
-        </tr>
-    `).join('');
+// Keep your hexToRgb and rgbToHsl functions exactly as they are.
+
+let allData = []; // Store the processed data globally
+
+function buildGrid(data) {
+    const grid = document.querySelector("#colour-grid");
+    if (!grid) return;
+
+    grid.innerHTML = data.map(item => {
+        // Determine text contrast for the "Copied" overlay
+        const isLight = item.lum > 0.6;
+        const textColor = isLight ? '#000' : '#fff';
+
+        return `
+        <div class="colour-card" 
+             data-name="${item.Name}" 
+             data-hex="${item.Hex}" 
+             data-family="${item.Family.toLowerCase()}"
+             style="view-transition-name: card-${item.Name.replace(/\s+/g, '-')};">
+            <div class="swatch" style="background-color:${item.Hex};" onclick="copyToClipboard('${item.Hex}', this)">
+                <span class="copy-label" style="color: ${textColor}">Copy Hex</span>
+            </div>
+            <div class="card-info">
+                <div class="card-row">
+                    <span class="card-name">${item.Name}</span>
+                    <span class="card-year">${item.Year}</span>
+                </div>
+                <code class="card-hex">${item.Hex}</code>
+            </div>
+        </div>
+    `}).join('');
+}
+
+// Clipboard Function
+function copyToClipboard(text, element) {
+    navigator.clipboard.writeText(text);
+    const toast = document.getElementById('copy-toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+    
+    // Update URL hash
+    const card = element.closest('.colour-card');
+    window.location.hash = card.dataset.name.toLowerCase().replace(/\s+/g, '-');
 }
 
 Papa.parse("colours.csv", {
@@ -55,88 +79,68 @@ Papa.parse("colours.csv", {
     header: true,
     skipEmptyLines: true,
     complete: function(results) {
-        // Step 1: Process CSV data and calculate HSL values
-        const data = results.data.map(item => {
+        allData = results.data.map(item => {
             const rgb = hexToRgb(item.Hex);
             const hsl = rgbToHsl(rgb);
-            return { 
-                ...item, 
-                hue: hsl.h, 
-                lum: hsl.l, 
-                sat: hsl.s 
-            };
+            return { ...item, hue: hsl.h, lum: hsl.l, sat: hsl.s };
         });
 
-        // Step 2: Build the table structure
-        buildTable(data);
+        // Initial build
+        buildGrid(allData);
 
-        const table = document.getElementById('colour-table');
-
-// Step 3: Updated Custom Sorting Parser
-Tablesort.extend('number', function(item) { return true; }, function(a, b) {
-    const clean = (val) => {
-        if (val.toLowerCase().includes('imm')) return 0; 
-        
-        // Extract numbers and decimals
-        const parsed = parseFloat(val.replace(/[^\d.]/g, ''));
-        
-        // If it's a valid number (including 0), use it. 
-        // If it's truly empty or text, use 9999.
-        return !isNaN(parsed) ? parsed : 9999;
-    };
-    return clean(a) - clean(b);
-});
-
-
-        // Sorts by the rainbow order established in the Family column
-        Tablesort.extend('family', function(item) { return true; }, function(a, b) {
-            const familyOrder = {
-                "reds": 1, "oranges": 2, "yellows": 3, "greens": 4, 
-                "blues": 5, "purples": 6, "pinks": 7, "browns": 8, 
-                "greys": 9, "neutrals": 10
-            };
-            return (familyOrder[a.toLowerCase().trim()] || 99) - (familyOrder[b.toLowerCase().trim()] || 99);
-        });
-
-        // Step 4: Initialize Tablesort and Refresh
-        // Refresh is required because rows were added after page load
-        const ts = new Tablesort(table);
-        ts.refresh();
-
-        // Step 5: Handle Dropdown Sort Trigger
+        // Sorting Logic
         const sortSelect = document.getElementById('sort-select');
         sortSelect.addEventListener('change', function() {
-            const headers = table.querySelectorAll('th');
-            const colMap = {
-                "Name": 0, "Hex": 2, "Year": 3, "Family": 4, 
-                "Hue": 5, "Luminosity": 6, "Saturation": 7
-            };
-            const index = colMap[this.value];
-            if (index !== undefined) ts.sortTable(headers[index]);
+            const val = this.value;
+            
+            // Use View Transition API if supported
+            if (document.startViewTransition) {
+                document.startViewTransition(() => sortAndRebuild(val));
+            } else {
+                sortAndRebuild(val);
+            }
         });
 
-        // Step 6: Search and Family Filter Logic
+        // Filter Logic
         const searchInput = document.getElementById('colour-search');
         const familyFilter = document.getElementById('family-filter');
 
-        function filterTable() {
+        function filterGrid() {
             const searchTerm = searchInput.value.toLowerCase().trim().replace('#', '');
             const selectedFamily = familyFilter.value.toLowerCase();
-            const rows = document.querySelectorAll('#colour-table tbody tr');
+            const cards = document.querySelectorAll('.colour-card');
 
-            rows.forEach(row => {
-                const name = row.cells[0].textContent.toLowerCase();
-                const hex = row.cells[2].textContent.toLowerCase().replace('#', '');
-                const family = row.cells[4].textContent.toLowerCase().trim(); 
+            cards.forEach(card => {
+                const name = card.dataset.name.toLowerCase();
+                const hex = card.dataset.hex.toLowerCase().replace('#', '');
+                const family = card.dataset.family;
 
                 const matchesSearch = name.includes(searchTerm) || hex.includes(searchTerm);
                 const matchesFamily = (selectedFamily === 'all' || family === selectedFamily);
 
-                row.style.display = (matchesSearch && matchesFamily) ? '' : 'none';
+                card.style.display = (matchesSearch && matchesFamily) ? 'block' : 'none';
             });
         }
 
-        searchInput.addEventListener('input', filterTable);
-        familyFilter.addEventListener('change', filterTable);
+        searchInput.addEventListener('input', filterGrid);
+        familyFilter.addEventListener('change', filterGrid);
     }
 });
+
+function sortAndRebuild(criterion) {
+    const familyOrder = { "reds": 1, "oranges": 2, "yellows": 3, "greens": 4, "blues": 5, "purples": 6, "pinks": 7, "browns": 8, "greys": 9, "neutrals": 10 };
+
+    allData.sort((a, b) => {
+        switch(criterion) {
+            case 'Name': return a.Name.localeCompare(b.Name);
+            case 'Hex': return a.Hex.localeCompare(b.Hex);
+            case 'Year': return (parseInt(a.Year) || 9999) - (parseInt(b.Year) || 9999);
+            case 'Family': return (familyOrder[a.Family.toLowerCase()] || 99) - (familyOrder[b.Family.toLowerCase()] || 99);
+            case 'Hue': return a.hue - b.hue;
+            case 'Luminosity': return a.lum - b.lum;
+            case 'Saturation': return a.sat - b.sat;
+            default: return 0;
+        }
+    });
+    buildGrid(allData);
+}
