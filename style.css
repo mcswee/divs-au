@@ -721,19 +721,6 @@ figcaption {
 .status-redesign  { background: #9e2a2b; }
 .status-historic  { background: #4a4e69; }
 
-#colour-table tbody tr {
-    background-color: transparent !important;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-#colour-table {
-    border-collapse: collapse;
-}
-
-#colour-table tbody tr:hover {
-    background-color: #f9f9f9 !important;
-}
-
 .flag-thumb {
     height: 30px;
     width: 60px;
@@ -879,7 +866,7 @@ figcaption {
 }
 
 .card-hex {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: monospace;
     font-size: 0.8rem;
     color: var(--text-highlight);
     letter-spacing: 0.05em;
@@ -907,18 +894,6 @@ figcaption {
     transform: translateX(-50%) translateY(0);
 }
 
-/* Mobile Adjustments */
-@media (max-width: 600px) {
-    .colour-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 12px;
-    }
-    
-    .card-name {
-        font-size: 0.85rem;
-    }
-}
-
 /* 12. RESPONSIVENESS */
 @media (max-width: 600px) {
     .brand span { display: none; }
@@ -940,6 +915,16 @@ figcaption {
      .control-group label { display: none; }
      .leaflet-top.leaflet-left { top: 75px !important; }
 
+      .colour-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
+      }
+    
+      .card-name {
+        font-size: 0.85rem;
+      }
+
+  
     .footer-ack {
         height: auto;
         padding: 10px 20px;
