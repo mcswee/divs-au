@@ -50,7 +50,7 @@ function buildGrid(data) {
         let displayYear;
 
         if (rawYear.includes('imm')) {
-            displayYear = "time immemorial";
+            displayYear = "ancient";
         } else {
             displayYear = `from ${item.Year}`;
         }
