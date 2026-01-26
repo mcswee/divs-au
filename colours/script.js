@@ -49,8 +49,7 @@ function buildGrid(data) {
         if (rawYear.includes('imm')) {
             displayYear = "time immemorial";
         } else {
-            // Keeps 'c.' if present, adds 'CE' to the end
-            displayYear = `from ${item.Year} CE`;
+            displayYear = `from ${item.Year}`;
         }
 
         // 3. The actual HTML template
@@ -61,14 +60,14 @@ function buildGrid(data) {
              data-family="${item.Family.toLowerCase()}"
              style="view-transition-name: card-${item.Name.replace(/\s+/g, '-')};">
             <div class="swatch" style="background-color:${item.Hex};" onclick="copyToClipboard('${item.Hex}', this)">
-                <span class="copy-label" style="color: ${textColor}">Copy Hex</span>
+                <span class="copy-label" style="color: ${textColor}">Copy ${item.Hex}</span>
             </div>
             <div class="card-info">
                 <div class="card-row">
                     <span class="card-name">${item.Name}</span>
-                    <span class="card-year">${displayYear}</span>
                 </div>
                 <code class="card-hex">${item.Hex}</code>
+                <span class="card-year">${displayYear}</span>
             </div>
         </div>
         `;
