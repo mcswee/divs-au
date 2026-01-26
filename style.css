@@ -896,10 +896,6 @@ figcaption {
 
 /* Phonology */
 
-:root {
-    --brand-main: #your-colour-here; /* Ensure this is set */
-}
-
 .phonology-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
