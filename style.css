@@ -898,8 +898,8 @@ figcaption {
 
 .phoneme-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 1.5rem;
+    align-items: baseline;
 }
 
 .symbol {
