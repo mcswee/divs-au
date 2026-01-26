@@ -900,12 +900,14 @@ figcaption {
     display: flex;
     gap: 1.5rem;
     align-items: baseline;
+    margin-bottom: 0.7rem;
 }
 
 .symbol {
     font-size: 2.2rem;
     font-weight: 800;
     color: var(--brand-main);
+    padding: 10px;
 }
 
 .ipa-tag {
@@ -921,6 +923,7 @@ figcaption {
     text-transform: uppercase;
     color: var(--text-highlight);
     font-size: 0.9rem;
+    margin-bottom: 10px;
 }
 
 .pronunciation-path {
@@ -932,7 +935,7 @@ figcaption {
 .tap-hint {
     font-size: 0.75rem;
     margin-top: auto;
-    padding-top: 1rem;
+    padding-top: 0.7rem;
 }
 
 
