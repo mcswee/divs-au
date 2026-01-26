@@ -138,13 +138,12 @@ function sortAndRebuild(criterion) {
                 const parseYear = (val) => {
                     if (!val) return 9999;
                     const s = val.toString().toLowerCase();
-                    // Time Immemorial goes to the absolute start
                     if (s.includes('imm')) return 0;
-                    // Strip everything that isn't a digit (removes 'c.', 'circa', etc)
-                    const yearDiff = parseYear(a.Year) - parseYear(b.Year);
-                    return yearDiff !== 0 ? yearDiff : a.Name.localeCompare(b.Name);
+                    const num = parseInt(s.replace(/\D/g, ''), 10);
+                    return isNaN(num) ? 9999 : num;
                 };
-                return parseYear(a.Year) - parseYear(b.Year);
+                const yearDiff = parseYear(a.Year) - parseYear(b.Year);
+                return yearDiff !== 0 ? yearDiff : a.Name.localeCompare(b.Name);
             case 'Family': return (familyOrder[a.Family.toLowerCase()] || 99) - (familyOrder[b.Family.toLowerCase()] || 99);
             case 'Hue': return a.hue - b.hue;
             case 'Luminosity': return a.lum - b.lum;
