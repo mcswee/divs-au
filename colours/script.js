@@ -39,7 +39,7 @@ function buildGrid(data) {
 
     grid.innerHTML = data.map(item => {
         // 1. Logic for text contrast on the "Copy Hex" overlay
-        const isLight = item.lum > 0.6;
+        const isLight = item.lum > 0.7;
         const textColor = isLight ? '#000' : '#fff';
 
         // 2. Logic for the Year display string
