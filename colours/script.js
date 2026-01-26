@@ -39,7 +39,10 @@ function buildGrid(data) {
 
     grid.innerHTML = data.map(item => {
         // 1. Logic for text contrast on the "Copy Hex" overlay
-        const isLight = item.lum > 0.7;
+        const rgb = hexToRgb(item.Hex);
+        // Standard W3C formula: 0.299R + 0.587G + 0.114B
+        const perceptiveLUM = (0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b) / 255;
+        const isLight = perceptiveLUM > 0.7;
         const textColor = isLight ? '#000' : '#fff';
 
         // 2. Logic for the Year display string
