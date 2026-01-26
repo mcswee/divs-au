@@ -38,10 +38,22 @@ function buildGrid(data) {
     if (!grid) return;
 
     grid.innerHTML = data.map(item => {
-        // Determine text contrast for the "Copied" overlay
+        // 1. Logic for text contrast on the "Copy Hex" overlay
         const isLight = item.lum > 0.6;
         const textColor = isLight ? '#000' : '#fff';
 
+        // 2. Logic for the Year display string
+        const rawYear = item.Year.toString().toLowerCase();
+        let displayYear;
+
+        if (rawYear.includes('imm')) {
+            displayYear = "time immemorial";
+        } else {
+            // Keeps 'c.' if present, adds 'CE' to the end
+            displayYear = `from ${item.Year} CE`;
+        }
+
+        // 3. The actual HTML template
         return `
         <div class="colour-card" 
              data-name="${item.Name}" 
@@ -54,12 +66,13 @@ function buildGrid(data) {
             <div class="card-info">
                 <div class="card-row">
                     <span class="card-name">${item.Name}</span>
-                    <span class="card-year">${item.Year}</span>
+                    <span class="card-year">${displayYear}</span>
                 </div>
                 <code class="card-hex">${item.Hex}</code>
             </div>
         </div>
-    `}).join('');
+        `;
+    }).join('');
 }
 
 // Clipboard Function
