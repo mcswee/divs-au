@@ -141,8 +141,8 @@ function sortAndRebuild(criterion) {
                     // Time Immemorial goes to the absolute start
                     if (s.includes('imm')) return 0;
                     // Strip everything that isn't a digit (removes 'c.', 'circa', etc)
-                    const num = parseInt(s.replace(/\D/g, ''), 10);
-                    return isNaN(num) ? 9999 : num;
+                    const yearDiff = parseYear(a.Year) - parseYear(b.Year);
+                    return yearDiff !== 0 ? yearDiff : a.Name.localeCompare(b.Name);
                 };
                 return parseYear(a.Year) - parseYear(b.Year);
             case 'Family': return (familyOrder[a.Family.toLowerCase()] || 99) - (familyOrder[b.Family.toLowerCase()] || 99);
