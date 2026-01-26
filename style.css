@@ -896,28 +896,11 @@ figcaption {
 
 /* Phonology */
 
-.phonology-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0 4rem 0;
-}
 
-.phoneme-card {
-    background: var(--bg-card, #fff);
-    border: 1px solid var(--border-color, #ddd);
-    border-top: 5px solid var(--brand-main); /* Visual anchor */
-    padding: 1.5rem;
-    cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.phoneme-card:hover {
+.project-card:hover {
+    border-color: var(--brand-main);
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-deep);
 }
 
 .phoneme-header {
@@ -951,7 +934,6 @@ figcaption {
     font-family: monospace;
     font-size: 0.85rem;
     color: var(--brand-main);
-    opacity: 0.8;
 }
 
 .tap-hint {
