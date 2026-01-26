@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guide to my custom phonetic orthography for Australian English.">
+    <meta name="keywords" content="Australia, English, Australian, pronunciation, language, linguistics, Australian English, en-AU">
+    <meta name="author" content="Darren McSweeney">
+    <title>Australian English | divs.au</title>
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://divs.au/english">
+    <meta property="og:title" content="Australian English | divs.au">
+    <meta property="og:description" content="Guide to my custom phonetic orthography for Australian English.">
+    <meta property="og:image" content="https://divs.au/images/og-map.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://divs.au/english">
+    <meta name="twitter:title" content="Australian English | divs.au">
+    <meta name="twitter:description" content="Guide to my custom phonetic orthography for Australian English.">
+    <meta name="twitter:image" content="https://divs.au/images/og-map.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/svg+xml" href="/images/star.svg">
+ 
+</head>
+<body>
+
+    <header class="site-header">
+            <a href="/" class="brand">
+                <img src="/images/star.svg" alt="divs.au star">
+                <div class="brand-text">
+                    <strong>divs.au</strong>
+                    <span>Australian historical electoral division data</span>
+                </div>
+            </a>
+        <nav>
+            <a href="/projects">Projects</a>
+        </nav>
+    </header>
+
+  <main>
+        <section>
+            <h1>Guide to Australian English pronunciation</h1>
+        </section>
+        <section class="phonology-container">
+            <div class="header-group">
+                <h2>Vowels</h2>
+                <p class="subtitle">The sliding and static sounds of the dialect.</p>
+            </div>
+            <div id="vowel-grid" class="phonology-grid"></div>
+        
+            <div class="header-group">
+                <h2>Consonants</h2>
+                <p class="subtitle">The hard stops and smooth transitions.</p>
+            </div>
+            <div id="consonant-grid" class="phonology-grid"></div>
+        </section>
+    </main>
+
+
+  <footer>
+      <div class="footer-ack" id="ack-banner">
+        <div class="ack-flags-container">
+          <img src="/images/flag-aboriginal.svg" alt="" height="19">
+          <img src="/images/flag-torres-strait.svg" alt="" height="20">
+        </div>
+        <p>I acknowledge the Traditional Owners of the lands throughout Australia on which these federal divisions are drawn.</p>
+        <button type="button" class="ack-close" aria-label="Close acknowledgement">&times;</button>
+   </div>
+      <div class="site-footer">
+          <nav id="footer-navigation">
+              <a href="/about">About</a>
+              <a href="/reports">Reports</a>
+              <a href="/disclosure">Disclosure</a>
+              <a href="/privacy">Privacy</a>
+              <a href="/terms">Terms</a>
+              <a href="/copyright/">&copy; 2026<span> Darren McSweeney</span></a>
+          </nav>
+      </div>
+  </footer>
+    
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://unpkg.com/tablesort@5.2.1/dist/tablesort.min.js"></script>
+<script src="script.js"></script>
+<script src="/acknow.js"></script>
+    
+</body>
+</html>
