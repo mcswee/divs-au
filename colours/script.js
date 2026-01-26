@@ -68,9 +68,10 @@ function buildGrid(data) {
             <div class="card-info">
                 <div class="card-row">
                     <span class="card-name">${item.Name}</span>
+                    <span class="card-year">${displayYear}</span>
                 </div>
                 <code class="card-hex">${item.Hex}</code>
-                <span class="card-year">${displayYear}</span>
+
             </div>
         </div>
         `;
