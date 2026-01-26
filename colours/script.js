@@ -100,12 +100,26 @@ Papa.parse("colours.csv", {
         // Initial build
         buildGrid(allData);
 
+        // Deep link handling (scrolling to #name in URL)
+        const hash = decodeURIComponent(window.location.hash.replace('#', '')).toLowerCase();
+        if (hash) {
+            const targetCard = Array.from(document.querySelectorAll('.colour-card'))
+                .find(c => c.dataset.name.toLowerCase() === hash);
+
+            if (targetCard) {
+                setTimeout(() => {
+                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    targetCard.style.outline = '3px solid var(--brand-main)';
+                    targetCard.style.outlineOffset = '4px';
+                    setTimeout(() => { targetCard.style.outline = 'none'; }, 2000);
+                }, 300);
+            }
+        }
+
         // Sorting Logic
         const sortSelect = document.getElementById('sort-select');
         sortSelect.addEventListener('change', function() {
             const val = this.value;
-            
-            // Use View Transition API if supported
             if (document.startViewTransition) {
                 document.startViewTransition(() => sortAndRebuild(val));
             } else {
