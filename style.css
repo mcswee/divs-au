@@ -896,13 +896,6 @@ figcaption {
 
 /* Phonology */
 
-
-.project-card:hover {
-    border-color: var(--brand-main);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-deep);
-}
-
 .phoneme-header {
     display: flex;
     justify-content: space-between;
