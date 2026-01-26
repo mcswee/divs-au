@@ -7,27 +7,33 @@ function listen(text) {
 }
 
 async function loadPhonology(url, containerId) {
-    const response = await fetch(url);
-    const csvString = await response.text();
-    
-    // Using PapaParse since it's already in your HTML
-    Papa.parse(csvString, {
-        header: true,
-        skipEmptyLines: true,
-        complete: function(results) {
-            const container = document.querySelector(containerId);
-            if (!container) return;
+    try {
+        const response = await fetch(url);
+        const csvString = await response.text();
+        
+        Papa.parse(csvString, {
+            header: true,
+            skipEmptyLines: true,
+            complete: function(results) {
+                const container = document.querySelector(containerId);
+                if (!container) return;
 
-            container.innerHTML = results.data.map(item => `
-                <div class="project-card" onclick="listen('${item.Examples.replace(/;/g, ' ')}')">
-                    <span class="symbol">${item.Phoneme}</span>
-                    <span class="ipa-tag">/${item.IPA}/</span>
-                    <div class="example-text">${item.Examples}</div>
-                    <div class="pronunciation-path">${item.Pronunciation}</div>
-                </div>
-            `).join('');
-        }
-    });
+                container.innerHTML = results.data.map(item => `
+                    <div class="project-card" onclick="listen('${item.Examples.replace(/;/g, ' ')}')">
+                        <div class="phoneme-header">
+                            <span class="symbol">${item.Phoneme}</span>
+                            <span class="ipa-tag">/${item.IPA}/</span>
+                        </div>
+                        <div class="example-text">${item.Examples}</div>
+                        <div class="pronunciation-path">${item.Pronunciation}</div>
+                        <div class="tap-hint">Listen to the words</div>
+                    </div>
+                `).join('');
+            }
+        });
+    } catch (err) {
+        console.error("Error loading " + url, err);
+    }
 }
 
 loadPhonology('vowels.csv', '#vowel-grid');
