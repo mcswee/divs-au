@@ -911,7 +911,7 @@ figcaption {
 }
 
 .ipa-tag {
-    font-family: serif;
+    font-family: 'Noto Serif', serif;
     font-size: 1.2rem;
     color: var(--text-main);
     background: var(--bg-main);
@@ -927,7 +927,7 @@ figcaption {
 }
 
 .pronunciation-path {
-    font-family: monospace;
+    font-family: 'Google Sans Code', monospace;
     font-size: 0.95rem;
     color: var(--brand-main);
 }
