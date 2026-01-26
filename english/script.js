@@ -19,7 +19,7 @@ async function loadPhonology(url, containerId) {
             if (!container) return;
 
             container.innerHTML = results.data.map(item => `
-                <div class="phoneme-card" onclick="listen('${item.Examples.replace(/;/g, ' ')}')">
+                <div class="project-card" onclick="listen('${item.Examples.replace(/;/g, ' ')}')">
                     <span class="symbol">${item.Phoneme}</span>
                     <span class="ipa-tag">/${item.IPA}/</span>
                     <div class="example-text">${item.Examples}</div>
