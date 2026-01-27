@@ -697,7 +697,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 tr[id^="letter-"] {
-    scroll-margin-top: 80px; 
+    scroll-margin-top: 110px; 
 }
 
 .state-section {
