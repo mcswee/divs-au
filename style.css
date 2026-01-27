@@ -662,6 +662,44 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     margin-right: auto;
 }
 
+.alphabet-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 15px 0;
+}
+
+.alphabet-nav a, 
+.alphabet-nav .disabled {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    border-radius: 4px;
+    min-width: 35px;
+    text-align: center;
+}
+
+.alphabet-nav a {
+    background: var(--accent);
+    color: var(--brand-main);
+    font-weight: 700;
+}
+
+.alphabet-nav a:hover {
+    background: var(--brand-main);
+    color: var(--highlight);
+}
+
+.alphabet-nav .disabled {
+    color: var(--text-accent);
+    opacity: 0.5;
+    background: transparent;
+}
+
+tr[id^="letter-"] {
+    scroll-margin-top: 80px; 
+}
+
 .state-section {
     max-width:1100px;
     margin: 0 auto;
