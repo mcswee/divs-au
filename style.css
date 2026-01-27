@@ -299,8 +299,7 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-    background-color: var(--brand-main);
-    color: var(--highlight);
+    background-color: var(--brand-highlight);
 }
 
 th.sort-header { cursor: pointer; }
