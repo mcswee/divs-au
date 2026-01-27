@@ -2,27 +2,26 @@ document.addEventListener('DOMContentLoaded', () => {
     let phonemeMap = {};
     const searchInput = document.getElementById('suburb-search');
 
-    // 1. Load the reference data first
     Promise.all([
         fetch('/english/vowels.csv').then(res => res.text()),
         fetch('/english/consonants.csv').then(res => res.text())
     ]).then(([vowelCsv, consonantCsv]) => {
         
-        // Parse reference files into the map
         [vowelCsv, consonantCsv].forEach(csv => {
             const parsed = Papa.parse(csv, { header: true, skipEmptyLines: true }).data;
             parsed.forEach(row => {
-                if (row.Symbol) {
-                    phonemeMap[row.Symbol] = (row.Examples || row["Example Words"] || "").trim();
+                // Use PHONEME as the key
+                const symbol = row.Phoneme ? row.Phoneme.trim() : null;
+                if (symbol) {
+                    phonemeMap[symbol] = (row.Examples || "").trim();
                 }
             });
         });
 
-        // Create the regex pattern once the map is full
         const symbols = Object.keys(phonemeMap).sort((a, b) => b.length - a.length);
-        const pattern = new RegExp(symbols.map(s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
+        if (symbols.length === 0) return loadSuburbTable(null);
 
-        // 2. NOW load the suburb table using that pattern
+        const pattern = new RegExp(symbols.map(s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
         loadSuburbTable(pattern);
     });
 
@@ -37,18 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 results.data.forEach(row => {
                     const tr = document.createElement('tr');
-                    
-                    // Maintain your specific column order/logic
                     const headers = ["Suburb", "Pronunciation", "LGA", "Postcode"];
                     
                     headers.forEach(key => {
                         const td = document.createElement('td');
-                        let content = row[key] || '';
+                        let content = (row[key] || '').trim();
 
-                        if (key === "Pronunciation" && content) {
-                            // The actual injection
+                        if (key === "Pronunciation" && content && pattern) {
                             td.innerHTML = content.replace(pattern, match => {
-                                return `<abbr title="as in ${phonemeMap[match]}">${match}</abbr>`;
+                                const tip = phonemeMap[match] || "pronunciation";
+                                return `<abbr title="as in ${tip}">${match}</abbr>`;
                             });
                         } else {
                             td.textContent = content;
@@ -58,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     tbody.appendChild(tr);
                 });
 
-                // 3. Kick off the UI features
                 finalizeUI();
             }
         });
@@ -70,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const alphabetNav = document.querySelector('.alphabet-nav');
         const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-        // Build Jump List IDs
         let currentLetter = "";
         rows.forEach(row => {
             const firstChar = row.cells[0].textContent.trim().charAt(0).toUpperCase();
@@ -80,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Generate Nav Links
         if (alphabetNav) {
             alphabetNav.innerHTML = letters.map(letter => {
                 const exists = document.getElementById(`letter-${letter}`);
@@ -90,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }).join(" ");
         }
 
-        // Initialize Search
         if (searchInput) {
             searchInput.addEventListener('input', function () {
                 const query = this.value.toLowerCase();
@@ -101,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     row.style.display = text.includes(query) ? '' : 'none';
                 });
 
-                // Smart Nav visibility
                 if (alphabetNav) {
                     letters.forEach(letter => {
                         const link = alphabetNav.querySelector(`a[href="#letter-${letter}"]`);
