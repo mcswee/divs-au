@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Load reference files first
     Promise.all([
-        fetch('/suburbs/vowels.csv').then(res => res.text()),
-        fetch('/suburbs/consonants.csv').then(res => res.text())
+        fetch('/english/vowels.csv').then(res => res.text()),
+        fetch('/english/consonants.csv').then(res => res.text())
     ]).then(([vowelCsv, consonantCsv]) => {
         
         // Build map from CSV data
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function loadSuburbTable() {
-        Papa.parse('/suburbs/suburbs.csv', {
+        Papa.parse('suburbs.csv', {
             download: true,
             header: true,
             skipEmptyLines: true,
