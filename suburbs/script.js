@@ -1,36 +1,52 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let phonemeMap = {}; // Dictionary for tooltips
+    let phonemeMap = {};
+    const searchInput = document.getElementById('suburb-search');
 
-    function loadTable(file, tableId) {
-        return fetch(file)
-            .then(res => res.text())
-            .then(csv => {
-                const data = Papa.parse(csv, { header: true, skipEmptyLines: true }).data;
-                const tbody = document.querySelector(`#${tableId} tbody`);
+    // 1. Load the reference data first
+    Promise.all([
+        fetch('/english/vowels.csv').then(res => res.text()),
+        fetch('/english/consonants.csv').then(res => res.text())
+    ]).then(([vowelCsv, consonantCsv]) => {
+        
+        // Parse reference files into the map
+        [vowelCsv, consonantCsv].forEach(csv => {
+            const parsed = Papa.parse(csv, { header: true, skipEmptyLines: true }).data;
+            parsed.forEach(row => {
+                if (row.Symbol) {
+                    phonemeMap[row.Symbol] = (row.Examples || row["Example Words"] || "").trim();
+                }
+            });
+        });
+
+        // Create the regex pattern once the map is full
+        const symbols = Object.keys(phonemeMap).sort((a, b) => b.length - a.length);
+        const pattern = new RegExp(symbols.map(s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
+
+        // 2. NOW load the suburb table using that pattern
+        loadSuburbTable(pattern);
+    });
+
+    function loadSuburbTable(pattern) {
+        Papa.parse('suburbs.csv', {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function(results) {
+                const tbody = document.querySelector('#suburb-table tbody');
                 if (!tbody) return;
 
-                // If this is a reference table, store the symbols for tooltips
-                if (tableId === 'vowel-table' || tableId === 'consonant-table') {
-                    data.forEach(row => {
-                        if (row.Symbol) phonemeMap[row.Symbol] = row.Examples || "";
-                    });
-                }
-
-                // Prepare regex for the Suburb table tooltips
-                const symbols = Object.keys(phonemeMap).sort((a, b) => b.length - a.length);
-                const pattern = new RegExp(symbols.map(s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
-
-                data.forEach(row => {
+                results.data.forEach(row => {
                     const tr = document.createElement('tr');
-                    const headers = Array.from(document.querySelectorAll(`#${tableId} thead th`)).map(th => th.textContent);
-
-                    headers.forEach(colName => {
+                    
+                    // Maintain your specific column order/logic
+                    const headers = ["Suburb", "Pronunciation", "LGA", "Postcode"];
+                    
+                    headers.forEach(key => {
                         const td = document.createElement('td');
-                        const key = colName === "Example Words" ? "Examples" : colName;
-                        let content = row[key] || row[colName] || '';
+                        let content = row[key] || '';
 
-                        // Inject tooltips ONLY in the Pronunciation column of the suburb table
-                        if (tableId === 'suburb-table' && colName === "Pronunciation" && content) {
+                        if (key === "Pronunciation" && content) {
+                            // The actual injection
                             td.innerHTML = content.replace(pattern, match => {
                                 return `<abbr title="as in ${phonemeMap[match]}">${match}</abbr>`;
                             });
@@ -41,39 +57,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                     tbody.appendChild(tr);
                 });
-            });
+
+                // 3. Kick off the UI features
+                finalizeUI();
+            }
+        });
     }
 
-    // 1. Wait for ALL tables to load
-    Promise.all([
-        loadTable('/suburbs/vowels.csv', 'vowel-table'),
-        loadTable('/suburbs/consonants.csv', 'consonant-table')
-    ]).then(() => {
-        // Load suburb table last so phonemeMap is ready
-        return loadTable('/suburbs/suburbs.csv', 'suburb-table');
-    }).then(() => {
+    function finalizeUI() {
         const table = document.getElementById('suburb-table');
-        if (!table) return;
-
-        new Tablesort(table);
-
-        const searchInput = document.getElementById('suburb-search');
-        const tbody = table.querySelector('tbody');
-        const rows = tbody.getElementsByTagName('tr');
+        const rows = table.querySelectorAll('tbody tr');
         const alphabetNav = document.querySelector('.alphabet-nav');
         const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-        // 2. BUILD THE JUMP LIST
-        if (alphabetNav) {
-            let currentLetter = "";
-            Array.from(rows).forEach(row => {
-                const firstChar = row.cells[0].textContent.trim().charAt(0).toUpperCase();
-                if (firstChar && /^[A-Z]$/.test(firstChar) && firstChar !== currentLetter) {
-                    row.id = `letter-${firstChar}`;
-                    currentLetter = firstChar;
-                }
-            });
+        // Build Jump List IDs
+        let currentLetter = "";
+        rows.forEach(row => {
+            const firstChar = row.cells[0].textContent.trim().charAt(0).toUpperCase();
+            if (firstChar && /^[A-Z]$/.test(firstChar) && firstChar !== currentLetter) {
+                row.id = `letter-${firstChar}`;
+                currentLetter = firstChar;
+            }
+        });
 
+        // Generate Nav Links
+        if (alphabetNav) {
             alphabetNav.innerHTML = letters.map(letter => {
                 const exists = document.getElementById(`letter-${letter}`);
                 return exists 
@@ -82,39 +90,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }).join(" ");
         }
 
-        // 3. INTEGRATED SEARCH
+        // Initialize Search
         if (searchInput) {
             searchInput.addEventListener('input', function () {
                 const query = this.value.toLowerCase();
-                let visibleCount = 0;
+                rows.forEach(row => {
+                    const text = row.cells[0].textContent.toLowerCase() + " " + 
+                                 (row.cells[2]?.textContent.toLowerCase() || "") + " " + 
+                                 (row.cells[3]?.textContent.toLowerCase() || "");
+                    row.style.display = text.includes(query) ? '' : 'none';
+                });
 
-                for (let i = 0; i < rows.length; i++) {
-                    const row = rows[i];
-                    const suburb = row.cells[0].textContent.toLowerCase();
-                    const lga = row.cells[2] ? row.cells[2].textContent.toLowerCase() : "";
-                    const postcode = row.cells[3] ? row.cells[3].textContent.toLowerCase() : "";
-
-                    if (suburb.includes(query) || lga.includes(query) || postcode.includes(query)) {
-                        row.style.display = '';
-                        visibleCount++;
-                    } else {
-                        row.style.display = 'none';
-                    }
-                }
-
+                // Smart Nav visibility
                 if (alphabetNav) {
                     letters.forEach(letter => {
                         const link = alphabetNav.querySelector(`a[href="#letter-${letter}"]`);
                         if (!link) return;
-                        const hasVisibleRows = Array.from(rows).some(r => 
+                        const hasVisible = Array.from(rows).some(r => 
                             r.style.display !== 'none' && 
                             r.cells[0].textContent.trim().toUpperCase().startsWith(letter)
                         );
-                        link.style.visibility = hasVisibleRows ? 'visible' : 'hidden';
+                        link.style.visibility = hasVisible ? 'visible' : 'hidden';
                     });
                 }
-                this.classList.toggle('no-results', query.length > 0 && visibleCount === 0);
             });
         }
-    });
+
+        if (typeof Tablesort !== 'undefined') new Tablesort(table);
+    }
 });
