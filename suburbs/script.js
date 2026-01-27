@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (key === "Pronunciation" && content && pattern) {
                             td.innerHTML = content.replace(pattern, match => {
                                 const tip = phonemeMap[match] || "pronunciation";
-                                return `<abbr title="as in ${tip}">${match}</abbr>`;
+                                return `<abbr title="'${match}' as in ${tip}">${match}</abbr>`;
                             });
                         } else {
                             td.textContent = content;
