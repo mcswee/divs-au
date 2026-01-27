@@ -243,6 +243,13 @@ blockquote {
     font-variant: small-caps;
 }
 
+/* Visual cue for the tooltips */
+abbr[title] {
+    text-decoration: underline dotted var(--brand-main);
+    text-underline-offset: 3px;
+    cursor: help;
+}
+
 /* 6. TABLE LAYOUT */
 .table-wrapper {
     width: 100%;
