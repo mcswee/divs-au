@@ -2,7 +2,7 @@
 Abbotsford,æb·@ts·f@d,City of Yarra,3067
 Aberfeldie,æb·@·fehl·dee,City of Moonee Valley,3040
 Aintree,ayn·tree,City of Melton,3336
-Airport West,eh@·pawt·west,City of Moonee Valley,3042
+Airport West,eh@·pawt·wehst,City of Moonee Valley,3042
 Albanvale,ælb·@n·vayl,City of Brimbank,3021
 Albert Park,ælb·@t·pahk,City of Port Phillip,3206
 Albion,ælb·ee·@n,City of Brimbank,3020
@@ -90,7 +90,7 @@ Brookfield,bruuk·feeld,City of Melton,3338
 Brooklyn,bruuk·l@n,City of Brimbank,3012
 Brunswick,bruhnz·wihk,City of Merri-bek,3056
 Brunswick East,bruhnz·wihk·eest,City of Merri-bek,3057
-Brunswick West,bruhnz·wihk·west,City of Merri-bek,3055
+Brunswick West,bruhnz·wihk·wehst,City of Merri-bek,3055
 Bulla,buul·uh,City of Hume,3428
 Bulleen,buul·een,City of Manningham,3105
 Bundoora,buhnd·u@·ruh,City of Banyule,3083
@@ -168,7 +168,7 @@ Cranbourne,kræn·bœn,City of Casey,3977
 Cranbourne East,kræn·bœn·eest,City of Casey,3977
 Cranbourne North,kræn·bœn·nawt+,City of Casey,3977
 Cranbourne South,kræn·bœn·sow+,City of Casey,3977
-Cranbourne West,kræn·bœn·west,City of Casey,3977
+Cranbourne West,kræn·bœn·wehst,City of Casey,3977
 Cremorne,kr@·mawn,City of Yarra,3121
 Crib Point,krihb·point,Shire of Mornington Peninsula,3919
 Croydon,kroi·d@n,City of Maroondah,3136
@@ -223,7 +223,7 @@ Epping,ehp·ih£,City of Whittlesea,3076
 Essendon,ehs·@n·d@n,City of Moonee Valley,3040
 Essendon Fields,ehs·@n·d@n·feeldz,City of Moonee Valley,3041
 Essendon North,ehs·@n·d@n·naw+,City of Moonee Valley,3041
-Essendon West,ehs·@n·d@n·west,City of Moonee Valley,3040
+Essendon West,ehs·@n·d@n·wehst,City of Moonee Valley,3040
 Eumemmerring,yew·mehm·@·rih£,City of Casey,3177
 Exford,ehks·f@d,City of Melton,3338
 Eynesbury,iyns·bree,City of Melton,3338
@@ -251,7 +251,7 @@ Gardenvale,gahd·@n·vayl,City of Glen Eira,3185
 Garfield,gah·feeld,Shire of Cardinia,3814
 Garfield North,gah·feeld·naw+,Shire of Cardinia,3814
 Geelong,j@·lø£,City of Greater Geelong,3220
-Geelong West,j@·lø£·west,City of Greater Geelong,3218
+Geelong West,j@·lø£·wehst,City of Greater Geelong,3218
 Gembrook,jehm·bruuk,Shire of Cardinia,3783
 Gilderoy,gihld·@·roi,Shire of Yarra Ranges,3797
 Gisborne,gihz·b@n,Shire of Macdeon Ranges,3437
@@ -289,7 +289,7 @@ Heatherton,heh‡·@·t@n,City of Kingston,3202
 Heathmont,hee+·mønt,City of Maroondah,3135
 Heidelberg,hiyd·@l·bœg,City of Banyule,3084
 Heidelberg Heights,hiyd·@l·bœg·hiyts,City of Banyule,3081
-Heidelberg West,hiyd·@l·bœg·west,City of Banyule,3081
+Heidelberg West,hiyd·@l·bœg·wehst,City of Banyule,3081
 Herne Hill,hœn·hihl,City of Greater Geelong,3218
 Hesket,hehsk·@t,Shire of Macdeon Ranges,3442
 Highett,hiy·@t,City of Bayside,3190
@@ -333,7 +333,7 @@ Kilsyth,kihl·siy+,City of Maroondah,3137
 Kilsyth South,kihl·siy+·sow+,City of Maroondah,3137
 Kinglake,kih£·layk,Shire of Nillumbik,3763
 Kinglake Central,kih£·layk·sehn·¢r@l,Shire of Murrndindi,3757
-Kinglake West,kih£·layk·west,Shire of Nillumbik,3778
+Kinglake West,kih£·layk·wehst,Shire of Nillumbik,3778
 Kings Park,kih£z·pahk,City of Brimbank,3021
 Kingsbury,kih£z·bree,City of Darebin,3083
 Kingsville,kih£z·vihl,City of Maribyrnong,3012
@@ -389,7 +389,7 @@ Melbourne,mehl·b@n,City of Melbourne,3000
 Melbourne Airport,mehl·b@n·eh@·pawt,City of Hume,3045
 Melton,mehl·t@n,City of Melton,3337
 Melton South,mehl·t@n·sow+,City of Melton,3338
-Melton West,mehl·t@n·west,City of Melton,3337
+Melton West,mehl·t@n·wehst,City of Melton,3337
 Mentone,mehn·tohn,City of Kingston,3194
 Menzies Creek,mehnz·eez·kreek,Shire of Yarra Ranges,3159
 Mernda,mœn·d@,City of Whittlesea,3754
@@ -563,7 +563,7 @@ St Andrews Beach,s@n·ænj·rewz·bee¢,Shire of Mornington Peninsula,3941
 St Helena,s@n·t@·lee·n@,City of Banyule,3088
 St Kilda,s@n·kihl·duh,City of Port Phillip,3182
 St Kilda East,s@n·kihl·duh·eest,City of Port Phillip,3183
-St Kilda West,s@n·kihl·duh·west,City of Port Phillip,3182
+St Kilda West,s@n·kihl·duh·wehst,City of Port Phillip,3182
 St Leondards,s@n·lehn·@dz,City of Greater Geelong,3223
 Staughton Vale,staw·t@n·vayl,City of Greater Geelong,3340
 Steels Creek,steelz·kreek,Shire of Yarra Ranges,3775
@@ -577,7 +577,7 @@ Sunderland Bay,suhnd·@·l@nd·bay,Shire of Bass Coast,3922
 Sunset Strip,suhn·seht·s¢rihp,Shire of Bass Coast,3922
 Sunshine,suhn·$iyn,City of Brimbank,3020
 Sunshine North,suhn·$iyn·naw+,City of Brimbank,3020
-Sunshine West,suhn·$iyn·west,City of Brimbank,3020
+Sunshine West,suhn·$iyn·wehst,City of Brimbank,3020
 Surf Beach,sœf·bee¢,Shire of Bass Coast,3922
 Surrey Hills,suh·ree·hihlz,City of Boroondara,3127
 Swan Bay,swøn·bay,City of Greater Geelong,3225
@@ -646,9 +646,9 @@ Weir Views,wee@·vyewz,City of Melton,3338
 Werribee,weh·r@·bee,City of Wyndham,3030
 Werribee South,weh·r@·bee·sow+,City of Wyndham,3030
 Wesburn,wehs·bœn,Shire of Yarra Ranges,3799
-West Footscray,west·fuutz·gray,City of Maribyrnong,3012
-West Melbourne,west·mehl·b@n,City of Melbourne,3003
-Westmeadows,west·mehd·ohz,City of Hume,3049
+West Footscray,wehst·fuutz·gray,City of Maribyrnong,3012
+West Melbourne,wehst·mehl·b@n,City of Melbourne,3003
+Westmeadows,wehst·mehd·ohz,City of Hume,3049
 Wheelers Hill,weel·@z·hihl,City of Monash,3150
 Whittington,wiht·ih£·t@n,City of Greater Geelong,3219
 Whittlesea,wiht·@l·see,City of Whittlesea,3757
@@ -673,6 +673,7 @@ Yarraville,yæ·r@·vihl,City of Maribyrnong,3013
 Yellingbo,yeh·lih£·boh,Shire of Yarra Ranges,3139
 Yering,yeh·rih£,Shire of Yarra Ranges,3770
 Yuroke,yew·roh·kee,City of Hume,3063
+
 
 
 
