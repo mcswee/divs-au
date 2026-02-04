@@ -1051,7 +1051,10 @@ figcaption {
         font-size: 24px;
     }
 
-.site-footer {
+    /* Remove my name for space on the copyright notice on mobile */
+    .footer-links span { display:none; }
+
+    .site-footer {
         height: auto;
         padding: 10px 0;
     }
