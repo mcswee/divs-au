@@ -513,8 +513,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     text-decoration: underline;
 }
 
-.site-footer span::after,
-.site-footer nav a:not(:last-child)::after {
+.site-footer ul a:not(:last-child)::after {
     content: "•";
     margin-left: 10px;
     margin-right: 10px;
