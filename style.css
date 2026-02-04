@@ -163,7 +163,12 @@ header .page-element {
     color: var(--highlight);
 }
 
-nav a {
+.site-nav {
+    display: flex;
+    gap: 5px; /* Optional: keeps links from bunching */
+}
+
+.site-nav a {
     color: var(--highlight);
     text-decoration: none;
     font-weight: 500;
@@ -173,8 +178,14 @@ nav a {
     transition: background 0.2s;
 }
 
-nav a:hover {
+.site-nav a:hover {
     background: var(--lighten);
+}
+
+/* Identifies the current page for users and screen readers */
+.site-nav a[aria-current="page"] {
+    background: var(--brand-accent);
+    font-weight: 700;
 }
 
 .error-container {
