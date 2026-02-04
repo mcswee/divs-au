@@ -42,8 +42,10 @@
                     <span>Australian historical electoral division data</span>
                 </div>
             </a>
-        <nav>
+        <nav class="site-nav" aria-label="Primary">
+            <a href="/" aria-current="page">Map</a>
             <a href="/reports">Reports</a>
+            <a href="/projects">Projects</a>
         </nav>
     </header>
 
@@ -82,16 +84,15 @@
         <p>I acknowledge the Traditional Owners of the lands throughout Australia on which these federal divisions are drawn.</p>
         <button type="button" class="ack-close" aria-label="Close acknowledgement">&times;</button>
    </div>
-      <div class="site-footer">
-          <nav id="footer-navigation">
-              <a href="/about">About</a>
-              <a href="/projects">Side Projects</a>
-              <a href="/disclosure">Disclosure</a>
-              <a href="/privacy">Privacy</a>
-              <a href="/terms">Terms</a>
-              <a href="/copyright/">&copy; 2026<span> Darren McSweeney</span></a>
-          </nav>
-      </div>
+<div class="site-footer">
+    <ul class="footer-links">
+        <li><a href="/about">About</a></li>
+        <li><a href="/disclosure">Disclosure</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/terms">Terms</a></li>
+        <li><a href="/copyright/">&copy; 2026<span> Darren McSweeney</span></a></li>
+    </ul>
+</div>
   </footer>
   
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
