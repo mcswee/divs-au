@@ -1074,5 +1074,64 @@ figcaption {
     .footer-links li:not(:last-child)::after {
         display: none;
     }
+  
+    .site-header {
+        position: relative;
+        justify-content: space-between;
+    }
 
+    /* Show the button, hide the raw nav */
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 1001;
+    }
+
+    .hamburger, .hamburger::before, .hamburger::after {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--brand-main);
+        transition: all 0.2s ease;
+    }
+    .hamburger { position: relative; }
+    .hamburger::before { content: ""; position: absolute; top: -8px; left: 0; }
+    .hamburger::after { content: ""; position: absolute; bottom: 8px; left: 0; }
+
+    /* The Dropdown Drawer */
+    .site-nav {
+        display: none; 
+        position: absolute;
+        top: 100%; 
+        left: 0;
+        width: 100%;
+        background: var(--accent);
+        border-bottom: 2px solid var(--brand-main);
+        z-index: 1000;
+        box-shadow: var(--shadow-deep);
+    }
+
+    .site-nav.is-active {
+        display: block;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .nav-links li a {
+        display: block;
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--text-accent);
+        color: var(--brand-main);
+        font-weight: 600;
+        text-decoration: none;
+    }
 }
+
