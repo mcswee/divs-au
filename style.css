@@ -488,15 +488,14 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 /* 9. FOOTER LINKS */
-
-.site-footer ul {
+.footer-links {
     display: flex;
     padding: 0;
     margin: 0;
     list-style: none;
 }
 
-.site-footer a {
+.footer-links a {
     color: var(--highlight);
     text-decoration: none;
     font-size: inherit;
@@ -507,20 +506,19 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     background: none;
 }
 
-.site-footer a:hover {
+.footer-links a:hover {
     color: var(--brand-highlight);
-    background: none;
     text-decoration: underline;
 }
 
-.site-footer ul a:not(:last-child)::after {
+.footer-links li:not(:last-child)::after {
     content: "•";
     margin-left: 10px;
     margin-right: 10px;
     color: var(--highlight);
     font-weight: bold;
     display: inline-block;
-} 
+}
 
 /* 10. MAP SPECIFIC UI */
 #map {
@@ -1053,17 +1051,25 @@ figcaption {
         font-size: 24px;
     }
 
-     .site-footer { padding: 10px 0; }
-    .site-footer span { display: none; }
-    .site-footer span::after,
-    .site-footer nav a:not(:last-child)::after { display: none; }
-  
-    .site-footer ul { 
-        justify-content: center; 
-        width: 100%; 
-        gap: 6px; 
-        display:flex; 
+.site-footer {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    /* Target the list by its class */
+    .footer-links {
+        display: flex;
         flex-wrap: wrap;
-    } 
+        justify-content: center;
+        width: 100%;
+        gap: 6px;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Remove the dots on mobile */
+    .footer-links li:not(:last-child)::after {
+        display: none;
+    }
 
 }
