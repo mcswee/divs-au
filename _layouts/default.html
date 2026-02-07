@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{{ page.description | default: 'Explore historical archive of Australian federal electoral divisions with interactive maps and information about electoral redistributions.' }}">
+  <meta name="description" content="{{ page.description | default: site.description }}">
   <meta name="author" content="Darren McSweeney">
-  <title>{{ page.title | default: 'divs.au | Australian historical electoral division data' }}</title>
+  <title>{{ page.title | default: site.title }}</title>
 
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://divs.au{{ page.url }}">
-  <meta property="og:title" content="{{ page.title | default: 'divs.au | Australian historical electoral division data' }}">
-  <meta property="og:description" content="{{ page.description | default: 'Explore historical archive of Australian federal electoral divisions with interactive maps and information about electoral redistributions.' }}">
-  <meta property="og:image" content="https://divs.au/images/og-map.png">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:title" content="{{ page.title | default: site.title }}">
+  <meta property="og:description" content="{{ page.description | default: site.description }}">
+  <meta property="og:image" content="{{ site.url }}/images/og-map.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://divs.au{{ page.url }}">
-  <meta name="twitter:title" content="{{ page.title | default: 'divs.au | Australian historical electoral division data' }}">
-  <meta name="twitter:description" content="{{ page.description | default: 'Explore historical archive of Australian federal electoral divisions with interactive maps and information about electoral redistributions.' }}">
-  <meta name="twitter:image" content="https://divs.au/images/og-map.png">
+  <meta name="twitter:url" content="{{ site.url }}{{ page.url }}">
+  <meta name="twitter:title" content="{{ page.title | default: site.title }}">
+  <meta name="twitter:description" content="{{ page.description | default: site.description }}">
+  <meta name="twitter:image" content="{{ site.url }}/images/og-map.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
