@@ -1,0 +1,13 @@
+title: divs.au
+description: historical archive of Australian federal electoral divisions with interactive maps and information about electoral redistributions.
+url: "https://divs.au"
+baseurl: ""
+
+markdown: kramdown
+theme: jekyll-theme-primer
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - .jekyll-cache
+  - .jekyll-metadata
