@@ -1,0 +1,33 @@
+<header class="site-header">
+    <div class="header-container">
+        <a href="/" class="brand">
+            <img src="/images/star.svg" alt="divs.au star">
+            <div class="brand-text">
+                <strong>divs.au</strong>
+                <span>Australian historical electoral division data</span>
+            </div>
+        </a>
+
+        <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+            <span class="hamburger"></span>
+        </button>
+
+        <nav class="site-nav" aria-label="Primary">
+            <ul class="nav-links">
+                <li>
+                    <a href="/" {% if page.url == "/" %}aria-current="page"{% endif %}>Map</a>
+                </li>
+                <li>
+                    <a href="/reports/" 
+                       {% if page.url == "/reports/" %}aria-current="page"{% endif %}
+                       {% if page.category == "reports" %}class="active-parent"{% endif %}>Reports</a>
+                </li>
+                <li>
+                    <a href="/projects/" 
+                       {% if page.url == "/projects/" %}aria-current="page"{% endif %}
+                       {% if page.category == "projects" %}class="active-parent"{% endif %}>Projects</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
