@@ -26,7 +26,7 @@ function loadGeoJSON(file) {
     onEachFeature: function (feature, layer) {
       if (feature.properties) {
         var p = feature.properties;
-        var tooltip = "<b>" + (p.["Division Name"] || "Unknown Division") + "</b><br>" +
+        var tooltip = "<b>" + (p["Division Name"] || "Unknown Division") + "</b><br>" +
                       "<strong> No of SA1:</strong> " + (p.Numccds || "—") + "<br>" +
                       "<strong>Actual enrolment:</strong> " + (p.Actual || "—") + "<br>" +
                       "<strong>Projected enrolment:</strong> " + (p.Projected || "—");
