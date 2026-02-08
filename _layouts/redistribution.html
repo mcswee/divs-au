@@ -4,10 +4,11 @@ layout: default
 
 <main>  
     <section>
-        <h1>{{ page.state }} redistribution {{page.year}}</h1>
+        <h1>{{ page.state }} redistribution {% if page.year %}{{ page.year }}{% endif %}</h1>
         {{ content }}
     </section>
     
+    {% if page.status == "active" %}
     <section>
         <h2>Proposed electoral divisions</h2>
             <p>My suggestion ensures all electoral divisions in {{ page.state }} meet the numerical thresholds for actual and projected enrolment, while adhering to community of interests criteria as outlined in the <em>Commonwealth Electoral Act 1918</em>.</p>
@@ -61,7 +62,6 @@ layout: default
         </dl>
     </section>
 
-{% if page.status == "active" %}
     <section>
         <h2>Map of proposed divisions</h2>
         <div id="state-map"></div> 
@@ -72,18 +72,28 @@ layout: default
     {% endif %}
     {% endif %}
     
-    <section>
-        <h2>Full submission</h2>
-        <p>For the complete breakdown, including SA1-level transfers, rationale, and individual maps for every division, you can download my full submission to the AEC.</p>
+{% if page.pdf_filename %}
+    <section class="report-download">
+        {% if page.status == "active" %}
+            <h2>Full submission</h2>
+            <p>For the complete breakdown, including SA1-level transfers, rationale, and individual maps for every division, you can download my full submission to the AEC.</p>
+        {% elsif page.status == "archived" %}
+            <h2>My {{ page.archive_year }} Submission</h2>
+            <p>{{ page.archive_summary }}</p>
+        {% endif %}
+
         <a href="{{ page.pdf_filename }}" class="report-button" style="--state-color: {{ page.state_color }};">
-            <span class="icon">📄</span> Download full report (PDF)
+            <span class="icon">📄</span> Download {% if page.status == "archived" %}{{ page.archive_year }}{% else %}full{% endif %} report (PDF)
         </a>
     </section>
+    {% endif %}
 
     <section class="external-links">
         <h2>More information</h2>
         <div class="link-list">
-            <a href="{{ page.aec_url }}" class="link-item">AEC {{ page.state }} {{page.year}} redistribution page</a>
+            <a href="{{ page.aec_url }}" class="link-item">
+                {% if page.status == "archived" %}Final determination{% else %}AEC {{ page.state }}{% endif %} redistribution page
+            </a>
             <a href="https://www.aec.gov.au/redistributions/" class="link-item">AEC Redistributions</a>                
         </div>
     </section>     
