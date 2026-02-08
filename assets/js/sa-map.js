@@ -41,5 +41,5 @@ function loadGeoJSON(file) {
 }
 
 // Default load
-loadGeoJSON('assets/data/2025-SA-Proposed.geojson');
+loadGeoJSON('/assets/data/sa-2025-proposed.geojson');
 
