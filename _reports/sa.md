@@ -7,6 +7,7 @@ state_color: "#d50032"
 year: "2025"
 aec_url: "https://aec.gov.au/redistributions/2025/sa/"
 pdf_filename: "/assets/pdf/sa-2025-suggestion.pdf"
+script_name: "sa-map.js"
 
 # Numerical Thresholds
 quota_total: "1,307,863"
