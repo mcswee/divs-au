@@ -41,7 +41,7 @@ function loadGeoJSON(file) {
         onEachFeature: function (feature, layer) {
           if (feature.properties) {
             var p = feature.properties;
-            var tooltip = "<b>" + (p.Elect_div || "Unknown Division") + "</b><br>" +
+            var tooltip = "<b>" + (p["Proposed Division"] || "Unknown Division") + "</b><br>" +
                           "<strong>No of SA1:</strong> " + (p.Numccds || "—") + "<br>" +
                           "<strong>Actual enrolment:</strong> " + (p.Actual || "—") + "<br>" +
                           "<strong>Projected enrolment:</strong> " + (p.Projected || "—");
@@ -55,13 +55,4 @@ function loadGeoJSON(file) {
 }
 
 // 3. Initial Load
-loadGeoJSON('2025-ACT-Proposed.geojson');
-
-// 4. Year Navigation
-document.querySelectorAll('#year-nav a').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const year = link.dataset.year;
-    loadGeoJSON(`data/divisions-${year}.geojson`);
-  });
-});
+loadGeoJSON('act-2025-proposed.geojson');
