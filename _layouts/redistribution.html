@@ -86,10 +86,3 @@ layout: default
         </div>
     </section>     
 </main>
-
-
-{% if page.status == "active" %}
-    {% if page.script_name %}
-      <script src="/assets/js/{{ page.script_name }}"></script>
-    {% endif %}
-{% endif %}
