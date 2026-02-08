@@ -4,6 +4,7 @@ title: "South Australia"
 description: "My public suggestion to the Australia Electoral Commission for the redistribution of South Australia."
 status: active
 state_color: "#d50032"
+year: "2025"
 aec_url: "https://aec.gov.au/redistributions/2025/sa/"
 pdf_filename: "/assets/pdf/sa-2025-suggestion.pdf"
 
