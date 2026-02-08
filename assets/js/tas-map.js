@@ -41,4 +41,4 @@ function loadGeoJSON(file) {
 }
 
 // Default load
-loadGeoJSON('/assets/data/tas-2025proposed.geojson');
+loadGeoJSON('/assets/data/tas-2025-proposed.geojson');
