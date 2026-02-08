@@ -71,6 +71,14 @@ layout: default
       <script src="/assets/js/{{ page.script_name }}"></script>
     {% endif %}
     {% endif %}
+
+    {% if page.status == "deferred" %}
+        {% if page.deferral_info %}
+        <section class="info-box" style="--info-color: {{ page.state_color }};">
+            {{ page.deferral_info }}
+        </section>
+        {% endif %}
+    {% endif %}
     
 {% if page.pdf_filename %}
     <section class="report-download">
