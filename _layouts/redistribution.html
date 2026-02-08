@@ -4,23 +4,24 @@ layout: default
 
 <main>  
     <section>
-        <h1>{{ page.title }} redistribution {{page.year}}</h1>
+        <h1>{{ page.state }} redistribution {{page.year}}</h1>
         {{ content }}
     </section>
     
     <section>
         <h2>Proposed electoral divisions</h2>
-        <p>The numerical thresholds for this redistribution are:</p>
-        <dl>
-            <dt>Redistribution quota</dt>
-              <dd>Total electors: {{ page.quota_total }} divided by {{ page.division_count }} = {{ page.quota_result }}</dd>
-            <dt>Actual threshold (±10%)</dt>
-              <dd>Between {{ page.threshold_low }} and {{ page.threshold_high }}</dd>
-            <dt>Projected quota</dt>
-              <dd>Total projected: {{ page.projected_total }} divided by {{ page.division_count }} = {{ page.projected_quota }}</dd>
-            <dt>Projected threshold (±3.5%)</dt>
-              <dd>Between {{ page.projected_low }} and {{ page.projected_high }}</dd>
-        </dl>
+            <p>My suggestion ensures all electoral divisions in {{ page.state }} meet the numerical thresholds for actual and projected enrolment, while adhering to community of interests criteria as outlined in the <em>Commonwealth Electoral Act 1918</em>.</p>
+            <p>The numerical thresholds for this redistribution are:</p>
+            <dl>
+                <dt>Redistribution quota</dt>
+                  <dd>Total electors: {{ page.quota_total }}, divided by the number of divisions: {{ page.division_count }} = {{ page.quota_result }}</dd>
+                <dt>Threshold for electors within each division (±10%)</dt>
+                  <dd>Between {{ page.threshold_low }} and {{ page.threshold_high }} actual electors</dd>
+                <dt>Projected electoral quota</dt>
+                  <dd>Total projected electors: {{ page.projected_total }}, divided by the number of divisions: {{ page.division_count }} = {{ page.projected_quota }}</dd>
+                <dt>Threshold for projected electors within each division (±3.5)</dt>
+                  <dd>Between {{ page.projected_low }} and {{ page.projected_high }} projected electors</dd>
+            </dl>
 
         <div class="table-wrapper">
             <table class="state-table">
@@ -73,6 +74,7 @@ layout: default
     
     <section>
         <h2>Full submission</h2>
+        <p>For the complete breakdown, including SA1-level transfers, rationale, and individual maps for every division, you can download my full submission to the AEC.</p>
         <a href="{{ page.pdf_filename }}" class="report-button" style="--state-color: {{ page.state_color }};">
             <span class="icon">📄</span> Download full report (PDF)
         </a>
@@ -81,7 +83,7 @@ layout: default
     <section class="external-links">
         <h2>More information</h2>
         <div class="link-list">
-            <a href="{{ page.aec_url }}" class="link-item">{{ page.title }} {{page.year}} redistribution page</a>
+            <a href="{{ page.aec_url }}" class="link-item">AEC {{ page.state }} {{page.year}} redistribution page</a>
             <a href="https://www.aec.gov.au/redistributions/" class="link-item">AEC Redistributions</a>                
         </div>
     </section>     
