@@ -100,9 +100,9 @@ layout: default
         <h2>More information</h2>
         <div class="link-list">
             <a href="{{ page.aec_url }}" class="link-item">
-                {% if page.status == "archived" %}Final determination{% else %}AEC {{ page.state }}{% endif %} redistribution page
+                AEC {% if page.status == "archived" %}final determination for {{ page.state }}{% else %}{{ page.state }} redistribution{% endif %} page
             </a>
-            <a href="https://www.aec.gov.au/redistributions/" class="link-item">AEC Redistributions</a>                
+            <a href="https://www.aec.gov.au/redistributions/" class="link-item">AEC redistributions homepage</a>                
         </div>
     </section>     
 </main>
