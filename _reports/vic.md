@@ -5,7 +5,7 @@ title: "Victoria suggested redistribution | divs.au"
 status: "archived"
 state_color: "#1e3a8a"
 archive_year: "2024"
-archive_summary: "INSERT YOUR SUMMARY"
+archive_summary: "My 2023 submission argued for the abolition of McEwen with the name being transferred to the division of Casey."
 pdf_filename: "vic-2024-suggestion.pdf"
 aec_url: "https://www.aec.gov.au/redistributions/2023/vic/"
 ---
