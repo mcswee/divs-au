@@ -55,4 +55,4 @@ function loadGeoJSON(file) {
 }
 
 // 3. Initial Load
-loadGeoJSON('act-2025-proposed.geojson');
+loadGeoJSON('/assets/data/act-2025-proposed.geojson');
