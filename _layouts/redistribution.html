@@ -1,0 +1,84 @@
+---
+layout: default
+---
+
+<main>  
+    <section>
+        <h1>{{ page.title }} redistribution 2025</h1>
+        {{ content }}
+    </section>
+    
+    <section>
+        <h2>Proposed electoral divisions</h2>
+        <p>The numerical thresholds for this redistribution are:</p>
+        <dl>
+            <dt>Redistribution quota</dt>
+              <dd>Total electors: {{ page.quota_total }} divided by {{ page.division_count }} = {{ page.quota_result }}</dd>
+            <dt>Actual threshold (±10%)</dt>
+              <dd>Between {{ page.threshold_low }} and {{ page.threshold_high }}</dd>
+            <dt>Projected quota</dt>
+              <dd>Total projected: {{ page.projected_total }} divided by {{ page.division_count }} = {{ page.projected_quota }}</dd>
+            <dt>Projected threshold (±3.5%)</dt>
+              <dd>Between {{ page.projected_low }} and {{ page.projected_high }}</dd>
+        </dl>
+
+        <div class="table-wrapper">
+            <table class="state-table">
+                <thead>
+                    <tr>
+                        <th>Division name</th>
+                        <th>Current projected</th>
+                        <th>Current deviation %</th>
+                        <th>Proposed actual</th>
+                        <th>Proposed projected</th>
+                        <th>Proposed deviation %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for div in page.divisions %}
+                    <tr>
+                        <td>{{ div.name }}</td>
+                        <td class="num">{{ div.proj }}</td>
+                        <td class="num">{{ div.dev }}</td>
+                        <td class="num">{{ div.p_act }}</td>
+                        <td class="num">{{ div.p_proj }}</td>
+                        <td class="num">{{ div.p_dev }}</td>   
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h2>Summary of proposed changes</h2>
+        <dl>
+            {% for div in page.divisions %}
+            <dt>{{ div.name }}</dt>
+            <dd>{{ div.change }}</dd>
+            {% endfor %}
+        </dl>
+    </section>
+
+    {% if page.show_map %}
+    <section>
+        <h2>Map of proposed divisions</h2>
+        <div id="state-map"></div> 
+    </section>
+    {% endif %}
+    
+    <section>
+        <h2>Full submission</h2>
+        <a href="{{ page.pdf_filename }}" class="report-button" style="--state-color: {{ page.state_color }};">
+            <span class="icon">📄</span> Download full report (PDF)
+        </a>
+    </section>
+
+    <section class="external-links">
+        <h2>More information</h2>
+        <div class="link-list">
+            <a href="{{ page.aec_url }}" class="link-item">{{ page.title }} 2025 redistribution page</a>
+            <a href="https://www.aec.gov.au/redistributions/" class="link-item">AEC Redistributions</a>                
+        </div>
+    </section>     
+</main>
