@@ -1,6 +1,6 @@
 ---
 layout: redistribution
-title: "South Australia suggested redistribution | divs.au"
+title: "Tasmania suggested redistribution | divs.au"
 state: "Tasmania"
 description: "My public suggestion to the Australia Electoral Commission for the redistribution of Tasmania."
 status: active
