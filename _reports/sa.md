@@ -1,6 +1,6 @@
 ---
 layout: redistribution
-title: "South Australia"
+title: "South Australian redistribution | divs.au"
 description: "My public suggestion to the Australia Electoral Commission for the redistribution of South Australia."
 status: active
 map: true
