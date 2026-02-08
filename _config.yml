@@ -11,3 +11,8 @@ exclude:
   - node_modules
   - .jekyll-cache
   - .jekyll-metadata
+
+collections:
+  reports:
+    output: true
+    permalink: /:name/
