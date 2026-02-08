@@ -27,6 +27,11 @@
   <link rel="stylesheet" href="/style.css">
   <link rel="icon" type="image/svg+xml" href="/images/star.svg">
 
+  {% if page.map == true %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  {% endif %}
+  {{ page.extra_head }}
+
   {{ page.extra_head }}
 </head>
 <body>
@@ -37,9 +42,12 @@
 
   {% include footer.html %}
 
-  <script src="/nav.js"></script>
-
-  {{ page.extra_scripts }}
+ <script src="/nav.js"></script>
+ {% if page.map == true %}
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+ {% endif %}
+ {{ page.extra_scripts }}
+ 
 
 </body>
 </html>
