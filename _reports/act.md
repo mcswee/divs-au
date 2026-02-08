@@ -1,6 +1,7 @@
 ---
 layout: redistribution
-title: "Australian Capital Territory"
+title: "Australian Capital Territory suggested redistribution | divs.au"
+state: "Australian Capital Territory"
 description: "My public suggestion to the Australia Electoral Commission for the redistribution of the Australian Capital Territory."
 status: active
 map: true
