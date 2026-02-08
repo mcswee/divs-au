@@ -1,6 +1,13 @@
 ---
 layout: default
 ---
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+{% if page.script_name %}
+  <script src="/assets/js/{{ page.script_name }}"></script>
+{% endif %}
+
 
 <main>  
     <section>
