@@ -59,14 +59,16 @@ body {
 .footer-ack {
     flex-shrink: 0;
     display: flex;
-    height: 35px;
+    height: 35px; /* Keep your fixed height */
     width: 100%;
     align-items: center;
     gap: 8px;
     background: var(--highlight);
     padding: 0 20px;
-    z-index: 2000;
+    /* Add this one */
+    margin-top: auto; 
 }
+
 
 .footer-ack p { color: var(--text-main); font-size: 0.7rem; }
 
@@ -99,6 +101,8 @@ main {
     overflow-y: auto;
     position: relative;
     -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
 }
 
 section {
