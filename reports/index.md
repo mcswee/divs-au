@@ -7,18 +7,18 @@ permalink: /reports/
 <header class="page-element">
     <h1>Electoral division redistributions</h1>
     <p>A comprehensive archive of my formal suggestions to the Australian Electoral Commission for the redistribution of federal electoral divisions.</p>
-    <p>Select a state below to explore my current suggestions.</p>
+    <p>Select a state below to explore my suggestions.</p>
 </header>
 
 <section class="page-element">
-    <h2>My approach</h2>
+    <h2>My approach to redistributions</h2>
     <nav class="card-grid" aria-label="Redistribution background">
         <a href="/methodology/" class="state-card">Methodology</a>
         <a href="/naming/" class="state-card">Naming conventions</a>
     </nav>
 </section>
 
-{% assign sections = "active,deferred,report" | split: "," %}
+{% assign sections = "active,deferred,archived" | split: "," %}
 {% assign headings = "Current redistributions,Deferred redistributions,Previous redistributions" | split: "," %}
 
 {% for s in sections %}
