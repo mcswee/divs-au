@@ -63,13 +63,12 @@ body {
     width: 100%;
     align-items: center;
     gap: 8px;
-    background: #382f23;
+    background: var(--highlight);
     padding: 0 20px;
     z-index: 2000;
-    border-top: 1px solid var(--text-accent);
 }
 
-.footer-ack p { color: var(--highlight); font-size: 0.75rem; }
+.footer-ack p { color: var(--text-main); font-size: 0.7rem; }
 
 .ack-flags-container {
     display: flex;
@@ -79,14 +78,7 @@ body {
 }
 
 .ack-close {
-    background: none;
-    border: none;
-    color: var(--highlight);
-    font-size: 20px;
-    cursor: pointer;
-    margin-left: auto;
-    padding: 0 10px;
-    line-height: 1;
+    display: none;
 }
 
 .site-footer {
@@ -198,8 +190,11 @@ header .page-element {
 }
 
 .nav-links a[aria-current="page"] {
-    background: var(--brand-accent);
+    background: var(--highlight);
+    color: var(--brand-accent);
     font-weight: 700;
+    border 1px solid var(--brand-highlight);
+  
 }
   .menu-toggle {
     display: none;
