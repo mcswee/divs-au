@@ -6,6 +6,7 @@ title: "Queensland suggested redistribution | divs.au"
 status: "deferred"
 category: reports
 state_color: "#73182c"
+state_bg: "#f9e0e5"
 aec_url: "https://www.aec.gov.au/redistributions/2025/qld/Deferral.html"
 deferral_info: |
   <h2>Why is this deferred?</h2>
