@@ -1,0 +1,39 @@
+---
+layout: default
+title: Redistribution Reports
+permalink: /reports/
+---
+<main>
+<header class="page-element">
+    <h1>Electoral division redistributions</h1>
+    <p>A comprehensive archive of my formal suggestions to the Australian Electoral Commission for the redistribution of federal electoral divisions.</p>
+    <p>Select a state below to explore my current suggestions.</p>
+</header>
+
+<section class="page-element">
+    <h2>My approach</h2>
+    <nav class="card-grid" aria-label="Redistribution background">
+        <a href="/methodology/" class="state-card">Methodology</a>
+        <a href="/naming/" class="state-card">Naming conventions</a>
+    </nav>
+</section>
+
+{% assign sections = "active,deferred,report" | split: "," %}
+{% assign headings = "Current redistributions,Deferred redistributions,Previous redistributions" | split: "," %}
+
+{% for s in sections %}
+    {% assign filtered = site.reports | where: "status", s %}
+    {% if filtered.size > 0 %}
+        <section class="page-element">
+            <h2 id="heading-{{ s }}">{{ headings[forloop.index0] }}</h2>
+            <nav class="card-grid" aria-labelledby="heading-{{ s }}">
+                {% for report in filtered %}
+                <a href="{{ report.url }}" class="state-card" style="--state-color: {{ report.state_color }}; --state-bg: {{ report.state_bg | default: '#f0f0f0' }};">
+                    {{ report.state }} 
+                    <span class="status {{ report.status }}">{{ report.status }}</span>
+                </a>
+                {% endfor %}
+            </nav>
+        </section>
+    {% endif %}
+{% endfor %}
