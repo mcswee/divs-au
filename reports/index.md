@@ -3,7 +3,7 @@ layout: default
 title: Redistribution submission reports | diva.au
 permalink: /reports/
 ---
-<main>
+
 <header class="page-element">
     <h1>Electoral division redistributions</h1>
     <p>A comprehensive archive of my formal suggestions to the Australian Electoral Commission for the redistribution of federal electoral divisions. I have actively participated in every federal redistribution cycle since 2014, providing thorough and comprehensive statewide suggestions for boundaries and division names.</p>
