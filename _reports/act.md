@@ -5,6 +5,7 @@ state: "Australian Capital Territory"
 description: "My public suggestion to the Australia Electoral Commission for the redistribution of the Australian Capital Territory."
 status: active
 map: true
+category: reports 
 state_color: "#012b88"
 year: "2025"
 aec_url: "https://aec.gov.au/redistributions/2025/act/"
