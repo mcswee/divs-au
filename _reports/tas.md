@@ -7,6 +7,7 @@ status: active
 category: reports 
 map: true
 state_color: "#006538"
+state_bg: "#e1f2ee"
 year: "2024"
 aec_url: "https://aec.gov.au/redistributions/2024/tas/"
 pdf_filename: "/assets/pdf/tas-2025-suggestion.pdf"
