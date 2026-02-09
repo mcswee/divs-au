@@ -1119,6 +1119,24 @@ figcaption {
     .hamburger::before { content: ""; position: absolute; top: -8px; left: 0; }
     .hamburger::after { content: ""; position: absolute; bottom: 8px; left: 0; }
 
+/* Rotate the top bar */
+.menu-toggle[aria-expanded="true"] .hamburger::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+/* Hide the middle bar */
+.menu-toggle[aria-expanded="true"] .hamburger {
+    background: transparent;
+}
+
+/* Rotate the bottom bar */
+.menu-toggle[aria-expanded="true"] .hamburger::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+  
+}
+  
     /* The Dropdown Drawer */
     .site-nav {
         display: none; 
