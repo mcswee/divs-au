@@ -4,6 +4,7 @@ state: "Northern Territory"
 title: "Northern Territory suggested redistribution | divs.au"
 status: "archived"
 state_color: "#e65100"
+state_bg: "#ffe8d9"
 archive_year: "2024"
 category: reports 
 archive_summary: "My 2024 submission was basic and united all of Palmerston within the division of Solomon."
