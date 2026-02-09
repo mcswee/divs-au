@@ -3,7 +3,7 @@ layout: redistribution
 state: "Victoria"
 title: "Victoria suggested redistribution | divs.au"
 status: "archived"
-category: repirts
+category: reports 
 state_color: "#1e3a8a"
 archive_year: "2023"
 archive_summary: "My 2023 submission argued for the abolition of McEwen with the name being transferred to the division of Casey."
