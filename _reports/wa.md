@@ -3,6 +3,7 @@ layout: redistribution
 state: "Western Australia"
 title: "Western Australia suggested redistribution | divs.au"
 status: "archived"
+category : reports
 state_color: "#fbbf24"
 archive_year: "2023"
 archive_summary: "My 2023 submission argued for the creation of a new division called Bates, ultimately the division of Bullwinkel was created."
