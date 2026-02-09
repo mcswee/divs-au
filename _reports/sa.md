@@ -7,6 +7,7 @@ status: active
 category: reports 
 map: true
 state_color: "#d50032"
+state_bg: "#ffd5df"
 year: "2025"
 aec_url: "https://aec.gov.au/redistributions/2025/sa/"
 pdf_filename: "/assets/pdf/sa-2025-suggestion.pdf"
