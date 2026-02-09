@@ -404,9 +404,9 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     font-weight: 700;
 }
 
-.status.current { background: #e6fffa; color: #2c7a7b; border: 1px solid #b2f5ea; }
+.status.activr { background: #e6fffa; color: #2c7a7b; border: 1px solid #b2f5ea; }
 .status.deferred { background: #fffaf0; color: #9c4221; border: 1px solid #feebc8; }
-.status.archive { background: #edf2f7; color: #4a5568; border: 1px solid #e2e8f0; }
+.status.archived { background: #edf2f7; color: #4a5568; border: 1px solid #e2e8f0; }
 
 /* 8. HIGHLIGHTED COMPONENTS */
 .info-box {
