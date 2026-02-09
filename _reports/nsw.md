@@ -3,6 +3,7 @@ layout: redistribution
 state: "New South Wales"
 title: "New South Wales suggested redistribution | divs.au"
 status: "archived"
+category: reports
 state_color: "#5fa2eb"
 archive_year: "2023"
 archive_summary: "My submission for the 2023 redistribution covered arguments for the abolition of two divisions, North Sydney and Blaxland and the creation of Bellear as a new division."
