@@ -166,6 +166,7 @@ header .page-element {
 .site-nav {
     display: flex;
     align-items: center;
+    margin-left: auto;
 }
 
 .nav-links {
@@ -1105,6 +1106,7 @@ figcaption {
         cursor: pointer;
         padding: 5px;
         z-index: 2001;
+        margin-left: auto;
     }
 
     .hamburger, .hamburger::before, .hamburger::after {
