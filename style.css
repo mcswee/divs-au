@@ -165,10 +165,23 @@ header .page-element {
 
 .site-nav {
     display: flex;
-    gap: 5px; /* Optional: keeps links from bunching */
+    align-items: center;
 }
 
-.site-nav a {
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 5px;
+}
+
+.nav-links li {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
     color: var(--highlight);
     text-decoration: none;
     font-weight: 500;
@@ -176,17 +189,21 @@ header .page-element {
     padding: 10px 16px;
     border-radius: 6px;
     transition: background 0.2s;
+    display: block;
 }
 
-.site-nav a:hover {
+.nav-links a:hover {
     background: var(--lighten);
 }
 
-/* Identifies the current page for users and screen readers */
-.site-nav a[aria-current="page"] {
+.nav-links a[aria-current="page"] {
     background: var(--brand-accent);
     font-weight: 700;
 }
+  .menu-toggle {
+    display: none;
+ 
+  }
 
 .error-container {
     display: flex;
@@ -1086,17 +1103,18 @@ figcaption {
         background: none;
         border: none;
         cursor: pointer;
-        padding: 10px;
-        z-index: 1001;
+        padding: 5px;
+        z-index: 2001;
     }
 
     .hamburger, .hamburger::before, .hamburger::after {
         display: block;
         width: 24px;
         height: 2px;
-        background: var(--brand-main);
+        background: var(--highlight); /* Changed to white/light so it shows on the blue header */
         transition: all 0.2s ease;
     }
+    
     .hamburger { position: relative; }
     .hamburger::before { content: ""; position: absolute; top: -8px; left: 0; }
     .hamburger::after { content: ""; position: absolute; bottom: 8px; left: 0; }
@@ -1105,13 +1123,12 @@ figcaption {
     .site-nav {
         display: none; 
         position: absolute;
-        top: 100%; 
+        top: 70px; /* Exact height of header */
         left: 0;
         width: 100%;
-        background: var(--accent);
-        border-bottom: 2px solid var(--brand-main);
+        background: var(--brand-main); /* Match header color */
+        border-bottom: 2px solid var(--brand-accent);
         z-index: 1000;
-        box-shadow: var(--shadow-deep);
     }
 
     .site-nav.is-active {
@@ -1120,18 +1137,15 @@ figcaption {
 
     .nav-links {
         flex-direction: column;
-        padding: 0;
-        margin: 0;
-        list-style: none;
+        gap: 0;
     }
 
     .nav-links li a {
-        display: block;
-        padding: 18px 20px;
-        border-bottom: 1px solid var(--text-accent);
-        color: var(--brand-main);
-        font-weight: 600;
-        text-decoration: none;
+        padding: 20px;
+        border-bottom: 1px solid var(--brand-accent);
+        text-align: center;
+        border-radius: 0;
     }
+
 }
 
