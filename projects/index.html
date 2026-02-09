@@ -30,18 +30,27 @@
 </head>
 <body>
 
-    <header class="site-header">
-            <a href="/" class="brand">
-                <img src="/images/star.svg" alt="divs.au star">
-                <div class="brand-text">
-                    <strong>divs.au</strong>
-                    <span>Australian historical electoral division data</span>
-                </div>
-            </a>
-        <nav>
-            <a href="/">Map</a>
-        </nav>
-    </header>
+<header class="site-header">
+    <a href="/" class="brand">
+        <img src="/images/star.svg" alt="divs.au star">
+        <div class="brand-text">
+            <strong>divs.au</strong>
+            <span>Australian historical electoral division data</span>
+        </div>
+    </a>
+
+    <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+        <span class="hamburger"></span>
+    </button>
+
+    <nav class="site-nav" aria-label="Primary">
+        <ul class="nav-links">
+            <li><a href="/">Map</a></li>
+            <li><a href="/reports" aria-current="page">Reports</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </ul>
+    </nav>
+</header>
 
 <main>
         <section>
