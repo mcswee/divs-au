@@ -4,6 +4,7 @@ title: "Tasmania suggested redistribution | divs.au"
 state: "Tasmania"
 description: "My public suggestion to the Australia Electoral Commission for the redistribution of Tasmania."
 status: active
+category: reports 
 map: true
 state_color: "#006538"
 year: "2024"
