@@ -4,6 +4,7 @@ title: "South Australia suggested redistribution | divs.au"
 state: "South Australia"
 description: "My public suggestion to the Australia Electoral Commission for the redistribution of South Australia."
 status: active
+category: reports 
 map: true
 state_color: "#d50032"
 year: "2025"
