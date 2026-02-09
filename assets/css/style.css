@@ -189,7 +189,8 @@ header .page-element {
     background: var(--lighten);
 }
 
-.nav-links a[aria-current="page"] {
+.nav-links a[aria-current="page"],
+.nav-links a.active-parent {
     background: var(--highlight);
     color: var(--brand-accent);
     font-weight: 700;
