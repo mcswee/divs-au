@@ -180,8 +180,7 @@ header .page-element {
     background: var(--lighten);
 }
 
-.nav-links a[aria-current="page"],
-.nav-links a.active-parent {
+.nav-links a[aria-current="page"] {
     background: var(--highlight);
     color: var(--brand-accent);
     font-weight: 700;
@@ -193,6 +192,13 @@ nav a[aria-current="page"]::before {
     font-size: 0.75em;
     vertical-align: 0.33ex;
     margin-right: 0.4em;
+}
+
+.nav-links a.active-parent {
+    background: var(--brand-accent);
+    color: var(--highlight);
+    font-weight: 700;
+    border 1px solid var(--brand-highlight);
 }
 
   .menu-toggle {
