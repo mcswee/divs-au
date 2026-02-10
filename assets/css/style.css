@@ -59,13 +59,12 @@ body {
 .footer-ack {
     flex-shrink: 0;
     display: flex;
-    height: 35px; /* Keep your fixed height */
+    height: 35px;
     width: 100%;
     align-items: center;
     gap: 8px;
     background: var(--highlight);
-    padding: 30px 20px 0;
-    /* Add this one */
+    padding: 0 20px;
     margin-top: auto; 
 }
 
@@ -102,17 +101,6 @@ main {
     -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
-}
-
-section {
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 10px 20px;
-}
-
-section:first-of-type {
-    padding-top: 16px;
 }
 
 .page-element {
@@ -202,14 +190,13 @@ header .page-element {
 
 nav a[aria-current="page"]::before {
     content: "▶";
-    font-size: 0.8em;
-    vertical-align: -0.1ex;
-    margin-right: 0.5em;
+    font-size: 0.75em;
+    vertical-align: -0.33ex;
+    margin-right: 0.4em;
 }
 
   .menu-toggle {
     display: none;
- 
   }
 
 .error-container {
@@ -220,7 +207,7 @@ nav a[aria-current="page"]::before {
     height: 100%;
     max-width: 800px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 60px 20px;
     text-align: center;
 }
 
@@ -232,11 +219,11 @@ nav a[aria-current="page"]::before {
     background: var(--accent);
     font-weight: 500;
     font-size: 0.95rem;
-    padding: 10px 24px;
+    padding: 20px 36px;
     border-radius: 6px;
     transition: background 0.2s;
     border: 1px solid var(--text-accent);
-    margin-top: 20px;
+    margin-top: 24px;
 }
 
 .error-link:hover {
@@ -254,14 +241,14 @@ ul { margin: 1rem; }
 ol { margin: 1rem; }
 li { margin-left: 1rem; }
 dt { font-weight: bold; margin-top: 10px; }
-dd { margin-left: 0; margin-bottom: 10px; font-style: italic; }
+dd { margin-left: 1em; margin-bottom: 10px; font-style: italic; }
 
 blockquote {
-    margin: 2rem;
-    border-left: 2px solid var(--brand-main);
+    margin: 1rem;
+    border-left: 3px solid var(--brand-main);
     font-style: italic;
     text-size: 1.05em;
-    padding: 2rem;
+    padding: 1rem 2rem;
 }
 
 .external-link::after {
@@ -279,9 +266,9 @@ blockquote {
     font-variant: small-caps;
 }
 
-/* Visual cue for the tooltips */
+/* Visual cue for tooltips */
 abbr[title] {
-    text-decoration: underline dotted var(--brand-main);
+    text-decoration: underline dotted var(--brand-accent);
     text-underline-offset: 3px;
     cursor: help;
 }
@@ -435,7 +422,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 .info-box p {
     font-size: 0.95rem;
     color: var(--text-main);
-    line-height: 1.5;
+    line-height: 1.6rem;
     padding-left: 20px;
 }
 
@@ -454,13 +441,13 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .report-button:hover {
-    background: var(--state-accent, var(--brand-accent));
+    background: var(--state-color, var(--brand-accent));
     transform: translateY(-2px);
 }
 
 .external-links {
     max-width: 1100px;
-    margin: 30px auto;
+    margin: 20px auto;
 }
 
 .external-links h2 {
@@ -525,7 +512,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     text-decoration: none;
     font-size: inherit;
     line-height: 1;
-    transition: color 0.2s ease, text-decoration 0.2s ease;
+    transition: color 0.2s ease, text-decoration 0.5s ease;
     margin: 0;
     padding: 0;
     background: none;
