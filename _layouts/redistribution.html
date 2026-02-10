@@ -63,13 +63,27 @@ layout: default
 
     <section class="page-element">
         <h2>Map of proposed divisions</h2>
-        <div id="map-status" class="sr-only" aria-live="polite"></div>
-        <div id="state-map" role="img" aria-label="Map of proposed electoral divisions" aria-describedby="map-description"></div>
-        <p id="map-description" class="sr-only">Interactive map showing proposed boundary changes. Detailed data is available in the table above this section.</p>
-    </section>
+<div id="map-status" class="sr-only" aria-live="polite"></div>
 
-    {% if page.script_name %}
-      <script src="/assets/js/{{ page.script_name }}"></script>
+<div id="state-map" 
+     role="img" 
+     aria-label="Map of proposed electoral divisions for {{ page.state }}" 
+     aria-describedby="map-description"
+     data-geojson="/assets/data/{{ page.slug }}-{{ page.year }}-proposed.geojson"
+     data-lat="{{ page.map_lat | default: -28.0 }}"
+     data-lng="{{ page.map_lng | default: 135.0 }}"
+     data-zoom="{{ page.map_zoom | default: 4 }}"
+     data-state="{{ page.state }}"
+     data-color="{{ page.state_color }}">
+</div>
+
+<p id="map-description" class="sr-only">
+  Interactive map showing proposed boundary changes for {{ page.state }}. 
+  Detailed data is available in the table following this section.
+</p>    </section>
+
+    {% if page.status == "active" %}
+     <script src="/assets/js/state-map.js"></script>
     {% endif %}
     {% endif %}
 
@@ -81,7 +95,7 @@ layout: default
         {% endif %}
     {% endif %}
     
-{% if page.pdf_filename %}
+{% if page.status !== "deferred" %}
     <section class="page-element">
         {% if page.status == "active" %}
             <h2>Full submission</h2>
@@ -90,8 +104,8 @@ layout: default
             <h2>My {{ page.archive_year }} Submission</h2>
             <p>{{ page.archive_summary }}</p>
         {% endif %}
-
-        <a href="{{ page.pdf_filename }}" class="report-button" style="--state-color: {{ page.state_color }};">
+     
+        <a href="/assets/pdf/{{ page.slug }}-{{ page.year }}-suggestion.pdf" class="report-button" style="--state-color: {{ page.state_color }};">
             <span class="icon" aria-hidden="true">📄</span> Download {% if page.status == "archived" %}{{ page.archive_year }}{% else %}full{% endif %} report (PDF)
         </a>
     </section>
