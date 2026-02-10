@@ -2,13 +2,13 @@
 layout: default
 ---
  
-    <section>
+    <header class="page-element">
         <h1>{{ page.state }} redistribution {% if page.year %}{{ page.year }}{% endif %}</h1>
         {{ content }}
-    </section>
+    </header>
     
     {% if page.status == "active" %}
-    <section>
+    <section class="page-element">
         <h2>Proposed electoral divisions</h2>
             <p>My suggestion ensures all electoral divisions in {{ page.state }} meet the numerical thresholds for actual and projected enrolment, while adhering to community of interests criteria as outlined in the <em>Commonwealth Electoral Act 1918</em>.</p>
             <p>The numerical thresholds for this redistribution are:</p>
@@ -51,7 +51,7 @@ layout: default
         </div>
     </section>
 
-    <section>
+    <section class="page-element">
         <h2>Summary of proposed changes</h2>
         <dl>
             {% for div in page.divisions %}
@@ -61,7 +61,7 @@ layout: default
         </dl>
     </section>
 
-    <section>
+    <section class="page-element">
         <h2>Map of proposed divisions</h2>
         <div id="state-map"></div> 
     </section>
@@ -80,7 +80,7 @@ layout: default
     {% endif %}
     
 {% if page.pdf_filename %}
-    <section class="report-download">
+    <section class="page-element">
         {% if page.status == "active" %}
             <h2>Full submission</h2>
             <p>For the complete breakdown, including SA1-level transfers, rationale, and individual maps for every division, you can download my full submission to the AEC.</p>
