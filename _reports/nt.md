@@ -8,7 +8,9 @@ state_bg: "#ffe8d9"
 archive_year: "2024"
 category: reports 
 archive_summary: "My 2024 submission was basic and united all of Palmerston within the division of Solomon."
-pdf_filename: "/assets/pdf/nt-2024-suggestion.pdf"
+map_lat: -12.45
+map_lng: 130.84
+map_zoom: 10
 aec_url: "https://www.aec.gov.au/redistributions/2024/nt/"
 ---
 
