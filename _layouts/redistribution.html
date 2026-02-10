@@ -63,7 +63,9 @@ layout: default
 
     <section class="page-element">
         <h2>Map of proposed divisions</h2>
-        <div id="state-map"></div> 
+        <div id="map-status" class="sr-only" aria-live="polite"></div>
+        <div id="state-map" role="img" aria-label="Map of proposed electoral divisions" aria-describedby="map-description"></div>
+        <p id="map-description" class="sr-only">Interactive map showing proposed boundary changes. Detailed data is available in the table above this section.</p>
     </section>
 
     {% if page.script_name %}
