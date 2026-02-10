@@ -66,6 +66,7 @@ body {
     background: var(--highlight);
     padding: 0 20px;
     margin-top: auto; 
+    box-shadow:   0 -2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .footer-ack p { color: var(--text-main); font-size: 0.7rem; }
