@@ -10,8 +10,9 @@ state_color: "#012b88"
 state_bg: "#d5e4ff"
 year: "2025"
 aec_url: "https://aec.gov.au/redistributions/2025/act/"
-pdf_filename: "/assets/pdf/act-2025-suggestion.pdf"
-script_name: "act-map.js"
+map_lat: -35.3
+map_lng: 149.1
+map_zoom: 10
 
 # Numerical Thresholds
 quota_total: "321,879"
