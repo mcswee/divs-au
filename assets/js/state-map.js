@@ -61,6 +61,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 map.fitBounds(geoLayer.getBounds());
             }
         })
-        .catch(err => console.error(`Failed to load ${geojson}`, er
-                                    r));
+        .catch(err => console.error(`Failed to load ${geojson}`, err));
 });
