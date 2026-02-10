@@ -92,7 +92,7 @@ layout: default
         {% endif %}
 
         <a href="{{ page.pdf_filename }}" class="report-button" style="--state-color: {{ page.state_color }};">
-            <span class="icon">📄</span> Download {% if page.status == "archived" %}{{ page.archive_year }}{% else %}full{% endif %} report (PDF)
+            <span class="icon" aria-hidden="true">📄</span> Download {% if page.status == "archived" %}{{ page.archive_year }}{% else %}full{% endif %} report (PDF)
         </a>
     </section>
     {% endif %}
