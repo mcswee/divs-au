@@ -454,6 +454,9 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 .external-links {
     max-width: 1100px;
     margin: 20px auto;
+    width: 100%;
+    max-width: 1100px;
+    padding: 10px 20px;
 }
 
 .external-links h2 {
