@@ -64,11 +64,10 @@ body {
     align-items: center;
     gap: 8px;
     background: var(--highlight);
-    padding: 0 20px;
+    padding: 30px 20px 0;
     /* Add this one */
     margin-top: auto; 
 }
-
 
 .footer-ack p { color: var(--text-main); font-size: 0.7rem; }
 
