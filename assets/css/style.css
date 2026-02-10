@@ -202,9 +202,7 @@ header .page-element {
 
 nav a[aria-current="page"]::before {
     content: "▶";
-    margin-right: 8px;
     font-size: 0.8em;
-    vertical-align: text-top;
 }
 
   .menu-toggle {
