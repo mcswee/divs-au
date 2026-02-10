@@ -191,7 +191,7 @@ header .page-element {
 nav a[aria-current="page"]::before {
     content: "▶";
     font-size: 0.75em;
-    vertical-align: -0.33ex;
+    vertical-align: 0.33ex;
     margin-right: 0.4em;
 }
 
