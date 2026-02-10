@@ -1,66 +1,16 @@
-<!DOCTYPE html>
-<html lang="en-AU">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Projects not related to electoral divisions that I wish to demonstrate.">
-  <meta name="author" content="Darren McSweeney">
-  <title>Side projects | divs.au</title>
-
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://divs.au/projects/">
-  <meta property="og:title" content="Side projects | divs.au">
-  <meta property="og:description" content="Projects not related to electoral divisions that I wish to demonstrate.">
-  <meta property="og:image" content="https://divs.au/images/og-map.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://divs.au/projects/">
-  <meta name="twitter:title" content="Side projects | divs.au">
-  <meta name="twitter:description" content="Projects not related to electoral divisions that I wish to demonstrate.">
-  <meta name="twitter:image" content="https://divs.au/images/og-map.png">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css">
-  <link rel="icon" type="image/svg+xml" href="/assets/images/star.svg">
-
-</head>
-<body>
-
-<header class="site-header">
-    <a href="/" class="brand">
-        <img src="/assets/images/star.svg" alt="divs.au star">
-        <div class="brand-text">
-            <strong>divs.au</strong>
-            <span>Australian historical electoral division data</span>
-        </div>
-    </a>
-
-    <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
-        <span class="hamburger"></span>
-    </button>
-
-    <nav class="site-nav" aria-label="Primary">
-        <ul class="nav-links">
-            <li><a href="/">Map</a></li>
-            <li><a href="/reports">Reports</a></li>
-            <li><a href="/projects" aria-current="page">Projects</a></li>
-        </ul>
-    </nav>
-</header>
-
-<main>
-        <section>
+---
+layout: default
+title: "Side projects | divs.au"
+permalink: /projects/
+---
+        <header class="page-element">
             <h1>Side projects</h1>
             <p>If I'm not working out electoral boundaries, I often engage with other visualisations and side projects. This is a collection of my experiments in linguistics, vexillology, and infrastructure.</p>
-        </section>
+        </header>
 
-        <section>
+        <section class="page-element">
             <h2>Current projects</h2>
-            <div class="card-grid">
+            <nav class="card-grid">
                 <a href="/suburbs" class="project-card">
                     <h3>Melbourne suburb pronunciations</h3>
                     <p>A guide to the phonetic minefields of Melbourne, from Prahran to Reservoir, featuring a custom orthography for Australian English.</p>
@@ -105,32 +55,5 @@
                     <h3>AFL Players</h3>
                     <p>A history of AFL players and games.</p>
                 </a>
-            </div>
+            </nav>
         </section>
-</main>
-<footer>
-  <div class="footer-ack" id="ack-banner">
-    <div class="ack-flags-container">
-      <img src="/images/flag-aboriginal.svg" alt="" height="19">
-      <img src="/images/flag-torres-strait.svg" alt="" height="20">
-    </div>
-    <p>I acknowledge the Traditional Owners of the lands throughout Australia on which these federal divisions are drawn.</p>
-    <button type="button" class="ack-close" aria-label="Close acknowledgement">&times;</button>
-  </div>
-  <div class="site-footer">
-      <nav id="footer-navigation">
-          <a href="/about">About</a>
-          <a href="/reports">Reports</a>
-          <a href="/disclosure">Disclosure</a>
-          <a href="/privacy">Privacy</a>
-          <a href="/terms">Terms</a>
-          <a href="/copyright/">&copy; 2026<span> Darren McSweeney</span></a>
-      </nav>
-  </div>
-</footer>
-
-<script src="/assets/js/nav.js"></script>
-</footer>
-
-</body>
-</html>
