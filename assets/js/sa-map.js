@@ -8,38 +8,59 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 
 map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
 
+// Function to prevent the map from being a keyboard tab trap
+function disableMapTabOrder() {
+  const mapContainer = document.querySelector('#state-map');
+  if (mapContainer) {
+    mapContainer.querySelectorAll('a, button').forEach(el => {
+      el.setAttribute('tabindex', '-1');
+    });
+  }
+}
+
+// Run it initially
+disableMapTabOrder();
+
 let geoLayer = null;
 
 function loadGeoJSON(file) {
   fetch(file)
     .then(res => res.json())
-.then(function (data) {
-  if (geoLayer) {
-    map.removeLayer(geoLayer);
-  }
-
-  geoLayer = L.geoJSON(data, {
-    style: {
-      color: "#d51c38",
-      weight: 1,
-    },
-    onEachFeature: function (feature, layer) {
-      if (feature.properties) {
-        var p = feature.properties;
-        var tooltip = "<b>" + (p["Division Name"] || "Unknown Division") + "</b><br>" +
-                      "<strong> No of SA1:</strong> " + (p.Numccds || "—") + "<br>" +
-                      "<strong>Actual enrolment:</strong> " + (p.Actual || "—") + "<br>" +
-                      "<strong>Projected enrolment:</strong> " + (p.Projected || "—");
-        layer.bindTooltip(tooltip, { sticky: true });
+    .then(function (data) {
+      if (geoLayer) {
+        map.removeLayer(geoLayer);
       }
-    }
-  }).addTo(map);
 
-  map.fitBounds(geoLayer.getBounds());
-})
+      geoLayer = L.geoJSON(data, {
+        style: {
+          color: "#d51c38",
+          weight: 1,
+        },
+        onEachFeature: function (feature, layer) {
+          if (feature.properties) {
+            var p = feature.properties;
+            var tooltip = "<b>" + (p["Division Name"] || "Unknown Division") + "</b><br>" +
+                          "<strong> No of SA1:</strong> " + (p.Numccds || "—") + "<br>" +
+                          "<strong>Actual enrolment:</strong> " + (p.Actual || "—") + "<br>" +
+                          "<strong>Projected enrolment:</strong> " + (p.Projected || "—");
+            layer.bindTooltip(tooltip, { sticky: true });
+          }
+        }
+      }).addTo(map);
+
+      // Update ARIA live region for screen readers
+      const status = document.getElementById('map-status');
+      if (status) {
+        status.textContent = "Map data for South Australia has loaded.";
+      }
+
+      // Ensure new links (like attribution updates) are also removed from tab order
+      disableMapTabOrder();
+
+      map.fitBounds(geoLayer.getBounds());
+    })
     .catch(err => console.error(`Failed to load ${file}`, err));
 }
 
 // Default load
 loadGeoJSON('/assets/data/sa-2025-proposed.geojson');
-
