@@ -3,7 +3,7 @@ layout: default
 ---
  
     <header class="page-element">
-        <h1>{{ page.state }} redistribution {% if page.year %}{{ page.year }}{% endif %}</h1>
+        <h1>{{ page.state }} {{ page.year }} redistribution</h1>
         {{ content }}
     </header>
     
@@ -98,12 +98,12 @@ layout: default
             <h2>Full submission</h2>
             <p>For the complete breakdown, including SA1-level transfers, rationale, and individual maps for every division, you can download my full submission to the AEC.</p>
         {% elsif page.status == "archived" %}
-            <h2>My {{ page.archive_year }} Submission</h2>
+            <h2>My {{ page.year }} Submission</h2>
             <p>{{ page.archive_summary }}</p>
         {% endif %}
      
         <a href="/assets/pdf/{{ page.slug }}-{{ page.year }}-suggestion.pdf" class="report-button" style="--state-color: {{ page.state_color }};">
-            <span class="icon" aria-hidden="true">📄</span> Download {% if page.status == "archived" %}{{ page.archive_year }}{% else %}full{% endif %} report (PDF)
+            <span class="icon" aria-hidden="true">📄</span> Download {% if page.status == "archived" %}{{ page.year }}{% else %}full{% endif %} report (PDF)
         </a>
     </section>
     {% endif %}
