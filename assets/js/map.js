@@ -22,7 +22,7 @@ let geoJsonLayer = null;
 
 // --- 2. DATA LOADING ---
 // Load static namesake/history data ONCE
-Papa.parse('/data/electoral_division_data.csv', {
+Papa.parse('/assets/data/electoral_division_data.csv', {
     download: true,
     header: true,
     skipEmptyLines: true,
@@ -63,7 +63,7 @@ function loadYear(year) {
     }
 
     // Fetch the specific year's election results
-    Papa.parse(`/data/${year}.csv`, {
+    Papa.parse(`/assets/data/${year}.csv`, {
         download: true,
         header: true,
         skipEmptyLines: true,
@@ -87,7 +87,7 @@ function loadYear(year) {
 
 // --- 3. GEOJSON & INTERACTIVITY ---
 function renderGeoJson(year) {
-    fetch(`/data/${year}.geojson`)
+    fetch(`/assets/data/${year}.geojson`)
         .then(res => res.json())
         .then(geoData => {
             geoJsonLayer = L.geoJSON(geoData, {
