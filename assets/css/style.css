@@ -91,10 +91,6 @@ body {
     flex-shrink: 0;
 }
 
-.ack-close {
-    display: none;
-}
-
 .site-footer {
     flex-shrink: 0;
     height: 35px;
@@ -663,6 +659,17 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 .modern-tooltip:before {
     display:none;
 } 
+
+.map-ack {
+    flex-shrink: 0;
+    display: flex;
+    max-width: 400px;
+    gap: 4px;
+    padding: 0 20px;
+    margin-top: auto;
+}
+
+.footer-ack p { font-size: 0.7rem; }
 
 /* State map styles */
 #state-map {
