@@ -666,12 +666,14 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     gap: 4px;
     padding: 0 20px;
     margin-top: auto;
-    max-width: 400px;
+    margin-left: 50px
+    max-width: 550px;
 }
 
 .map-ack p { 
-    colour: var(--highlight);
-    font-size: 0.65rem;
+    color: var(--highlight);
+    font-size: 0.7rem;
+    line-height: 0.85rem;
 }
 
 /* State map styles */
