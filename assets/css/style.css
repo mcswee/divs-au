@@ -663,13 +663,12 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 .map-ack {
     flex-shrink: 0;
     display: flex;
-    max-width: 400px;
     gap: 4px;
     padding: 0 20px;
     margin-top: auto;
 }
 
-.footer-ack p { font-size: 0.7rem; }
+.map-ack p { font-size: 0.7rem; }
 
 /* State map styles */
 #state-map {
