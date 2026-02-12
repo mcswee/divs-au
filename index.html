@@ -1,109 +1,43 @@
-<!DOCTYPE html>
-<html lang="en-AU">
-<head>
-  
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="historical archive of Australian federal electoral divisions with interactive maps and information about electoral redistributions.">
-  <meta name="keywords" content="Australia, election, electorate, electoral division, division, electoral district, district, redistribution, redistricting">
-  <meta name="author" content="Darren McSweeney">
-  <title>divs.au | Australian historical electoral division data</title>
+---
+layout: default
+title: divs.au | Australian historical electoral division data
+description: Explore historical archive of Australian federal electoral divisions with interactive maps and information about electoral redistributions.
+map: true
+is_map: true
+extra_head: '<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>'
+extra_scripts: '<script src="/assets/js/map.js"></script>'
+---
 
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://divs.au/">
-  <meta property="og:title" content="divs.au | Australian historical electoral division data">
-  <meta property="og:description" content="Explore historical archive of Australian federal electoral divisions with interactive maps and information about electoral redistributions.">
-  <meta property="og:image" content="https://divs.au/images/og-map.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://divs.au/">
-  <meta name="twitter:title" content="divs.au | Australian historical electoral division data">
-  <meta name="twitter:description" content="Explore historical archive of Australian federal electoral divisions with interactive maps and information about electoral redistributions.">
-  <meta name="twitter:image" content="https://divs.au/images/og-map.png">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Finlandica:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="icon" type="image/svg+xml" href="/assets/images/star.svg">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-  
-</head>
-    
-<body>
-<header class="site-header">
-    <a href="/" class="brand">
-        <img src="/assets/images/star.svg" alt="divs.au star">
-        <div class="brand-text">
-            <strong>divs.au</strong>
-            <span>Australian historical electoral division data</span>
-        </div>
-    </a>
-
-    <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
-        <span class="hamburger"></span>
-    </button>
-
-    <nav class="site-nav" aria-label="Primary">
-        <ul class="nav-links">
-            <li><a href="/" aria-current="page">Map</a></li>
-            <li><a href="/reports">Reports</a></li>
-            <li><a href="/projects">Projects</a></li>
-        </ul>
-    </nav>
-</header>
-
-  <main id="app-viewport">
+<main id="app-viewport">
     <section id="map-controls">
-      <h1>Map of federal electoral divisions</h1>
-      <div class="control-group">
-        <label for="year-select">Election year</label>
-        <select id="year-select">
-          <option value="2025" selected>2025</option>
-          <option value="2022">2022</option>
-          <option value="2019">2019</option>
-          <option value="2016" disabled>2016</option>
-          <option value="2013" disabled>2013</option>
-          <option value="2010" disabled>2010</option>
-          <option value="2007" disabled>2007</option>
-          <option value="2004" disabled>2004</option>  
-          <option value="2001" disabled>2001</option> 
-        </select>
-      </div>
-      <div class="control-group">
-        <label for="division-search">Find a division</label>
-        <input type="text" id="division-search" placeholder="Type a division name&hellip;">
-      </div>
+        <h1>Map of federal electoral divisions</h1>
+        <div class="control-group">
+            <label for="year-select">Election year</label>
+            <select id="year-select">
+                <option value="2025" selected>2025</option>
+                <option value="2022">2022</option>
+                <option value="2019">2019</option>
+                <option value="2016" disabled>2016</option>
+                <option value="2013" disabled>2013</option>
+                <option value="2010" disabled>2010</option>
+                <option value="2007" disabled>2007</option>
+                <option value="2004" disabled>2004</option>  
+                <option value="2001" disabled>2001</option> 
+            </select>
+        </div>
+        <div class="control-group">
+            <label for="division-search">Find a division</label>
+            <input type="text" id="division-search" placeholder="Type a division name&hellip;">
+        </div>
     </section>
     
     <div id="map"></div>
-  </main>
-  
-  <footer>
+
       <div class="footer-ack" id="ack-banner">
         <div class="ack-flags-container">
-          <img src="/assets/images/flag-aboriginal.svg" alt="" height="19">
-          <img src="/assets/images/flag-torres-strait.svg" alt="" height="20">
+            <img src="/assets/images/flag-aboriginal.svg" alt="" height="18">
+            <img src="/assets/images/flag-torres-strait.svg" alt="" height="18">
         </div>
-        <p>I acknowledge the Traditional Owners of the lands throughout Australia on which these federal divisions are drawn.</p>
-        <button type="button" class="ack-close" aria-label="Close acknowledgement">&times;</button>
-   </div>
-<div class="site-footer">
-    <ul class="footer-links">
-        <li><a href="/about">About</a></li>
-        <li><a href="/disclosure">Disclosure</a></li>
-        <li><a href="/privacy">Privacy</a></li>
-        <li><a href="/terms">Terms</a></li>
-        <li><a href="/copyright/">&copy; 2026<span> Darren McSweeney</span></a></li>
-    </ul>
-</div>
-  </footer>
-  
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="script.js"></script>
-  <script src="/assets/js/nav.js"></script>
-</body>
-</html>
+        <p>I acknowledge the Traditional Owners of the lands throughout Australia on which these federal divisions are drawn and pay my respects to their Elders, past and present.</p>
+      </div>
+</main>
