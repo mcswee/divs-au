@@ -667,13 +667,25 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     padding: 0 20px;
     margin-top: auto;
     margin-left: 50px
-    max-width: 550px;
+    max-width: 500px;
 }
 
 .map-ack p { 
     color: var(--highlight);
     font-size: 0.7rem;
     line-height: 0.85rem;
+}
+
+.map-ack .ack-flags-container {
+    display: flex;
+    flex-direction: column; 
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.map-ack img {
+    height: 16px;
+    width: auto;
 }
 
 /* State map styles */
@@ -1118,11 +1130,6 @@ figcaption {
     .footer-ack img {
         height: 16px;
         width: auto;
-    }
-
-    .ack-close {
-        padding: 10px;
-        font-size: 24px;
     }
 
     /* Remove my name for space on the copyright notice on mobile */
