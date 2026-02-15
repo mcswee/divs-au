@@ -1,111 +1,140 @@
+// --- 1. CONFIG & DATA ---
+const isMobile = window.innerWidth < 768;
+const stateStyles = {
+    'NSW': { color: '#0075be' },
+    'VIC': { color: '#001f7e' },
+    'QLD': { color: '#73182c' },
+    'WA':  { color: '#c98600' },
+    'SA':  { color: '#d50032' },
+    'TAS': { color: '#006747' },
+    'ACT': { color: '#012b88' },
+    'NT':  { color: '#c75b12' }
+};
+
+const masterStats = {};
+let geoJsonLayer = null;
+let legendControl = null;
+
+var map = L.map('map', {
+    attribution: '&copy; OpenStreetMap &copy; CartoDB',
+    zoomControl: true,
+    minZoom: isMobile ? 3 : 4,
+}).setView([-28.0, 133.0], isMobile ? 4 : 5);
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    subdomains: 'abcd',
+    maxZoom: 20
+}).addTo(map);
+
+// --- 2. CORE FUNCTIONS ---
+
+function loadYear(year) {
+    if (geoJsonLayer) map.removeLayer(geoJsonLayer);
+
+    Papa.parse(`/assets/data/${year}.csv`, {
+        download: true,
+        header: true,
+        skipEmptyLines: true,
+        complete: function(resultsRes) {
+            resultsRes.data.forEach(row => {
+                const idx = String(row.index).trim();
+                if (masterStats[idx]) {
+                    Object.assign(masterStats[idx], {
+                        winner_name: row.name,
+                        winner_surname: row.surname,
+                        party: row.party,
+                        colour: row.colour,
+                        linked: row.linked,
+                        note: row.note
+                    });
+                }
+            }); 
+            renderGeoJson(year);
+        } 
+    }); 
+}
+
 function renderGeoJson(year) {
     fetch(`/assets/data/${year}.geojson`)
         .then(res => res.json())
         .then(geoData => {
             geoJsonLayer = L.geoJSON(geoData, {
-                style: (feature) => {
-                    const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
-                    const data = masterStats[seatIndex];
-                    // Safety check: Fallback to Grey if data or state is missing
-                    const sName = data ? data.state : 'Unknown';
-                    const stateColor = stateStyles[sName]?.color || '#666';
-                    
+                style: (f) => {
+                    const data = masterStats[String(f.properties.index || f.properties.Index).trim()];
                     return {
                         fillColor: '#fafafa',
                         weight: 1.5,
-                        color: stateColor,
-                        fillOpacity: 0.1,
-                        className: 'division-boundary'
+                        color: stateStyles[data?.state]?.color || '#666',
+                        fillOpacity: 0.1
                     };
-                }, 
-
-                onEachFeature: (feature, layer) => {
-                    const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
-                    const data = masterStats[seatIndex];
-
-                    // If no data exists for this seat, just bind a basic tooltip and exit
-                    if (!data) {
-                        layer.bindTooltip("Data missing for this seat");
-                        return;
-                    }
-
-                    let badgeCount = 0;
-                    let badgesList = '';
-
-                    if (data.fed === "TRUE") { badgesList += '<span class="badge fed">FEDERATION</span>'; badgeCount++; }
-                    if (data.pm === "TRUE") { badgesList += '<span class="badge pm">PRIME MINISTER</span>'; badgeCount++; }
-                    if (data.fem === "TRUE") { badgesList += '<span class="badge fem">WOMAN</span>'; badgeCount++; }
-                    if (data.ind === "TRUE") { badgesList += '<span class="badge ind">INDIGENOUS</span>'; badgeCount++; }
-                    if (data.geo === "TRUE") { badgesList += '<span class="badge geo">GEOGRAPHIC</span>'; badgeCount++; }
-                    if (data.linked === "FALSE") { badgesList += '<span class="badge linked">DRIFTED</span>'; badgeCount++; }
-                    if (data.old === "TRUE") { badgesList += '<span class="badge old">COLONIAL</span>'; badgeCount++; }
-                    if (data.aus === "FALSE") { badgesList += '<span class="badge nonaus">NON-AUSTRALIAN</span>'; badgeCount++; }
-
-                    let badgesHtml = '';
-                    if (badgeCount > 0) {
-                        badgesHtml = `
-                            <div style="margin-top: 12px; margin-bottom: 12px;">
-                                <div style="font-size: 0.85em; color: #888; margin-bottom: 6px; letter-spacing: 0.3px; font-weight: bold;">Division name classification</div>
-                                <div style="display: flex; flex-wrap: wrap; gap: 4px;">${badgesList}</div>
-                            </div>`;
-                    }
-
-                    layer.bindTooltip(`<strong>${data.division}</strong> (${data.state})`, {
-                        sticky: true,
-                        direction: 'top',
-                        className:'modern-tooltip',
-                        offset: [0, 5]
-                    });
-
-                    const popupContent = `
-                        <div style="border-top: 5px solid ${stateStyles[data.state]?.color || '#ccc'}; padding: 5px; min-width: 240px;">
-                            <h2 style="margin: 0 0 2px 0; border-bottom: none; font-size: 1.2rem;">${data.division}</h2>
-                            <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85em; letter-spacing: 0.65px;">${data.state}</p>
-                            <div style="font-size: 0.9em; line-height: 1.4; margin-bottom: 4px;">
-                                <strong>Date created:</strong> ${data.created}<br>
-                                <strong>Named for:</strong> ${data.namesake}
-                            </div>
-                            ${badgesHtml}
-                            <div style="margin-top: 16px; padding-top: 2px; border-top: 1px solid #eee;">
-                                <div style="font-size: 0.85em; color: #888; margin-bottom: 4px; letter-spacing: 0.3px;">Elected Member</div>
-                                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                                    <span style="font-weight: bold; font-size: 1.05em;">${data.winner_name || 'N/A'} ${data.winner_surname || ''}</span>
-                                    <span style="background: white; color: ${data.colour || '#333'}; padding: 1px 8px; border: 1px solid ${data.colour || '#333'}; border-radius: 12px; font-size: 10px; font-weight: bold; white-space: nowrap;">
-                                        ${(data.party || 'unknown').toUpperCase()}
-                                    </span>
-                                </div>
-                               ${data.note ? `<div style="font-size: 0.85em; margin-top: 8px; padding: 6px; background: #f5f5fa; border-left: 3px solid #ccc; border-radius: 0 4px 4px 0; color: #444; line-height: 1.3;">${data.note}</div>` : ''}
-                            </div>
-                        </div>`;
-
-                    layer.bindPopup(popupContent);
-
-                    layer.on({
-                        mouseover: (e) => {
-                            const l = e.target;
-                            if (geoJsonLayer.searchActive && !l.isSearchMatch) return;
-                            const sName = l.feature.properties.state || data.state;
-                            l.setStyle({ 
-                                fillOpacity: 0.4, 
-                                weight: 4, 
-                                color: stateStyles[sName]?.color || '#666' 
-                            });
-                            l.bringToFront();
-                        },
-                        mouseout: (e) => {
-                            const l = e.target;
-                            if (geoJsonLayer.searchActive && !l.isSearchMatch) {
-                                l.setStyle({ fillOpacity: 0.05, weight: 0 });
-                            } else {
-                                geoJsonLayer.resetStyle(l);
-                            }
-                        }
-                    }); 
-                } 
-            }).addTo(map); 
-
-            setupSearch(geoJsonLayer);
+                },
+                onEachFeature: setupInteractivity
+            }).addTo(map);
+            setupSearch();
             updateLegend();
-        })
-        .catch(err => console.error("Error loading GeoJSON:", err)); // Added catch to log the specific error
+        }).catch(err => console.error("Map Load Error:", err));
 }
+
+function setupInteractivity(feature, layer) {
+    const data = masterStats[String(feature.properties.index || feature.properties.Index).trim()];
+    if (!data) return;
+
+    layer.bindTooltip(`<strong>${data.division}</strong> (${data.state})`, { sticky: true });
+
+    // Simplified popup for stability
+    const popupContent = `<div style="border-top: 5px solid ${stateStyles[data.state]?.color || '#ccc'}; padding: 5px;">
+        <h3>${data.division}</h3>
+        <p>${data.winner_name} ${data.winner_surname} (${data.party})</p>
+    </div>`;
+    layer.bindPopup(popupContent);
+
+    layer.on({
+        mouseover: (e) => {
+            e.target.setStyle({ weight: 4, fillOpacity: 0.4 });
+            e.target.bringToFront();
+        },
+        mouseout: (e) => {
+            geoJsonLayer.resetStyle(e.target);
+        }
+    });
+}
+
+function setupSearch() {
+    const input = document.getElementById('division-search');
+    if (!input) return;
+    input.oninput = (e) => {
+        const val = e.target.value.toLowerCase().trim();
+        geoJsonLayer.eachLayer(l => {
+            const d = masterStats[String(l.feature.properties.index || l.feature.properties.Index).trim()];
+            const match = d && d.division.toLowerCase().includes(val);
+            l.setStyle(val === "" ? {weight:1.5, fillOpacity:0.1} : (match ? {weight:4, fillOpacity:0.4} : {weight:0, fillOpacity:0.05}));
+        });
+    };
+}
+
+function updateLegend() {
+    if (legendControl) map.removeControl(legendControl);
+    legendControl = L.control({ position: 'bottomright' });
+    legendControl.onAdd = () => {
+        const div = L.DomUtil.create('div', 'info legend');
+        div.style.background = 'white'; div.style.padding = '10px';
+        div.innerHTML = '<strong>States</strong>';
+        Object.keys(stateStyles).forEach(s => {
+            div.innerHTML += `<br><i style="border:2px solid ${stateStyles[s].color}; width:10px; height:10px; display:inline-block"></i> ${s}`;
+        });
+        return div;
+    };
+    legendControl.addTo(map);
+}
+
+// --- 3. INITIALIZE ---
+Papa.parse('/assets/data/electoral_division_data.csv', {
+    download: true,
+    header: true,
+    complete: (res) => {
+        res.data.forEach(row => { masterStats[String(row.index).trim()] = row; });
+        const sel = document.getElementById('year-select');
+        loadYear(sel.value);
+        sel.onchange = (e) => loadYear(e.target.value);
+    }
+});
