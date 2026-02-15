@@ -4,6 +4,17 @@ const initialZoom = isMobile ? 4 : 5;
 const minZoom = isMobile ? 3 : 4;
 const initialCenter = [-28.0, 133.0];
 
+const stateStyles = {
+    'NSW': { color: '#0075be' },
+    'VIC': { color: '#001f7e' },
+    'QLD': { color: '#73182c' },
+    'WA':  { color: '#c98600' },
+    'SA':  { color: '#d50032' },
+    'TAS': { color: '#006747' },
+    'ACT': { color: '#012b88' },
+    'NT':  { color: '#c75b12' }
+};
+
 var map = L.map('map', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CartoDB</a> | Data <a href="/copyright">&copy; AEC & ABS</a>',
     zoomControl: true,
@@ -11,17 +22,14 @@ var map = L.map('map', {
 }).setView(initialCenter, initialZoom);
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OSM contributors &copy; CARTO',
     subdomains: 'abcd',
     maxZoom: 20
 }).addTo(map);
 
-// Persistent data container and layer tracker
 const masterStats = {};
 let geoJsonLayer = null; 
 
 // --- 2. DATA LOADING ---
-// Load static namesake/history data ONCE
 Papa.parse('/assets/data/electoral_division_data.csv', {
     download: true,
     header: true,
@@ -44,25 +52,20 @@ Papa.parse('/assets/data/electoral_division_data.csv', {
             }; 
         }); 
 
-        // Initial load based on the dropdown's default value
         const yearSelector = document.getElementById('year-select');
         loadYear(yearSelector.value);
 
-        // Listen for user changing the year
         yearSelector.addEventListener('change', (e) => {
             loadYear(e.target.value);
         });
     } 
 }); 
 
-// Core function to swap map data
 function loadYear(year) {
-    // Clear existing layer from map
     if (geoJsonLayer) {
         map.removeLayer(geoJsonLayer);
     }
 
-    // Fetch the specific year's election results
     Papa.parse(`/assets/data/${year}.csv`, {
         download: true,
         header: true,
@@ -94,11 +97,14 @@ function renderGeoJson(year) {
                 style: (feature) => {
                     const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
                     const data = masterStats[seatIndex];
+                    const stateColor = stateStyles[data?.state]?.color || '#666';
+                    
                     return {
-                        fillColor: data ? data.colour : '#888',
-                        weight: 1,
-                        color: 'white',
-                        fillOpacity: 0.6
+                        fillColor: '#fafafa',
+                        weight: 1.5,
+                        color: stateColor,
+                        fillOpacity: 0.1,
+                        className: 'division-boundary'
                     };
                 }, 
 
@@ -136,7 +142,7 @@ function renderGeoJson(year) {
                         });
 
                         const popupContent = `
-                            <div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 240px;">
+                            <div style="border-top: 5px solid ${stateStyles[data.state]?.color || '#ccc'}; padding: 5px; min-width: 240px;">
                                 <h2 style="margin: 0 0 2px 0; border-bottom: none; font-size: 1.2rem;">${data.division}</h2>
                                 <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85em; letter-spacing: 0.65px;">${data.state}</p>
                                 <div style="font-size: 0.9em; line-height: 1.4; margin-bottom: 4px;">
@@ -145,119 +151,4 @@ function renderGeoJson(year) {
                                 </div>
                                 ${badgesHtml}
                                 <div style="margin-top: 16px; padding-top: 2px; border-top: 1px solid #eee;">
-                                    <div style="font-size: 0.85em; color: #888; margin-bottom: 4px; letter-spacing: 0.3px;">Elected Member</div>
-                                    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                                        <span style="font-weight: bold; font-size: 1.05em;">${data.winner_name} ${data.winner_surname}</span>
-                                        <span style="background: white; color: ${data.colour || '#333'}; padding: 1px 8px; border: 1px solid ${data.colour || '#333'}; border-radius: 12px; font-size: 10px; font-weight: bold; white-space: nowrap;">
-                                            ${data.party.toUpperCase()}
-                                        </span>
-                                    </div>
-                                   ${data.note ? `<div style="font-size: 0.85em; margin-top: 8px; padding: 6px; background: #f5f5fa; border-left: 3px solid #ccc; border-radius: 0 4px 4px 0; color: #444; line-height: 1.3;">${data.note}</div>` : ''}
-                                </div>
-                            </div>`;
-
-                        layer.bindPopup(popupContent);
-
-                        layer.on({
-                            mouseover: (e) => {
-                                const l = e.target;
-                                if (geoJsonLayer.searchActive && !l.isSearchMatch) return;
-                                l.setStyle({ fillOpacity: 0.9, weight: 2, color: 'white' });
-                                l.bringToFront();
-                            },
-                            mouseout: (e) => {
-                                const l = e.target;
-                                if (geoJsonLayer.searchActive && !l.isSearchMatch) {
-                                    l.setStyle({ fillOpacity: 0.05, weight: 0 });
-                                } else {
-                                    geoJsonLayer.resetStyle(l);
-                                }
-                            }
-                        }); 
-                    } 
-                } 
-            }).addTo(map); 
-
-            setupSearch(geoJsonLayer);
-            updateLegend();
-        }); 
-} 
-
-// --- 4. SEARCH FUNCTIONALITY ---
-function setupSearch(layerGroup) {
-    const searchInput = document.getElementById('division-search');
-    if (!searchInput) return;
-
-    searchInput.addEventListener('input', (e) => {
-        const value = e.target.value.toLowerCase().trim();
-        layerGroup.searchActive = (value !== "");
-
-        layerGroup.eachLayer((layer) => {
-            const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
-            const seatData = masterStats[seatIndex];
-            const divName = seatData ? seatData.division.toLowerCase() : "";
-
-            if (value === "") {
-                layer.isSearchMatch = false;
-                layerGroup.resetStyle(layer);
-            } else if (divName.includes(value)) {
-                layer.isSearchMatch = true; 
-                layer.setStyle({ fillOpacity: 0.9, weight: 2, color: 'white' });
-            } else {
-                layer.isSearchMatch = false;
-                layer.setStyle({ fillOpacity: 0.05, weight: 0 });
-            }
-        }); 
-    }); 
-
-    searchInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            const value = e.target.value.toLowerCase().trim();
-            if (value === "") return;
-            let firstMatch = null;
-
-            layerGroup.eachLayer((layer) => {
-                const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
-                const seatData = masterStats[seatIndex];
-                const divName = seatData ? seatData.division.toLowerCase() : "";
-                if (!firstMatch && divName.includes(value)) firstMatch = layer;
-            }); 
-
-            if (firstMatch) {
-                map.fitBounds(firstMatch.getBounds(), { padding: [50, 50], maxZoom: 12 });
-                firstMatch.openPopup();
-            }
-        } 
-    }); 
-} 
-
-// --- 5. LEGEND GENERATION ---
-let legendControl; 
-
-function updateLegend() {
-    if (legendControl) map.removeControl(legendControl);
-
-    legendControl = L.control({ position: 'bottomright' });
-    legendControl.onAdd = function () {
-        const div = L.DomUtil.create('div', 'info legend');
-        const parties = {};
-
-        Object.values(masterStats).forEach(data => {
-            if (data.party && data.colour) parties[data.party] = data.colour;
-        }); 
-
-        const sortedParties = Object.keys(parties).sort();
-        div.innerHTML = '<strong style="display:block; margin-bottom: 5px;">Party</strong>';
-
-        sortedParties.forEach(party => {
-            div.innerHTML += `
-                <div class="legend-item">
-                    <div class="legend-color" style="background: ${parties[party]}"></div>
-                    <span>${party.toUpperCase()}</span>
-                </div>`;
-        }); 
-
-        return div;
-    }; 
-    legendControl.addTo(map);
-}
+                                    <div style="font-size: 0.85em; color: #888; margin-bottom: 4px; letter-spacing: 0.3px;">Elected Member
