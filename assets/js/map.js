@@ -16,10 +16,12 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     maxZoom: 20
 }).addTo(map);
 
+// Persistent data container and layer tracker
 const masterStats = {};
 let geoJsonLayer = null; 
 
 // --- 2. DATA LOADING ---
+// Load static namesake/history data ONCE
 Papa.parse('/assets/data/electoral_division_data.csv', {
     download: true,
     header: true,
@@ -42,20 +44,25 @@ Papa.parse('/assets/data/electoral_division_data.csv', {
             }; 
         }); 
 
+        // Initial load based on the dropdown's default value
         const yearSelector = document.getElementById('year-select');
         loadYear(yearSelector.value);
 
+        // Listen for user changing the year
         yearSelector.addEventListener('change', (e) => {
             loadYear(e.target.value);
         });
     } 
 }); 
 
+// Core function to swap map data
 function loadYear(year) {
+    // Clear existing layer from map
     if (geoJsonLayer) {
         map.removeLayer(geoJsonLayer);
     }
 
+    // Fetch the specific year's election results
     Papa.parse(`/assets/data/${year}.csv`, {
         download: true,
         header: true,
@@ -85,11 +92,13 @@ function renderGeoJson(year) {
         .then(geoData => {
             geoJsonLayer = L.geoJSON(geoData, {
                 style: (feature) => {
+                    const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
+                    const data = masterStats[seatIndex];
                     return {
-                        fillColor: 'var(--highlight)',
+                        fillColor: data ? data.colour : '#888',
                         weight: 1,
-                        color: 'var(--text-accent)',
-                        fillOpacity: 0.8
+                        color: 'white',
+                        fillOpacity: 0.6
                     };
                 }, 
 
@@ -98,17 +107,26 @@ function renderGeoJson(year) {
                     const data = masterStats[seatIndex];
 
                     if (data) {
+                        let badgeCount = 0;
                         let badgesList = '';
-                        if (data.fed === "TRUE") badgesList += '<span class="badge fed">FEDERATION</span>';
-                        if (data.pm === "TRUE") badgesList += '<span class="badge pm">PRIME MINISTER</span>';
-                        if (data.fem === "TRUE") badgesList += '<span class="badge fem">WOMAN</span>';
-                        if (data.ind === "TRUE") badgesList += '<span class="badge ind">INDIGENOUS</span>';
-                        if (data.geo === "TRUE") badgesList += '<span class="badge geo">GEOGRAPHIC</span>';
-                        if (data.linked === "FALSE") badgesList += '<span class="badge linked">DRIFTED</span>';
-                        if (data.old === "TRUE") badgesList += '<span class="badge old">COLONIAL</span>';
-                        if (data.aus === "FALSE") badgesList += '<span class="badge nonaus">NON-AUSTRALIAN</span>';
 
-                        let badgesHtml = badgesList ? `<div class="badge-container">${badgesList}</div>` : '';
+                        if (data.fed === "TRUE") { badgesList += '<span class="badge fed">FEDERATION</span>'; badgeCount++; }
+                        if (data.pm === "TRUE") { badgesList += '<span class="badge pm">PRIME MINISTER</span>'; badgeCount++; }
+                        if (data.fem === "TRUE") { badgesList += '<span class="badge fem">WOMAN</span>'; badgeCount++; }
+                        if (data.ind === "TRUE") { badgesList += '<span class="badge ind">INDIGENOUS</span>'; badgeCount++; }
+                        if (data.geo === "TRUE") { badgesList += '<span class="badge geo">GEOGRAPHIC</span>'; badgeCount++; }
+                        if (data.linked === "FALSE") { badgesList += '<span class="badge linked">DRIFTED</span>'; badgeCount++; }
+                        if (data.old === "TRUE") { badgesList += '<span class="badge old">COLONIAL</span>'; badgeCount++; }
+                        if (data.aus === "FALSE") { badgesList += '<span class="badge nonaus">NON-AUSTRALIAN</span>'; badgeCount++; }
+
+                        let badgesHtml = '';
+                        if (badgeCount > 0) {
+                            badgesHtml = `
+                                <div style="margin-top: 12px; margin-bottom: 12px;">
+                                    <div style="font-size: 0.85em; color: #888; margin-bottom: 6px; letter-spacing: 0.3px; font-weight: bold;">Division name classification</div>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 4px;">${badgesList}</div>
+                                </div>`;
+                        }
 
                         layer.bindTooltip(`<strong>${data.division}</strong> (${data.state})`, {
                             sticky: true,
@@ -118,23 +136,24 @@ function renderGeoJson(year) {
                         });
 
                         const popupContent = `
-                            <div class="map-popup-card">
-                                <header class="popup-header">
-                                    <h2 class="popup-title">${data.division}</h2>
-                                    <p class="popup-subtitle">${data.state}</p>
-                                </header>
-                                <section class="popup-body">
-                                    <p class="namesake-text">Named for ${data.namesake}.</p>
-                                    <div class="stat-meta">Established ${data.created}</div>
-                                    ${badgesHtml}
-                                </section>
-                                <footer class="popup-footer">
-                                    <div class="member-info">
-                                        <span class="member-name">${data.winner_name} ${data.winner_surname}</span>
-                                        <span class="party-pill" style="--party-colour: ${data.colour}">${data.party.toUpperCase()}</span>
+                            <div style="border-top: 5px solid ${data.colour || '#ccc'}; padding: 5px; min-width: 240px;">
+                                <h2 style="margin: 0 0 2px 0; border-bottom: none; font-size: 1.2rem;">${data.division}</h2>
+                                <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85em; letter-spacing: 0.65px;">${data.state}</p>
+                                <div style="font-size: 0.9em; line-height: 1.4; margin-bottom: 4px;">
+                                    <strong>Date created:</strong> ${data.created}<br>
+                                    <strong>Named for:</strong> ${data.namesake}
+                                </div>
+                                ${badgesHtml}
+                                <div style="margin-top: 16px; padding-top: 2px; border-top: 1px solid #eee;">
+                                    <div style="font-size: 0.85em; color: #888; margin-bottom: 4px; letter-spacing: 0.3px;">Elected Member</div>
+                                    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                        <span style="font-weight: bold; font-size: 1.05em;">${data.winner_name} ${data.winner_surname}</span>
+                                        <span style="background: white; color: ${data.colour || '#333'}; padding: 1px 8px; border: 1px solid ${data.colour || '#333'}; border-radius: 12px; font-size: 10px; font-weight: bold; white-space: nowrap;">
+                                            ${data.party.toUpperCase()}
+                                        </span>
                                     </div>
-                                    ${data.note ? `<div class="popup-note">${data.note}</div>` : ''}
-                                </footer>
+                                   ${data.note ? `<div style="font-size: 0.85em; margin-top: 8px; padding: 6px; background: #f5f5fa; border-left: 3px solid #ccc; border-radius: 0 4px 4px 0; color: #444; line-height: 1.3;">${data.note}</div>` : ''}
+                                </div>
                             </div>`;
 
                         layer.bindPopup(popupContent);
@@ -143,11 +162,7 @@ function renderGeoJson(year) {
                             mouseover: (e) => {
                                 const l = e.target;
                                 if (geoJsonLayer.searchActive && !l.isSearchMatch) return;
-                                l.setStyle({ 
-                                    fillOpacity: 0.9, 
-                                    weight: 2, 
-                                    color: 'var(--brand-main)' 
-                                });
+                                l.setStyle({ fillOpacity: 0.9, weight: 2, color: 'white' });
                                 l.bringToFront();
                             },
                             mouseout: (e) => {
@@ -187,7 +202,7 @@ function setupSearch(layerGroup) {
                 layerGroup.resetStyle(layer);
             } else if (divName.includes(value)) {
                 layer.isSearchMatch = true; 
-                layer.setStyle({ fillOpacity: 0.9, weight: 2, color: 'var(--brand-main)' });
+                layer.setStyle({ fillOpacity: 0.9, weight: 2, color: 'white' });
             } else {
                 layer.isSearchMatch = false;
                 layer.setStyle({ fillOpacity: 0.05, weight: 0 });
