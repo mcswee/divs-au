@@ -604,6 +604,11 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     box-sizing: border-box;
 } 
 
+.division-boundary {
+    transition: stroke-width 0.2s ease, fill-opacity 0.2s ease;
+    outline: none;
+}
+
 .badge {
     padding: 2px 6px;
     border-radius: 4px;
@@ -632,6 +637,15 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     color: var(--text-main);
     max-width: 150px; 
 }
+
+#legend {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    color: #333;
+}
+
 
 .legend-item {
     display: flex;
