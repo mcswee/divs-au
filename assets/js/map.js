@@ -205,6 +205,9 @@ function setupSearch(layerGroup) {
     searchInput.addEventListener('input', (e) => {
         const value = e.target.value.toLowerCase().trim();
         layerGroup.searchActive = (value !== "");
+        
+        let matchCount = 0;
+        let lastMatch = null;
 
         layerGroup.eachLayer((layer) => {
             const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
@@ -215,15 +218,59 @@ function setupSearch(layerGroup) {
                 layer.isSearchMatch = false;
                 layerGroup.resetStyle(layer);
             } else if (divName.includes(value)) {
-                layer.isSearchMatch = true; 
-                layer.setStyle({ fillOpacity: 0.4, weight: 4, color: stateStyles[seatData.state]?.color || '#666' });
+                layer.isSearchMatch = true;
+                matchCount++;
+                lastMatch = layer;
+                
+                // Matches your new hover style
+                layer.setStyle({ 
+                    fillColor: stateStyles[seatData.state]?.color || '#666',
+                    fillOpacity: 0.4, 
+                    weight: 4, 
+                    color: stateStyles[seatData.state]?.color || '#666' 
+                });
             } else {
                 layer.isSearchMatch = false;
                 layer.setStyle({ fillOpacity: 0.05, weight: 0 });
             }
-        }); 
-    }); 
+        });
+
+        // Error state: red background if no matches found
+        if (layerGroup.searchActive && matchCount === 0) {
+            searchInput.style.backgroundColor = '#ffeeee';
+            searchInput.style.borderColor = '#ff0000';
+        } else {
+            searchInput.style.backgroundColor = '';
+            searchInput.style.borderColor = '';
+        }
+
+        // Auto-zoom if there is exactly one match
+        if (matchCount === 1 && lastMatch) {
+            map.fitBounds(lastMatch.getBounds(), { padding: [50, 50], maxZoom: 10 });
+        }
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const value = e.target.value.toLowerCase().trim();
+            if (value === "") return;
+            
+            let firstMatch = null;
+            layerGroup.eachLayer((layer) => {
+                const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
+                const seatData = masterStats[seatIndex];
+                const divName = seatData ? seatData.division.toLowerCase() : "";
+                if (!firstMatch && divName.includes(value)) firstMatch = layer;
+            });
+
+            if (firstMatch) {
+                map.fitBounds(firstMatch.getBounds(), { padding: [50, 50], maxZoom: 10 });
+                firstMatch.openPopup();
+            }
+        }
+    });
 }
+
 
 // --- 5. LEGEND ---
 let legendControl; 
