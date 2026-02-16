@@ -125,7 +125,14 @@ function renderGeoJson(year) {
                         if (data.old === "TRUE") { badgesList += '<span class="badge old">COLONIAL</span>'; badgeCount++; }
                         if (data.aus === "FALSE") { badgesList += '<span class="badge nonaus">NON-AUSTRALIAN</span>'; badgeCount++; }
 
-                                   // 1. Prepare the Footnote Data
+                        layer.bindTooltip(`<strong>${data.division}</strong> (${stateStyles[data.state]?.short || data.state})`, {
+                            sticky: true,
+                            direction: 'top',
+                            className: 'modern-tooltip',
+                            offset: [0, 5]
+                        });
+                        
+                        // 1. Prepare the Footnote Data
                         const pColor = data.colour || '#333';
                         
                         // 2. Build the Popup Content
