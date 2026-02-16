@@ -610,23 +610,23 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .popup-container {
-    padding: 8px;
-    min-width: 240px;
+    padding: 2px;
+    width: 300px;
 }
 
 .popup-header {
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .popup-title {
     margin: 0;
     font-size: 1.3rem;
-    color: var(--text-main, #222);
+    color: var(--brand-main);
 }
 
-.popup-state {
+.popup-label {
     margin: 0;
-    color: #666;
+    color: var(--text-main);
     font-size: 0.85em;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -635,39 +635,19 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 .popup-historical {
     font-size: 0.9em;
     line-height: 1.4;
-    margin-bottom: 12px;
-}
-
-/* Protected Badge Styling */
-.popup-badges-header {
-    font-size: 0.75em;
-    color: #999;
-    margin-bottom: 6px;
-    font-weight: bold;
-    text-transform: uppercase;
 }
 
 .popup-badges-list {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
-    margin-bottom: 15px;
 }
 
-/* The Footnote Section */
 .popup-footer {
-    margin-top: 10px;
-    padding: 10px;
-    background: #f9f9f9;
+    padding: 4px;
+    background: ;
     border-radius: 4px;
-    border-top: 1px solid #eee;
-}
-
-.popup-member-label {
-    font-size: 0.75em;
-    color: #888;
-    margin-bottom: 4px;
-    text-transform: uppercase;
+    border: 1px solid var(--accent);
 }
 
 .popup-member-details {
@@ -678,11 +658,9 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .popup-member-name {
-    font-weight: bold;
     font-size: 0.95em;
 }
 
-/* Protected Party Pill Styling */
 .popup-party-badge {
     background: white;
     padding: 1px 8px;
@@ -690,14 +668,13 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     font-size: 10px;
     font-weight: bold;
     white-space: nowrap;
-    color: var(--party-color, #333);
-    border: 1px solid var(--party-color, #333);
+    color: var(--party-color, var(--text-main));
+    border: 1px solid var(--party-color, var(--text-main));
 }
 
 .popup-note {
     font-size: 0.85em;
     margin-top: 8px;
-    color: #555;
     font-style: italic;
     line-height: 1.3;
 }
