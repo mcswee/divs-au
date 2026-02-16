@@ -222,6 +222,8 @@ function setupSearch(layerGroup) {
 }
 
 // --- 5. LEGEND ---
+let legendControl; 
+
 function updateLegend() {
     if (legendControl) map.removeControl(legendControl);
 
