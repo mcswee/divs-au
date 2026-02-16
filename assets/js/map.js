@@ -140,7 +140,7 @@ function renderGeoJson(year) {
                             <div class="popup-container">
                                 <header class="popup-header">
                                     <h2 class="popup-title">${data.division}</h2>
-                                    <p class="popup-state">${data.state}</p>
+                                    <p class="popup-label">${data.state}</p>
                                 </header>
 
                                 <section class="popup-historical">
@@ -149,12 +149,12 @@ function renderGeoJson(year) {
                                 </section>
 
                                 ${badgeCount > 0 ? `
-                                    <div class="popup-badges-header">Classifications</div>
+                                    <div class="popup-label">Division name classification</div>
                                     <div class="popup-badges-list">${badgesList}</div>
                                 ` : ''}
 
                                 <footer class="popup-footer">
-                                    <div class="popup-member-label">Elected Member</div>
+                                    <div class="popup-label">Elected member</div>
                                     <div class="popup-member-details">
                                         <span class="popup-member-name">${data.winner_name || 'N/A'} ${data.winner_surname || ''}</span>
                                         <span class="popup-party-badge" style="--party-color: ${pColor};">
