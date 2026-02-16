@@ -222,23 +222,24 @@ function setupSearch(layerGroup) {
 }
 
 // --- 5. LEGEND ---
-let legendControl; 
 function updateLegend() {
     if (legendControl) map.removeControl(legendControl);
+
     legendControl = L.control({ position: 'bottomright' });
     legendControl.onAdd = function () {
         const div = L.DomUtil.create('div', 'info legend');
-        div.style.cssText = 'background:rgba(255,255,255,0.9); padding:10px; border-radius:4px; box-shadow:0 0 15px rgba(0,0,0,0.2);';
-        div.innerHTML = '<strong style="display:block; margin-bottom: 8px;">States</strong>';
-        
+        div.innerHTML = '<span class="legend-title">States</span>';
+
+        // Sort by abbreviation to keep the list orderly
         Object.keys(stateStyles).sort().forEach(stateName => {
             const cfg = stateStyles[stateName];
             div.innerHTML += `
-                <div style="display: flex; align-items: center; margin-bottom: 4px; font-size: 12px;">
-                    <i style="width: 14px; height: 14px; display: inline-block; margin-right: 8px; border: 2px solid ${cfg.color}; background: rgba(250, 250, 250, 0.2);"></i>
+                <div class="legend-item">
+                    <i class="legend-color" style="border-color: ${cfg.color};"></i>
                     <span>${cfg.short}</span>
                 </div>`;
         }); 
+
         return div;
     }; 
     legendControl.addTo(map);
