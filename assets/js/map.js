@@ -147,7 +147,7 @@ function renderGeoJson(year) {
                                 ` : ''}
 
                                 <footer class="popup-footer">
-                                    <div class="popup-member-label">Current Member</div>
+                                    <div class="popup-member-label">Elected Member</div>
                                     <div class="popup-member-details">
                                         <span class="popup-member-name">${data.winner_name || 'N/A'} ${data.winner_surname || ''}</span>
                                         <span class="popup-party-badge" style="--party-color: ${pColor};">
@@ -165,7 +165,8 @@ function renderGeoJson(year) {
                                 const l = e.target;
                                 if (geoJsonLayer.searchActive && !l.isSearchMatch) return;
                                 l.setStyle({ 
-                                    fillOpacity: 0.4, 
+                                    fillColor: stateStyles[data.state]?.color || '#fafafa', 
+                                    fillOpacity: 0.25, 
                                     weight: 4, 
                                     color: stateStyles[data.state]?.color || '#666' 
                                 });
