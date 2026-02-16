@@ -627,39 +627,40 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 .badge.nonaus { background: #b62631; }
 .badge.linked { background: #2ca8b7; }
 
+/* Legend Container */
 .info.legend {
     padding: 10px;
-    font: 12px/14px 'Inter', sans-serif;
-    background: rgba(255, 255, 255, 0.6); 
-    box-shadow: var(--shadow-main);
+    font: 12px/1.5 'Inter', sans-serif;
+    background: rgba(255, 255, 255, 0.9); 
+    box-shadow: var(--shadow-main, 0 0 15px rgba(0,0,0,0.2));
     border-radius: 5px;
-    line-height: 1.5;
-    color: var(--text-main);
+    color: var(--text-main, #333);
     max-width: 150px; 
 }
 
-#legend {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    color: #333;
+.legend-title {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 13px;
 }
 
-
+/* Legend Row Structure */
 .legend-item {
     display: flex;
     align-items: center;
     margin-bottom: 4px;
 }
 
+/* Color indicator - color set via JS */
 .legend-color {
     width: 14px;
     height: 14px;
     margin-right: 8px;
     border-radius: 2px;
-    border: 1px solid rgba(0,0,0,0.2);
-} 
+    border: 2px solid; 
+    background: rgba(250, 250, 250, 0.2);
+}
 
 .modern-tooltip {
     background-color: rgba(255,255,255,0.4);
