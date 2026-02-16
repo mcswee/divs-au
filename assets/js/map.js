@@ -125,41 +125,37 @@ function renderGeoJson(year) {
                         if (data.old === "TRUE") { badgesList += '<span class="badge old">COLONIAL</span>'; badgeCount++; }
                         if (data.aus === "FALSE") { badgesList += '<span class="badge nonaus">NON-AUSTRALIAN</span>'; badgeCount++; }
 
-                        let badgesHtml = '';
-                        if (badgeCount > 0) {
-                            badgesHtml = `
-                                <div style="margin-top: 12px; margin-bottom: 12px;">
-                                    <div style="font-size: 0.85em; color: #888; margin-bottom: 6px; letter-spacing: 0.3px; font-weight: bold;">Division name classification</div>
-                                    <div style="display: flex; flex-wrap: wrap; gap: 4px;">${badgesList}</div>
-                                </div>`;
-                        }
-
-                        layer.bindTooltip(`<strong>${data.division}</strong> (${data.state})`, {
-                            sticky: true,
-                            direction: 'top',
-                            className:'modern-tooltip',
-                            offset: [0, 5]
-                        });
-
+                                   // 1. Prepare the Footnote Data
+                        const pColor = data.colour || '#333';
+                        
+                        // 2. Build the Popup Content
                         const popupContent = `
-                            <div style="border-top: 5px solid ${stateStyles[data.state]?.color || '#ccc'}; padding: 5px; min-width: 240px;">
-                                <h2 style="margin: 0 0 2px 0; border-bottom: none; font-size: 1.2rem;">${data.division}</h2>
-                                <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85em; letter-spacing: 0.65px;">${data.state}</p>
-                                <div style="font-size: 0.9em; line-height: 1.4; margin-bottom: 4px;">
-                                    <strong>Date created:</strong> ${data.created}<br>
-                                    <strong>Named for:</strong> ${data.namesake}
-                                </div>
-                                ${badgesHtml}
-                                <div style="margin-top: 16px; padding-top: 2px; border-top: 1px solid #eee;">
-                                    <div style="font-size: 0.85em; color: #888; margin-bottom: 4px; letter-spacing: 0.3px;">Elected Member</div>
-                                    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                                        <span style="font-weight: bold; font-size: 1.05em;">${data.winner_name || 'N/A'} ${data.winner_surname || ''}</span>
-                                        <span style="background: white; color: ${data.colour || '#333'}; padding: 1px 8px; border: 1px solid ${data.colour || '#333'}; border-radius: 12px; font-size: 10px; font-weight: bold; white-space: nowrap;">
+                            <div class="popup-container">
+                                <header class="popup-header">
+                                    <h2 class="popup-title">${data.division}</h2>
+                                    <p class="popup-state">${data.state}</p>
+                                </header>
+
+                                <section class="popup-historical">
+                                    <div><strong>Created:</strong> ${data.created}</div>
+                                    <div><strong>Named for:</strong> ${data.namesake}</div>
+                                </section>
+
+                                ${badgeCount > 0 ? `
+                                    <div class="popup-badges-header">Classifications</div>
+                                    <div class="popup-badges-list">${badgesList}</div>
+                                ` : ''}
+
+                                <footer class="popup-footer">
+                                    <div class="popup-member-label">Current Member</div>
+                                    <div class="popup-member-details">
+                                        <span class="popup-member-name">${data.winner_name || 'N/A'} ${data.winner_surname || ''}</span>
+                                        <span class="popup-party-badge" style="--party-color: ${pColor};">
                                             ${(data.party || 'unknown').toUpperCase()}
                                         </span>
                                     </div>
-                                   ${data.note ? `<div style="font-size: 0.85em; margin-top: 8px; padding: 6px; background: #f5f5fa; border-left: 3px solid #ccc; border-radius: 0 4px 4px 0; color: #444; line-height: 1.3;">${data.note}</div>` : ''}
-                                </div>
+                                    ${data.note ? `<div class="popup-note">${data.note}</div>` : ''}
+                                </footer>
                             </div>`;
 
                         layer.bindPopup(popupContent);
