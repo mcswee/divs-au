@@ -16,12 +16,12 @@ const stateStyles = {
 };
 
 var map = L.map('map', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CartoDB</a> | Data <a href="/copyright">&copy; AEC & ABS</a>',
     zoomControl: true,
     minZoom: minZoom,
 }).setView(initialCenter, initialZoom);
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CartoDB</a> | Data <a href="/copyright">&copy; AEC & ABS</a>',
     subdomains: 'abcd',
     maxZoom: 20
 }).addTo(map);
