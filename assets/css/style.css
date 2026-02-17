@@ -430,11 +430,17 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 
 /* 8. HIGHLIGHTED COMPONENTS */
 .info-box {
+    --info-color: var(--contrast, var(--trad, var(--brand-main)));
     background-color: var(--info-bg, var(--highlight));
-    border-left: 6px solid var(--info-color, var(--brand-main));
+    border-left: 6px solid var(--info-color);
     border-radius: 0 8px 8px 0;
     max-width: 900px;
     margin: 0 auto;
+}
+
+.info-box.nsw, .info-box.vic, .info-box.qld, .info-box.sa, 
+.info-box.wa, .info-box.tas, .info-box.nt, .info-box.act {
+    --info-bg: color-mix(in srgb, var(--info-color), transparent 94%);
 }
 
 .info-box h2 {
