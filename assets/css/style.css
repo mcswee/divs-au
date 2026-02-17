@@ -615,6 +615,10 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     width: 300px;
 }
 
+popup.header {
+   border-bottom: none;
+   margin-bottom: 6px;
+
 .popup-title {
     margin: 0;
     font-size: 1.3rem;
@@ -623,20 +627,21 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 
 .popup-label {
     color: var(--text-main);
-    font-size: 0.9em;
-    letter-spacing: 1px;
+    font-size: 1em;
+    letter-spacing: 0.7px;
 }
 
 .popup-historical {
     font-size: 0.9em;
     line-height: 1.4em;
-    margin: 16px;
+    margin: 12px 0;
 }
 
 .popup-badges-list {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
+    margin-bottom: 8px;
 }
 
 .popup-footer {
@@ -653,7 +658,8 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .popup-member-name {
-    font-size: 0.95em;
+    font-size: 1.1em;
+    font-weight: bold;
 }
 
 .popup-party-badge {
