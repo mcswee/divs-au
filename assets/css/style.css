@@ -20,6 +20,16 @@
   --shadow-deep: 0 6px 12px rgba(0, 0, 0, 0.2);
   --lighten: rgba(255, 255, 255, 0.15);
 
+  /* State colours */
+  .nsw { --trad: #A6D2E6; --contrast: #197DB3; }
+  .vic { --trad: #00205B; }
+  .qld { --trad: #73182C; }
+  .sa  { --trad: #D50032; --contrast: #B3002A; }
+  .wa  { --trad: #FFD100; --contrast: #C97C00; }
+  .tas { --trad: #006747; }
+  .nt  { --trad: #C75B12; --contrast: #96430B; }
+  .act { --trad: #003DA5; }
+
   /* Functional */
   --error-main: #d11;
   --error-bg: #fff8f8;
@@ -399,9 +409,9 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .state-card:hover {
-    border-color: var(--state-color, var(--brand-main));
-    background-color: var(--state-bg, var(--highlight));
-    color: var(--state-color, var(--text-main));
+    border-color: var(--contrast, var(--trad));
+    background-color: color-mix(in srgb, var(--trad), transparent 92%);
+    color: var(--contrast, var(--trad));
     transform: translateY(-3px);
     box-shadow: var(--shadow-deep);
 }
