@@ -28,7 +28,7 @@ permalink: /reports/
             <h2 id="heading-{{ s }}">{{ headings[forloop.index0] }}</h2>
             <nav class="card-grid" aria-labelledby="heading-{{ s }}">
                 {% for report in filtered %}
-                <a href="{{ report.url }}" class="state-card" style="--state-color: {{ report.state_color }}; --state-bg: {{ report.state_bg | default: '#f0f0f0' }};">
+                <a href="{{ report.url }}" class="state-card {{ report.state_id }}">
                     {{ report.state }} 
                     <span class="status {{ report.status }}">{{ report.status }}</span>
                 </a>
