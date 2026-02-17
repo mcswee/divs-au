@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mapEl = document.getElementById('state-map');
     if (!mapEl) return;
 
-    const { geojson, lat, lng, zoom, state, color } = mapEl.dataset;
+    const { geojson, lat, lng, zoom, state } = mapEl.dataset;
     const style = getComputedStyle(mapEl);
     const brandColor = style.getPropertyValue('--contrast').trim() || 
                    style.getPropertyValue('--trad').trim() || 
