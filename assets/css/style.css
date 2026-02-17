@@ -615,9 +615,10 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     width: 300px;
 }
 
-popup.header {
+.popup-header {
    border-bottom: none;
    margin-bottom: 6px;
+}
 
 .popup-title {
     margin: 0;
@@ -630,6 +631,7 @@ popup.header {
     color: var(--text-main);
     font-size: 1em;
     letter-spacing: 0.7px;
+    display: block;
 }
 
 .popup-historical {
@@ -753,7 +755,7 @@ popup.header {
     gap: 4px;
     padding: 0 20px;
     margin-top: auto;
-    margin-left: 50px
+    margin-left: 50px;
     max-width: 500px;
 }
 
