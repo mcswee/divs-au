@@ -15,6 +15,14 @@ const nameToId = {
     'Northern Territory': 'nt'
 };
 
+const formatDate = (dateStr) => {
+    if (!dateStr || dateStr === '0000-00-00' || dateStr === 'N/A') return 'Unknown';
+    const [year, month, day] = dateStr.split('-');
+    if (!year || !month || !day) return dateStr;
+    const date = new Date(year, month - 1, day);
+    return date.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+};
+
 function getStateStyle(stateName) {
     if (!stateName) return { color: '#666', short: '??' };
     const id = nameToId[stateName];
@@ -158,32 +166,36 @@ function renderGeoJson(year) {
                             offset: [0, 5]
                         });
                         
-                        const pColor = data.colour || '#333';
-                        const popupContent = `
-                            <div class="popup-container">
-                                <header class="popup-header">
-                                    <h2 class="popup-title">${data.division}</h2>
-                                    <p class="popup-label">${data.state}</p>
-                                </header>
-                                <section class="popup-historical">
-                                    <div><strong>Created:</strong> ${data.created}</div>
-                                    <div><strong>Named for:</strong> ${data.namesake}</div>
-                                </section>
-                                ${badgeCount > 0 ? `
-                                    <div class="popup-label">Division name classification</div>
-                                    <div class="popup-badges-list">${badgesList}</div>
-                                ` : ''}
-                                <footer class="popup-footer">
-                                    <div class="popup-label">Elected member</div>
-                                    <div class="popup-member-details">
-                                        <span class="popup-member-name">${data.winner_name || 'N/A'} ${data.winner_surname || ''}</span>
-                                        <span class="popup-party-badge" style="--party-color: ${pColor};">
-                                            ${(data.party || 'unknown').toUpperCase()}
-                                        </span>
-                                    </div>
-                                    ${data.note ? `<div class="popup-note">${data.note}</div>` : ''}
-                                </footer>
-                            </div>`;
+const pColor = data.colour || '#333';
+const popupContent = `
+    <div class="map-popup" style="--party-color: ${pColor}">
+        <header>
+            <h2>${data.division}</h2>
+            <span>${data.state}</span>
+        </header>
+
+        <section class="profile">
+            <h3>Division profile</h3>
+            <p><strong>Created:</strong> ${formatDate(data.created)}</p>
+            <p><strong>Named for:</strong> ${data.namesake}</p>
+            
+            ${badgeCount > 0 ? `
+                <div class="tags-row">
+                    <strong>Division name categories:</strong> 
+                    <div class="tags">${badgesList}</div>
+                </div>
+            ` : ''}
+        </section>
+
+        <footer>
+            <h3>Elected member</h3>
+            <div class="member-row">
+                <strong>${data.winner_name || ''} ${(data.winner_surname || '').toUpperCase()}</strong>
+                <span class="party-pill">${(data.party || 'ind').toUpperCase()}</span>
+            </div>
+            ${data.note ? `<small>${data.note}</small>` : ''}
+        </footer>
+    </div>`;
 
                         layer.bindPopup(popupContent);
 
