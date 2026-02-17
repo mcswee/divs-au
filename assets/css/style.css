@@ -625,77 +625,83 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     outline: none;
 }
 
-.popup-container {
-    font-family: Inter, "sans serif";
-    padding: 2px;
-    width: 300px;
-}
+/* Main map popup styling */
 
-.popup-header {
-   border-bottom: none;
-   margin-bottom: 6px;
-}
-
-.popup-title {
-    margin: 0;
-    font-size: 1.3rem;
-    color: var(--brand-main);
-    border-bottom: none;
-}
-
-.popup-label {
+.map-popup {
+    font-family: Inter, sans-serif;
+    width: 290px;
+    line-height: 1.4;
     color: var(--text-main);
-    font-size: 1em;
-    letter-spacing: 0.7px;
-    display: block;
 }
 
-.popup-historical {
-    font-size: 0.9em;
-    line-height: 1.4em;
+/* Header */
+.map-popup header h2 { margin: 0; font-size: 1.4rem; color: var(--brand-main); border: none; }
+.map-popup header span { font-size: 1rem; display: block; margin-top: -2px; }
+
+/* Global subheadings */
+.map-popup h3 {
+    margin: 0 0 6px 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+}
+
+/* Division Profile Section */
+.map-popup .profile {
     margin: 12px 0;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
 }
 
-.popup-badges-list {
+.map-popup .profile p { 
+    margin: 2px 0; 
+    font-size: 0.85rem; 
+}
+
+/* Tags within the profile */
+.map-popup .tags-row {
+    margin-top: 8px;
+    font-size: 0.85rem;
+}
+
+.map-popup .tags {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
-    margin-bottom: 8px;
+    margin-top: 6px;
 }
 
-.popup-footer {
+/* Footer & Member Info */
+.map-popup footer {
     padding: 10px;
     background: var(--accent);
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
-.popup-member-details {
+.map-popup .member-row {
     display: flex;
-    align-items: center;
-    gap: 8px;
     justify-content: space-between;
+    align-items: center;
 }
 
-.popup-member-name {
-    font-size: 1.1em;
-    font-weight: bold;
-}
-
-.popup-party-badge {
+.map-popup .party-pill {
     background: white;
     padding: 1px 8px;
-    border-radius: 12px;
+    border-radius: 10px;
     font-size: 10px;
-    font-weight: bold;
-    white-space: nowrap;
-    color: var(--party-color, var(--text-main));
-    border: 2px solid var(--party-color, var(--text-main));
+    font-weight: 800;
+    color: var(--party-color);
+    border: 2px solid var(--party-color);
 }
 
-.popup-note {
-    font-size: 0.85em;
+.map-popup footer small {
+    display: block;
     margin-top: 8px;
     font-style: italic;
+    font-size: 0.8rem;
+    opacity: 0.9;
     line-height: 1.3;
 }
 
