@@ -102,7 +102,7 @@ layout: default
             <p>{{ page.archive_summary }}</p>
         {% endif %}
      
-        <a href="/assets/pdf/{{ page.state_id }}-{{ page.year }}-suggestion.pdf" class="report-button {{ page.state }}">
+        <a href="/assets/pdf/{{ page.state_id }}-{{ page.year }}-suggestion.pdf" class="report-button {{ page.state_id }}">
             <span class="icon" aria-hidden="true">📄</span> Download {% if page.status == "archived" %}{{ page.year }}{% else %}full{% endif %} report (PDF)
         </a>
     </section>
