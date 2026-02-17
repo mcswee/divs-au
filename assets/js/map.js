@@ -193,7 +193,11 @@ const popupContent = `
                 <strong>${data.winner_name || ''} ${(data.winner_surname || '').toUpperCase()}</strong>
                 <span class="party-pill">${(data.party || 'ind').toUpperCase()}</span>
             </div>
-            ${data.note ? `<small>${data.note}</small>` : ''}
+            ${data.note ? `
+                <small class="status-notice">
+                    ${data.note.split('|').join('<br>')}
+                </small>
+            ` : ''}
         </footer>
     </div>`;
 
