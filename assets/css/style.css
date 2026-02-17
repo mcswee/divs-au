@@ -25,7 +25,7 @@
   .vic { --trad: #00205B; }
   .qld { --trad: #73182C; }
   .sa  { --trad: #D50032; --contrast: #B3002A; }
-  .wa  { --trad: #FFD100; --contrast: #C97C00; }
+  .wa  { --trad: #FFD100; --contrast: #C97C00; --reverse: #000; --reverse-text: var(--trad); }
   .tas { --trad: #006747; }
   .nt  { --trad: #C75B12; --contrast: #96430B; }
   .act { --trad: #003DA5; }
@@ -458,8 +458,8 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     gap: 10px;
     margin-top: 20px;
     padding: 14px 24px;
-    background: var(--state-color, var(--brand-main));
-    color: var(--state-contrast, var(--highlight));
+    background: var(--reverse, var(--contrast ,var(--trad)));
+    color: var(--reverse, var(--highlight));
     text-decoration: none;
     border-radius: 8px;
     font-weight: 600;
@@ -467,7 +467,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .report-button:hover {
-    background: var(--state-color, var(--brand-accent));
+    background: color-mix(in srgb, var(--reverse, var(--contrast ,var(--trad))), transparent 50%);
     transform: translateY(-2px);
 }
 
