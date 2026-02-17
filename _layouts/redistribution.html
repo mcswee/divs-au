@@ -86,7 +86,7 @@ layout: default
 
     {% if page.status == "deferred" %}
         {% if page.deferral_info %}
-        <section class="info-box" style="--info-color: {{ page.state_color }};">
+        <section class="info-box {{ page.state_id }}">
             {{ page.deferral_info }}
         </section>
         {% endif %}
