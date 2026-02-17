@@ -56,42 +56,49 @@
     </nav>
 </header>
 
-  <main id="app-viewport">
-    <!--hidden element to reference each state for css -->
+<main id="app-viewport">
     <div id="state-ref" style="display: none;" aria-hidden="true">
-      <div class="nsw"></div>
-      <div class="vic"></div>
-      <div class="qld"></div>
-      <div class="wa"></div>
-      <div class="sa"></div>
-      <div class="tas"></div>
-      <div class="act"></div>
-      <div class="nt"></div>
+        <div class="nsw"></div><div class="vic"></div><div class="qld"></div>
+        <div class="wa"></div><div class="sa"></div><div class="tas"></div>
+        <div class="act"></div><div class="nt"></div>
     </div>
+
     <section id="map-controls">
-      <h1>Map of federal electoral divisions</h1>
-      <div class="control-group">
-        <label for="year-select">Election year</label>
-        <select id="year-select">
-          <option value="2025" selected>2025</option>
-          <option value="2022">2022</option>
-          <option value="2019">2019</option>
-          <option value="2016" disabled>2016</option>
-          <option value="2013" disabled>2013</option>
-          <option value="2010" disabled>2010</option>
-          <option value="2007" disabled>2007</option>
-          <option value="2004" disabled>2004</option>  
-          <option value="2001" disabled>2001</option> 
-        </select>
-      </div>
-      <div class="control-group">
-        <label for="division-search">Find a division</label>
-        <input type="text" id="division-search" placeholder="Type a division name&hellip;">
-      </div>
+        <h1>Map of federal electoral divisions</h1>
+        
+        <div id="map-status" class="sr-only" aria-live="polite"></div>
+
+        <div class="control-group">
+            <label for="year-select">Election year</label>
+            <select id="year-select">
+                <option value="2025" selected>2025</option>
+                <option value="2022">2022</option>
+                <option value="2019">2019</option>
+                <option value="2016" disabled>2016</option>
+                <option value="2013" disabled>2013</option>
+                <option value="2010" disabled>2010</option>
+                <option value="2007" disabled>2007</option>
+                <option value="2004" disabled>2004</option>  
+                <option value="2001" disabled>2001</option> 
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="division-search">Find a division</label>
+            <input type="text" id="division-search" placeholder="Type a division name&hellip;">
+        </div>
     </section>
     
-    <div id="map"></div>
-  </main>
+    <div id="map" 
+         role="region" 
+         aria-label="Interactive map of Australian electoral divisions"
+         aria-describedby="map-description">
+    </div>
+
+    <p id="map-description" class="sr-only">
+        Interactive map showing federal boundaries. Use the year selector and search box to update the view. Detailed data for each division is available via the Reports page.
+    </p>
+</main>
   
   <footer>
       <div class="footer-ack" id="ack-banner">
