@@ -3,7 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!mapEl) return;
 
     const { geojson, lat, lng, zoom, state, color } = mapEl.dataset;
-    const brandColor = color || "#333366"; 
+    const style = getComputedStyle(mapEl);
+    const brandColor = style.getPropertyValue('--contrast').trim() || 
+                   style.getPropertyValue('--trad').trim() || 
+                   "#333366";
 
     // Initialise using Front Matter values
     const map = L.map('state-map').setView([lat, lng], parseInt(zoom));
