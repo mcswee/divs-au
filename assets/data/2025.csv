@@ -115,7 +115,7 @@ MRNA,David,LITTLEPROUD,LNP,#1983f7,TRUE,
 MRTN,Julie-Ann,CAMPBELL,ALP,#ed0011,FALSE,
 MTCH,Alex,HAWKE,LIB,#083cdd,,
 NCHL,Sam,BIRRELL,NAT,#008033,,
-NENG,Barnaby,JOYCE,NAT,#008033,TRUE,Joyce resigned from National Party (NAT) on 27 Nov 2025. Joyce joined One Nation Party (ONP) on 8 Dec 2025.
+NENG,Barnaby,JOYCE,NAT,#008033,TRUE, Resignation: 27 Nov 2025. JOYCE resigned from NAT | Defection: 8 Dec 2025. JOYCE joined ONP
 NEWC,Sharon,CLAYDON,ALP,#ed0011,TRUE,
 OCNR,Rick,WILSON,LIB,#083cdd,,
 OXLY,Milton,DICK,ALP,#ed0011,FALSE,
@@ -149,6 +149,7 @@ WNNN,Dan,TEHAN,LIB,#083cdd,TRUE,
 WRWA,Anne Maree,STANLEY,ALP,#ed0011,FALSE,
 WTSN,Tony,BURKE,ALP,#ed0011,,
 WWTH,Allegra,SPENDER,IND,#9c9c9c,,
+
 
 
 
