@@ -623,13 +623,14 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 
 .popup-label {
     color: var(--text-main);
-    font-size: 0.85em;
+    font-size: 0.9em;
     letter-spacing: 1px;
 }
 
 .popup-historical {
     font-size: 0.9em;
     line-height: 1.4em;
+    margin: 16px;
 }
 
 .popup-badges-list {
@@ -641,8 +642,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 .popup-footer {
     padding: 10px;
     background: var(--accent);
-    border-radius: 4px 4px 0 0;
-    border-left: 3px solid var(--text-main);
+    border-radius: 4px;
 }
 
 .popup-member-details {
