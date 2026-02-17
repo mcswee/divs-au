@@ -623,6 +623,7 @@ popup.header {
     margin: 0;
     font-size: 1.3rem;
     color: var(--brand-main);
+    border-bottom: none;
 }
 
 .popup-label {
