@@ -459,7 +459,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     margin-top: 20px;
     padding: 14px 24px;
     background: var(--reverse, var(--contrast ,var(--trad)));
-    color: var(--reverse, var(--highlight));
+    color: var(--reverse-text, var(--highlight));
     text-decoration: none;
     border-radius: 8px;
     font-weight: 600;
