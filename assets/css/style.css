@@ -610,12 +610,9 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .popup-container {
+    font-family: Inter, "sans serif";
     padding: 2px;
     width: 300px;
-}
-
-.popup-header {
-    margin-bottom: 6px;
 }
 
 .popup-title {
@@ -625,16 +622,14 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .popup-label {
-    margin: 0;
     color: var(--text-main);
     font-size: 0.85em;
-    text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .popup-historical {
     font-size: 0.9em;
-    line-height: 1.4;
+    line-height: 1.4em;
 }
 
 .popup-badges-list {
@@ -644,10 +639,10 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .popup-footer {
-    padding: 4px;
-    background: ;
-    border-radius: 4px;
-    border: 1px solid var(--accent);
+    padding: 10px;
+    background: var(--accent);
+    border-radius: 4px 4px 0 0;
+    border-left: 3px solid var(--text-main);
 }
 
 .popup-member-details {
@@ -669,7 +664,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     font-weight: bold;
     white-space: nowrap;
     color: var(--party-color, var(--text-main));
-    border: 1px solid var(--party-color, var(--text-main));
+    border: 2px solid var(--party-color, var(--text-main));
 }
 
 .popup-note {
