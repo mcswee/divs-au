@@ -1,20 +1,36 @@
-// --- 1. MAP INITIALIZATION ---
+// --- 1. CONFIGURATION & MAPPING ---
 const isMobile = window.innerWidth < 768;
 const initialZoom = isMobile ? 4 : 5;
 const minZoom = isMobile ? 3 : 4;
 const initialCenter = [-28.0, 133.0];
 
-const stateStyles = {
-    'New South Wales': { color: '#0075be', short: 'NSW' },
-    'Victoria': { color: '#001f7e', short: 'VIC' },
-    'Queensland': { color: '#73182c', short: 'QLD' },
-    'Western Australia':  { color: '#c98600', short: 'WA' },
-    'South Australia':  { color: '#d50032', short: 'SA' },
-    'Tasmania': { color: '#006747', short: 'TAS' },
-    'Australian Capital Territory': { color: '#012b88', short: 'ACT' },
-    'Northern Territory':  { color: '#c75b12', short: 'NT' }
+const nameToId = {
+    'New South Wales': 'nsw',
+    'Victoria': 'vic',
+    'Queensland': 'qld',
+    'Western Australia': 'wa',
+    'South Australia': 'sa',
+    'Tasmania': 'tas',
+    'Australian Capital Territory': 'act',
+    'Northern Territory': 'nt'
 };
 
+function getStateStyle(stateName) {
+    if (!stateName) return { color: '#666', short: '??' };
+    const id = nameToId[stateName];
+    const refEl = document.querySelector(`#state-ref .${id}`);
+    
+    if (!refEl) return { color: '#666', short: stateName.toUpperCase().substring(0, 3) };
+
+    const style = getComputedStyle(refEl);
+    const color = style.getPropertyValue('--contrast').trim() || 
+                  style.getPropertyValue('--trad').trim() || 
+                  '#666';
+
+    return { color, short: id.toUpperCase() };
+}
+
+// --- 2. MAP INITIALIZATION ---
 var map = L.map('map', {
     zoomControl: true,
     minZoom: minZoom,
@@ -29,7 +45,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 const masterStats = {};
 let geoJsonLayer = null; 
 
-// --- 2. DATA LOADING ---
+// --- 3. DATA LOADING ---
 Papa.parse('/assets/data/electoral_division_data.csv', {
     download: true,
     header: true,
@@ -88,7 +104,7 @@ function loadYear(year) {
     }); 
 }
 
-// --- 3. GEOJSON & INTERACTIVITY ---
+// --- 4. GEOJSON & INTERACTIVITY ---
 function renderGeoJson(year) {
     fetch(`/assets/data/${year}.geojson`)
         .then(res => res.json())
@@ -97,7 +113,7 @@ function renderGeoJson(year) {
                 style: (feature) => {
                     const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
                     const data = masterStats[seatIndex];
-                    const stateColor = stateStyles[data?.state]?.color || '#666';
+                    const stateColor = getStateStyle(data?.state).color;
                     
                     return {
                         fillColor: '#fafafa',
@@ -113,6 +129,7 @@ function renderGeoJson(year) {
                     const data = masterStats[seatIndex];
 
                     if (data) {
+                        const sStyle = getStateStyle(data.state);
                         let badgeCount = 0;
                         let badgesList = '';
 
@@ -125,34 +142,28 @@ function renderGeoJson(year) {
                         if (data.old === "TRUE") { badgesList += '<span class="badge old">COLONIAL</span>'; badgeCount++; }
                         if (data.aus === "FALSE") { badgesList += '<span class="badge nonaus">NON-AUSTRALIAN</span>'; badgeCount++; }
 
-                        layer.bindTooltip(`<strong>${data.division}</strong> (${stateStyles[data.state]?.short || data.state})`, {
+                        layer.bindTooltip(`<strong>${data.division}</strong> (${sStyle.short})`, {
                             sticky: true,
                             direction: 'top',
                             className: 'modern-tooltip',
                             offset: [0, 5]
                         });
                         
-                        // 1. Prepare the Footnote Data
                         const pColor = data.colour || '#333';
-                        
-                        // 2. Build the Popup Content
                         const popupContent = `
                             <div class="popup-container">
                                 <header class="popup-header">
                                     <h2 class="popup-title">${data.division}</h2>
                                     <p class="popup-label">${data.state}</p>
                                 </header>
-
                                 <section class="popup-historical">
                                     <div><strong>Created:</strong> ${data.created}</div>
                                     <div><strong>Named for:</strong> ${data.namesake}</div>
                                 </section>
-
                                 ${badgeCount > 0 ? `
                                     <div class="popup-label">Division name classification</div>
                                     <div class="popup-badges-list">${badgesList}</div>
                                 ` : ''}
-
                                 <footer class="popup-footer">
                                     <div class="popup-label">Elected member</div>
                                     <div class="popup-member-details">
@@ -171,11 +182,12 @@ function renderGeoJson(year) {
                             mouseover: (e) => {
                                 const l = e.target;
                                 if (geoJsonLayer.searchActive && !l.isSearchMatch) return;
+                                const activeColor = getStateStyle(data.state).color;
                                 l.setStyle({ 
-                                    fillColor: stateStyles[data.state]?.color || '#fafafa', 
+                                    fillColor: activeColor, 
                                     fillOpacity: 0.25, 
                                     weight: 4, 
-                                    color: stateStyles[data.state]?.color || '#666' 
+                                    color: activeColor 
                                 });
                                 l.bringToFront();
                             },
@@ -197,7 +209,7 @@ function renderGeoJson(year) {
         }); 
 }
 
-// --- 4. SEARCH ---
+// --- 5. SEARCH ---
 function setupSearch(layerGroup) {
     const searchInput = document.getElementById('division-search');
     if (!searchInput) return;
@@ -222,12 +234,12 @@ function setupSearch(layerGroup) {
                 matchCount++;
                 lastMatch = layer;
                 
-                // Matches your new hover style
+                const activeColor = getStateStyle(seatData.state).color;
                 layer.setStyle({ 
-                    fillColor: stateStyles[seatData.state]?.color || '#666',
+                    fillColor: activeColor,
                     fillOpacity: 0.4, 
                     weight: 4, 
-                    color: stateStyles[seatData.state]?.color || '#666' 
+                    color: activeColor 
                 });
             } else {
                 layer.isSearchMatch = false;
@@ -235,7 +247,6 @@ function setupSearch(layerGroup) {
             }
         });
 
-        // Error state: red background if no matches found
         if (layerGroup.searchActive && matchCount === 0) {
             searchInput.style.backgroundColor = '#ffeeee';
             searchInput.style.borderColor = '#ff0000';
@@ -244,7 +255,6 @@ function setupSearch(layerGroup) {
             searchInput.style.borderColor = '';
         }
 
-        // Auto-zoom if there is exactly one match
         if (matchCount === 1 && lastMatch) {
             map.fitBounds(lastMatch.getBounds(), { padding: [50, 50], maxZoom: 10 });
         }
@@ -271,8 +281,7 @@ function setupSearch(layerGroup) {
     });
 }
 
-
-// --- 5. LEGEND ---
+// --- 6. LEGEND ---
 let legendControl; 
 
 function updateLegend() {
@@ -283,9 +292,8 @@ function updateLegend() {
         const div = L.DomUtil.create('div', 'info legend');
         div.innerHTML = '<span class="legend-title">States</span>';
 
-        // Sort by abbreviation to keep the list orderly
-        Object.keys(stateStyles).sort().forEach(stateName => {
-            const cfg = stateStyles[stateName];
+        Object.keys(nameToId).sort().forEach(stateName => {
+            const cfg = getStateStyle(stateName);
             div.innerHTML += `
                 <div class="legend-item">
                     <i class="legend-color" style="border-color: ${cfg.color};"></i>
