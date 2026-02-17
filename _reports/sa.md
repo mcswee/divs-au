@@ -2,12 +2,11 @@
 layout: redistribution
 title: "South Australia suggested redistribution | divs.au"
 state: "South Australia"
+state_id: sa
 description: "My public suggestion to the Australia Electoral Commission for the redistribution of South Australia."
 status: active
 category: reports 
 map: true
-state_color: "#d50032"
-state_bg: "#ffeef2"
 year: "2025"
 aec_url: "https://aec.gov.au/redistributions/2025/sa/"
 pdf_filename: "/assets/pdf/sa-2025-suggestion.pdf"
