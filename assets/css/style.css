@@ -473,8 +473,8 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .report-button:hover {
-    background: color-mix(in srgb, var(--reverse, var(--contrast ,var(--trad))), transparent 50%);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-deep);
 }
 
 .external-links {
