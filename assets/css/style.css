@@ -393,7 +393,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 .project-card h3 { font-size: 1.1rem; color: var(--brand-main); margin-bottom: 8px; }
 .project-card p { font-size: 0.95rem; margin: 0; color: var(--text-main); line-height: 1.4; opacity: 0.9; }
 
-.disabled:hover{ color:#bc4463; }
+.project-card.disabled:hover{ color:#bc4463; }
 
 }
 .state-card {
