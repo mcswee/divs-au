@@ -30,7 +30,7 @@ BFLD,Bradfield,New South Wales,"Dr John Job Crew Bradfield CMG, 1867–1943",194
 BRND,Brand,Western Australia,"The Hon Sir David Brand KCMG, 1912–79",1984-08-31,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE
 BRIS,Brisbane,Queensland,"City of Brisbane / Meanjin, Turrbal & Yuggera Country",1900-12-28,,TRUE,N/A,N/A,N/A,N/A,TRUE,N/A
 BRCE,Bruce,Victoria,"Rt Hon Stanley Melbourne Bruce 1st Viscount Bruce of Melbourne CH MC PC FRS, 1883–1967",1955-08-10,,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE
-BLWK,Bullwinkel,Western Australia,"Lt Col Vivian Statham AO MBE ARRC ED FNM FRCNA (née Bullwinkel), 1915–2000",2024-09-24,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE
+BLWK,Bullwinkel,Western Australia,"Lt Col Vivian Statham (née Bullwinkel) AO MBE ARRC ED FNM FRCNA, 1915–2000",2024-09-24,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE
 BRKE,Burke,Victoria,"Lt Robert O'Hara Burke, 1821–61",1968-11-21,2003-01-29,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE
 BURK,Burke,Victoria,"Lt Robert O'Hara Burke, 1821–61",1949-05-11,1955-08-10,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE
 BURT,Burt,Western Australia,"Sir Archibald Paull Burt KT QC, 1810–79; The Hon Septimus Burt KC, 1847–1919; The Hon Sir Francis Theodore Page Burt AC KCMG QC, 1918–2004",2016-01-19,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE
@@ -143,7 +143,7 @@ LYNE,Lyne,New South Wales,"The Hon Sir William John Lyne KCMG, 1844–1913",1949
 LYNS,Lyons,Tasmania,Rt Hon Joseph Aloysius Lyons CH 1879–1939; The Hon Dame Enid Muriel Lyons AD GBE 1897–1981,1984-09-12,,FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,TRUE
 MCTH,Macarthur,New South Wales,"Elizabeth Macarthur, 1766–1850; Capt John Macarthur, 1767–1834",1949-05-11,,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,TRUE
 MKLR,Mackellar,New South Wales,"Isobel Marion Dorothea Mackellar OBE, 1885–1968",1949-05-11,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE
-MCNM,Macnamara,Victoria,"Dame Annie Jean Connor DBE (née Macnamara), 1899–1968",2018-07-13,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE
+MCNM,Macnamara,Victoria,"Dame Annie Jean Connor (née Macnamara) DBE, 1899–1968",2018-07-13,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE
 MACQ,Macquarie,New South Wales,"Maj Gen Lachlan Macquarie CB, 1762–1824",1900-12-11,,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE
 MAKN,Makin,South Australia,"The Hon Norman John Oswald Makin AO, 1889–1982",1984-09-03,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE
 MLLE,Mallee,Victoria,"Mallee region / Mali, Wergaia Country",1949-05-11,,FALSE,N/A,N/A,N/A,N/A,TRUE,N/A
@@ -229,3 +229,4 @@ WLMT,Wilmot,Tasmania,Sir John Eardley Eardley-Wilmot 1st Baronet FRS 1783–1847
 WIMM,Wimmera,Victoria,"Wimmera region, Yartwatjali Country",1900-10-08,1977-11-07,TRUE,N/A,N/A,N/A,N/A,TRUE,N/A
 WGHT,Wright,Queensland,"Judith Arundell Wright, 1915–2000",2009-12-15,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE
 YARR,Yarra,Victoria,"Yarra River / Birrarung, Wurundjeri Country",1900-10-08,1968-11-21,TRUE,N/A,N/A,N/A,N/A,TRUE,N/A
+
