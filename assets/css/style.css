@@ -395,7 +395,6 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 
 .project-card.disabled:hover{ color:#bc4463; }
 
-}
 .state-card {
     display: flex;
     justify-content: space-between;
