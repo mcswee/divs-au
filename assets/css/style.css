@@ -566,8 +566,6 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 
 .footer-links li:not(:last-child)::after {
     content: "•";
-    margin-left: 10px;
-    margin-right: 10px;
     color: var(--highlight);
     font-weight: bold;
     display: inline-block;
