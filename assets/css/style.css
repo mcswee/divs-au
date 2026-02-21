@@ -569,6 +569,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     color: var(--highlight);
     font-weight: bold;
     display: inline-block;
+  margin-left: 20px;
 }
 
 /* 10. MAP SPECIFIC UI */
