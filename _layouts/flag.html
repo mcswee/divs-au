@@ -40,7 +40,7 @@ layout: default
 {% endif %}
 
 {% if page.viceregal %}
-<section class="page-element>
+<section class="page-element">
     <h2>Vice-regal standard</h2>
     <img src="{{ page.viceregal.image }}" alt="Governor standard" class="flag-display">
     <p>{{ page.viceregal.text }}</p>
@@ -49,7 +49,7 @@ layout: default
 
 {% if page.sections %}
   {% for section in page.sections %}
-    <section class=page-element>
+    <section class="page-element">
       {% if section.heading %}
         <h2>{{ section.heading }}</h2>
       {% endif %}
