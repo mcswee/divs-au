@@ -26,22 +26,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="icon" type="image/svg+xml" href="/assets/images/star.svg">
-
-  {% if page.map == true %}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  {% endif %}
   {{ page.extra_head }}
 </head>
 <body>
 
   {% include header.html %}
-{% if page.is_map %}
-  {{ content }}
-{% else %}
   <main>
     {{ content }}
-{% endif %} 
     <div class="footer-ack" id="ack-banner">
       <div class="ack-flags-container">
         <img src="/assets/images/flag-aboriginal.svg" alt="" height="18">
