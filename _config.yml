@@ -16,3 +16,9 @@ collections:
   reports:
     output: true
     permalink: /:name/
+    
+ collections:
+  flags:
+    output: true
+    permalink: /au-flags/:path/
+    
