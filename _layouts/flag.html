@@ -1,0 +1,68 @@
+---
+layout: default 
+---
+
+<header class="page-element">
+    <h1>{{ page.title }}</h1>
+    <a href="/au-flags/" class="back-link">← Back to overview</a>
+    
+    {% if page.main_image %}
+    <img src="{{ page.main_image }}" alt="{{ page.title }}" class="flag-display">
+    {% endif %}
+</header>
+
+  <section class="page-element">
+    {% if page.description %}
+    <h2>Design and symbolism</h2>
+    <p>{{ page.description }}</p>
+    {% endif %}
+
+    {% if page.symbolism %}
+    <div class="symbolism-grid">
+        {% for item in page.symbolism %}
+        <div class="symbol-item" style="--state-color: {{ page.state_color | default: '#336' }};">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</section>
+
+{% if page.construction %}
+<section class="page-element">
+    <h2>Construction sheet</h2>
+    <img src="{{ page.construction.image }}" alt="Construction details" class="flag-display">
+    {% if page.construction.caption %}
+    <p class="caption">{{ page.construction.caption }}</p>
+    {% endif %}
+</section>
+{% endif %}
+
+{% if page.viceregal %}
+<section class="page-element>
+    <h2>Vice-regal standard</h2>
+    <img src="{{ page.viceregal.image }}" alt="Governor standard" class="flag-display">
+    <p>{{ page.viceregal.text }}</p>
+</section>
+{% endif %}
+
+{% if page.sections %}
+  {% for section in page.sections %}
+    <section class=page-element>
+      {% if section.heading %}
+        <h2>{{ section.heading }}</h2>
+      {% endif %}
+      
+      <div class="card-grid">
+        {% for item in section.items %}
+        <div class="variant-item">
+            <img src="{{ item.image }}" alt="{{ item.title }}" class="flag-display">
+            <p><strong>{{ item.title }}</strong></p>
+            <p>{{ item.text }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor %}
+{% endif %}
