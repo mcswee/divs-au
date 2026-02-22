@@ -14,7 +14,7 @@ symbolism:
     text: "Retained in its traditional configuration on the fly, representing the nation's location in the Southern Hemisphere."
 
 construction:
-  image: "/assets/images/flags/au/national/construction.svg
+  image: "/assets/images/flags/au/national/construction.svg"
   caption: "Construction diagram showing 1:2 ratio and geometric star placement."
 
 sections:
