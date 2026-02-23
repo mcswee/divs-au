@@ -2,7 +2,7 @@
 layout: redistribution
 state: "Victoria"
 state_id: vic
-title: "Victoria suggested redistribution | divs.au"
+title: "Victoria suggested redistribution"
 status: "archived"
 category: reports 
 year: "2023"
