@@ -2,7 +2,7 @@
 layout: redistribution
 state: "Northern Territory"
 state_id: nt
-title: "Northern Territory suggested redistribution | divs.au"
+title: "Northern Territory suggested redistribution"
 status: "archived"
 year: "2024"
 category: reports 
