@@ -1,6 +1,6 @@
 ---
 layout: redistribution
-title: "South Australia suggested redistribution | divs.au"
+title: "South Australia suggested redistribution"
 state: "South Australia"
 state_id: sa
 description: "My public suggestion to the Australia Electoral Commission for the redistribution of South Australia."
