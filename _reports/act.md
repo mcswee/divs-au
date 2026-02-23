@@ -1,6 +1,6 @@
 ---
 layout: redistribution
-title: "Australian Capital Territory suggested redistribution | divs.au"
+title: "Australian Capital Territory suggested redistribution"
 state: "Australian Capital Territory"
 state_id: act
 description: "My public suggestion to the Australia Electoral Commission for the redistribution of the Australian Capital Territory."
