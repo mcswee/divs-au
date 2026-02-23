@@ -19,7 +19,7 @@ layout: default
     {% if page.symbolism %}
     <div class="symbolism-grid">
         {% for item in page.symbolism %}
-        <div class="symbol-item" style="--state-color: {{ page.state_color | default: '#336' }};">
+        <div class="symbol-item {{ page.state_id }}">
             <h3>{{ item.title }}</h3>
             <p>{{ item.text }}</p>
         </div>
