@@ -17,17 +17,17 @@ category: projects
         <h2 id="national-heading">National flag and ensigns</h2>
         <nav class="card-grid" aria-labelledby="national-heading">
             {% assign nat_card = site.flags | where: "slug", "national" | first %}
-            <a href="{{ nat_card.url }}" class="state-card national">
+            <a href="{{ nat_card.url }}" class="state-card">
                 <img src="{{ nat_card.thumb_image | default: nat_card.main_image }}" aria-hidden="true" alt="" class="flag-thumb">National flag details
             </a>
 
             {% assign ensigns = site.flags | where: "slug", "ensigns" | first %}
-            <a href="{{ ensigns.url }}" class="state-card ensigns">
+            <a href="{{ ensigns.url }}" class="state-card">
                 <img src="{{ ensigns.thumb_image | default: ensigns.main_image }}" aria-hidden="true" alt="" class="flag-thumb">Ensigns
             </a>
 
             {% assign gg = site.flags | where: "slug", "gg" | first %}
-            <a href="{{ gg.url }}" class="state-card gg">
+            <a href="{{ gg.url }}" class="state-card">
                 <img src="{{ gg.thumb_image | default: gg.main_image }}" aria-hidden="true" alt="" class="flag-thumb">Vice-regal standard
             </a>
         </div>
