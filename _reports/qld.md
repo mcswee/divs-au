@@ -3,7 +3,7 @@ layout: redistribution
 state: "Queensland"
 state_id: qld
 year: 2026
-title: "Queensland suggested redistribution | divs.au"
+title: "Queensland suggested redistribution"
 status: "deferred"
 category: reports
 aec_url: "https://www.aec.gov.au/redistributions/2025/qld/Deferral.html"
