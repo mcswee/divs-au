@@ -2,7 +2,7 @@
 layout: flag
 title: "National flag of Australia"
 type: national
-main_image: "/assets/images/flags/au/national/green-blue.svg"
+main_image: "/assets/images/flags/au/national/gyb.svg"
 description: "The proposed Australian flag replaces the Union Jack with a double triangle design. The geometry provides a distinct, modern identity while retaining the traditional blue field and the Southern Cross."
 
 symbolism:
@@ -21,16 +21,21 @@ sections:
   - heading: "Variants and alternative versions"
     items:
       - title: "Traditional colour variant"
-        image: "/assets/images/flags/au/national/red-blue.svg"
+        image: "/assets/images/flags/au/national/rwb.svg"
         text: "The design could also be used in the traditional colours of the Australian flag."
       - title: "More green variant"
-        image: "/assets/images/flags/au/national/blue-green.svg"
+        image: "/assets/images/flags/au/national/byg.svg"
         text: "Swap the blue and green for a more distinct appearance."
       - title: "Green and gold variant"
-        image: "/assets/images/flags/au/national/green-green.svg"
+        image: "/assets/images/flags/au/national/gyg.svg"
         text: "The national colours variant, ideal for sporting and international events."
-      - title: "Indigenous variant"
-        image: "/assets/images/flags/au/national/indigenous.svg"
+        - title: "Heraldic variant"
+        image: "/assets/images/flags/au/national/byb.svg"
+        text: "The national heraldic colours variant, taken from the wreath of the Australian coat of arms."
+      - title: "Aboriginal variant"
+        image: "/assets/images/flags/au/national/ryk.svg"
         text: "The Indigenous colours variant, ideal to express support for and reconciliation with First Nations peoples."
-
+      - title: "Torres Strait variant"
+        image: "/assets/images/flags/au/national/kgb.svg"
+        text: "The Torres Strait colours variant, ideal to express support for and reconciliation with First Nations peoples."
 ---
