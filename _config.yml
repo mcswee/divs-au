@@ -19,3 +19,6 @@ collections:
   flags:
     output: true
     permalink: /au-flags/:path/
+  us_flags:
+    output: true
+    permalink: /us-flags/:path/
