@@ -2,7 +2,7 @@
 layout: redistribution
 state: "New South Wales"
 state_id: nsw
-title: "New South Wales suggested redistribution | divs.au"
+title: "New South Wales suggested redistribution"
 status: "archived"
 category: reports
 year: "2023"
