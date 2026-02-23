@@ -13,7 +13,7 @@ category: projects
         </div>
 
     {% if page.change_type %}
-    <p class="flag-status status-{{ page.change_type | replace: ' ', '-' }}">{{ page.change_type }}</p>
+    <span class="flag-status status-{{ page.change_type | replace: ' ', '-' }}">{{ page.change_type }}</span>
     {% endif %}
     
     {% if page.main_image %}
