@@ -2,6 +2,7 @@
 layout: flag
 title: "National flag of Australia"
 type: national
+thumb_image:  "/assets/images/flags/au/national/ryk.svg"
 main_image: "/assets/images/flags/au/national/gyb.svg"
 description: "The proposed Australian flag replaces the Union Jack with a double triangle design. The geometry provides a distinct, modern identity while retaining the traditional blue field and the Southern Cross."
 
