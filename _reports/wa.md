@@ -2,7 +2,7 @@
 layout: redistribution
 state: "Western Australia"
 state_id: wa
-title: "Western Australia suggested redistribution | divs.au"
+title: "Western Australia suggested redistribution"
 status: "archived"
 category : reports
 year: "2023"
