@@ -29,7 +29,7 @@ sections:
       - title: "Green and gold variant"
         image: "/assets/images/flags/au/national/gyg.svg"
         text: "The national colours variant, ideal for sporting and international events."
-        - title: "Heraldic variant"
+      - title: "Heraldic variant"
         image: "/assets/images/flags/au/national/byb.svg"
         text: "The national heraldic colours variant, taken from the wreath of the Australian coat of arms."
       - title: "Aboriginal variant"
