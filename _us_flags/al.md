@@ -6,7 +6,7 @@ state_id: al
 change_type: Recolor
 main_image: "/assets/images/flags/us/redesigns/al.svg"
 sections:
-  - heading: Comparison with current flag
+ - heading: Comparison with current flag
     items:
   - title: Redesigned flag
     image: "/assets/images/flags/us/redesigns/al.svg"
