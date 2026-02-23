@@ -63,5 +63,11 @@ layout: default
         {% endfor %}
       </div>
     </section>
+{% if page.smallprint %}
+<footer class="page-element">
+    <small class="copyright">{{ page.smallprint }}</small>
+</footer>
+{% endif %}
+
   {% endfor %}
 {% endif %}
