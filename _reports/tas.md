@@ -1,6 +1,6 @@
 ---
 layout: redistribution
-title: "Tasmania suggested redistribution | divs.au"
+title: "Tasmania suggested redistribution"
 state: "Tasmania"
 state_id: tas
 description: "My public suggestion to the Australia Electoral Commission for the redistribution of Tasmania."
