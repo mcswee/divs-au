@@ -11,7 +11,7 @@ smallprint: |
 symbolism:
   - title: "Colours"
     text: "The royal blue, gold and white are taken from the existing territory flag, representing the city of Canberra and the surrounding region."
-  - title: "Royal Bbuebell"
+  - title: "Royal bluebell"
     text: "The floral emblem of the ACT replaces the complex modified Canberra coat of arms. It is rendered in royal blue and white, providing a modern and more appropriate symbol for the territory."
   - title: "The Commonwealth"
     text: "The stars on the Southern Cross all have seven points, mirroring the national flag. This signifies the ACT’s role as the seat of the Commonwealth government."
