@@ -2,9 +2,10 @@
 layout: flag
 title: "Queensland flag redesign"
 type: state
+state: Queensland
+state_id: qld
 main_image: "/assets/images/flags/au/state/qld.svg"
-state_color: "#73182c"
-description: "The Queensland redesign incorporates the state’s iconic maroon and gold palette, utilizing the Australian pale to anchor the Southern Cross."
+description: "The Queensland redesign incorporates the state’s iconic maroon and gold palette, utilising the Australian pale to anchor the Southern Cross."
 
 symbolism:
   - title: "Maroon and gold"
@@ -16,5 +17,5 @@ symbolism:
 
 viceregal:
   image: "/assets/images/flags/au/vr/vrq.svg"
-  text: "The vice-regal standard for the Governor of Queensland reverses the state colors, featuring a yellow pale with maroon stars and a maroon fly."
+  text: "The vice-regal standard for the Governor of Queensland reverses the state colors, featuring a yellow pale with maroon stars and a maroon fly with the Cooktown Orchid."
 ---
