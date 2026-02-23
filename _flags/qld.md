@@ -9,7 +9,7 @@ description: "The Queensland redesign incorporates the state’s iconic maroon a
 
 symbolism:
   - title: "Maroon and gold"
-    text: "Maroon is the official state color, paired here with the yellow-gold traditionally associated with Queensland's sun and resources."
+    text: "Maroon is the official state colour, paired here with the yellow-gold traditionally associated with Queensland's sun and resources."
   - title: "The state badge"
     text: "The light blue Maltese Cross is retained from the existing state badge, with an updated Victorian-era St. Edward's Crown. This represents the tine period the state was proclaimed."
   - title: "Unique Southern Cross"
@@ -17,5 +17,5 @@ symbolism:
 
 viceregal:
   image: "/assets/images/flags/au/vr/vrq.svg"
-  text: "The vice-regal standard for the Governor of Queensland reverses the state colors, featuring a yellow pale with maroon stars and a maroon fly with the Cooktown Orchid."
+  text: "The vice-regal standard for the Governor of Queensland reverses the state colours, a yellow pale with maroon stars and a maroon fly featuring the state floral emblem, the Cooktown Orchid."
 ---
