@@ -2,6 +2,7 @@
 layout: flag
 title: "Australian ensigns redesign"
 type: national
+thumb_image: "/assets/images/flags/au/national/bwa.svg"
 description: "The Australian ensign system is updated to maintain consistency with the new national design. By replacing the Union Jack with the double triangle hoist, these flags remain clearly Australian while serving their specific ceremonial and functional roles."
 
 sections:
