@@ -1,0 +1,54 @@
+---
+layout: default
+title: "Australian flags redesign"
+---
+
+    <header class="page-element">
+        <h1>{{ page.title }}</h1>
+        <p>A redesign of the Australian national and state flags. The national flags use a double triangle style as an evolution of the existing flag, while the states and territories are unified by the recognisable Australian pale.</p>
+    </header>
+
+    <section class="page-element">
+        <h2>National flag and ensigns</h2>
+        
+        {% assign national = site.flags | where: "slug", "national" | first %}
+        {% if national %}
+            <img src="{{ national.main_image }}" class="flag-display" alt="My redesigned Australian national flag">
+            <p>{{ national.description }}</p>
+        {% endif %}
+
+        <div class="card-grid">
+            {% assign nat_card = site.flags | where: "slug", "national" | first %}
+            <a href="{{ nat_card.url }}" class="state-card national">
+                <img src="{{ nat_card.thumb_image | default: nat_card.main_image }}" alt="" class="flag-thumb">
+                <span>{{ nat_card.title }}</span>
+            </a>
+
+            {% assign ensigns = site.flags | where: "slug", "ensigns" | first %}
+            <a href="{{ ensigns.url }}" class="state-card ensigns">
+                <img src="{{ ensigns.thumb_image | default: ensigns.main_image }}" alt="" class="flag-thumb">
+                <span>{{ ensigns.title }}</span>
+            </a>
+
+            {% assign gg = site.flags | where: "slug", "gg" | first %}
+            <a href="{{ gg.url }}" class="state-card gg">
+                <img src="{{ gg.thumb_image | default: gg.main_image }}" alt="" class="flag-thumb">
+                <span>{{ gg.title }}</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="page-element">
+        <h2>State and territory flags</h2>
+        <p>State and territory designs use the Australian pale with the Southern Cross as first developed for the Northern Territory flag in 1978. Every state and territory has a unique version of the Southern Cross with varying star points.</p>
+        
+        <div class="card-grid">
+            {% assign states = site.flags | where: "type", "state" | sort: "title" %}
+            {% for state in states %}
+            <a href="{{ state.url }}" class="state-card {{ state.state_id }}">
+                <img src="{{ state.main_image }}" alt="" class="flag-thumb">
+                <span>{{ state.title }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
