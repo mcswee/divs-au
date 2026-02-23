@@ -16,5 +16,6 @@ symbolism:
   - title: "The Commonwealth"
     text: "The stars on the Southern Cross all have seven points, mirroring the national flag. This signifies the ACT’s role as the seat of the Commonwealth government."
 viceregal:
-
+  image: "/assets/images/flags/au/vr/vrq.svg"
+  text: "The vice-regal standard for the Governor of Queensland reverses the state colours, a yellow pale with maroon stars and a maroon fly featuring the state floral emblem, the Cooktown Orchid."
 ---
