@@ -17,20 +17,17 @@ title: "Australian flags redesign"
         <nav class="card-grid" aria-labelledby="national-heading">
             {% assign nat_card = site.flags | where: "slug", "national" | first %}
             <a href="{{ nat_card.url }}" class="state-card national">
-                <img src="{{ nat_card.thumb_image | default: nat_card.main_image }}" alt="" class="flag-thumb">
-                <span>National flag details</span>
+                <img src="{{ nat_card.thumb_image | default: nat_card.main_image }}" aria-hidden="true" alt="" class="flag-thumb">National flag details
             </a>
 
             {% assign ensigns = site.flags | where: "slug", "ensigns" | first %}
             <a href="{{ ensigns.url }}" class="state-card ensigns">
-                <img src="{{ ensigns.thumb_image | default: ensigns.main_image }}" alt="" class="flag-thumb">
-                <span>Ensigns</span>
+                <img src="{{ ensigns.thumb_image | default: ensigns.main_image }}" aria-hidden="true" alt="" class="flag-thumb">Ensigns
             </a>
 
             {% assign gg = site.flags | where: "slug", "gg" | first %}
             <a href="{{ gg.url }}" class="state-card gg">
-                <img src="{{ gg.thumb_image | default: gg.main_image }}" alt="" class="flag-thumb">
-                <span>Governir General's standard</span>
+                <img src="{{ gg.thumb_image | default: gg.main_image }}" aria-hidden="true" alt="" class="flag-thumb">Vice-regal standard
             </a>
         </div>
     </section>
@@ -43,8 +40,7 @@ title: "Australian flags redesign"
             {% assign states = site.flags | where: "type", "state" | sort: "title" %}
             {% for state in states %}
             <a href="{{ state.url }}" class="state-card {{ state.state_id }}">
-                <img src="{{ state.main_image }}" alt="" class="flag-thumb">
-                <span>{{ state.state }}</span>
+                <img src="{{ state.main_image }}" aria-hidden="true" alt="" class="flag-thumb">{{ state.state }}
             </a>
             {% endfor %}
         </nav>
