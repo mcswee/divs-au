@@ -1009,13 +1009,13 @@ figcaption {
 .symbol-item {
     --symbol-color: var(--contrast, var(--trad, var(--brand-main)));
     padding: 20px;
-    background: var(--symbol-bg);
+    background: var(--symbol-bg, var(--accent));
     border-left: 4px solid var(--symbol-color);
     border-radius: 0 8px 8px 0;
 }
 
-.symbol-item.nsw, .symbol-item.vic, . symbol-iten.qld, .symbol-item.sa, 
-.symbol-item.wa, .symbo-item.tas, .symbol-item.nt, .symbol-item.act {
+.symbol-item.nsw, .symbol-item.vic, .symbol-item.qld, .symbol-item.sa, 
+.symbol-item.wa, .symbol-item.tas, .symbol-item.nt, .symbol-item.act {
     --symbol-bg: color-mix(in srgb, var(--symbol-color), transparent 94%);
 
 }
