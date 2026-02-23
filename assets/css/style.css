@@ -993,6 +993,7 @@ figcaption {
     width: 100%;
     max-width: 800px;
     height: auto;
+    max-height: 400px;
     display: block;
     margin: 2rem auto;
     border: 1px solid var(--text-accent);
