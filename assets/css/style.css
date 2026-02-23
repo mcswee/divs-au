@@ -415,7 +415,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .state-card:hover {
-    border-color: var(--contrast, var(--trad));
+    border-color: var(--contrast, var(--trad, var(--brand-main)));
     background-color: color-mix(in srgb, var(--trad), transparent 92%);
     color: var(--contrast, var(--trad));
     transform: translateY(-3px);
