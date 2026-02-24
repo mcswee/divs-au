@@ -936,7 +936,7 @@ tr[id^="letter-"] {
     font-size: 0.85rem;
     font-weight: 800;
     text-transform: uppercase;
-    background-color: var(--status-bg, --brand-main));
+    background-color: var(--status-bg, var(--brand-main));
     color: var(--highlight);
 }
 
