@@ -20,6 +20,11 @@
   --shadow-deep: 0 6px 12px rgba(0, 0, 0, 0.2);
   --lighten: rgba(255, 255, 255, 0.15);
 
+  /* Functional */
+  --error-main: #d11;
+  --error-bg: #fff8f8;
+}
+
   /* State colours */
   .nsw { --trad: #A6D2E6; --contrast: #197DB3; }
   .vic { --trad: #00205B; }
@@ -29,11 +34,6 @@
   .tas { --trad: #006747; }
   .nt  { --trad: #C75B12; --contrast: #96430B; }
   .act { --trad: #003DA5; }
-
-  /* Functional */
-  --error-main: #d11;
-  --error-bg: #fff8f8;
-}
 
 /* 1. RESET & BASE */
 * {
@@ -416,8 +416,8 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 
 .state-card:hover {
     border-color: var(--contrast, var(--trad, var(--brand-main)));
-    background-color: color-mix(in srgb, var(--trad), transparent 92%);
-    color: var(--contrast, var(--trad));
+    background-color: color-mix(in srgb, var(--trad, var(--highlight)), transparent 92%);
+    color: var(--contrast, var(--trad, var(--brand-main)));
     transform: translateY(-3px);
     box-shadow: var(--shadow-deep);
 }
