@@ -922,47 +922,6 @@ tr[id^="letter-"] {
     scroll-margin-top: 65px; 
 }
 
-.state-section {
-    max-width:1100px;
-    margin: 0 auto;
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--text-accent);
-}
-
-.flag-row {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap; 
-    align-items: flex-end;
-    margin: 1rem 0;
-}
-
-figure {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1 1 250px; 
-    max-width: 400px;
-}
-
-.us-image {
-    height: auto;
-    width: auto;
-    max-height: 180px; 
-    max-width: 100%;
-    border: 1px solid var(--text-accent);
-    background: var(--bg-main);
-}
-
-figcaption {
-    margin-top: 10px;
-    font-size: 0.9rem;
-    color: var(--text-highlight);
-    text-align: center;
-    font-style: italic;
-}
-
 .status-no-change { --status-bg: #1e5631; }
 .status-recolor   { --status-bg: #3743d3; }
 .status-tweak     { --status-bg: #6d597a; }
@@ -983,7 +942,7 @@ figcaption {
 
 .flag-thumb {
     height: 30px;
-    width: 60px;
+    max-width: 60px;
     object-fit: contain;
     border: 1px solid var(--text-accent);
     flex-shrink: 0;
