@@ -1,0 +1,37 @@
+---
+layout: default
+title: "United States flag redesigns"
+category: projects 
+---
+
+<header class="page-element">
+    <h1>{{ page.title }}</h1>
+    <p>Many existing American state flags are not great. Far too many are just "seals on bedsheets", sticking a complex, overly detailed, multicoloured seal on a plain and boring background. Oftentimes, they'll stick a name tag on there, because otherwise you wouldn't know the difference. That kinda tells me the role flag has failed as a symbol of identity.</p> 
+    <p>Other states use vexillological principles and imagery. But then they turn out to be "Red, White and Blue" and an eagle or far too many stars (like 61, hey Missouri?) The issue then is there is nothing that actually represents the state as anything other than a smaller bit of the USA. All it achieves is to broadcast that the state is an indistinct piece of a larger country.</p>
+    <p>The widespread use of unnecessary text, odd proportions, and lingering Confederate imagery only makes it worse. These flags almost always fail to establish a unique identity. This project replaces those generic and bland designs with those built on state-specific icons and colours.</p>
+</header>
+
+<section class="page-element">
+  <h2>Design principles</h2>
+  <p>I'm not forcing Good Flag, Bad Flag on every design, nor abiding by a strict adherence to CGP Grey principles. Instead, I have focussed on fixing those fundamental issues, but also retaining the character of the state, while maintaining a consistent focus to make the flags feel like a coherent group. My designs focus on the following standards.</p>
+  <ul>
+        <li>All redesigns are standardised to a 2:3 ratio. The days of 22:37 proportions are over.</li>
+        <li>State names have been removed because a flag is not a name badge. Other text can remain or be added if it has relevance.</li>
+        <li>Overt Confederate imagery and styles have been scaled back. I tried to ensure that any Confederacy references change in at least two ways to disassociate the modern state with the Confederacy.</li>
+        <li>Generic national tropes and Red White and Blue are replaced by relevant local icons and colours that actually mean something to the state.</li>
+    </ul>
+</section>
+
+<section class="page-element">
+    <nav class="card-grid">
+        {% assign us_states = site.us_flags | sort: "state" %}
+        {% for state in us_states %}
+        <a href="{{ state.url }}" class="state-card {{ state.state_id }}">
+            <img src="{{ state.main_image }}" aria-hidden="true" alt="" class="flag-thumb">
+            {{ state.state }}
+        </a>
+        {% endfor %}
+    </nav>
+</section>
+<small class="page-element copyright">All current state flag images, as well as my proposed flag designs for Maine, Minnesota, Oklahoma, South Dakota and Vermont are sourced from Wikimedia Commons. The designs of thesr flags are public domain, unless specified in the individual pages for the states.</p>
+      
