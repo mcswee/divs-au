@@ -994,6 +994,16 @@ tr[id^="letter-"] {
     margin-top: 10px;
 }
 
+.flag-variant {
+    height: 180px;
+    width: auto;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto 1rem;
+    border: 1px solid var(--text-accent);
+    object-fit: contain;
+}
+
 .back-link {
     display: inline-block;
     text-decoration: none;
