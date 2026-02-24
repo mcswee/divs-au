@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "United States flag redesigns"
+title: "US state flags redesigns"
 category: projects 
 ---
 
@@ -23,7 +23,8 @@ category: projects
 </section>
 
 <section class="page-element">
-    <nav class="card-grid">
+    <h2 id="state-heading">My redesigned flags</h2>
+    <nav class="card-grid" id="state-list" aria-labelledby="state-heading">
         {% assign us_states = site.us_flags | sort: "state" %}
         {% for state in us_states %}
         <a href="{{ state.url }}" class="state-card {{ state.state_id }}">
