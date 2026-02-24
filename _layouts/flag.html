@@ -4,20 +4,20 @@ category: projects
 ---
 <header class="page-element">
     <h1>{{ page.title }}</h1>
-        <div>
-            {% if page.collection == 'us_flags' %}
-            <a href="/us-flags/" class="back-link">← Back to overview</a>
-            {% else %}
-            <a href="/au-flags/" class="back-link">← Back to overview</a>
-            {% endif %}
-        </div>
+    <div>
+    {% if page.collection == 'us_flags' %}
+        <a href="/us-flags/" class="back-link">← Back to overview</a>
+    {% else %}
+        <a href="/au-flags/" class="back-link">← Back to overview</a>
+    {% endif %}
+    </div>
 
     {% if page.change_type %}
-    <span class="flag-status status-{{ page.change_type | replace: ' ', '-' }}">{{ page.change_type }}</span>
+        <span class="flag-status status-{{ page.change_type | replace: ' ', '-' | downcase }}">{{ page.change_type }}</span>
     {% endif %}
     
     {% if page.main_image %}
-    <img src="{{ page.main_image }}" alt="{{ page.title }}" class="flag-display">
+        <img src="{{ page.main_image }}" alt="{{ page.title }}" class="flag-display">
     {% endif %}
 </header>
 
