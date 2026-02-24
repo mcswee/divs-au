@@ -415,9 +415,9 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 .state-card:hover {
-    border-color: var(--contrast, var(--trad, #f90));
+    border-color: var(--contrast, var(--trad, var(--brand-main)));
     background-color: color-mix(in srgb, var(--trad, var(--highlight)), transparent 92%);
-    color: var(--contrast, var(--trad, #f90));
+    color: var(--contrast, var(--trad, var(--brand-main)));
     transform: translateY(-3px);
     box-shadow: var(--shadow-deep);
 }
