@@ -6,9 +6,9 @@ category: projects
     <h1>{{ page.title }}</h1>
     <div>
     {% if page.collection == 'us_flags' %}
-        <a href="/us-flags/" class="back-link">← Back to overview</a>
+        <a href="/us-flags/" class="back-link">← Back to US flags index</a>
     {% else %}
-        <a href="/au-flags/" class="back-link">← Back to overview</a>
+        <a href="/au-flags/" class="back-link">← Back to Australian flags overview</a>
     {% endif %}
     </div>
 
@@ -68,7 +68,7 @@ category: projects
         {% for item in section.items %}
         <div class="variant-item">
             <img src="{{ item.image }}" alt="{{ item.title }}" class="flag-variant">
-            <p><strong>{{ item.title }}</strong></p>
+            <h3>{{ item.title }}</h3>
             <p>{{ item.text }}</p>
         </div>
         {% endfor %}
@@ -78,7 +78,5 @@ category: projects
 {% endif %}
 
 {% if page.smallprint %}
-<footer class="page-element">
-    <small class="copyright">{{ page.smallprint }}</small>
-</footer>
+    <small class="page-element copyright">{{ page.smallprint }}</small>
 {% endif %}
