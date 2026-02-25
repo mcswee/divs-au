@@ -22,3 +22,6 @@ collections:
   us_flags:
     output: true
     permalink: /us-flags/:path/
+    values:
+      collection: "us_flags"
+      
