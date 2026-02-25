@@ -1,0 +1,23 @@
+<div class="js-filter-container">
+  <div class="search-input-group">
+    <label for="{{ include.search_id | default: 'page-search' }}" class="sr-only">
+      {{ include.label | default: 'Search this list' }}
+    </label>
+    <input type="text" 
+           id="{{ include.search_id | default: 'page-search' }}" 
+           class="js-filter-input" 
+           placeholder="{{ include.placeholder | default: 'Search...' }}">
+    <button type="button" class="js-filter-clear" hidden aria-label="Clear search">&times;</button>
+  </div>
+  
+  <div class="search-stats">
+    <p aria-live="polite">
+      Showing <span class="js-filter-matched">0</span> of <span class="js-filter-total">0</span> 
+      {{ include.item_name | default: 'items' }}
+    </p>
+  </div>
+
+  <div class="js-filter-no-results" hidden>
+    <p>No matches found.</p>
+  </div>
+</div>
