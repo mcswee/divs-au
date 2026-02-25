@@ -2,8 +2,21 @@
 layout: default
 category: projects
 ---
+{% if page.collection == 'us_flags' %}
+  {% assign display_title = page.title | default: page.state | append: " state flag redesign" %}
+  {% assign main_img_path = page.main_image | default: "/assets/images/flags/us/redesigns/" | append: page.state_id | append: ".svg" %}
+  {% assign current_img_path = "/assets/images/flags/us/current/" | append: page.state_id | append: ".svg" %}
+{% else %}
+  {% assign display_title = page.title %}
+  {% assign main_img_path = page.main_image %}
+{% endif %}
+
 <header class="page-element">
-    <h1>{{ page.title }}</h1>
+    <h1>{{ display_title }}</h1>
+    {% if page.change_type %}
+        <span class="flag-status status-{{ page.change_type | slugify }}">{{ page.change_type }}</span>
+    {% endif %}
+    
     <div>
     {% if page.collection == 'us_flags' %}
         <a href="/us-flags/" class="back-link">← Back to US flags index</a>
@@ -11,19 +24,31 @@ category: projects
         <a href="/au-flags/" class="back-link">← Back to Australian flags overview</a>
     {% endif %}
     </div>
-
-    {% if page.change_type %}
-        <span class="flag-status status-{{ page.change_type | replace: ' ', '-' | downcase }}">{{ page.change_type }}</span>
-    {% endif %}
     
-    {% if page.main_image %}
-        <img src="{{ page.main_image }}" alt="{{ page.title }}" class="flag-display">
+    {% if main_img_path %}
+        <img src="{{ main_img_path }}" alt="{{ display_title }}" class="flag-display">
     {% endif %}
 </header>
 
+{% if page.compare %}
+<section class="page-element critique-section">
+    <div class="critique-grid">
+        <figure class="critique-image" role="group" aria-labelledby="critique-caption">
+            <img src="{{ current_img_path }}" alt="Current {{ page.state }} flag">
+            <figcaption id="critique-caption">Current {{ page.state }} flag</figcaption>
+        </figure>
+        <div class="critique-text">
+            <h2>{{ page.state }} current flag</h2>
+            <p>{{ page.critique | default: "The current design is a 'seal on a blue bedsheet', a faux-heraldic coat of arms or complex seal placed on a plain blue field. It is indistinguishable from dozens of other US state flags at a distance and fails the basic principles of effective vexillography." }}</p>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.description or page.symbolism %}
   <section class="page-element">
-    {% if page.description %}
     <h2>Design and symbolism</h2>
+    {% if page.description %}
     <p>{{ page.description }}</p>
     {% endif %}
 
@@ -38,6 +63,7 @@ category: projects
     </div>
     {% endif %}
 </section>
+{% endif %}
 
 {% if page.construction %}
 <section class="page-element">
