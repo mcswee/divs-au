@@ -9,12 +9,12 @@ main_image: "/assets/images/flags/us/redesigns/ca.svg"
 sections:
   - heading: Comparison with current flag
     items:
-    - title: Redesigned flag
-      image: "/assets/images/flags/us/redesigns/ca.svg"
-      text: My redesigned California flag
     - title: Current flag
       image: "/assets/images/flags/us/current/ca.svg"
       text: The current California state flag
+    - title: Redesigned flag
+      image: "/assets/images/flags/us/redesigns/ca.svg"
+      text: My redesigned California flag
 smallprint: |
  Lots of suggestions online match mine, almost exactly. The earliest I could find was from Reddit user <a href="https://www.reddit.com/u/zxxx/" class="external-link">zxxx</a> some ten years ago.
 description: |
