@@ -1,0 +1,21 @@
+<nav class="alphabet-nav" aria-label="Alphabetical jump links">
+  <ul class="alphabet-list">
+    {% assign alphabet = "abcdefghijklmnopqrstuvwxyz" | split: "" %}
+    
+    {% capture existing_letters %}
+      {% for item in include.items %}
+        {{ item.name | slice: 0 | downcase }}
+      {% endfor %}
+    {% endcapture %}
+
+    {% for letter in alphabet %}
+      <li>
+        {% if existing_letters contains letter %}
+          <a href="#{{ letter }}" class="jump-link">{{ letter | upcase }}</a>
+        {% else %}
+          <span class="jump-link disabled" aria-hidden="true">{{ letter | upcase }}</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
