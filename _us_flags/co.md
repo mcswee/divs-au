@@ -9,12 +9,12 @@ main_image: "/assets/images/flags/us/redesigns/co.svg"
 sections:
   - heading: Comparison with current flag
     items:
-    - title: Redesigned flag
-      image: "/assets/images/flags/us/redesigns/co.svg"
-      text: My redesigned Colorado flag
     - title: Current flag
       image: "/assets/images/flags/us/current/co.svg"
       text: The current Colorado state flag
+    - title: Redesigned flag
+      image: "/assets/images/flags/us/redesigns/co.svg"
+      text: My redesigned Colorado flag
 smallprint: |
  From what I can work out, Reddit user <a href="https://www.reddit.com/u/GanymedeanOutlaw/" class="external-link">GanymedeanOutlaw</a> seems to be the first to suggest this (online at least).
 description: |
