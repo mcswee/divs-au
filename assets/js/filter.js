@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalDisplay = container.querySelector('.js-filter-total');
     const noResults = container.querySelector('.js-filter-no-results');
     
-    // Assumes the list/grid follows the search container
-    const grid = container.nextElementSibling;
+    const grid = document.getElementById(container.dataset.target);
+
     if (!grid) return; 
     
     const items = grid.querySelectorAll('[data-search]');
