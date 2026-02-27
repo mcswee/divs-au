@@ -930,7 +930,9 @@ input::-webkit-search-results-decoration {
 }
 
 .alphabet-nav[hidden] {
-    display: none !important;
+    color: var(--text-accent);
+    opacity: 0.5;
+    background: transparent;
 }
 
 tr[id^="letter-"] {
@@ -966,7 +968,11 @@ tr[id^="letter-"] {
     grid-template-columns: auto 1fr;
     gap: 4px 12px;
     margin: 10px 0 0;
+    padding: 0 0 6px 6px;
     font-size: 0.9rem;
+    background-color: var(--accent);
+    border: 1px solid var(--text-highlight);
+    border-radius:4px;
 }
 
 .phoneme-entry, .syllable-divider {
