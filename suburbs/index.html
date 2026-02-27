@@ -38,11 +38,11 @@ title: Melbourne Suburb Pronunciation Guide
                 <dd>syllable break</dd>
               </div>
             {% else %}
-              {% assign sound_data = site.data.sounds | where: "Phoneme", symbol | first %}
-              <div class="phoneme-entry">
-                <dt>{{ symbol }}</dt>
-                <dd>as in {{ sound_data.Example }}</dd>
-              </div>
+            {% assign sound_data = site.data.sounds | where: "phoneme", symbol | first %}
+            <div class="phoneme-entry">
+              <dt>{{ symbol }}</dt>
+              <dd>as in {{ sound_data.example }}</dd>
+            </div>
             {% endif %}
           {% endfor %}
         </dl>
