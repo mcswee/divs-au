@@ -879,11 +879,27 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     outline: none;
 }
 
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration {
+    display: none;
+}
+
 .alphabet-nav {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
     margin: 15px 0;
+}
+
+.alphabet-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .alphabet-nav a, 
@@ -911,6 +927,10 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     color: var(--text-accent);
     opacity: 0.5;
     background: transparent;
+}
+
+.alphabet-nav[hidden] {
+    display: none !important;
 }
 
 tr[id^="letter-"] {
