@@ -1,4 +1,4 @@
-<div class="js-filter-container">
+<div class="js-filter-container" data-target="{{ include.target_id | default: 'filter-list' }}">
   <div class="search-input-group">
     <label for="{{ include.search_id | default: 'page-search' }}" class="sr-only">
       {{ include.label | default: 'Search this list' }}
