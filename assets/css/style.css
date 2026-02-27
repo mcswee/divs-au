@@ -956,6 +956,46 @@ tr[id^="letter-"] {
     flex-direction: column;
 }
 
+.pronunciation-details dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 12px;
+    margin: 10px 0 0;
+    font-size: 0.9rem;
+}
+
+.phoneme-entry, .syllable-divider {
+    display: contents; /* Flattens the div so dt and dd sit in the grid */
+}
+
+.pronunciation-details dt {
+    font-family: monospace;
+    font-weight: bold;
+    color: var(--brand-main);
+    background: var(--highlight);
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-align: center;
+    min-width: 1.5rem;
+}
+
+.pronunciation-details dd {
+    margin: 0;
+    align-self: center;
+    color: var(--text-main);
+}
+
+/* Make the syllable break look distinct */
+.syllable-divider dt {
+    background: var(--accent);
+    color: var(--text-highlight);
+}
+
+.syllable-divider dd {
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
 /* Flags redesigns */
 /* US flag status badges */
 .status-no-change { --status-bg: #1e5631; }
