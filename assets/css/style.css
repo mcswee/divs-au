@@ -863,7 +863,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 
 /* 11. PROJECT SPECIALIST */
 .js-filter-input {
-    width: 100%;
+    width: %;
     max-width: 400px;
     padding: 12px;
     font-family: inherit;
@@ -873,7 +873,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     background: var(--highlight);
 }
 
-.js-filter-input.no-results {
+.js-filter-input.search-error {
     border-color: var(--error-main);
     background-color: var(--error-bg);
     outline: none;
