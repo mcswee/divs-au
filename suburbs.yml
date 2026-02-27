@@ -1,0 +1,9820 @@
+- name: Abbotsford
+  postcode: '3067'
+  lga: City of Yarra
+  pronunciation: æb·@ts·f@d
+  phonemes:
+  - æ
+  - b
+  - ·
+  - '@'
+  - t
+  - s
+  - ·
+  - f
+  - '@'
+  - d
+- name: Aberfeldie
+  postcode: '3040'
+  lga: City of Moonee Valley
+  pronunciation: æb·@·fehl·dee
+  phonemes:
+  - æ
+  - b
+  - ·
+  - '@'
+  - ·
+  - f
+  - eh
+  - l
+  - ·
+  - d
+  - ee
+- name: Aintree
+  postcode: '3336'
+  lga: City of Melton
+  pronunciation: ayn·tree
+  phonemes:
+  - ay
+  - n
+  - ·
+  - t
+  - r
+  - ee
+- name: Airport West
+  postcode: '3042'
+  lga: City of Moonee Valley
+  pronunciation: eh@·pawt·wehst
+  phonemes:
+  - eh@
+  - ·
+  - p
+  - aw
+  - t
+  - ·
+  - w
+  - eh
+  - s
+  - t
+- name: Albanvale
+  postcode: '3021'
+  lga: City of Brimbank
+  pronunciation: ælb·@n·vayl
+  phonemes:
+  - æ
+  - l
+  - b
+  - ·
+  - '@'
+  - n
+  - ·
+  - v
+  - ay
+  - l
+- name: Albert Park
+  postcode: '3206'
+  lga: City of Port Phillip
+  pronunciation: ælb·@t·pahk
+  phonemes:
+  - æ
+  - l
+  - b
+  - ·
+  - '@'
+  - t
+  - ·
+  - p
+  - ah
+  - k
+- name: Albion
+  postcode: '3020'
+  lga: City of Brimbank
+  pronunciation: ælb·ee·@n
+  phonemes:
+  - æ
+  - l
+  - b
+  - ·
+  - ee
+  - ·
+  - '@'
+  - n
+- name: Alphington
+  postcode: '3078'
+  lga: City of Darebin
+  pronunciation: ælf·ih£·t@n
+  phonemes:
+  - æ
+  - l
+  - f
+  - ·
+  - ih
+  - £
+  - ·
+  - t
+  - '@'
+  - n
+- name: Altona
+  postcode: '3018'
+  lga: City of Hobsons Bay
+  pronunciation: æl·toh·n@
+  phonemes:
+  - æ
+  - l
+  - ·
+  - t
+  - oh
+  - ·
+  - n
+  - '@'
+- name: Altona Meadows
+  postcode: '3028'
+  lga: City of Hobsons Bay
+  pronunciation: æl·toh·n@·mehd·ohz
+  phonemes:
+  - æ
+  - l
+  - ·
+  - t
+  - oh
+  - ·
+  - n
+  - '@'
+  - ·
+  - m
+  - eh
+  - d
+  - ·
+  - oh
+  - z
+- name: Altona North
+  postcode: '3025'
+  lga: City of Hobsons Bay
+  pronunciation: æl·toh·n@·naw+
+  phonemes:
+  - æ
+  - l
+  - ·
+  - t
+  - oh
+  - ·
+  - n
+  - '@'
+  - ·
+  - n
+  - aw
+  - +
+- name: Anakie
+  postcode: '3213'
+  lga: City of Greater Geelong
+  pronunciation: æn·@·kee
+  phonemes:
+  - æ
+  - n
+  - ·
+  - '@'
+  - ·
+  - k
+  - ee
+- name: Ardeer
+  postcode: '3022'
+  lga: City of Brimbank
+  pronunciation: ah·dee@
+  phonemes:
+  - ah
+  - ·
+  - d
+  - ee@
+- name: Armadale
+  postcode: '3143'
+  lga: City of Stonnington
+  pronunciation: ahm·@·dayl
+  phonemes:
+  - ah
+  - m
+  - ·
+  - '@'
+  - ·
+  - d
+  - ay
+  - l
+- name: Armstrong Creek
+  postcode: '3217'
+  lga: City of Greater Geelong
+  pronunciation: ahm·s¢rø£·kreek
+  phonemes:
+  - ah
+  - m
+  - ·
+  - s
+  - ¢
+  - r
+  - ø
+  - £
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Arthurs Creek
+  postcode: '3099'
+  lga: Shire of Nillumbik
+  pronunciation: ah+·@z·kreek
+  phonemes:
+  - ah
+  - +
+  - ·
+  - '@'
+  - z
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Arthurs Seat
+  postcode: '3936'
+  lga: Shire of Mornington Peninsula
+  pronunciation: ah+·@z·seet
+  phonemes:
+  - ah
+  - +
+  - ·
+  - '@'
+  - z
+  - ·
+  - s
+  - ee
+  - t
+- name: Ascot Vale
+  postcode: '3032'
+  lga: City of Moonee Valley
+  pronunciation: æsk·øt·vayl
+  phonemes:
+  - æ
+  - s
+  - k
+  - ·
+  - ø
+  - t
+  - ·
+  - v
+  - ay
+  - l
+- name: Ashburton
+  postcode: '3147'
+  lga: City of Boroondara
+  pronunciation: æ$·bœt·@n
+  phonemes:
+  - æ
+  - $
+  - ·
+  - b
+  - œ
+  - t
+  - ·
+  - '@'
+  - n
+- name: Ashwood
+  postcode: '3147'
+  lga: City of Monash
+  pronunciation: æ$·wuud
+  phonemes:
+  - æ
+  - $
+  - ·
+  - w
+  - uu
+  - d
+- name: Aspendale
+  postcode: '3195'
+  lga: City of Kingston
+  pronunciation: æs·p@n·dayl
+  phonemes:
+  - æ
+  - s
+  - ·
+  - p
+  - '@'
+  - n
+  - ·
+  - d
+  - ay
+  - l
+- name: Aspendale Gardens
+  postcode: '3195'
+  lga: City of Kingston
+  pronunciation: æs·p@n·dayl·gah·d@nz
+  phonemes:
+  - æ
+  - s
+  - ·
+  - p
+  - '@'
+  - n
+  - ·
+  - d
+  - ay
+  - l
+  - ·
+  - g
+  - ah
+  - ·
+  - d
+  - '@'
+  - n
+  - z
+- name: Attwood
+  postcode: '3049'
+  lga: City of Hume
+  pronunciation: æt·wuud
+  phonemes:
+  - æ
+  - t
+  - ·
+  - w
+  - uu
+  - d
+- name: Avalon
+  postcode: '3212'
+  lga: City of Greater Geelong
+  pronunciation: æv·@·løn
+  phonemes:
+  - æ
+  - v
+  - ·
+  - '@'
+  - ·
+  - l
+  - ø
+  - n
+- name: Avondale Heights
+  postcode: '3034'
+  lga: City of Moonee Valley
+  pronunciation: æv·@n·dayl·hiyts
+  phonemes:
+  - æ
+  - v
+  - ·
+  - '@'
+  - n
+  - ·
+  - d
+  - ay
+  - l
+  - ·
+  - h
+  - iy
+  - t
+  - s
+- name: Avonsleigh
+  postcode: '3782'
+  lga: Shire of Cardinia
+  pronunciation: ayv·@nz·lee
+  phonemes:
+  - ay
+  - v
+  - ·
+  - '@'
+  - n
+  - z
+  - ·
+  - l
+  - ee
+- name: Bacchus Marsh
+  postcode: '3340'
+  lga: Shire of Moorabool
+  pronunciation: bæk·@s·mah$
+  phonemes:
+  - b
+  - æ
+  - k
+  - ·
+  - '@'
+  - s
+  - ·
+  - m
+  - ah
+  - $
+- name: Badger Creek
+  postcode: '3777'
+  lga: Shire of Yarra Ranges
+  pronunciation: bæj·@·kreek
+  phonemes:
+  - b
+  - æ
+  - j
+  - ·
+  - '@'
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Balaclava
+  postcode: '3183'
+  lga: City of Port Phillip
+  pronunciation: bæl·@·klah·v@
+  phonemes:
+  - b
+  - æ
+  - l
+  - ·
+  - '@'
+  - ·
+  - k
+  - l
+  - ah
+  - ·
+  - v
+  - '@'
+- name: Ballan
+  postcode: '3342'
+  lga: Shire of Moorabool
+  pronunciation: buh·læn
+  phonemes:
+  - b
+  - uh
+  - ·
+  - l
+  - æ
+  - n
+- name: Balliang
+  postcode: '3340'
+  lga: Shire of Moorabool
+  pronunciation: bæl·ee·æ£
+  phonemes:
+  - b
+  - æ
+  - l
+  - ·
+  - ee
+  - ·
+  - æ
+  - £
+- name: Balliang East
+  postcode: '3340'
+  lga: Shire of Moorabool
+  pronunciation: bæl·ee·æ£·eest
+  phonemes:
+  - b
+  - æ
+  - l
+  - ·
+  - ee
+  - ·
+  - æ
+  - £
+  - ·
+  - ee
+  - s
+  - t
+- name: Balnarring
+  postcode: '3926'
+  lga: Shire of Mornington Peninsula
+  pronunciation: bæl·næ·rih£
+  phonemes:
+  - b
+  - æ
+  - l
+  - ·
+  - n
+  - æ
+  - ·
+  - r
+  - ih
+  - £
+- name: Balnarring Beach
+  postcode: '3926'
+  lga: Shire of Mornington Peninsula
+  pronunciation: bæl·næ·rih£·bee¢
+  phonemes:
+  - b
+  - æ
+  - l
+  - ·
+  - n
+  - æ
+  - ·
+  - r
+  - ih
+  - £
+  - ·
+  - b
+  - ee
+  - ¢
+- name: Balwyn
+  postcode: '3103'
+  lga: City of Boroondara
+  pronunciation: baw(l)·w@n
+  phonemes:
+  - b
+  - aw
+  - l
+  - ·
+  - w
+  - '@'
+  - n
+- name: Balwyn North
+  postcode: '3104'
+  lga: City of Boroondara
+  pronunciation: baw(l)·w@n·naw+
+  phonemes:
+  - b
+  - aw
+  - l
+  - ·
+  - w
+  - '@'
+  - n
+  - ·
+  - n
+  - aw
+  - +
+- name: Bangholme
+  postcode: '3175'
+  lga: City of Greater Dandenong
+  pronunciation: bæ£·hohm
+  phonemes:
+  - b
+  - æ
+  - £
+  - ·
+  - h
+  - oh
+  - m
+- name: Barwon Heads
+  postcode: '3227'
+  lga: City of Greater Geelong
+  pronunciation: bah·w@n·hehdz
+  phonemes:
+  - b
+  - ah
+  - ·
+  - w
+  - '@'
+  - n
+  - ·
+  - h
+  - eh
+  - d
+  - z
+- name: Batesford
+  postcode: '3213'
+  lga: City of Greater Geelong
+  pronunciation: bayts·f@d
+  phonemes:
+  - b
+  - ay
+  - t
+  - s
+  - ·
+  - f
+  - '@'
+  - d
+- name: Baxter
+  postcode: '3911'
+  lga: Shire of Mornington Peninsula
+  pronunciation: bækst·@
+  phonemes:
+  - b
+  - æ
+  - k
+  - s
+  - t
+  - ·
+  - '@'
+- name: Bayles
+  postcode: '3981'
+  lga: Shire of Cardinia
+  pronunciation: baylz
+  phonemes:
+  - b
+  - ay
+  - l
+  - z
+- name: Bayswater
+  postcode: '3153'
+  lga: City of Knox
+  pronunciation: bayz·waht·@
+  phonemes:
+  - b
+  - ay
+  - z
+  - ·
+  - w
+  - ah
+  - t
+  - ·
+  - '@'
+- name: Bayswater North
+  postcode: '3153'
+  lga: City of Maroondah
+  pronunciation: bayz·waht·@·naw+
+  phonemes:
+  - b
+  - ay
+  - z
+  - ·
+  - w
+  - ah
+  - t
+  - ·
+  - '@'
+  - ·
+  - n
+  - aw
+  - +
+- name: Beaconsfield
+  postcode: '3807'
+  lga: Shire of Cardinia
+  pronunciation: beek·@nz·feeld
+  phonemes:
+  - b
+  - ee
+  - k
+  - ·
+  - '@'
+  - n
+  - z
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Beaconsfield Upper
+  postcode: '3808'
+  lga: Shire of Cardinia
+  pronunciation: beek·@nz·feeld·uhp@
+  phonemes:
+  - b
+  - ee
+  - k
+  - ·
+  - '@'
+  - n
+  - z
+  - ·
+  - f
+  - ee
+  - l
+  - d
+  - ·
+  - uh
+  - p
+  - '@'
+- name: Beaumaris
+  postcode: '3193'
+  lga: City of Bayside
+  pronunciation: boh·mø·r@s
+  phonemes:
+  - b
+  - oh
+  - ·
+  - m
+  - ø
+  - ·
+  - r
+  - '@'
+  - s
+- name: Beenak
+  postcode: '3139'
+  lga: Shire of Yarra Ranges
+  pronunciation: bee·næk
+  phonemes:
+  - b
+  - ee
+  - ·
+  - n
+  - æ
+  - k
+- name: Belgrave
+  postcode: '3160'
+  lga: Shire of Yarra Ranges
+  pronunciation: behl·grayv
+  phonemes:
+  - b
+  - eh
+  - l
+  - ·
+  - g
+  - r
+  - ay
+  - v
+- name: Belgrave Heights
+  postcode: '3160'
+  lga: Shire of Yarra Ranges
+  pronunciation: behl·grayv·hiyts
+  phonemes:
+  - b
+  - eh
+  - l
+  - ·
+  - g
+  - r
+  - ay
+  - v
+  - ·
+  - h
+  - iy
+  - t
+  - s
+- name: Belgrave South
+  postcode: '3160'
+  lga: Shire of Yarra Ranges
+  pronunciation: behl·grayv·sow+
+  phonemes:
+  - b
+  - eh
+  - l
+  - ·
+  - g
+  - r
+  - ay
+  - v
+  - ·
+  - s
+  - ow
+  - +
+- name: Bell Park
+  postcode: '3215'
+  lga: City of Greater Geelong
+  pronunciation: behl·pahk
+  phonemes:
+  - b
+  - eh
+  - l
+  - ·
+  - p
+  - ah
+  - k
+- name: Bell Post Hill
+  postcode: '3215'
+  lga: City of Greater Geelong
+  pronunciation: behl·pohst·hihl
+  phonemes:
+  - b
+  - eh
+  - l
+  - ·
+  - p
+  - oh
+  - s
+  - t
+  - ·
+  - h
+  - ih
+  - l
+- name: Bellarine
+  postcode: '3223'
+  lga: City of Greater Geelong
+  pronunciation: behl·@·reen
+  phonemes:
+  - b
+  - eh
+  - l
+  - ·
+  - '@'
+  - ·
+  - r
+  - ee
+  - n
+- name: Bellbrae
+  postcode: '3228'
+  lga: Shire of Surf Coast
+  pronunciation: behl·bray
+  phonemes:
+  - b
+  - eh
+  - l
+  - ·
+  - b
+  - r
+  - ay
+- name: Bellfield
+  postcode: '3081'
+  lga: City of Banyule
+  pronunciation: behl·feeld
+  phonemes:
+  - b
+  - eh
+  - l
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Bells Beach
+  postcode: '3228'
+  lga: Shire of Surf Coast
+  pronunciation: behlz·bee¢
+  phonemes:
+  - b
+  - eh
+  - l
+  - z
+  - ·
+  - b
+  - ee
+  - ¢
+- name: Belmont
+  postcode: '3216'
+  lga: City of Greater Geelong
+  pronunciation: behl·mønt
+  phonemes:
+  - b
+  - eh
+  - l
+  - ·
+  - m
+  - ø
+  - n
+  - t
+- name: Bend Of Islands
+  postcode: '3097'
+  lga: Shire of Nillumbik
+  pronunciation: behnd·øv·iyl·@ndz
+  phonemes:
+  - b
+  - eh
+  - n
+  - d
+  - ·
+  - ø
+  - v
+  - ·
+  - iy
+  - l
+  - ·
+  - '@'
+  - n
+  - d
+  - z
+- name: Bentleigh
+  postcode: '3204'
+  lga: City of Glen Eira
+  pronunciation: behnt·lee
+  phonemes:
+  - b
+  - eh
+  - n
+  - t
+  - ·
+  - l
+  - ee
+- name: Bentleigh East
+  postcode: '3165'
+  lga: City of Glen Eira
+  pronunciation: behnt·lee·eest
+  phonemes:
+  - b
+  - eh
+  - n
+  - t
+  - ·
+  - l
+  - ee
+  - ·
+  - ee
+  - s
+  - t
+- name: Berwick
+  postcode: '3806'
+  lga: City of Casey
+  pronunciation: beh·rihk
+  phonemes:
+  - b
+  - eh
+  - ·
+  - r
+  - ih
+  - k
+- name: Beveridge
+  postcode: '3753'
+  lga: City of Whittlesea
+  pronunciation: behv·rihj
+  phonemes:
+  - b
+  - eh
+  - v
+  - ·
+  - r
+  - ih
+  - j
+- name: Big Pats Creek
+  postcode: '3799'
+  lga: Shire of Yarra Ranges
+  pronunciation: bihg·pætz·kreek
+  phonemes:
+  - b
+  - ih
+  - g
+  - ·
+  - p
+  - æ
+  - t
+  - z
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Bittern
+  postcode: '3918'
+  lga: Shire of Mornington Peninsula
+  pronunciation: biht·@n
+  phonemes:
+  - b
+  - ih
+  - t
+  - ·
+  - '@'
+  - n
+- name: Black Rock
+  postcode: '3193'
+  lga: City of Bayside
+  pronunciation: blæk·røk
+  phonemes:
+  - b
+  - l
+  - æ
+  - k
+  - ·
+  - r
+  - ø
+  - k
+- name: Blackburn
+  postcode: '3130'
+  lga: City of Whitehorse
+  pronunciation: blæk·bœn
+  phonemes:
+  - b
+  - l
+  - æ
+  - k
+  - ·
+  - b
+  - œ
+  - n
+- name: Blackburn North
+  postcode: '3130'
+  lga: City of Whitehorse
+  pronunciation: blæk·bœn·naw+
+  phonemes:
+  - b
+  - l
+  - æ
+  - k
+  - ·
+  - b
+  - œ
+  - n
+  - ·
+  - n
+  - aw
+  - +
+- name: Blackburn South
+  postcode: '3130'
+  lga: City of Whitehorse
+  pronunciation: blæk·bœn·sow+
+  phonemes:
+  - b
+  - l
+  - æ
+  - k
+  - ·
+  - b
+  - œ
+  - n
+  - ·
+  - s
+  - ow
+  - +
+- name: Blairgowrie
+  postcode: '3942'
+  lga: Shire of Mornington Peninsula
+  pronunciation: bleh@·gow·ree
+  phonemes:
+  - b
+  - l
+  - eh@
+  - ·
+  - g
+  - ow
+  - ·
+  - r
+  - ee
+- name: Blind Bight
+  postcode: '3980'
+  lga: City of Casey
+  pronunciation: bliynd·biyt
+  phonemes:
+  - b
+  - l
+  - iy
+  - n
+  - d
+  - ·
+  - b
+  - iy
+  - t
+- name: Bolinda
+  postcode: '3432'
+  lga: Shire of Macdeon Ranges
+  pronunciation: b@·lihn·d@
+  phonemes:
+  - b
+  - '@'
+  - ·
+  - l
+  - ih
+  - n
+  - ·
+  - d
+  - '@'
+- name: Bonbeach
+  postcode: '3196'
+  lga: City of Kingston
+  pronunciation: bøn·bee¢
+  phonemes:
+  - b
+  - ø
+  - n
+  - ·
+  - b
+  - ee
+  - ¢
+- name: Boneo
+  postcode: '3939'
+  lga: Shire of Mornington Peninsula
+  pronunciation: bohn·ee·oh
+  phonemes:
+  - b
+  - oh
+  - n
+  - ·
+  - ee
+  - ·
+  - oh
+- name: Bonnie Brook
+  postcode: '3335'
+  lga: City of Melton
+  pronunciation: bøn·ee·bruuk
+  phonemes:
+  - b
+  - ø
+  - n
+  - ·
+  - ee
+  - ·
+  - b
+  - r
+  - uu
+  - k
+- name: Boronia
+  postcode: '3155'
+  lga: City of Knox
+  pronunciation: b@·rohn·ee·@
+  phonemes:
+  - b
+  - '@'
+  - ·
+  - r
+  - oh
+  - n
+  - ·
+  - ee
+  - ·
+  - '@'
+- name: Botanic Ridge
+  postcode: '3977'
+  lga: City of Casey
+  pronunciation: b@·tæn·@k·rihj
+  phonemes:
+  - b
+  - '@'
+  - ·
+  - t
+  - æ
+  - n
+  - ·
+  - '@'
+  - k
+  - ·
+  - r
+  - ih
+  - j
+- name: Box Hill
+  postcode: '3128'
+  lga: City of Whitehorse
+  pronunciation: bøks·hihl
+  phonemes:
+  - b
+  - ø
+  - k
+  - s
+  - ·
+  - h
+  - ih
+  - l
+- name: Box Hill North
+  postcode: '3129'
+  lga: City of Whitehorse
+  pronunciation: bøks·hihl·naw+
+  phonemes:
+  - b
+  - ø
+  - k
+  - s
+  - ·
+  - h
+  - ih
+  - l
+  - ·
+  - n
+  - aw
+  - +
+- name: Box Hill South
+  postcode: '3128'
+  lga: City of Whitehorse
+  pronunciation: bøks·hihl·sow+
+  phonemes:
+  - b
+  - ø
+  - k
+  - s
+  - ·
+  - h
+  - ih
+  - l
+  - ·
+  - s
+  - ow
+  - +
+- name: Braeside
+  postcode: '3195'
+  lga: City of Kingston
+  pronunciation: bray·siyd
+  phonemes:
+  - b
+  - r
+  - ay
+  - ·
+  - s
+  - iy
+  - d
+- name: Braybrook
+  postcode: '3019'
+  lga: City of Maribyrnong
+  pronunciation: bray·bruuk
+  phonemes:
+  - b
+  - r
+  - ay
+  - ·
+  - b
+  - r
+  - uu
+  - k
+- name: Breakwater
+  postcode: '3219'
+  lga: City of Greater Geelong
+  pronunciation: brayk·waw·t@
+  phonemes:
+  - b
+  - r
+  - ay
+  - k
+  - ·
+  - w
+  - aw
+  - ·
+  - t
+  - '@'
+- name: Breamlea
+  postcode: '3227'
+  lga: City of Greater Geelong
+  pronunciation: brehm·lee
+  phonemes:
+  - b
+  - r
+  - eh
+  - m
+  - ·
+  - l
+  - ee
+- name: Briar Hill
+  postcode: '3088'
+  lga: City of Banyule
+  pronunciation: briy·@·hihl
+  phonemes:
+  - b
+  - r
+  - iy
+  - ·
+  - '@'
+  - ·
+  - h
+  - ih
+  - l
+- name: Brighton
+  postcode: '3186'
+  lga: City of Bayside
+  pronunciation: briyt·@n
+  phonemes:
+  - b
+  - r
+  - iy
+  - t
+  - ·
+  - '@'
+  - n
+- name: Brighton East
+  postcode: '3187'
+  lga: City of Bayside
+  pronunciation: briyt·@n·eest
+  phonemes:
+  - b
+  - r
+  - iy
+  - t
+  - ·
+  - '@'
+  - n
+  - ·
+  - ee
+  - s
+  - t
+- name: Broadmeadows
+  postcode: '3047'
+  lga: City of Hume
+  pronunciation: brawd·mehd·ohz
+  phonemes:
+  - b
+  - r
+  - aw
+  - d
+  - ·
+  - m
+  - eh
+  - d
+  - ·
+  - oh
+  - z
+- name: Brookfield
+  postcode: '3338'
+  lga: City of Melton
+  pronunciation: bruuk·feeld
+  phonemes:
+  - b
+  - r
+  - uu
+  - k
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Brooklyn
+  postcode: '3012'
+  lga: City of Brimbank
+  pronunciation: bruuk·l@n
+  phonemes:
+  - b
+  - r
+  - uu
+  - k
+  - ·
+  - l
+  - '@'
+  - n
+- name: Brunswick
+  postcode: '3056'
+  lga: City of Merri-bek
+  pronunciation: bruhnz·wihk
+  phonemes:
+  - b
+  - r
+  - uh
+  - n
+  - z
+  - ·
+  - w
+  - ih
+  - k
+- name: Brunswick East
+  postcode: '3057'
+  lga: City of Merri-bek
+  pronunciation: bruhnz·wihk·eest
+  phonemes:
+  - b
+  - r
+  - uh
+  - n
+  - z
+  - ·
+  - w
+  - ih
+  - k
+  - ·
+  - ee
+  - s
+  - t
+- name: Brunswick West
+  postcode: '3055'
+  lga: City of Merri-bek
+  pronunciation: bruhnz·wihk·wehst
+  phonemes:
+  - b
+  - r
+  - uh
+  - n
+  - z
+  - ·
+  - w
+  - ih
+  - k
+  - ·
+  - w
+  - eh
+  - s
+  - t
+- name: Bulla
+  postcode: '3428'
+  lga: City of Hume
+  pronunciation: buul·uh
+  phonemes:
+  - b
+  - uu
+  - l
+  - ·
+  - uh
+- name: Bulleen
+  postcode: '3105'
+  lga: City of Manningham
+  pronunciation: buul·een
+  phonemes:
+  - b
+  - uu
+  - l
+  - ·
+  - ee
+  - n
+- name: Bundoora
+  postcode: '3083'
+  lga: City of Banyule
+  pronunciation: buhnd·u@·ruh
+  phonemes:
+  - b
+  - uh
+  - n
+  - d
+  - ·
+  - u@
+  - ·
+  - r
+  - uh
+- name: Bunyip
+  postcode: '3815'
+  lga: Shire of Cardinia
+  pronunciation: buhn·yihp
+  phonemes:
+  - b
+  - uh
+  - n
+  - ·
+  - y
+  - ih
+  - p
+- name: Bunyip North
+  postcode: '3815'
+  lga: Shire of Cardinia
+  pronunciation: buhn·yihp·naw+
+  phonemes:
+  - b
+  - uh
+  - n
+  - ·
+  - y
+  - ih
+  - p
+  - ·
+  - n
+  - aw
+  - +
+- name: Burnley
+  postcode: '3121'
+  lga: City of Yarra
+  pronunciation: bœn·lee
+  phonemes:
+  - b
+  - œ
+  - n
+  - ·
+  - l
+  - ee
+- name: Burnside
+  postcode: '3023'
+  lga: City of Melton
+  pronunciation: bœn·siyd
+  phonemes:
+  - b
+  - œ
+  - n
+  - ·
+  - s
+  - iy
+  - d
+- name: Burnside Heights
+  postcode: '3023'
+  lga: City of Melton
+  pronunciation: bœn·siyd·hiyts
+  phonemes:
+  - b
+  - œ
+  - n
+  - ·
+  - s
+  - iy
+  - d
+  - ·
+  - h
+  - iy
+  - t
+  - s
+- name: Burwood
+  postcode: '3125'
+  lga: City of Whitehorse
+  pronunciation: bœ·wuud
+  phonemes:
+  - b
+  - œ
+  - ·
+  - w
+  - uu
+  - d
+- name: Burwood East
+  postcode: '3151'
+  lga: City of Whitehorse
+  pronunciation: bœ·wuud·eest
+  phonemes:
+  - b
+  - œ
+  - ·
+  - w
+  - uu
+  - d
+  - ·
+  - ee
+  - s
+  - t
+- name: Bylands
+  postcode: '3762'
+  lga: Shire of Mitchell
+  pronunciation: biy·lændz
+  phonemes:
+  - b
+  - iy
+  - ·
+  - l
+  - æ
+  - n
+  - d
+  - z
+- name: Cairnlea
+  postcode: '3023'
+  lga: City of Brimbank
+  pronunciation: keh@n·lee
+  phonemes:
+  - k
+  - eh@
+  - n
+  - ·
+  - l
+  - ee
+- name: Calder Park
+  postcode: '3037'
+  lga: City of Brimbank
+  pronunciation: kawl·d@·pahk
+  phonemes:
+  - k
+  - aw
+  - l
+  - ·
+  - d
+  - '@'
+  - ·
+  - p
+  - ah
+  - k
+- name: Caldermeade
+  postcode: '3984'
+  lga: Shire of Cardinia
+  pronunciation: kawl·d@·meed
+  phonemes:
+  - k
+  - aw
+  - l
+  - ·
+  - d
+  - '@'
+  - ·
+  - m
+  - ee
+  - d
+- name: Camberwell
+  postcode: '3124'
+  lga: City of Boroondara
+  pronunciation: kæm·b@·wehl
+  phonemes:
+  - k
+  - æ
+  - m
+  - ·
+  - b
+  - '@'
+  - ·
+  - w
+  - eh
+  - l
+- name: Campbellfield
+  postcode: '3061'
+  lga: City of Hume
+  pronunciation: kæm·b@l·feeld
+  phonemes:
+  - k
+  - æ
+  - m
+  - ·
+  - b
+  - '@'
+  - l
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Cannons Creek
+  postcode: '3977'
+  lga: City of Casey
+  pronunciation: kæn·@nz·kreek
+  phonemes:
+  - k
+  - æ
+  - n
+  - ·
+  - '@'
+  - n
+  - z
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Canterbury
+  postcode: '3126'
+  lga: City of Boroondara
+  pronunciation: kænt·@·bree
+  phonemes:
+  - k
+  - æ
+  - n
+  - t
+  - ·
+  - '@'
+  - ·
+  - b
+  - r
+  - ee
+- name: Cape Schanck
+  postcode: '3939'
+  lga: Shire of Mornington Peninsula
+  pronunciation: kayp·$æ£k
+  phonemes:
+  - k
+  - ay
+  - p
+  - ·
+  - $
+  - æ
+  - £
+  - k
+- name: Cape Woolamai
+  postcode: '3925'
+  lga: Shire of Bass Coast
+  pronunciation: kayp·wuul·@·miy
+  phonemes:
+  - k
+  - ay
+  - p
+  - ·
+  - w
+  - uu
+  - l
+  - ·
+  - '@'
+  - ·
+  - m
+  - iy
+- name: Capel Sound
+  postcode: '3940'
+  lga: Shire of Mornington Peninsula
+  pronunciation: kay·p@l·sownd
+  phonemes:
+  - k
+  - ay
+  - ·
+  - p
+  - '@'
+  - l
+  - ·
+  - s
+  - ow
+  - n
+  - d
+- name: Cardinia
+  postcode: '3978'
+  lga: Shire of Cardinia
+  pronunciation: kah·dihn·ee·@
+  phonemes:
+  - k
+  - ah
+  - ·
+  - d
+  - ih
+  - n
+  - ·
+  - ee
+  - ·
+  - '@'
+- name: Carlton
+  postcode: '3053'
+  lga: City of Melbourne
+  pronunciation: kahl·t@n
+  phonemes:
+  - k
+  - ah
+  - l
+  - ·
+  - t
+  - '@'
+  - n
+- name: Carlton North
+  postcode: '3054'
+  lga: City of Melbourne
+  pronunciation: kahl·t@n·naw+
+  phonemes:
+  - k
+  - ah
+  - l
+  - ·
+  - t
+  - '@'
+  - n
+  - ·
+  - n
+  - aw
+  - +
+- name: Carnegie
+  postcode: '3163'
+  lga: City of Glen Eira
+  pronunciation: kah·nehg·ee
+  phonemes:
+  - k
+  - ah
+  - ·
+  - n
+  - eh
+  - g
+  - ·
+  - ee
+- name: Caroline Springs
+  postcode: '3023'
+  lga: City of Melton
+  pronunciation: kæ·r@·liyn·sprih£z
+  phonemes:
+  - k
+  - æ
+  - ·
+  - r
+  - '@'
+  - ·
+  - l
+  - iy
+  - n
+  - ·
+  - s
+  - p
+  - r
+  - ih
+  - £
+  - z
+- name: Carrum
+  postcode: '3197'
+  lga: City of Kingston
+  pronunciation: kæ·r@m
+  phonemes:
+  - k
+  - æ
+  - ·
+  - r
+  - '@'
+  - m
+- name: Carrum Downs
+  postcode: '3201'
+  lga: City of Frankston
+  pronunciation: kæ·r@m·downz
+  phonemes:
+  - k
+  - æ
+  - ·
+  - r
+  - '@'
+  - m
+  - ·
+  - d
+  - ow
+  - n
+  - z
+- name: Castella
+  postcode: '3777'
+  lga: Shire of Murrndindi
+  pronunciation: kæst·ehl·@
+  phonemes:
+  - k
+  - æ
+  - s
+  - t
+  - ·
+  - eh
+  - l
+  - ·
+  - '@'
+- name: Catani
+  postcode: '3981'
+  lga: Shire of Cardinia
+  pronunciation: k@·tah·nee
+  phonemes:
+  - k
+  - '@'
+  - ·
+  - t
+  - ah
+  - ·
+  - n
+  - ee
+- name: Caulfield
+  postcode: '3162'
+  lga: City of Glen Eira
+  pronunciation: kaw(l)·feeld
+  phonemes:
+  - k
+  - aw
+  - l
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Caulfield East
+  postcode: '3145'
+  lga: City of Glen Eira
+  pronunciation: kaw(l)·feeld·eest
+  phonemes:
+  - k
+  - aw
+  - l
+  - ·
+  - f
+  - ee
+  - l
+  - d
+  - ·
+  - ee
+  - s
+  - t
+- name: Caulfield North
+  postcode: '3161'
+  lga: City of Glen Eira
+  pronunciation: kaw(l)·feeld·naw+
+  phonemes:
+  - k
+  - aw
+  - l
+  - ·
+  - f
+  - ee
+  - l
+  - d
+  - ·
+  - n
+  - aw
+  - +
+- name: Caulfield South
+  postcode: '3162'
+  lga: City of Glen Eira
+  pronunciation: kaw(l)·feeld·sow+
+  phonemes:
+  - k
+  - aw
+  - l
+  - ·
+  - f
+  - ee
+  - l
+  - d
+  - ·
+  - s
+  - ow
+  - +
+- name: Ceres
+  postcode: '3221'
+  lga: City of Greater Geelong
+  pronunciation: see@·reez
+  phonemes:
+  - s
+  - ee@
+  - ·
+  - r
+  - ee
+  - z
+- name: Chadstone
+  postcode: '3148'
+  lga: City of Monash
+  pronunciation: ¢æd·st@n
+  phonemes:
+  - ¢
+  - æ
+  - d
+  - ·
+  - s
+  - t
+  - '@'
+  - n
+- name: Charlemont
+  postcode: '3217'
+  lga: City of Greater Geelong
+  pronunciation: ¢ahl·mønt
+  phonemes:
+  - ¢
+  - ah
+  - l
+  - ·
+  - m
+  - ø
+  - n
+  - t
+- name: Chelsea
+  postcode: '3196'
+  lga: City of Kingston
+  pronunciation: ¢ehl·see
+  phonemes:
+  - ¢
+  - eh
+  - l
+  - ·
+  - s
+  - ee
+- name: Chelsea Heights
+  postcode: '3196'
+  lga: City of Kingston
+  pronunciation: ¢ehl·see·hiyts
+  phonemes:
+  - ¢
+  - eh
+  - l
+  - ·
+  - s
+  - ee
+  - ·
+  - h
+  - iy
+  - t
+  - s
+- name: Cheltenham
+  postcode: '3192'
+  lga: City of Kingston
+  pronunciation: ¢ehlt·n@m
+  phonemes:
+  - ¢
+  - eh
+  - l
+  - t
+  - ·
+  - n
+  - '@'
+  - m
+- name: Cheltenham East
+  postcode: '3192'
+  lga: City of Kingston
+  pronunciation: ¢ehlt·n@m·eest
+  phonemes:
+  - ¢
+  - eh
+  - l
+  - t
+  - ·
+  - n
+  - '@'
+  - m
+  - ·
+  - ee
+  - s
+  - t
+- name: Cheltenham North
+  postcode: '3192'
+  lga: City of Kingston
+  pronunciation: ¢ehlt·n@m·naw+
+  phonemes:
+  - ¢
+  - eh
+  - l
+  - t
+  - ·
+  - n
+  - '@'
+  - m
+  - ·
+  - n
+  - aw
+  - +
+- name: Cherokee
+  postcode: '3434'
+  lga: Shire of Macdeon Ranges
+  pronunciation: ¢eh·r@·kee
+  phonemes:
+  - ¢
+  - eh
+  - ·
+  - r
+  - '@'
+  - ·
+  - k
+  - ee
+- name: Chintin
+  postcode: '3756'
+  lga: Shire of Macdeon Ranges
+  pronunciation: ¢ihn·t@n
+  phonemes:
+  - ¢
+  - ih
+  - n
+  - ·
+  - t
+  - '@'
+  - n
+- name: Chirnside Park
+  postcode: '3116'
+  lga: Shire of Yarra Ranges
+  pronunciation: ¢œn·siyd·pahk
+  phonemes:
+  - ¢
+  - œ
+  - n
+  - ·
+  - s
+  - iy
+  - d
+  - ·
+  - p
+  - ah
+  - k
+- name: Christmas Hills
+  postcode: '3775'
+  lga: Shire of Nillumbik
+  pronunciation: krihs·m@s·hihlz
+  phonemes:
+  - k
+  - r
+  - ih
+  - s
+  - ·
+  - m
+  - '@'
+  - s
+  - ·
+  - h
+  - ih
+  - l
+  - z
+- name: Chum Creek
+  postcode: '3777'
+  lga: Shire of Yarra Ranges
+  pronunciation: ¢uhm·kreek
+  phonemes:
+  - ¢
+  - uh
+  - m
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Churchill Island
+  postcode: '3925'
+  lga: Shire of Bass Coast
+  pronunciation: ¢œ¢·@l·iyl·@nd
+  phonemes:
+  - ¢
+  - œ
+  - ¢
+  - ·
+  - '@'
+  - l
+  - ·
+  - iy
+  - l
+  - ·
+  - '@'
+  - n
+  - d
+- name: Clarinda
+  postcode: '3169'
+  lga: City of Kingston
+  pronunciation: kl@·rihn·duh
+  phonemes:
+  - k
+  - l
+  - '@'
+  - ·
+  - r
+  - ih
+  - n
+  - ·
+  - d
+  - uh
+- name: Clarkefield
+  postcode: '3430'
+  lga: City of Hume
+  pronunciation: klahk·feeld
+  phonemes:
+  - k
+  - l
+  - ah
+  - k
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Clayton
+  postcode: '3168'
+  lga: City of Monash
+  pronunciation: klayt·@n
+  phonemes:
+  - k
+  - l
+  - ay
+  - t
+  - ·
+  - '@'
+  - n
+- name: Clayton South
+  postcode: '3169'
+  lga: City of Kingston
+  pronunciation: klayt·@n·sow+
+  phonemes:
+  - k
+  - l
+  - ay
+  - t
+  - ·
+  - '@'
+  - n
+  - ·
+  - s
+  - ow
+  - +
+- name: Clematis
+  postcode: '3782'
+  lga: Shire of Cardinia
+  pronunciation: kl@·may·t@s
+  phonemes:
+  - k
+  - l
+  - '@'
+  - ·
+  - m
+  - ay
+  - ·
+  - t
+  - '@'
+  - s
+- name: Clifton Hill
+  postcode: '3068'
+  lga: City of Yarra
+  pronunciation: klihft·@n·hihl
+  phonemes:
+  - k
+  - l
+  - ih
+  - f
+  - t
+  - ·
+  - '@'
+  - n
+  - ·
+  - h
+  - ih
+  - l
+- name: Clifton Springs
+  postcode: '3222'
+  lga: City of Greater Geelong
+  pronunciation: klihf·t@n·sprih£z
+  phonemes:
+  - k
+  - l
+  - ih
+  - f
+  - ·
+  - t
+  - '@'
+  - n
+  - ·
+  - s
+  - p
+  - r
+  - ih
+  - £
+  - z
+- name: Clonbinane
+  postcode: '3658'
+  lga: Shire of Mitchell
+  pronunciation: kløn·b@n·ayn
+  phonemes:
+  - k
+  - l
+  - ø
+  - n
+  - ·
+  - b
+  - '@'
+  - n
+  - ·
+  - ay
+  - n
+- name: Clyde
+  postcode: '3978'
+  lga: City of Casey
+  pronunciation: kliyd
+  phonemes:
+  - k
+  - l
+  - iy
+  - d
+- name: Clyde North
+  postcode: '3978'
+  lga: City of Casey
+  pronunciation: kliyd·naw+
+  phonemes:
+  - k
+  - l
+  - iy
+  - d
+  - ·
+  - n
+  - aw
+  - +
+- name: Cobblebank
+  postcode: '3338'
+  lga: City of Melton
+  pronunciation: køb·@l·bay£k
+  phonemes:
+  - k
+  - ø
+  - b
+  - ·
+  - '@'
+  - l
+  - ·
+  - b
+  - ay
+  - £
+  - k
+- name: Coburg
+  postcode: '3058'
+  lga: City of Merri-bek
+  pronunciation: koh·bœg
+  phonemes:
+  - k
+  - oh
+  - ·
+  - b
+  - œ
+  - g
+- name: Coburg North
+  postcode: '3058'
+  lga: City of Merri-bek
+  pronunciation: koh·bœg·naw+
+  phonemes:
+  - k
+  - oh
+  - ·
+  - b
+  - œ
+  - g
+  - ·
+  - n
+  - aw
+  - +
+- name: Cockatoo
+  postcode: '3781'
+  lga: Shire of Cardinia
+  pronunciation: køk·@·tew
+  phonemes:
+  - k
+  - ø
+  - k
+  - ·
+  - '@'
+  - ·
+  - t
+  - ew
+- name: Cocoroc
+  postcode: '3030'
+  lga: City of Wyndham
+  pronunciation: køk·@·røk
+  phonemes:
+  - k
+  - ø
+  - k
+  - ·
+  - '@'
+  - ·
+  - r
+  - ø
+  - k
+- name: Coimadai
+  postcode: '3340'
+  lga: Shire of Moorabool
+  pronunciation: cø·miy·d@
+  phonemes:
+  - ø
+  - ·
+  - m
+  - iy
+  - ·
+  - d
+  - '@'
+- name: Coldstream
+  postcode: '3770'
+  lga: Shire of Yarra Ranges
+  pronunciation: køld·streem
+  phonemes:
+  - k
+  - ø
+  - l
+  - d
+  - ·
+  - s
+  - t
+  - r
+  - ee
+  - m
+- name: Collingwood
+  postcode: '3066'
+  lga: City of Yarra
+  pronunciation: køl·ih£·wuud
+  phonemes:
+  - k
+  - ø
+  - l
+  - ·
+  - ih
+  - £
+  - ·
+  - w
+  - uu
+  - d
+- name: Connewarre
+  postcode: '3227'
+  lga: City of Greater Geelong
+  pronunciation: køn·@·wø·ree
+  phonemes:
+  - k
+  - ø
+  - n
+  - ·
+  - '@'
+  - ·
+  - w
+  - ø
+  - ·
+  - r
+  - ee
+- name: Coolaroo
+  postcode: '3048'
+  lga: City of Hume
+  pronunciation: kewl·@·rew
+  phonemes:
+  - k
+  - ew
+  - l
+  - ·
+  - '@'
+  - ·
+  - r
+  - ew
+- name: Cora Lynn
+  postcode: '3814'
+  lga: Shire of Cardinia
+  pronunciation: kaw·ruh·lihn
+  phonemes:
+  - k
+  - aw
+  - ·
+  - r
+  - uh
+  - ·
+  - l
+  - ih
+  - n
+- name: Corio
+  postcode: '3214'
+  lga: City of Greater Geelong
+  pronunciation: k@·riy·oh
+  phonemes:
+  - k
+  - '@'
+  - ·
+  - r
+  - iy
+  - ·
+  - oh
+- name: Cottles Bridge
+  postcode: '3099'
+  lga: Shire of Nillumbik
+  pronunciation: køt·@lz·brihj
+  phonemes:
+  - k
+  - ø
+  - t
+  - ·
+  - '@'
+  - l
+  - z
+  - ·
+  - b
+  - r
+  - ih
+  - j
+- name: Cowes
+  postcode: '3922'
+  lga: Shire of Bass Coast
+  pronunciation: kowz
+  phonemes:
+  - k
+  - ow
+  - z
+- name: Craigieburn
+  postcode: '3064'
+  lga: City of Hume
+  pronunciation: krayg·ee·bœn
+  phonemes:
+  - k
+  - r
+  - ay
+  - g
+  - ·
+  - ee
+  - ·
+  - b
+  - œ
+  - n
+- name: Cranbourne
+  postcode: '3977'
+  lga: City of Casey
+  pronunciation: kræn·bœn
+  phonemes:
+  - k
+  - r
+  - æ
+  - n
+  - ·
+  - b
+  - œ
+  - n
+- name: Cranbourne East
+  postcode: '3977'
+  lga: City of Casey
+  pronunciation: kræn·bœn·eest
+  phonemes:
+  - k
+  - r
+  - æ
+  - n
+  - ·
+  - b
+  - œ
+  - n
+  - ·
+  - ee
+  - s
+  - t
+- name: Cranbourne North
+  postcode: '3977'
+  lga: City of Casey
+  pronunciation: kræn·bœn·nawt+
+  phonemes:
+  - k
+  - r
+  - æ
+  - n
+  - ·
+  - b
+  - œ
+  - n
+  - ·
+  - n
+  - aw
+  - t
+  - +
+- name: Cranbourne South
+  postcode: '3977'
+  lga: City of Casey
+  pronunciation: kræn·bœn·sow+
+  phonemes:
+  - k
+  - r
+  - æ
+  - n
+  - ·
+  - b
+  - œ
+  - n
+  - ·
+  - s
+  - ow
+  - +
+- name: Cranbourne West
+  postcode: '3977'
+  lga: City of Casey
+  pronunciation: kræn·bœn·wehst
+  phonemes:
+  - k
+  - r
+  - æ
+  - n
+  - ·
+  - b
+  - œ
+  - n
+  - ·
+  - w
+  - eh
+  - s
+  - t
+- name: Cremorne
+  postcode: '3121'
+  lga: City of Yarra
+  pronunciation: kr@·mawn
+  phonemes:
+  - k
+  - r
+  - '@'
+  - ·
+  - m
+  - aw
+  - n
+- name: Crib Point
+  postcode: '3919'
+  lga: Shire of Mornington Peninsula
+  pronunciation: krihb·point
+  phonemes:
+  - k
+  - r
+  - ih
+  - b
+  - ·
+  - p
+  - oi
+  - n
+  - t
+- name: Croydon
+  postcode: '3136'
+  lga: City of Maroondah
+  pronunciation: kroi·d@n
+  phonemes:
+  - k
+  - r
+  - oi
+  - ·
+  - d
+  - '@'
+  - n
+- name: Croydon Hills
+  postcode: '3136'
+  lga: City of Maroondah
+  pronunciation: kroi·d@n·hihlz
+  phonemes:
+  - k
+  - r
+  - oi
+  - ·
+  - d
+  - '@'
+  - n
+  - ·
+  - h
+  - ih
+  - l
+  - z
+- name: Croydon North
+  postcode: '3136'
+  lga: City of Maroondah
+  pronunciation: kroi·d@n·naw+
+  phonemes:
+  - k
+  - r
+  - oi
+  - ·
+  - d
+  - '@'
+  - n
+  - ·
+  - n
+  - aw
+  - +
+- name: Croydon South
+  postcode: '3136'
+  lga: City of Maroondah
+  pronunciation: kroi·d@n·sow+
+  phonemes:
+  - k
+  - r
+  - oi
+  - ·
+  - d
+  - '@'
+  - n
+  - ·
+  - s
+  - ow
+  - +
+- name: Curlewis
+  postcode: '3222'
+  lga: City of Greater Geelong
+  pronunciation: kœ·lew·ihs
+  phonemes:
+  - k
+  - œ
+  - ·
+  - l
+  - ew
+  - ·
+  - ih
+  - s
+- name: Dallas
+  postcode: '3047'
+  lga: City of Hume
+  pronunciation: dæl·@s
+  phonemes:
+  - d
+  - æ
+  - l
+  - ·
+  - '@'
+  - s
+- name: Dalmore
+  postcode: '3981'
+  lga: Shire of Cardinia
+  pronunciation: dæl·maw
+  phonemes:
+  - d
+  - æ
+  - l
+  - ·
+  - m
+  - aw
+- name: Dandenong
+  postcode: '3175'
+  lga: City of Greater Dandenong
+  pronunciation: dænd·ee·nø£
+  phonemes:
+  - d
+  - æ
+  - n
+  - d
+  - ·
+  - ee
+  - ·
+  - n
+  - ø
+  - £
+- name: Dandenong North
+  postcode: '3175'
+  lga: City of Greater Dandenong
+  pronunciation: dænd·ee·nø£·naw+
+  phonemes:
+  - d
+  - æ
+  - n
+  - d
+  - ·
+  - ee
+  - ·
+  - n
+  - ø
+  - £
+  - ·
+  - n
+  - aw
+  - +
+- name: Dandenong South
+  postcode: '3175'
+  lga: City of Greater Dandenong
+  pronunciation: dænd·ee·nø£·sow+
+  phonemes:
+  - d
+  - æ
+  - n
+  - d
+  - ·
+  - ee
+  - ·
+  - n
+  - ø
+  - £
+  - ·
+  - s
+  - ow
+  - +
+- name: Darley
+  postcode: '3340'
+  lga: Shire of Moorabool
+  pronunciation: dah·lee
+  phonemes:
+  - d
+  - ah
+  - ·
+  - l
+  - ee
+- name: Darraweit Guim
+  postcode: '3756'
+  lga: Shire of Macdeon Ranges
+  pronunciation: dæ·r@·weet·gwihm
+  phonemes:
+  - d
+  - æ
+  - ·
+  - r
+  - '@'
+  - ·
+  - w
+  - ee
+  - t
+  - ·
+  - g
+  - w
+  - ih
+  - m
+- name: Deanside
+  postcode: '3336'
+  lga: City of Melton
+  pronunciation: deen-siyd
+  phonemes:
+  - d
+  - ee
+  - n
+  - s
+  - iy
+  - d
+- name: Deepdene
+  postcode: '3103'
+  lga: City of Boroondara
+  pronunciation: deep·deen
+  phonemes:
+  - d
+  - ee
+  - p
+  - ·
+  - d
+  - ee
+  - n
+- name: Deer Park
+  postcode: '3023'
+  lga: City of Brimbank
+  pronunciation: dee@·pahk
+  phonemes:
+  - d
+  - ee@
+  - ·
+  - p
+  - ah
+  - k
+- name: Delahey
+  postcode: '3037'
+  lga: City of Brimbank
+  pronunciation: dæl·@·hay
+  phonemes:
+  - d
+  - æ
+  - l
+  - ·
+  - '@'
+  - ·
+  - h
+  - ay
+- name: Derrimut
+  postcode: '3026'
+  lga: City of Brimbank
+  pronunciation: deh·r@·m@t
+  phonemes:
+  - d
+  - eh
+  - ·
+  - r
+  - '@'
+  - ·
+  - m
+  - '@'
+  - t
+- name: Devon Meadows
+  postcode: '3977'
+  lga: City of Casey
+  pronunciation: dehv·@n·mehd·owz
+  phonemes:
+  - d
+  - eh
+  - v
+  - ·
+  - '@'
+  - n
+  - ·
+  - m
+  - eh
+  - d
+  - ·
+  - ow
+  - z
+- name: Dewhurst
+  postcode: '3809'
+  lga: Shire of Cardinia
+  pronunciation: jyew·hœst
+  phonemes:
+  - j
+  - y
+  - ew
+  - ·
+  - h
+  - œ
+  - s
+  - t
+- name: Diamond Creek
+  postcode: '3089'
+  lga: Shire of Nillumbik
+  pronunciation: diym·@nd·kreek
+  phonemes:
+  - d
+  - iy
+  - m
+  - ·
+  - '@'
+  - n
+  - d
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Diggers Rest
+  postcode: '3427'
+  lga: City of Hume
+  pronunciation: dihg·@z·rehst
+  phonemes:
+  - d
+  - ih
+  - g
+  - ·
+  - '@'
+  - z
+  - ·
+  - r
+  - eh
+  - s
+  - t
+- name: Dingley
+  postcode: '3172'
+  lga: City of Kingston
+  pronunciation: dih£·lee
+  phonemes:
+  - d
+  - ih
+  - £
+  - ·
+  - l
+  - ee
+- name: Dingley Village
+  postcode: '3172'
+  lga: City of Kingston
+  pronunciation: dih£·lee·vihl·@j
+  phonemes:
+  - d
+  - ih
+  - £
+  - ·
+  - l
+  - ee
+  - ·
+  - v
+  - ih
+  - l
+  - ·
+  - '@'
+  - j
+- name: Dixons Creek
+  postcode: '3775'
+  lga: Shire of Yarra Ranges
+  pronunciation: dihks·@nz·kreek
+  phonemes:
+  - d
+  - ih
+  - k
+  - s
+  - ·
+  - '@'
+  - n
+  - z
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Docklands
+  postcode: '3008'
+  lga: City of Melbourne
+  pronunciation: døk·lændz
+  phonemes:
+  - d
+  - ø
+  - k
+  - ·
+  - l
+  - æ
+  - n
+  - d
+  - z
+- name: Don Valley
+  postcode: '3139'
+  lga: Shire of Yarra Ranges
+  pronunciation: døn·væl·ee
+  phonemes:
+  - d
+  - ø
+  - n
+  - ·
+  - v
+  - æ
+  - l
+  - ·
+  - ee
+- name: Doncaster
+  postcode: '3108'
+  lga: City of Manningham
+  pronunciation: døn·kah·st@
+  phonemes:
+  - d
+  - ø
+  - n
+  - ·
+  - k
+  - ah
+  - ·
+  - s
+  - t
+  - '@'
+- name: Doncaster East
+  postcode: '3109'
+  lga: City of Manningham
+  pronunciation: døn·kah·st@·eest
+  phonemes:
+  - d
+  - ø
+  - n
+  - ·
+  - k
+  - ah
+  - ·
+  - s
+  - t
+  - '@'
+  - ·
+  - ee
+  - s
+  - t
+- name: Donnybrook
+  postcode: '3064'
+  lga: City of Whittlesea
+  pronunciation: døn·ee·bruuk
+  phonemes:
+  - d
+  - ø
+  - n
+  - ·
+  - ee
+  - ·
+  - b
+  - r
+  - uu
+  - k
+- name: Donvale
+  postcode: '3111'
+  lga: City of Manningham
+  pronunciation: døn·vayl
+  phonemes:
+  - d
+  - ø
+  - n
+  - ·
+  - v
+  - ay
+  - l
+- name: Doreen
+  postcode: '3754'
+  lga: City of Whittlesea
+  pronunciation: daw·reen
+  phonemes:
+  - d
+  - aw
+  - ·
+  - r
+  - ee
+  - n
+- name: Doveton
+  postcode: '3177'
+  lga: City of Casey
+  pronunciation: duhv·t@n
+  phonemes:
+  - d
+  - uh
+  - v
+  - ·
+  - t
+  - '@'
+  - n
+- name: Dromana
+  postcode: '3936'
+  lga: Shire of Mornington Peninsula
+  pronunciation: dr@·mah·n@
+  phonemes:
+  - d
+  - r
+  - '@'
+  - ·
+  - m
+  - ah
+  - ·
+  - n
+  - '@'
+- name: Drumconda
+  postcode: '3215'
+  lga: City of Greater Geelong
+  pronunciation: jruhm·køn·d@
+  phonemes:
+  - j
+  - r
+  - uh
+  - m
+  - ·
+  - k
+  - ø
+  - n
+  - ·
+  - d
+  - '@'
+- name: Drysdale
+  postcode: '3222'
+  lga: City of Greater Geelong
+  pronunciation: jriyz·dayl
+  phonemes:
+  - j
+  - r
+  - iy
+  - z
+  - ·
+  - d
+  - ay
+  - l
+- name: Eaglemont
+  postcode: '3084'
+  lga: City of Banyule
+  pronunciation: eeg·@l·mønt
+  phonemes:
+  - ee
+  - g
+  - ·
+  - '@'
+  - l
+  - ·
+  - m
+  - ø
+  - n
+  - t
+- name: East Geelong
+  postcode: '3219'
+  lga: City of Greater Geelong
+  pronunciation: eest·j@·lø£
+  phonemes:
+  - ee
+  - s
+  - t
+  - ·
+  - j
+  - '@'
+  - ·
+  - l
+  - ø
+  - £
+- name: East Melbourne
+  postcode: '3002'
+  lga: City of Melbourne
+  pronunciation: eest·mælb·@n
+  phonemes:
+  - ee
+  - s
+  - t
+  - ·
+  - m
+  - æ
+  - l
+  - b
+  - ·
+  - '@'
+  - n
+- name: East Warburton
+  postcode: '3799'
+  lga: Shire of Yarra Ranges
+  pronunciation: eest·wawb·@·t@n
+  phonemes:
+  - ee
+  - s
+  - t
+  - ·
+  - w
+  - aw
+  - b
+  - ·
+  - '@'
+  - ·
+  - t
+  - '@'
+  - n
+- name: Eden Park
+  postcode: '3757'
+  lga: City of Whittlesea
+  pronunciation: eed·@n·pahk
+  phonemes:
+  - ee
+  - d
+  - ·
+  - '@'
+  - n
+  - ·
+  - p
+  - ah
+  - k
+- name: Edithvale
+  postcode: '3196'
+  lga: City of Kingston
+  pronunciation: eed·@+·vayl
+  phonemes:
+  - ee
+  - d
+  - ·
+  - '@'
+  - +
+  - ·
+  - v
+  - ay
+  - l
+- name: Elizabeth Island
+  postcode: '3921'
+  lga: French Island Unincorporated
+  pronunciation: '@·lihz·@·b@+·iyl·l@nd'
+  phonemes:
+  - '@'
+  - ·
+  - l
+  - ih
+  - z
+  - ·
+  - '@'
+  - ·
+  - b
+  - '@'
+  - +
+  - ·
+  - iy
+  - l
+  - ·
+  - l
+  - '@'
+  - n
+  - d
+- name: Elsternwick
+  postcode: '3185'
+  lga: City of Glen Eira
+  pronunciation: ælst·@n·wihk
+  phonemes:
+  - æ
+  - l
+  - s
+  - t
+  - ·
+  - '@'
+  - n
+  - ·
+  - w
+  - ih
+  - k
+- name: Eltham
+  postcode: '3095'
+  lga: Shire of Nillumbik
+  pronunciation: æl+·@m
+  phonemes:
+  - æ
+  - l
+  - +
+  - ·
+  - '@'
+  - m
+- name: Eltham North
+  postcode: '3095'
+  lga: City of Banyule
+  pronunciation: æl+·@m·naw+
+  phonemes:
+  - æ
+  - l
+  - +
+  - ·
+  - '@'
+  - m
+  - ·
+  - n
+  - aw
+  - +
+- name: Elwood
+  postcode: '3184'
+  lga: City of Port Phillip
+  pronunciation: æl·wuud
+  phonemes:
+  - æ
+  - l
+  - ·
+  - w
+  - uu
+  - d
+- name: Emerald
+  postcode: '3782'
+  lga: Shire of Yarra Ranges
+  pronunciation: ehm·r@ld
+  phonemes:
+  - eh
+  - m
+  - ·
+  - r
+  - '@'
+  - l
+  - d
+- name: Endeavour Hills
+  postcode: '3802'
+  lga: City of Casey
+  pronunciation: ehnd·ehv·@·hihlz
+  phonemes:
+  - eh
+  - n
+  - d
+  - ·
+  - eh
+  - v
+  - ·
+  - '@'
+  - ·
+  - h
+  - ih
+  - l
+  - z
+- name: Epping
+  postcode: '3076'
+  lga: City of Whittlesea
+  pronunciation: ehp·ih£
+  phonemes:
+  - eh
+  - p
+  - ·
+  - ih
+  - £
+- name: Essendon
+  postcode: '3040'
+  lga: City of Moonee Valley
+  pronunciation: ehs·@n·d@n
+  phonemes:
+  - eh
+  - s
+  - ·
+  - '@'
+  - n
+  - ·
+  - d
+  - '@'
+  - n
+- name: Essendon Fields
+  postcode: '3041'
+  lga: City of Moonee Valley
+  pronunciation: ehs·@n·d@n·feeldz
+  phonemes:
+  - eh
+  - s
+  - ·
+  - '@'
+  - n
+  - ·
+  - d
+  - '@'
+  - n
+  - ·
+  - f
+  - ee
+  - l
+  - d
+  - z
+- name: Essendon North
+  postcode: '3041'
+  lga: City of Moonee Valley
+  pronunciation: ehs·@n·d@n·naw+
+  phonemes:
+  - eh
+  - s
+  - ·
+  - '@'
+  - n
+  - ·
+  - d
+  - '@'
+  - n
+  - ·
+  - n
+  - aw
+  - +
+- name: Essendon West
+  postcode: '3040'
+  lga: City of Moonee Valley
+  pronunciation: ehs·@n·d@n·wehst
+  phonemes:
+  - eh
+  - s
+  - ·
+  - '@'
+  - n
+  - ·
+  - d
+  - '@'
+  - n
+  - ·
+  - w
+  - eh
+  - s
+  - t
+- name: Eumemmerring
+  postcode: '3177'
+  lga: City of Casey
+  pronunciation: yew·mehm·@·rih£
+  phonemes:
+  - y
+  - ew
+  - ·
+  - m
+  - eh
+  - m
+  - ·
+  - '@'
+  - ·
+  - r
+  - ih
+  - £
+- name: Exford
+  postcode: '3338'
+  lga: City of Melton
+  pronunciation: ehks·f@d
+  phonemes:
+  - eh
+  - k
+  - s
+  - ·
+  - f
+  - '@'
+  - d
+- name: Eynesbury
+  postcode: '3338'
+  lga: City of Melton
+  pronunciation: iyns·bree
+  phonemes:
+  - iy
+  - n
+  - s
+  - ·
+  - b
+  - r
+  - ee
+- name: Fairfield
+  postcode: '3078'
+  lga: City of Darebin
+  pronunciation: feh@·feeld
+  phonemes:
+  - f
+  - eh@
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Fawkner
+  postcode: '3060'
+  lga: City of Merri-bek
+  pronunciation: fawk·n@
+  phonemes:
+  - f
+  - aw
+  - k
+  - ·
+  - n
+  - '@'
+- name: Fernshaw
+  postcode: '3778'
+  lga: Shire of Yarra Ranges
+  pronunciation: fœn·$aw
+  phonemes:
+  - f
+  - œ
+  - n
+  - ·
+  - $
+  - aw
+- name: Ferntree Gully
+  postcode: '3156'
+  lga: City of Knox
+  pronunciation: fœn¢·ree·guhl·ee
+  phonemes:
+  - f
+  - œ
+  - n
+  - ¢
+  - ·
+  - r
+  - ee
+  - ·
+  - g
+  - uh
+  - l
+  - ·
+  - ee
+- name: Ferny Creek
+  postcode: '3786'
+  lga: Shire of Yarra Ranges
+  pronunciation: fœn·ee·kreek
+  phonemes:
+  - f
+  - œ
+  - n
+  - ·
+  - ee
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Fieldstone
+  postcode: '3024'
+  lga: City of Melton
+  pronunciation: feeld·st@n
+  phonemes:
+  - f
+  - ee
+  - l
+  - d
+  - ·
+  - s
+  - t
+  - '@'
+  - n
+- name: Fingal
+  postcode: '3939'
+  lga: Shire of Mornington Peninsula
+  pronunciation: fih£·g@l
+  phonemes:
+  - f
+  - ih
+  - £
+  - ·
+  - g
+  - '@'
+  - l
+- name: Fitzroy
+  postcode: '3065'
+  lga: City of Yarra
+  pronunciation: fihtz·roi
+  phonemes:
+  - f
+  - ih
+  - t
+  - z
+  - ·
+  - r
+  - oi
+- name: Fitzroy North
+  postcode: '3068'
+  lga: City of Yarra
+  pronunciation: fihtz·roi·naw+
+  phonemes:
+  - f
+  - ih
+  - t
+  - z
+  - ·
+  - r
+  - oi
+  - ·
+  - n
+  - aw
+  - +
+- name: Flemington
+  postcode: '3031'
+  lga: City of Melbourne
+  pronunciation: flehm·ih£·t@n
+  phonemes:
+  - f
+  - l
+  - eh
+  - m
+  - ·
+  - ih
+  - £
+  - ·
+  - t
+  - '@'
+  - n
+- name: Flinders
+  postcode: '3929'
+  lga: Shire of Mornington Peninsula
+  pronunciation: flihnd·@z
+  phonemes:
+  - f
+  - l
+  - ih
+  - n
+  - d
+  - ·
+  - '@'
+  - z
+- name: Footscray
+  postcode: '3011'
+  lga: City of Maribyrnong
+  pronunciation: fuutz·gray
+  phonemes:
+  - f
+  - uu
+  - t
+  - z
+  - ·
+  - g
+  - r
+  - ay
+- name: Forbes
+  postcode: '3764'
+  lga: Shire of Mitchell
+  pronunciation: fawbz
+  phonemes:
+  - f
+  - aw
+  - b
+  - z
+- name: Forest Hill
+  postcode: '3131'
+  lga: City of Whitehorse
+  pronunciation: før·@st·hihl
+  phonemes:
+  - f
+  - ø
+  - r
+  - ·
+  - '@'
+  - s
+  - t
+  - ·
+  - h
+  - ih
+  - l
+- name: Frankston
+  postcode: '3199'
+  lga: City of Frankston
+  pronunciation: fray£k·st@n
+  phonemes:
+  - f
+  - r
+  - ay
+  - £
+  - k
+  - ·
+  - s
+  - t
+  - '@'
+  - n
+- name: Frankston North
+  postcode: '3200'
+  lga: City of Frankston
+  pronunciation: fray£k·st@n·naw+
+  phonemes:
+  - f
+  - r
+  - ay
+  - £
+  - k
+  - ·
+  - s
+  - t
+  - '@'
+  - n
+  - ·
+  - n
+  - aw
+  - +
+- name: Frankston South
+  postcode: '3199'
+  lga: City of Frankston
+  pronunciation: fray£k·st@n·sow+
+  phonemes:
+  - f
+  - r
+  - ay
+  - £
+  - k
+  - ·
+  - s
+  - t
+  - '@'
+  - n
+  - ·
+  - s
+  - ow
+  - +
+- name: Fraser Rise
+  postcode: '3336'
+  lga: City of Melton
+  pronunciation: frayz·@·riyz
+  phonemes:
+  - f
+  - r
+  - ay
+  - z
+  - ·
+  - '@'
+  - ·
+  - r
+  - iy
+  - z
+- name: French Island
+  postcode: '3921'
+  lga: French Island Unincorporated
+  pronunciation: frehn¢·iyl·@nd
+  phonemes:
+  - f
+  - r
+  - eh
+  - n
+  - ¢
+  - ·
+  - iy
+  - l
+  - ·
+  - '@'
+  - n
+  - d
+- name: Fyansford
+  postcode: '3218'
+  lga: City of Greater Geelong
+  pronunciation: fiy·@nz·f@d
+  phonemes:
+  - f
+  - iy
+  - ·
+  - '@'
+  - n
+  - z
+  - ·
+  - f
+  - '@'
+  - d
+- name: Gardenvale
+  postcode: '3185'
+  lga: City of Glen Eira
+  pronunciation: gahd·@n·vayl
+  phonemes:
+  - g
+  - ah
+  - d
+  - ·
+  - '@'
+  - n
+  - ·
+  - v
+  - ay
+  - l
+- name: Garfield
+  postcode: '3814'
+  lga: Shire of Cardinia
+  pronunciation: gah·feeld
+  phonemes:
+  - g
+  - ah
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Garfield North
+  postcode: '3814'
+  lga: Shire of Cardinia
+  pronunciation: gah·feeld·naw+
+  phonemes:
+  - g
+  - ah
+  - ·
+  - f
+  - ee
+  - l
+  - d
+  - ·
+  - n
+  - aw
+  - +
+- name: Geelong
+  postcode: '3220'
+  lga: City of Greater Geelong
+  pronunciation: j@·lø£
+  phonemes:
+  - j
+  - '@'
+  - ·
+  - l
+  - ø
+  - £
+- name: Geelong West
+  postcode: '3218'
+  lga: City of Greater Geelong
+  pronunciation: j@·lø£·wehst
+  phonemes:
+  - j
+  - '@'
+  - ·
+  - l
+  - ø
+  - £
+  - ·
+  - w
+  - eh
+  - s
+  - t
+- name: Gembrook
+  postcode: '3783'
+  lga: Shire of Cardinia
+  pronunciation: jehm·bruuk
+  phonemes:
+  - j
+  - eh
+  - m
+  - ·
+  - b
+  - r
+  - uu
+  - k
+- name: Gilderoy
+  postcode: '3797'
+  lga: Shire of Yarra Ranges
+  pronunciation: gihld·@·roi
+  phonemes:
+  - g
+  - ih
+  - l
+  - d
+  - ·
+  - '@'
+  - ·
+  - r
+  - oi
+- name: Gisborne
+  postcode: '3437'
+  lga: Shire of Macdeon Ranges
+  pronunciation: gihz·b@n
+  phonemes:
+  - g
+  - ih
+  - z
+  - ·
+  - b
+  - '@'
+  - n
+- name: Gisborne South
+  postcode: '3437'
+  lga: Shire of Macdeon Ranges
+  pronunciation: gihz·b@n·sow+
+  phonemes:
+  - g
+  - ih
+  - z
+  - ·
+  - b
+  - '@'
+  - n
+  - ·
+  - s
+  - ow
+  - +
+- name: Gladstone Park
+  postcode: '3043'
+  lga: City of Hume
+  pronunciation: glæd·st@n·pahk
+  phonemes:
+  - g
+  - l
+  - æ
+  - d
+  - ·
+  - s
+  - t
+  - '@'
+  - n
+  - ·
+  - p
+  - ah
+  - k
+- name: Gladysdale
+  postcode: '3797'
+  lga: Shire of Yarra Ranges
+  pronunciation: glæd·@s·dayl
+  phonemes:
+  - g
+  - l
+  - æ
+  - d
+  - ·
+  - '@'
+  - s
+  - ·
+  - d
+  - ay
+  - l
+- name: Glen Huntly
+  postcode: '3163'
+  lga: City of Glen Eira
+  pronunciation: glehn·huhnt·lee
+  phonemes:
+  - g
+  - l
+  - eh
+  - n
+  - ·
+  - h
+  - uh
+  - n
+  - t
+  - ·
+  - l
+  - ee
+- name: Glen Iris
+  postcode: '3146'
+  lga: City of Boroondara
+  pronunciation: glehn·iy·r@s
+  phonemes:
+  - g
+  - l
+  - eh
+  - n
+  - ·
+  - iy
+  - ·
+  - r
+  - '@'
+  - s
+- name: Glen Waverley
+  postcode: '3150'
+  lga: City of Monash
+  pronunciation: glehn·wayv·@·lee
+  phonemes:
+  - g
+  - l
+  - eh
+  - n
+  - ·
+  - w
+  - ay
+  - v
+  - ·
+  - '@'
+  - ·
+  - l
+  - ee
+- name: Glenmore
+  postcode: '3340'
+  lga: Shire of Moorabool
+  pronunciation: glehn·maw
+  phonemes:
+  - g
+  - l
+  - eh
+  - n
+  - ·
+  - m
+  - aw
+- name: Glenroy
+  postcode: '3046'
+  lga: City of Merri-bek
+  pronunciation: glehn·roi
+  phonemes:
+  - g
+  - l
+  - eh
+  - n
+  - ·
+  - r
+  - oi
+- name: Gowanbrae
+  postcode: '3043'
+  lga: City of Merri-bek
+  pronunciation: gow·@n·bray
+  phonemes:
+  - g
+  - ow
+  - ·
+  - '@'
+  - n
+  - ·
+  - b
+  - r
+  - ay
+- name: Grangefields
+  postcode: '3335'
+  lga: City of Melton
+  pronunciation: graynj·feeldz
+  phonemes:
+  - g
+  - r
+  - ay
+  - n
+  - j
+  - ·
+  - f
+  - ee
+  - l
+  - d
+  - z
+- name: Greensborough
+  postcode: '3088'
+  lga: City of Banyule
+  pronunciation: greenz·b@·r@
+  phonemes:
+  - g
+  - r
+  - ee
+  - n
+  - z
+  - ·
+  - b
+  - '@'
+  - ·
+  - r
+  - '@'
+- name: Greenvale
+  postcode: '3059'
+  lga: City of Hume
+  pronunciation: green·vayl
+  phonemes:
+  - g
+  - r
+  - ee
+  - n
+  - ·
+  - v
+  - ay
+  - l
+- name: Grovedale
+  postcode: '3216'
+  lga: City of Greater Geelong
+  pronunciation: grohv·dayl
+  phonemes:
+  - g
+  - r
+  - oh
+  - v
+  - ·
+  - d
+  - ay
+  - l
+- name: Gruyere
+  postcode: '3770'
+  lga: Shire of Yarra Ranges
+  pronunciation: gree·yeh@
+  phonemes:
+  - g
+  - r
+  - ee
+  - ·
+  - y
+  - eh@
+- name: Guys Hill
+  postcode: '3807'
+  lga: Shire of Cardinia
+  pronunciation: giyz·hihl
+  phonemes:
+  - g
+  - iy
+  - z
+  - ·
+  - h
+  - ih
+  - l
+- name: Hadfield
+  postcode: '3046'
+  lga: City of Merri-bek
+  pronunciation: hæd·feeld
+  phonemes:
+  - h
+  - æ
+  - d
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Hallam
+  postcode: '3803'
+  lga: City of Casey
+  pronunciation: hæl·@m
+  phonemes:
+  - h
+  - æ
+  - l
+  - ·
+  - '@'
+  - m
+- name: Hamlyn Heights
+  postcode: '3215'
+  lga: City of Greater Geelong
+  pronunciation: hæm·l@n·hiyts
+  phonemes:
+  - h
+  - æ
+  - m
+  - ·
+  - l
+  - '@'
+  - n
+  - ·
+  - h
+  - iy
+  - t
+  - s
+- name: Hampton
+  postcode: '3188'
+  lga: City of Bayside
+  pronunciation: hæmp·t@n
+  phonemes:
+  - h
+  - æ
+  - m
+  - p
+  - ·
+  - t
+  - '@'
+  - n
+- name: Hampton East
+  postcode: '3188'
+  lga: City of Bayside
+  pronunciation: hæmp·t@n·eest
+  phonemes:
+  - h
+  - æ
+  - m
+  - p
+  - ·
+  - t
+  - '@'
+  - n
+  - ·
+  - ee
+  - s
+  - t
+- name: Hampton Park
+  postcode: '3976'
+  lga: City of Casey
+  pronunciation: hæmp·t@n·pahk
+  phonemes:
+  - h
+  - æ
+  - m
+  - p
+  - ·
+  - t
+  - '@'
+  - n
+  - ·
+  - p
+  - ah
+  - k
+- name: Harkaway
+  postcode: '3806'
+  lga: City of Casey
+  pronunciation: hahk·@·way
+  phonemes:
+  - h
+  - ah
+  - k
+  - ·
+  - '@'
+  - ·
+  - w
+  - ay
+- name: Harkness
+  postcode: '3337'
+  lga: City of Melton
+  pronunciation: hahk·nehs
+  phonemes:
+  - h
+  - ah
+  - k
+  - ·
+  - n
+  - eh
+  - s
+- name: Hastings
+  postcode: '3915'
+  lga: Shire of Mornington Peninsula
+  pronunciation: hayst·ih£z
+  phonemes:
+  - h
+  - ay
+  - s
+  - t
+  - ·
+  - ih
+  - £
+  - z
+- name: Hawksburn
+  postcode: '3141'
+  lga: City of Stonnington
+  pronunciation: hawks·bœn
+  phonemes:
+  - h
+  - aw
+  - k
+  - s
+  - ·
+  - b
+  - œ
+  - n
+- name: Hawthorn
+  postcode: '3122'
+  lga: City of Boroondara
+  pronunciation: haw+·awn
+  phonemes:
+  - h
+  - aw
+  - +
+  - ·
+  - aw
+  - n
+- name: Hawthorn East
+  postcode: '3123'
+  lga: City of Boroondara
+  pronunciation: haw+·awn·eest
+  phonemes:
+  - h
+  - aw
+  - +
+  - ·
+  - aw
+  - n
+  - ·
+  - ee
+  - s
+  - t
+- name: Healesville
+  postcode: '3777'
+  lga: Shire of Yarra Ranges
+  pronunciation: heelz·vihl
+  phonemes:
+  - h
+  - ee
+  - l
+  - z
+  - ·
+  - v
+  - ih
+  - l
+- name: Heath Hill
+  postcode: '3981'
+  lga: Shire of Cardinia
+  pronunciation: hee+·hihl
+  phonemes:
+  - h
+  - ee
+  - +
+  - ·
+  - h
+  - ih
+  - l
+- name: Heathcote Junction
+  postcode: '3758'
+  lga: Shire of Mitchell
+  pronunciation: hee+·k@t·juh£k·$@n
+  phonemes:
+  - h
+  - ee
+  - +
+  - ·
+  - k
+  - '@'
+  - t
+  - ·
+  - j
+  - uh
+  - £
+  - k
+  - ·
+  - $
+  - '@'
+  - n
+- name: Heatherton
+  postcode: '3202'
+  lga: City of Kingston
+  pronunciation: heh‡·@·t@n
+  phonemes:
+  - h
+  - eh
+  - ‡
+  - ·
+  - '@'
+  - ·
+  - t
+  - '@'
+  - n
+- name: Heathmont
+  postcode: '3135'
+  lga: City of Maroondah
+  pronunciation: hee+·mønt
+  phonemes:
+  - h
+  - ee
+  - +
+  - ·
+  - m
+  - ø
+  - n
+  - t
+- name: Heidelberg
+  postcode: '3084'
+  lga: City of Banyule
+  pronunciation: hiyd·@l·bœg
+  phonemes:
+  - h
+  - iy
+  - d
+  - ·
+  - '@'
+  - l
+  - ·
+  - b
+  - œ
+  - g
+- name: Heidelberg Heights
+  postcode: '3081'
+  lga: City of Banyule
+  pronunciation: hiyd·@l·bœg·hiyts
+  phonemes:
+  - h
+  - iy
+  - d
+  - ·
+  - '@'
+  - l
+  - ·
+  - b
+  - œ
+  - g
+  - ·
+  - h
+  - iy
+  - t
+  - s
+- name: Heidelberg West
+  postcode: '3081'
+  lga: City of Banyule
+  pronunciation: hiyd·@l·bœg·wehst
+  phonemes:
+  - h
+  - iy
+  - d
+  - ·
+  - '@'
+  - l
+  - ·
+  - b
+  - œ
+  - g
+  - ·
+  - w
+  - eh
+  - s
+  - t
+- name: Herne Hill
+  postcode: '3218'
+  lga: City of Greater Geelong
+  pronunciation: hœn·hihl
+  phonemes:
+  - h
+  - œ
+  - n
+  - ·
+  - h
+  - ih
+  - l
+- name: Hesket
+  postcode: '3442'
+  lga: Shire of Macdeon Ranges
+  pronunciation: hehsk·@t
+  phonemes:
+  - h
+  - eh
+  - s
+  - k
+  - ·
+  - '@'
+  - t
+- name: Highett
+  postcode: '3190'
+  lga: City of Bayside
+  pronunciation: hiy·@t
+  phonemes:
+  - h
+  - iy
+  - ·
+  - '@'
+  - t
+- name: Highton
+  postcode: '3216'
+  lga: City of Greater Geelong
+  pronunciation: hiyt·@n
+  phonemes:
+  - h
+  - iy
+  - t
+  - ·
+  - '@'
+  - n
+- name: Hillside
+  postcode: '3037'
+  lga: City of Brimbank
+  pronunciation: hihl·siyd
+  phonemes:
+  - h
+  - ih
+  - l
+  - ·
+  - s
+  - iy
+  - d
+- name: HMAS Cerberus
+  postcode: '3920'
+  lga: Shire of Mornington Peninsula
+  pronunciation: (h)ay¢·em·ay·es·sœb·@·r@s
+  phonemes:
+  - h
+  - ay
+  - ¢
+  - ·
+  - m
+  - ·
+  - ay
+  - ·
+  - s
+  - ·
+  - s
+  - œ
+  - b
+  - ·
+  - '@'
+  - ·
+  - r
+  - '@'
+  - s
+- name: Hoddles Creek
+  postcode: '3139'
+  lga: Shire of Yarra Ranges
+  pronunciation: hød·@lz·kreek
+  phonemes:
+  - h
+  - ø
+  - d
+  - ·
+  - '@'
+  - l
+  - z
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Hopetoun Park
+  postcode: '3340'
+  lga: Shire of Moorabool
+  pronunciation: hohp·t@n·pahk
+  phonemes:
+  - h
+  - oh
+  - p
+  - ·
+  - t
+  - '@'
+  - n
+  - ·
+  - p
+  - ah
+  - k
+- name: Hoppers Crossing
+  postcode: '3029'
+  lga: City of Wyndham
+  pronunciation: høp·@z·krøs·ih£
+  phonemes:
+  - h
+  - ø
+  - p
+  - ·
+  - '@'
+  - z
+  - ·
+  - k
+  - r
+  - ø
+  - s
+  - ·
+  - ih
+  - £
+- name: Hughesdale
+  postcode: '3166'
+  lga: City of Monash
+  pronunciation: hyewz·dayl
+  phonemes:
+  - h
+  - y
+  - ew
+  - z
+  - ·
+  - d
+  - ay
+  - l
+- name: Humevale
+  postcode: '3757'
+  lga: City of Whittlesea
+  pronunciation: hyewm·vayl
+  phonemes:
+  - h
+  - y
+  - ew
+  - m
+  - ·
+  - v
+  - ay
+  - l
+- name: Huntingdale
+  postcode: '3166'
+  lga: City of Monash
+  pronunciation: huhnt·ih£·dayl
+  phonemes:
+  - h
+  - uh
+  - n
+  - t
+  - ·
+  - ih
+  - £
+  - ·
+  - d
+  - ay
+  - l
+- name: Hurstbridge
+  postcode: '3099'
+  lga: Shire of Nillumbik
+  pronunciation: hœst·brihj
+  phonemes:
+  - h
+  - œ
+  - s
+  - t
+  - ·
+  - b
+  - r
+  - ih
+  - j
+- name: Indented Head
+  postcode: '3223'
+  lga: City of Greater Geelong
+  pronunciation: ihn·dehnt·@d·hehd
+  phonemes:
+  - ih
+  - n
+  - ·
+  - d
+  - eh
+  - n
+  - t
+  - ·
+  - '@'
+  - d
+  - ·
+  - h
+  - eh
+  - d
+- name: Ingliston
+  postcode: '3342'
+  lga: Shire of Moorabool
+  pronunciation: ih£·glihst·@n
+  phonemes:
+  - ih
+  - £
+  - ·
+  - g
+  - l
+  - ih
+  - s
+  - t
+  - ·
+  - '@'
+  - n
+- name: Iona
+  postcode: '3815'
+  lga: Shire of Cardinia
+  pronunciation: iy·ohn·@
+  phonemes:
+  - iy
+  - ·
+  - oh
+  - n
+  - ·
+  - '@'
+- name: Ivanhoe
+  postcode: '3079'
+  lga: City of Banyule
+  pronunciation: iyv·@n·hoh
+  phonemes:
+  - iy
+  - v
+  - ·
+  - '@'
+  - n
+  - ·
+  - h
+  - oh
+- name: Ivanhoe East
+  postcode: '3079'
+  lga: City of Banyule
+  pronunciation: iyv·@n·hoh·eest
+  phonemes:
+  - iy
+  - v
+  - ·
+  - '@'
+  - n
+  - ·
+  - h
+  - oh
+  - ·
+  - ee
+  - s
+  - t
+- name: Jacana
+  postcode: '3047'
+  lga: City of Hume
+  pronunciation: j@·cah·n@
+  phonemes:
+  - j
+  - '@'
+  - ·
+  - ah
+  - ·
+  - n
+  - '@'
+- name: Jan Juc
+  postcode: '3228'
+  lga: Shire of Surf Coast
+  pronunciation: jæn·juhk
+  phonemes:
+  - j
+  - æ
+  - n
+  - ·
+  - j
+  - uh
+  - k
+- name: Junction Village
+  postcode: '3977'
+  lga: City of Casey
+  pronunciation: juh£k·$@n·vihl·@j
+  phonemes:
+  - j
+  - uh
+  - £
+  - k
+  - ·
+  - $
+  - '@'
+  - n
+  - ·
+  - v
+  - ih
+  - l
+  - ·
+  - '@'
+  - j
+- name: Kalkallo
+  postcode: '3064'
+  lga: City of Hume
+  pronunciation: kæl·kæl·oh
+  phonemes:
+  - k
+  - æ
+  - l
+  - ·
+  - k
+  - æ
+  - l
+  - ·
+  - oh
+- name: Kallista
+  postcode: '3791'
+  lga: Shire of Yarra Ranges
+  pronunciation: k@·lihst·@
+  phonemes:
+  - k
+  - '@'
+  - ·
+  - l
+  - ih
+  - s
+  - t
+  - ·
+  - '@'
+- name: Kalorama
+  postcode: '3766'
+  lga: Shire of Yarra Ranges
+  pronunciation: kæl·@·rah·m@
+  phonemes:
+  - k
+  - æ
+  - l
+  - ·
+  - '@'
+  - ·
+  - r
+  - ah
+  - ·
+  - m
+  - '@'
+- name: Kangaroo Ground
+  postcode: '3097'
+  lga: Shire of Nillumbik
+  pronunciation: ka£·g@·rew·grownd
+  phonemes:
+  - k
+  - £
+  - ·
+  - g
+  - '@'
+  - ·
+  - r
+  - ew
+  - ·
+  - g
+  - r
+  - ow
+  - n
+  - d
+- name: Kealba
+  postcode: '3021'
+  lga: City of Brimbank
+  pronunciation: kee·æl·bah
+  phonemes:
+  - k
+  - ee
+  - ·
+  - æ
+  - l
+  - ·
+  - b
+  - ah
+- name: Keilor
+  postcode: '3036'
+  lga: City of Brimbank
+  pronunciation: keel·aw
+  phonemes:
+  - k
+  - ee
+  - l
+  - ·
+  - aw
+- name: Keilor Downs
+  postcode: '3038'
+  lga: City of Brimbank
+  pronunciation: keel·aw·downz
+  phonemes:
+  - k
+  - ee
+  - l
+  - ·
+  - aw
+  - ·
+  - d
+  - ow
+  - n
+  - z
+- name: Keilor East
+  postcode: '3033'
+  lga: City of Brimbank
+  pronunciation: keel·aw·eest
+  phonemes:
+  - k
+  - ee
+  - l
+  - ·
+  - aw
+  - ·
+  - ee
+  - s
+  - t
+- name: Keilor Lodge
+  postcode: '3038'
+  lga: City of Brimbank
+  pronunciation: keel·aw·løj
+  phonemes:
+  - k
+  - ee
+  - l
+  - ·
+  - aw
+  - ·
+  - l
+  - ø
+  - j
+- name: Keilor North
+  postcode: '3036'
+  lga: City of Brimbank
+  pronunciation: keel·aw·naw+
+  phonemes:
+  - k
+  - ee
+  - l
+  - ·
+  - aw
+  - ·
+  - n
+  - aw
+  - +
+- name: Keilor Park
+  postcode: '3042'
+  lga: City of Brimbank
+  pronunciation: keel·aw·pahk
+  phonemes:
+  - k
+  - ee
+  - l
+  - ·
+  - aw
+  - ·
+  - p
+  - ah
+  - k
+- name: Kensington
+  postcode: '3031'
+  lga: City of Melbourne
+  pronunciation: kehnz·ih£·t@n
+  phonemes:
+  - k
+  - eh
+  - n
+  - z
+  - ·
+  - ih
+  - £
+  - ·
+  - t
+  - '@'
+  - n
+- name: Kerrie
+  postcode: '3434'
+  lga: Shire of Macdeon Ranges
+  pronunciation: keh·ree
+  phonemes:
+  - k
+  - eh
+  - ·
+  - r
+  - ee
+- name: Kew
+  postcode: '3101'
+  lga: City of Boroondara
+  pronunciation: kyew
+  phonemes:
+  - k
+  - y
+  - ew
+- name: Kew East
+  postcode: '3102'
+  lga: City of Boroondara
+  pronunciation: kyew·eest
+  phonemes:
+  - k
+  - y
+  - ew
+  - ·
+  - ee
+  - s
+  - t
+- name: Keysborough
+  postcode: '3173'
+  lga: City of Greater Dandenong
+  pronunciation: keez·b@·r@
+  phonemes:
+  - k
+  - ee
+  - z
+  - ·
+  - b
+  - '@'
+  - ·
+  - r
+  - '@'
+- name: Kilmore
+  postcode: '3764'
+  lga: Shire of Mitchell
+  pronunciation: kihl·maw
+  phonemes:
+  - k
+  - ih
+  - l
+  - ·
+  - m
+  - aw
+- name: Kilmore East
+  postcode: '3764'
+  lga: Shire of Mitchell
+  pronunciation: kihl·maw·eest
+  phonemes:
+  - k
+  - ih
+  - l
+  - ·
+  - m
+  - aw
+  - ·
+  - ee
+  - s
+  - t
+- name: Kilsyth
+  postcode: '3137'
+  lga: City of Maroondah
+  pronunciation: kihl·siy+
+  phonemes:
+  - k
+  - ih
+  - l
+  - ·
+  - s
+  - iy
+  - +
+- name: Kilsyth South
+  postcode: '3137'
+  lga: City of Maroondah
+  pronunciation: kihl·siy+·sow+
+  phonemes:
+  - k
+  - ih
+  - l
+  - ·
+  - s
+  - iy
+  - +
+  - ·
+  - s
+  - ow
+  - +
+- name: Kinglake
+  postcode: '3763'
+  lga: Shire of Nillumbik
+  pronunciation: kih£·layk
+  phonemes:
+  - k
+  - ih
+  - £
+  - ·
+  - l
+  - ay
+  - k
+- name: Kinglake Central
+  postcode: '3757'
+  lga: Shire of Murrndindi
+  pronunciation: kih£·layk·sehn·¢r@l
+  phonemes:
+  - k
+  - ih
+  - £
+  - ·
+  - l
+  - ay
+  - k
+  - ·
+  - s
+  - eh
+  - n
+  - ·
+  - ¢
+  - r
+  - '@'
+  - l
+- name: Kinglake West
+  postcode: '3778'
+  lga: Shire of Nillumbik
+  pronunciation: kih£·layk·wehst
+  phonemes:
+  - k
+  - ih
+  - £
+  - ·
+  - l
+  - ay
+  - k
+  - ·
+  - w
+  - eh
+  - s
+  - t
+- name: Kings Park
+  postcode: '3021'
+  lga: City of Brimbank
+  pronunciation: kih£z·pahk
+  phonemes:
+  - k
+  - ih
+  - £
+  - z
+  - ·
+  - p
+  - ah
+  - k
+- name: Kingsbury
+  postcode: '3083'
+  lga: City of Darebin
+  pronunciation: kih£z·bree
+  phonemes:
+  - k
+  - ih
+  - £
+  - z
+  - ·
+  - b
+  - r
+  - ee
+- name: Kingsville
+  postcode: '3012'
+  lga: City of Maribyrnong
+  pronunciation: kih£z·vihl
+  phonemes:
+  - k
+  - ih
+  - £
+  - z
+  - ·
+  - v
+  - ih
+  - l
+- name: Knoxfield
+  postcode: '3180'
+  lga: City of Knox
+  pronunciation: nøks·feeld
+  phonemes:
+  - n
+  - ø
+  - k
+  - s
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Koo Wee Rup
+  postcode: '3981'
+  lga: Shire of Cardinia
+  pronunciation: kew·wee·ruhp
+  phonemes:
+  - k
+  - ew
+  - ·
+  - w
+  - ee
+  - ·
+  - r
+  - uh
+  - p
+- name: Koo Wee Rup North
+  postcode: '3891'
+  lga: Shire of Cardinia
+  pronunciation: kew·wee·ruhp·naw+
+  phonemes:
+  - k
+  - ew
+  - ·
+  - w
+  - ee
+  - ·
+  - r
+  - uh
+  - p
+  - ·
+  - n
+  - aw
+  - +
+- name: Kooyong
+  postcode: '3144'
+  lga: City of Stonnington
+  pronunciation: kew·yø£
+  phonemes:
+  - k
+  - ew
+  - ·
+  - y
+  - ø
+  - £
+- name: Korobeit
+  postcode: '3341'
+  lga: Shire of Moorabool
+  pronunciation: kø·r@·beet
+  phonemes:
+  - k
+  - ø
+  - ·
+  - r
+  - '@'
+  - ·
+  - b
+  - ee
+  - t
+- name: Kurunjang
+  postcode: '3337'
+  lga: City of Melton
+  pronunciation: kuh·r@n·jæ£
+  phonemes:
+  - k
+  - uh
+  - ·
+  - r
+  - '@'
+  - n
+  - ·
+  - j
+  - æ
+  - £
+- name: Lalor
+  postcode: '3075'
+  lga: City of Whittlesea
+  pronunciation: lay·law
+  phonemes:
+  - l
+  - ay
+  - ·
+  - l
+  - aw
+- name: Lancefield
+  postcode: '3435'
+  lga: Shire of Macdeon Ranges
+  pronunciation: læns·feeld
+  phonemes:
+  - l
+  - æ
+  - n
+  - s
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Lang Lang
+  postcode: '3984'
+  lga: Shire of Cardinia
+  pronunciation: læ£·læ£
+  phonemes:
+  - l
+  - æ
+  - £
+  - ·
+  - l
+  - æ
+  - £
+- name: Lang Lang East
+  postcode: '3894'
+  lga: Shire of Cardinia
+  pronunciation: læ£·læ£·eest
+  phonemes:
+  - l
+  - æ
+  - £
+  - ·
+  - l
+  - æ
+  - £
+  - ·
+  - ee
+  - s
+  - t
+- name: Langwarrin
+  postcode: '3910'
+  lga: City of Frankston
+  pronunciation: læ£·wø·r@n
+  phonemes:
+  - l
+  - æ
+  - £
+  - ·
+  - w
+  - ø
+  - ·
+  - r
+  - '@'
+  - n
+- name: Langwarrin South
+  postcode: '3911'
+  lga: City of Frankston
+  pronunciation: læ£·wø·r@n·sow+
+  phonemes:
+  - l
+  - æ
+  - £
+  - ·
+  - w
+  - ø
+  - ·
+  - r
+  - '@'
+  - n
+  - ·
+  - s
+  - ow
+  - +
+- name: Lara
+  postcode: '3212'
+  lga: City of Greater Geelong
+  pronunciation: lah·r@
+  phonemes:
+  - l
+  - ah
+  - ·
+  - r
+  - '@'
+- name: Launching Place
+  postcode: '3139'
+  lga: Shire of Yarra Ranges
+  pronunciation: lawn¢·ih£·plays
+  phonemes:
+  - l
+  - aw
+  - n
+  - ¢
+  - ·
+  - ih
+  - £
+  - ·
+  - p
+  - l
+  - ay
+  - s
+- name: Laverton
+  postcode: '3028'
+  lga: City of Hobsons Bay
+  pronunciation: læv·@·t@n
+  phonemes:
+  - l
+  - æ
+  - v
+  - ·
+  - '@'
+  - ·
+  - t
+  - '@'
+  - n
+- name: Laverton North
+  postcode: '3026'
+  lga: City of Wyndham
+  pronunciation: læv·@·t@n·naw+
+  phonemes:
+  - l
+  - æ
+  - v
+  - ·
+  - '@'
+  - ·
+  - t
+  - '@'
+  - n
+  - ·
+  - n
+  - aw
+  - +
+- name: Leopold
+  postcode: '3224'
+  lga: City of Greater Geelong
+  pronunciation: lee·@·pøl(d)
+  phonemes:
+  - l
+  - ee
+  - ·
+  - '@'
+  - ·
+  - p
+  - ø
+  - l
+  - d
+- name: Lilydale
+  postcode: '3140'
+  lga: Shire of Yarra Ranges
+  pronunciation: lihl·ee·dayl
+  phonemes:
+  - l
+  - ih
+  - l
+  - ·
+  - ee
+  - ·
+  - d
+  - ay
+  - l
+- name: Little River
+  postcode: '3211'
+  lga: City of Wyndham
+  pronunciation: lihd·@l·rihv·@
+  phonemes:
+  - l
+  - ih
+  - d
+  - ·
+  - '@'
+  - l
+  - ·
+  - r
+  - ih
+  - v
+  - ·
+  - '@'
+- name: Long Forest
+  postcode: '3340'
+  lga: Shire of Moorabool
+  pronunciation: lø£·fø·r@st
+  phonemes:
+  - l
+  - ø
+  - £
+  - ·
+  - f
+  - ø
+  - ·
+  - r
+  - '@'
+  - s
+  - t
+- name: Longwarry
+  postcode: '3816'
+  lga: Shire of Cardinia
+  pronunciation: lø£·wø·ree
+  phonemes:
+  - l
+  - ø
+  - £
+  - ·
+  - w
+  - ø
+  - ·
+  - r
+  - ee
+- name: Lovely Banks
+  postcode: '3213'
+  lga: City of Greater Geelong
+  pronunciation: luhv·lee·bay£ks
+  phonemes:
+  - l
+  - uh
+  - v
+  - ·
+  - l
+  - ee
+  - ·
+  - b
+  - ay
+  - £
+  - k
+  - s
+- name: Lower Plenty
+  postcode: '3093'
+  lga: City of Banyule
+  pronunciation: loh·w@·plehn·tee
+  phonemes:
+  - l
+  - oh
+  - ·
+  - w
+  - '@'
+  - ·
+  - p
+  - l
+  - eh
+  - n
+  - ·
+  - t
+  - ee
+- name: Lynbrook
+  postcode: '3975'
+  lga: City of Casey
+  pronunciation: lihn·bruuk
+  phonemes:
+  - l
+  - ih
+  - n
+  - ·
+  - b
+  - r
+  - uu
+  - k
+- name: Lyndhurst
+  postcode: '3975'
+  lga: City of Casey
+  pronunciation: lihnd·hœst
+  phonemes:
+  - l
+  - ih
+  - n
+  - d
+  - ·
+  - h
+  - œ
+  - s
+  - t
+- name: Lysterfield
+  postcode: '3156'
+  lga: City of Knox
+  pronunciation: lihst·@·feeld
+  phonemes:
+  - l
+  - ih
+  - s
+  - t
+  - ·
+  - '@'
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Lysterfield South
+  postcode: '3156'
+  lga: City of Casey
+  pronunciation: lihst·@·feeld·sow+
+  phonemes:
+  - l
+  - ih
+  - s
+  - t
+  - ·
+  - '@'
+  - ·
+  - f
+  - ee
+  - l
+  - d
+  - ·
+  - s
+  - ow
+  - +
+- name: Macclesfield
+  postcode: '3782'
+  lga: Shire of Yarra Ranges
+  pronunciation: mak·@lz·feeld
+  phonemes:
+  - m
+  - k
+  - ·
+  - '@'
+  - l
+  - z
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Macedon
+  postcode: '3440'
+  lga: Shire of Macedon Ranges
+  pronunciation: mæs·@·d@n
+  phonemes:
+  - m
+  - æ
+  - s
+  - ·
+  - '@'
+  - ·
+  - d
+  - '@'
+  - n
+- name: Macleod
+  postcode: '3085'
+  lga: City of Banyule
+  pronunciation: m@·klowd
+  phonemes:
+  - m
+  - '@'
+  - ·
+  - k
+  - l
+  - ow
+  - d
+- name: Maddingley
+  postcode: '3340'
+  lga: Shire of Moorabool
+  pronunciation: mæd·ih£·lee
+  phonemes:
+  - m
+  - æ
+  - d
+  - ·
+  - ih
+  - £
+  - ·
+  - l
+  - ee
+- name: Maidstone
+  postcode: '3012'
+  lga: City of Maribyrnong
+  pronunciation: mayd·st@n
+  phonemes:
+  - m
+  - ay
+  - d
+  - ·
+  - s
+  - t
+  - '@'
+  - n
+- name: Main Ridge
+  postcode: '3928'
+  lga: Shire of Mornington Peninsula
+  pronunciation: mayn·rihj
+  phonemes:
+  - m
+  - ay
+  - n
+  - ·
+  - r
+  - ih
+  - j
+- name: Malvern
+  postcode: '3144'
+  lga: City of Stonnington
+  pronunciation: møl·v@n
+  phonemes:
+  - m
+  - ø
+  - l
+  - ·
+  - v
+  - '@'
+  - n
+- name: Malvern East
+  postcode: '3145'
+  lga: City of Stonnington
+  pronunciation: møl·v@n·eest
+  phonemes:
+  - m
+  - ø
+  - l
+  - ·
+  - v
+  - '@'
+  - n
+  - ·
+  - ee
+  - s
+  - t
+- name: Mambourin
+  postcode: '3024'
+  lga: City of Wyndham
+  pronunciation: mæm·b@·r@n
+  phonemes:
+  - m
+  - æ
+  - m
+  - ·
+  - b
+  - '@'
+  - ·
+  - r
+  - '@'
+  - n
+- name: Manifold Heights
+  postcode: '3218'
+  lga: City of Greater Geelong
+  pronunciation: mæn·@·føld·hiyts
+  phonemes:
+  - m
+  - æ
+  - n
+  - ·
+  - '@'
+  - ·
+  - f
+  - ø
+  - l
+  - d
+  - ·
+  - h
+  - iy
+  - t
+  - s
+- name: Mannerim
+  postcode: '3222'
+  lga: City of Greater Geelong
+  pronunciation: mæn·@·r@m
+  phonemes:
+  - m
+  - æ
+  - n
+  - ·
+  - '@'
+  - ·
+  - r
+  - '@'
+  - m
+- name: Manor Lakes
+  postcode: '3024'
+  lga: City of Wyndham
+  pronunciation: mæn·@·layks
+  phonemes:
+  - m
+  - æ
+  - n
+  - ·
+  - '@'
+  - ·
+  - l
+  - ay
+  - k
+  - s
+- name: Marcus Hill
+  postcode: '3222'
+  lga: City of Greater Geelong
+  pronunciation: mah·k@s·hihl
+  phonemes:
+  - m
+  - ah
+  - ·
+  - k
+  - '@'
+  - s
+  - ·
+  - h
+  - ih
+  - l
+- name: Maribyrnong
+  postcode: '3032'
+  lga: City of Maribyrnong
+  pronunciation: mæ·r@·b@·nø£
+  phonemes:
+  - m
+  - æ
+  - ·
+  - r
+  - '@'
+  - ·
+  - b
+  - '@'
+  - ·
+  - n
+  - ø
+  - £
+- name: Marshall
+  postcode: '3216'
+  lga: City of Greater Geelong
+  pronunciation: mah·$@l
+  phonemes:
+  - m
+  - ah
+  - ·
+  - $
+  - '@'
+  - l
+- name: Maryknoll
+  postcode: '3812'
+  lga: Shire of Cardinia
+  pronunciation: meh@·ree·nøl
+  phonemes:
+  - m
+  - eh@
+  - ·
+  - r
+  - ee
+  - ·
+  - n
+  - ø
+  - l
+- name: Marysville
+  postcode: '3779'
+  lga: Shire of Murrndindi
+  pronunciation: meh@·reez·vihl
+  phonemes:
+  - m
+  - eh@
+  - ·
+  - r
+  - ee
+  - z
+  - ·
+  - v
+  - ih
+  - l
+- name: McCrae
+  postcode: '3938'
+  lga: Shire of Mornington Peninsula
+  pronunciation: m@·kray
+  phonemes:
+  - m
+  - '@'
+  - ·
+  - k
+  - r
+  - ay
+- name: McKinnon
+  postcode: '3204'
+  lga: City of Glen Eira
+  pronunciation: m@·kihn·@n
+  phonemes:
+  - m
+  - '@'
+  - ·
+  - k
+  - ih
+  - n
+  - ·
+  - '@'
+  - n
+- name: McMahons Creek
+  postcode: '3799'
+  lga: Shire of Yarra Ranges
+  pronunciation: m@k·mahnz·kreek
+  phonemes:
+  - m
+  - '@'
+  - k
+  - ·
+  - m
+  - ah
+  - n
+  - z
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Meadow Heights
+  postcode: '3048'
+  lga: City of Hume
+  pronunciation: mehd·oh·hiyts
+  phonemes:
+  - m
+  - eh
+  - d
+  - ·
+  - oh
+  - ·
+  - h
+  - iy
+  - t
+  - s
+- name: Melbourne
+  postcode: '3000'
+  lga: City of Melbourne
+  pronunciation: mehl·b@n
+  phonemes:
+  - m
+  - eh
+  - l
+  - ·
+  - b
+  - '@'
+  - n
+- name: Melbourne Airport
+  postcode: '3045'
+  lga: City of Hume
+  pronunciation: mehl·b@n·eh@·pawt
+  phonemes:
+  - m
+  - eh
+  - l
+  - ·
+  - b
+  - '@'
+  - n
+  - ·
+  - eh@
+  - ·
+  - p
+  - aw
+  - t
+- name: Melton
+  postcode: '3337'
+  lga: City of Melton
+  pronunciation: mehl·t@n
+  phonemes:
+  - m
+  - eh
+  - l
+  - ·
+  - t
+  - '@'
+  - n
+- name: Melton South
+  postcode: '3338'
+  lga: City of Melton
+  pronunciation: mehl·t@n·sow+
+  phonemes:
+  - m
+  - eh
+  - l
+  - ·
+  - t
+  - '@'
+  - n
+  - ·
+  - s
+  - ow
+  - +
+- name: Melton West
+  postcode: '3337'
+  lga: City of Melton
+  pronunciation: mehl·t@n·wehst
+  phonemes:
+  - m
+  - eh
+  - l
+  - ·
+  - t
+  - '@'
+  - n
+  - ·
+  - w
+  - eh
+  - s
+  - t
+- name: Mentone
+  postcode: '3194'
+  lga: City of Kingston
+  pronunciation: mehn·tohn
+  phonemes:
+  - m
+  - eh
+  - n
+  - ·
+  - t
+  - oh
+  - n
+- name: Menzies Creek
+  postcode: '3159'
+  lga: Shire of Yarra Ranges
+  pronunciation: mehnz·eez·kreek
+  phonemes:
+  - m
+  - eh
+  - n
+  - z
+  - ·
+  - ee
+  - z
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Mernda
+  postcode: '3754'
+  lga: City of Whittlesea
+  pronunciation: mœn·d@
+  phonemes:
+  - m
+  - œ
+  - n
+  - ·
+  - d
+  - '@'
+- name: Merricks
+  postcode: '3916'
+  lga: Shire of Mornington Peninsula
+  pronunciation: meh·rihks
+  phonemes:
+  - m
+  - eh
+  - ·
+  - r
+  - ih
+  - k
+  - s
+- name: Merricks Beach
+  postcode: '3926'
+  lga: Shire of Mornington Peninsula
+  pronunciation: meh·rihks·bee¢
+  phonemes:
+  - m
+  - eh
+  - ·
+  - r
+  - ih
+  - k
+  - s
+  - ·
+  - b
+  - ee
+  - ¢
+- name: Merricks North
+  postcode: '3926'
+  lga: Shire of Mornington Peninsula
+  pronunciation: meh·rihks·naw+
+  phonemes:
+  - m
+  - eh
+  - ·
+  - r
+  - ih
+  - k
+  - s
+  - ·
+  - n
+  - aw
+  - +
+- name: Merrimu
+  postcode: '3340'
+  lga: Shire of Moorabool
+  pronunciation: meh·r@·mew
+  phonemes:
+  - m
+  - eh
+  - ·
+  - r
+  - '@'
+  - ·
+  - m
+  - ew
+- name: Mickleham
+  postcode: '3064'
+  lga: City of Hume
+  pronunciation: mihk·@l·@m
+  phonemes:
+  - m
+  - ih
+  - k
+  - ·
+  - '@'
+  - l
+  - ·
+  - '@'
+  - m
+- name: Middle Park
+  postcode: '3206'
+  lga: City of Port Phillip
+  pronunciation: mihd·@l·pahk
+  phonemes:
+  - m
+  - ih
+  - d
+  - ·
+  - '@'
+  - l
+  - ·
+  - p
+  - ah
+  - k
+- name: Mill Park
+  postcode: '3082'
+  lga: City of Whittlesea
+  pronunciation: mihl·pahk
+  phonemes:
+  - m
+  - ih
+  - l
+  - ·
+  - p
+  - ah
+  - k
+- name: Millgrove
+  postcode: '3799'
+  lga: Shire of Yarra Ranges
+  pronunciation: mihl·grohv
+  phonemes:
+  - m
+  - ih
+  - l
+  - ·
+  - g
+  - r
+  - oh
+  - v
+- name: Mitcham
+  postcode: '3132'
+  lga: City of Whitehorse
+  pronunciation: mih¢·@m
+  phonemes:
+  - m
+  - ih
+  - ¢
+  - ·
+  - '@'
+  - m
+- name: Modella
+  postcode: '3816'
+  lga: Shire of Cardinia
+  pronunciation: m@·dehl·@
+  phonemes:
+  - m
+  - '@'
+  - ·
+  - d
+  - eh
+  - l
+  - ·
+  - '@'
+- name: Monbulk
+  postcode: '3793'
+  lga: Shire of Yarra Ranges
+  pronunciation: møn·buhlk
+  phonemes:
+  - m
+  - ø
+  - n
+  - ·
+  - b
+  - uh
+  - l
+  - k
+- name: Monegeetta
+  postcode: '3433'
+  lga: Shire of Macdeon Ranges
+  pronunciation: møn·@·gee·t@
+  phonemes:
+  - m
+  - ø
+  - n
+  - ·
+  - '@'
+  - ·
+  - g
+  - ee
+  - ·
+  - t
+  - '@'
+- name: Monomeith
+  postcode: '3984'
+  lga: Shire of Cardinia
+  pronunciation: møn·uh·mee+
+  phonemes:
+  - m
+  - ø
+  - n
+  - ·
+  - uh
+  - ·
+  - m
+  - ee
+  - +
+- name: Mont Albert
+  postcode: '3127'
+  lga: City of Boroondara
+  pronunciation: mønt·ælb·@t
+  phonemes:
+  - m
+  - ø
+  - n
+  - t
+  - ·
+  - æ
+  - l
+  - b
+  - ·
+  - '@'
+  - t
+- name: Mont Albert North
+  postcode: '3129'
+  lga: City of Whitehorse
+  pronunciation: mønt·ælb·@t·naw+
+  phonemes:
+  - m
+  - ø
+  - n
+  - t
+  - ·
+  - æ
+  - l
+  - b
+  - ·
+  - '@'
+  - t
+  - ·
+  - n
+  - aw
+  - +
+- name: Montmorency
+  postcode: '3094'
+  lga: City of Banyule
+  pronunciation: mønt·m@·rehn·see
+  phonemes:
+  - m
+  - ø
+  - n
+  - t
+  - ·
+  - m
+  - '@'
+  - ·
+  - r
+  - eh
+  - n
+  - ·
+  - s
+  - ee
+- name: Montrose
+  postcode: '3765'
+  lga: Shire of Yarra Ranges
+  pronunciation: møn¢·rohz
+  phonemes:
+  - m
+  - ø
+  - n
+  - ¢
+  - ·
+  - r
+  - oh
+  - z
+- name: Moolap
+  postcode: '3224'
+  lga: City of Greater Geelong
+  pronunciation: mew·læp
+  phonemes:
+  - m
+  - ew
+  - ·
+  - l
+  - æ
+  - p
+- name: Moonee Ponds
+  postcode: '3039'
+  lga: City of Moonee Valley
+  pronunciation: mew·nee·pøn(d)z
+  phonemes:
+  - m
+  - ew
+  - ·
+  - n
+  - ee
+  - ·
+  - p
+  - ø
+  - n
+  - d
+  - z
+- name: Moorabbin
+  postcode: '3189'
+  lga: City of Kingston
+  pronunciation: m@·ræb·@n
+  phonemes:
+  - m
+  - '@'
+  - ·
+  - r
+  - æ
+  - b
+  - ·
+  - '@'
+  - n
+- name: Moorabbin Airport
+  postcode: '3194'
+  lga: City of Kingston
+  pronunciation: m@·ræb·@n·eh@·pawt
+  phonemes:
+  - m
+  - '@'
+  - ·
+  - r
+  - æ
+  - b
+  - ·
+  - '@'
+  - n
+  - ·
+  - eh@
+  - ·
+  - p
+  - aw
+  - t
+- name: Moorabool
+  postcode: '3213'
+  lga: City of Greater Geelong
+  pronunciation: muu·r@·buul
+  phonemes:
+  - m
+  - uu
+  - ·
+  - r
+  - '@'
+  - ·
+  - b
+  - uu
+  - l
+- name: Moorooduc
+  postcode: '3933'
+  lga: Shire of Mornington Peninsula
+  pronunciation: mu@·a·duhk
+  phonemes:
+  - m
+  - u@
+  - ·
+  - ·
+  - d
+  - uh
+  - k
+- name: Mooroolbark
+  postcode: '3138'
+  lga: Shire of Yarra Ranges
+  pronunciation: mu@·@l·bahk
+  phonemes:
+  - m
+  - u@
+  - ·
+  - '@'
+  - l
+  - ·
+  - b
+  - ah
+  - k
+- name: Mordialloc
+  postcode: '3195'
+  lga: City of Kingston
+  pronunciation: mawd·ee·æl·@k
+  phonemes:
+  - m
+  - aw
+  - d
+  - ·
+  - ee
+  - ·
+  - æ
+  - l
+  - ·
+  - '@'
+  - k
+- name: Mornington
+  postcode: '3931'
+  lga: Shire of Mornington Peninsula
+  pronunciation: mawn·ih£·t@n
+  phonemes:
+  - m
+  - aw
+  - n
+  - ·
+  - ih
+  - £
+  - ·
+  - t
+  - '@'
+  - n
+- name: Mount Cottrell
+  postcode: '3024'
+  lga: City of Melton
+  pronunciation: mownt·kø¢·r@l
+  phonemes:
+  - m
+  - ow
+  - n
+  - t
+  - ·
+  - k
+  - ø
+  - ¢
+  - ·
+  - r
+  - '@'
+  - l
+- name: Mount Dandenong
+  postcode: '3767'
+  lga: Shire of Yarra Ranges
+  pronunciation: mownt·dænd·ee·nø£
+  phonemes:
+  - m
+  - ow
+  - n
+  - t
+  - ·
+  - d
+  - æ
+  - n
+  - d
+  - ·
+  - ee
+  - ·
+  - n
+  - ø
+  - £
+- name: Mount Duneed
+  postcode: '3217'
+  lga: City of Greater Geelong
+  pronunciation: mown·duhn·eed
+  phonemes:
+  - m
+  - ow
+  - n
+  - ·
+  - d
+  - uh
+  - n
+  - ·
+  - ee
+  - d
+- name: Mount Eliza
+  postcode: '3930'
+  lga: Shire of Mornington Peninsula
+  pronunciation: mown·t@·liyz·@
+  phonemes:
+  - m
+  - ow
+  - n
+  - ·
+  - t
+  - '@'
+  - ·
+  - l
+  - iy
+  - z
+  - ·
+  - '@'
+- name: Mount Evelyn
+  postcode: '3796'
+  lga: Shire of Yarra Ranges
+  pronunciation: mownt·ehv·@·lihn
+  phonemes:
+  - m
+  - ow
+  - n
+  - t
+  - ·
+  - eh
+  - v
+  - ·
+  - '@'
+  - ·
+  - l
+  - ih
+  - n
+- name: Mount Macedon
+  postcode: '3441'
+  lga: Shire of Macdeon Ranges
+  pronunciation: mownt·mæs·@·d@n
+  phonemes:
+  - m
+  - ow
+  - n
+  - t
+  - ·
+  - m
+  - æ
+  - s
+  - ·
+  - '@'
+  - ·
+  - d
+  - '@'
+  - n
+- name: Mount Martha
+  postcode: '3934'
+  lga: Shire of Mornington Peninsula
+  pronunciation: mown(t)·mah+·@
+  phonemes:
+  - m
+  - ow
+  - n
+  - t
+  - ·
+  - m
+  - ah
+  - +
+  - ·
+  - '@'
+- name: Mount Toolebewong
+  postcode: '3777'
+  lga: Shire of Yarra Ranges
+  pronunciation: mown·tewl·b@·wø£
+  phonemes:
+  - m
+  - ow
+  - n
+  - ·
+  - t
+  - ew
+  - l
+  - ·
+  - b
+  - '@'
+  - ·
+  - w
+  - ø
+  - £
+- name: Mount Waverley
+  postcode: '3149'
+  lga: City of Monash
+  pronunciation: mownt·wayv·@·lee
+  phonemes:
+  - m
+  - ow
+  - n
+  - t
+  - ·
+  - w
+  - ay
+  - v
+  - ·
+  - '@'
+  - ·
+  - l
+  - ee
+- name: Mulgrave
+  postcode: '3170'
+  lga: City of Monash
+  pronunciation: muhl·grayv
+  phonemes:
+  - m
+  - uh
+  - l
+  - ·
+  - g
+  - r
+  - ay
+  - v
+- name: Murrumbeena
+  postcode: '3163'
+  lga: City of Glen Eira
+  pronunciation: muh·r@m·been·@
+  phonemes:
+  - m
+  - uh
+  - ·
+  - r
+  - '@'
+  - m
+  - ·
+  - b
+  - ee
+  - n
+  - ·
+  - '@'
+- name: Myrniong
+  postcode: '3341'
+  lga: Shire of Moorabool
+  pronunciation: mœn·ee·ø£
+  phonemes:
+  - m
+  - œ
+  - n
+  - ·
+  - ee
+  - ·
+  - ø
+  - £
+- name: Nangana
+  postcode: '3781'
+  lga: Shire of Cardinia
+  pronunciation: næ£·gahn·@
+  phonemes:
+  - n
+  - æ
+  - £
+  - ·
+  - g
+  - ah
+  - n
+  - ·
+  - '@'
+- name: Nar Nar Goon
+  postcode: '3812'
+  lga: Shire of Cardinia
+  pronunciation: nah·nah·gewn
+  phonemes:
+  - n
+  - ah
+  - ·
+  - n
+  - ah
+  - ·
+  - g
+  - ew
+  - n
+- name: Nar Nar Goon North
+  postcode: '3812'
+  lga: Shire of Cardinia
+  pronunciation: nah·nah·gewn·naw+
+  phonemes:
+  - n
+  - ah
+  - ·
+  - n
+  - ah
+  - ·
+  - g
+  - ew
+  - n
+  - ·
+  - n
+  - aw
+  - +
+- name: Narbethong
+  postcode: '3778'
+  lga: Shire of Murrndindi
+  pronunciation: nah·b@·+ø£
+  phonemes:
+  - n
+  - ah
+  - ·
+  - b
+  - '@'
+  - ·
+  - +
+  - ø
+  - £
+- name: Narre Warren
+  postcode: '3805'
+  lga: City of Casey
+  pronunciation: næ·ree·wø·r@n
+  phonemes:
+  - n
+  - æ
+  - ·
+  - r
+  - ee
+  - ·
+  - w
+  - ø
+  - ·
+  - r
+  - '@'
+  - n
+- name: Narre Warren East
+  postcode: '3804'
+  lga: Shire of Yarra Ranges
+  pronunciation: næ·ree·wø·r@n·eest
+  phonemes:
+  - n
+  - æ
+  - ·
+  - r
+  - ee
+  - ·
+  - w
+  - ø
+  - ·
+  - r
+  - '@'
+  - n
+  - ·
+  - ee
+  - s
+  - t
+- name: Narre Warren North
+  postcode: '3804'
+  lga: City of Casey
+  pronunciation: næ·ree·wø·r@n·naw+
+  phonemes:
+  - n
+  - æ
+  - ·
+  - r
+  - ee
+  - ·
+  - w
+  - ø
+  - ·
+  - r
+  - '@'
+  - n
+  - ·
+  - n
+  - aw
+  - +
+- name: Narre Warren South
+  postcode: '3805'
+  lga: City of Casey
+  pronunciation: næ·ree·wø·r@n·sow+
+  phonemes:
+  - n
+  - æ
+  - ·
+  - r
+  - ee
+  - ·
+  - w
+  - ø
+  - ·
+  - r
+  - '@'
+  - n
+  - ·
+  - s
+  - ow
+  - +
+- name: New Gisborne
+  postcode: '3438'
+  lga: Shire of Macdeon Ranges
+  pronunciation: nyew·gihz·b@n
+  phonemes:
+  - n
+  - y
+  - ew
+  - ·
+  - g
+  - ih
+  - z
+  - ·
+  - b
+  - '@'
+  - n
+- name: Newcomb
+  postcode: '3219'
+  lga: City of Greater Geelong
+  pronunciation: new·k@m
+  phonemes:
+  - n
+  - ew
+  - ·
+  - k
+  - '@'
+  - m
+- name: Newhaven
+  postcode: '3925'
+  lga: Shire of Bass Coast
+  pronunciation: nyew·hayv·@n
+  phonemes:
+  - n
+  - y
+  - ew
+  - ·
+  - h
+  - ay
+  - v
+  - ·
+  - '@'
+  - n
+- name: Newport
+  postcode: '3015'
+  lga: City of Hobsons Bay
+  pronunciation: nyew·pawt
+  phonemes:
+  - n
+  - y
+  - ew
+  - ·
+  - p
+  - aw
+  - t
+- name: Newtown
+  postcode: '3220'
+  lga: City of Greater Geelong
+  pronunciation: new·town
+  phonemes:
+  - n
+  - ew
+  - ·
+  - t
+  - ow
+  - n
+- name: Niddrie
+  postcode: '3042'
+  lga: City of Moonee Valley
+  pronunciation: nihj·ree
+  phonemes:
+  - n
+  - ih
+  - j
+  - ·
+  - r
+  - ee
+- name: Noble Park
+  postcode: '3174'
+  lga: City of Greater Dandenong
+  pronunciation: nohb·@l·pahk
+  phonemes:
+  - n
+  - oh
+  - b
+  - ·
+  - '@'
+  - l
+  - ·
+  - p
+  - ah
+  - k
+- name: Noble Park North
+  postcode: '3174'
+  lga: City of Greater Dandenong
+  pronunciation: nohb·@l·pahk·naw+
+  phonemes:
+  - n
+  - oh
+  - b
+  - ·
+  - '@'
+  - l
+  - ·
+  - p
+  - ah
+  - k
+  - ·
+  - n
+  - aw
+  - +
+- name: Norlane
+  postcode: '3214'
+  lga: City of Greater Geelong
+  pronunciation: naw·layn
+  phonemes:
+  - n
+  - aw
+  - ·
+  - l
+  - ay
+  - n
+- name: North Geelong
+  postcode: '3215'
+  lga: City of Greater Geelong
+  pronunciation: naw+·j@·lø£
+  phonemes:
+  - n
+  - aw
+  - +
+  - ·
+  - j
+  - '@'
+  - ·
+  - l
+  - ø
+  - £
+- name: North Melbourne
+  postcode: '3051'
+  lga: City of Melbourne
+  pronunciation: naw+·mehl·b@n
+  phonemes:
+  - n
+  - aw
+  - +
+  - ·
+  - m
+  - eh
+  - l
+  - ·
+  - b
+  - '@'
+  - n
+- name: North Shore
+  postcode: '3214'
+  lga: City of Greater Geelong
+  pronunciation: naw+·$aw
+  phonemes:
+  - n
+  - aw
+  - +
+  - ·
+  - $
+  - aw
+- name: North Warrandyte
+  postcode: '3113'
+  lga: Shire of Nillumbik
+  pronunciation: naw+·wø·r@n·diyt
+  phonemes:
+  - n
+  - aw
+  - +
+  - ·
+  - w
+  - ø
+  - ·
+  - r
+  - '@'
+  - n
+  - ·
+  - d
+  - iy
+  - t
+- name: Northcote
+  postcode: '3070'
+  lga: City of Darebin
+  pronunciation: naw+·k@t
+  phonemes:
+  - n
+  - aw
+  - +
+  - ·
+  - k
+  - '@'
+  - t
+- name: Notting Hill
+  postcode: '3168'
+  lga: City of Monash
+  pronunciation: nøt·ih£·hihl
+  phonemes:
+  - n
+  - ø
+  - t
+  - ·
+  - ih
+  - £
+  - ·
+  - h
+  - ih
+  - l
+- name: Nunawading
+  postcode: '3131'
+  lga: City of Whitehorse
+  pronunciation: nuhn·@·wød·ih£
+  phonemes:
+  - n
+  - uh
+  - n
+  - ·
+  - '@'
+  - ·
+  - w
+  - ø
+  - d
+  - ·
+  - ih
+  - £
+- name: Nutfield
+  postcode: '3099'
+  lga: Shire of Nillumbik
+  pronunciation: nuht·feeld
+  phonemes:
+  - n
+  - uh
+  - t
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Nyora
+  postcode: '3987'
+  lga: Shire of Cardinia
+  pronunciation: niy·aw·r@
+  phonemes:
+  - n
+  - iy
+  - ·
+  - aw
+  - ·
+  - r
+  - '@'
+- name: Oak Park
+  postcode: '3046'
+  lga: City of Merri-bek
+  pronunciation: ohk·pahk
+  phonemes:
+  - oh
+  - k
+  - ·
+  - p
+  - ah
+  - k
+- name: Oaklands Junction
+  postcode: '3063'
+  lga: City of Hume
+  pronunciation: ohk·l@ndz·juh£k·$@n
+  phonemes:
+  - oh
+  - k
+  - ·
+  - l
+  - '@'
+  - n
+  - d
+  - z
+  - ·
+  - j
+  - uh
+  - £
+  - k
+  - ·
+  - $
+  - '@'
+  - n
+- name: Oakleigh
+  postcode: '3166'
+  lga: City of Monash
+  pronunciation: ohk·lee
+  phonemes:
+  - oh
+  - k
+  - ·
+  - l
+  - ee
+- name: Oakleigh East
+  postcode: '3166'
+  lga: City of Monash
+  pronunciation: ohk·lee·eest
+  phonemes:
+  - oh
+  - k
+  - ·
+  - l
+  - ee
+  - ·
+  - ee
+  - s
+  - t
+- name: Oakleigh South
+  postcode: '3167'
+  lga: City of Monash
+  pronunciation: ohk·lee·sow+
+  phonemes:
+  - oh
+  - k
+  - ·
+  - l
+  - ee
+  - ·
+  - s
+  - ow
+  - +
+- name: Ocean Grove
+  postcode: '3226'
+  lga: City of Greater Geelong
+  pronunciation: oh$·@n·grohv
+  phonemes:
+  - oh
+  - $
+  - ·
+  - '@'
+  - n
+  - ·
+  - g
+  - r
+  - oh
+  - v
+- name: Officer
+  postcode: '3809'
+  lga: Shire of Cardinia
+  pronunciation: øf·@·s@
+  phonemes:
+  - ø
+  - f
+  - ·
+  - '@'
+  - ·
+  - s
+  - '@'
+- name: Officer South
+  postcode: '3809'
+  lga: Shire of Cardinia
+  pronunciation: øf·@·s@·sow+
+  phonemes:
+  - ø
+  - f
+  - ·
+  - '@'
+  - ·
+  - s
+  - '@'
+  - ·
+  - s
+  - ow
+  - +
+- name: Olinda
+  postcode: '3788'
+  lga: Shire of Yarra Ranges
+  pronunciation: '@·lihnd·@'
+  phonemes:
+  - '@'
+  - ·
+  - l
+  - ih
+  - n
+  - d
+  - ·
+  - '@'
+- name: Ormond
+  postcode: '3204'
+  lga: City of Glen Eira
+  pronunciation: aw·m@nd
+  phonemes:
+  - aw
+  - ·
+  - m
+  - '@'
+  - n
+  - d
+- name: Pakenham
+  postcode: '3810'
+  lga: Shire of Cardinia
+  pronunciation: pæk·@·n@m
+  phonemes:
+  - p
+  - æ
+  - k
+  - ·
+  - '@'
+  - ·
+  - n
+  - '@'
+  - m
+- name: Pakenham South
+  postcode: '3810'
+  lga: Shire of Cardinia
+  pronunciation: pæk·@·n@m·sow+
+  phonemes:
+  - p
+  - æ
+  - k
+  - ·
+  - '@'
+  - ·
+  - n
+  - '@'
+  - m
+  - ·
+  - s
+  - ow
+  - +
+- name: Pakenham Upper
+  postcode: '3810'
+  lga: Shire of Cardinia
+  pronunciation: pæk·@·n@m·uhp·@
+  phonemes:
+  - p
+  - æ
+  - k
+  - ·
+  - '@'
+  - ·
+  - n
+  - '@'
+  - m
+  - ·
+  - uh
+  - p
+  - ·
+  - '@'
+- name: Panton Hill
+  postcode: '3759'
+  lga: Shire of Nillumbik
+  pronunciation: pænt·@n·hihl
+  phonemes:
+  - p
+  - æ
+  - n
+  - t
+  - ·
+  - '@'
+  - n
+  - ·
+  - h
+  - ih
+  - l
+- name: Park Orchards
+  postcode: '3114'
+  lga: City of Manningham
+  pronunciation: pahk·aw¢·@dz
+  phonemes:
+  - p
+  - ah
+  - k
+  - ·
+  - aw
+  - ¢
+  - ·
+  - '@'
+  - d
+  - z
+- name: Parkdale
+  postcode: '3195'
+  lga: City of Kingston
+  pronunciation: pahk·dayl
+  phonemes:
+  - p
+  - ah
+  - k
+  - ·
+  - d
+  - ay
+  - l
+- name: Parkville
+  postcode: '3052'
+  lga: City of Melbourne
+  pronunciation: pahk·vihl
+  phonemes:
+  - p
+  - ah
+  - k
+  - ·
+  - v
+  - ih
+  - l
+- name: Parwan
+  postcode: '3340'
+  lga: City of Melton
+  pronunciation: pah·w@n
+  phonemes:
+  - p
+  - ah
+  - ·
+  - w
+  - '@'
+  - n
+- name: Pascoe Vale
+  postcode: '3044'
+  lga: City of Merri-bek
+  pronunciation: pæs·koh·vayl
+  phonemes:
+  - p
+  - æ
+  - s
+  - ·
+  - k
+  - oh
+  - ·
+  - v
+  - ay
+  - l
+- name: Pascoe Vale South
+  postcode: '3044'
+  lga: City of Merri-bek
+  pronunciation: pæs·koh·vayl·sow+
+  phonemes:
+  - p
+  - æ
+  - s
+  - ·
+  - k
+  - oh
+  - ·
+  - v
+  - ay
+  - l
+  - ·
+  - s
+  - ow
+  - +
+- name: Patterson Lakes
+  postcode: '3197'
+  lga: City of Kingston
+  pronunciation: pæt·@·s@n·layks
+  phonemes:
+  - p
+  - æ
+  - t
+  - ·
+  - '@'
+  - ·
+  - s
+  - '@'
+  - n
+  - ·
+  - l
+  - ay
+  - k
+  - s
+- name: Pearcedale
+  postcode: '3912'
+  lga: City of Casey
+  pronunciation: pee@s·dayl
+  phonemes:
+  - p
+  - ee@
+  - s
+  - ·
+  - d
+  - ay
+  - l
+- name: Pentland Hills
+  postcode: '3341'
+  lga: Shire of Moorabool
+  pronunciation: pehnt·l@nd·hihlz
+  phonemes:
+  - p
+  - eh
+  - n
+  - t
+  - ·
+  - l
+  - '@'
+  - n
+  - d
+  - ·
+  - h
+  - ih
+  - l
+  - z
+- name: Pheasant Creek
+  postcode: '3757'
+  lga: Shire of Murrndindi
+  pronunciation: fehz·@nt·kreek
+  phonemes:
+  - f
+  - eh
+  - z
+  - ·
+  - '@'
+  - n
+  - t
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Plenty
+  postcode: '3090'
+  lga: Shire of Nillumbik
+  pronunciation: plehn·tee
+  phonemes:
+  - p
+  - l
+  - eh
+  - n
+  - ·
+  - t
+  - ee
+- name: Plumpton
+  postcode: '3335'
+  lga: City of Melton
+  pronunciation: pluhmp·t@n
+  phonemes:
+  - p
+  - l
+  - uh
+  - m
+  - p
+  - ·
+  - t
+  - '@'
+  - n
+- name: Point Cook
+  postcode: '3030'
+  lga: City of Wyndham
+  pronunciation: poin(t)·kuuk
+  phonemes:
+  - p
+  - oi
+  - n
+  - t
+  - ·
+  - k
+  - uu
+  - k
+- name: Point Leo
+  postcode: '3916'
+  lga: Shire of Mornington Peninsula
+  pronunciation: poin(t)·lee·oh
+  phonemes:
+  - p
+  - oi
+  - n
+  - t
+  - ·
+  - l
+  - ee
+  - ·
+  - oh
+- name: Point Lonsdale
+  postcode: '3225'
+  lga: Borough of Queenscliff
+  pronunciation: poin(t)·lønz·dayl
+  phonemes:
+  - p
+  - oi
+  - n
+  - t
+  - ·
+  - l
+  - ø
+  - n
+  - z
+  - ·
+  - d
+  - ay
+  - l
+- name: Point Wilson
+  postcode: '3212'
+  lga: City of Greater Geelong
+  pronunciation: poin(t)·wihl·s@n
+  phonemes:
+  - p
+  - oi
+  - n
+  - t
+  - ·
+  - w
+  - ih
+  - l
+  - ·
+  - s
+  - '@'
+  - n
+- name: Port Melbourne
+  postcode: '3207'
+  lga: City of Port Phillip
+  pronunciation: pawt·mehl·b@n
+  phonemes:
+  - p
+  - aw
+  - t
+  - ·
+  - m
+  - eh
+  - l
+  - ·
+  - b
+  - '@'
+  - n
+- name: Portarlington
+  postcode: '3223'
+  lga: City of Greater Geelong
+  pronunciation: pawt·ah·lih£·t@n
+  phonemes:
+  - p
+  - aw
+  - t
+  - ·
+  - ah
+  - ·
+  - l
+  - ih
+  - £
+  - ·
+  - t
+  - '@'
+  - n
+- name: Portsea
+  postcode: '3944'
+  lga: Shire of Mornington Peninsula
+  pronunciation: paw(t)·see
+  phonemes:
+  - p
+  - aw
+  - t
+  - ·
+  - s
+  - ee
+- name: Powelltown
+  postcode: '3797'
+  lga: Shire of Yarra Ranges
+  pronunciation: pow·@l·town
+  phonemes:
+  - p
+  - ow
+  - ·
+  - '@'
+  - l
+  - ·
+  - t
+  - ow
+  - n
+- name: Prahran
+  postcode: '3181'
+  lga: City of Stonnington
+  pronunciation: p@·ræn
+  phonemes:
+  - p
+  - '@'
+  - ·
+  - r
+  - æ
+  - n
+- name: Preston
+  postcode: '3072'
+  lga: City of Darebin
+  pronunciation: prehs·t@n
+  phonemes:
+  - p
+  - r
+  - eh
+  - s
+  - ·
+  - t
+  - '@'
+  - n
+- name: Princes Hill
+  postcode: '3054'
+  lga: City of Yarra
+  pronunciation: prihn·s@s·hihl
+  phonemes:
+  - p
+  - r
+  - ih
+  - n
+  - ·
+  - s
+  - '@'
+  - s
+  - ·
+  - h
+  - ih
+  - l
+- name: Quandong
+  postcode: '3340'
+  lga: City of Wyndham
+  pronunciation: kwø£·dø£
+  phonemes:
+  - k
+  - w
+  - ø
+  - £
+  - ·
+  - d
+  - ø
+  - £
+- name: Queenscliff
+  postcode: '3225'
+  lga: Borough of Queenscliff
+  pronunciation: kweenz·klihf
+  phonemes:
+  - k
+  - w
+  - ee
+  - n
+  - z
+  - ·
+  - k
+  - l
+  - ih
+  - f
+- name: Ravenhall
+  postcode: '3023'
+  lga: City of Melton
+  pronunciation: ray·v@n·hawl
+  phonemes:
+  - r
+  - ay
+  - ·
+  - v
+  - '@'
+  - n
+  - ·
+  - h
+  - aw
+  - l
+- name: Red Hill
+  postcode: '3937'
+  lga: Shire of Mornington Peninsula
+  pronunciation: rehd·hihl
+  phonemes:
+  - r
+  - eh
+  - d
+  - ·
+  - h
+  - ih
+  - l
+- name: Red Hill South
+  postcode: '3937'
+  lga: Shire of Mornington Peninsula
+  pronunciation: rehd·hihl·sow+
+  phonemes:
+  - r
+  - eh
+  - d
+  - ·
+  - h
+  - ih
+  - l
+  - ·
+  - s
+  - ow
+  - +
+- name: Reefton
+  postcode: '3799'
+  lga: Shire of Yarra Ranges
+  pronunciation: reef·t@n
+  phonemes:
+  - r
+  - ee
+  - f
+  - ·
+  - t
+  - '@'
+  - n
+- name: Research
+  postcode: '3095'
+  lga: Shire of Nillumbik
+  pronunciation: ree·sœ¢
+  phonemes:
+  - r
+  - ee
+  - ·
+  - s
+  - œ
+  - ¢
+- name: Reservoir
+  postcode: '3073'
+  lga: City of Darebin
+  pronunciation: rehz·@·vaw
+  phonemes:
+  - r
+  - eh
+  - z
+  - ·
+  - '@'
+  - ·
+  - v
+  - aw
+- name: Rhyll
+  postcode: '3923'
+  lga: Shire of Bass Coast
+  pronunciation: rihl
+  phonemes:
+  - r
+  - ih
+  - l
+- name: Richmond
+  postcode: '3121'
+  lga: City of Yarra
+  pronunciation: rih¢·m@nd
+  phonemes:
+  - r
+  - ih
+  - ¢
+  - ·
+  - m
+  - '@'
+  - n
+  - d
+- name: Riddells Creek
+  postcode: '3431'
+  lga: Shire of Macdeon Ranges
+  pronunciation: rihd·@lz·kreek
+  phonemes:
+  - r
+  - ih
+  - d
+  - ·
+  - '@'
+  - l
+  - z
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Ringwood
+  postcode: '3134'
+  lga: City of Maroondah
+  pronunciation: rih£·wuud
+  phonemes:
+  - r
+  - ih
+  - £
+  - ·
+  - w
+  - uu
+  - d
+- name: Ringwood East
+  postcode: '3135'
+  lga: City of Maroondah
+  pronunciation: rih£·wuud·eest
+  phonemes:
+  - r
+  - ih
+  - £
+  - ·
+  - w
+  - uu
+  - d
+  - ·
+  - ee
+  - s
+  - t
+- name: Ringwood North
+  postcode: '3134'
+  lga: City of Manningham
+  pronunciation: rih£·wuud·naw+
+  phonemes:
+  - r
+  - ih
+  - £
+  - ·
+  - w
+  - uu
+  - d
+  - ·
+  - n
+  - aw
+  - +
+- name: Rippleside
+  postcode: '3215'
+  lga: City of Greater Geelong
+  pronunciation: rihp·@l·siyd
+  phonemes:
+  - r
+  - ih
+  - p
+  - ·
+  - '@'
+  - l
+  - ·
+  - s
+  - iy
+  - d
+- name: Ripponlea
+  postcode: '3185'
+  lga: City of Port Phillip
+  pronunciation: rihp·@n·lee
+  phonemes:
+  - r
+  - ih
+  - p
+  - ·
+  - '@'
+  - n
+  - ·
+  - l
+  - ee
+- name: Rochford
+  postcode: '3442'
+  lga: Shire of Macdeon Ranges
+  pronunciation: rø¢·f@d
+  phonemes:
+  - r
+  - ø
+  - ¢
+  - ·
+  - f
+  - '@'
+  - d
+- name: Rockbank
+  postcode: '3335'
+  lga: City of Melton
+  pronunciation: røk·bay£k
+  phonemes:
+  - r
+  - ø
+  - k
+  - ·
+  - b
+  - ay
+  - £
+  - k
+- name: Romsey
+  postcode: '3434'
+  lga: Shire of Macdeon Ranges
+  pronunciation: rømz·ee
+  phonemes:
+  - r
+  - ø
+  - m
+  - z
+  - ·
+  - ee
+- name: Rosanna
+  postcode: '3084'
+  lga: City of Banyule
+  pronunciation: rohz·æn·@
+  phonemes:
+  - r
+  - oh
+  - z
+  - ·
+  - æ
+  - n
+  - ·
+  - '@'
+- name: Rosebud
+  postcode: '3939'
+  lga: Shire of Mornington Peninsula
+  pronunciation: rohz·buhd
+  phonemes:
+  - r
+  - oh
+  - z
+  - ·
+  - b
+  - uh
+  - d
+- name: Rowsley
+  postcode: '3340'
+  lga: Shire of Moorabool
+  pronunciation: rohs·lee
+  phonemes:
+  - r
+  - oh
+  - s
+  - ·
+  - l
+  - ee
+- name: Rowville
+  postcode: '3178'
+  lga: City of Knox
+  pronunciation: roh·vihl
+  phonemes:
+  - r
+  - oh
+  - ·
+  - v
+  - ih
+  - l
+- name: Roxburgh Park
+  postcode: '3064'
+  lga: City of Hume
+  pronunciation: røks·br@·pahk
+  phonemes:
+  - r
+  - ø
+  - k
+  - s
+  - ·
+  - b
+  - r
+  - '@'
+  - ·
+  - p
+  - ah
+  - k
+- name: Rye
+  postcode: '3941'
+  lga: Shire of Mornington Peninsula
+  pronunciation: riy
+  phonemes:
+  - r
+  - iy
+- name: Rythdale
+  postcode: '3810'
+  lga: Shire of Cardinia
+  pronunciation: riy‡·dayl
+  phonemes:
+  - r
+  - iy
+  - ‡
+  - ·
+  - d
+  - ay
+  - l
+- name: Safety Beach
+  postcode: '3936'
+  lga: Shire of Mornington Peninsula
+  pronunciation: sayf·tee·bee¢
+  phonemes:
+  - s
+  - ay
+  - f
+  - ·
+  - t
+  - ee
+  - ·
+  - b
+  - ee
+  - ¢
+- name: Sanctuary Lakes
+  postcode: '3030'
+  lga: City of Wyndham
+  pronunciation: say£k·$@·ree·layks
+  phonemes:
+  - s
+  - ay
+  - £
+  - k
+  - ·
+  - $
+  - '@'
+  - ·
+  - r
+  - ee
+  - ·
+  - l
+  - ay
+  - k
+  - s
+- name: Sandhurst
+  postcode: '3977'
+  lga: City of Frankston
+  pronunciation: sænd·hœst
+  phonemes:
+  - s
+  - æ
+  - n
+  - d
+  - ·
+  - h
+  - œ
+  - s
+  - t
+- name: Sandringham
+  postcode: '3191'
+  lga: City of Bayside
+  pronunciation: sænj·rih£·(h)@m
+  phonemes:
+  - s
+  - æ
+  - n
+  - j
+  - ·
+  - r
+  - ih
+  - £
+  - ·
+  - h
+  - '@'
+  - m
+- name: Sandstone Island
+  postcode: '3918'
+  lga: French Island Unincorporated
+  pronunciation: sænd·stohn·iyl·l@nd
+  phonemes:
+  - s
+  - æ
+  - n
+  - d
+  - ·
+  - s
+  - t
+  - oh
+  - n
+  - ·
+  - iy
+  - l
+  - ·
+  - l
+  - '@'
+  - n
+  - d
+- name: Sassafras
+  postcode: '3787'
+  lga: City of Knox
+  pronunciation: sæs·@·fræs
+  phonemes:
+  - s
+  - æ
+  - s
+  - ·
+  - '@'
+  - ·
+  - f
+  - r
+  - æ
+  - s
+- name: Scoresby
+  postcode: '3179'
+  lga: City of Knox
+  pronunciation: skawz·bee
+  phonemes:
+  - s
+  - k
+  - aw
+  - z
+  - ·
+  - b
+  - ee
+- name: Seabrook
+  postcode: '3028'
+  lga: City of Hobsons Bay
+  pronunciation: see·bruuk
+  phonemes:
+  - s
+  - ee
+  - ·
+  - b
+  - r
+  - uu
+  - k
+- name: Seaford
+  postcode: '3198'
+  lga: City of Frankston
+  pronunciation: see·f@d
+  phonemes:
+  - s
+  - ee
+  - ·
+  - f
+  - '@'
+  - d
+- name: Seaholme
+  postcode: '3018'
+  lga: City of Hobsons Bay
+  pronunciation: see·hohm
+  phonemes:
+  - s
+  - ee
+  - ·
+  - h
+  - oh
+  - m
+- name: Seddon
+  postcode: '3011'
+  lga: City of Maribyrnong
+  pronunciation: sehd·@n
+  phonemes:
+  - s
+  - eh
+  - d
+  - ·
+  - '@'
+  - n
+- name: Selby
+  postcode: '3159'
+  lga: Shire of Yarra Ranges
+  pronunciation: sehl·bee
+  phonemes:
+  - s
+  - eh
+  - l
+  - ·
+  - b
+  - ee
+- name: Seville
+  postcode: '3139'
+  lga: Shire of Yarra Ranges
+  pronunciation: seh·vihl
+  phonemes:
+  - s
+  - eh
+  - ·
+  - v
+  - ih
+  - l
+- name: Seville East
+  postcode: '3139'
+  lga: Shire of Yarra Ranges
+  pronunciation: seh·vihl·eest
+  phonemes:
+  - s
+  - eh
+  - ·
+  - v
+  - ih
+  - l
+  - ·
+  - ee
+  - s
+  - t
+- name: Sherbrooke
+  postcode: '3789'
+  lga: Shire of Yarra Ranges
+  pronunciation: $œ·bruuk
+  phonemes:
+  - $
+  - œ
+  - ·
+  - b
+  - r
+  - uu
+  - k
+- name: Shoreham
+  postcode: '3916'
+  lga: Shire of Mornington Peninsula
+  pronunciation: $aw·@m
+  phonemes:
+  - $
+  - aw
+  - ·
+  - '@'
+  - m
+- name: Silvan
+  postcode: '3795'
+  lga: Shire of Yarra Ranges
+  pronunciation: sihl·v@n
+  phonemes:
+  - s
+  - ih
+  - l
+  - ·
+  - v
+  - '@'
+  - n
+- name: Silverleaves
+  postcode: '3922'
+  lga: Shire of Bass Coast
+  pronunciation: sihl·v@·leevz
+  phonemes:
+  - s
+  - ih
+  - l
+  - ·
+  - v
+  - '@'
+  - ·
+  - l
+  - ee
+  - v
+  - z
+- name: Skye
+  postcode: '3977'
+  lga: City of Frankston
+  pronunciation: skiy
+  phonemes:
+  - s
+  - k
+  - iy
+- name: Smiths Beach
+  postcode: '3922'
+  lga: Shire of Bass Coast
+  pronunciation: smih+s·bee¢
+  phonemes:
+  - s
+  - m
+  - ih
+  - +
+  - s
+  - ·
+  - b
+  - ee
+  - ¢
+- name: Smiths Gully
+  postcode: '3760'
+  lga: Shire of Nillumbik
+  pronunciation: smih+s·guh·lee
+  phonemes:
+  - s
+  - m
+  - ih
+  - +
+  - s
+  - ·
+  - g
+  - uh
+  - ·
+  - l
+  - ee
+- name: Somers
+  postcode: '3927'
+  lga: Shire of Mornington Peninsula
+  pronunciation: suhm·@z
+  phonemes:
+  - s
+  - uh
+  - m
+  - ·
+  - '@'
+  - z
+- name: Somerton
+  postcode: '3062'
+  lga: City of Hume
+  pronunciation: suhm·@·t@n
+  phonemes:
+  - s
+  - uh
+  - m
+  - ·
+  - '@'
+  - ·
+  - t
+  - '@'
+  - n
+- name: Somerville
+  postcode: '3912'
+  lga: Shire of Mornington Peninsula
+  pronunciation: suhm·@·vihl
+  phonemes:
+  - s
+  - uh
+  - m
+  - ·
+  - '@'
+  - ·
+  - v
+  - ih
+  - l
+- name: Sorrento
+  postcode: '3943'
+  lga: Shire of Mornington Peninsula
+  pronunciation: s@·rehn·toh
+  phonemes:
+  - s
+  - '@'
+  - ·
+  - r
+  - eh
+  - n
+  - ·
+  - t
+  - oh
+- name: South Geelong
+  postcode: '3220'
+  lga: City of Greater Geelong
+  pronunciation: sow+·j@·lø£
+  phonemes:
+  - s
+  - ow
+  - +
+  - ·
+  - j
+  - '@'
+  - ·
+  - l
+  - ø
+  - £
+- name: South Kingsville
+  postcode: '3015'
+  lga: City of Hobsons Bay
+  pronunciation: sow+·kih£z·vihl
+  phonemes:
+  - s
+  - ow
+  - +
+  - ·
+  - k
+  - ih
+  - £
+  - z
+  - ·
+  - v
+  - ih
+  - l
+- name: South Melbourne
+  postcode: '3205'
+  lga: City of Port Phillip
+  pronunciation: sow+·mehl·b@n
+  phonemes:
+  - s
+  - ow
+  - +
+  - ·
+  - m
+  - eh
+  - l
+  - ·
+  - b
+  - '@'
+  - n
+- name: South Morang
+  postcode: '3752'
+  lga: City of Whittlesea
+  pronunciation: sow+·m@·ray£
+  phonemes:
+  - s
+  - ow
+  - +
+  - ·
+  - m
+  - '@'
+  - ·
+  - r
+  - ay
+  - £
+- name: South Wharf
+  postcode: '3006'
+  lga: City of Melbourne
+  pronunciation: sow+·wawf
+  phonemes:
+  - s
+  - ow
+  - +
+  - ·
+  - w
+  - aw
+  - f
+- name: South Yarra
+  postcode: '3141'
+  lga: City of Stonnington
+  pronunciation: sow+·yæ·r@
+  phonemes:
+  - s
+  - ow
+  - +
+  - ·
+  - y
+  - æ
+  - ·
+  - r
+  - '@'
+- name: Southbank
+  postcode: '3006'
+  lga: City of Melbourne
+  pronunciation: sow+·bay£k
+  phonemes:
+  - s
+  - ow
+  - +
+  - ·
+  - b
+  - ay
+  - £
+  - k
+- name: Spotswood
+  postcode: '3015'
+  lga: City of Hobsons Bay
+  pronunciation: spøtz·wuud
+  phonemes:
+  - s
+  - p
+  - ø
+  - t
+  - z
+  - ·
+  - w
+  - uu
+  - d
+- name: Springfield
+  postcode: '3434'
+  lga: Shire of Macdeon Ranges
+  pronunciation: sprih£·feeld
+  phonemes:
+  - s
+  - p
+  - r
+  - ih
+  - £
+  - ·
+  - f
+  - ee
+  - l
+  - d
+- name: Springvale
+  postcode: '3171'
+  lga: City of Greater Dandenong
+  pronunciation: sprih£·vayl
+  phonemes:
+  - s
+  - p
+  - r
+  - ih
+  - £
+  - ·
+  - v
+  - ay
+  - l
+- name: Springvale South
+  postcode: '3172'
+  lga: City of Greater Dandenong
+  pronunciation: sprih£·vayl·sow+
+  phonemes:
+  - s
+  - p
+  - r
+  - ih
+  - £
+  - ·
+  - v
+  - ay
+  - l
+  - ·
+  - s
+  - ow
+  - +
+- name: St Albans
+  postcode: '3021'
+  lga: City of Brimbank
+  pronunciation: s@n·aw(l)·b@nz
+  phonemes:
+  - s
+  - '@'
+  - n
+  - ·
+  - aw
+  - l
+  - ·
+  - b
+  - '@'
+  - n
+  - z
+- name: St Albans Park
+  postcode: '3219'
+  lga: City of Greater Geelong
+  pronunciation: s@n·aw(l)·b@nz·pahk
+  phonemes:
+  - s
+  - '@'
+  - n
+  - ·
+  - aw
+  - l
+  - ·
+  - b
+  - '@'
+  - n
+  - z
+  - ·
+  - p
+  - ah
+  - k
+- name: St Andrews
+  postcode: '3761'
+  lga: Shire of Nillumbik
+  pronunciation: s@n·ænj·rewz
+  phonemes:
+  - s
+  - '@'
+  - n
+  - ·
+  - æ
+  - n
+  - j
+  - ·
+  - r
+  - ew
+  - z
+- name: St Andrews Beach
+  postcode: '3941'
+  lga: Shire of Mornington Peninsula
+  pronunciation: s@n·ænj·rewz·bee¢
+  phonemes:
+  - s
+  - '@'
+  - n
+  - ·
+  - æ
+  - n
+  - j
+  - ·
+  - r
+  - ew
+  - z
+  - ·
+  - b
+  - ee
+  - ¢
+- name: St Helena
+  postcode: '3088'
+  lga: City of Banyule
+  pronunciation: s@n·t@·lee·n@
+  phonemes:
+  - s
+  - '@'
+  - n
+  - ·
+  - t
+  - '@'
+  - ·
+  - l
+  - ee
+  - ·
+  - n
+  - '@'
+- name: St Kilda
+  postcode: '3182'
+  lga: City of Port Phillip
+  pronunciation: s@n·kihl·duh
+  phonemes:
+  - s
+  - '@'
+  - n
+  - ·
+  - k
+  - ih
+  - l
+  - ·
+  - d
+  - uh
+- name: St Kilda East
+  postcode: '3183'
+  lga: City of Port Phillip
+  pronunciation: s@n·kihl·duh·eest
+  phonemes:
+  - s
+  - '@'
+  - n
+  - ·
+  - k
+  - ih
+  - l
+  - ·
+  - d
+  - uh
+  - ·
+  - ee
+  - s
+  - t
+- name: St Kilda West
+  postcode: '3182'
+  lga: City of Port Phillip
+  pronunciation: s@n·kihl·duh·wehst
+  phonemes:
+  - s
+  - '@'
+  - n
+  - ·
+  - k
+  - ih
+  - l
+  - ·
+  - d
+  - uh
+  - ·
+  - w
+  - eh
+  - s
+  - t
+- name: St Leondards
+  postcode: '3223'
+  lga: City of Greater Geelong
+  pronunciation: s@n·lehn·@dz
+  phonemes:
+  - s
+  - '@'
+  - n
+  - ·
+  - l
+  - eh
+  - n
+  - ·
+  - '@'
+  - d
+  - z
+- name: Staughton Vale
+  postcode: '3340'
+  lga: City of Greater Geelong
+  pronunciation: staw·t@n·vayl
+  phonemes:
+  - s
+  - t
+  - aw
+  - ·
+  - t
+  - '@'
+  - n
+  - ·
+  - v
+  - ay
+  - l
+- name: Steels Creek
+  postcode: '3775'
+  lga: Shire of Yarra Ranges
+  pronunciation: steelz·kreek
+  phonemes:
+  - s
+  - t
+  - ee
+  - l
+  - z
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Strathewen
+  postcode: '3099'
+  lga: Shire of Nillumbik
+  pronunciation: s¢ræ+·ew·@n
+  phonemes:
+  - s
+  - ¢
+  - r
+  - æ
+  - +
+  - ·
+  - ew
+  - ·
+  - '@'
+  - n
+- name: Strathmore
+  postcode: '3041'
+  lga: City of Moonee Valley
+  pronunciation: s¢æ+·maw
+  phonemes:
+  - s
+  - ¢
+  - æ
+  - +
+  - ·
+  - m
+  - aw
+- name: Strathmore Heights
+  postcode: '3041'
+  lga: City of Moonee Valley
+  pronunciation: s¢æ+·maw·hiyts
+  phonemes:
+  - s
+  - ¢
+  - æ
+  - +
+  - ·
+  - m
+  - aw
+  - ·
+  - h
+  - iy
+  - t
+  - s
+- name: Strathtulloh
+  postcode: '3338'
+  lga: City of Melton
+  pronunciation: s¢æ+·tuhl·@
+  phonemes:
+  - s
+  - ¢
+  - æ
+  - +
+  - ·
+  - t
+  - uh
+  - l
+  - ·
+  - '@'
+- name: Summerlands
+  postcode: '3922'
+  lga: Shire of Bass Coast
+  pronunciation: suhm·@·lændz
+  phonemes:
+  - s
+  - uh
+  - m
+  - ·
+  - '@'
+  - ·
+  - l
+  - æ
+  - n
+  - d
+  - z
+- name: Sunbury
+  postcode: '3429'
+  lga: City of Hume
+  pronunciation: suhn·bree
+  phonemes:
+  - s
+  - uh
+  - n
+  - ·
+  - b
+  - r
+  - ee
+- name: Sunderland Bay
+  postcode: '3922'
+  lga: Shire of Bass Coast
+  pronunciation: suhnd·@·l@nd·bay
+  phonemes:
+  - s
+  - uh
+  - n
+  - d
+  - ·
+  - '@'
+  - ·
+  - l
+  - '@'
+  - n
+  - d
+  - ·
+  - b
+  - ay
+- name: Sunset Strip
+  postcode: '3922'
+  lga: Shire of Bass Coast
+  pronunciation: suhn·seht·s¢rihp
+  phonemes:
+  - s
+  - uh
+  - n
+  - ·
+  - s
+  - eh
+  - t
+  - ·
+  - s
+  - ¢
+  - r
+  - ih
+  - p
+- name: Sunshine
+  postcode: '3020'
+  lga: City of Brimbank
+  pronunciation: suhn·$iyn
+  phonemes:
+  - s
+  - uh
+  - n
+  - ·
+  - $
+  - iy
+  - n
+- name: Sunshine North
+  postcode: '3020'
+  lga: City of Brimbank
+  pronunciation: suhn·$iyn·naw+
+  phonemes:
+  - s
+  - uh
+  - n
+  - ·
+  - $
+  - iy
+  - n
+  - ·
+  - n
+  - aw
+  - +
+- name: Sunshine West
+  postcode: '3020'
+  lga: City of Brimbank
+  pronunciation: suhn·$iyn·wehst
+  phonemes:
+  - s
+  - uh
+  - n
+  - ·
+  - $
+  - iy
+  - n
+  - ·
+  - w
+  - eh
+  - s
+  - t
+- name: Surf Beach
+  postcode: '3922'
+  lga: Shire of Bass Coast
+  pronunciation: sœf·bee¢
+  phonemes:
+  - s
+  - œ
+  - f
+  - ·
+  - b
+  - ee
+  - ¢
+- name: Surrey Hills
+  postcode: '3127'
+  lga: City of Boroondara
+  pronunciation: suh·ree·hihlz
+  phonemes:
+  - s
+  - uh
+  - ·
+  - r
+  - ee
+  - ·
+  - h
+  - ih
+  - l
+  - z
+- name: Swan Bay
+  postcode: '3225'
+  lga: City of Greater Geelong
+  pronunciation: swøn·bay
+  phonemes:
+  - s
+  - w
+  - ø
+  - n
+  - ·
+  - b
+  - ay
+- name: Swan Island
+  postcode: '3225'
+  lga: Borough of Queenscliff
+  pronunciation: swøn·iyl·@nd
+  phonemes:
+  - s
+  - w
+  - ø
+  - n
+  - ·
+  - iy
+  - l
+  - ·
+  - '@'
+  - n
+  - d
+- name: Sydenham
+  postcode: '3037'
+  lga: City of Brimbank
+  pronunciation: sihd·n@m
+  phonemes:
+  - s
+  - ih
+  - d
+  - ·
+  - n
+  - '@'
+  - m
+- name: Tankerton
+  postcode: '3921'
+  lga: French Island Unincorporated
+  pronunciation: tay£k·@·t@n
+  phonemes:
+  - t
+  - ay
+  - £
+  - k
+  - ·
+  - '@'
+  - ·
+  - t
+  - '@'
+  - n
+- name: Tarneit
+  postcode: '3029'
+  lga: City of Wyndham
+  pronunciation: tah·neet
+  phonemes:
+  - t
+  - ah
+  - ·
+  - n
+  - ee
+  - t
+- name: Tarrawarra
+  postcode: '3775'
+  lga: Shire of Yarra Ranges
+  pronunciation: tæ·r@·wø·r@
+  phonemes:
+  - t
+  - æ
+  - ·
+  - r
+  - '@'
+  - ·
+  - w
+  - ø
+  - ·
+  - r
+  - '@'
+- name: Taylors Hill
+  postcode: '3037'
+  lga: City of Melton
+  pronunciation: tay·l@z·hihl
+  phonemes:
+  - t
+  - ay
+  - ·
+  - l
+  - '@'
+  - z
+  - ·
+  - h
+  - ih
+  - l
+- name: Taylors Lakes
+  postcode: '3038'
+  lga: City of Brimbank
+  pronunciation: tay·l@z·layks
+  phonemes:
+  - t
+  - ay
+  - ·
+  - l
+  - '@'
+  - z
+  - ·
+  - l
+  - ay
+  - k
+  - s
+- name: Tecoma
+  postcode: '3160'
+  lga: Shire of Yarra Ranges
+  pronunciation: t@·kohm·@
+  phonemes:
+  - t
+  - '@'
+  - ·
+  - k
+  - oh
+  - m
+  - ·
+  - '@'
+- name: Templestowe
+  postcode: '3106'
+  lga: City of Manningham
+  pronunciation: tehmp·@l·stoh
+  phonemes:
+  - t
+  - eh
+  - m
+  - p
+  - ·
+  - '@'
+  - l
+  - ·
+  - s
+  - t
+  - oh
+- name: Templestowe Lower
+  postcode: '3107'
+  lga: City of Manningham
+  pronunciation: tehmp·@l·stoh·loh·w@
+  phonemes:
+  - t
+  - eh
+  - m
+  - p
+  - ·
+  - '@'
+  - l
+  - ·
+  - s
+  - t
+  - oh
+  - ·
+  - l
+  - oh
+  - ·
+  - w
+  - '@'
+- name: The Basin
+  postcode: '3154'
+  lga: City of Knox
+  pronunciation: ‡@·bay·s@n
+  phonemes:
+  - ‡
+  - '@'
+  - ·
+  - b
+  - ay
+  - ·
+  - s
+  - '@'
+  - n
+- name: The Patch
+  postcode: '3792'
+  lga: Shire of Yarra Ranges
+  pronunciation: ‡@·pæ¢
+  phonemes:
+  - ‡
+  - '@'
+  - ·
+  - p
+  - æ
+  - ¢
+- name: Thomastown
+  postcode: '3074'
+  lga: City of Whittlesea
+  pronunciation: tøm·@s·town
+  phonemes:
+  - t
+  - ø
+  - m
+  - ·
+  - '@'
+  - s
+  - ·
+  - t
+  - ow
+  - n
+- name: Thomson
+  postcode: '3219'
+  lga: City of Greater Geelong
+  pronunciation: tøm·s@n
+  phonemes:
+  - t
+  - ø
+  - m
+  - ·
+  - s
+  - '@'
+  - n
+- name: Thornbury
+  postcode: '3071'
+  lga: City of Darebin
+  pronunciation: +awn·bree
+  phonemes:
+  - +
+  - aw
+  - n
+  - ·
+  - b
+  - r
+  - ee
+- name: Thornhill Park
+  postcode: '3335'
+  lga: City of Melton
+  pronunciation: +awn·hihl·pahk
+  phonemes:
+  - +
+  - aw
+  - n
+  - ·
+  - h
+  - ih
+  - l
+  - ·
+  - p
+  - ah
+  - k
+- name: Three Bridges
+  postcode: '3797'
+  lga: Shire of Yarra Ranges
+  pronunciation: +ree·brij·@z
+  phonemes:
+  - +
+  - r
+  - ee
+  - ·
+  - b
+  - r
+  - j
+  - ·
+  - '@'
+  - z
+- name: Tonimbuk
+  postcode: '3815'
+  lga: Shire of Cardinia
+  pronunciation: tøn·@m·buuk
+  phonemes:
+  - t
+  - ø
+  - n
+  - ·
+  - '@'
+  - m
+  - ·
+  - b
+  - uu
+  - k
+- name: Toolangi
+  postcode: '3777'
+  lga: Shire of Murrndindi
+  pronunciation: t@·læ£·ee
+  phonemes:
+  - t
+  - '@'
+  - ·
+  - l
+  - æ
+  - £
+  - ·
+  - ee
+- name: Toolern Vale
+  postcode: '3337'
+  lga: City of Melton
+  pronunciation: tewl·œn·vayl
+  phonemes:
+  - t
+  - ew
+  - l
+  - ·
+  - œ
+  - n
+  - ·
+  - v
+  - ay
+  - l
+- name: Tooradin
+  postcode: '3980'
+  lga: City of Casey
+  pronunciation: tu@·r@·d@n
+  phonemes:
+  - t
+  - u@
+  - ·
+  - r
+  - '@'
+  - ·
+  - d
+  - '@'
+  - n
+- name: Toorak
+  postcode: '3142'
+  lga: City of Stonnington
+  pronunciation: tu@·ræk
+  phonemes:
+  - t
+  - u@
+  - ·
+  - r
+  - æ
+  - k
+- name: Tootgarook
+  postcode: '3941'
+  lga: Shire of Mornington Peninsula
+  pronunciation: tuut·g@·ruuk
+  phonemes:
+  - t
+  - uu
+  - t
+  - ·
+  - g
+  - '@'
+  - ·
+  - r
+  - uu
+  - k
+- name: Torquay
+  postcode: '3228'
+  lga: Shire of Surf Coast
+  pronunciation: taw·kee
+  phonemes:
+  - t
+  - aw
+  - ·
+  - k
+  - ee
+- name: Tottenham
+  postcode: '3012'
+  lga: City of Maribyrnong
+  pronunciation: tøt·@n·@m
+  phonemes:
+  - t
+  - ø
+  - t
+  - ·
+  - '@'
+  - n
+  - ·
+  - '@'
+  - m
+- name: Travancore
+  postcode: '3032'
+  lga: City of Moonee Valley
+  pronunciation: ¢rayv·@n·kaw
+  phonemes:
+  - ¢
+  - r
+  - ay
+  - v
+  - ·
+  - '@'
+  - n
+  - ·
+  - k
+  - aw
+- name: Tremont
+  postcode: '3785'
+  lga: Shire of Yarra Ranges
+  pronunciation: ¢r@·mønt
+  phonemes:
+  - ¢
+  - r
+  - '@'
+  - ·
+  - m
+  - ø
+  - n
+  - t
+- name: Truganina
+  postcode: '3029'
+  lga: City of Melton
+  pronunciation: ¢ruhg·@·niyn·@
+  phonemes:
+  - ¢
+  - r
+  - uh
+  - g
+  - ·
+  - '@'
+  - ·
+  - n
+  - iy
+  - n
+  - ·
+  - '@'
+- name: Tuerong
+  postcode: '3915'
+  lga: Shire of Mornington Peninsula
+  pronunciation: tew·rø£
+  phonemes:
+  - t
+  - ew
+  - ·
+  - r
+  - ø
+  - £
+- name: Tullamarine
+  postcode: '3043'
+  lga: City of Hume
+  pronunciation: tuhl·@·m@·reen
+  phonemes:
+  - t
+  - uh
+  - l
+  - ·
+  - '@'
+  - ·
+  - m
+  - '@'
+  - ·
+  - r
+  - ee
+  - n
+- name: Tyabb
+  postcode: '3913'
+  lga: Shire of Mornington Peninsula
+  pronunciation: tiy·æb
+  phonemes:
+  - t
+  - iy
+  - ·
+  - æ
+  - b
+- name: Tynong
+  postcode: '3813'
+  lga: Shire of Cardinia
+  pronunciation: tiy·nø£
+  phonemes:
+  - t
+  - iy
+  - ·
+  - n
+  - ø
+  - £
+- name: Tynong North
+  postcode: '3813'
+  lga: Shire of Cardinia
+  pronunciation: tiy·nø£·naw+
+  phonemes:
+  - t
+  - iy
+  - ·
+  - n
+  - ø
+  - £
+  - ·
+  - n
+  - aw
+  - +
+- name: Upper Ferntree Gully
+  postcode: '3156'
+  lga: City of Knox
+  pronunciation: uhp·@·fœn¢·ree·guh·lee
+  phonemes:
+  - uh
+  - p
+  - ·
+  - '@'
+  - ·
+  - f
+  - œ
+  - n
+  - ¢
+  - ·
+  - r
+  - ee
+  - ·
+  - g
+  - uh
+  - ·
+  - l
+  - ee
+- name: Upper Plenty
+  postcode: '3756'
+  lga: Shire of Mitchell
+  pronunciation: uhp·@·plehn·tee
+  phonemes:
+  - uh
+  - p
+  - ·
+  - '@'
+  - ·
+  - p
+  - l
+  - eh
+  - n
+  - ·
+  - t
+  - ee
+- name: Upwey
+  postcode: '3158'
+  lga: Shire of Yarra Ranges
+  pronunciation: uhp·way
+  phonemes:
+  - uh
+  - p
+  - ·
+  - w
+  - ay
+- name: Ventnor
+  postcode: '3922'
+  lga: Shire of Bass Coast
+  pronunciation: vehnt·naw
+  phonemes:
+  - v
+  - eh
+  - n
+  - t
+  - ·
+  - n
+  - aw
+- name: Vermont
+  postcode: '3133'
+  lga: City of Maroondah
+  pronunciation: vœ·mønt
+  phonemes:
+  - v
+  - œ
+  - ·
+  - m
+  - ø
+  - n
+  - t
+- name: Vermont South
+  postcode: '3133'
+  lga: City of Whitehorse
+  pronunciation: vœ·mønt·sow+
+  phonemes:
+  - v
+  - œ
+  - ·
+  - m
+  - ø
+  - n
+  - t
+  - ·
+  - s
+  - ow
+  - +
+- name: Vervale
+  postcode: '3814'
+  lga: Shire of Cardinia
+  pronunciation: vœ·vayl
+  phonemes:
+  - v
+  - œ
+  - ·
+  - v
+  - ay
+  - l
+- name: Viewbank
+  postcode: '3084'
+  lga: City of Banyule
+  pronunciation: vyew·bay£k
+  phonemes:
+  - v
+  - y
+  - ew
+  - ·
+  - b
+  - ay
+  - £
+  - k
+- name: Wallan
+  postcode: '3756'
+  lga: Shire of Mitchell
+  pronunciation: wøl·@n
+  phonemes:
+  - w
+  - ø
+  - l
+  - ·
+  - '@'
+  - n
+- name: Wallington
+  postcode: '3222'
+  lga: City of Greater Geelong
+  pronunciation: wøl·ih£·t@n
+  phonemes:
+  - w
+  - ø
+  - l
+  - ·
+  - ih
+  - £
+  - ·
+  - t
+  - '@'
+  - n
+- name: Wandana Heights
+  postcode: '3216'
+  lga: City of Greater Geelong
+  pronunciation: wøn·dah·n@·hiyts
+  phonemes:
+  - w
+  - ø
+  - n
+  - ·
+  - d
+  - ah
+  - ·
+  - n
+  - '@'
+  - ·
+  - h
+  - iy
+  - t
+  - s
+- name: Wandin East
+  postcode: '3139'
+  lga: Shire of Yarra Ranges
+  pronunciation: wøn·d@n·eest
+  phonemes:
+  - w
+  - ø
+  - n
+  - ·
+  - d
+  - '@'
+  - n
+  - ·
+  - ee
+  - s
+  - t
+- name: Wandin North
+  postcode: '3139'
+  lga: Shire of Yarra Ranges
+  pronunciation: wøn·d@n·naw+
+  phonemes:
+  - w
+  - ø
+  - n
+  - ·
+  - d
+  - '@'
+  - n
+  - ·
+  - n
+  - aw
+  - +
+- name: Wandong
+  postcode: '3758'
+  lga: Shire of Mitchell
+  pronunciation: wø£·dø£
+  phonemes:
+  - w
+  - ø
+  - £
+  - ·
+  - d
+  - ø
+  - £
+- name: Wantirna
+  postcode: '3152'
+  lga: City of Knox
+  pronunciation: wøn·tœn·@
+  phonemes:
+  - w
+  - ø
+  - n
+  - ·
+  - t
+  - œ
+  - n
+  - ·
+  - '@'
+- name: Wantirna South
+  postcode: '3152'
+  lga: City of Knox
+  pronunciation: wøn·tœn·@·sow+
+  phonemes:
+  - w
+  - ø
+  - n
+  - ·
+  - t
+  - œ
+  - n
+  - ·
+  - '@'
+  - ·
+  - s
+  - ow
+  - +
+- name: Warburton
+  postcode: '3799'
+  lga: Shire of Yarra Ranges
+  pronunciation: waw·b@·t@n
+  phonemes:
+  - w
+  - aw
+  - ·
+  - b
+  - '@'
+  - ·
+  - t
+  - '@'
+  - n
+- name: Warneet
+  postcode: '3980'
+  lga: City of Casey
+  pronunciation: waw·neet
+  phonemes:
+  - w
+  - aw
+  - ·
+  - n
+  - ee
+  - t
+- name: Warrandyte
+  postcode: '3113'
+  lga: City of Manningham
+  pronunciation: wø·r@n·diyt
+  phonemes:
+  - w
+  - ø
+  - ·
+  - r
+  - '@'
+  - n
+  - ·
+  - d
+  - iy
+  - t
+- name: Warrandyte South
+  postcode: '3134'
+  lga: City of Manningham
+  pronunciation: wø·r@n·diyt·sow+
+  phonemes:
+  - w
+  - ø
+  - ·
+  - r
+  - '@'
+  - n
+  - ·
+  - d
+  - iy
+  - t
+  - ·
+  - s
+  - ow
+  - +
+- name: Warranwood
+  postcode: '3134'
+  lga: City of Maroondah
+  pronunciation: wø·r@n·wuud
+  phonemes:
+  - w
+  - ø
+  - ·
+  - r
+  - '@'
+  - n
+  - ·
+  - w
+  - uu
+  - d
+- name: Waterford Park
+  postcode: '3658'
+  lga: Shire of Mitchell
+  pronunciation: wawt·@·f@d·pahk
+  phonemes:
+  - w
+  - aw
+  - t
+  - ·
+  - '@'
+  - ·
+  - f
+  - '@'
+  - d
+  - ·
+  - p
+  - ah
+  - k
+- name: Waterways
+  postcode: '3195'
+  lga: City of Kingston
+  pronunciation: waw·t@·wayz
+  phonemes:
+  - w
+  - aw
+  - ·
+  - t
+  - '@'
+  - ·
+  - w
+  - ay
+  - z
+- name: Watsonia
+  postcode: '3087'
+  lga: City of Banyule
+  pronunciation: wøts·ohn·ee·@
+  phonemes:
+  - w
+  - ø
+  - t
+  - s
+  - ·
+  - oh
+  - n
+  - ·
+  - ee
+  - ·
+  - '@'
+- name: Watsonia North
+  postcode: '3087'
+  lga: City of Banyule
+  pronunciation: wøts·ohn·ee·@·naw+
+  phonemes:
+  - w
+  - ø
+  - t
+  - s
+  - ·
+  - oh
+  - n
+  - ·
+  - ee
+  - ·
+  - '@'
+  - ·
+  - n
+  - aw
+  - +
+- name: Watsons Creek
+  postcode: '3097'
+  lga: Shire of Nillumbik
+  pronunciation: wøts·@nz·kreek
+  phonemes:
+  - w
+  - ø
+  - t
+  - s
+  - ·
+  - '@'
+  - n
+  - z
+  - ·
+  - k
+  - r
+  - ee
+  - k
+- name: Wattle Glen
+  postcode: '3096'
+  lga: Shire of Nillumbik
+  pronunciation: wøt·@l·glehn
+  phonemes:
+  - w
+  - ø
+  - t
+  - ·
+  - '@'
+  - l
+  - ·
+  - g
+  - l
+  - eh
+  - n
+- name: Waurn Ponds
+  postcode: '3216'
+  lga: City of Greater Geelong
+  pronunciation: wawn·pøndz
+  phonemes:
+  - w
+  - aw
+  - n
+  - ·
+  - p
+  - ø
+  - n
+  - d
+  - z
+- name: Weir Views
+  postcode: '3338'
+  lga: City of Melton
+  pronunciation: wee@·vyewz
+  phonemes:
+  - w
+  - ee@
+  - ·
+  - v
+  - y
+  - ew
+  - z
+- name: Werribee
+  postcode: '3030'
+  lga: City of Wyndham
+  pronunciation: weh·r@·bee
+  phonemes:
+  - w
+  - eh
+  - ·
+  - r
+  - '@'
+  - ·
+  - b
+  - ee
+- name: Werribee South
+  postcode: '3030'
+  lga: City of Wyndham
+  pronunciation: weh·r@·bee·sow+
+  phonemes:
+  - w
+  - eh
+  - ·
+  - r
+  - '@'
+  - ·
+  - b
+  - ee
+  - ·
+  - s
+  - ow
+  - +
+- name: Wesburn
+  postcode: '3799'
+  lga: Shire of Yarra Ranges
+  pronunciation: wehs·bœn
+  phonemes:
+  - w
+  - eh
+  - s
+  - ·
+  - b
+  - œ
+  - n
+- name: West Footscray
+  postcode: '3012'
+  lga: City of Maribyrnong
+  pronunciation: wehst·fuutz·gray
+  phonemes:
+  - w
+  - eh
+  - s
+  - t
+  - ·
+  - f
+  - uu
+  - t
+  - z
+  - ·
+  - g
+  - r
+  - ay
+- name: West Melbourne
+  postcode: '3003'
+  lga: City of Melbourne
+  pronunciation: wehst·mehl·b@n
+  phonemes:
+  - w
+  - eh
+  - s
+  - t
+  - ·
+  - m
+  - eh
+  - l
+  - ·
+  - b
+  - '@'
+  - n
+- name: Westmeadows
+  postcode: '3049'
+  lga: City of Hume
+  pronunciation: wehst·mehd·ohz
+  phonemes:
+  - w
+  - eh
+  - s
+  - t
+  - ·
+  - m
+  - eh
+  - d
+  - ·
+  - oh
+  - z
+- name: Wheelers Hill
+  postcode: '3150'
+  lga: City of Monash
+  pronunciation: weel·@z·hihl
+  phonemes:
+  - w
+  - ee
+  - l
+  - ·
+  - '@'
+  - z
+  - ·
+  - h
+  - ih
+  - l
+- name: Whittington
+  postcode: '3219'
+  lga: City of Greater Geelong
+  pronunciation: wiht·ih£·t@n
+  phonemes:
+  - w
+  - ih
+  - t
+  - ·
+  - ih
+  - £
+  - ·
+  - t
+  - '@'
+  - n
+- name: Whittlesea
+  postcode: '3757'
+  lga: City of Whittlesea
+  pronunciation: wiht·@l·see
+  phonemes:
+  - w
+  - ih
+  - t
+  - ·
+  - '@'
+  - l
+  - ·
+  - s
+  - ee
+- name: Wildwood
+  postcode: '3429'
+  lga: City of Hume
+  pronunciation: wiyld·wuud
+  phonemes:
+  - w
+  - iy
+  - l
+  - d
+  - ·
+  - w
+  - uu
+  - d
+- name: Williams Landing
+  postcode: '3027'
+  lga: City of Wyndham
+  pronunciation: wihl·y@mz·lænd·ih£
+  phonemes:
+  - w
+  - ih
+  - l
+  - ·
+  - y
+  - '@'
+  - m
+  - z
+  - ·
+  - l
+  - æ
+  - n
+  - d
+  - ·
+  - ih
+  - £
+- name: Williamstown
+  postcode: '3016'
+  lga: City of Hobsons Bay
+  pronunciation: wihl·y@mz·town
+  phonemes:
+  - w
+  - ih
+  - l
+  - ·
+  - y
+  - '@'
+  - m
+  - z
+  - ·
+  - t
+  - ow
+  - n
+- name: Williamstown North
+  postcode: '3016'
+  lga: City of Hobsons Bay
+  pronunciation: wihl·y@mz·town·naw+
+  phonemes:
+  - w
+  - ih
+  - l
+  - ·
+  - y
+  - '@'
+  - m
+  - z
+  - ·
+  - t
+  - ow
+  - n
+  - ·
+  - n
+  - aw
+  - +
+- name: Wimbledon Heights
+  postcode: '3922'
+  lga: Shire of Bass Coast
+  pronunciation: wihm·b@l·d@n·hiyts
+  phonemes:
+  - w
+  - ih
+  - m
+  - ·
+  - b
+  - '@'
+  - l
+  - ·
+  - d
+  - '@'
+  - n
+  - ·
+  - h
+  - iy
+  - t
+  - s
+- name: Windsor
+  postcode: '3181'
+  lga: City of Stonnington
+  pronunciation: wihnz·@
+  phonemes:
+  - w
+  - ih
+  - n
+  - z
+  - ·
+  - '@'
+- name: Wollert
+  postcode: '3750'
+  lga: City of Whittlesea
+  pronunciation: wøl·œt
+  phonemes:
+  - w
+  - ø
+  - l
+  - ·
+  - œ
+  - t
+- name: Wonga Park
+  postcode: '3115'
+  lga: City of Manningham
+  pronunciation: wø£·g@·pahk
+  phonemes:
+  - w
+  - ø
+  - £
+  - ·
+  - g
+  - '@'
+  - ·
+  - p
+  - ah
+  - k
+- name: Woodstock
+  postcode: '3755'
+  lga: City of Whittlesea
+  pronunciation: wuud·støk
+  phonemes:
+  - w
+  - uu
+  - d
+  - ·
+  - s
+  - t
+  - ø
+  - k
+- name: Woori Yallock
+  postcode: '3139'
+  lga: Shire of Yarra Ranges
+  pronunciation: waw·ree·yæl·@k
+  phonemes:
+  - w
+  - aw
+  - ·
+  - r
+  - ee
+  - ·
+  - y
+  - æ
+  - l
+  - ·
+  - '@'
+  - k
+- name: Wyndham Vale
+  postcode: '3024'
+  lga: City of Wyndham
+  pronunciation: wihn·d@m·vayl
+  phonemes:
+  - w
+  - ih
+  - n
+  - ·
+  - d
+  - '@'
+  - m
+  - ·
+  - v
+  - ay
+  - l
+- name: Yallambie
+  postcode: '3085'
+  lga: City of Banyule
+  pronunciation: y@·læm·bee
+  phonemes:
+  - y
+  - '@'
+  - ·
+  - l
+  - æ
+  - m
+  - ·
+  - b
+  - ee
+- name: Yan Yean
+  postcode: '3755'
+  lga: City of Whittlesea
+  pronunciation: yæn·yeen
+  phonemes:
+  - y
+  - æ
+  - n
+  - ·
+  - y
+  - ee
+  - n
+- name: Yannathan
+  postcode: '3894'
+  lga: Shire of Cardinia
+  pronunciation: yæn·@·+@n
+  phonemes:
+  - y
+  - æ
+  - n
+  - ·
+  - '@'
+  - ·
+  - +
+  - '@'
+  - n
+- name: Yarra Glen
+  postcode: '3775'
+  lga: Shire of Yarra Ranges
+  pronunciation: yæ·r@·glehn
+  phonemes:
+  - y
+  - æ
+  - ·
+  - r
+  - '@'
+  - ·
+  - g
+  - l
+  - eh
+  - n
+- name: Yarra Junction
+  postcode: '3797'
+  lga: Shire of Yarra Ranges
+  pronunciation: yæ·r@·juh£k·$@n
+  phonemes:
+  - y
+  - æ
+  - ·
+  - r
+  - '@'
+  - ·
+  - j
+  - uh
+  - £
+  - k
+  - ·
+  - $
+  - '@'
+  - n
+- name: Yarrambat
+  postcode: '3091'
+  lga: Shire of Nillumbik
+  pronunciation: yæ·r@m·bæt
+  phonemes:
+  - y
+  - æ
+  - ·
+  - r
+  - '@'
+  - m
+  - ·
+  - b
+  - æ
+  - t
+- name: Yarraville
+  postcode: '3013'
+  lga: City of Maribyrnong
+  pronunciation: yæ·r@·vihl
+  phonemes:
+  - y
+  - æ
+  - ·
+  - r
+  - '@'
+  - ·
+  - v
+  - ih
+  - l
+- name: Yellingbo
+  postcode: '3139'
+  lga: Shire of Yarra Ranges
+  pronunciation: yeh·lih£·boh
+  phonemes:
+  - y
+  - eh
+  - ·
+  - l
+  - ih
+  - £
+  - ·
+  - b
+  - oh
+- name: Yering
+  postcode: '3770'
+  lga: Shire of Yarra Ranges
+  pronunciation: yeh·rih£
+  phonemes:
+  - y
+  - eh
+  - ·
+  - r
+  - ih
+  - £
+- name: Yuroke
+  postcode: '3063'
+  lga: City of Hume
+  pronunciation: yew·roh·kee
+  phonemes:
+  - y
+  - ew
+  - ·
+  - r
+  - oh
+  - ·
+  - k
+  - ee
