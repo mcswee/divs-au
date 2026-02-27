@@ -962,6 +962,8 @@ tr[id^="letter-"] {
     gap: 4px 12px;
     margin: 10px 0 0;
     font-size: 0.9rem;
+    background-color: var(--accent);
+    border-top: 1px solid var(--text-highlight);
 }
 
 .phoneme-entry, .syllable-divider {
@@ -983,6 +985,7 @@ tr[id^="letter-"] {
     margin: 0;
     align-self: center;
     color: var(--text-main);
+    font-style: normal;
 }
 
 /* Make the syllable break look distinct */
