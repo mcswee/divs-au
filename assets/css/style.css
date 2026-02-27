@@ -958,11 +958,6 @@ tr[id^="letter-"] {
     flex-direction: column;
 }
 
-.pronunciation-details {
-    background-color: var(--accent);
-    border-top: 1px solid var(--text-highlight);
-}
-
 .pronunciation-details dl {
     display: grid;
     grid-template-columns: auto 1fr;
