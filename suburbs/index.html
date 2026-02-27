@@ -19,7 +19,7 @@ extra_scripts: |
    target_id="suburb-list"
 %}
 
-<section class="page-element suburb-grid js-filter-grid" id="suburb-list">
+<section class="page-element card-grid suburbs js-filter-grid" id="suburb-list">
   {% assign current_letter = "" %}
   {% for suburb in site.data.suburbs %}
     {% assign first_letter = suburb.name | slice: 0 | downcase %}
