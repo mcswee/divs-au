@@ -3,10 +3,11 @@
     <label for="{{ include.search_id | default: 'page-search' }}" class="sr-only">
       {{ include.label | default: 'Search this list' }}
     </label>
-    <input type="text" 
+    <input type="search" 
            id="{{ include.search_id | default: 'page-search' }}" 
            class="js-filter-input" 
-           placeholder="{{ include.placeholder | default: 'Search...' }}">
+           placeholder="{{ include.placeholder | default: 'Search...' }}"
+           autocomplete="off">
     <button type="button" class="js-filter-clear" hidden aria-label="Clear search">&times;</button>
   </div>
   
