@@ -18,7 +18,7 @@ extra_scripts: |
    item_name="suburbs" 
 %}
 
-  <section class="page-element suburb-grid" id="suburb-list">
+<section class="page-element suburb-grid js-filter-grid" id="suburb-list">
     {% for suburb in site.data.suburbs %}
     <article class="suburb-card js-search-item" 
              id="{{ suburb.name | slugify }}" 
