@@ -5,15 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const matchedDisplay = container.querySelector('.js-filter-matched');
     const totalDisplay = container.querySelector('.js-filter-total');
     const noResults = container.querySelector('.js-filter-no-results');
+    const nav = document.querySelector('.alphabet-nav');
     
-    const grid = document.getElementById(container.dataset.target);
-
+    const targetId = container.getAttribute('data-target');
+    const grid = document.getElementById(targetId);
+    
     if (!grid) return; 
     
     const items = grid.querySelectorAll('[data-search]');
-
     totalDisplay.textContent = items.length;
-    matchedDisplay.textContent = items.length;
 
     const runFilter = () => {
       const query = input.value.toLowerCase().trim();
@@ -29,20 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
       matchedDisplay.textContent = count;
       clearBtn.hidden = (query === "");
       if (noResults) noResults.hidden = (count > 0 || query === "");
+      if (nav) nav.hidden = (query !== "");
 
-      if (count === 0 && query !== "") {
-        input.classList.add('search-error');
-      } else {
-        input.classList.remove('search-error');
-      }
+      input.classList.toggle('search-error', count === 0 && query !== "");
     };
 
     input.addEventListener('input', runFilter);
+    input.addEventListener('search', runFilter);
     clearBtn.addEventListener('click', () => {
       input.value = "";
       runFilter();
       input.focus();
     });
-  })
-;
+
+    runFilter();
+  });
 });
