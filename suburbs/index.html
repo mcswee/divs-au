@@ -19,14 +19,22 @@ extra_scripts: |
 %}
 
 <section class="page-element suburb-grid js-filter-grid" id="suburb-list">
-    {% for suburb in site.data.suburbs %}
+  {% assign current_letter = "" %}
+  {% for suburb in site.data.suburbs %}
+    {% assign first_letter = suburb.name | slice: 0 | downcase %}
+    
     <article class="suburb-card js-search-item" 
-             id="{{ suburb.name | slugify }}" 
+             {% if first_letter != current_letter %}id="{{ first_letter }}"{% endif %}
              data-search="{{ suburb.name }} {{ suburb.postcode }} {{ suburb.lga }}">
-      <header>
+      
+      <header id="{{ suburb.name | slugify }}">
         <h3>{{ suburb.name }}</h3>
         <p class="meta">{{ suburb.postcode }} — {{ suburb.lga }}</p>
       </header>
+
+      {% if first_letter != current_letter %}
+        {% assign current_letter = first_letter %}
+      {% endif %}
 
       <p class="transcription-preview">{{ suburb.pronunciation }}</p>
 
@@ -40,25 +48,26 @@ extra_scripts: |
                 <dd>syllable break</dd>
               </div>
             {% else %}
-            {% assign sound_data = site.data.sounds | where: "phoneme", symbol | first %}
-            <div class="phoneme-entry">
-              <dt>{{ symbol }}</dt>
-              <dd>as in {{ sound_data.example }}</dd>
-            </div>
+              {% assign sound_data = site.data.sounds | where: "phoneme", symbol | first %}
+              <div class="phoneme-entry">
+                <dt>{{ symbol }}</dt>
+                <dd>as in {{ sound_data.example }}</dd>
+              </div>
             {% endif %}
           {% endfor %}
         </dl>
       </details>
     </article>
-    {% endfor %}
-  </section>
+  {% endfor %}
+</section>
 
-  <section class="page-element search-stats">
+
+ <section class="page-element search-stats">
     <span id="suburb-count-display" aria-live="polite">
       Showing <span id="matched-count">{{ site.data.suburbs | size }}</span> of {{ site.data.suburbs | size }} suburbs
     </span>
-  </section>
+ </section>
 
-  <div class="page-element" id="no-results" hidden>
+ <div class="page-element" id="no-results" hidden>
     <p>No suburbs found matching your search. Try a different postcode or spelling.</p>
-  </div>
+ </div>
