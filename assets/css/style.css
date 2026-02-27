@@ -540,6 +540,13 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     color: var(--brand-main);
 }
 
+/*Smallprint and attribution */
+.copyright {
+    font-size: 0.75rem;
+    color: var(--text-highlight);
+    margin-top: 1rem;
+}
+
 /* 9. FOOTER LINKS */
 .footer-links {
     display: flex;
@@ -851,7 +858,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 /* 11. PROJECT SPECIALIST */
-.search-select {
+.js-filter-input {
     width: 100%;
     max-width: 400px;
     padding: 12px;
@@ -862,26 +869,10 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     background: var(--highlight);
 }
 
-.search-select.no-results {
+.js-filter-input.no-results {
     border-color: var(--error-main);
     background-color: var(--error-bg);
     outline: none;
-}
-
-.copyright {
-    font-size: 0.75rem;
-    color: var(--text-highlight);
-    margin-top: 1rem;
-}
-
-.table-wrapper.suburb-list {
-    max-height: 500px;
-    max-width: 1100px;
-    overflow-y: auto;
-    border: 1px solid var(--text-highlight);
-    margin-top: 1rem;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .alphabet-nav {
@@ -922,6 +913,27 @@ tr[id^="letter-"] {
     scroll-margin-top: 65px; 
 }
 
+/* Suburbs List */
+/* Specific override for the suburbs page */
+.card-grid.suburbs {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    align-items: start; /* Prevents neighbors from stretching when one card expands */
+    gap: 12px;
+}
+
+/* The card itself */
+.suburb-card {
+    background: var(--highlight);
+    border: 1px solid var(--text-accent);
+    border-radius: 6px;
+    padding: 12px;
+    box-shadow: var(--shadow-main);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Flags redesigns */
+/* US flag status badges */
 .status-no-change { --status-bg: #1e5631; }
 .status-recolor   { --status-bg: #3743d3; }
 .status-tweak     { --status-bg: #6d597a; }
