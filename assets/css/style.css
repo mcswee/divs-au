@@ -42,7 +42,7 @@
     box-sizing: border-box;
 }
 
-[hidden] {
+.js-search-item[hidden] {
     display: none !important;
 }
 
