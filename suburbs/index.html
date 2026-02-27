@@ -1,0 +1,62 @@
+---
+layout: default
+title: Melbourne Suburb Pronunciation Guide
+---
+
+<header class="page-element">
+  <h1>Melbourne suburb pronunciation guide</h1>
+  <p>Most guides to Melbourne suburb names are pretty rubbish, often relying on rhyming slang or vague comparisons. This project provides a precise phonetic breakdown of how locals actually say them, based on the IPA and standard Australian phonetics.</p>
+</header>
+
+{% include alphabet-nav.html items=site.data.suburbs %}
+
+{% include search-filter.html 
+   search_id="suburb-search" 
+   placeholder="Search by name, postcode, or LGA..." 
+   item_name="suburbs" 
+%}
+
+  <section class="page-element suburb-grid" id="suburb-list">
+    {% for suburb in site.data.suburbs %}
+    <article class="suburb-card js-search-item" 
+             id="{{ suburb.name | slugify }}" 
+             data-search="{{ suburb.name }} {{ suburb.postcode }} {{ suburb.lga }}">
+      <header>
+        <h3>{{ suburb.name }}</h3>
+        <p class="meta">{{ suburb.postcode }} — {{ suburb.lga }}</p>
+      </header>
+
+      <p class="transcription-preview">{{ suburb.pronunciation }}</p>
+
+      <details class="pronunciation-details">
+        <summary>View phonetic breakdown</summary>
+        <dl>
+          {% for symbol in suburb.phonemes %}
+            {% if symbol == "·" %}
+              <div class="syllable-divider">
+                <dt>·</dt>
+                <dd>syllable break</dd>
+              </div>
+            {% else %}
+              {% assign sound_data = site.data.sounds | where: "Phoneme", symbol | first %}
+              <div class="phoneme-entry">
+                <dt>{{ symbol }}</dt>
+                <dd>as in {{ sound_data.Example }}</dd>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </dl>
+      </details>
+    </article>
+    {% endfor %}
+  </section>
+
+  <section class="page-element search-stats">
+    <span id="suburb-count-display" aria-live="polite">
+      Showing <span id="matched-count">{{ site.data.suburbs | size }}</span> of {{ site.data.suburbs | size }} suburbs
+    </span>
+  </section>
+
+  <div class="page-element" id="no-results" hidden>
+    <p>No suburbs found matching your search. Try a different postcode or spelling.</p>
+  </div>
