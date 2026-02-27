@@ -956,14 +956,17 @@ tr[id^="letter-"] {
     flex-direction: column;
 }
 
+.pronunciation-details {
+    background-color: var(--accent);
+    border-top: 1px solid var(--text-highlight);
+}
+
 .pronunciation-details dl {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 4px 12px;
     margin: 10px 0 0;
     font-size: 0.9rem;
-    background-color: var(--accent);
-    border-top: 1px solid var(--text-highlight);
 }
 
 .phoneme-entry, .syllable-divider {
