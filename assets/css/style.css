@@ -1215,9 +1215,42 @@ input::-webkit-search-results-decoration {
 
 .phoneme-header {
     display: flex;
-    gap: 1.5rem;
-    align-items: baseline;
-    margin-bottom: 0.7rem;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+}
+
+.symbol-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.audio-indicator {
+    font-size: 1.1rem;
+    opacity: 0.3;
+    filter: grayscale(1);
+    transition: all 0.2s ease-in-out;
+}
+
+.project-card:hover .audio-indicator {
+    opacity: 1;
+    filter: grayscale(0);
+    transform: scale(1.1);
+}
+
+.example-text {
+    font-size: 1.1rem; /* Bumped slightly since we binned the footer text */
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    color: var(--heading-color);
+}
+
+.pronunciation-path {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.9rem;
+    color: var(--meta-color, #6
+               66);
 }
 
 .symbol {
@@ -1254,7 +1287,6 @@ input::-webkit-search-results-decoration {
     margin-top: auto;
     padding-top: 0.7rem;
 }
-
 
 /* 12. RESPONSIVENESS */
 @media (max-width: 600px) {
