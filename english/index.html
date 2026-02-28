@@ -19,15 +19,17 @@ title: Guide to Australian English pronunciation
   <div id="vowel-grid" class="card-grid">
     {% assign vowels = sorted_sounds | where: "segment", "vowel" %}
     {% for item in vowels %}
-      <article class="project-card" onclick="listen('{{ item.example }}')">
-        <header class="phoneme-header">
+    <article class="project-card" onclick="listen('{{ item.example }}')">
+      <header class="phoneme-header">
+        <div class="symbol-group">
           <h3 class="symbol">{{ item.phoneme }}</h3>
           <span class="ipa-tag">/{{ item.ipa }}/</span>
-        </header>
-        <div class="example-text">{{ item.example }}</div>
-        <div class="pronunciation-path">{{ item.pronunciation }}</div>
-        <div class="tap-hint">Listen to the words</div>
-      </article>
+        </div>
+        <div class="audio-indicator" aria-hidden="true">🔊</div>
+      </header>  
+      <div class="example-text">{{ item.example }}</div>
+      <div class="pronunciation-path">{{ item.pronunciation }}</div>
+    </article>
     {% endfor %}
   </div>
 
@@ -37,15 +39,17 @@ title: Guide to Australian English pronunciation
   <div id="consonant-grid" class="card-grid">
     {% assign consonants = sorted_sounds | where: "segment", "consonant" %}
     {% for item in consonants %}
-      <article class="project-card" onclick="listen('{{ item.example }}')">
-        <header class="phoneme-header">
+    <article class="project-card" onclick="listen('{{ item.example }}')">
+      <header class="phoneme-header">
+        <div class="symbol-group">
           <h3 class="symbol">{{ item.phoneme }}</h3>
           <span class="ipa-tag">/{{ item.ipa }}/</span>
-        </header>
-        <div class="example-text">{{ item.example }}</div>
-        <div class="pronunciation-path">{{ item.pronunciation }}</div>
-        <div class="tap-hint">Listen to the words</div>
-      </article>
+        </div>
+        <div class="audio-indicator" aria-hidden="true">🔊</div>
+      </header>  
+      <div class="example-text">{{ item.example }}</div>
+      <div class="pronunciation-path">{{ item.pronunciation }}</div>
+    </article>
     {% endfor %}
   </div>
 </section>
