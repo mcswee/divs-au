@@ -583,6 +583,79 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
   margin-left: 20px;
 }
 
+/* 9. SEARCH AND FILTERS*/
+.js-filter-input {
+    width: %;
+    max-width: 400px;
+    padding: 12px;
+    font-family: inherit;
+    border: 2px solid var(--brand-main);
+    border-radius: 6px;
+    margin-bottom: 10px;
+    background: var(--highlight);
+}
+
+.js-filter-input.search-error {
+    border-color: var(--error-main);
+    background-color: var(--error-bg);
+    outline: none;
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration {
+    display: none;
+}
+
+.alphabet-nav {
+    display: block;
+    margin: 8px 0;
+}
+
+.alphabet-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.alphabet-nav a, 
+.alphabet-nav .disabled {
+    display: inline-block;
+    padding: 6px 0;
+    width: 36px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.alphabet-nav a {
+    background: var(--accent);
+    color: var(--brand-main);
+    font-weight: 700;
+}
+
+.alphabet-nav a:hover {
+    background: var(--brand-main);
+    color: var(--highlight);
+}
+
+.alphabet-nav .disabled {
+    color: var(--text-accent);
+    opacity: 0.5;
+    background: transparent;
+}
+
+.alphabet-nav[hidden] {
+    color: var(--text-accent);
+    opacity: 0.5;
+    background: transparent;
+}
+
 /* 10. MAP SPECIFIC UI */
 #map {
     position: absolute;
@@ -862,82 +935,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 }
 
 /* 11. PROJECT SPECIALIST */
-.js-filter-input {
-    width: %;
-    max-width: 400px;
-    padding: 12px;
-    font-family: inherit;
-    border: 2px solid var(--brand-main);
-    border-radius: 6px;
-    margin-bottom: 10px;
-    background: var(--highlight);
-}
 
-.js-filter-input.search-error {
-    border-color: var(--error-main);
-    background-color: var(--error-bg);
-    outline: none;
-}
-
-input::-webkit-search-decoration,
-input::-webkit-search-cancel-button,
-input::-webkit-search-results-button,
-input::-webkit-search-results-decoration {
-    display: none;
-}
-
-.alphabet-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin: 15px 0;
-}
-
-.alphabet-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.alphabet-nav a, 
-.alphabet-nav .disabled {
-    padding: 5px 10px;
-    font-size: 0.85rem;
-    text-decoration: none;
-    border-radius: 4px;
-    min-width: 35px;
-    text-align: center;
-}
-
-.alphabet-nav a {
-    background: var(--accent);
-    color: var(--brand-main);
-    font-weight: 700;
-}
-
-.alphabet-nav a:hover {
-    background: var(--brand-main);
-    color: var(--highlight);
-}
-
-.alphabet-nav .disabled {
-    color: var(--text-accent);
-    opacity: 0.5;
-    background: transparent;
-}
-
-.alphabet-nav[hidden] {
-    color: var(--text-accent);
-    opacity: 0.5;
-    background: transparent;
-}
-
-tr[id^="letter-"] {
-    scroll-margin-top: 65px; 
-}
 
 /* Suburbs List */
 /* Specific override for the suburbs page */
