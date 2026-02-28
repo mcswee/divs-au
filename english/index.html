@@ -1,0 +1,61 @@
+---
+layout: default
+title: Guide to Australian English pronunciation
+---
+
+<header class="page-element">
+  <h1>Guide to Australian English pronunciation</h1>
+  <p>This guide uses a custom phonetic system to capture the specific nuances of the Australian English accent. To avoid the ambiguity of standard English spelling, the system follows a one-to-one logic where every sound is represented by a consistent symbol.</p>
+  <p>These pronunciations are based on my own accent as a Melburnian speaking Australian English, which is non-rhotic. For example, words like "park" are represented using <strong>ah</strong> to show the vowel sound without an 'r'.</p>
+  <p>Syllable boundaries are marked with dots (·) to show the natural flow of the word.</p>
+</header>
+
+<section class="page-element phonology-container">
+  {% assign sorted_sounds = site.data.sounds | sort: "phoneme" %}
+  
+  <h2>Vowels</h2>
+  <p>Every vowel is represented by either a unique symbol&mdash;like <strong>@</strong> for a schwa, <strong>æ</strong> for a flat 'a'&mdash;or a dedicated two-character combination. These are treated as a single unit representing a single vowel sound.</p>
+  
+  <div id="vowel-grid" class="card-grid">
+    {% assign vowels = sorted_sounds | where: "segment", "vowel" %}
+    {% for item in vowels %}
+      <article class="project-card" onclick="listen('{{ item.example }}')">
+        <header class="phoneme-header">
+          <h3 class="symbol">{{ item.phoneme }}</h3>
+          <span class="ipa-tag">/{{ item.ipa }}/</span>
+        </header>
+        <div class="example-text">{{ item.example }}</div>
+        <div class="pronunciation-path">{{ item.pronunciation }}</div>
+        <div class="tap-hint">Listen to the words</div>
+      </article>
+    {% endfor %}
+  </div>
+
+  <h2>Consonants</h2>
+  <p>Every consonant is represented by a single, consistent letter or symbol. For example, <strong>$</strong> represents 'sh' and <strong>£</strong> is used specifically for the 'ng' sound.</p>
+  
+  <div id="consonant-grid" class="card-grid">
+    {% assign consonants = sorted_sounds | where: "segment", "consonant" %}
+    {% for item in consonants %}
+      <article class="project-card" onclick="listen('{{ item.example }}')">
+        <header class="phoneme-header">
+          <h3 class="symbol">{{ item.phoneme }}</h3>
+          <span class="ipa-tag">/{{ item.ipa }}/</span>
+        </header>
+        <div class="example-text">{{ item.example }}</div>
+        <div class="pronunciation-path">{{ item.pronunciation }}</div>
+        <div class="tap-hint">Listen to the words</div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+function listen(text) {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-AU';
+    utterance.rate = 0.85;
+    window.speechSynthesis.speak(utterance);
+}
+</script>
