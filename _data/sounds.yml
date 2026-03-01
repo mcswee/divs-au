@@ -1,0 +1,230 @@
+- phoneme: uh
+  segment: vowel
+  ipa: ɐ
+  example: CUP, LUCK, BLOOD, DONE
+  pronunciation: kuhp, luhk, bluhd, duhn
+- phoneme: ah
+  segment: vowel
+  ipa: ɐː
+  example: ARM, FATHER, CALM, SPA
+  pronunciation: ahm, fah·‡@, kahm, spah
+- phoneme: æ
+  segment: vowel
+  ipa: æ
+  example: CAT, BLACK, HAND, BAG
+  pronunciation: kæt, blæk, hænd, bæg
+- phoneme: eh
+  segment: vowel
+  ipa: e
+  example: MET, PEG, HEAD, SAID
+  pronunciation: meht, pehg, hehd, sehd
+- phoneme: '@'
+  segment: vowel
+  ipa: ə
+  example: AWAY, CINEMA, FOCUS, UNDER
+  pronunciation: '@·way, sihn·@·m@, foh·k@s, uhn·d@'
+- phoneme: œ
+  segment: vowel
+  ipa: ɜː
+  example: NURSE, LEARN, BIRD, WORK
+  pronunciation: nœs, lœn, bœd, wœk
+- phoneme: ih
+  segment: vowel
+  ipa: ɪ
+  example: HID, SITTING, GYM, BUSY
+  pronunciation: hihd, siht·ih£, jihm, bih·zee
+- phoneme: ee
+  segment: vowel
+  ipa: iː
+  example: SEE, HEAT, PIECE, HAPPY
+  pronunciation: see, heet, pees, hæ·pee
+- phoneme: ø
+  segment: vowel
+  ipa: ɔ
+  example: HOT, ROCK, WANT, COUGH
+  pronunciation: høt, røk, wønt, køf
+- phoneme: aw
+  segment: vowel
+  ipa: oː
+  example: CALL, FOUR, BOUGHT, LAW
+  pronunciation: cawl, faw, bawt, law
+- phoneme: uu
+  segment: vowel
+  ipa: ʊ
+  example: PUT, COULD, LOOK, WOLF
+  pronunciation: puut, cuud, luuk, wuulf
+- phoneme: ew
+  segment: vowel
+  ipa: ʉː
+  example: BLUE, FOOD, JUNE, THREW
+  pronunciation: blew, fewd, jewn, +rew
+- phoneme: iy
+  segment: vowel
+  ipa: ɑe
+  example: FIVE, EYE, SKY, HEIGHT
+  pronunciation: fiyv, iy, skiy, hiyt
+- phoneme: ow
+  segment: vowel
+  ipa: æɔ
+  example: NOW, OUT, THOUSAND, BOUGH
+  pronunciation: now, owt, +owz·@nd, bow
+- phoneme: ay
+  segment: vowel
+  ipa: æɪ
+  example: SAY, EIGHT, NAME, VEIN
+  pronunciation: say, ayt, naym, vayn
+- phoneme: oh
+  segment: vowel
+  ipa: əʉ
+  example: GO, HOME, ROAD, HERO
+  pronunciation: goh, hohm, rohd, hee@·roh
+- phoneme: oi
+  segment: vowel
+  ipa: oɪ
+  example: BOY, JOIN, CHOICE, ANNOY
+  pronunciation: boi, join, ¢ois, @·noi
+- phoneme: eh@
+  segment: vowel
+  ipa: eː
+  example: WHERE, AIR, BEAR, SQUARE
+  pronunciation: weh@, eh@, beh@, skweh@
+- phoneme: ee@
+  segment: vowel
+  ipa: ɪə
+  example: NEAR, HERE, PIER, BEER
+  pronunciation: nee@, hee@, pee@, bee@
+- phoneme: u@
+  segment: vowel
+  ipa: ʊə
+  example: PURE, TOUR, CURE, MATURE
+  pronunciation: pyu@, tu@, kyu@, m@·¢u@
+- phoneme: ow@
+  segment: vowel
+  ipa: ʉːə
+  example: OUR, POWER, FLOWER, SOUR
+  pronunciation: ow@, pow@, flow@, sow@
+- phoneme: oi@
+  segment: vowel
+  ipa: oɪə
+  example: ROYAL, LOYAL, EMPLOYER, COYER
+  pronunciation: roi@l, loi@l, ehm·ploi@, koi@
+- phoneme: b
+  segment: consonant
+  ipa: b
+  example: BAD, LAB, BUBBLE, ROBE
+  pronunciation: bæd, læb, buhb·@l, rohb
+- phoneme: d
+  segment: consonant
+  ipa: d
+  example: DID, LADY, ADDED, ROAD
+  pronunciation: dihd, lay·dee, æd·@d, rohd
+- phoneme: f
+  segment: consonant
+  ipa: f
+  example: FIND, IF, PHONE, LAUGH
+  pronunciation: fiynd, ihf, fohn, lahf
+- phoneme: g
+  segment: consonant
+  ipa: g
+  example: GIVE, FLAG, GHOST, BIGGER
+  pronunciation: gihv, flæg, gohst, bih·g@
+- phoneme: h
+  segment: consonant
+  ipa: h
+  example: HOW, HELLO, WHO, BEHIND
+  pronunciation: how, heh·loh, hew, b@·hiynd
+- phoneme: j
+  segment: consonant
+  ipa: dʒ
+  example: JUST, LARGE, BRIDGE, GIANT
+  pronunciation: juhst, lahj, brihj, jiy·@nt
+- phoneme: k
+  segment: consonant
+  ipa: k
+  example: CAT, KEY, QUICK, ECHO
+  pronunciation: kæt, kee, kwihk, eh·koh
+- phoneme: l
+  segment: consonant
+  ipa: l
+  example: LEG, LITTLE, BELL, FEEL
+  pronunciation: lehg, lih·d@l, behl, feel
+- phoneme: m
+  segment: consonant
+  ipa: m
+  example: MAN, LEMON, HAMMER, COMB
+  pronunciation: mæn, leh·m@n, hæ·m@, kohm
+- phoneme: n
+  segment: consonant
+  ipa: n
+  example: NO, TEN, KNEE, DINNER
+  pronunciation: noh, tehn, nee, dih·n@
+- phoneme: £
+  segment: consonant
+  ipa: ŋ
+  example: SING, FINGER, BANK, TONGUE
+  pronunciation: sih£, fih£·g@, bæ£k, tuh£
+- phoneme: p
+  segment: consonant
+  ipa: p
+  example: PET, MAP, HAPPY, STOP
+  pronunciation: peht, mæp, hæ·pee, støp
+- phoneme: r
+  segment: consonant
+  ipa: r
+  example: RED, TRY, VERY, WRONG
+  pronunciation: rehd, ¢riy, veh·ree, rø£
+- phoneme: s
+  segment: consonant
+  ipa: s
+  example: SUN, MISS, CITY, SCENE
+  pronunciation: suhn, mihs, sih·tee, seen
+- phoneme: $
+  segment: consonant
+  ipa: ʃ
+  example: SHE, CRASH, ACTION, CHEF
+  pronunciation: $ee, kræ$, æk·$@n, $ehf
+- phoneme: t
+  segment: consonant
+  ipa: t
+  example: TEA, GETTING, HAT, BETTER
+  pronunciation: tee, gehd·ih£, hæt, beh·d@
+- phoneme: ¢
+  segment: consonant
+  ipa: tʃ
+  example: CHECK, CHURCH, WATCH, BATCH
+  pronunciation: ¢ehk, ¢œ¢, wø¢, bæ¢
+- phoneme: +
+  segment: consonant
+  ipa: θ
+  example: THINK, BOTH, THROUGH, MOUTH
+  pronunciation: +ih£k, boh+, +rew, mow+
+- phoneme: ‡
+  segment: consonant
+  ipa: ð
+  example: THIS, MOTHER, BREATHE, SMOOTH
+  pronunciation: ‡hihs, muh‡·@, bree‡, smew‡
+- phoneme: v
+  segment: consonant
+  ipa: v
+  example: VOICE, FIVE, OF, STOVE
+  pronunciation: vois, fiyv, øv, stohv
+- phoneme: w
+  segment: consonant
+  ipa: w
+  example: WET, WINDOW, WHY, QUICK
+  pronunciation: weht, wihn·doh, wiy, kwihk
+- phoneme: y
+  segment: consonant
+  ipa: j
+  example: YES, YELLOW, USE, FEW
+  pronunciation: yehs, yeh·loh, yewz, fyew
+- phoneme: z
+  segment: consonant
+  ipa: z
+  example: ZOO, LAZY, IS, HAS
+  pronunciation: zew, lay·zee, ihz, hæz
+- phoneme: §
+  segment: consonant
+  ipa: ʒ
+  example: PLEASURE, VISION, GARAGE, AZURE
+  pronunciation: pleh·§@, vih·§@n, gæ·rah§, æ·§u@
