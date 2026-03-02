@@ -30,7 +30,8 @@
   segment: vowel
   ipa: ɜː
   example: NURSE, LEARN, BIRD, WORK
-  pronunciation: nœs, lœn, bœd, wœk
+  sentence: The furry bird worked to learn her purpose in the dirty urban herd.
+  pronunciation: "‡@·fœ·ree·bœd·wœkt·tew·lœn·hœ·pœ·p@s·ihn·‡@·dœ·tee·œb·@n·hœd"
 - phoneme: ih
   segment: vowel
   ipa: ɪ
@@ -242,6 +243,7 @@
   ipa: ʒ
   example: PLEASURE, VISION, GARAGE, AZURE
   pronunciation: pleh·§@, vih·§@n, gæ·rah§, æ·§u@
+
 
 
 
