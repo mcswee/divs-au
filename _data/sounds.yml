@@ -2,23 +2,26 @@
   segment: vowel
   ipa: ɐ
   example: CUP, LUCK, BLOOD, DONE
-  pronunciation: kuhp, luhk, bluhd, duhn
+  sentence: "The flood has undone my grumpy uncle's run of luck."
+  pronunciation: ‡@·fluhd·hæz·uhn·duhn·miy·gruhm·pee·uhnk·@lz·ruhn·øv·luhk
 - phoneme: ah
   segment: vowel
   ipa: ɐː
   example: ARM, FATHER, CALM, SPA
-  pronunciation: ahm, fah·‡@, kahm, spah
+  sentence: After the spa, father calmly parked his large car by the waratah. 
+  pronunciation: ahf·t@·‡@·spah·fah·‡@·kahm·lee·pahkt·hihz·lahj·kahr·biy·‡@·wø·r@·tah.
 - phoneme: æ
   segment: vowel
   ipa: æ
   example: CAT, BLACK, HAND, BAG
-  pronunciation: kæt, blæk, hænd, bæg
+  sentence: Actually, the cat has a bad attitude and snatched a plaid bag.
+  pronunciation: æk·$@·lee·‡@·kæt·hæz·@·bæd·æt·@·¢ewd·ænd·snæ¢t·@·plæd·bæg
 - phoneme: eh
   segment: vowel
   ipa: e
   example: MET, PEG, HEAD, SAID
   pronunciation: meht, pehg, hehd, sehd
-- phoneme: '@'
+- phoneme: @
   segment: vowel
   ipa: ə
   example: AWAY, CINEMA, FOCUS, UNDER
@@ -47,7 +50,8 @@
   segment: vowel
   ipa: oː
   example: CALL, FOUR, BOUGHT, LAW
-  pronunciation: cawl, faw, bawt, law
+  sentence: The author taught four boring wartime laws that ought to have brought a tort for all the poor sauce.
+  pronunciation: ‡@·aw+·@·tawt·faw·baw·rih£·waw·tiym·lawz·‡æt·awt·tew·hæv·brawt·@·tawt·faw·awl·‡@·paw·saws
 - phoneme: uu
   segment: vowel
   ipa: ʊ
@@ -57,7 +61,8 @@
   segment: vowel
   ipa: ʉː
   example: BLUE, FOOD, JUNE, THREW
-  pronunciation: blew, fewd, jewn, +rew
+  sentence: "Who knew you'd brew an oodle of bruised prune juice in soup with a blue balloon.
+  pronunciation: hew·nyew·yewd·brew·æn·ew·d@l·øv·brewzd·prewn·jews·ihn·sewp·wih‡·@·blew·b@·lewn
 - phoneme: iy
   segment: vowel
   ipa: ɑe
@@ -77,33 +82,42 @@
   segment: vowel
   ipa: əʉ
   example: GO, HOME, ROAD, HERO
-  pronunciation: goh, hohm, rohd, hee@·roh
+  sentence: Although the rainbow showed over the road, no local aloe will grow below.
+  pronunciation: awl·‡oh·‡@·rayn·boh·$ohd·oh·v@·‡@·rohd·noh·loh·k@l·æl·oh·wihl·groh·b@·loh
 - phoneme: oi
   segment: vowel
   ipa: oɪ
   example: BOY, JOIN, CHOICE, ANNOY
-  pronunciation: boi, join, ¢ois, @·noi
-- phoneme: eh@
+  sentence: The appointed boy was annoyed by the choice of noise as the oily buoy was deployed.
+  pronunciation: ‡@·@·poin·t@d·boi·wøz·@·noid·biy·‡@·¢ois·øv·noiz·æz·‡ee·oil·ee·boi·wøz·d@·ploid
+- phoneme: eh&
   segment: vowel
   ipa: eː
   example: WHERE, AIR, BEAR, SQUARE
-  pronunciation: weh@, eh@, beh@, skweh@
-- phoneme: ee@
+  sentence: From an aeroplane, a pair of bears stare at their lair in a careful dare.
+  pronunciation: frøm·æn·eh&·r@·playn·@·peh&·øv·beh&z·steh&·æt·‡eh&·leh&·ihn·@·keh&·f@l·deh&
+- phoneme: ee&
   segment: vowel
   ipa: ɪə
   example: NEAR, HERE, PIER, BEER
   pronunciation: nee@, hee@, pee@, bee@
-- phoneme: u@
+- phoneme: u&
   segment: vowel
   ipa: ʊə
   example: PURE, TOUR, CURE, MATURE
   pronunciation: pyu@, tu@, kyu@, m@·¢u@
-- phoneme: ow@
+- phoneme: iy&
+  segment: vowel
+  ipa: ɑeə
+  example: FIRE, IRON, TYRE, DIARY
+  sentence: "The reliable buyer's diary was lying by the higher fire iron."
+  pronunciation: ‡@·r@·liy&·b@l·biy&·@z·diy&·ree·wøz·liy&·ih£·biy·‡@·hiy&·fiy&·iy&n
+- phoneme: ow&
   segment: vowel
   ipa: ʉːə
   example: OUR, POWER, FLOWER, SOUR
   pronunciation: ow@, pow@, flow@, sow@
-- phoneme: oi@
+- phoneme: oi&
   segment: vowel
   ipa: oɪə
   example: ROYAL, LOYAL, EMPLOYER, COYER
@@ -228,3 +242,4 @@
   ipa: ʒ
   example: PLEASURE, VISION, GARAGE, AZURE
   pronunciation: pleh·§@, vih·§@n, gæ·rah§, æ·§u@
+
