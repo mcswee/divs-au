@@ -2,13 +2,13 @@
   segment: vowel
   ipa: ɐ
   example: CUP, LUCK, BLOOD, DONE
-  sentence: "The flood has undone my grumpy lovestruck uncle's run of luck."
+  sentence: "The flood has undone my grumpy lovestruck uncle’s run of luck."
   pronunciation: "‡@·​fluhd·​hæz·​uhn·duhn·​miy·​gruhm·pee·​luhv·s¢ruhk·​uhnk·@lz·​ruhn·​øv·​luhk"
 - phoneme: ah
   segment: vowel
   ipa: ɐː
   example: ARM, FATHER, CALM, SPA
-  sentence: "After the spa, my aunt calmly parked father's car by the rather large waratah garden."
+  sentence: "After the spa, my aunt calmly parked father’s car by the rather large waratah garden."
   pronunciation: "ahf·t@·​‡@·​spah​·miy·​ahnt·​kahm·lee·​pahkt·​fah·‡@z·​kahr·​biy·​‡@·​rah·‡@·​lahj·​wø·r@·tah·​gah·d@n"
 - phoneme: æ
   segment: vowel
@@ -68,7 +68,7 @@
   segment: vowel
   ipa: ʉː
   example: BLUE, FOOD, JUNE, THREW
-  sentence: "Who knew you'd brew the juice of an oodle of bruised prunes into soup with a few blue balloons."
+  sentence: "Who knew you’d brew the juice of an oodle of bruised prunes into soup with a few blue balloons."
   pronunciation: "hew·nyew·yewd·brew·‡@·jews·øv·æn·ew·d@l·øv·brewzd·prewnz·ihn·tew·sewp·wih‡·@·fyew·blew·b@·lewnz"
 - phoneme: iy
   segment: vowel
@@ -122,7 +122,7 @@
   segment: vowel
   ipa: ɑeə
   example: FIRE, IRON, TYRE, DIARY
-  sentence: "The reliable buyer's diary was lying by the higher fire iron."
+  sentence: "The reliable buyer’s diary was lying by the higher fire iron."
   pronunciation: "‡@·r@·liy&·b@l·biy&·@z·diy&·ree·wøz·liy&·ih£·biy·‡@·hiy&·fiy&·iy&n"
 - phoneme: ow&
   segment: vowel
@@ -259,12 +259,14 @@
   segment: consonant
   ipa: z
   example: ZOO, LAZY, IS, HAS
-  pronunciation: zew, lay·zee, ihz, hæz
+  sentence: "The lazy zebra has a puzzling muscial exam on the zigzag xylophone that is a pleasing buzz."
+  pronunciation: "‡@-lay-zee-zeh-brah-hæz-@-puhz-lih£-myew-zik-@l-ehgz-æm-øn-‡@-zihg-zæg-ziyl-@-fohn-‡æt-ihz-@-pleez-ih£-buhz"
 - phoneme: "§"
   segment: consonant
   ipa: ʒ
   example: PLEASURE, VISION, GARAGE, AZURE
   pronunciation: pleh·§@, vih·§@n, gæ·rah§, æ·§u@ 
+
 
 
 
