@@ -19,7 +19,7 @@ title: Guide to Australian English pronunciation
   <div id="vowel-grid" class="card-grid">
     {% assign vowels = sorted_sounds | where: "segment", "vowel" %}
     {% for item in vowels %}
-    <article class="project-card" onclick="listen('{{ item.example }}')">
+    <article class="project-card" onclick="listen('{{ item.sentence }}')">
       <header class="phoneme-header">
         <div class="symbol-group">
           <h3 class="symbol">{{ item.phoneme }}</h3>
@@ -39,7 +39,7 @@ title: Guide to Australian English pronunciation
   <div id="consonant-grid" class="card-grid">
     {% assign consonants = sorted_sounds | where: "segment", "consonant" %}
     {% for item in consonants %}
-    <article class="project-card" onclick="listen('{{ item.example }}')">
+    <article class="project-card" onclick="listen('{{ item.sentence }}')">
       <header class="phoneme-header">
         <div class="symbol-group">
           <h3 class="symbol">{{ item.phoneme }}</h3>
