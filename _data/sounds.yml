@@ -68,7 +68,8 @@
   segment: vowel
   ipa: ɑe
   example: FIVE, EYE, SKY, HEIGHT
-  pronunciation: fiyv, iy, skiy, hiyt
+  sentence: "Ice in the sky might buy a reply from the eye of magpie at the height of the flight."
+  pronunciation: "Iys·ihn·‡@·skiy·miyt·biy·@·r@·pliy·frøm·‡@·iy·øv·‡@·mæg·piy·æt·‡@·hiyt·øv·‡@·fliyt"
 - phoneme: ow
   segment: vowel
   ipa: æɔ
@@ -243,6 +244,7 @@
   ipa: ʒ
   example: PLEASURE, VISION, GARAGE, AZURE
   pronunciation: pleh·§@, vih·§@n, gæ·rah§, æ·§u@
+
 
 
 
