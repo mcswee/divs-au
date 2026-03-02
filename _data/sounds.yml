@@ -225,7 +225,7 @@
   ipa: tʃ
   example: CHECK, CHURCH, WATCH, BATCH
   pronunciation: ¢ehk, ¢œ¢, wø¢, bæ¢
-- phoneme: +
+- phoneme: "+"
   segment: consonant
   ipa: θ
   example: THINK, BOTH, THROUGH, MOUTH
@@ -236,8 +236,7 @@
   ipa: ð
   example: THIS, MOTHER, BREATHE, SMOOTH
   sentence: "Mother rather smoothly soothes the other leather, otherwise loathes their breathing.”
-  pronunciation: |
-   muh‡-@-rah-‡@-smew‡-lee-sew‡z-‡ee-uh-‡@-leh-‡@-uh-‡@-wiyz-loh‡z-‡eh&-bree‡-ih£
+  pronunciation: "muh‡-@-rah-‡@-smew‡-lee-sew‡z-‡ee-uh-‡@-leh-‡@-uh-‡@-wiyz-loh‡z-‡eh&-bree‡-ih£"
 - phoneme: v
   segment: consonant
   ipa: v
@@ -266,5 +265,6 @@
   ipa: ʒ
   example: PLEASURE, VISION, GARAGE, AZURE
   pronunciation: pleh·§@, vih·§@n, gæ·rah§, æ·§u@ 
+
 
 
