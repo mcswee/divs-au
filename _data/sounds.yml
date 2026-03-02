@@ -21,7 +21,7 @@
   ipa: e
   example: MET, PEG, HEAD, SAID
   pronunciation: meht, pehg, hehd, sehd
-- phoneme: @
+- phoneme: '@'
   segment: vowel
   ipa: ə
   example: AWAY, CINEMA, FOCUS, UNDER
@@ -242,6 +242,7 @@
   ipa: ʒ
   example: PLEASURE, VISION, GARAGE, AZURE
   pronunciation: pleh·§@, vih·§@n, gæ·rah§, æ·§u@
+
 
 
 
