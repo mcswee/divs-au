@@ -231,7 +231,7 @@
   example: THINK, BOTH, THROUGH, MOUTH
   sentence: "We both thank a thin mouth for three healthy pathways through thick earth."
   pronunciation: "wee-bo+-+ay£k-@-+ihn-mow+-faw-+ree-hehl-+ee-pah+-wayz-+rew-+ihk-œ+"
-- phoneme: ‡
+- phoneme: "‡"
   segment: consonant
   ipa: ð
   example: THIS, MOTHER, BREATHE, SMOOTH
@@ -260,8 +260,9 @@
   ipa: z
   example: ZOO, LAZY, IS, HAS
   pronunciation: zew, lay·zee, ihz, hæz
-- phoneme: §
+- phoneme: "§"
   segment: consonant
   ipa: ʒ
   example: PLEASURE, VISION, GARAGE, AZURE
   pronunciation: pleh·§@, vih·§@n, gæ·rah§, æ·§u@ 
+
