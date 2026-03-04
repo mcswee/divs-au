@@ -3,13 +3,13 @@
   ipa: æ
   example: CAT, BLACK, HAND, BAG
   sentence: "Actually, the lad has a bad attitude and snatched a plaid bag."
-  pronunciation: "æk·$@·lee·‡@·læd·hæz·@·bæd·æt·@·¢ewd·ænd·snæ¢t·@·plæd·bæg"
+  pronunciation: "æk·$@·lee· ‡@· læd· hæz· @· bæd· æt·@·¢ewd· ænd· snæ¢t· @· plæd·bæg"
 - phoneme: eh
   segment: vowel
   ipa: e
   example: MET, PEG, HEAD, SAID
   sentence: "Every red head friend says many leopards again bury legs in the end"
-  pronunciation: "ehv·ree·rehd·hehd·frehnd·sehz·mehn·ee·lehp·@dz·@·gehn·beh·ree·lehgz·ihn·‡ee·ehnd"
+  pronunciation: "ehv·ree· rehd· hehd· frehnd· sehz· mehn·ee· lehp·@dz· @·gehn· beh·ree· lehgz· ihn· ‡ee· ehnd"
 - phoneme: ih
   segment: vowel
   ipa: ɪ
@@ -280,3 +280,4 @@
   example: YES, YELLOW, USE, FEW
   sentence: "You accused the dutiful young deputy of yielding a few yellow onions to use for the new youth uniform."
   pronunciation: "yew·æk·yewsd·‡@·jyew·t@·f@l·yuh£·dehp·y@·tee·øv·yeeld·ih£·@·fyew·yeh·loh·uhn·y@nz·tew·yews·faw·‡e·nyew·yew+·yew·n@·fawm"
+
