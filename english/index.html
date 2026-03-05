@@ -20,7 +20,7 @@ permalink: /english/
   <div id="vowel-grid" class="card-grid">
     {% assign vowels =  site.data.sounds | where: "segment", "vowel" %}
     {% for item in vowels %}
-    <article class="project-card" onclick="listen('{{ item.pronunciation }}')">
+    <article class="project-card" onclick="listen('{{ item.sentence }}')">
       <header class="phoneme-header">
         <div class="symbol-group">
           <h3 class="symbol">{{ item.phoneme }}</h3>
@@ -35,7 +35,7 @@ permalink: /english/
         </div>
       </header>  
       <div class="example-text">{{ item.sentence}}</div>
-      <div class="pronunciation-path">{{ item.sentence }}</div>
+      <div class="pronunciation-path">{{ item.pronunciation }}</div>
     </article>
     {% endfor %}
   </div>
@@ -46,7 +46,7 @@ permalink: /english/
   <div id="consonant-grid" class="card-grid">
     {% assign consonants =  site.data.sounds | where: "segment", "consonant" %}
     {% for item in consonants %}
-    <article class="project-card" onclick="listen('{{ item.pronunciation }}')">
+    <article class="project-card" onclick="listen('{{ item.sentence }}')">
       <header class="phoneme-header">
         <div class="symbol-group">
           <h3 class="symbol">{{ item.phoneme }}</h3>
@@ -61,7 +61,7 @@ permalink: /english/
         </div>
       </header>  
       <div class="example-text">{{ item.sentence }}</div>
-      <div class="pronunciation-path">{{ item.sentence }}</div>
+      <div class="pronunciation-path">{{ item.pronunciation }}</div>
     </article>
     {% endfor %}
   </div>
@@ -72,10 +72,8 @@ function listen(text) {
     window.speechSynthesis.cancel();
     
     let speechString = text;
-  
-    speechString = speechString.replace(/eh@/g, 'air');
-    speechString = speechString.replace(/ee@/g, 'ere');
-    speechString = speechString.replace(/iy@/g, 'ire');
+    speechString = speechString.replace(/#/g, '#');
+    speechString = speechString.replace(/#/g, '#');
 
     const utterance = new SpeechSynthesisUtterance(speechString);
     utterance.lang = 'en-AU';
