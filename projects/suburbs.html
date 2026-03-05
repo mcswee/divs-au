@@ -32,7 +32,7 @@ extra_scripts: |
   {% for suburb in site.data.suburbs %}
     {% assign first_letter = suburb.name | slice: 0 | downcase %}
     
-    <article class="suburb-card js-search-item" 
+    <article class="project-card suburb-card js-search-item" 
              {% if first_letter != current_letter %}id="{{ first_letter }}"{% endif %}
              data-search="{{ suburb.name }} {{ suburb.postcode }} {{ suburb.lga }}">
       
