@@ -91,7 +91,7 @@ function copyToClipboard(text, element) {
     window.location.hash = card.dataset.name.toLowerCase().replace(/\s+/g, '-');
 }
 
-Papa.parse("assets/data/colours.csv", {
+Papa.parse("/assets/projects/colours.csv", {
     download: true,
     header: true,
     skipEmptyLines: true,
