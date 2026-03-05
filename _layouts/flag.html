@@ -30,17 +30,6 @@ category: projects
     {% endif %}
 </header>
 
-{% if page.compare %}
-<section class="page-element critique-section">
-  <div class="card-grid">
-        <div class="variant-item" role="group" aria-labelledby="critique-caption">
-            <img src="{{ current_img_path }}" alt="Current {{ page.state }} flag">
-            <h3 id="critique-caption">Current {{ page.state }} flag</h3>
-        </div>
-    </div>
-</section>
-{% endif %}
-
 {% if page.description or page.symbolism %}
   <section class="page-element">
     <h2>Design and symbolism</h2>
@@ -76,6 +65,18 @@ category: projects
     <h2>Vice-regal standard</h2>
     <img src="{{ page.viceregal.image }}" alt="Governor standard" class="flag-display">
     <p>{{ page.viceregal.text }}</p>
+</section>
+{% endif %}
+
+{% if page.compare %}
+<section class="page-element critique-section">
+  <div class="card-grid">
+        <div class="variant-item" role="group" aria-labelledby="critique-caption">
+            <img src="{{ current_img_path }}" alt="Current {{ page.state }} flag" class="flag-variant">
+            <h3 id="critique-caption">Current {{ page.state }} flag</h3>
+            <p>The current flag of {{ page.state }}. I am replacing this flag with my own design.</p>
+        </div>
+    </div>
 </section>
 {% endif %}
 
