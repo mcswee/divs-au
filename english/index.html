@@ -72,8 +72,8 @@ function listen(text) {
     window.speechSynthesis.cancel();
     
     let speechString = text;
-    speechString = speechString.replace(/#/g, '#');
-    speechString = speechString.replace(/#/g, '#');
+    speechString = speechString.replace(/waratah/g, 'wo-ra-tah');
+    speechString = speechString.replace(/urinal/g, 'you-ra-nul');
 
     const utterance = new SpeechSynthesisUtterance(speechString);
     utterance.lang = 'en-AU';
