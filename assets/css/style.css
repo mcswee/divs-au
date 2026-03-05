@@ -400,7 +400,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 
 .project-card.disabled:hover { 
     cursor: not-allowed; 
-    border-color: #942a2a; 
+    color: #942a2a; 
 }
 
 .state-card {
