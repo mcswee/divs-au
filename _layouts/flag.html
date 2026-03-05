@@ -79,20 +79,14 @@ category: projects
 
 {% if page.compare %}
 <section class="page-element critique-section">
-  <div class="card-grid">
-        <div class="variant-item" role="group" aria-labelledby="critique-caption">
-            <img src="{{ current_img_path }}" alt="Current {{ page.state }} flag" class="flag-variant">
-            <h3 id="critique-caption">Current {{ page.state }} flag</h3>
-            <p>The current flag of {{ page.state }}. I am replacing this flag with my own design.</p>
-        </div>
-        {% if current_img_back %}
-            <div class="variant-item" role="group" aria-labelledby="critique-caption">
-                <img src="{{ current_img_back }}" alt="Current flag of {{ page.state }} (Reverse)" class="flag-variant">
-                <h3 id="critique-caption">Current {{ page.state }} flag</h3>
-                <p>The current flag of {{ page.state }}. I am replacing this flag with my own design.</p>
-            </div>
-        {% endif %}
-    </div>
+  <h2 id="critique-caption">Current {{ page.state }} flag</h2>   
+  <div class="variant-item" role="group" aria-labelledby="critique-caption">
+      <img src="{{ current_img_path }}" alt="Current {{ page.state }} flag" class="flag-variant">
+      {% if current_img_back %}
+          <img src="{{ current_img_back }}" alt="Current flag of {{ page.state }} (Reverse)" class="flag-variant">      
+      {% endif %}
+  </div>
+  <p>{{ page.critique }}</p>
 </section>
 {% endif %}
 
