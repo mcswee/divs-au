@@ -32,14 +32,10 @@ category: projects
 
 {% if page.compare %}
 <section class="page-element critique-section">
-    <div class="card-grid">
-        <figure class="varian-item" role="group" aria-labelledby="critique-caption">
+  <div class="card-grid">
+        <div class="variant-item" role="group" aria-labelledby="critique-caption">
             <img src="{{ current_img_path }}" alt="Current {{ page.state }} flag">
-            <figcaption id="critique-caption">Current {{ page.state }} flag</figcaption>
-        </figure>
-        <div class="critique-text">
-            <h2>{{ page.state }} current flag</h2>
-            <p>{{ page.critique | default: "The current flag design needs to change.}}</p>
+            <h3 id="critique-caption">Current {{ page.state }} flag</h3>
         </div>
     </div>
 </section>
