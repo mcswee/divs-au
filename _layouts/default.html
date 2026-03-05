@@ -1,4 +1,4 @@
-{% if page.collection == 'us_flags' and page.title == nil %}
+{% if page.collection == 'us_flags' and page.state %}
   {% assign display_title = page.state | append: " state flag redesign" %}
 {% else %}
   {% assign display_title = page.title %}
