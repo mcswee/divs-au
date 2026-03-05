@@ -38,6 +38,13 @@ extra_scripts: |
       
       <header id="{{ suburb.name | slugify }}">
         <h3>{{ suburb.name }}</h3>
+        <div class="audio-indicator" aria-hidden="true" onclick="listen('{{ suburb.name }}')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+        </div>
         <p class="meta">{{ suburb.postcode }} — {{ suburb.lga }}</p>
       </header>
 
@@ -77,3 +84,24 @@ extra_scripts: |
     </span>
  </section>
 
+<script>
+function listen(text) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    
+    let speechString = text;
+    const wordOverrides = {
+         'waratah': 'worra tar',
+     };
+
+     for (const [key, value] of Object.entries(wordOverrides)) {
+        const regex = new RegExp(`\\b${key}\\b`, 'gi');
+        speechString = speechString.replace(regex, value);
+    }
+
+    const utterance = new SpeechSynthesisUtterance(speechString);
+    utterance.lang = 'en-AU';
+    utterance.rate = 0.85;
+    window.speechSynthesis.speak(utterance);
+}
+</script>
