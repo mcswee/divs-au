@@ -13,13 +13,12 @@ permalink: /english/
 </header>
 
 <section class="page-element phonology-container">
-  {% assign sorted_sounds = site.data.sounds | sort: "phoneme" %}
   
   <h2>Vowels</h2>
   <p>Every vowel is represented by either a unique symbol&mdash;like <strong>@</strong> for a schwa, <strong>æ</strong> for a flat 'a'&mdash;or a dedicated two-character combination. These are treated as a single unit representing a single vowel sound.</p>
   
   <div id="vowel-grid" class="card-grid">
-    {% assign vowels = sorted_sounds | where: "segment", "vowel" %}
+    {% assign vowels =  site.data.sounds | where: "segment", "vowel" %}
     {% for item in vowels %}
     <article class="project-card" onclick="listen('{{ item.sentence }}')">
       <header class="phoneme-header">
@@ -27,7 +26,13 @@ permalink: /english/
           <h3 class="symbol">{{ item.phoneme }}</h3>
           <span class="ipa-tag">/{{ item.ipa }}/</span>
         </div>
-        <div class="audio-indicator" aria-hidden="true">🔊</div>
+        <div class="audio-indicator" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+        </div>
       </header>  
       <div class="example-text">{{ item.sentence}}</div>
       <div class="pronunciation-path">{{ item.pronunciation }}</div>
@@ -39,7 +44,7 @@ permalink: /english/
   <p>Every consonant is represented by a single, consistent letter or symbol. For example, <strong>$</strong> represents 'sh' and <strong>£</strong> is used specifically for the 'ng' sound.</p>
   
   <div id="consonant-grid" class="card-grid">
-    {% assign consonants = sorted_sounds | where: "segment", "consonant" %}
+    {% assign consonants =  site.data.sounds | where: "segment", "consonant" %}
     {% for item in consonants %}
     <article class="project-card" onclick="listen('{{ item.sentence }}')">
       <header class="phoneme-header">
@@ -47,7 +52,13 @@ permalink: /english/
           <h3 class="symbol">{{ item.phoneme }}</h3>
           <span class="ipa-tag">/{{ item.ipa }}/</span>
         </div>
-        <div class="audio-indicator" aria-hidden="true">🔊</div>
+        <div class="audio-indicator" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+        </div>
       </header>  
       <div class="example-text">{{ item.sentence }}</div>
       <div class="pronunciation-path">{{ item.pronunciation }}</div>
