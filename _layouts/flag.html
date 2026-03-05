@@ -5,7 +5,12 @@ category: projects
 {% if page.collection == 'us_flags' %}
   {% assign display_title = page.state | append: " state flag redesign" %}
   {% assign main_img_path = "/assets/images/flags/us/redesigns/" | append: page.state_id | append: ".svg" %}
-  {% assign current_img_path = "/assets/images/flags/us/current/" | append: page.state_id | append: ".svg" %}
+  {% if page.state_id == 'or' %}
+    {% assign current_img_path = "/assets/images/flags/us/current/or-front.svg" %}
+    {% assign current_img_back = "/assets/images/flags/us/current/or-back.svg" %}
+  {% else %}
+    {% assign current_img_path = "/assets/images/flags/us/current/" | append: page.state_id | append: ".svg" %}
+  {% endif %}
 {% else %}
   {% assign display_title = page.title %}
   {% assign main_img_path = page.main_image %}
@@ -80,6 +85,13 @@ category: projects
             <h3 id="critique-caption">Current {{ page.state }} flag</h3>
             <p>The current flag of {{ page.state }}. I am replacing this flag with my own design.</p>
         </div>
+        {% if current_img_back %}
+            <div class="variant-item" role="group" aria-labelledby="critique-caption">
+                <img src="{{ current_img_back }}" alt="Current flag of {{ page.state }} (Reverse)" class="flag-variant">
+                <h3 id="critique-caption">Current {{ page.state }} flag</h3>
+                <p>The current flag of {{ page.state }}. I am replacing this flag with my own design.</p>
+            </div>
+        {% endif %}
     </div>
 </section>
 {% endif %}
