@@ -72,7 +72,7 @@ function listen(text) {
     window.speechSynthesis.cancel();
     
     let speechString = text;
-    speechString = speechString.replace(/waratah/g, 'worra tar');
+    speechString = speechString.replace(/waratah/g, 'warra tar');
     speechString = speechString.replace(/urinal/g, 'ure rinnle');
 
     const utterance = new SpeechSynthesisUtterance(speechString);
