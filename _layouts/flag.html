@@ -50,6 +50,10 @@ category: projects
 </section>
 {% endif %}
 
+{% if page.smallprint %}
+    <small class="page-element copyright">{{ page.smallprint }}</small>
+{% endif %}
+
 {% if page.construction %}
 <section class="page-element">
     <h2>Construction sheet</h2>
@@ -100,6 +104,6 @@ category: projects
   {% endfor %}
 {% endif %}
 
-{% if page.smallprint %}
-    <small class="page-element copyright">{{ page.smallprint }}</small>
+{% if page.atrribution %}
+    <small class="page-element copyright">{{ page.attribution }}</small>
 {% endif %}
