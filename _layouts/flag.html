@@ -32,14 +32,14 @@ category: projects
 
 {% if page.compare %}
 <section class="page-element critique-section">
-    <div class="critique-grid">
-        <figure class="critique-image" role="group" aria-labelledby="critique-caption">
+    <div class="card-grid">
+        <figure class="varian-item" role="group" aria-labelledby="critique-caption">
             <img src="{{ current_img_path }}" alt="Current {{ page.state }} flag">
             <figcaption id="critique-caption">Current {{ page.state }} flag</figcaption>
         </figure>
         <div class="critique-text">
             <h2>{{ page.state }} current flag</h2>
-            <p>{{ page.critique | default: "The current design is a 'seal on a blue bedsheet', a faux-heraldic coat of arms or complex seal placed on a plain blue field. It is indistinguishable from dozens of other US state flags at a distance and fails the basic principles of effective vexillography." }}</p>
+            <p>{{ page.critique | default: "The current flag design needs to change.}}</p>
         </div>
     </div>
 </section>
