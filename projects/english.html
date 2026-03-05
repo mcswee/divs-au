@@ -20,13 +20,13 @@ permalink: /english/
   <div id="vowel-grid" class="card-grid">
     {% assign vowels =  site.data.sounds | where: "segment", "vowel" %}
     {% for item in vowels %}
-    <article class="project-card" onclick="listen('{{ item.sentence }}')">
+    <article class="project-card">
       <header class="phoneme-header">
         <div class="symbol-group">
           <h3 class="symbol">{{ item.phoneme }}</h3>
           <span class="ipa-tag">/{{ item.ipa }}/</span>
         </div>
-        <div class="audio-indicator" aria-hidden="true">
+        <div class="audio-indicator" aria-hidden="true" onclick="listen('{{ item.sentence }}')">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
                 <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
@@ -46,13 +46,13 @@ permalink: /english/
   <div id="consonant-grid" class="card-grid">
     {% assign consonants =  site.data.sounds | where: "segment", "consonant" %}
     {% for item in consonants %}
-    <article class="project-card" onclick="listen('{{ item.sentence }}')">
+    <article class="project-card">
       <header class="phoneme-header">
         <div class="symbol-group">
           <h3 class="symbol">{{ item.phoneme }}</h3>
           <span class="ipa-tag">/{{ item.ipa }}/</span>
         </div>
-        <div class="audio-indicator" aria-hidden="true">
+        <div class="audio-indicator" aria-hidden="true" onclick="listen('{{ item.sentence }}')">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
                 <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
