@@ -20,7 +20,7 @@ permalink: /english/
   <div id="vowel-grid" class="card-grid">
     {% assign vowels =  site.data.sounds | where: "segment", "vowel" %}
     {% for item in vowels %}
-    <article class="project-card" onclick="listen('{{ item.sentence }}')">
+    <article class="project-card" onclick="listen('{{ item.pronunciation }}')">
       <header class="phoneme-header">
         <div class="symbol-group">
           <h3 class="symbol">{{ item.phoneme }}</h3>
@@ -46,7 +46,7 @@ permalink: /english/
   <div id="consonant-grid" class="card-grid">
     {% assign consonants =  site.data.sounds | where: "segment", "consonant" %}
     {% for item in consonants %}
-    <article class="project-card" onclick="listen('{{ item.sentence }}')">
+    <article class="project-card" onclick="listen('{{ item.pronunciation }}')">
       <header class="phoneme-header">
         <div class="symbol-group">
           <h3 class="symbol">{{ item.phoneme }}</h3>
@@ -70,9 +70,50 @@ permalink: /english/
 <script>
 function listen(text) {
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
+    
+    let speechString = text;
+
+    // 1. High Priority Clusters (Maps before schwa/structure removal)
+    speechString = speechString.replace(/eh@/g, 'air');
+    speechString = speechString.replace(/ee@/g, 'ere');
+    speechString = speechString.replace(/iy@/g, 'ire');
+    speechString = speechString.replace(/ow@/g, 'our');
+    speechString = speechString.replace(/u@/g, 'ure');
+    
+    // Diphthongs and Long Vowels
+    speechString = speechString.replace(/oh(?=[·\s]|$)/g, 'oe'); 
+    speechString = speechString.replace(/oh/g, 'oa');
+    speechString = speechString.replace(/iy/g, 'y');
+    speechString = speechString.replace(/ew/g, 'oo');
+    speechString = speechString.replace(/aw/g, 'or');
+    speechString = speechString.replace(/oi/g, 'oy');
+
+    // 2. Positional Schwa
+    speechString = speechString.replace(/@(?=[·\s]|$)/g, 'ah');
+    speechString = speechString.replace(/@/g, 'uh');
+
+    // 3. Constant Symbol Mapping
+    const engineMap = {
+        '‡': 'th',
+        '+': 'th',
+        '$': 'sh',
+        '§': 'zh',
+        '¢': 'ch',
+        '£': 'ng',
+        'æ': 'a',
+        'ø': 'o',
+        'œ': 'er'
+    };
+
+    speechString = speechString.replace(/[‡+$§¢£æøœ]/g, m => engineMap[m]);
+
+    // 4. Strip structural markers (middle dots and zero-width spaces)
+    speechString = speechString.replace(/[·\u200B]/g, '');
+
+    const utterance = new SpeechSynthesisUtterance(speechString);
     utterance.lang = 'en-AU';
     utterance.rate = 0.85;
     window.speechSynthesis.speak(utterance);
+}
 }
 </script>
