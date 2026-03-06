@@ -1,17 +1,16 @@
+---
+layout: null
+---
 User-agent: *
 Allow: /
+Allow: /assets/
 
-# Block raw data and spreadsheet files
-Disallow: /assets/
+# Block the raw data folder (where your CSVs/GeoJSONs/YMLs live)
 Disallow: /data/
+Disallow: /_data/  # Technically redundant but safe
 Disallow: /*.csv$
 Disallow: /*.geojson$
-
-# Block images from being indexed separately
-Disallow: /images/
-Disallow: /*.png$
-Disallow: /*.jpg$
-Disallow: /*.svg$
+Disallow: /*.yml$
 
 # Reference your sitemap
-Sitemap: https://divs.au/sitemap.xml
+Sitemap: {{ site.url }}/sitemap.xml
