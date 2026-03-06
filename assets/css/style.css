@@ -208,7 +208,7 @@ header .page-element {
     background: var(--highlight);
     color: var(--brand-accent);
     font-weight: 700;
-    border 1px solid var(--brand-highlight);
+    border: 1px solid var(--brand-highlight);
 }
 
 nav a[aria-current="page"]::before {
