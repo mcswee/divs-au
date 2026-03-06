@@ -964,6 +964,7 @@ input::-webkit-search-results-decoration {
     transition: opacity 0.2s;
     flex-shrink: 0;
     opacity: 0.6;
+    border: 1px solid var(--text-main);
 }
 
 .speaker-icon {
@@ -972,6 +973,7 @@ input::-webkit-search-results-decoration {
 }
 
 .audio-indicator:hover {
+    color: var(--brand-main);
     opacity: 1;
 }
 
