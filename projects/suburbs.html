@@ -32,48 +32,46 @@ extra_scripts: |
   {% for suburb in site.data.suburbs %}
     {% assign first_letter = suburb.name | slice: 0 | downcase %}
     
-    <article class="project-card suburb-card js-search-item" 
-             {% if first_letter != current_letter %}id="{{ first_letter }}"{% endif %}
-             data-search="{{ suburb.name }} {{ suburb.postcode }} {{ suburb.lga }}">
-      
-      <header id="{{ suburb.name | slugify }}">
-        <h3>{{ suburb.name }}</h3>
-        <div class="audio-indicator" aria-hidden="true" onclick="listen('{{ suburb.name }}')">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
-                <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-            </svg>
-        </div>
-        <p class="meta">{{ suburb.postcode }} — {{ suburb.lga }}</p>
-      </header>
+<article class="project-card suburb-card js-search-item" 
+         {% if first_letter != current_letter %}id="{{ first_letter }}"{% endif %}
+         data-search="{{ suburb.name }} {{ suburb.postcode }} {{ suburb.lga }}">
+  
+  <header id="{{ suburb.name | slugify }}">
+    <h3>{{ suburb.name }}</h3>
+    <div class="audio-indicator" aria-hidden="true" onclick="listen('{{ suburb.name }}')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
+        <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+      </svg>
+    </div>
+  </header>
 
-      {% if first_letter != current_letter %}
-        {% assign current_letter = first_letter %}
-      {% endif %}
+  <p class="transcription-preview">{{ suburb.pronunciation }}</p>
 
-      <p class="transcription-preview">{{ suburb.pronunciation }}</p>
-
-      <details class="pronunciation-details">
-        <summary>View phonetic breakdown</summary>
-        <dl>
-          {% for symbol in suburb.phonemes %}
-            {% if symbol == "·" %}
-              <div class="syllable-divider">
-                <dt>·</dt>
-                <dd>syllable break</dd>
-              </div>
-            {% else %}
-              {% assign sound_data = site.data.sounds | where: "phoneme", symbol | first %}
-              <div class="phoneme-entry">
-                <dt>{{ symbol }}</dt>
-                <dd>as in {{ sound_data.example }}</dd>
-              </div>
-            {% endif %}
-          {% endfor %}
-        </dl>
-      </details>
-    </article>
+  <details class="pronunciation-details">
+    <summary>View details</summary>
+    <div class="meta-data">
+        <p>{{ suburb.postcode }} — {{ suburb.lga }}</p>
+    </div>
+    <dl>
+      {% for symbol in suburb.phonemes %}
+        {% if symbol == "·" %}
+          <div class="syllable-divider">
+            <dt>·</dt>
+            <dd>syllable break</dd>
+          </div>
+        {% else %}
+          {% assign sound_data = site.data.sounds | where: "phoneme", symbol | first %}
+          <div class="phoneme-entry">
+            <dt>{{ symbol }}</dt>
+            <dd>as in {{ sound_data.example }}</dd>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </dl>
+  </details>
+</article>
   {% endfor %}
 </section>
 
