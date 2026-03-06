@@ -53,6 +53,7 @@ permalink: /colours/
         <article class="colour-card" 
                  data-name="{{ item.name }}" 
                  data-hex="{{ item.hex }}" 
+                 data-year="{{ item.year }}"
                  data-family="{{ item.family | downcase }}"
                  style="view-transition-name: card-{{ item.name | slugify }};">
           <div class="swatch" style="background-color: {{ item.hex }};" onclick="copyToClipboard('{{ item.hex }}', this)">
