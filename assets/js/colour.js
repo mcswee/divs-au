@@ -35,22 +35,31 @@ function initializeCardData() {
     });
 }
 
-function sortGrid(criterion) {
+function sortGrid(criterion, ascending = true) {
     const grid = document.getElementById('colour-grid');
     const cards = Array.from(grid.querySelectorAll('.colour-card'));
     const familyOrder = { "reds": 1, "oranges": 2, "yellows": 3, "greens": 4, "blues": 5, "purples": 6, "pinks": 7, "browns": 8, "greys": 9, "neutrals": 10 };
 
     cards.sort((a, b) => {
+        let valA, valB;
         switch(criterion) {
-            case 'Name': return a.dataset.name.localeCompare(b.dataset.name);
-            case 'Hex': return a.dataset.hex.localeCompare(b.dataset.hex);
-            case 'Family': return (familyOrder[a.dataset.family] || 99) - (familyOrder[b.dataset.family] || 99);
+            case 'Name': return ascending ? a.dataset.name.localeCompare(b.dataset.name) : b.dataset.name.localeCompare(a.dataset.name);
+            case 'Hex': return ascending ? a.dataset.hex.localeCompare(b.dataset.hex) : b.dataset.hex.localeCompare(a.dataset.hex);
+            case 'Family': 
+                valA = familyOrder[a.dataset.family] || 99;
+                valB = familyOrder[b.dataset.family] || 99;
+                return ascending ? valA - valB : valB - valA;
             case 'Year':
                 const parseY = (v) => v.toLowerCase().includes('imm') ? 0 : (parseInt(v.replace(/\D/g, ''), 10) || 9999);
-                return parseY(a.dataset.year) - parseY(b.dataset.year);
-            case 'Hue': return parseFloat(a.dataset.hue) - parseFloat(b.dataset.hue);
-            case 'Saturation': return parseFloat(a.dataset.sat) - parseFloat(b.dataset.sat);
-            case 'Luminosity': return parseFloat(a.dataset.lum) - parseFloat(b.dataset.lum);
+                valA = parseY(a.dataset.year);
+                valB = parseY(b.dataset.year);
+                return ascending ? valA - valB : valB - valA;
+            case 'Hue':
+            case 'Saturation':
+            case 'Luminosity':
+                valA = parseFloat(a.dataset[criterion.toLowerCase()]);
+                valB = parseFloat(b.dataset[criterion.toLowerCase()]);
+                return ascending ? valA - valB : valB - valA;
             default: return 0;
         }
     });
@@ -68,11 +77,21 @@ function copyToClipboard(text, element) {
 document.addEventListener('DOMContentLoaded', () => {
     initializeCardData();
 
+    let lastSort = '';
+    let isAscending = true;
+
     const sortSelect = document.getElementById('sort-select');
     if (sortSelect) {
         sortSelect.addEventListener('change', function() {
-            if (document.startViewTransition) document.startViewTransition(() => sortGrid(this.value));
-            else sortGrid(this.value);
+            if (this.value === lastSort) {
+                isAscending = !isAscending;
+            } else {
+                isAscending = true;
+                lastSort = this.value;
+            }
+            
+            if (document.startViewTransition) document.startViewTransition(() => sortGrid(this.value, isAscending));
+            else sortGrid(this.value, isAscending);
         });
     }
 
