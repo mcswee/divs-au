@@ -980,6 +980,7 @@ input::-webkit-search-results-decoration {
 
 /* 3. PRONUNCIATION STRING (Unified) */
 .pronunciation-string {
+    font-family: monospace;
     font-weight: 700;
     color: var(--brand-main);
     background: var(--bg-accent);
@@ -1024,7 +1025,6 @@ input::-webkit-search-results-decoration {
 
 /* The card itself */
 .suburb-card {
-    background: var(--highlight);
     border: 1px solid var(--text-accent);
     border-radius: 6px;
     padding: 12px;
