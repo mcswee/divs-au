@@ -585,8 +585,8 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 
 /* 9. SEARCH AND FILTERS*/
 .js-filter-input {
-    width: %;
-    max-width: 400px;
+    width: 40%;
+    max-width: 560px;
     padding: 12px;
     font-family: inherit;
     border: 2px solid var(--brand-main);
@@ -610,7 +610,7 @@ input::-webkit-search-results-decoration {
 
 .alphabet-nav {
     display: block;
-    margin: 8px 0;
+    margin: 2px 0;
 }
 
 .alphabet-nav ul {
@@ -619,7 +619,7 @@ input::-webkit-search-results-decoration {
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 2px;
 }
 
 .alphabet-nav a, 
@@ -979,7 +979,7 @@ input::-webkit-search-results-decoration {
 .pronunciation-string {
     font-weight: 600;
     color: var(--brand-main);
-    background: var(--brand-highlight);
+    background: var(--bg-highlight);
     padding: 4px 8px;
     border-radius: 4px;
     display: inline-block;
@@ -1014,7 +1014,7 @@ input::-webkit-search-results-decoration {
 }
 
 .card-grid.suburbs {
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
     align-items: start; /* Prevents neighbors from stretching when one card expands */
     gap: 12px;
 }
@@ -1300,79 +1300,6 @@ input::-webkit-search-results-decoration {
 
 .copy-toast.show {
     transform: translateX(-50%) translateY(0);
-}
-
-/* Phonology */
-
-.phoneme-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1.2rem;
-}
-
-.symbol-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.audio-indicator {
-    font-size: 1.1rem;
-    opacity: 0.3;
-    filter: grayscale(1);
-    transition: all 0.2s ease-in-out;
-}
-
-.project-card:hover .audio-indicator {
-    opacity: 1;
-    filter: grayscale(0);
-    transform: scale(1.1);
-}
-
-.example-text {
-    font-size: 1.1rem; /* Bumped slightly since we binned the footer text */
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-    color: var(--heading-color);
-}
-
-.pronunciation-path {
-    font-family: monospace;
-    font-weight: bold;
-    color: var(--brand-main);
-    background: var(--highlight);
-    padding: 2px 6px;
-    border-radius: 3px;
-    text-align: center;
-    min-width: 1.5rem;
-}
-
-.symbol {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--brand-main);
-    padding: 10px;
-}
-
-.ipa-tag {
-    font-family: 'Noto Serif', serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text-main);
-    padding: 8px;
-    border-radius: 8px;
-}
-
-.example-text {
-    color: var(--text-highlight);
-    margin-bottom: 10px;
-}
-
-.pronunciation-path {
-    font-family: 'Google Sans Code', monospace;
-    font-size: 0.95rem;
-    color: var(--brand-main);
 }
 
 /* 12. RESPONSIVENESS */
