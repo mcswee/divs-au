@@ -43,7 +43,7 @@
 }
 
 .js-search-item[hidden] {
-    display: none !important;
+    display: none;
 }
 
 body {
@@ -901,13 +901,13 @@ input::-webkit-search-results-decoration {
 }
 
 .custom-map-tooltip {
-    background: var(--highlight) !important;
-    border: 1px solid var(--text-accent) !important;
-    border-radius: 4px !important;
-    box-shadow: var(--shadow-main) !important;
-    padding: 8px !important;
-    font-size: 0.9rem !important;
-    color: var(--text-main) !important;
+    background: var(--highlight);
+    border: 1px solid var(--text-accent);
+    border-radius: 4px;
+    box-shadow: var(--shadow-main);
+    padding: 8px;
+    font-size: 0.9rem;
+    color: var(--text-main);
 }
 
 .tooltip-header {
@@ -928,7 +928,7 @@ input::-webkit-search-results-decoration {
 
 .leaflet-interactive:focus, 
 #map:focus {
-    outline: none !important;
+    outline: none;
 }
 
 .leaflet-interactive:focus-visible,
@@ -1298,8 +1298,8 @@ input::-webkit-search-results-decoration {
         border-radius: 0; border: none;
         border-bottom: 1px solid var(--text-accent);
         padding: 10px;
-        display: flex !important;
-        flex-direction: row !important;
+        display: flex;
+        flex-direction: row;
         align-items: flex-end;
         gap: 8px;
      }
@@ -1307,7 +1307,7 @@ input::-webkit-search-results-decoration {
      .control-group { flex: 1; margin: 0; }
      .control-group:first-of-type { flex: 0 0 85px; }
      .control-group label { display: none; }
-     .leaflet-top.leaflet-left { top: 75px !important; }
+     .leaflet-top.leaflet-left { top: 75px; }
 
       .colour-grid {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
