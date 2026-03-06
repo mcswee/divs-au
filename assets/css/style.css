@@ -982,8 +982,9 @@ input::-webkit-search-results-decoration {
 .pronunciation-string {
     font-family: monospace;
     font-weight: 700;
+    font-size: 1.1rem;
     color: var(--brand-main);
-    background: var(--bg-accent);
+    background: var(--highlight);
     padding: 4px 0;
     border-radius: 4px;
     display: inline-block;
