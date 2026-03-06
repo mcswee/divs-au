@@ -37,7 +37,7 @@ extra_scripts: |
   
   <header class="pronunciation-header" id="{{ suburb.name | slugify }}">
     <h3 class="pronunciation-title">{{ suburb.name }}</h3>
-    <div class="audio-indicator" aria-hidden="true" onclick="listen('{{ suburb.name }}')">
+    <div class="audio-indicator" role="button" tabindex="0" aria-label="Listen to pronunciation of {{ suburb.name }}" onclick="listen('{{ suburb.name }}')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { listen('{{ suburb.name }}'); event.preventDefault(); }"
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
         <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
         <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
