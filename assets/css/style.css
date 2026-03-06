@@ -1000,7 +1000,7 @@ input::-webkit-search-results-decoration {
     font-size: 1.05rem;
     color: var(--text-highlight);
     font-weight: 600;
-    padding: 0 10px;
+    padding: 0 10px 20px 10px;
 }
 
 .example-text {
