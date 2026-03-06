@@ -396,11 +396,9 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
 
 .project-card h3 { font-size: 1.1rem; color: var(--brand-main); margin-bottom: 8px; }
 .project-card p { font-size: 0.95rem; margin: 0; color: var(--text-main); line-height: 1.4; opacity: 0.9; }
-.project-card.disabled h3:hover { color:#942a2a; }
 
 .project-card.disabled:hover { 
     cursor: not-allowed; 
-    color: #942a2a; 
 }
 
 .state-card {
@@ -610,7 +608,7 @@ input::-webkit-search-results-decoration {
 
 .alphabet-nav {
     display: block;
-    margin: 2px;
+    margin: 0;
 }
 
 .alphabet-nav ul {
@@ -651,6 +649,12 @@ input::-webkit-search-results-decoration {
 }
 
 .alphabet-nav[hidden] {
+    color: var(--text-accent);
+    opacity: 0.5;
+    background: transparent;
+}
+
+.alphabet-nav[hidden] a:hover {
     color: var(--text-accent);
     opacity: 0.5;
     background: transparent;
