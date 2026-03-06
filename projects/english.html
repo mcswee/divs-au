@@ -21,9 +21,9 @@ permalink: /english/
     {% assign vowels =  site.data.sounds | where: "segment", "vowel" %}
     {% for item in vowels %}
     <article class="project-card phoneme-card">
-      <header class="pronunciation-header">
-        <h3 class="pronunciation-title">{{ item.phoneme }}</h3>
-        <div class="header-right">
+      <header class="pronunciation-header" aria-label="Phoneme symbol {{ item.phoneme }}, representing the IPA symbol {{ item.ipa }}">
+        <h3 class="pronunciation-title" aria-hidden="true">{{ item.phoneme }}</h3>
+        <div class="header-right" aria-hidden="true">
            <span class="ipa-tag">/{{ item.ipa }}/</span>
            <div class="audio-indicator" role="button" tabindex="0" aria-label="Listen to pronunciation of {{ item.sentence }}" onclick="listen('{{ item.sentence }}')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { listen('{{ item.sentence }}'); event.preventDefault(); }">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
@@ -34,9 +34,8 @@ permalink: /english/
            </div>
         </div>
       </header>
-      
-      <div class="example-text">{{ item.sentence }}</div>
-      <div class="pronunciation-string">{{ item.pronunciation }}</div>
+      <div class="example-text" aria-label="Example sentence">{{ item.sentence }}</div>
+      <div class="pronunciation-string" aria-hidden="true">{{ item.pronunciation }}</div>
     </article>
     {% endfor %}
   </div>
@@ -48,9 +47,9 @@ permalink: /english/
     {% assign consonants =  site.data.sounds | where: "segment", "consonant" %}
     {% for item in consonants %}
     <article class="project-card phoneme-card">
-      <header class="pronunciation-header">
-        <h3 class="pronunciation-title">{{ item.phoneme }}</h3>
-        <div class="header-right">
+      <header class="pronunciation-header" aria-label="Phoneme symbol {{ item.phoneme }}, representing the IPA symbol {{ item.ipa }}">
+        <h3 class="pronunciation-title" aria-hidden="true">{{ item.phoneme }}</h3>
+        <div class="header-right" aria-hidden="true">
            <span class="ipa-tag">/{{ item.ipa }}/</span>
            <div class="audio-indicator" role="button" tabindex="0" aria-label="Listen to pronunciation of {{ ipa }}" onclick="listen('{{ item.sentence }}')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { listen('{{ item.sentence }}'); event.preventDefault(); }">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
@@ -61,8 +60,8 @@ permalink: /english/
            </div>
         </div>
       </header>
-      <div class="example-text">{{ item.sentence }}</div>
-      <div class="pronunciation-string">{{ item.pronunciation }}</div>
+      <div class="example-text" aria-label="Example sentence">{{ item.sentence }}</div>
+      <div class="pronunciation-string" aria-hidden="true">{{ item.pronunciation }}</div>
     </article>
     {% endfor %}
   </div>
