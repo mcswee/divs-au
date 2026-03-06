@@ -981,10 +981,9 @@ input::-webkit-search-results-decoration {
 /* 3. PRONUNCIATION STRING (Unified) */
 .pronunciation-string {
     font-family: monospace;
-    font-weight: 700;
-    font-size: 1.1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
     color: var(--brand-main);
-    background: var(--highlight);
     padding: 4px 0;
     border-radius: 4px;
     display: inline-block;
@@ -1005,10 +1004,10 @@ input::-webkit-search-results-decoration {
 }
 
 .example-text {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--text-main);
     margin-bottom: 0.5rem;
-    font-weight: 600;
+    font-weight: 300;
 }
 
 /* 5. CARD INTERACTION */
