@@ -976,22 +976,17 @@ input::-webkit-search-results-decoration {
 
 .speaker-icon:hover {
     color: var(--brand-main);
-}
-
-.audio-indicator:hover {
-    color: var(--brand-main);
     opacity: 1;
 }
 
 /* 3. PRONUNCIATION STRING (Unified) */
 .pronunciation-string {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--brand-main);
-    background: var(--bg-highlight);
-    padding: 4px 8px;
+    background: var(--bg-accent);
+    padding: 4px 0;
     border-radius: 4px;
     display: inline-block;
-    margin: 0.5rem 0;
 }
 
 /* 4. PHONEME SPECIFIC (Right-side alignment) */
@@ -1048,7 +1043,7 @@ input::-webkit-search-results-decoration {
     padding: 0 0 6px 6px;
     font-size: 0.9rem;
     background-color: var(--accent);
-    border: 1px solid var(--text-highlight);
+    border: 1px solid var(--brand-main);
     border-radius:4px;
 }
 
