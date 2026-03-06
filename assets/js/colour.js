@@ -1,5 +1,5 @@
 /**
- * Convert Hex strings (#FFFFFF) to RGB objects for HSL calculation.
+ * Core HSL calculations
  */
 function hexToRgb(hex) {
     hex = hex.replace('#', '');
@@ -8,9 +8,6 @@ function hexToRgb(hex) {
     return { r: (bigint >> 16) & 255, g: (bigint >> 8) & 255, b: bigint & 255 };
 }
 
-/**
- * Convert RGB to HSL. 
- */
 function rgbToHsl({ r, g, b }) {
     r /= 255; g /= 255; b /= 255;
     const max = Math.max(r, g, b), min = Math.min(r, g, b);
@@ -28,61 +25,68 @@ function rgbToHsl({ r, g, b }) {
     return { h, s, l };
 }
 
-// Clipboard Function
+function initializeCardData() {
+    document.querySelectorAll('.colour-card').forEach(card => {
+        const rgb = hexToRgb(card.dataset.hex);
+        const hsl = rgbToHsl(rgb);
+        card.dataset.hue = hsl.h;
+        card.dataset.sat = hsl.s;
+        card.dataset.lum = hsl.l;
+    });
+}
+
+function sortGrid(criterion) {
+    const grid = document.getElementById('colour-grid');
+    const cards = Array.from(grid.querySelectorAll('.colour-card'));
+    const familyOrder = { "reds": 1, "oranges": 2, "yellows": 3, "greens": 4, "blues": 5, "purples": 6, "pinks": 7, "browns": 8, "greys": 9, "neutrals": 10 };
+
+    cards.sort((a, b) => {
+        switch(criterion) {
+            case 'Name': return a.dataset.name.localeCompare(b.dataset.name);
+            case 'Hex': return a.dataset.hex.localeCompare(b.dataset.hex);
+            case 'Family': return (familyOrder[a.dataset.family] || 99) - (familyOrder[b.dataset.family] || 99);
+            case 'Year':
+                const parseY = (v) => v.toLowerCase().includes('imm') ? 0 : (parseInt(v.replace(/\D/g, ''), 10) || 9999);
+                return parseY(a.dataset.year) - parseY(b.dataset.year);
+            case 'Hue': return parseFloat(a.dataset.hue) - parseFloat(b.dataset.hue);
+            case 'Saturation': return parseFloat(a.dataset.sat) - parseFloat(b.dataset.sat);
+            case 'Luminosity': return parseFloat(a.dataset.lum) - parseFloat(b.dataset.lum);
+            default: return 0;
+        }
+    });
+    cards.forEach(card => grid.appendChild(card));
+}
+
 function copyToClipboard(text, element) {
     navigator.clipboard.writeText(text);
     const toast = document.getElementById('copy-toast');
-    if (toast) {
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2000);
-    }
-    
-    // Update URL hash
+    if (toast) { toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2000); }
     const card = element.closest('.colour-card');
-    if (card) {
-        window.location.hash = card.dataset.name.toLowerCase().replace(/\s+/g, '-');
-    }
+    if (card) window.location.hash = card.dataset.name.toLowerCase().replace(/\s+/g, '-');
 }
 
-// DOM Setup
 document.addEventListener('DOMContentLoaded', () => {
-    // Deep link handling (scrolling to #name in URL)
-    const hash = decodeURIComponent(window.location.hash.replace('#', '')).toLowerCase();
-    if (hash) {
-        const targetCard = Array.from(document.querySelectorAll('.colour-card'))
-            .find(c => c.dataset.name.toLowerCase() === hash);
+    initializeCardData();
 
-        if (targetCard) {
-            setTimeout(() => {
-                targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                targetCard.style.outline = '3px solid var(--brand-main)';
-                targetCard.style.outlineOffset = '4px';
-                setTimeout(() => { targetCard.style.outline = 'none'; }, 2000);
-            }, 300);
-        }
-    }
-
-    // Filter Logic
-    const searchInput = document.getElementById('colour-search');
-    const familyFilter = document.getElementById('family-filter');
-
-    function filterGrid() {
-        const searchTerm = searchInput.value.toLowerCase().trim().replace('#', '');
-        const selectedFamily = familyFilter.value.toLowerCase();
-        const cards = document.querySelectorAll('.colour-card');
-
-        cards.forEach(card => {
-            const name = card.dataset.name.toLowerCase();
-            const hex = card.dataset.hex.toLowerCase().replace('#', '');
-            const family = card.dataset.family;
-
-            const matchesSearch = name.includes(searchTerm) || hex.includes(searchTerm);
-            const matchesFamily = (selectedFamily === 'all' || family === selectedFamily);
-
-            card.style.display = (matchesSearch && matchesFamily) ? 'block' : 'none';
+    const sortSelect = document.getElementById('sort-select');
+    if (sortSelect) {
+        sortSelect.addEventListener('change', function() {
+            if (document.startViewTransition) document.startViewTransition(() => sortGrid(this.value));
+            else sortGrid(this.value);
         });
     }
 
-    if (searchInput) searchInput.addEventListener('input', filterGrid);
-    if (familyFilter) familyFilter.addEventListener('change', filterGrid);
+    const search = document.getElementById('colour-search');
+    const filter = document.getElementById('family-filter');
+    const filterGrid = () => {
+        const term = search.value.toLowerCase().trim().replace('#', '');
+        const fam = filter.value.toLowerCase();
+        document.querySelectorAll('.colour-card').forEach(c => {
+            const match = (c.dataset.name.toLowerCase().includes(term) || c.dataset.hex.toLowerCase().includes(term)) 
+                          && (fam === 'all' || c.dataset.family === fam);
+            c.style.display = match ? 'block' : 'none';
+        });
+    };
+    if (search) search.addEventListener('input', filterGrid);
+    if (filter) filter.addEventListener('change', filterGrid);
 });
