@@ -1000,7 +1000,7 @@ input::-webkit-search-results-decoration {
     font-size: 1.05rem;
     color: var(--text-highlight);
     font-weight: 600;
-    padding: 0 10px 20px 10px;
+    padding: 0 10px;
 }
 
 .example-text {
@@ -1010,16 +1010,9 @@ input::-webkit-search-results-decoration {
     font-weight: 300;
 }
 
-/* 5. CARD INTERACTION */
-.project-card:hover {
-    border-color: var(--brand-main);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-deep);
-}
-
 .card-grid.suburbs {
-    grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
-    align-items: start; /* Prevents neighbors from stretching when one card expands */
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    align-items: start; 
     gap: 12px;
 }
 
@@ -1040,7 +1033,7 @@ input::-webkit-search-results-decoration {
     margin: 10px 0 0;
     padding: 0 0 6px 6px;
     font-size: 0.9rem;
-    background-color: var(--accent);
+    background-color: var(--text-accent);
     border: 1px solid var(--brand-main);
     border-radius:4px;
 }
