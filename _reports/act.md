@@ -13,6 +13,12 @@ map_lat: -35.3
 map_lng: 149.1
 map_zoom: 10
 
+extra_head: >
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+extra_scripts: >
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/assets/js/state-map.js"></script>
+
 # Numerical Thresholds
 quota_total: "321,879"
 division_count: "3"
