@@ -10,8 +10,12 @@ map: true
 year: "2024"
 aec_url: "https://aec.gov.au/redistributions/2024/tas/"
 pdf_filename: "/assets/pdf/tas-2025-suggestion.pdf"
-script_name: "tas-map.js"
-
+extra_head: >
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+extra_scripts: >
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/assets/js/state-map.js"></script>
+  
 # Numerical Thresholds
 quota_total: "413,176"
 division_count: "5"
