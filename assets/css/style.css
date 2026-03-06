@@ -939,6 +939,80 @@ input::-webkit-search-results-decoration {
 
 /* Suburbs List */
 /* Specific override for the suburbs page */
+/* 1. PRONUNCIATION HEADER */
+.pronunciation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+    width: 100%;
+}
+
+.pronunciation-title {
+    font-size: 1.1rem;
+    color: var(--brand-main);
+    margin: 0;
+    font-weight: 700;
+}
+
+/* 2. AUDIO INDICATOR (Unified) */
+.audio-indicator {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    color: var(--text-main);
+    transition: opacity 0.2s;
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+.speaker-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.audio-indicator:hover {
+    opacity: 1;
+}
+
+/* 3. PRONUNCIATION STRING (Unified) */
+.pronunciation-string {
+    font-weight: 600;
+    color: var(--brand-main);
+    background: var(--brand-highlight);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 0.5rem 0;
+}
+
+/* 4. PHONEME SPECIFIC (Right-side alignment) */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ipa-tag {
+    font-size: 0.9rem;
+    color: var(--text-highlight);
+    font-weight: 500;
+}
+
+.example-text {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+
+/* 5. CARD INTERACTION */
+.project-card:hover {
+    border-color: var(--brand-main);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-deep);
+}
+
 .card-grid.suburbs {
     grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
     align-items: start; /* Prevents neighbors from stretching when one card expands */
