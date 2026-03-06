@@ -36,8 +36,8 @@ extra_scripts: |
          {% if first_letter != current_letter %}id="{{ first_letter }}"{% endif %}
          data-search="{{ suburb.name }} {{ suburb.postcode }} {{ suburb.lga }}">
   
-  <header id="{{ suburb.name | slugify }}">
-    <h3>{{ suburb.name }}</h3>
+  <header class="pronunciation-header" id="{{ suburb.name | slugify }}">
+    <h3 class="pronunciation-title">{{ suburb.name }}</h3>
     <div class="audio-indicator" aria-hidden="true" onclick="listen('{{ suburb.name }}')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
         <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
@@ -47,7 +47,7 @@ extra_scripts: |
     </div>
   </header>
 
-  <p class="transcription-preview">{{ suburb.pronunciation }}</p>
+  <div class="pronunciation-string">{{ suburb.pronunciation }}</div>
 
   <details class="pronunciation-details">
     <summary>View details</summary>
