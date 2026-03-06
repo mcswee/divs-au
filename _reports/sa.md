@@ -10,7 +10,11 @@ map: true
 year: "2025"
 aec_url: "https://aec.gov.au/redistributions/2025/sa/"
 pdf_filename: "/assets/pdf/sa-2025-suggestion.pdf"
-script_name: "sa-map.js"
+extra_head: >
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+extra_scripts: >
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/assets/js/state-map.js"></script>
 
 # Numerical Thresholds
 quota_total: "1,307,863"
