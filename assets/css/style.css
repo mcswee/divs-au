@@ -1060,7 +1060,7 @@ input::-webkit-search-results-decoration {
     color: var(--text-main);
     font-style: normal;
     font-weight: 300;
-    letter-spacing: 1.03rem
+    letter-spacing: 0.02rem
 }
 
 /* Make the syllable break look distinct */
@@ -1071,9 +1071,9 @@ input::-webkit-search-results-decoration {
 
 .syllable-divider dd {
     font-style: italic;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 200;
-    letter-spacing: 1.03rem;
+    letter-spacing: 0.05rem;
 }
 
 /* Flags redesigns */
