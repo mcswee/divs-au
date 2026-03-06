@@ -394,7 +394,7 @@ th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.7em; }
     box-shadow: var(--shadow-deep);
 }
 
-.project-card h3 { font-size: 1.1rem; color: var(--brand-main); margin-bottom: 8px; }
+.project-card h3 { font-size: 1.1rem; color: var(--brand-main); }
 .project-card p { font-size: 0.95rem; margin: 0; color: var(--text-main); line-height: 1.4; opacity: 0.9; }
 
 .project-card.disabled:hover { 
@@ -617,7 +617,7 @@ input::-webkit-search-results-decoration {
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 2px;
 }
 
 .alphabet-nav a, 
@@ -625,7 +625,7 @@ input::-webkit-search-results-decoration {
     display: inline-block;
     padding: 6px 0;
     width: 24px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-decoration: none;
     border-radius: 4px;
     text-align: center;
