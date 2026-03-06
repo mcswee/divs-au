@@ -949,7 +949,7 @@ input::-webkit-search-results-decoration {
 }
 
 .pronunciation-title {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: var(--brand-main);
     margin: 0;
     font-weight: 700;
@@ -962,11 +962,8 @@ input::-webkit-search-results-decoration {
     cursor: pointer;
     color: var(--text-main);
     transition: opacity 0.2s;
-    border-radius: 4px;
-    padding: 4px;
     flex-shrink: 0;
     opacity: 0.6;
-    border: 1px solid var(--text-main);
 }
 
 .speaker-icon {
@@ -974,10 +971,8 @@ input::-webkit-search-results-decoration {
     height: 100%;
 }
 
-.speaker-icon:hover{
+.speaker-icon:hover {
     color: var(--brand-main);
-    width: 100%;
-    height: 100%;
 }
 
 .audio-indicator:hover {
@@ -1007,7 +1002,9 @@ input::-webkit-search-results-decoration {
     font-size: 1.3rem;
     color: var(--text-highlight);
     font-weight: 600;
-    padding: 10px 0;
+    padding: 10px;
+    background-color: var(--bg-highlight);
+    border-radius: 8px;
 }
 
 .example-text {
@@ -1024,7 +1021,7 @@ input::-webkit-search-results-decoration {
 }
 
 .card-grid.suburbs {
-    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
     align-items: start; /* Prevents neighbors from stretching when one card expands */
     gap: 12px;
 }
