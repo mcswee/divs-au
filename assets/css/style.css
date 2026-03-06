@@ -965,7 +965,7 @@ input::-webkit-search-results-decoration {
     color: var(--text-main);
     transition: opacity 0.2s, color 0.2s;
     flex-shrink: 0;
-    opacity: 0.6;
+    opacity: 0.4;
 }
 
 .audio-indicator:hover {
@@ -1047,7 +1047,7 @@ input::-webkit-search-results-decoration {
     font-family: monospace;
     font-weight: bold;
     color: var(--brand-main);
-    background: var(--highlight);
+    background: var(--accent);
     padding: 2px 6px;
     border-radius: 3px;
     text-align: center;
@@ -1059,17 +1059,21 @@ input::-webkit-search-results-decoration {
     align-self: center;
     color: var(--text-main);
     font-style: normal;
+    font-weight: 300;
+    letter-spacing: 1.03rem
 }
 
 /* Make the syllable break look distinct */
 .syllable-divider dt {
-    background: var(--accent);
+    background: var(--text-accent);
     color: var(--text-highlight);
 }
 
 .syllable-divider dd {
     font-style: italic;
     font-size: 0.8rem;
+    font-weight: 200;
+    letter-spacing: 1.03rem;
 }
 
 /* Flags redesigns */
