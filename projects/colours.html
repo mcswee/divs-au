@@ -48,7 +48,29 @@ permalink: /colours/
             </select>
         </div>
     </div>
-    <div id="colour-grid" class="colour-grid"></div>
+    <div id="colour-grid" class="colour-grid">
+      {% for item in site.data.colours %}
+        <article class="colour-card" 
+                 data-name="{{ item.name }}" 
+                 data-hex="{{ item.hex }}" 
+                 data-family="{{ item.family | downcase }}"
+                 style="view-transition-name: card-{{ item.name | slugify }};">
+          <div class="swatch" style="background-color: {{ item.hex }};" onclick="copyToClipboard('{{ item.hex }}', this)">
+          </div>
+          <div class="card-info">
+            <div class="card-row">
+              <span class="card-name">{{ item.name }}</span>
+            </div>
+            <div class="card-row">
+              <code class="card-hex">{{ item.hex }}</code>
+              <span class="card-year">
+                {% if item.year contains 'imm' %}ancient{% else %}from {{ item.year }}{% endif %}
+              </span>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
     
     <div id="copy-toast" class="copy-toast">Copied to clipboard</div>
 </section>
