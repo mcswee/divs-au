@@ -80,9 +80,6 @@ category: reports
         <p id="map-description" class="sr-only">Interactive map showing proposed boundary changes for {{ page.state }}. Detailed data is available in the table above this section.</p>
     </section>
 
-    {% if page.status == "active" %}
-     <script src="/assets/js/state-map.js"></script>
-    {% endif %}
     {% endif %}
 
     {% if page.status == "deferred" %}
@@ -117,4 +114,8 @@ category: reports
             </a>
             <a href="https://www.aec.gov.au/redistributions/" class="link-item">AEC redistributions homepage</a>                
         </div>
-    </section>     
+    </section>    
+
+    {% if page.status == "active" %}
+     <script src="/assets/js/state-map.js"></script>
+    {% endif %}
