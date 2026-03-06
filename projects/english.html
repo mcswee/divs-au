@@ -20,23 +20,24 @@ permalink: /english/
   <div id="vowel-grid" class="card-grid">
     {% assign vowels =  site.data.sounds | where: "segment", "vowel" %}
     {% for item in vowels %}
-    <article class="project-card">
-      <header class="phoneme-header">
-        <div class="symbol-group">
-          <h3 class="symbol">{{ item.phoneme }}</h3>
-          <span class="ipa-tag">/{{ item.ipa }}/</span>
-        </div>
-        <div class="audio-indicator" aria-hidden="true" onclick="listen('{{ item.sentence }}')">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
-                <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-            </svg>
-        </div>
-      </header>  
-      <div class="example-text">{{ item.sentence}}</div>
-      <div class="pronunciation-path">{{ item.pronunciation }}</div>
-    </article>
+<article class="project-card phoneme-card">
+  <header class="pronunciation-header">
+    <h3 class="pronunciation-title">{{ item.phoneme }}</h3>
+    <div class="header-right">
+       <span class="ipa-tag">/{{ item.ipa }}/</span>
+       <div class="audio-indicator" aria-hidden="true" onclick="listen('{{ item.sentence }}')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
+             <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+             <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+             <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+       </div>
+    </div>
+  </header>
+  
+  <div class="example-text">{{ item.sentence }}</div>
+  <div class="pronunciation-string">{{ item.pronunciation }}</div>
+</article>
     {% endfor %}
   </div>
 
