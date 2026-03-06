@@ -16,15 +16,14 @@ extra_scripts: |
 </header>
 
 <section class="page-element">
- <h2>List of Melbourne suburbs</h2>
- {% include alphabet-nav.html items=site.data.suburbs %}
-
-{% include search-filter.html 
-   search_id="suburb-search" 
-   placeholder="Search by name, postcode, or LGA..." 
-   item_name="suburbs"
-   target_id="suburb-list"
-%}
+    <h2>List of Melbourne suburbs</h2>
+    {% include search-filter.html 
+       search_id="suburb-search" 
+       placeholder="Search by name, postcode, or LGA..." 
+       item_name="suburbs"
+       target_id="suburb-list"
+    %}
+     {% include alphabet-nav.html items=site.data.suburbs %}
 </section>
 
 <section class="page-element card-grid suburbs js-filter-grid" id="suburb-list">
@@ -45,15 +44,15 @@ extra_scripts: |
         <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
       </svg>
     </div>
+    <div class="meta-data">
+      <p>{{ suburb.lga }} &nbsp; {{ suburb.postcode }}</p>
+    </div>
   </header>
 
   <div class="pronunciation-string">{{ suburb.pronunciation }}</div>
 
   <details class="pronunciation-details">
-    <summary>View details</summary>
-    <div class="meta-data">
-        <p>{{ suburb.postcode }} — {{ suburb.lga }}</p>
-    </div>
+    <summary>See pronunciation guide</summary>
     <dl>
       {% for symbol in suburb.phonemes %}
         {% if symbol == "·" %}
