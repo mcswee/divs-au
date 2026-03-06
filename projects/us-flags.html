@@ -28,7 +28,7 @@ permalink: "/us-flags/"
     <nav class="card-grid" id="state-list" aria-labelledby="state-heading">
         {% assign us_states = site.us_flags | sort: "state" %}
         {% for state in us_states %}
-        <a href="{{ state.url }}" class="state-card {{ state.state_id }}">
+        <a href="{{ state.url }}" class="state-card">
             <img src="/assets/images/flags/us/redesigns/{{ state.state_id }}.svg" aria-hidden="true" alt="" class="flag-thumb">
             {{ state.state }}
         </a>
