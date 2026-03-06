@@ -963,19 +963,20 @@ input::-webkit-search-results-decoration {
     height: 24px;
     cursor: pointer;
     color: var(--text-main);
-    transition: opacity 0.2s;
+    transition: opacity 0.2s, color 0.2s;
     flex-shrink: 0;
     opacity: 0.6;
+}
+
+.audio-indicator:hover {
+    color: var(--brand-main);
+    opacity: 1;
 }
 
 .speaker-icon {
     width: 100%;
     height: 100%;
-}
-
-.speaker-icon:hover {
-    color: var(--brand-main);
-    opacity: 1;
+    stroke: currentColor;
 }
 
 /* 3. PRONUNCIATION STRING (Unified) */
