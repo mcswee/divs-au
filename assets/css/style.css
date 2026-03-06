@@ -277,7 +277,7 @@ blockquote {
     margin: 1rem;
     border-left: 3px solid var(--brand-main);
     font-style: italic;
-    text-size: 1.05em;
+    font-size: 1.05em;
     padding: 1rem 2rem;
 }
 
