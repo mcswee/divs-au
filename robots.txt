@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 
 # Block raw data and spreadsheet files
+Disallow: /assets/
 Disallow: /data/
 Disallow: /*.csv$
 Disallow: /*.geojson$
