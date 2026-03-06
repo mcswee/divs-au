@@ -796,7 +796,7 @@ input::-webkit-search-results-decoration {
     font-size: 0.8rem;
     opacity: 0.9;
     line-height: 1.3;
-    border-top: 1px dashed rgba(0,0,0,0.1)
+    border-top: 1px dashed rgba(0,0,0,0.3)
 }
 
 .badge {
