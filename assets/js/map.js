@@ -58,6 +58,15 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 
 const masterStats = {};
 let geoJsonLayer = null; 
+let currentOpenPopup = null; // Track currently open popup
+
+// --- KEYBOARD ACCESSIBILITY: Close popup with Escape ---
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && currentOpenPopup) {
+        map.closePopup();
+        currentOpenPopup = null;
+    }
+});
 
 // --- 3. DATA LOADING ---
 Papa.parse('/assets/data/electoral_division_data.csv', {
@@ -199,6 +208,67 @@ const popupContent = `
 
                         layer.bindPopup(popupContent);
 
+                        // --- KEYBOARD ACCESSIBILITY ENHANCEMENTS ---
+                        
+                        // Make division keyboard-focusable
+                        const pathElement = layer.getElement();
+                        if (pathElement) {
+                            pathElement.setAttribute('tabindex', '0');
+                            pathElement.setAttribute('role', 'button');
+                            pathElement.setAttribute('aria-label', `${data.division}, ${data.state}`);
+                            
+                            // Handle keyboard focus
+                            pathElement.addEventListener('focus', function() {
+                                // Close any previously open popup
+                                if (currentOpenPopup && currentOpenPopup !== layer) {
+                                    map.closePopup();
+                                }
+                                
+                                // Highlight the division
+                                const activeColor = getStateStyle(data.state).color;
+                                layer.setStyle({ 
+                                    fillColor: activeColor, 
+                                    fillOpacity: 0.25, 
+                                    weight: 4, 
+                                    color: activeColor 
+                                });
+                                layer.bringToFront();
+                                
+                                // Pan to division if off-screen
+                                map.fitBounds(layer.getBounds(), { 
+                                    padding: [50, 50], 
+                                    maxZoom: 10 
+                                });
+                            });
+                            
+                            // Handle keyboard blur
+                            pathElement.addEventListener('blur', function() {
+                                if (!geoJsonLayer.searchActive || !layer.isSearchMatch) {
+                                    geoJsonLayer.resetStyle(layer);
+                                }
+                            });
+                            
+                            // Handle Enter/Space to open popup
+                            pathElement.addEventListener('keydown', function(e) {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    layer.openPopup();
+                                    currentOpenPopup = layer;
+                                }
+                            });
+                        }
+
+                        // Track popup state
+                        layer.on('popupopen', function() {
+                            currentOpenPopup = layer;
+                        });
+                        
+                        layer.on('popupclose', function() {
+                            if (currentOpenPopup === layer) {
+                                currentOpenPopup = null;
+                            }
+                        });
+
                         layer.on({
                             mouseover: (e) => {
                                 const l = e.target;
@@ -219,6 +289,9 @@ const popupContent = `
                                 } else {
                                     geoJsonLayer.resetStyle(l);
                                 }
+                            },
+                            click: (e) => {
+                                currentOpenPopup = layer;
                             }
                         }); 
                     } 
@@ -308,6 +381,7 @@ function setupSearch(layerGroup) {
             if (firstMatch) {
                 map.fitBounds(firstMatch.getBounds(), { padding: [50, 50], maxZoom: 10 });
                 firstMatch.openPopup();
+                currentOpenPopup = firstMatch; // Track the opened popup
             }
         }
     });
