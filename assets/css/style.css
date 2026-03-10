@@ -981,7 +981,8 @@ input::-webkit-search-results-decoration {
 
 /* 3. PRONUNCIATION STRING (Unified) */
 .pronunciation-string {
-    font-family: monospace;
+    font-family: "Atkinson Hyperlegible Mono", monospace;
+    font-optical-sizing: auto;
     font-weight: 600;
     font-size: 0.9rem;
     color: var(--brand-main);
@@ -998,6 +999,8 @@ input::-webkit-search-results-decoration {
 }
 
 .ipa-tag {
+    font-family: "Vollkorn", serif;
+    font-optical-sizing: auto;
     font-size: 1.05rem;
     color: var(--text-highlight);
     font-weight: 600;
