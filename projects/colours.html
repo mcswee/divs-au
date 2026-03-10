@@ -14,39 +14,33 @@ permalink: /colours/
         
 <section class="page-element">
     <h2>List of colours</h2>
-    <div class="search-container" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
-        <div class="filter-group">
-            <label for="colour-search">Search colours by name or hex code:</label><br>
-            <input type="text" id="colour-search" class="search-select js-filter-input" placeholder="Enter a name or hex code&hellip;">
-        </div>
-        <div class="sort-group">
-            <label for="sort-select">Sort by:</label><br>
-            <select id="sort-select" class="search-select js-filter-input">
-                <option value="Name">Name</option>
-                <option value="Hex">Hex code</option>
-                <option value="Hue">Hue</option>
-                <option value="Luminosity">Luminosity</option>
-                <option value="Saturation">Saturation</option>
-                <option value="Year">Year first mentioned</option>
-                <option value="Family">Colour family</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label for="family-filter">Filter by family:</label><br>
-            <select id="family-filter" class="search-select js-filter-input">
-                <option value="all">All families</option>
-                <option value="reds">Reds</option>
-                <option value="oranges">Oranges</option>
-                <option value="yellows">Yellows</option>
-                <option value="greens">Greens</option>
-                <option value="blues">Blues</option>
-                <option value="purples">Purples</option>
-                <option value="pinks">Pinks</option>
-                <option value="browns">Browns</option>
-                <option value="greys">Greys (inc. Blacks)</option>
-                <option value="neutrals">Neutrals (inc. Whites)</option>
-            </select>
-        </div>
+    <div class="search-container">
+        <label for="colour-search">Search colours by name or hex code:</label><br>
+        <input type="text" id="colour-search" class="search-select js-filter-input" placeholder="Enter a name or hex code&hellip;">
+        <label for="sort-select">Sort by:</label><br>
+        <select id="sort-select" class="search-select js-filter-input">
+            <option value="Name">Name</option>
+            <option value="Hex">Hex code</option>
+            <option value="Hue">Hue</option>
+            <option value="Luminosity">Luminosity</option>
+            <option value="Saturation">Saturation</option>
+            <option value="Year">Year first mentioned</option>
+            <option value="Family">Colour family</option>
+        </select>
+        <label for="family-filter">Filter by family:</label><br>
+        <select id="family-filter" class="search-select js-filter-input">
+            <option value="all">All families</option>
+            <option value="reds">Reds</option>
+            <option value="oranges">Oranges</option>
+            <option value="yellows">Yellows</option>
+            <option value="greens">Greens</option>
+            <option value="blues">Blues</option>
+            <option value="purples">Purples</option>
+            <option value="pinks">Pinks</option>
+            <option value="browns">Browns</option>
+            <option value="greys">Greys (inc. Blacks)</option>
+            <option value="neutrals">Neutrals (inc. Whites)</option>
+        </select>
     </div>
     <div id="colour-grid" class="colour-grid">
       {% for item in site.data.colours %}
