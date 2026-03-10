@@ -40,10 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Dynamic border color matches the state/brand color
                         const tooltipContent = `
                             <div class="map-tooltip-popup">
-                                <div class="tooltip-header" style="border-color: ${brandColor}">${p.Name || "Unknown"}</div>
-                                <div class="tooltip-row"><span>SA1s:</span> <strong>${p.Numccds || "—"}</strong></div>
-                                <div class="tooltip-row"><span>Actual:</span> <strong>${p.Actual || "—"}</strong></div>
-                                <div class="tooltip-row"><span>Projected:</span> <strong>${p.Projected || "—"}</strong></div>
+                                <div class="tooltip-header" style="border-color: ${brandColor}">${p.division || "Unknown"}</div>
+                                <div class="tooltip-row"><span>SA1s:</span> <strong>${p.ccds || "—"}</strong></div>
+                                <div class="tooltip-row"><span>Actual:</span> <strong>${p.actual || "—"}</strong></div>
+                                <div class="tooltip-row"><span>Projected:</span> <strong>${p.projected || "—"}</strong></div>
                             </div>`;
                         layer.bindTooltip(tooltipContent, { 
                             sticky: true,
