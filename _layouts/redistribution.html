@@ -24,32 +24,33 @@ category: reports
                   <dd>Between {{ page.projected_low }} and {{ page.projected_high }} projected electors</dd>
             </dl>
 
-        <div class="table-wrapper">
-            <table class="state-table">
-                <thead>
-                    <tr>
-                        <th>Division name</th>
-                        <th>Current projected</th>
-                        <th>Current deviation %</th>
-                        <th>Proposed actual</th>
-                        <th>Proposed projected</th>
-                        <th>Proposed deviation %</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for div in page.divisions %}
-                    <tr>
-                        <td>{{ div.name }}</td>
-                        <td class="num">{{ div.proj }}</td>
-                        <td class="num">{{ div.dev }}</td>
-                        <td class="num">{{ div.p_act }}</td>
-                        <td class="num">{{ div.p_proj }}</td>
-                        <td class="num">{{ div.p_dev }}</td>   
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+<div class="table-wrapper">
+    <table class="state-table">
+        <caption>Elector numbers for my proposed electoral divisions for {{ page.state }} {{ page.year }}</caption>
+        <thead>
+            <tr>
+                <th scope="col">Division name</th>
+                <th scope="col">Current projected</th>
+                <th scope="col">Current deviation %</th>
+                <th scope="col">Proposed actual</th>
+                <th scope="col">Proposed projected</th>
+                <th scope="col">Proposed deviation %</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for div in page.divisions %}
+            <tr>
+                <th scope="row">{{ div.name }}</th>
+                <td class="num">{{ div.proj }}</td>
+                <td class="num">{{ div.dev }}</td>
+                <td class="num">{{ div.p_act }}</td>
+                <td class="num">{{ div.p_proj }}</td>
+                <td class="num">{{ div.p_dev }}</td>   
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
     </section>
 
     <section class="page-element">
