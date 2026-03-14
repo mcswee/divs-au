@@ -1,0 +1,160 @@
+---
+layout: default
+title: Australian high-speed rail
+category: projects
+permalink: /hsr/
+---
+
+<header class="page-element">
+  <h1>AuRORa: Australian Rapid Overland Rail</h1>
+  <p>A concept for a continent-spanning high-speed rail network connecting Australia's major cities and regional centers.</p>
+  <p>Australia has the population density for high-speed rail—we just don't have the network. This proposal shows what a serious commitment to connecting the continent would look like: 10 interconnected lines, 5,200km of track, and journey times competitive with flying.</p>
+</header>
+
+<section class="page-element">
+  <h2>The case for high-speed rail</h2>
+  <p>We're one of the most urbanised nations on Earth—90% of us live in cities—yet our cities are separated by vast distances with almost nothing fast connecting them. Sydney to Melbourne is 880km. Perth to Adelaide is 2,700km. We fly between them, or drive, or take slow regional trains designed for freight.</p>
+  
+  <p>It doesn't have to be this way.</p>
+  
+  <h3>Benefits</h3>
+  <ul>
+    <li>The eastern seaboard has 18 million people along a narrow coastal corridor—comparable to successful HSR networks in Spain and France.</li>
+    <li>We're not building rail to empty desert. These population centers exist now and are growing.</li>
+    <li>Sydney-Melbourne (3 hours), Brisbane-Sydney (4 hours), Melbourne-Adelaide (4 hours)—competitive with flying.</li>
+    <li>Domestic aviation is one of Australia's largest emission sources. Rail offers a viable alternative.</li>
+  </ul>
+</section>
+
+<section class="page-element">
+  <h2>The network</h2>
+  
+  <div class="network-stats">
+    <div class="stat-card">
+      <div class="stat-number">10</div>
+      <div class="stat-label">Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">5,200km</div>
+      <div class="stat-label">Total Track</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">101</div>
+      <div class="stat-label">Stations</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">22</div>
+      <div class="stat-label">Interchanges</div>
+    </div>
+  </div>
+  
+  <div id="map-container">
+    {% include aurora.svg %}
+  </div>
+  
+  <div class="line-legend">
+    {% for line in site.data.aurora_lines %}
+    <div class="legend-item" data-line="{{ line.code }}">
+      <div class="line-color" style="background-color: {{ line.color }}"></div>
+      <div class="line-info">
+        <h4>{{ line.name }}</h4>
+        <p>{{ line.terminals }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="page-element routes-container">
+  <h2>The Lines</h2>
+  
+  {% for line in site.data.aurora_lines %}
+  <article class="project-card route-card" data-line="{{ line.code }}">
+    <header class="route-header">
+      <div class="line-badge" style="background-color: {{ line.color }}"></div>
+      <h3>{{ line.name }}</h3>
+    </header>
+    
+    <div class="route-details">
+      <div class="route-stat">
+        <strong>{{ line.distance }}km</strong>
+        <span>Route length</span>
+      </div>
+      <div class="route-stat">
+        <strong>{{ line.stations }}</strong>
+        <span>Stations</span>
+      </div>
+      <div class="route-stat">
+        <strong>{{ line.journey_time }}</strong>
+        <span>End-to-end</span>
+      </div>
+    </div>
+    
+    <p class="route-description">{{ line.description }}</p>
+    
+    <details>
+      <summary>Full station list</summary>
+      <ol class="station-list">
+        {% for station in line.station_list %}
+        <li>{{ station }}</li>
+        {% endfor %}
+      </ol>
+    </details>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="page-element">
+  <h2>Technical Specifications</h2>
+  
+  <h3>Operating Parameters</h3>
+  <ul>
+    <li><strong>Maximum speed:</strong> 350 km/h on dedicated HSR track</li>
+    <li><strong>Average operating speed:</strong> 220-250 km/h including stops</li>
+    <li><strong>Track gauge:</strong> Standard gauge (1,435mm) throughout</li>
+    <li><strong>Power system:</strong> 25kV AC overhead catenary</li>
+  </ul>
+  
+  <h3>Key Journey Times</h3>
+  <table class="journey-times">
+    <thead>
+      <tr>
+        <th>Route</th>
+        <th>Distance</th>
+        <th>Express</th>
+        <th>All-stations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sydney—Melbourne</td>
+        <td>880km</td>
+        <td>3h 30m</td>
+        <td>4h 15m</td>
+      </tr>
+      <tr>
+        <td>Sydney—Brisbane</td>
+        <td>920km</td>
+        <td>3h 45m</td>
+        <td>4h 30m</td>
+      </tr>
+      <tr>
+        <td>Melbourne—Adelaide</td>
+        <td>720km</td>
+        <td>3h 15m</td>
+        <td>3h 45m</td>
+      </tr>
+      <!-- Add more routes -->
+    </tbody>
+  </table>
+</section>
+
+<section class="page-element">
+  <small>This is a conceptual project exploring what a comprehensive high-speed rail network could look like in Australia. All route planning, station selection, and technical specifications are hypothetical.</small>
+</section>
+
+<script>
+// Interactive map highlighting
+// Line filtering
+// Station search
+</script>
