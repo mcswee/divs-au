@@ -1,0 +1,248 @@
+# AuRoRa Network Lines Data
+# Australian Rapid Overland Rail
+# Distances calculated using straight-line × 1.2 HSR routing factor
+# Journey times based on infrastructure type:
+#   - HSR: 250 km/h average (express) and 220 km/h average (all-stations)
+#   - Upgraded conventional: 160-180 km/h average
+
+- code: p
+  name: Pacific Line
+  color: "#00b0f0"
+  terminals: "Sydney Airport to Roma Street Brisbane"
+  distance: 920
+  stations: 15
+  journey_time_express: "3h 45m"
+  journey_time_all_stations: "4h 45m"
+  infrastructure: "Dedicated HSR (300-350 km/h), new alignment following Pacific Highway/M1 corridor with coastal tunnel sections"
+  service_pattern: "High frequency: 4-6 trains/hour peak, 2-3 trains/hour off-peak"
+  description: "The coastal corridor connecting NSW and Queensland's major cities, serving 12 million people along Australia's most densely populated route. Following the Pacific Highway corridor with coastal views from Newcastle to the Gold Coast."
+  station_list:
+    - Sydney Airport
+    - Sydney Central
+    - Central Coast
+    - Lake Macquarie
+    - Newcastle
+    - Taree
+    - Port Macquarie
+    - Coffs Harbour
+    - Grafton
+    - Casino
+    - Lismore
+    - Byron Bay
+    - Coolangatta (Gold Coast Airport)
+    - Gold Coast
+    - Roma Street Brisbane
+
+- code: b
+  name: Barrier Line
+  color: "#92d050"
+  terminals: "Sydney Central to Keswick Adelaide"
+  distance: 1340
+  stations: 11
+  journey_time_express: "7h 00m"
+  journey_time_all_stations: "8h 30m"
+  infrastructure: "Hybrid: HSR Sydney-Parkes (450km, 300+ km/h), upgraded conventional Parkes-Adelaide (890km, 160-200 km/h on shared freight corridor)"
+  service_pattern: "4-6 services daily Sydney-Parkes, 2-3 continuing to Adelaide"
+  description: "Crossing the Great Dividing Range and the Barrier Ranges to connect Sydney with Adelaide via the mining hub of Broken Hill. HSR to Parkes, then upgraded conventional track shared with freight to Adelaide, replacing parts of the aging cross-country network."
+  station_list:
+    - Sydney Central
+    - Parramatta
+    - Western Sydney Airport
+    - Blue Mountains
+    - Bathurst
+    - Orange
+    - Parkes
+    - Broken Hill
+    - Barossa Valley
+    - Salisbury
+    - Keswick Adelaide
+
+- code: f
+  name: Federation Line
+  color: "#0067f2"
+  terminals: "Sydney Central to Southern Cross Melbourne"
+  distance: 880
+  stations: 12
+  journey_time_express: "3h 30m"
+  journey_time_all_stations: "4h 15m"
+  infrastructure: "Dedicated HSR (300-350 km/h), new alignment via Canberra with extensive tunneling through Southern Highlands and Victorian Alps"
+  service_pattern: "High frequency: 4-6 trains/hour peak, 2 trains/hour off-peak"
+  description: "Connecting Australia's two largest cities via the nation's capital, this is the most critical corridor in the network. The route serves 40% of Australia's population and would be the highest-frequency line, with trains departing every 30 minutes during peak periods."
+  station_list:
+    - Sydney Central
+    - Parramatta
+    - Western Sydney Airport
+    - Goulburn
+    - Canberra Airport
+    - Canberra City Centre
+    - Albury
+    - Wangaratta
+    - Seymour
+    - Melbourne Airport
+    - Sunshine
+    - Southern Cross Melbourne
+
+- code: s
+  name: Flinders Line
+  color: "#f6bb00"
+  terminals: "Keswick Adelaide to Traralgon"
+  distance: 980
+  stations: 11
+  journey_time_express: "4h 00m"
+  journey_time_all_stations: "4h 45m"
+  infrastructure: "Mixed: upgraded conventional Adelaide-Ballarat (shared sections, 200 km/h), dedicated HSR Ballarat-Traralgon (300+ km/h)"
+  service_pattern: "Medium frequency: 2-3 trains/hour peak Adelaide-Melbourne, hourly Melbourne-Traralgon"
+  description: "Named for the Flinders Ranges and explorer Matthew Flinders, this line connects South Australia with Victoria's Gippsland region via Melbourne. The route serves the wine regions of the Barossa, the goldfields of Ballarat, and the agricultural heartland of western Victoria. Ararat station serves as the broad/standard gauge interchange point."
+  station_list:
+    - Keswick Adelaide
+    - Murray Bridge
+    - Bordertown
+    - Horsham
+    - Stawell
+    - Ararat
+    - Ballarat
+    - Sunshine
+    - Southern Cross Melbourne
+    - Warragul
+    - Traralgon
+
+- code: n
+  name: Nullarbor Line
+  color: "#eb0874"
+  terminals: "Keswick Adelaide to East Perth"
+  distance: 2700
+  stations: 8
+  journey_time_express: "14h 00m"
+  journey_time_all_stations: "16h 30m"
+  infrastructure: "Upgraded conventional alignment (160-200 km/h), largely following existing trans-Australian railway corridor with new sections bypassing outdated track"
+  service_pattern: "1-2 overnight sleeper services daily (eastbound evening departure, westbound evening departure)"
+  description: "The transcontinental service: crossing the Nullarbor Plain to connect Australia's east and west coasts, replacing the Indian Pacific. This 2,700km route requires overnight sleeper services with upgraded track allowing 160-200 km/h operation on straightened sections. Intermediate stops at Merredin and other small towns provide necessary crew changes and passenger breaks on the long journey."
+  station_list:
+    - Keswick Adelaide
+    - Salisbury
+    - Port Augusta
+    - Kalgoorlie
+    - Merredin
+    - Northam
+    - Perth Airport
+    - East Perth
+
+- code: w
+  name: Sunset Line
+  color: "#9165ff"
+  terminals: "Geraldton to Margaret River"
+  distance: 720
+  stations: 7
+  journey_time_express: "3h 00m"
+  journey_time_all_stations: "3h 30m"
+  infrastructure: "Dedicated HSR (300-350 km/h) Perth-Margaret River, upgraded conventional to Geraldton (200 km/h)"
+  service_pattern: "Medium frequency: 2-3 trains/hour peak Perth-Mandurah, hourly to Margaret River, 4-6 daily to Geraldton"
+  description: "Western Australia's coastal connector, serving Perth and the southwest tourism region. This line would open up WA's wine country, beaches, and regional centers to rail access for the first time since the closure of regional passenger services in the 1980s."
+  station_list:
+    - Geraldton
+    - East Perth
+    - Perth Airport
+    - Mandurah
+    - Bunbury
+    - Busselton
+    - Margaret River
+
+- code: t
+  name: Territory Line
+  color: "#e87132"
+  terminals: "Keswick Adelaide to Darwin City"
+  distance: 3000
+  stations: 7
+  journey_time_express: "16h 00m"
+  journey_time_all_stations: "18h 00m"
+  infrastructure: "Upgraded conventional (160-200 km/h on improved sections), following the Ghan corridor with shared freight operation north of Alice Springs"
+  service_pattern: "1-2 services per week (multi-day journey with extended stops at Alice Springs for tourism/crew changes)"
+  description: "The Red Centre route: Adelaide to Darwin via Alice Springs, replacing and upgrading The Ghan. Following the existing corridor but with track improvements allowing 160-200 km/h operation where viable. Sleeper services essential with potential day-long stops in Alice Springs for Red Centre tourism experiences."
+  station_list:
+    - Keswick Adelaide
+    - Salisbury
+    - Port Augusta
+    - Alice Springs
+    - Katherine
+    - Darwin Airport
+    - Darwin City
+
+- code: i
+  name: Inland Line
+  color: "#00c057"
+  terminals: "Geelong to Toowoomba"
+  distance: 1650
+  stations: 13
+  journey_time_express: "7h 00m"
+  journey_time_all_stations: "8h 15m"
+  infrastructure: "Dedicated HSR (300-350 km/h) new inland corridor, avoiding coastal congestion"
+  service_pattern: "Regional frequency: 4-8 trains/day, with higher frequency Geelong-Albury section"
+  description: "The agricultural backbone: connecting regional centers from Victoria through NSW to Queensland without touching the coast. This line serves productive farmland, regional universities, and cities currently poorly served by interstate transport. Most economically viable non-coastal HSR corridor due to strong regional city populations."
+  station_list:
+    - Geelong
+    - Ballarat
+    - Bendigo
+    - Shepparton
+    - Wangaratta
+    - Albury
+    - Wagga Wagga
+    - Parkes
+    - Dubbo
+    - Tamworth
+    - Armidale
+    - Warwick
+    - Toowoomba
+
+- code: o
+  name: Outback Line
+  color: "#ac8004"
+  terminals: "Toowoomba to Mount Isa"
+  distance: 1920
+  stations: 15
+  journey_time_express: "5h 30m (to Rockhampton), 12h 00m (full route)"
+  journey_time_all_stations: "6h 30m (to Rockhampton), 14h 00m (full route)"
+  infrastructure: "Hybrid: HSR Toowoomba-Rockhampton via Brisbane (shared with Capricorn Line, ~1,100km), upgraded conventional Rockhampton-Mt Isa (~820km, 160-180 km/h on mining corridor)"
+  service_pattern: "Frequent services Brisbane-Bundaberg (8-12 daily), regional services to Rockhampton (4-6 daily), limited long-distance to Mt Isa (1-2 daily, some overnight)"
+  description: "Queensland's inland connector: from the Darling Downs through Brisbane and the coast to Rockhampton (HSR, shared with Capricorn Line), then upgraded conventional rail through the mining regions to Mount Isa. High-frequency coastal services transition to infrequent long-distance inland services. Small outback towns like Longreach and Winton provide necessary service breaks on the remote western section."
+  station_list:
+    - Toowoomba
+    - Lockyer Valley
+    - Ipswich
+    - Roma Street Brisbane
+    - Brisbane Airport
+    - Sunshine Coast
+    - Gympie
+    - Fraser Coast
+    - Bundaberg
+    - Gladstone
+    - Rockhampton
+    - Emerald
+    - Longreach
+    - Winton
+    - Mount Isa
+
+- code: c
+  name: Capricorn Line
+  color: "#f97fe8"
+  terminals: "Coolangatta to Cairns"
+  distance: 1680
+  stations: 13
+  journey_time_express: "7h 00m"
+  journey_time_all_stations: "8h 15m"
+  infrastructure: "Dedicated HSR (300-350 km/h) following Queensland coast, shared track Brisbane-Rockhampton with Outback Line"
+  service_pattern: "High frequency Gold Coast-Brisbane (6-8 trains/hour), medium frequency to Bundaberg (2-3/hour), regional to Cairns (4-8 daily)"
+  description: "The tropical coast: Gold Coast to Far North Queensland via Brisbane and the Sunshine Coast. Crossing the Tropic of Capricorn, this line would connect Queensland's tourism destinations with its largest city, serving the Great Barrier Reef gateways of Townsville and Cairns. Named for the Tropic of Capricorn which the route crosses near Rockhampton."
+  station_list:
+    - Coolangatta (Gold Coast Airport)
+    - Gold Coast
+    - Roma Street Brisbane
+    - Brisbane Airport
+    - Sunshine Coast
+    - Fraser Coast
+    - Bundaberg
+    - Gladstone
+    - Rockhampton
+    - Mackay
+    - Whitsundays
+    - Townsville
+    - Cairns
