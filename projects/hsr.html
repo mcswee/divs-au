@@ -40,9 +40,8 @@ permalink: /hsr/
   
   {% for line in site.data.aurora_lines %}
   <article project-card route-card" data-line="{{ line.code }}" style="background-color: {{ line.color }};">
-    <header class="route-header">
-      <h3>{{ line.name }}</h3>
-    </header>
+    <details>
+      <summary><h3>{{ line.name }}</h3></summary>
     
     <div class="route-details">
       <div class="route-stat">
@@ -58,11 +57,7 @@ permalink: /hsr/
         <span>End-to-end</span>
       </div>
     </div>
-    
     <p class="route-description">{{ line.description }}</p>
-    
-    <details>
-      <summary>Full station list</summary>
       <ol class="station-list">
         {% for station in line.station_list %}
         <li>{{ station }}</li>
