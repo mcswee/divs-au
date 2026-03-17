@@ -39,9 +39,8 @@ permalink: /hsr/
   <h2>The Lines</h2>
   
   {% for line in site.data.aurora_lines %}
-  <article route-card" data-line="{{ line.code }}">
+  <article project-card route-card" data-line="{{ line.code }}" style="background-color: {{ line.color }};">
     <header class="route-header">
-      <div class="line-badge" style="background-color: {{ line.color }}"></div>
       <h3>{{ line.name }}</h3>
     </header>
     
