@@ -1,27 +1,20 @@
-# AuRoRa Network Lines Data
-# Australian Rapid Overland Rail
-# Distances calculated using straight-line × 1.2 HSR routing factor
-# Journey times based on infrastructure type:
-#   - HSR: 250 km/h average (express) and 220 km/h average (all-stations)
-#   - Upgraded conventional: 160-180 km/h average
-
 - code: p
   name: Pacific Line
   color: "#00b0f0"
   terminals: "Sydney Airport to Roma Street Brisbane"
   distance: 920
-  stations: 15
-  journey_time_express: "3h 45m"
-  journey_time_all_stations: "4h 45m"
+  stations: 16
+  journey_time: "4h 45m"
   infrastructure: "Dedicated HSR (300-350 km/h), new alignment following Pacific Highway/M1 corridor with coastal tunnel sections"
   service_pattern: "High frequency: 4-6 trains/hour peak, 2-3 trains/hour off-peak"
-  description: "The coastal corridor connecting NSW and Queensland's major cities, serving 12 million people along Australia's most densely populated route. Following the Pacific Highway corridor with coastal views from Newcastle to the Gold Coast."
+  description: "The coastal corridor connecting NSW and Queensland's major cities, serving 12 million people along Australia's most densely populated route. Following the Pacific Highway corridor, including the NSW north coast and the Gold Coast."
   station_list:
     - Sydney Airport
     - Sydney Central
     - Central Coast
     - Lake Macquarie
     - Newcastle
+    - Newcastle Airport 
     - Taree
     - Port Macquarie
     - Coffs Harbour
@@ -39,11 +32,10 @@
   terminals: "Sydney Central to Keswick Adelaide"
   distance: 1340
   stations: 11
-  journey_time_express: "7h 00m"
-  journey_time_all_stations: "8h 30m"
+  journey_time: "8h 30m"
   infrastructure: "Hybrid: HSR Sydney-Parkes (450km, 300+ km/h), upgraded conventional Parkes-Adelaide (890km, 160-200 km/h on shared freight corridor)"
   service_pattern: "4-6 services daily Sydney-Parkes, 2-3 continuing to Adelaide"
-  description: "Crossing the Great Dividing Range and the Barrier Ranges to connect Sydney with Adelaide via the mining hub of Broken Hill. HSR to Parkes, then upgraded conventional track shared with freight to Adelaide, replacing parts of the aging cross-country network."
+  description: "Crossing the Great Dividing Range and the Barrier Ranges to connect Sydney with Adelaide via the mining hub of Broken Hill. HSR to Parkes, then upgraded conventional track shared with freight to Adelaide, replacing part of the aging loco-hauled Indian Pacific."
   station_list:
     - Sydney Central
     - Parramatta
@@ -57,15 +49,14 @@
     - Salisbury
     - Keswick Adelaide
 
-- code: f
-  name: Federation Line
+- code: c
+  name: Capital Line
   color: "#0067f2"
   terminals: "Sydney Central to Southern Cross Melbourne"
   distance: 880
   stations: 12
-  journey_time_express: "3h 30m"
-  journey_time_all_stations: "4h 15m"
-  infrastructure: "Dedicated HSR (300-350 km/h), new alignment via Canberra with extensive tunneling through Southern Highlands and Victorian Alps"
+  journey_time: "3h 45m"
+  infrastructure: "Dedicated HSR (300-350 km/h), new alignment via Canberra with extensive tunneling through Southern Highlands and Snowy Mountains"
   service_pattern: "High frequency: 4-6 trains/hour peak, 2 trains/hour off-peak"
   description: "Connecting Australia's two largest cities via the nation's capital, this is the most critical corridor in the network. The route serves 40% of Australia's population and would be the highest-frequency line, with trains departing every 30 minutes during peak periods."
   station_list:
@@ -82,7 +73,7 @@
     - Sunshine
     - Southern Cross Melbourne
 
-- code: s
+- code: f
   name: Flinders Line
   color: "#f6bb00"
   terminals: "Keswick Adelaide to Traralgon"
@@ -121,6 +112,7 @@
     - Keswick Adelaide
     - Salisbury
     - Port Augusta
+    - Cook
     - Kalgoorlie
     - Merredin
     - Northam
@@ -128,7 +120,7 @@
     - East Perth
 
 - code: w
-  name: Sunset Line
+  name: Western Line
   color: "#9165ff"
   terminals: "Geraldton to Margaret River"
   distance: 720
