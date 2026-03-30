@@ -14,52 +14,66 @@ permalink: /colours/
         
 <section class="page-element">
     <h2>List of colours</h2>
+    
     <div class="search-container">
         <label for="colour-search">Search colours by name or hex code:</label>
         <input type="text" id="colour-search" class="search-select js-filter-input" placeholder="Enter a name or hex code&hellip;">
         
         <label for="sort-select">Sort by:</label>
-        <select id="sort-select" class="search-select js-filter-input">
-            <option value="colour">Name</option>
-            <option value="hex">Hex code</option>
-            <option value="hue">Hue</option>
-            <option value="lum">Luminosity</option>
-            <option value="sat">Saturation</option>
-            <option value="year">Year first mentioned</option>
-            <option value="fam">Colour family</option>
-        </select>
-        
-<label for="family-filter">Filter by family:</label>
-<select id="family-filter" class="search-select js-filter-input">
-    <option value="all">All families</option>
-    <option value="R">Red</option>
-    <option value="O">Orange</option>
-    <option value="Y">Yellow</option>
-    <option value="G">Green</option>
-    <option value="T">Turquoise</option>
-    <option value="B">Blue</option>
-    <option value="V">Violet</option>
-    <option value="P">Pink</option>
-    <option value="N">Brown</option>
-    <option value="K">Black/Grey</option>
-    <option value="W">White</option>
-</select>
+        <div class="sort-controls">
+            <select id="sort-select" class="search-select js-filter-input">
+                <option value="name">Name</option>
+                <option value="year">Year</option>
+                <option value="hue">Hue</option>
+                <option value="lum">Luminosity</option>
+                <option value="sat">Saturation</option>
+                <option value="wcag-w">Contrast (White)</option>
+                <option value="wcag-k">Contrast (Black)</option>
+                <option value="yqi">Luma (YQI)</option>
+            </select>
+            <button id="sort-direction" class="direction-btn" data-dir="asc">↑ Asc</button>
+        </div>
 
+        <label for="family-filter">Filter by family:</label>
+        <select id="family-filter" class="search-select js-filter-input">
+            <option value="all">All families</option>
+            <option value="R">Red</option>
+            <option value="O">Orange</option>
+            <option value="Y">Yellow</option>
+            <option value="G">Green</option>
+            <option value="T">Turquoise</option>
+            <option value="B">Blue</option>
+            <option value="V">Violet</option>
+            <option value="P">Pink</option>
+            <option value="N">Brown</option>
+            <option value="K">Black/Grey</option>
+            <option value="W">White</option>
+        </select>
     </div>
 
     <div id="colour-grid" class="colour-grid">
       {% for item in site.data.colours %}
+        {% comment %} 
+            Clean the year for the data-attribute only. 
+            Stripping 'c.' and handling 'imm' for numeric sorting.
+        {% endcomment %}
+        {% assign raw_year = item.year | downcase %}
+        {% if raw_year contains 'imm' %}
+          {% assign sort_year = 0 %}
+        {% elsif raw_year contains 'c.' %}
+          {% assign sort_year = raw_year | remove: 'c.' | strip %}
+        {% else %}
+          {% assign sort_year = raw_year %}
+        {% endif %}
+
         <article class="colour-card" 
                  data-name="{{ item.name | downcase }}" 
                  data-hex="{{ item.hex | downcase }}" 
-                 data-year="{% if item.year contains 'imm' %}0{% else %}{{ item.year }}{% endif %}"
-                 data-family="{{ item.family | downcase }}"
+                 data-family="{{ item.family }}"
+                 data-year="{{ sort_year }}"
                  data-hue="{{ item.hue }}"
                  data-sat="{{ item.sat }}"
                  data-lum="{{ item.lum }}"
-                 data-r="{{ item.r }}"
-                 data-g="{{ item.g }}"
-                 data-b="{{ item.b }}"
                  data-yqi="{{ item.yqi }}"
                  data-wcag-w="{{ item.wcag_w }}"
                  data-wcag-k="{{ item.wcag_k }}"
@@ -68,9 +82,10 @@ permalink: /colours/
           <div class="swatch" 
                style="background-color: {{ item.hex }};" 
                onclick="copyToClipboard('{{ item.hex }}', this)">
+            
             <span class="swatch-label" 
                   style="color: {% if item.wcag_w > item.wcag_k %}#ffffff{% else %}#000000{% endif %};">
-                {{ item.hex }}
+              Click to copy
             </span>
           </div>
 
@@ -81,7 +96,7 @@ permalink: /colours/
             <div class="card-row">
               <code class="card-hex">{{ item.hex }}</code>
               <span class="card-year">
-                {% if item.year contains 'imm' %}ancient{% else %}from {{ item.year }}{% endif %}
+                {% if raw_year contains 'imm' %}ancient{% else %}from {{ item.year }}{% endif %}
               </span>
             </div>
           </div>
