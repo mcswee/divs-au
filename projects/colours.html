@@ -84,8 +84,8 @@ permalink: /colours/
                onclick="copyToClipboard('{{ item.hex }}', this)">
             
             <span class="swatch-label" 
-                  style="color: {% if item.wcag_w > item.wcag_k %}#ffffff{% else %}#000000{% endif %};">
-              Click to copy
+                  style="color: {% if item.wcag_w > item.wcag_k %}#fff{% else %}#000{% endif %};">
+              copy {{ item.hex }}
             </span>
           </div>
 
@@ -98,6 +98,10 @@ permalink: /colours/
               <span class="card-year">
                 {% if raw_year contains 'imm' %}ancient{% else %}from {{ item.year }}{% endif %}
               </span>
+            </div>
+            <div class="card-row">
+             <span class="class-hex">RGB {{ item.r }}, {{ item.g }}, {{ item.b }}</span>
+             <span class="class-hex">HSL {{ item.hue }}, {{ item.sat }}, {{ item.lum }}</span>
             </div>
           </div>
         </article>
