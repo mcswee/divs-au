@@ -1213,7 +1213,7 @@ input::-webkit-search-results-decoration {
     position: relative;
 }
 
-.copy-label {
+.swatch-label {
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
