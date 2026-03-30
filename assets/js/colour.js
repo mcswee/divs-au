@@ -1,136 +1,86 @@
-/**
- * UI Logic for Colour Grid
- * Handles sorting, filtering, and accessibility contrast
- */
+// 1. Initialise constants and card array
+const searchInput = document.getElementById('colour-search');
+const sortSelect = document.getElementById('sort-select');
+const dirBtn = document.getElementById('sort-direction');
+const familyFilter = document.getElementById('family-filter');
+const colourGrid = document.getElementById('colour-grid');
 
-function cleanValue(val) {
-    if (!val) return 0;
-    // Remove degree symbols, percentages, and non-numeric characters for sorting
-    const cleaned = val.toString().replace(/[^\d.-]/g, '');
-    return parseFloat(cleaned) || 0;
-}
+// Convert NodeList to a persistent Array for sorting
+const cards = Array.from(document.querySelectorAll('.colour-card'));
 
-function parseYear(v) {
-    if (!v) return 9999;
-    const lower = v.toLowerCase();
-    if (lower.includes('imm')) return 0;
-    const match = lower.match(/\d+/);
-    return match ? parseInt(match[0], 10) : 9999;
-}
+// 2. The Filter Logic (Search + Family)
+function applyFilters() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const selectedFamily = familyFilter.value; // R, O, Y, G, T, B, V, P, N, K, W or "all"
 
-function initializeCardData() {
-    document.querySelectorAll('.colour-card').forEach(card => {
-        const swatch = card.querySelector('.swatch');
-        
-        // Grab pre-calculated WCAG values from the HTML data attributes
-        const vsWhite = cleanValue(card.dataset.wcagVsFff);
-        const vsBlack = cleanValue(card.dataset.wcagVs000);
+    cards.forEach(card => {
+        const name = card.dataset.name;
+        const hex = card.dataset.hex;
+        const family = card.dataset.family;
 
-        if (swatch) {
-            swatch.style.backgroundColor = card.dataset.hex;
-            // Set internal swatch text/icon colour based on best contrast
-            swatch.style.color = vsWhite > vsBlack ? '#ffffff' : '#000000';
-        }
+        const matchesSearch = name.includes(searchTerm) || hex.includes(searchTerm);
+        const matchesFamily = (selectedFamily === 'all' || family === selectedFamily);
+
+        card.style.display = (matchesSearch && matchesFamily) ? '' : 'none';
     });
 }
 
-function sortGrid(criterion, ascending = true) {
-    const grid = document.getElementById('colour-grid');
-    const cards = Array.from(grid.querySelectorAll('.colour-card'));
+// 3. The Sort Logic (Numeric + Directional)
+function applySort() {
+    const sortBy = sortSelect.value; // Matches data- attributes
+    const direction = dirBtn.getAttribute('data-dir'); // "asc" or "desc"
     
-    // Mapping single-letter CSV codes to a logical spectrum order
-    const familyOrder = { 
-        "R": 1, "O": 2, "Y": 3, "G": 4, "T": 5, "B": 6, 
-        "V": 7, "P": 8, "N": 9, "K": 10, "W": 11 
-    };
+    const sortedCards = cards.sort((a, b) => {
+        let valA = a.dataset[sortBy];
+        let valB = b.dataset[sortBy];
 
-    cards.sort((a, b) => {
-        let valA, valB;
-        const key = criterion.toLowerCase();
-
-        switch(key) {
-            case 'fam':
-                valA = familyOrder[a.dataset.fam] || 99;
-                valB = familyOrder[b.dataset.fam] || 99;
-                break;
-
-            case 'year':
-                valA = parseYear(a.dataset.year);
-                valB = parseYear(b.dataset.year);
-                break;
-
-            case 'colour':
-            case 'hex':
-                valA = a.dataset[key]?.toLowerCase() || '';
-                valB = b.dataset[key]?.toLowerCase() || '';
-                return ascending ? valA.localeCompare(valB) : valB.localeCompare(valA);
-
-            default: 
-                // Handles hue, sat, lum, r, g, b, yiq, etc.
-                valA = cleanValue(a.dataset[key]);
-                valB = cleanValue(b.dataset[key]);
-                break;
+        // Numeric fields: Year, Hue, Sat, Lum, WCAG, YQI
+        if (!['name', 'family', 'hex'].includes(sortBy)) {
+            valA = parseFloat(valA) || 0;
+            valB = parseFloat(valB) || 0;
+            
+            return direction === 'asc' ? valA - valB : valB - valA;
         }
-        
-        return ascending ? valA - valB : valB - valA;
+
+        // Alphabetical fields: Name, Hex
+        let comparison = valA.localeCompare(valB);
+        return direction === 'asc' ? comparison : comparison * -1;
     });
 
-    cards.forEach(card => grid.appendChild(card));
+    // Efficiently re-inject sorted cards
+    const fragment = document.createDocumentFragment();
+    sortedCards.forEach(card => fragment.appendChild(card));
+    colourGrid.appendChild(fragment);
 }
 
-function copyToClipboard(text, element) {
-    navigator.clipboard.writeText(text);
-    const toast = document.getElementById('copy-toast');
-    if (toast) { 
-        toast.classList.add('show'); 
-        setTimeout(() => toast.classList.remove('show'), 2000); 
-    }
-    const card = element.closest('.colour-card');
-    if (card) {
-        window.location.hash = card.dataset.colour.toLowerCase().replace(/\s+/g, '-');
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    initializeCardData();
-
-    let lastSort = '';
-    let isAscending = true;
-
-    const sortSelect = document.getElementById('sort-select');
-    const search = document.getElementById('colour-search');
-    const filter = document.getElementById('family-filter');
-
-    if (sortSelect) {
-        sortSelect.addEventListener('change', function() {
-            if (this.value === lastSort) {
-                isAscending = !isAscending;
-            } else {
-                isAscending = true;
-                lastSort = this.value;
-            }
-            
-            if (document.startViewTransition) {
-                document.startViewTransition(() => sortGrid(this.value, isAscending));
-            } else {
-                sortGrid(this.value, isAscending);
-            }
-        });
-    }
-
-    const filterGrid = () => {
-        const term = search.value.toLowerCase().trim().replace('#', '');
-        const fam = filter.value; 
-        
-        document.querySelectorAll('.colour-card').forEach(c => {
-            const nameMatch = c.dataset.colour.toLowerCase().includes(term);
-            const hexMatch = c.dataset.hex.toLowerCase().includes(term);
-            const familyMatch = (fam === 'all' || c.dataset.fam === fam);
-            
-            c.style.display = (nameMatch || hexMatch) && familyMatch ? 'block' : 'none';
-        });
-    };
-
-    if (search) search.addEventListener('input', filterGrid);
-    if (filter) filter.addEventListener('change', filterGrid);
+// 4. Sort Direction Toggle
+dirBtn.addEventListener('click', () => {
+    const currentDir = dirBtn.getAttribute('data-dir');
+    const newDir = currentDir === 'asc' ? 'desc' : 'asc';
+    
+    dirBtn.setAttribute('data-dir', newDir);
+    dirBtn.innerText = newDir === 'asc' ? '↑ Asc' : '↓ Desc';
+    applySort();
 });
+
+// 5. Event Listeners for Filters
+searchInput.addEventListener('input', applyFilters);
+familyFilter.addEventListener('change', applyFilters);
+sortSelect.addEventListener('change', applySort);
+
+// 6. Copy to Clipboard Utility
+function copyToClipboard(text, element) {
+    navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('copy-toast');
+        const label = element.querySelector('.swatch-label');
+        const originalText = label.innerText;
+
+        toast.classList.add('show');
+        label.innerText = 'Copied!';
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+            label.innerText = originalText;
+        }, 2000);
+    }).catch(err => console.error('Error copying hex:', err));
+}
