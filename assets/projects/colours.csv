@@ -1,4 +1,4 @@
-colour,hex,year,fam,hue,sat,lum,r,g,b,yiq,wcag-vs-fff,wcag-vs-000
+name,hex,year,family,hue,sat,lum,r,g,b,yiq,wcag-w,wcag-k
 Air force blue,#6ba4b8,1920,T,195.6°,17.78%,57.06%,107,164,184,166,2.75,7.63
 Alabaster,#f2f0e6,1594,W,50.0°,2.41%,92.55%,242,240,230,263,1.14,18.38
 Amaranth,#e52b50,1690,R,348.1°,57.41%,53.33%,229,43,80,107,4.38,4.79
