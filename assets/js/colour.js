@@ -27,27 +27,42 @@ function applyFilters() {
 
 // 3. The Sort Logic (Numeric + Directional)
 function applySort() {
-    const sortBy = sortSelect.value; // Matches data- attributes
-    const direction = dirBtn.getAttribute('data-dir'); // "asc" or "desc"
+    const sortBy = sortSelect.value; // e.g., "wcag-w", "yqi", "name"
+    const direction = dirBtn.getAttribute('data-dir'); 
     
-    const sortedCards = cards.sort((a, b) => {
-        let valA = a.dataset[sortBy];
-        let valB = b.dataset[sortBy];
+    // Map the hyphenated HTML values to the camelCase dataset keys
+    const keyMap = {
+        'wcag-w': 'wcagW',
+        'wcag-k': 'wcagK',
+        'yqi': 'yqi',
+        'name': 'name',
+        'year': 'year',
+        'hue': 'hue',
+        'lum': 'lum',
+        'sat': 'sat'
+    };
 
-        // Numeric fields: Year, Hue, Sat, Lum, WCAG, YQI
-        if (!['name', 'family', 'hex'].includes(sortBy)) {
+    const dataKey = keyMap[sortBy] || sortBy;
+
+    const sortedCards = cards.sort((a, b) => {
+        let valA = a.dataset[dataKey];
+        let valB = b.dataset[dataKey];
+
+        // List all numeric fields here. 
+        // Note: Dataset keys are camelCase now.
+        const numericFields = ['year', 'hue', 'sat', 'lum', 'wcagW', 'wcagK', 'yqi'];
+
+        if (numericFields.includes(dataKey)) {
             valA = parseFloat(valA) || 0;
             valB = parseFloat(valB) || 0;
-            
             return direction === 'asc' ? valA - valB : valB - valA;
         }
 
-        // Alphabetical fields: Name, Hex
-        let comparison = valA.localeCompare(valB);
+        // Fallback for strings (Name, Hex)
+        let comparison = (valA || "").localeCompare(valB || "");
         return direction === 'asc' ? comparison : comparison * -1;
     });
 
-    // Efficiently re-inject sorted cards
     const fragment = document.createDocumentFragment();
     sortedCards.forEach(card => fragment.appendChild(card));
     colourGrid.appendChild(fragment);
