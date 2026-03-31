@@ -1204,14 +1204,36 @@ input::-webkit-search-results-decoration {
 
 /* Swatch Area */
 .swatch {
-    aspect-ratio: 1 / 1;
+    /* 1. Kill the default border and background */
+    border: none;
+    background-color: transparent; /* This allows the inline style background to show through */
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+
+    /* 2. Layout */
+    display: block;
     width: 100%;
-    cursor: copy;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    aspect-ratio: 1 / 1;
     position: relative;
+
+    /* 3. The Corner Fix */
+    /* If the button is the top element of the card, match the card's top radius */
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    
+    /* 4. Ensure the background colour fills the button properly */
+    /* Note: Since you use inline styles for the colour, ensure this is set */
+    overflow: hidden; 
 }
+
+/* 5. Essential: Don't kill the focus ring entirely */
+/* This ensures keyboard users can see where they are without the "ugly" default border showing up for mouse users */
+.swatch:focus-visible {
+    outline: 3px solid #000;
+    outline-offset: -3px; /* Keeps the ring inside the swatch */
+}
+
 
 .swatch-label {
     font-size: 0.75rem;
