@@ -8,10 +8,33 @@ const colourGrid = document.getElementById('colour-grid');
 // Convert NodeList to a persistent Array for sorting
 const cards = Array.from(document.querySelectorAll('.colour-card'));
 
-// 2. The Filter Logic (Search + Family)
+// 2. Accessibility Helper: Screen Reader Announcements
+const announce = (message) => {
+    let status = document.getElementById('sr-status');
+    if (!status) {
+        status = document.createElement('div');
+        status.id = 'sr-status';
+        status.setAttribute('aria-live', 'polite');
+        status.classList.add('sr-only'); 
+        document.body.appendChild(status);
+    }
+    status.textContent = message;
+};
+
+// 3. Utility: Debounce to prevent UI/Screen Reader "stutter"
+function debounce(func, delay) {
+    let timeout;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), delay);
+    };
+}
+
+// 4. The Filter Logic (Search + Family)
 function applyFilters() {
     const searchTerm = searchInput.value.toLowerCase().trim();
-    const selectedFamily = familyFilter.value; // R, O, Y, G, T, B, V, P, N, K, W or "all"
+    const selectedFamily = familyFilter.value;
+    let visibleCount = 0;
 
     cards.forEach(card => {
         const name = card.dataset.name;
@@ -20,17 +43,20 @@ function applyFilters() {
 
         const matchesSearch = name.includes(searchTerm) || hex.includes(searchTerm);
         const matchesFamily = (selectedFamily === 'all' || family === selectedFamily);
+        const isVisible = matchesSearch && matchesFamily;
 
-        card.style.display = (matchesSearch && matchesFamily) ? '' : 'none';
+        card.style.display = isVisible ? '' : 'none';
+        if (isVisible) visibleCount++;
     });
+
+    announce(`${visibleCount} colours matching your criteria.`);
 }
 
-// 3. The Sort Logic (Numeric + Directional)
+// 5. The Sort Logic
 function applySort() {
-    const sortBy = sortSelect.value; // e.g., "wcag-w", "yqi", "name"
+    const sortBy = sortSelect.value;
     const direction = dirBtn.getAttribute('data-dir'); 
     
-    // Map the hyphenated HTML values to the camelCase dataset keys
     const keyMap = {
         'wcag-w': 'wcagW',
         'wcag-k': 'wcagK',
@@ -47,9 +73,6 @@ function applySort() {
     const sortedCards = cards.sort((a, b) => {
         let valA = a.dataset[dataKey];
         let valB = b.dataset[dataKey];
-
-        // List all numeric fields here. 
-        // Note: Dataset keys are camelCase now.
         const numericFields = ['year', 'hue', 'sat', 'lum', 'wcagW', 'wcagK', 'yqi'];
 
         if (numericFields.includes(dataKey)) {
@@ -58,7 +81,6 @@ function applySort() {
             return direction === 'asc' ? valA - valB : valB - valA;
         }
 
-        // Fallback for strings (Name, Hex)
         let comparison = (valA || "").localeCompare(valB || "");
         return direction === 'asc' ? comparison : comparison * -1;
     });
@@ -68,33 +90,39 @@ function applySort() {
     colourGrid.appendChild(fragment);
 }
 
-// 4. Sort Direction Toggle
+// 6. Event Listeners
 dirBtn.addEventListener('click', () => {
     const currentDir = dirBtn.getAttribute('data-dir');
     const newDir = currentDir === 'asc' ? 'desc' : 'asc';
     
     dirBtn.setAttribute('data-dir', newDir);
-    dirBtn.innerText = newDir === 'asc' ? '↑ Asc' : '↓ Desc';
+    dirBtn.setAttribute('aria-pressed', newDir === 'desc');
+    dirBtn.innerText = newDir === 'asc' ? '↑ Ascending' : '↓ Descending';
+    
+    announce(`Sorted by ${sortSelect.options[sortSelect.selectedIndex].text} ${newDir === 'asc' ? 'ascending' : 'descending'}.`);
     applySort();
 });
 
-// 5. Event Listeners for Filters
-searchInput.addEventListener('input', applyFilters);
-familyFilter.addEventListener('change', applyFilters);
-sortSelect.addEventListener('change', applySort);
+// Use debounced filter for the search input
+const debouncedFilter = debounce(applyFilters, 300);
+searchInput.addEventListener('input', debouncedFilter);
 
-// 6. Copy to Clipboard Utility
+familyFilter.addEventListener('change', applyFilters);
+sortSelect.addEventListener('change', () => {
+    applySort();
+    announce(`List re-sorted by ${sortSelect.options[sortSelect.selectedIndex].text}.`);
+});
+
+// 7. Copy to Clipboard Utility
 function copyToClipboard(text, element) {
     navigator.clipboard.writeText(text).then(() => {
-        const toast = document.getElementById('copy-toast');
         const label = element.querySelector('.swatch-label');
         const originalText = label.innerText;
 
-        toast.classList.add('show');
+        announce(`Hex code ${text} copied.`);
         label.innerText = 'Copied!';
         
         setTimeout(() => {
-            toast.classList.remove('show');
             label.innerText = originalText;
         }, 2000);
     }).catch(err => console.error('Error copying hex:', err));
