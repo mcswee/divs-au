@@ -8,13 +8,14 @@ permalink: /colours/
 <header class="page-element">
     <h1>Unique colour list</h1>
     <p>This is a curated list of single-word named colours with fixed hex values and approximate dates of first recorded use.</p>
-    <p>The list is intentionally limited, historically grounded, and opinionated. It does not adhere to, derive from, or attempt to mirror any web colour standard or browser-defined colour set. Each colour has a single canonical hex value to avoid ambiguity.</p>
-    <p>It exists as a practical reference for design, development, mapping, and any system that benefits from stable, named colours.</p>
+    <p>The list is intentionally limited, historically grounded, and opinionated.</p>
 </header>
         
 <section class="page-element">
     <h2>List of colours</h2>
     
+    <div id="sr-status" class="sr-only" aria-live="polite"></div>
+
     <div class="search-container">
         <label for="colour-search">Search colours by name or hex code:</label>
         <input type="text" id="colour-search" class="search-select js-filter-input" placeholder="Enter a name or hex code&hellip;">
@@ -30,7 +31,7 @@ permalink: /colours/
                 <option value="wcag-w">WCAG contrast vs white</option>
                 <option value="wcag-k">WCAG contrast vs black</option>
             </select>
-            <button id="sort-direction" class="direction-btn" data-dir="asc">↑ Asc</button>
+            <button id="sort-direction" class="direction-btn" data-dir="asc" aria-pressed="false">↑ Ascending</button>
         </div>
 
         <label for="family-filter">Filter by family:</label>
@@ -50,12 +51,8 @@ permalink: /colours/
         </select>
     </div>
 
-    <div id="colour-grid" class="colour-grid">
+    <ul id="colour-grid" class="colour-grid">
       {% for item in site.data.colours %}
-        {% comment %} 
-            Clean the year for the data-attribute only. 
-            Stripping 'c.' and handling 'imm' for numeric sorting.
-        {% endcomment %}
         {% assign raw_year = item.year | downcase %}
         {% if raw_year contains 'imm' %}
           {% assign sort_year = 0 %}
@@ -65,7 +62,7 @@ permalink: /colours/
           {% assign sort_year = raw_year %}
         {% endif %}
 
-        <article class="colour-card" 
+        <li class="colour-card" 
                  data-name="{{ item.name | downcase }}" 
                  data-hex="{{ item.hex | downcase }}" 
                  data-family="{{ item.family }}"
@@ -78,15 +75,18 @@ permalink: /colours/
                  data-wcag-k="{{ item.wcag_k }}"
                  style="view-transition-name: card-{{ item.name | slugify }};">
           
-          <div class="swatch" 
+          <button type="button" 
+               class="swatch" 
                style="background-color: {{ item.hex }};" 
-               onclick="copyToClipboard('{{ item.hex }}', this)">
+               onclick="copyToClipboard('{{ item.hex }}', this)"
+               aria-label="Copy hex code for {{ item.name }}">
             
             <span class="swatch-label" 
+                  aria-hidden="true"
                   style="color: {% if item.wcag_w > item.wcag_k %}#fff{% else %}#000{% endif %};">
               copy {{ item.hex }}
             </span>
-          </div>
+          </button>
 
           <div class="card-info">
             <div class="card-row">
@@ -103,11 +103,11 @@ permalink: /colours/
              <span class="class-hex">HSL {{ item.hue }}&deg;, {{ item.sat }}%, {{ item.lum }}%</span>
             </div>
           </div>
-        </article>
+        </li>
       {% endfor %}
-    </div>
+    </ul>
     
-    <div id="copy-toast" class="copy-toast">Copied to clipboard</div>
+    <div id="copy-toast" class="copy-toast" aria-hidden="true">Copied to clipboard</div>
 </section>
 
 <section class="page-element">
@@ -129,8 +129,6 @@ permalink: /colours/
         <dd>Hex values are practical approximations. They represent intent, not a claim of absolute accuracy across devices, colour spaces, or lighting conditions.</dd>
         <dt>Categories are organisational, not normative</dt>
         <dd>Family groupings and sort orders exist to aid navigation. They do not imply hierarchy, primacy, or correctness.</dd>
-        <dt>Stability over completeness</dt>
-        <dd>Once included, colours are not removed lightly. Gaps and exclusions are accepted in preference to constant expansion or revision.</dd>
         <dt>The list is finite by design</dt>
         <dd>This is a curated reference, not an exhaustive catalogue. Absence is intentional and should not be read as oversight.</dd>
     </dl>
