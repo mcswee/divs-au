@@ -19,17 +19,16 @@ permalink: /colours/
         <label for="colour-search">Search colours by name or hex code:</label>
         <input type="text" id="colour-search" class="search-select js-filter-input" placeholder="Enter a name or hex code&hellip;">
         
-        <label for="sort-select">Sort by:</label>
         <div class="sort-controls">
+            <label for="sort-select">Sort by:</label>
             <select id="sort-select" class="search-select js-filter-input">
                 <option value="name">Name</option>
                 <option value="year">Year</option>
                 <option value="hue">Hue</option>
                 <option value="lum">Luminosity</option>
                 <option value="sat">Saturation</option>
-                <option value="wcag-w">Contrast (White)</option>
-                <option value="wcag-k">Contrast (Black)</option>
-                <option value="yqi">Luma (YQI)</option>
+                <option value="wcag-w">WCAG contrast vs white</option>
+                <option value="wcag-k">WCAG contrast vs black</option>
             </select>
             <button id="sort-direction" class="direction-btn" data-dir="asc">↑ Asc</button>
         </div>
