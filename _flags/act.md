@@ -1,6 +1,7 @@
 ---
 layout: flag
 title: "Australian Capital Territory flag redesign"
+category: projects
 type: state
 state: "Australian Capital Territory" 
 state_id: act
