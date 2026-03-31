@@ -222,7 +222,7 @@ nav a[aria-current="page"]::before {
     background: var(--brand-accent);
     color: var(--highlight);
     font-weight: 700;
-    border 1px solid var(--brand-highlight);
+    border: 1px solid var(--brand-highlight);
 }
 
   .menu-toggle {
@@ -1172,7 +1172,7 @@ input::-webkit-search-results-decoration {
 }
 
 
-/* Colour list/
+/* Colour list */
 
 /* Grid Container */
 .colour-grid {
