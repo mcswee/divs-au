@@ -657,4 +657,267 @@
 </main>
 
 <script>
-const RAW = {"1923": {}, "1924": {"3AR": {"date": "26/01/1924", "callsign": "3AR", "owner": "Associated Radio Company of Australia", "marketing": "", "frequency": "480"}, "3LO": {"date": "13/10/1924", "callsign": "3LO", "owner": "Broadcasting Company of Australia", "marketing": "", "frequency": "1720"}}, "1925": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "484"}, "3LO": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "375"}, "3UZ": {"date": "06/02/1925", "callsign": "3UZ", "owner": "Oliver J. Nilsen & Co.", "marketing": "", "frequency": "323"}}, "1926": {"3LO": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "371"}}, "1927": {"3DB": {"date": "21/02/1927", "callsign": "3DB", "owner": "Druleigh Business and Technical College Pty Ltd", "marketing": "", "frequency": "254"}}, "1928": {"3LO": {"date": "", "callsign": "", "owner": "Australian Broadcasting Company", "marketing": "", "frequency": ""}}, "1929": {"3LO": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "375"}, "3DB": {"date": "", "callsign": "", "owner": "Herald and Weekly Times Ltd", "marketing": "", "frequency": ""}}, "1930": {"3KZ": {"date": "8/12/1930", "callsign": "3KZ", "owner": "Industrial Printing and Publicity Group", "marketing": "", "frequency": "222"}}, "1931": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "492"}, "3AK": {"date": "29/11/1931", "callsign": "3AK", "owner": "Akron Broadcasting Company", "marketing": "", "frequency": "200"}}, "1932": {"3AR": {"date": "01/07/1932", "callsign": "", "owner": "Australian Broadcasting Commission", "marketing": "", "frequency": ""}, "3LO": {"date": "01/07/1932", "callsign": "", "owner": "Australian Broadcasting Commission", "marketing": "", "frequency": ""}, "3AW": {"date": "22/02/1932", "callsign": "3AW", "owner": "Allans Music, JC Williamson's and David Syme The Age", "marketing": "", "frequency": "210"}}, "1933": {"3DB": {"date": "", "callsign": "", "owner": "", "marketing": "FEDERAL/ASSOCIATED BROADCASTERS AUS", "frequency": ""}}, "1934": {"3DB": {"date": "", "callsign": "", "owner": "", "marketing": "NIL", "frequency": ""}, "3AK": {"date": "", "callsign": "", "owner": "Melbourne Broadcasters Pty Ltd", "marketing": "", "frequency": ""}}, "1935": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "476"}, "3LO": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "390"}, "3UZ": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "323"}, "3DB": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "291"}, "3AW": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "234"}, "3KZ": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "254"}, "3AK": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "200"}, "3XY": {"date": "14/03/1935", "callsign": "3XY", "owner": "Young Nationalist Organisation & United Australia Party", "marketing": "", "frequency": "211"}}, "1936": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "517"}}, "1937": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "484"}}, "1938": {"3DB": {"date": "", "callsign": "", "owner": "", "marketing": "MAJOR", "frequency": ""}, "3AW": {"date": "", "callsign": "", "owner": "Macquarie Broadcasting Services P/L", "marketing": "MACQUARIE", "frequency": ""}}, "1939": {}, "1940": {}, "1941": {}, "1942": {}, "1943": {}, "1944": {}, "1945": {}, "1946": {}, "1947": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "ABC RADIO 2", "frequency": ""}}, "1948": {}, "1949": {"3AK": {"date": "", "callsign": "", "owner": "Mack's Furnishing Company", "marketing": "", "frequency": ""}}, "1950": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "620"}, "3LO": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "770"}, "3UZ": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "930"}, "3DB": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "1030"}, "3AW": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "1280"}, "3KZ": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "1180"}, "3AK": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "1500"}, "3XY": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "1420"}}, "1951": {}, "1952": {}, "1953": {}, "1954": {}, "1955": {}, "1956": {}, "1957": {}, "1958": {"3AW": {"date": "", "callsign": "", "owner": "Associated Television", "marketing": "", "frequency": ""}}, "1959": {}, "1960": {}, "1961": {"3AK": {"date": "", "callsign": "", "owner": "Australian Consolidated Press", "marketing": "", "frequency": ""}}, "1962": {}, "1963": {}, "1964": {"3AW": {"date": "", "callsign": "", "owner": "John Fairfax Ltd", "marketing": "", "frequency": ""}}, "1965": {"3AW": {"date": "", "callsign": "", "owner": "Macquarie Broadcasting Holdings Ltd.", "marketing": "", "frequency": ""}}, "1966": {}, "1967": {}, "1968": {}, "1969": {}, "1970": {}, "1971": {}, "1972": {}, "1973": {}, "1974": {}, "1975": {"3EA": {"date": "23/06/1975", "callsign": "3EA", "owner": "Australian Go
+const RAW = {"1923": {}, "1924": {"3AR": {"date": "26/01/1924", "callsign": "3AR", "owner": "Associated Radio Company of Australia", "marketing": "", "frequency": "480"}, "3LO": {"date": "13/10/1924", "callsign": "3LO", "owner": "Broadcasting Company of Australia", "marketing": "", "frequency": "1720"}}, "1925": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "484"}, "3LO": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "375"}, "3UZ": {"date": "06/02/1925", "callsign": "3UZ", "owner": "Oliver J. Nilsen & Co.", "marketing": "", "frequency": "323"}}, "1926": {"3LO": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "371"}}, "1927": {"3DB": {"date": "21/02/1927", "callsign": "3DB", "owner": "Druleigh Business and Technical College Pty Ltd", "marketing": "", "frequency": "254"}}, "1928": {"3LO": {"date": "", "callsign": "", "owner": "Australian Broadcasting Company", "marketing": "", "frequency": ""}}, "1929": {"3LO": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "375"}, "3DB": {"date": "", "callsign": "", "owner": "Herald and Weekly Times Ltd", "marketing": "", "frequency": ""}}, "1930": {"3KZ": {"date": "8/12/1930", "callsign": "3KZ", "owner": "Industrial Printing and Publicity Group", "marketing": "", "frequency": "222"}}, "1931": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "492"}, "3AK": {"date": "29/11/1931", "callsign": "3AK", "owner": "Akron Broadcasting Company", "marketing": "", "frequency": "200"}}, "1932": {"3AR": {"date": "01/07/1932", "callsign": "", "owner": "Australian Broadcasting Commission", "marketing": "", "frequency": ""}, "3LO": {"date": "01/07/1932", "callsign": "", "owner": "Australian Broadcasting Commission", "marketing": "", "frequency": ""}, "3AW": {"date": "22/02/1932", "callsign": "3AW", "owner": "Allans Music, JC Williamson's and David Syme The Age", "marketing": "", "frequency": "210"}}, "1933": {"3DB": {"date": "", "callsign": "", "owner": "", "marketing": "FEDERAL/ASSOCIATED BROADCASTERS AUS", "frequency": ""}}, "1934": {"3DB": {"date": "", "callsign": "", "owner": "", "marketing": "NIL", "frequency": ""}, "3AK": {"date": "", "callsign": "", "owner": "Melbourne Broadcasters Pty Ltd", "marketing": "", "frequency": ""}}, "1935": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "476"}, "3LO": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "390"}, "3UZ": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "323"}, "3DB": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "291"}, "3AW": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "234"}, "3KZ": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "254"}, "3AK": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "200"}, "3XY": {"date": "14/03/1935", "callsign": "3XY", "owner": "Young Nationalist Organisation & United Australia Party", "marketing": "", "frequency": "211"}}, "1936": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "517"}}, "1937": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "484"}}, "1938": {"3DB": {"date": "", "callsign": "", "owner": "", "marketing": "MAJOR", "frequency": ""}, "3AW": {"date": "", "callsign": "", "owner": "Macquarie Broadcasting Services P/L", "marketing": "MACQUARIE", "frequency": ""}}, "1939": {}, "1940": {}, "1941": {}, "1942": {}, "1943": {}, "1944": {}, "1945": {}, "1946": {}, "1947": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "ABC RADIO 2", "frequency": ""}}, "1948": {}, "1949": {"3AK": {"date": "", "callsign": "", "owner": "Mack's Furnishing Company", "marketing": "", "frequency": ""}}, "1950": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "620"}, "3LO": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "770"}, "3UZ": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "930"}, "3DB": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "1030"}, "3AW": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "1280"}, "3KZ": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "1180"}, "3AK": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "1500"}, "3XY": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "1420"}}, "1951": {}, "1952": {}, "1953": {}, "1954": {}, "1955": {}, "1956": {}, "1957": {}, "1958": {"3AW": {"date": "", "callsign": "", "owner": "Associated Television", "marketing": "", "frequency": ""}}, "1959": {}, "1960": {}, "1961": {"3AK": {"date": "", "callsign": "", "owner": "Australian Consolidated Press", "marketing": "", "frequency": ""}}, "1962": {}, "1963": {}, "1964": {"3AW": {"date": "", "callsign": "", "owner": "John Fairfax Ltd", "marketing": "", "frequency": ""}}, "1965": {"3AW": {"date": "", "callsign": "", "owner": "Macquarie Broadcasting Holdings Ltd.", "marketing": "", "frequency": ""}}, "1966": {}, "1967": {}, "1968": {}, "1969": {}, "1970": {}, "1971": {}, "1972": {}, "1973": {}, "1974": {}, "1975": {"3EA": {"date": "23/06/1975", "callsign": "3EA", "owner": "Australian Government", "marketing": "Ethnic Australia", "frequency": "1120"}, "3MBS": {"date": "01/07/1975", "callsign": "3MBS", "owner": "Music Broadcasting Society of Victoria Limited", "marketing": "", "frequency": "92.5"}}, "1976": {"3MBS": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "93.7"}, "ABC-FM": {"date": "24/01/1976", "callsign": "ABC-FM", "owner": "Australian Broadcasting Comission", "marketing": "ABC FINE MUSIC", "frequency": ""}, "3CR": {"date": "3/07/1976", "callsign": "3CR", "owner": "Community Radio Federation Ltd.", "marketing": "", "frequency": "840"}, "3MP": {"date": "22/07/1976", "callsign": "3MP", "owner": "Mornington Peninsula Radio Ltd.", "marketing": "", "frequency": "1380"}, "3RRR": {"date": "01/11/1976", "callsign": "3RMT", "owner": "Royal Melbourne Instutute of Technology", "marketing": "", "frequency": "102.7"}}, "1977": {}, "1978": {"3AR": {"date": "23/11/1978", "callsign": "", "owner": "", "marketing": "", "frequency": "621"}, "3LO": {"date": "23/11/1978", "callsign": "", "owner": "", "marketing": "", "frequency": "774"}, "3UZ": {"date": "23/11/1978", "callsign": "", "owner": "", "marketing": "", "frequency": "927"}, "3DB": {"date": "23/11/1978", "callsign": "", "owner": "", "marketing": "", "frequency": "1026"}, "3AW": {"date": "23/11/1978", "callsign": "", "owner": "", "marketing": "", "frequency": "1278"}, "3KZ": {"date": "23/11/1978", "callsign": "", "owner": "", "marketing": "", "frequency": "1179"}, "3AK": {"date": "23/11/1978", "callsign": "", "owner": "", "marketing": "", "frequency": "1503"}, "3XY": {"date": "23/11/1978", "callsign": "", "owner": "", "marketing": "", "frequency": "1422"}, "3EA": {"date": "23/11/1978", "callsign": "", "owner": "Special Broadcasting Service", "marketing": "", "frequency": "1116"}, "3CR": {"date": "23/11/1978", "callsign": "", "owner": "", "marketing": "", "frequency": "837"}, "3MP": {"date": "23/11/1978", "callsign": "", "owner": "", "marketing": "", "frequency": "1377"}}, "1979": {"3DB": {"date": "", "callsign": "", "owner": "", "marketing": "NIL", "frequency": ""}, "3RRR": {"date": "", "callsign": "3RRR", "owner": "", "marketing": "", "frequency": ""}, "3PBS": {"date": "21/12/1979", "callsign": "3PBS", "owner": "Progressive Broadcasting Service Cooperative Ltd", "marketing": "", "frequency": "107.7"}}, "1980": {"3EA": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "1224"}, "3MP": {"date": "", "callsign": "", "owner": "AWA", "marketing": "", "frequency": ""}, "3EON": {"date": "11/07/1980", "callsign": "3EON", "owner": "EON Broadcasters", "marketing": "", "frequency": "92.3"}, "3FOX": {"date": "01/08/1980", "callsign": "3FOX", "owner": "Fox FM", "marketing": "", "frequency": "101.9"}}, "1981": {}, "1982": {"3RPH": {"date": "12/12/1982", "callsign": "3RPH", "owner": "Radio for the Blind Committee", "marketing": "RPH AUSTRALIA", "frequency": "1705"}}, "1983": {"3AR": {"date": "", "callsign": "", "owner": "Australian Broadcasting Corporation", "marketing": "", "frequency": ""}, "3LO": {"date": "", "callsign": "", "owner": "Australian Broadcasting Corportation", "marketing": "", "frequency": ""}, "ABC-FM": {"date": "", "callsign": "", "owner": "Australian Broadcasting Corportation", "marketing": "", "frequency": ""}, "3CR": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "855"}, "3RPH": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "1629"}}, "1984": {}, "1985": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "RADIO NATIONAL", "frequency": ""}, "3UZ": {"date": "", "callsign": "", "owner": "ENT Ltd.", "marketing": "", "frequency": ""}}, "1986": {"3UZ": {"date": "", "callsign": "", "owner": "Victorian Thoroughbred, Greyhound and Harness Racing Clubs", "marketing": "", "frequency": ""}, "3AK": {"date": "", "callsign": "", "owner": "", "marketing": "CBC Network", "frequency": ""}, "3XY": {"date": "", "callsign": "", "owner": "Paul Dainty", "marketing": "", "frequency": ""}, "3EON": {"date": "01/01/1986", "callsign": "", "owner": "Hoyts Media", "marketing": "", "frequency": ""}, "3FOX": {"date": "", "callsign": "", "owner": "Austereo", "marketing": "AUSTEREO", "frequency": ""}}, "1987": {"3DB": {"date": "", "callsign": "", "owner": "J. Albert & Son", "marketing": "", "frequency": ""}, "3AK": {"date": "", "callsign": "", "owner": "Alan Bond", "marketing": "", "frequency": ""}, "3MP": {"date": "", "callsign": "", "owner": "Wesgo", "marketing": "", "frequency": ""}, "3PBS": {"date": "16/11/1987", "callsign": "", "owner": "", "marketing": "", "frequency": "106.7"}}, "1988": {"3DB": {"date": "02/04/1988", "callsign": "3TT", "owner": "", "marketing": "", "frequency": ""}, "3AW": {"date": "", "callsign": "", "owner": "Tricom (Sourthern Cross)", "marketing": "SOUTHERN CROSS", "frequency": ""}, "3MBS": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "103.5"}, "3EON": {"date": "27/11/1988", "callsign": "3MMM", "owner": "", "marketing": "TRIPLE M", "frequency": "105.1"}, "3PB": {"date": "01/08/1988", "callsign": "3PB", "owner": "Australian Broadcasting Corporation", "marketing": "PARLIAMENTARY BROADCASTING NETWORK", "frequency": "1593"}}, "1989": {"3XY": {"date": "", "callsign": "", "owner": "Geelong Broadcasters Pty Ltd.", "marketing": "", "frequency": ""}, "3JJJ": {"date": "01/10/1989", "callsign": "3JJJ", "owner": "Australian Broadcasting Corportation", "marketing": "TRIPLE J", "frequency": "107.5"}}, "1990": {"3AR": {"date": "", "callsign": "3RN", "owner": "", "marketing": "", "frequency": ""}, "3DB": {"date": "24/06/1990", "callsign": "3TTT", "owner": "", "marketing": "TTFM", "frequency": "101.1"}, "3KZ": {"date": "01/01/1990", "callsign": "3KKZ", "owner": "", "marketing": "KZFM", "frequency": "104.3"}, "3AK": {"date": "", "callsign": "", "owner": "Peter Corso", "marketing": "", "frequency": ""}, "3RPH": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "1179"}}, "1991": {"3KZ": {"date": "07/10/1991", "callsign": "", "owner": "", "marketing": "GOLD FM", "frequency": ""}, "3XY": {"date": "", "callsign": "", "owner": "AWA", "marketing": "", "frequency": ""}}, "1992": {"3XY": {"date": "02/07/1992", "callsign": "3EE", "owner": "", "marketing": "THE BREEZE", "frequency": "693"}}, "1993": {"3KZ": {"date": "", "callsign": "", "owner": "Austereo", "marketing": "", "frequency": ""}, "3XY": {"date": "", "callsign": "", "owner": "Wesgo", "marketing": "", "frequency": ""}}, "1994": {"3AK": {"date": "", "callsign": "", "owner": "Southern Cross Broadcasting", "marketing": "", "frequency": ""}, "3XY": {"date": "", "callsign": "", "owner": "Southern Cross Broadcasting", "marketing": "Magic 693", "frequency": ""}, "ABC-FM": {"date": "", "callsign": "", "owner": "", "marketing": "ABC CLASSIC FM", "frequency": ""}, "3EON": {"date": "", "callsign": "", "owner": "Village Roadshow", "marketing": "", "frequency": ""}, "3FOX": {"date": "", "callsign": "", "owner": "Village Roadshow", "marketing": "", "frequency": ""}, "3PB": {"date": "15/08/1994", "callsign": "", "owner": "", "marketing": "PARLIAMENTARY AND NEWS NETWORK", "frequency": "1026"}}, "1995": {"3DB": {"date": "", "callsign": "", "owner": "Australian Radio Network", "marketing": "", "frequency": ""}, "3KZ": {"date": "", "callsign": "", "owner": "APN/Wesgo", "marketing": "", "frequency": ""}, "3MP": {"date": "", "callsign": "", "owner": "Southern Cross Broadcasting", "marketing": "", "frequency": ""}, "3FOX": {"date": "", "callsign": "", "owner": "", "marketing": "TODAY NETWORK", "frequency": ""}}, "1996": {"3UZ": {"date": "", "callsign": "", "owner": "", "marketing": "Sport 927", "frequency": ""}, "3AK": {"date": "", "callsign": "", "owner": "Fusion Media", "marketing": "", "frequency": ""}, "3MP": {"date": "", "callsign": "", "owner": "Goulburn Valley Broadcasters", "marketing": "", "frequency": ""}, "3PB": {"date": "", "callsign": "", "owner": "", "marketing": "ABC NEWSRADIO", "frequency": ""}}, "1997": {}, "1998": {}, "1999": {}, "2000": {"3LO": {"date": "", "callsign": "", "owner": "", "marketing": "774 ABC Melbourne", "frequency": ""}, "3PBS": {"date": "01/01/2000", "callsign": "", "owner": "", "marketing": "PBS 106.7", "frequency": ""}}, "2001": {"3DB": {"date": "", "callsign": "", "owner": "", "marketing": "MIX", "frequency": ""}, "3AK": {"date": "", "callsign": "", "owner": "Data and Commerce Limited", "marketing": "", "frequency": ""}, "3MP": {"date": "", "callsign": "", "owner": "Data and Commerce Limited", "marketing": "", "frequency": ""}, "3MEL": {"date": "03/12/2001", "callsign": "3MEL", "owner": "DMG Radio", "marketing": "NOVA100", "frequency": "100.3"}}, "2002": {}, "2003": {"3AK": {"date": "", "callsign": "", "owner": "", "marketing": "", "frequency": "1116"}}, "2004": {"3AK": {"date": "", "callsign": "", "owner": "Pacific Star Network", "marketing": "SEN 1116", "frequency": ""}, "3MP": {"date": "", "callsign": "", "owner": "Pacific Star Network", "marketing": "", "frequency": ""}, "3RPH": {"date": "", "callsign": "", "owner": "Vision Australia", "marketing": "VISION AUSTRALIA RADIO", "frequency": ""}}, "2005": {"3PTV": {"date": "05/09/2005", "callsign": "3PTV", "owner": "DMG Radio", "marketing": "VEGA", "frequency": "91.5"}}, "2006": {"3AW": {"date": "01/05/2006", "callsign": "", "owner": "", "marketing": "", "frequency": "693"}, "3XY": {"date": "01/05/2006", "callsign": "", "owner": "", "marketing": "Magic 1278", "frequency": "1278"}}, "2007": {"3AW": {"date": "", "callsign": "", "owner": "Fairfax Media", "marketing": "FAIRFAX", "frequency": ""}}, "2008": {}, "2009": {}, "2010": {"3MP": {"date": "19/04/2010", "callsign": "", "owner": "", "marketing": "MTR 1377", "frequency": ""}, "3PTV": {"date": "12/03/2010", "callsign": "", "owner": "", "marketing": "CLASSIC ROCK", "frequency": ""}}, "2011": {"3UZ": {"date": "", "callsign": "", "owner": "", "marketing": "RSN Racing & Sport", "frequency": ""}, "3EON": {"date": "27/07/2011", "callsign": "", "owner": "Southern Cross Austereo", "marketing": "", "frequency": ""}, "3FOX": {"date": "27/07/2011", "callsign": "", "owner": "Southern Cross Austereo", "marketing": "", "frequency": ""}, "3PTV": {"date": "21/03/2011", "callsign": "", "owner": "", "marketing": "MELBOURNE'S 91.5", "frequency": ""}}, "2012": {"3MP": {"date": "02/03/2012", "callsign": "", "owner": "", "marketing": "MyMP", "frequency": ""}, "3PTV": {"date": "21/05/2012", "callsign": "", "owner": "", "marketing": "SMOOTHFM", "frequency": ""}}, "2013": {}, "2014": {"3MEL": {"date": "01/02/2014", "callsign": "", "owner": "NOVA Entertainment", "marketing": "", "frequency": ""}, "3PTV": {"date": "01/02/2014", "callsign": "", "owner": "NOVA Entertainment", "marketing": "", "frequency": ""}}, "2015": {"3DB": {"date": "19/01/2015", "callsign": "", "owner": "", "marketing": "KIIS", "frequency": ""}, "3AW": {"date": "", "callsign": "", "owner": "Macquarie Radio", "marketing": "MACQUARIE", "frequency": ""}, "3MP": {"date": "01/05/2015", "callsign": "", "owner": "", "marketing": "3MP", "frequency": ""}, "3FOX": {"date": "14/01/2015", "callsign": "", "owner": "", "marketing": "TODAY'S HIT NETWORK", "frequency": ""}}, "2016": {"3MP": {"date": "24/10/2016", "callsign": "", "owner": "", "marketing": "Classic Rock Radio", "frequency": ""}}, "2017": {"3LO": {"date": "", "callsign": "", "owner": "", "marketing": "ABC Radio Melbourne", "frequency": ""}, "3DB": {"date": "", "callsign": "", "owner": "HT&E Ltd", "marketing": "", "frequency": ""}, "3KZ": {"date": "", "callsign": "", "owner": "HT&E Ltd", "marketing": "", "frequency": ""}, "3XY": {"date": "27/02/2017", "callsign": "", "owner": "", "marketing": "TALKING LIFESTYLE", "frequency": ""}}, "2018": {"3XY": {"date": "04/04/2018", "callsign": "", "owner": "", "marketing": "MACQUARIE SPORTS RADIO", "frequency": ""}, "3MP": {"date": "13/08/2018", "callsign": "", "owner": "", "marketing": "SEN+", "frequency": ""}}, "2019": {"3AW": {"date": "", "callsign": "", "owner": "Nine Entertainment", "marketing": "NINE RADIO", "frequency": ""}, "ABC-FM": {"date": "", "callsign": "", "owner": "", "marketing": "ABC CLASSIC", "frequency": ""}}, "2020": {"3AK": {"date": "", "callsign": "", "owner": "Sports Entertainment Group", "marketing": "", "frequency": ""}, "3XY": {"date": "21/01/2020", "callsign": "", "owner": "", "marketing": "MAGIC 1278", "frequency": ""}, "3MP": {"date": "03/07/2020", "callsign": "", "owner": "ACE Radio", "marketing": "3MP", "frequency": ""}, "3FOX": {"date": "27/07/2020", "callsign": "", "owner": "", "marketing": "HIT NETWORK", "frequency": ""}}, "2021": {}, "2022": {"3XY": {"date": "14/01/2022", "callsign": "", "owner": "", "marketing": "ACE RADIO MAGIC", "frequency": ""}}, "2023": {"3DB": {"date": "", "callsign": "", "owner": "ARN Media", "marketing": "", "frequency": ""}, "3KZ": {"date": "", "callsign": "", "owner": "ARN Media", "marketing": "", "frequency": ""}}, "2024": {}, "2025": {"3UZ": {"date": "08/07/2025", "callsign": "", "owner": "Sports Entertainment Group", "marketing": "", "frequency": ""}}, "2026": {"3AR": {"date": "", "callsign": "", "owner": "", "marketing": "RADIO NATIONAL", "frequency": ""}, "3LO": {"date": "", "callsign": "", "owner": "", "marketing": "ABC LOCAL", "frequency": ""}, "3UZ": {"date": "", "callsign": "", "owner": "", "marketing": "RSN", "frequency": ""}, "3DB": {"date": "", "callsign": "", "owner": "", "marketing": "KIIS", "frequency": ""}, "3AW": {"date": "", "callsign": "", "owner": "Laundy Family Office", "marketing": "3AW", "frequency": ""}, "3KZ": {"date": "", "callsign": "", "owner": "", "marketing": "GOLD", "frequency": ""}, "3AK": {"date": "", "callsign": "", "owner": "", "marketing": "SEN", "frequency": ""}, "3XY": {"date": "", "callsign": "", "owner": "Laundy Family Office", "marketing": "MAGIC", "frequency": ""}, "3EA": {"date": "", "callsign": "", "owner": "", "marketing": "SBS RADIO 1", "frequency": ""}, "3MBS": {"date": "", "callsign": "", "owner": "", "marketing": "3MBS", "frequency": ""}, "ABC-FM": {"date": "", "callsign": "", "owner": "", "marketing": "ABC CLASSIC", "frequency": ""}, "3CR": {"date": "", "callsign": "", "owner": "", "marketing": "3CR", "frequency": ""}, "3MP": {"date": "", "callsign": "", "owner": "", "marketing": "3MP", "frequency": ""}, "3RRR": {"date": "", "callsign": "", "owner": "", "marketing": "3 TRIPLE R", "frequency": ""}, "3PBS": {"date": "", "callsign": "", "owner": "", "marketing": "PBS FM", "frequency": ""}, "3EON": {"date": "", "callsign": "", "owner": "", "marketing": "TRIPLE M", "frequency": ""}, "3FOX": {"date": "", "callsign": "", "owner": "", "marketing": "HIT", "frequency": ""}, "3RPH": {"date": "", "callsign": "", "owner": "", "marketing": "VISION AUSTRALIA RADIO", "frequency": ""}, "3JJJ": {"date": "", "callsign": "", "owner": "", "marketing": "TRIPLE J", "frequency": ""}, "3PB": {"date": "", "callsign": "", "owner": "", "marketing": "ABC NEWS", "frequency": ""}, "3MEL": {"date": "", "callsign": "", "owner": "", "marketing": "NOVA", "frequency": ""}, "3PTV": {"date": "", "callsign": "", "owner": "", "marketing": "SMOOTH", "frequency": ""}}};
+
+// Build a cumulative state: for each station at each year, what's the current state
+const STATIONS = ["3AR","3LO","3UZ","3DB","3AW","3KZ","3AK","3XY","3EA","3MBS","ABC-FM","3CR","3MP","3RRR","3PBS","3EON","3FOX","3RPH","3JJJ","3PB","3MEL","3PTV"];
+const YEARS = Object.keys(RAW).map(Number).sort((a,b) => a - b);
+
+// Build cumulative state: for each year, compute full state of each station by carrying forward
+function buildCumulativeState() {
+  const state = {};
+  const current = {};
+  for (const year of YEARS) {
+    const yearData = RAW[year] || {};
+    for (const st of STATIONS) {
+      if (yearData[st]) {
+        const d = yearData[st];
+        if (!current[st]) current[st] = { callsign: st, owner: '', marketing: '', frequency: '', firstSeen: year };
+        if (d.callsign) current[st].callsign = d.callsign;
+        if (d.owner) current[st].owner = d.owner;
+        if (d.marketing) current[st].marketing = d.marketing;
+        if (d.frequency) current[st].frequency = d.frequency;
+        current[st].lastChange = year;
+        current[st].lastDate = d.date || '';
+      }
+    }
+    state[year] = {};
+    for (const st of STATIONS) {
+      if (current[st]) state[year][st] = { ...current[st] };
+    }
+  }
+  return state;
+}
+
+const CUMULATIVE = buildCumulativeState();
+
+let currentYear = 2026;
+let currentView = 'cards';
+let currentFilter = 'all';
+let playing = false;
+let playInterval = null;
+
+const slider = document.getElementById('year-slider');
+const yearLabel = document.getElementById('year-label');
+const searchInput = document.getElementById('search-input');
+
+slider.addEventListener('input', () => {
+  currentYear = parseInt(slider.value);
+  yearLabel.textContent = currentYear;
+  render();
+});
+
+function setView(view, el) {
+  currentView = view;
+  document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('card-view').classList.toggle('hidden', view !== 'cards');
+  document.getElementById('table-view').classList.toggle('hidden', view !== 'table');
+  document.getElementById('timeline-view').classList.toggle('hidden', view !== 'timeline');
+  render();
+}
+
+function setFilter(filter, el) {
+  currentFilter = filter;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  render();
+}
+
+function getFilteredEntries(year) {
+  const yearData = RAW[year] || {};
+  const cumulative = CUMULATIVE[year] || {};
+  const search = searchInput.value.toLowerCase().trim();
+
+  let entries = [];
+
+  if (currentFilter === 'all') {
+    // Show all stations that have ever existed by this year
+    for (const st of STATIONS) {
+      if (cumulative[st]) {
+        entries.push({ station: st, data: cumulative[st], changed: !!yearData[st] });
+      }
+    }
+  } else if (currentFilter === 'new') {
+    for (const [st, d] of Object.entries(yearData)) {
+      if (d.callsign && d.date) entries.push({ station: st, data: cumulative[st] || d, changed: true });
+    }
+  } else if (currentFilter === 'owner') {
+    for (const [st, d] of Object.entries(yearData)) {
+      if (d.owner) entries.push({ station: st, data: cumulative[st] || d, changed: true });
+    }
+  } else if (currentFilter === 'brand') {
+    for (const [st, d] of Object.entries(yearData)) {
+      if (d.marketing) entries.push({ station: st, data: cumulative[st] || d, changed: true });
+    }
+  }
+
+  if (search) {
+    entries = entries.filter(e => {
+      const d = e.data;
+      return (e.station + ' ' + (d.callsign||'') + ' ' + (d.owner||'') + ' ' + (d.marketing||'') + ' ' + (d.frequency||'')).toLowerCase().includes(search);
+    });
+  }
+
+  return entries;
+}
+
+function formatFreq(f) {
+  if (!f) return '';
+  const n = parseFloat(f);
+  if (n < 200) return f + ' kHz';
+  if (n >= 200 && n < 2000) return f + ' kHz';
+  return f + ' kHz';
+}
+
+function renderCards(entries) {
+  const container = document.getElementById('card-view');
+  if (!entries.length) {
+    container.innerHTML = `<div class="empty-state"><h3>No records</h3><p>No stations match this filter for ${currentYear}.</p></div>`;
+    return;
+  }
+  container.innerHTML = entries.map((e, i) => {
+    const d = e.data;
+    const freq = d.frequency ? formatFreq(d.frequency) : '';
+    const isNew = d.firstSeen === currentYear;
+    const style = `animation-delay:${i * 0.03}s`;
+    return `
+    <div class="station-card" style="${style}">
+      ${isNew ? '<div class="card-date-tag">New ' + currentYear + '</div>' : ''}
+      <div class="card-header">
+        <div>
+          <div class="card-callsign">${e.station}</div>
+          ${freq ? `<div class="card-freq">${freq}</div>` : ''}
+        </div>
+        ${d.marketing ? `<div class="card-marketing">${d.marketing}</div>` : ''}
+      </div>
+      <div class="card-body">
+        ${d.callsign && d.callsign !== e.station ? `<div class="card-field"><span class="field-label">Call sign</span><span class="field-value">${d.callsign}</span></div>` : ''}
+        <div class="card-field"><span class="field-label">Owner</span><span class="field-value ${d.owner ? '' : 'empty'}">${d.owner || 'Unknown'}</span></div>
+        ${d.lastDate ? `<div class="card-field"><span class="field-label">Effective</span><span class="field-value">${d.lastDate}</span></div>` : ''}
+        ${e.changed && !isNew ? `<div class="card-field"><span class="field-label">Changed</span><span class="field-value" style="color:var(--accent2)">${currentYear}</span></div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderTable(entries) {
+  const container = document.getElementById('table-view');
+  if (!entries.length) {
+    container.innerHTML = `<div class="empty-state"><h3>No records</h3><p>No stations match for ${currentYear}.</p></div>`;
+    return;
+  }
+  container.innerHTML = `
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Station</th>
+        <th>Call Sign</th>
+        <th>Frequency</th>
+        <th>Brand / Marketing Name</th>
+        <th>Owner</th>
+        <th>Effective Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${entries.map(e => {
+        const d = e.data;
+        return `<tr>
+          <td class="td-callsign">${e.station}</td>
+          <td class="td-callsign" style="font-size:13px;font-weight:400">${d.callsign || '<span class="empty-cell">—</span>'}</td>
+          <td class="td-freq">${d.frequency ? formatFreq(d.frequency) : '<span class="empty-cell">—</span>'}</td>
+          <td class="td-marketing">${d.marketing || '<span class="empty-cell">—</span>'}</td>
+          <td>${d.owner || '<span class="empty-cell">Unknown</span>'}</td>
+          <td class="td-date">${d.lastDate || '<span class="empty-cell">—</span>'}</td>
+        </tr>`;
+      }).join('')}
+    </tbody>
+  </table>`;
+}
+
+function renderTimeline() {
+  const container = document.getElementById('timeline-view');
+  const search = searchInput.value.toLowerCase().trim();
+
+  const stationEvents = {};
+  for (const year of YEARS) {
+    if (year > currentYear) continue;
+    const yearData = RAW[year] || {};
+    for (const [st, d] of Object.entries(yearData)) {
+      if (!stationEvents[st]) stationEvents[st] = [];
+      if (d.owner || d.marketing || d.callsign || d.frequency) {
+        stationEvents[st].push({ year, ...d });
+      }
+    }
+  }
+
+  let rows = Object.entries(stationEvents);
+  if (search) {
+    rows = rows.filter(([st, events]) =>
+      events.some(e => (st + ' ' + (e.callsign||'') + ' ' + (e.owner||'') + ' ' + (e.marketing||'')).toLowerCase().includes(search))
+    );
+  }
+
+  if (!rows.length) {
+    container.innerHTML = `<div class="empty-state"><h3>No records</h3><p>Nothing to display.</p></div>`;
+    return;
+  }
+
+  container.innerHTML = rows.map(([st, events]) => `
+    <div class="timeline-row">
+      <div class="timeline-station">${st}</div>
+      <div class="timeline-events">
+        ${events.map(e => `
+          <div class="timeline-event">
+            <div class="event-year">${e.year}${e.date ? ' · ' + e.date : ''}</div>
+            ${e.callsign ? `<div class="event-owner" style="color:var(--accent);font-family:'Oswald',sans-serif;">${e.callsign}</div>` : ''}
+            ${e.owner ? `<div class="event-owner">${e.owner}</div>` : ''}
+            ${e.marketing ? `<div class="event-marketing">${e.marketing}</div>` : ''}
+            ${e.frequency ? `<div style="font-family:'Oswald',sans-serif;font-size:10px;color:var(--text-dim);margin-top:2px;">${formatFreq(e.frequency)}</div>` : ''}
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function render() {
+  const entries = getFilteredEntries(currentYear);
+  document.getElementById('results-count').innerHTML = `<span>${entries.length}</span> station${entries.length !== 1 ? 's' : ''}`;
+
+  if (currentView === 'cards') renderCards(entries);
+  else if (currentView === 'table') renderTable(entries);
+  else renderTimeline();
+}
+
+function togglePlay() {
+  playing = !playing;
+  document.getElementById('play-icon').textContent = playing ? '⏸' : '▶';
+  document.getElementById('play-label').textContent = playing ? 'Pause' : 'Play';
+
+  if (playing) {
+    if (currentYear >= 2026) {
+      currentYear = 1924;
+      slider.value = currentYear;
+      yearLabel.textContent = currentYear;
+      render();
+    }
+    playInterval = setInterval(() => {
+      if (currentYear >= 2026) {
+        togglePlay();
+        return;
+      }
+      currentYear++;
+      slider.value = currentYear;
+      yearLabel.textContent = currentYear;
+      render();
+    }, 400);
+  } else {
+    clearInterval(playInterval);
+  }
+}
+
+render();
+</script>
+</body>
+</html>
