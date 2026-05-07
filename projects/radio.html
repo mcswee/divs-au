@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melbourne Radio — Station History</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --surface: #141414;
+    --surface2: #1c1c1c;
+    --border: #2a2a2a;
+    --accent: #d4a843;
+    --accent2: #b8813a;
+    --text: #e8e0d4;
+    --text-muted: #7a7268;
+    --text-dim: #4a4540;
+    --green: #27ae60;
+    --blue: #5b8dd9;
+    --am: #c8965a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Source Serif 4', Georgia, serif; font-size: 14px; line-height: 1.5; min-height: 100vh; }
+
+  .site-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 32px 24px; position: sticky; top: 0; z-index: 100; }
+  .header-inner { max-width: 1600px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .site-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 28px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); line-height: 1; }
+  .site-subtitle { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 300; font-size: 13px; color: var(--text-muted); margin-top: 5px; }
+
+  .controls { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .control-group { display: flex; flex-direction: column; gap: 4px; }
+  .control-label { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
+  .control-row { display: flex; align-items: center; gap: 10px; }
+
+  input[type="range"] { -webkit-appearance: none; width: 180px; height: 2px; background: var(--border); outline: none; cursor: pointer; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid var(--bg); box-shadow: 0 0 0 1px var(--accent); }
+
+  .year-display { font-family: 'Oswald', sans-serif; font-size: 24px; font-weight: 600; color: var(--accent); min-width: 56px; letter-spacing: 0.04em; line-height: 1; }
+
+  .btn-play { font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 18px; border: 1px solid var(--accent2); background: rgba(212,168,67,0.08); color: var(--accent); cursor: pointer; border-radius: 2px; display: flex; align-items: center; gap: 7px; transition: background 0.15s; }
+  .btn-play:hover { background: rgba(212,168,67,0.16); }
+
+  input[type="search"] { background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 7px 12px; font-family: 'Oswald', sans-serif; font-size: 12px; letter-spacing: 0.05em; width: 190px; border-radius: 2px; outline: none; transition: border-color 0.15s; }
+  input[type="search"]:focus { border-color: var(--accent); }
+  input::placeholder { color: var(--text-dim); }
+
+  .main { max-width: 1600px; margin: 0 auto; padding: 24px 32px 48px; }
+
+  .view-controls { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+  .view-tabs { display: flex; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+  .view-tab { font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 18px; background: transparent; border: none; border-right: 1px solid var(--border); color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+  .view-tab:last-child { border-right: none; }
+  .view-tab.active { background: rgba(212,168,67,0.1); color: var(--accent); }
+
+  .filter-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 11px; border: 1px solid var(--border); border-radius: 20px; background: transparent; color: var(--text-muted); cursor: pointer; transition: all 0.12s; }
+  .chip:hover, .chip.active { border-color: var(--accent); color: var(--accent); background: rgba(212,168,67,0.08); }
+
+  .results-count { font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
+  .results-count span { color: var(--accent); font-weight: 600; }
+
+  /* CARDS */
+  #card-view { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+
+  .station-card { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; transition: border-color 0.15s, transform 0.15s; animation: fadeIn 0.22s ease both; }
+  .station-card:hover { border-color: var(--accent2); transform: translateY(-1px); }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+  .card-header { background: var(--surface2); padding: 14px 16px 12px; border-bottom: 1px solid var(--border); }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 3px; }
+  .card-station-name { font-family: 'Oswald', sans-serif; font-size: 19px; font-weight: 700; letter-spacing: 0.06em; color: var(--accent); text-transform: uppercase; line-height: 1.1; }
+
+  .card-freq-badge { font-family: 'Oswald', sans-serif; font-size: 12px; color: var(--text-muted); white-space: nowrap; letter-spacing: 0.04em; background: rgba(255,255,255,0.04); border: 1px solid var(--border); padding: 3px 8px; border-radius: 2px; margin-top: 2px; flex-shrink: 0; }
+  .card-freq-badge.fm { color: var(--blue); border-color: rgba(91,141,217,0.3); background: rgba(91,141,217,0.06); }
+  .card-freq-badge.am { color: var(--am); border-color: rgba(200,150,90,0.3); background: rgba(200,150,90,0.06); }
+
+  .card-network { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2); margin-top: 2px; }
+
+  .card-body { padding: 12px 16px 14px; display: flex; flex-direction: column; gap: 6px; }
+  .card-field { display: flex; gap: 8px; align-items: baseline; }
+  .field-label { font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; min-width: 56px; padding-top: 1px; }
+  .field-value { font-size: 13px; color: var(--text); line-height: 1.35; }
+  .field-value.empty { color: var(--text-dim); font-style: italic; font-size: 12px; }
+
+  .new-tag { display: inline-block; font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); border: 1px solid rgba(39,174,96,0.4); background: rgba(39,174,96,0.08); padding: 2px 7px; border-radius: 2px; margin-left: 7px; vertical-align: middle; }
+
+  /* TABLE */
+  #table-view { overflow-x: auto; }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .data-table th { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); text-align: left; padding: 10px 16px; border-bottom: 1px solid var(--border); background: var(--surface); white-space: nowrap; }
+  .data-table td { padding: 10px 16px; border-bottom: 1px solid rgba(42,42,42,0.5); vertical-align: middle; }
+  .data-table tr:hover td { background: rgba(212,168,67,0.03); }
+  .td-name { font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 600; color: var(--accent); letter-spacing: 0.05em; }
+  .td-callsign { font-family: 'Oswald', sans-serif; font-size: 12px; color: var(--text-muted); letter-spacing: 0.06em; }
+  .td-freq { font-family: 'Oswald', sans-serif; font-size: 13px; white-space: nowrap; }
+  .td-freq.fm { color: var(--blue); }
+  .td-freq.am { color: var(--am); }
+  .td-network { font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); }
+  .td-date { font-family: 'Oswald', sans-serif; font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+  .td-date.exact { color: var(--green); }
+  .empty-cell { color: var(--text-dim); font-style: italic; font-size: 12px; }
+
+  /* TIMELINE */
+  #timeline-view { display: flex; flex-direction: column; }
+  .timeline-row { display: flex; border-bottom: 1px solid rgba(42,42,42,0.4); transition: background 0.1s; }
+  .timeline-row:hover { background: rgba(212,168,67,0.02); }
+  .timeline-station { font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: 0.06em; min-width: 130px; max-width: 130px; padding: 10px 14px; border-right: 1px solid var(--border); display: flex; align-items: flex-start; flex-direction: column; gap: 2px; }
+  .timeline-callsign { font-size: 10px; font-weight: 400; color: var(--text-dim); letter-spacing: 0.08em; }
+  .timeline-events { flex: 1; display: flex; align-items: flex-start; flex-wrap: wrap; padding: 8px 12px; gap: 8px; }
+  .timeline-event { padding: 6px 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 2px; min-width: 155px; max-width: 250px; }
+  .event-year { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 3px; }
+  .event-name { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; color: var(--text); }
+  .event-detail { font-size: 12px; color: var(--text-muted); line-height: 1.3; margin-top: 1px; }
+  .event-network { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); margin-top: 2px; }
+  .event-freq { font-family: 'Oswald', sans-serif; font-size: 10px; color: var(--text-dim); margin-top: 2px; }
+  .event-freq.fm { color: var(--blue); }
+  .event-freq.am { color: var(--am); }
+
+  .empty-state { text-align: center; padding: 80px 32px; color: var(--text-dim); }
+  .empty-state h3 { font-family: 'Oswald', sans-serif; font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--text-muted); }
+
+  .hidden { display: none !important; }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div>
+      <div class="site-title">Melbourne Radio History</div>
+      <div class="site-subtitle">Station records 1924–2026 &mdash; call signs, ownership &amp; broadcast brands</div>
+    </div>
+    <div class="controls">
+      <div class="control-group">
+        <div class="control-label">Year</div>
+        <div class="control-row">
+          <input type="range" id="year-slider" min="1924" max="2026" value="2026" step="1">
+          <div class="year-display" id="year-label">2026</div>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="control-label">Playback</div>
+        <button class="btn-play" id="play-btn" onclick="togglePlay()">
+          <span id="play-icon">▶</span><span id="play-label">Play</span>
+        </button>
+      </div>
+      <div class="control-group">
+        <div class="control-label">Search</div>
+        <input type="search" id="search-input" placeholder="Station, owner, network…" oninput="render()">
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+  <div class="view-controls">
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div class="view-tabs">
+        <button class="view-tab active" onclick="setView('cards',this)">Cards</button>
+        <button class="view-tab" onclick="setView('table',this)">Table</button>
+        <button class="view-tab" onclick="setView('timeline',this)">Timeline</button>
+      </div>
+      <div class="filter-chips">
+        <button class="chip active" onclick="setFilter('all',this)">All active</button>
+        <button class="chip" onclick="setFilter('new',this)">New this year</button>
+        <button class="chip" onclick="setFilter('owner',this)">Ownership changes</button>
+        <button class="chip" onclick="setFilter('network',this)">Network changes</button>
+        <button class="chip" onclick="setFilter('fm',this)">FM only</button>
+        <button class="chip" onclick="setFilter('am',this)">AM only</button>
+      </div>
+    </div>
+    <div class="results-count" id="results-count"></div>
+  </div>
+
+  <div id="card-view"></div>
+  <div id="table-view" class="hidden"></div>
+  <div id="timeline-view" class="hidden"></div>
+</main>
+
+<script>
+const RAW = {"1923": {}, "1924": {"2": {"date": "26/01/1924", "station": "3AR", "callsign": "3AR", "owner": "Associated Radio Company of Australia", "network": "", "frequency": "625"}, "3": {"date": "13/10/1924", "station": "3LO", "callsign": "3LO", "owner": "Broadcasting Company of Australia", "network": "", "frequency": "800"}}, "1925": {"2": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "620"}, "3": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "810"}, "4": {"date": "06/02/1925", "station": "3UZ", "callsign": "3UZ", "owner": "Oliver J. Nilsen & Co.", "network": "", "frequency": "930"}}, "1926": {}, "1927": {"5": {"date": "21/02/1927", "station": "3DB", "callsign": "3DB", "owner": "Druleigh Business and Technical College Pty Ltd", "network": "", "frequency": "1180"}}, "1928": {"2": {"date": "", "station": "", "callsign": "", "owner": "Australian Broadcasting Company", "network": "", "frequency": ""}, "3": {"date": "", "station": "", "callsign": "", "owner": "Australian Broadcasting Company", "network": "", "frequency": ""}}, "1929": {"3": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "800"}, "5": {"date": "", "station": "", "callsign": "", "owner": "Herald and Weekly Times Ltd", "network": "", "frequency": ""}}, "1930": {"6": {"date": "03/12/1930", "station": "3GL", "callsign": "3GL", "owner": "Herald and Weekly Times Ltd", "network": "", "frequency": "1400"}, "7": {"date": "8/12/1930", "station": "3KZ", "callsign": "3KZ", "owner": "Industrial Printing and Publicity Group", "network": "", "frequency": "1350"}}, "1931": {"2": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "610"}, "8": {"date": "29/11/1931", "station": "3AK", "callsign": "3AK", "owner": "Akron Broadcasting Company", "network": "", "frequency": "1500"}}, "1932": {"2": {"date": "01/07/1932", "station": "", "callsign": "", "owner": "Australian Broadcasting Commission", "network": "", "frequency": ""}, "3": {"date": "01/07/1932", "station": "", "callsign": "", "owner": "Australian Broadcasting Commission", "network": "", "frequency": ""}, "9": {"date": "22/02/1932", "station": "3AW", "callsign": "3AW", "owner": "Allans Music, JC Williamson's and David Syme The Age", "network": "", "frequency": "1425"}}, "1933": {"5": {"date": "", "station": "", "callsign": "", "owner": "", "network": "FEDERAL/ASSOCIATED BROADCASTERS AUS", "frequency": ""}}, "1934": {"5": {"date": "", "station": "", "callsign": "", "owner": "", "network": "NIL", "frequency": ""}, "8": {"date": "", "station": "", "callsign": "", "owner": "Melbourne Broadcasters Pty Ltd", "network": "", "frequency": ""}}, "1935": {"2": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "630"}, "3": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "770"}, "5": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1030"}, "6": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1350"}, "7": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1180"}, "9": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1280"}, "10": {"date": "14/03/1935", "station": "3XY", "callsign": "3XY", "owner": "Young Nationalist Organisation & United Australia Party", "network": "", "frequency": "1420"}}, "1936": {"2": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "580"}}, "1937": {"2": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "620"}}, "1938": {"5": {"date": "", "station": "", "callsign": "", "owner": "", "network": "MAJOR", "frequency": ""}, "9": {"date": "", "station": "", "callsign": "", "owner": "", "network": "MACQUARIE", "frequency": ""}}, "1939": {}, "1940": {}, "1941": {}, "1942": {}, "1943": {}, "1944": {}, "1945": {}, "1946": {}, "1947": {"2": {"date": "", "station": "ABC RADIO 2", "callsign": "", "owner": "", "network": "", "frequency": ""}}, "1948": {"9": {"date": "", "station": "", "callsign": "", "owner": "Macquarie Broastcasting Services P/L", "network": "", "frequency": ""}}, "1949": {"8": {"date": "", "station": "", "callsign": "", "owner": "Mack's Furnishing Company", "network": "", "frequency": ""}}, "1950": {}, "1951": {}, "1952": {}, "1953": {}, "1954": {}, "1955": {}, "1956": {}, "1957": {}, "1958": {}, "1959": {}, "1960": {}, "1961": {"8": {"date": "", "station": "", "callsign": "", "owner": "Australian Consolidated Press", "network": "", "frequency": ""}}, "1962": {}, "1963": {}, "1964": {"9": {"date": "", "station": "", "callsign": "", "owner": "John Fairfax Ltd", "network": "", "frequency": ""}}, "1965": {"9": {"date": "", "station": "", "callsign": "", "owner": "Macquarie Broadcasting Holdings Ltd.", "network": "", "frequency": ""}}, "1966": {}, "1967": {}, "1968": {}, "1969": {}, "1970": {}, "1971": {}, "1972": {}, "1973": {}, "1974": {}, "1975": {"11": {"date": "23/06/1975", "station": "3EA", "callsign": "3EA", "owner": "Australian Government", "network": "Ethnic Australia", "frequency": "1120"}, "12": {"date": "01/07/1975", "station": "3MBS", "callsign": "3MBS", "owner": "Music Broadcasting Society of Victoria Limited", "network": "", "frequency": "92.5"}}, "1976": {"12": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "93.7"}, "13": {"date": "24/01/1976", "station": "ABC FM", "callsign": "3ABCFM", "owner": "Australian Broadcasting Comission", "network": "ABC FINE MUSIC", "frequency": ""}, "14": {"date": "3/07/1976", "station": "3CR", "callsign": "3CR", "owner": "Community Radio Federation Ltd.", "network": "", "frequency": "840"}, "15": {"date": "22/07/1976", "station": "3MP", "callsign": "3MP", "owner": "Mornington Peninsula Radio Ltd.", "network": "", "frequency": "1380"}, "16": {"date": "01/11/1976", "station": "3MRT", "callsign": "3RMT", "owner": "Royal Melbourne Instutute of Technology", "network": "", "frequency": "102.7"}}, "1977": {"11": {"date": "01/01/1978", "station": "SBS Radio", "callsign": "", "owner": "Special Broadcasting Service", "network": "SBS RADIO", "frequency": ""}}, "1978": {"2": {"date": "23/11/1978", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "621"}, "3": {"date": "23/11/1978", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "774"}, "4": {"date": "23/11/1978", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "927"}, "5": {"date": "23/11/1978", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1026"}, "6": {"date": "23/11/1978", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1341"}, "7": {"date": "23/11/1978", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1179"}, "8": {"date": "23/11/1978", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1503"}, "9": {"date": "23/11/1978", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1278"}, "10": {"date": "23/11/1978", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1422"}, "11": {"date": "23/11/1978", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1116"}, "14": {"date": "23/11/1978", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "837"}, "15": {"date": "23/11/1978", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1377"}}, "1979": {"5": {"date": "", "station": "", "callsign": "", "owner": "", "network": "NIL", "frequency": ""}, "16": {"date": "", "station": "3 Triple R", "callsign": "3RRR", "owner": "", "network": "", "frequency": ""}, "17": {"date": "21/12/1979", "station": "3PBS", "callsign": "3PBS", "owner": "Progressive Broadcasting Service Cooperative Ltd", "network": "", "frequency": "107.7"}}, "1980": {"11": {"date": "", "station": "SBS AM 1224", "callsign": "", "owner": "", "network": "", "frequency": "1224"}, "15": {"date": "", "station": "", "callsign": "", "owner": "AWA", "network": "", "frequency": ""}, "18": {"date": "11/07/1980", "station": "Eon FM", "callsign": "3EON", "owner": "EON Broadcasters", "network": "", "frequency": "92.3"}, "19": {"date": "01/08/1980", "station": "Fox FM", "callsign": "3FOX", "owner": "Fox FM", "network": "", "frequency": "101.9"}}, "1981": {}, "1982": {"20": {"date": "12/12/1982", "station": "3RPH", "callsign": "3RPH", "owner": "Radio for the Blind Committee", "network": "RPH AUSTRALIA", "frequency": "1705"}}, "1983": {"2": {"date": "", "station": "", "callsign": "", "owner": "Australian Broadcasting Corporation", "network": "", "frequency": ""}, "3": {"date": "", "station": "", "callsign": "", "owner": "Australian Broadcasting Corportation", "network": "", "frequency": ""}, "13": {"date": "", "station": "", "callsign": "", "owner": "Australian Broadcasting Corportation", "network": "", "frequency": ""}, "14": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "855"}, "20": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1629"}}, "1984": {}, "1985": {"2": {"date": "", "station": "RADIO NATIONAL", "callsign": "", "owner": "", "network": "RADIO NATIONAL", "frequency": ""}, "4": {"date": "", "station": "", "callsign": "", "owner": "ENT Ltd.", "network": "", "frequency": ""}}, "1986": {"4": {"date": "", "station": "", "callsign": "", "owner": "Victorian Thoroughbred, Greyhound and Harness Racing", "network": "", "frequency": ""}, "8": {"date": "", "station": "", "callsign": "", "owner": "", "network": "CBC Network", "frequency": ""}, "10": {"date": "", "station": "", "callsign": "", "owner": "Paul Dainty", "network": "", "frequency": ""}, "18": {"date": "01/01/1986", "station": "", "callsign": "", "owner": "Hoyts Media", "network": "", "frequency": ""}, "19": {"date": "01/01/1986", "station": "", "callsign": "", "owner": "Austereo", "network": "AUSTEREO NETWORK", "frequency": ""}}, "1987": {"5": {"date": "", "station": "", "callsign": "", "owner": "J. Albert & Son", "network": "", "frequency": ""}, "6": {"date": "", "station": "", "callsign": "", "owner": "Northern Star Holdings", "network": "", "frequency": ""}, "8": {"date": "", "station": "", "callsign": "", "owner": "Alan Bond", "network": "", "frequency": ""}, "15": {"date": "01/10/1987", "station": "", "callsign": "", "owner": "Wesgo", "network": "", "frequency": ""}, "17": {"date": "16/11/1987", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "106.7"}}, "1988": {"5": {"date": "02/04/1988", "station": "3TT", "callsign": "3TT", "owner": "", "network": "", "frequency": ""}, "6": {"date": "", "station": "", "callsign": "", "owner": "Hoyts Media", "network": "", "frequency": ""}, "9": {"date": "", "station": "", "callsign": "", "owner": "Tricom Corporation", "network": "SOUTHERN CROSS", "frequency": ""}, "12": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "103.5"}, "18": {"date": "27/11/1988", "station": "Triple M", "callsign": "3MMM", "owner": "", "network": "TRIPLE M", "frequency": "105.1"}, "23": {"date": "01/08/1988", "station": "3PB", "callsign": "3PB", "owner": "Australian Broadcasting Corporation", "network": "PBN", "frequency": "1593"}}, "1989": {"10": {"date": "", "station": "", "callsign": "", "owner": "Geelong Broadcasters Pty Ltd.", "network": "", "frequency": ""}, "21": {"date": "03/06/1989", "station": "3ZZZ", "callsign": "3ZZZ", "owner": "Ethnic Public Broadcastong Assoc of Vic Ltd.", "network": "", "frequency": "92.3"}, "22": {"date": "01/10/1989", "station": "Triple J", "callsign": "3JJJ", "owner": "Australian Broadcasting Corportation", "network": "TRIPLE J", "frequency": "107.5"}, "25": {"date": "10/12/1989", "station": "Bay FM", "callsign": "3BAY", "owner": "Geelong Broadcasters Pty. Ltd.", "network": "", "frequency": "93.9"}}, "1990": {"2": {"date": "", "station": "", "callsign": "3RN", "owner": "", "network": "", "frequency": ""}, "5": {"date": "24/06/1990", "station": "TTFM", "callsign": "3TTT", "owner": "", "network": "", "frequency": "101.1"}, "6": {"date": "27/01/1990", "station": "K-ROCK", "callsign": "3CAT", "owner": "", "network": "", "frequency": "95.5"}, "7": {"date": "01/01/1990", "station": "KZFM", "callsign": "3KKZ", "owner": "", "network": "", "frequency": "104.3"}, "8": {"date": "", "station": "", "callsign": "", "owner": "Peter Corso", "network": "", "frequency": ""}, "20": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1179"}}, "1991": {"7": {"date": "07/10/1991", "station": "Gold 104", "callsign": "", "owner": "", "network": "", "frequency": ""}, "9": {"date": "06/01/1991", "station": "", "callsign": "", "owner": "Southern Cross Broadcasting", "network": "", "frequency": ""}, "10": {"date": "", "station": "", "callsign": "", "owner": "AWA", "network": "", "frequency": ""}}, "1992": {"6": {"date": "", "station": "", "callsign": "", "owner": "Grant Broadcasters", "network": "", "frequency": ""}, "10": {"date": "02/07/1992", "station": "The Breeze", "callsign": "3EE", "owner": "", "network": "", "frequency": "693"}}, "1993": {"7": {"date": "", "station": "", "callsign": "", "owner": "Austereo", "network": "", "frequency": ""}, "10": {"date": "01/05/1993", "station": "", "callsign": "", "owner": "Wesgo", "network": "", "frequency": ""}}, "1994": {"8": {"date": "", "station": "", "callsign": "", "owner": "Southern Cross Broadcasting", "network": "", "frequency": ""}, "10": {"date": "01/03/1994", "station": "Magic 693", "callsign": "", "owner": "Australian Provincial Newspapers", "network": "", "frequency": ""}, "11": {"date": "19/07/1994", "station": "", "callsign": "", "owner": "", "network": "SBS Radio 1", "frequency": ""}, "13": {"date": "", "station": "ABC CLASSIC FM", "callsign": "", "owner": "", "network": "ABC CLASSIC FM", "frequency": ""}, "15": {"date": "", "station": "", "callsign": "", "owner": "Australian Provincial Newspapers", "network": "", "frequency": ""}, "18": {"date": "", "station": "", "callsign": "", "owner": "Village Roadshow", "network": "", "frequency": ""}, "19": {"date": "", "station": "", "callsign": "", "owner": "Village Roadshow", "network": "", "frequency": ""}, "23": {"date": "15/08/1994", "station": "", "callsign": "", "owner": "", "network": "PNN", "frequency": "1026"}, "25": {"date": "", "station": "", "callsign": "", "owner": "Grant Broadcasters", "network": "", "frequency": ""}, "26": {"date": "19/07/1994", "station": "SBS FM", "callsign": "3SBSFM", "owner": "Special Broadcasting Service", "network": "SBS Radio 2", "frequency": "93.1"}}, "1995": {"5": {"date": "", "station": "", "callsign": "", "owner": "Australian Radio Network", "network": "", "frequency": ""}, "7": {"date": "", "station": "", "callsign": "", "owner": "Australian Provincial Newspapers", "network": "PURE GOLD", "frequency": ""}, "10": {"date": "", "station": "", "callsign": "", "owner": "Southern Cross Broadcasting", "network": "", "frequency": ""}, "15": {"date": "", "station": "", "callsign": "", "owner": "Southern Cross Broadcasting", "network": "", "frequency": ""}, "19": {"date": "", "station": "", "callsign": "", "owner": "", "network": "TODAY NETWORK", "frequency": ""}}, "1996": {"4": {"date": "", "station": "Sport 927", "callsign": "", "owner": "", "network": "", "frequency": ""}, "8": {"date": "", "station": "", "callsign": "", "owner": "Fusion Media", "network": "", "frequency": ""}, "15": {"date": "", "station": "", "callsign": "", "owner": "Goulburn Valley Broadcasters", "network": "", "frequency": ""}, "23": {"date": "", "station": "", "callsign": "", "owner": "", "network": "ABC NEWSRADIO", "frequency": ""}}, "1997": {}, "1998": {"7": {"date": "", "station": "", "callsign": "", "owner": "APN News & Media", "network": "", "frequency": ""}, "8": {"date": "", "station": "", "callsign": "", "owner": "Arts & Entertainment Investment P/L", "network": "", "frequency": ""}}, "1999": {}, "2000": {"3": {"date": "", "station": "774 ABC", "callsign": "", "owner": "", "network": "", "frequency": ""}, "17": {"date": "01/01/2000", "station": "PBS 106.7", "callsign": "", "owner": "", "network": "", "frequency": ""}}, "2001": {"5": {"date": "", "station": "", "callsign": "", "owner": "", "network": "MIX", "frequency": ""}, "8": {"date": "", "station": "", "callsign": "", "owner": "Data and Commerce Limited", "network": "", "frequency": ""}, "15": {"date": "", "station": "", "callsign": "", "owner": "Data and Commerce Limited", "network": "", "frequency": ""}, "27": {"date": "03/12/2001", "station": "Nova 100", "callsign": "3MEL", "owner": "DMG Radio", "network": "NOVA", "frequency": "100.3"}}, "2002": {}, "2003": {"8": {"date": "", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "1116"}}, "2004": {"8": {"date": "", "station": "", "callsign": "", "owner": "Pacific Star Network", "network": "SEN 1116", "frequency": ""}, "15": {"date": "", "station": "", "callsign": "", "owner": "Pacific Star Network", "network": "", "frequency": ""}, "20": {"date": "", "station": "", "callsign": "", "owner": "Vision Australia", "network": "VISION AUSTRALIA RADIO", "frequency": ""}}, "2005": {"28": {"date": "05/09/2005", "station": "Vega 91.5", "callsign": "3PTV", "owner": "DMG Radio", "network": "VEGA", "frequency": "91.5"}}, "2006": {"9": {"date": "01/05/2006", "station": "", "callsign": "", "owner": "", "network": "", "frequency": "693"}, "10": {"date": "01/05/2006", "station": "Magic 1278", "callsign": "", "owner": "", "network": "", "frequency": "1278"}}, "2007": {"9": {"date": "03/06/2007", "station": "", "callsign": "", "owner": "Fairfax Media", "network": "FAIRFAX", "frequency": ""}, "10": {"date": "03/06/2007", "station": "", "callsign": "", "owner": "Fairfax Media", "network": "", "frequency": ""}}, "2008": {}, "2009": {}, "2010": {"15": {"date": "19/04/2010", "station": "MTR 1377", "callsign": "", "owner": "", "network": "MELBOURNE TALK", "frequency": ""}, "28": {"date": "12/03/2010", "station": "Classic Rock", "callsign": "", "owner": "", "network": "CLASSIC ROCK", "frequency": ""}}, "2011": {"4": {"date": "", "station": "Radio Sport National", "callsign": "", "owner": "", "network": "", "frequency": ""}, "18": {"date": "27/07/2011", "station": "", "callsign": "", "owner": "Southern Cross Austereo", "network": "", "frequency": ""}, "19": {"date": "27/07/2011", "station": "", "callsign": "", "owner": "Southern Cross Austereo", "network": "", "frequency": ""}, "28": {"date": "21/03/2011", "station": "MELBOURNE'S 91.5", "callsign": "", "owner": "", "network": "", "frequency": ""}}, "2012": {"4": {"date": "", "station": "RSN Racing & Sport", "callsign": "", "owner": "", "network": "", "frequency": ""}, "15": {"date": "02/03/2012", "station": "MyMP", "callsign": "", "owner": "", "network": "", "frequency": ""}, "28": {"date": "21/05/2012", "station": "Smooth 91.5", "callsign": "", "owner": "", "network": "SMOOTH FM", "frequency": ""}}, "2013": {}, "2014": {"5": {"date": "09/02/2014", "station": "", "callsign": "", "owner": "APN News & Media", "network": "", "frequency": ""}, "27": {"date": "01/02/2014", "station": "", "callsign": "", "owner": "NOVA Entertainment", "network": "", "frequency": ""}, "28": {"date": "01/02/2014", "station": "", "callsign": "", "owner": "NOVA Entertainment", "network": "", "frequency": ""}}, "2015": {"5": {"date": "14/01/2015", "station": "KIIS 101.1", "callsign": "", "owner": "", "network": "KIIS", "frequency": ""}, "9": {"date": "10/11/2015", "station": "", "callsign": "", "owner": "Macquarie Media", "network": "MACQUARIE", "frequency": ""}, "10": {"date": "10/11/2016", "station": "", "callsign": "", "owner": "Macquarie Media", "network": "MACQUARIE", "frequency": ""}, "15": {"date": "01/05/2015", "station": "3MP", "callsign": "", "owner": "", "network": "", "frequency": ""}, "19": {"date": "14/01/2015", "station": "", "callsign": "", "owner": "", "network": "TODAY'S HIT NETWORK", "frequency": ""}, "25": {"date": "18/12/2015", "station": "Bay 93.9", "callsign": "", "owner": "", "network": "", "frequency": ""}}, "2016": {"15": {"date": "24/10/2016", "station": "Classic Rock Radio", "callsign": "", "owner": "", "network": "", "frequency": ""}}, "2017": {"3": {"date": "", "station": "ABC Radio Melbourne", "callsign": "", "owner": "", "network": "", "frequency": ""}, "5": {"date": "01/05/2017", "station": "", "callsign": "", "owner": "HT&E Ltd", "network": "", "frequency": ""}, "7": {"date": "01/05/2017", "station": "", "callsign": "", "owner": "HT&E Ltd", "network": "", "frequency": ""}, "10": {"date": "27/02/2017", "station": "Talking Lifestyle", "callsign": "", "owner": "", "network": "", "frequency": ""}}, "2018": {"10": {"date": "04/04/2018", "station": "Macquarie Sports Radio", "callsign": "", "owner": "", "network": "", "frequency": ""}, "15": {"date": "13/08/2018", "station": "SEN+", "callsign": "", "owner": "", "network": "", "frequency": ""}}, "2019": {"9": {"date": "08/10/2019", "station": "", "callsign": "", "owner": "Nine Entertainment", "network": "NINE RADIO", "frequency": ""}, "10": {"date": "08/10/2020", "station": "", "callsign": "", "owner": "Nine Entertainment", "network": "NINE RADIO", "frequency": ""}, "13": {"date": "01/01/2019", "station": "ABC CLASSIC", "callsign": "", "owner": "", "network": "ABC CLASSIC", "frequency": ""}}, "2020": {"8": {"date": "01/11/2020", "station": "", "callsign": "", "owner": "Sports Entertainment Group", "network": "", "frequency": ""}, "10": {"date": "21/01/2020", "station": "Magic 1278", "callsign": "", "owner": "", "network": "Magic", "frequency": ""}, "15": {"date": "03/07/2020", "station": "3MP", "callsign": "", "owner": "ACE Radio", "network": "", "frequency": ""}, "19": {"date": "27/07/2020", "station": "", "callsign": "", "owner": "", "network": "HIT NETWORK", "frequency": ""}}, "2021": {"4": {"date": "", "station": "", "callsign": "Racing Victoria, Greyhound and Harness Racing", "owner": "", "network": "", "frequency": ""}}, "2022": {"10": {"date": "14/01/2022", "station": "", "callsign": "", "owner": "", "network": "ACE Radio", "frequency": ""}}, "2023": {"5": {"date": "01/05/2023", "station": "", "callsign": "", "owner": "ARN Media", "network": "", "frequency": ""}, "7": {"date": "01/05/2023", "station": "", "callsign": "", "owner": "ARN Media", "network": "", "frequency": ""}}, "2024": {"29": {"date": "01/04/2024", "station": "3GL", "callsign": "3GL", "owner": "Grant Broadcasters", "network": "", "frequency": "1341"}}, "2025": {"4": {"date": "08/07/2025", "station": "", "callsign": "", "owner": "Sports Entertainment Group", "network": "", "frequency": ""}, "7": {"date": "20/01/2025", "station": "", "callsign": "", "owner": "", "network": "GOLD FM", "frequency": ""}}, "2026": {"9": {"date": "01/05/2026", "station": "", "callsign": "", "owner": "Laundy Family Office", "network": "Tapt", "frequency": ""}, "10": {"date": "01/05/2026", "station": "", "callsign": "", "owner": "Laundy Family Office", "network": "", "frequency": ""}}};
+
+const YEARS = Object.keys(RAW).map(Number).filter(y => y >= 1924 && y <= 2026).sort((a,b) => a-b);
+
+function formatFreq(val) {
+  if (!val) return { display: '', type: '' };
+  const n = parseFloat(val);
+  if (n >= 88 && n <= 108) {
+    const s = (n % 1 === 0) ? n.toFixed(1) : n.toFixed(1);
+    return { display: s + ' MHz', type: 'fm' };
+  }
+  if (n >= 500 && n <= 1800) return { display: Math.round(n) + ' kHz', type: 'am' };
+  return { display: val, type: '' };
+}
+
+function buildCumulative() {
+  const current = {};
+  const result = {};
+  for (const year of YEARS) {
+    const changes = RAW[String(year)] || {};
+    for (const [col, entry] of Object.entries(changes)) {
+      if (!current[col]) current[col] = { station: '', callsign: '', owner: '', network: '', frequency: '', firstSeen: year };
+      if (entry.station) current[col].station = entry.station;
+      if (entry.callsign) current[col].callsign = entry.callsign;
+      if (entry.owner) current[col].owner = entry.owner;
+      if (entry.network) current[col].network = entry.network;
+      if (entry.frequency) current[col].frequency = entry.frequency;
+      current[col].lastChangeYear = year;
+      current[col].lastDate = entry.date || '';
+    }
+    result[year] = {};
+    for (const [col, state] of Object.entries(current)) result[year][col] = { ...state };
+  }
+  return result;
+}
+
+const CUMULATIVE = buildCumulative();
+
+let currentYear = 2026, currentView = 'cards', currentFilter = 'all';
+let playing = false, playInterval = null;
+
+const slider = document.getElementById('year-slider');
+const yearLabel = document.getElementById('year-label');
+
+slider.addEventListener('input', () => { currentYear = parseInt(slider.value); yearLabel.textContent = currentYear; render(); });
+
+function setView(view, el) {
+  currentView = view;
+  document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('card-view').classList.toggle('hidden', view !== 'cards');
+  document.getElementById('table-view').classList.toggle('hidden', view !== 'table');
+  document.getElementById('timeline-view').classList.toggle('hidden', view !== 'timeline');
+  render();
+}
+
+function setFilter(filter, el) {
+  currentFilter = filter;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  render();
+}
+
+function getEntries(year) {
+  const snapshot = CUMULATIVE[year] || {};
+  const yearChanges = RAW[String(year)] || {};
+  const search = document.getElementById('search-input').value.toLowerCase().trim();
+  let entries = [];
+  for (const [col, state] of Object.entries(snapshot)) {
+    const isNew = state.firstSeen === year;
+    const hasOwnerChange = !!(yearChanges[col]?.owner);
+    const hasNetworkChange = !!(yearChanges[col]?.network);
+    const freq = formatFreq(state.frequency);
+    if (currentFilter === 'new' && !isNew) continue;
+    if (currentFilter === 'owner' && !hasOwnerChange) continue;
+    if (currentFilter === 'network' && !hasNetworkChange) continue;
+    if (currentFilter === 'fm' && freq.type !== 'fm') continue;
+    if (currentFilter === 'am' && freq.type !== 'am') continue;
+    entries.push({ col, state, isNew, freq });
+  }
+  if (search) entries = entries.filter(e => [e.state.station, e.state.callsign, e.state.owner, e.state.network, e.freq.display].join(' ').toLowerCase().includes(search));
+  entries.sort((a, b) => {
+    if (a.isNew && !b.isNew) return -1;
+    if (!a.isNew && b.isNew) return 1;
+    return (a.state.station || a.state.callsign || '').localeCompare(b.state.station || b.state.callsign || '');
+  });
+  return entries;
+}
+
+function title(state) { return state.station || state.callsign || '—'; }
+
+function effectiveDate(state, isNew) {
+  if (state.lastDate) return { display: state.lastDate, exact: true };
+  if (state.lastChangeYear) return { display: String(state.lastChangeYear), exact: false };
+  return { display: '', exact: false };
+}
+
+function renderCards(entries) {
+  const el = document.getElementById('card-view');
+  if (!entries.length) { el.innerHTML = `<div class="empty-state"><h3>No stations</h3><p>No records match for ${currentYear}.</p></div>`; return; }
+  el.innerHTML = entries.map((e, i) => {
+    const { state, isNew, freq } = e;
+    const t = title(state);
+    const d = effectiveDate(state, isNew);
+    return `<div class="station-card" style="animation-delay:${Math.min(i,20)*0.03}s">
+      <div class="card-header">
+        <div class="card-top">
+          <div class="card-station-name">${t}${isNew ? `<span class="new-tag">${currentYear}</span>` : ''}</div>
+          ${freq.display ? `<div class="card-freq-badge ${freq.type}">${freq.display}</div>` : ''}
+        </div>
+        ${state.network ? `<div class="card-network">${state.network}</div>` : ''}
+      </div>
+      <div class="card-body">
+        ${state.callsign && state.callsign !== t ? `<div class="card-field"><span class="field-label">Call sign</span><span class="field-value">${state.callsign}</span></div>` : ''}
+        <div class="card-field"><span class="field-label">Owner</span><span class="field-value ${state.owner ? '' : 'empty'}">${state.owner || 'Unknown'}</span></div>
+        ${d.display ? `<div class="card-field"><span class="field-label">${isNew ? 'Launched' : 'Changed'}</span><span class="field-value" style="color:${d.exact ? 'var(--green)' : 'var(--text-muted)'}">${d.display}</span></div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderTable(entries) {
+  const el = document.getElementById('table-view');
+  if (!entries.length) { el.innerHTML = `<div class="empty-state"><h3>No stations</h3><p>No records for ${currentYear}.</p></div>`; return; }
+  el.innerHTML = `<table class="data-table"><thead><tr>
+    <th>Station Name</th><th>Call Sign</th><th>Frequency</th><th>Network / Affiliation</th><th>Owner</th><th>Effective</th>
+  </tr></thead><tbody>${entries.map(e => {
+    const { state, isNew, freq } = e;
+    const t = title(state);
+    const d = effectiveDate(state, isNew);
+    return `<tr>
+      <td class="td-name">${t}${isNew ? `<span class="new-tag" style="margin-left:8px">${currentYear}</span>` : ''}</td>
+      <td class="td-callsign">${state.callsign && state.callsign !== t ? state.callsign : '<span class="empty-cell">—</span>'}</td>
+      <td class="td-freq ${freq.type}">${freq.display || '<span class="empty-cell">—</span>'}</td>
+      <td class="td-network">${state.network || '<span class="empty-cell">—</span>'}</td>
+      <td>${state.owner || '<span class="empty-cell">Unknown</span>'}</td>
+      <td class="td-date ${d.exact ? 'exact' : ''}">${d.display || '<span class="empty-cell">—</span>'}</td>
+    </tr>`;
+  }).join('')}</tbody></table>`;
+}
+
+function renderTimeline() {
+  const el = document.getElementById('timeline-view');
+  const search = document.getElementById('search-input').value.toLowerCase().trim();
+  const colEvents = {};
+  for (const year of YEARS) {
+    if (year > currentYear) break;
+    for (const [col, entry] of Object.entries(RAW[String(year)] || {})) {
+      if (!Object.values(entry).some(v => v)) continue;
+      if (!colEvents[col]) colEvents[col] = [];
+      colEvents[col].push({ year, ...entry });
+    }
+  }
+  const snapshot = CUMULATIVE[currentYear] || {};
+  let rows = Object.entries(colEvents).map(([col, events]) => {
+    const state = snapshot[col] || {};
+    return { col, label: state.station || state.callsign || col, state, events };
+  });
+  rows.sort((a, b) => (a.state.firstSeen || 0) - (b.state.firstSeen || 0));
+  if (search) rows = rows.filter(r => [r.label, r.state.callsign, r.state.owner, r.state.network, ...r.events.map(e => [e.station,e.owner,e.network].join(' '))].join(' ').toLowerCase().includes(search));
+  if (!rows.length) { el.innerHTML = `<div class="empty-state"><h3>No data</h3><p>Nothing to display.</p></div>`; return; }
+  el.innerHTML = rows.map(({ label, state, events }) => `
+    <div class="timeline-row">
+      <div class="timeline-station">
+        <span>${label}</span>
+        ${state.callsign && state.callsign !== label ? `<span class="timeline-callsign">${state.callsign}</span>` : ''}
+      </div>
+      <div class="timeline-events">
+        ${events.map(e => {
+          const f = formatFreq(e.frequency);
+          const d = e.date || String(e.year);
+          return `<div class="timeline-event">
+            <div class="event-year">${d}</div>
+            ${e.station ? `<div class="event-name">${e.station}</div>` : ''}
+            ${e.owner ? `<div class="event-detail">${e.owner}</div>` : ''}
+            ${e.network ? `<div class="event-network">${e.network}</div>` : ''}
+            ${f.display ? `<div class="event-freq ${f.type}">${f.display}</div>` : ''}
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function render() {
+  const entries = currentView !== 'timeline' ? getEntries(currentYear) : [];
+  document.getElementById('results-count').innerHTML = currentView !== 'timeline' ? `<span>${entries.length}</span> station${entries.length !== 1 ? 's' : ''}` : '';
+  if (currentView === 'cards') renderCards(entries);
+  else if (currentView === 'table') renderTable(entries);
+  else renderTimeline();
+}
+
+function togglePlay() {
+  playing = !playing;
+  document.getElementById('play-icon').textContent = playing ? '⏸' : '▶';
+  document.getElementById('play-label').textContent = playing ? 'Pause' : 'Play';
+  if (playing) {
+    if (currentYear >= 2026) { currentYear = 1924; slider.value = 1924; yearLabel.textContent = 1924; render(); }
+    playInterval = setInterval(() => {
+      if (currentYear >= 2026) { togglePlay(); return; }
+      currentYear++; slider.value = currentYear; yearLabel.textContent = currentYear; render();
+    }, 400);
+  } else { clearInterval(playInterval); }
+}
+
+render();
+</script>
+</body>
+</html>
