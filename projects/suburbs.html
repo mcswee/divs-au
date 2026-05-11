@@ -799,7 +799,7 @@ function renderCard(sub, highlight) {
     </div>
     <div class="pronunciation-row">
       <span class="pronunciation">${pronHtml}</span>
-      ${hasSpeech ? `<button class="play-btn" aria-label="Listen to ${escHtml(sub.name)}" data-name="${escHtml(sub.name)}">${playIcon()}</button>` : ''}
+      ${hasSpeech ? `<button class="play-btn" aria-label="Listen to ${escHtml(sub.name)}" data-name="${escHtml(sub.speech || sub.name)}">${playIcon()}</button>` : ''}
     </div>
   </div>`;
 }
