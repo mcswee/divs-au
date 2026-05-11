@@ -1,14 +1,3 @@
-.transit-line.t-line { stroke: #e87132; }
-.transit-line.n-line { stroke: #9165ff; }
-.transit-line.i-line { stroke: #f97fe8; }
-.transit-line.s-line { stroke: #f6bb00; }
-.transit-line.w-line { stroke: #92d050; }
-.transit-line.o-line { stroke: #ac8004; }
-.transit-line.c-line { stroke: #ef0824; }
-.transit-line.f-line { stroke: #0067f2; }
-.transit-line.b-line { stroke: #00c057; }
-.transit-line.p-line { stroke: #00b0f0; }
-
 - code: p
   name: Pacific Line
   color: "#00b0f0"
