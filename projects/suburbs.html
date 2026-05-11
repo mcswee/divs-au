@@ -1,159 +1,929 @@
----
-layout: default
-title: Melbourne suburb pronunciation
-category: projects
-permalink: /suburbs/
-extra_scripts: |
- <script src="/assets/js/filter.js"></script>
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Say It — Melbourne Suburbs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f0e8;
+    --ink: #1a1714;
+    --ink-light: #5a534a;
+    --ink-faint: #a89f94;
+    --rule: #d4cdc4;
+    --accent: #c0392b;
+    --accent-soft: #f9ede9;
+    --phoneme-bg: #e8e2d8;
+    --phoneme-hover: #1a1714;
+    --phoneme-hover-text: #f5f0e8;
+    --tag-bg: #eae5dc;
+  }
 
-<header class="page-element">
-  <h1>How to pronounce the names of Melbourne suburbs</h1>
-  <p>Most pronunciation guides for Melbourne lazily cover only the most well-known "difficult" places. They’ll list the same ten or twenty suburbs like Prahran, Malvern, or Reservoir—and maybe Truganina if they're feeling adventurous. They hedge their bets on Lalor, suggesting it could be <i>"lay-lor"</i> or it could be <i>"law-lah"</i>. Heaven help anyone wanting to know how to pronounce Clematis, Eumemmering, Kealba, or Yuroke.</p>
-  <p>For the places they do cover, they often mangle the city’s actual sounds through imprecise respelling. Prahran is given as <i>"Prah-ran"</i>, <i>"Puh-ran"</i>, or just <i>"Praan"</i>; Malvern becomes <i>"Moul-vin"</i>; and Melbourne is generally <i>"Mel-bin"</i>. These guides rely on symbols like <i>"aa"</i> or <i>"oul"</i> and simply expect you to know which phoneme they mean, assuming your natural pronunciation will match theirs. They fail to account for the nuances of specific vowels or the critical distinction between a short <i>"i"</i> and a schwa.</p>
-  <p>This list is a complete record of <strong>every single</strong> Melbourne suburb (and along with suburbs and towns in parts of the surrounding shires a total of 674 place names) using a consistent phonological framework. It maps the city exactly as it is spoken by locals, using a one-to-one system to capture the real Melburnian accent without the guesswork of wondering if your accent matches mine.</p>
-  <p>Every pronunciation in the list below includes a phonetic breakdown to explain the symbols used, along with example words. A comprehensive <a href="/english">key to pronunciation</a> is also available for a more in-depth look at the symbols and their meanings.</p>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    border-bottom: 2px solid var(--ink);
+    padding: 2.5rem 2rem 1.5rem;
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    z-index: 100;
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .site-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .site-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .site-subtitle {
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  /* ── Controls ── */
+  .controls {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+    max-width: 400px;
+  }
+
+  .search-wrap svg {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-faint);
+    pointer-events: none;
+  }
+
+  input[type="search"], select {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 300;
+    background: var(--paper);
+    border: 1.5px solid var(--rule);
+    color: var(--ink);
+    padding: 0.5rem 0.75rem;
+    outline: none;
+    transition: border-color 0.15s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  input[type="search"] {
+    padding-left: 2.25rem;
+    width: 100%;
+  }
+
+  input[type="search"]:focus, select:focus {
+    border-color: var(--ink);
+  }
+
+  input[type="search"]::placeholder {
+    color: var(--ink-faint);
+  }
+
+  select {
+    padding-right: 2rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a534a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    cursor: pointer;
+    min-width: 180px;
+  }
+
+  .result-count {
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* ── Alpha Index ── */
+  .alpha-bar {
+    border-bottom: 1px solid var(--rule);
+    padding: 0.6rem 2rem;
+    background: var(--paper);
+    position: sticky;
+    top: 0; /* will be offset by JS */
+    z-index: 90;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .alpha-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0.1rem;
+    flex-wrap: nowrap;
+  }
+
+  .alpha-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.4rem;
+    color: var(--ink-light);
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.1s, color 0.1s;
+    white-space: nowrap;
+  }
+
+  .alpha-link:hover, .alpha-link.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .alpha-link.disabled {
+    color: var(--rule);
+    pointer-events: none;
+  }
+
+  /* ── Main layout ── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+  }
+
+  /* ── Letter groups ── */
+  .letter-group { margin-bottom: 2.5rem; }
+
+  .letter-heading {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.25rem;
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+
+  /* ── Suburb grid ── */
+  .suburb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .suburb-card {
+    background: var(--paper);
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    transition: background 0.12s;
+  }
+
+  .suburb-card:hover { background: #f0ebe1; }
+
+  .suburb-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .suburb-meta {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .suburb-postcode {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-light);
+    background: var(--tag-bg);
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+  }
+
+  .suburb-lga {
+    font-size: 0.72rem;
+    color: var(--ink-light);
+  }
+
+  /* ── Pronunciation ── */
+  .pronunciation-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.15rem;
+  }
+
+  .pronunciation {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    flex: 1;
+    word-break: break-all;
+  }
+
+  /* Phoneme spans — the interactive symbols */
+  .ph {
+    display: inline;
+    background: var(--phoneme-bg);
+    border-radius: 2px;
+    padding: 0 2px;
+    cursor: help;
+    position: relative;
+    transition: background 0.1s, color 0.1s;
+  }
+
+  .ph:hover {
+    background: var(--phoneme-hover);
+    color: var(--phoneme-hover-text);
+  }
+
+  /* Tooltip */
+  .ph::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    white-space: nowrap;
+    padding: 0.3rem 0.55rem;
+    border-radius: 3px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.12s;
+    z-index: 200;
+    line-height: 1.4;
+    max-width: 220px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .ph:hover::after { opacity: 1; }
+
+  /* Play button */
+  .play-btn {
+    background: none;
+    border: 1.5px solid var(--rule);
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--ink-light);
+    transition: border-color 0.1s, color 0.1s, background 0.1s;
+    padding: 0;
+  }
+
+  .play-btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+    background: var(--tag-bg);
+  }
+
+  .play-btn.speaking {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  /* ── Empty state ── */
+  .empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--ink-light);
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  /* ── Legend ── */
+  .legend-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    margin-bottom: 1rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .legend-toggle:hover { color: var(--ink); }
+
+  .legend-panel {
+    display: none;
+    background: var(--tag-bg);
+    border: 1px solid var(--rule);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .legend-panel.open { display: block; }
+
+  .legend-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+
+  .legend-section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 1rem 0 0.5rem;
+  }
+
+  .legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.4rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+  }
+
+  .legend-sym {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    background: var(--phoneme-bg);
+    padding: 0 4px;
+    border-radius: 2px;
+    min-width: 2rem;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .legend-ipa {
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    flex-shrink: 0;
+  }
+
+  .legend-example {
+    color: var(--ink-light);
+    font-size: 0.73rem;
+  }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    header, .alpha-bar, main { padding-left: 1rem; padding-right: 1rem; }
+    .suburb-grid { grid-template-columns: 1fr; }
+    .controls { gap: 0.5rem; }
+    select { min-width: 0; width: 100%; }
+  }
+
+  /* highlight matched text */
+  mark {
+    background: #f5d87a;
+    color: var(--ink);
+    border-radius: 1px;
+  }
+
+  /* No-speech notice */
+  .no-speech { display: none; font-size: 0.72rem; color: var(--ink-faint); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1 class="site-title">How to Say It — <em>Melbourne</em> Suburbs</h1>
+    <p class="site-subtitle">A pronunciation reference · 678 suburbs · Australian English phonology</p>
+    <div class="controls">
+      <div class="search-wrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" id="search" placeholder="Search suburb, postcode, or LGA…" autocomplete="off" spellcheck="false">
+      </div>
+      <select id="lga-filter">
+        <option value="">All LGAs</option>
+      </select>
+      <span class="result-count" id="count"></span>
+    </div>
+  </div>
 </header>
 
-<section class="page-element">
-    <h2>List of Melbourne suburbs</h2>
-    {% include search-filter.html 
-       search_id="suburb-search" 
-       placeholder="Search by name, postcode, or LGA..." 
-       item_name="suburbs"
-       target_id="suburb-list"
-    %}
-     {% include alphabet-nav.html items=site.data.suburbs %}
-</section>
+<nav class="alpha-bar" id="alpha-bar">
+  <div class="alpha-inner" id="alpha-inner"></div>
+</nav>
 
-<section class="page-element card-grid suburbs js-filter-grid" id="suburb-list">
-  {% assign current_letter = "" %}
-  {% for suburb in site.data.suburbs %}
-    {% assign first_letter = suburb.name | slice: 0 | downcase %}
-    
-<article class="project-card suburb-card js-search-item" 
-         {% if first_letter != current_letter %}id="{{ first_letter }}"{% endif %}
-         data-search="{{ suburb.name }} {{ suburb.postcode }} {{ suburb.lga }}">
-  
-  <header class="pronunciation-header" id="{{ suburb.name | slugify }}">
-    <h3 class="pronunciation-title">{{ suburb.name }}</h3>
-    <!--<div class="audio-indicator" role="button" tabindex="0" aria-label="Listen to pronunciation of {{ suburb.name }}" onclick="listen('{{ suburb.name }}')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { listen('{{ suburb.name }}'); event.preventDefault(); }">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
-        <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-      </svg>
-    </div>-->
-  </header>
-  <div class="example-text">
-    <p>{{ suburb.lga }} &nbsp; {{ suburb.postcode }}</p>
-  </div>
-  <div class="pronunciation-string">{{ suburb.pronunciation }}</div>
+<main>
+  <button class="legend-toggle" id="legend-toggle" aria-expanded="false">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Phoneme key
+  </button>
+  <div class="legend-panel" id="legend-panel" role="region" aria-label="Phoneme legend"></div>
 
-  <details class="pronunciation-details">
-    <summary>See pronunciation guide</summary>
-    <dl>
-      {% for symbol in suburb.phonemes %}
-        {% if symbol == "·" %}
-          <div class="syllable-divider">
-            <dt>·</dt>
-            <dd>syllable break</dd>
-          </div>
-        {% else %}
-          {% assign sound_data = site.data.sounds | where: "phoneme", symbol | first %}
-          <div class="phoneme-entry">
-            <dt>{{ symbol }}</dt>
-            <dd>as in {{ sound_data.example }}</dd>
-          </div>
-        {% endif %}
-      {% endfor %}
-    </dl>
-  </details>
-</article>
-  {% endfor %}
-</section>
+  <div id="results"></div>
+  <p class="no-speech" id="no-speech">Audio not available in this browser.</p>
+</main>
 
- <section class="page-element search-stats">
-    <span id="suburb-count-display" aria-live="polite">
-      Showing <span class="js-filter-matched">{{ site.data.suburbs | size }}</span> 
-      of <span class="js-filter-total">{{ site.data.suburbs | size }}</span> suburbs
-    </span>
- </section>
+<footer>
+  Tap any highlighted symbol in a pronunciation to see its IPA equivalent and an example word.
+</footer>
 
 <script>
-function listen(text) {
-    if (!window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    
-    let speechString = text;
-    const wordOverrides = {
-         'Albanvale': 'Al bin vale',
-         'Altona': 'Al toner',
-         'Anakie': 'Anna key',
-         'Aspendale': 'Asp pen dale',
-         'Avonsleigh': 'Avons lee',
-         'Ballan': 'Belan',
-         'Balliang': 'Belly-ang',
-         'Balnarring': 'Bal na-ring',
-         'Balwyn': 'Ball wn',
-         'Bangholme': 'Bang home',
-         'Barwon': 'Barwen',
-         'Beaumaris': 'Bow morris',
-         'Bellarine': 'Bell a reen',
-         'Berwick': 'Berrick',
-         'Bonbeach': 'Bon beach',
-         'Boronia': 'Ber roan ear',
-         'Braybrook': 'Bray brooke',
-         'Breakwater': 'Break water',
-         'Bundoora': 'Bund ura',
-         'Bunyip': 'Bun jyip',
-         'Campbellfield': 'Cambel field',
-         'Schanck': 'Shank',
-         'Woolami': 'Wool la my',
-         'Cardinia': 'Car din ear',
-         'Castella': 'Costella',
-         'Catani': 'Qatar knee',
-         'Caulfield': 'Caw field',
-         'Chadstone': 'Chad stun',
-         'Charlemont': 'Charl Mont',
-         'Chirnside': 'Churn side',
-         'Clarinda': 'Cluh rin duh',
-         'Clarkefield': 'Clark field',
-         'Cocoroc': 'Cock a rock',
-         'Coimadai': 'cuh my der',
-         'Connewarre': 'Connor worry',
-         'Corio': 'Cuh rye oh',
-         'Cowes': 'Cows',
-         'Craigieburn': 'Craig e burn',
-         'Cranbourne': 'Cran burn',
-         'Dandenong': 'Danda nong',
-         'Darraweit Guim': 'Derra wheat gwim',
-         'Delahey': 'Dell a hey',
-         'Doncaster': 'Don caster',
-         'Donnybrook': 'Donny brooke',
-         'Drumconda': 'Drum konder',
-         'Drysdale': 'Dries dale',
-         'Eaglemont': 'Eagle Mont',
-         'Geelong': 'Gee long',
-         'Warburton': 'War butt in',
-         'Edithvale': 'Edith vale',
-         'Elsternwick': 'El-stern wick',
-         'Eltham': 'Elth mm',
-         'Exford': 'Ex fod',
-         'Eynesbury': 'Ions bree',
-         'Footscray': 'Foots gray',
-         'Gisborne': 'Ghiz bun',
-         'Hallam': 'Hal um'    
-     };
+// ── DATA ────────────────────────────────────────────────────────────────────
 
-     for (const [key, value] of Object.entries(wordOverrides)) {
-        const regex = new RegExp(`\\b${key}\\b`, 'gi');
-        speechString = speechString.replace(regex, value);
-    }
+// Phoneme legend — paste your full YAML-converted data here.
+// Format: { symbol, ipa, example } — example is the first word from your EXAMPLE field.
+const PHONEMES = [
+  { sym: "æ",   ipa: "æ",   seg: "vowel",     ex: "CAT" },
+  { sym: "eh",  ipa: "e",   seg: "vowel",     ex: "MET" },
+  { sym: "ih",  ipa: "ɪ",   seg: "vowel",     ex: "HID" },
+  { sym: "ø",   ipa: "ɒ",   seg: "vowel",     ex: "HOT" },
+  { sym: "uh",  ipa: "ɐ",   seg: "vowel",     ex: "CUP" },
+  { sym: "uu",  ipa: "ʊ",   seg: "vowel",     ex: "PUT" },
+  { sym: "ay",  ipa: "æɪ",  seg: "vowel",     ex: "SAY" },
+  { sym: "ee",  ipa: "iː",  seg: "vowel",     ex: "SEE" },
+  { sym: "iy",  ipa: "ɑe",  seg: "vowel",     ex: "FIVE" },
+  { sym: "oh",  ipa: "əʉ",  seg: "vowel",     ex: "GO" },
+  { sym: "ew",  ipa: "ʉː",  seg: "vowel",     ex: "BLUE" },
+  { sym: "ah",  ipa: "ɐː",  seg: "vowel",     ex: "ARM" },
+  { sym: "œ",   ipa: "ɜː",  seg: "vowel",     ex: "NURSE" },
+  { sym: "aw",  ipa: "oː",  seg: "vowel",     ex: "CALL" },
+  { sym: "ow",  ipa: "æɔ",  seg: "vowel",     ex: "NOW" },
+  { sym: "oi",  ipa: "oɪ",  seg: "vowel",     ex: "BOY" },
+  { sym: "eh@", ipa: "eː",  seg: "vowel",     ex: "WHERE" },
+  { sym: "ee@", ipa: "ɪə",  seg: "vowel",     ex: "NEAR" },
+  { sym: "iy@", ipa: "ɑeə", seg: "vowel",     ex: "FIRE" },
+  { sym: "ow@", ipa: "ʉːə", seg: "vowel",     ex: "OUR" },
+  { sym: "u@",  ipa: "ʊə",  seg: "vowel",     ex: "PURE" },
+  { sym: "@",   ipa: "ə",   seg: "vowel",     ex: "AWAY (schwa)" },
+  { sym: "m",   ipa: "m",   seg: "consonant", ex: "MAN" },
+  { sym: "n",   ipa: "n",   seg: "consonant", ex: "NO" },
+  { sym: "£",   ipa: "ŋ",   seg: "consonant", ex: "SING" },
+  { sym: "p",   ipa: "p",   seg: "consonant", ex: "PET" },
+  { sym: "b",   ipa: "b",   seg: "consonant", ex: "BAD" },
+  { sym: "t",   ipa: "t",   seg: "consonant", ex: "TEA" },
+  { sym: "d",   ipa: "d",   seg: "consonant", ex: "DID" },
+  { sym: "k",   ipa: "k",   seg: "consonant", ex: "CAT" },
+  { sym: "g",   ipa: "ɡ",   seg: "consonant", ex: "GIVE" },
+  { sym: "f",   ipa: "f",   seg: "consonant", ex: "FIND" },
+  { sym: "v",   ipa: "v",   seg: "consonant", ex: "VOICE" },
+  { sym: "+",   ipa: "θ",   seg: "consonant", ex: "THINK" },
+  { sym: "‡",   ipa: "ð",   seg: "consonant", ex: "THIS" },
+  { sym: "s",   ipa: "s",   seg: "consonant", ex: "SUN" },
+  { sym: "z",   ipa: "z",   seg: "consonant", ex: "ZOO" },
+  { sym: "$",   ipa: "ʃ",   seg: "consonant", ex: "SHE" },
+  { sym: "§",   ipa: "ʒ",   seg: "consonant", ex: "PLEASURE" },
+  { sym: "¢",   ipa: "tʃ",  seg: "consonant", ex: "CHECK" },
+  { sym: "j",   ipa: "dʒ",  seg: "consonant", ex: "JUST" },
+  { sym: "h",   ipa: "h",   seg: "consonant", ex: "HOW" },
+  { sym: "l",   ipa: "l",   seg: "consonant", ex: "LEG" },
+  { sym: "r",   ipa: "r",   seg: "consonant", ex: "RED" },
+  { sym: "w",   ipa: "w",   seg: "consonant", ex: "WET" },
+  { sym: "y",   ipa: "j",   seg: "consonant", ex: "YES" },
+];
 
-    const utterance = new SpeechSynthesisUtterance(speechString);
-    utterance.lang = 'en-AU';
-    utterance.rate = 0.85;
-    window.speechSynthesis.speak(utterance);
+// Suburb data — paste your full converted YAML here.
+// Format matches your YAML: { name, postcode, lga, pronunciation, phonemes }
+const SUBURBS = [
+  { name: "Abbotsford", postcode: "3067", lga: "City of Yarra", pronunciation: "æb·@ts·f@d" },
+  { name: "Aberfeldie", postcode: "3040", lga: "City of Moonee Valley", pronunciation: "æb·@·fehl·dee" },
+  { name: "Aintree", postcode: "3336", lga: "City of Melton", pronunciation: "ayn·tree" },
+  { name: "Airport West", postcode: "3042", lga: "City of Moonee Valley", pronunciation: "eh@·pawt·wehst" },
+  { name: "Albanvale", postcode: "3021", lga: "City of Brimbank", pronunciation: "ælb·@n·vayl" },
+  { name: "Albert Park", postcode: "3206", lga: "City of Port Phillip", pronunciation: "ælb·@t·pahk" },
+  { name: "Albion", postcode: "3020", lga: "City of Brimbank", pronunciation: "ælb·ee·@n" },
+  { name: "Alphington", postcode: "3078", lga: "City of Darebin", pronunciation: "ælf·ih£·t@n" },
+  { name: "Altona", postcode: "3018", lga: "City of Hobsons Bay", pronunciation: "æl·toh·n@" },
+  { name: "Altona Meadows", postcode: "3028", lga: "City of Hobsons Bay", pronunciation: "æl·toh·n@·mehd·ohz" },
+  { name: "Altona North", postcode: "3025", lga: "City of Hobsons Bay", pronunciation: "æl·toh·n@·naw+" },
+  { name: "Anakie", postcode: "3213", lga: "City of Greater Geelong", pronunciation: "æn·@·kee" },
+  { name: "Ardeer", postcode: "3022", lga: "City of Brimbank", pronunciation: "ah·dee@" },
+  { name: "Armadale", postcode: "3143", lga: "City of Stonnington", pronunciation: "ahm·@·dayl" },
+  { name: "Armstrong Creek", postcode: "3217", lga: "City of Greater Geelong", pronunciation: "ahm·s¢rø£·kreek" },
+  { name: "Arthurs Creek", postcode: "3099", lga: "Shire of Nillumbik", pronunciation: "ah+·@z·kreek" },
+  { name: "Arthurs Seat", postcode: "3936", lga: "Shire of Mornington Peninsula", pronunciation: "ah+·@z·seet" },
+  { name: "Ascot Vale", postcode: "3032", lga: "City of Moonee Valley", pronunciation: "æsk·øt·vayl" },
+  { name: "Ashburton", postcode: "3147", lga: "City of Boroondara", pronunciation: "æ$·bœt·@n" },
+  { name: "Ashwood", postcode: "3147", lga: "City of Monash", pronunciation: "æ$·wuud" },
+  { name: "Aspendale", postcode: "3195", lga: "City of Kingston", pronunciation: "æs·p@n·dayl" },
+  { name: "Aspendale Gardens", postcode: "3195", lga: "City of Kingston", pronunciation: "æs·p@n·dayl·gah·d@nz" },
+  { name: "Attwood", postcode: "3049", lga: "City of Hume", pronunciation: "æt·wuud" },
+  { name: "Avalon", postcode: "3212", lga: "City of Greater Geelong", pronunciation: "æv·@·løn" },
+  { name: "Avondale Heights", postcode: "3034", lga: "City of Moonee Valley", pronunciation: "æv·@n·dayl·hiyts" },
+  { name: "Avonsleigh", postcode: "3782", lga: "Shire of Cardinia", pronunciation: "ayv·@nz·lee" },
+  { name: "Bacchus Marsh", postcode: "3340", lga: "Shire of Moorabool", pronunciation: "bæk·@s·mah$" },
+  { name: "Badger Creek", postcode: "3777", lga: "Shire of Yarra Ranges", pronunciation: "bæj·@·kreek" },
+  { name: "Balaclava", postcode: "3183", lga: "City of Port Phillip", pronunciation: "bæl·@·klah·v@" },
+  { name: "Ballan", postcode: "3342", lga: "Shire of Moorabool", pronunciation: "buh·læn" },
+  { name: "Balliang", postcode: "3340", lga: "Shire of Moorabool", pronunciation: "bæl·ee·æ£" },
+  { name: "Balliang East", postcode: "3340", lga: "Shire of Moorabool", pronunciation: "bæl·ee·æ£·eest" },
+  { name: "Balnarring", postcode: "3926", lga: "Shire of Mornington Peninsula", pronunciation: "bæl·næ·rih£" },
+  { name: "Balnarring Beach", postcode: "3926", lga: "Shire of Mornington Peninsula", pronunciation: "bæl·næ·rih£·bee¢" },
+  { name: "Balwyn", postcode: "3103", lga: "City of Boroondara", pronunciation: "baw(l)·w@n" },
+  { name: "Balwyn North", postcode: "3104", lga: "City of Boroondara", pronunciation: "baw(l)·w@n·naw+" },
+  { name: "Bangholme", postcode: "3175", lga: "City of Greater Dandenong", pronunciation: "bæ£·hohm" },
+  { name: "Barwon Heads", postcode: "3227", lga: "City of Greater Geelong", pronunciation: "bah·w@n·hehdz" },
+  { name: "Batesford", postcode: "3213", lga: "City of Greater Geelong", pronunciation: "bayts·f@d" },
+  { name: "Baxter", postcode: "3911", lga: "Shire of Mornington Peninsula", pronunciation: "bækst·@" },
+  { name: "Bayles", postcode: "3981", lga: "Shire of Cardinia", pronunciation: "baylz" },
+  { name: "Bayswater", postcode: "3153", lga: "City of Knox", pronunciation: "bayz·waht·@" },
+  { name: "Bayswater North", postcode: "3153", lga: "City of Maroondah", pronunciation: "bayz·waht·@·naw+" },
+  { name: "Beaconsfield", postcode: "3807", lga: "Shire of Cardinia", pronunciation: "beek·@nz·feeld" },
+  { name: "Beaconsfield Upper", postcode: "3808", lga: "Shire of Cardinia", pronunciation: "beek·@nz·feeld·uhp@" },
+  { name: "Beaumaris", postcode: "3193", lga: "City of Bayside", pronunciation: "boh·mø·r@s" },
+  { name: "Beenak", postcode: "3139", lga: "Shire of Yarra Ranges", pronunciation: "bee·næk" },
+  { name: "Belgrave", postcode: "3160", lga: "Shire of Yarra Ranges", pronunciation: "behl·grayv" },
+  { name: "Belgrave Heights", postcode: "3160", lga: "Shire of Yarra Ranges", pronunciation: "behl·grayv·hiyts" },
+  { name: "Belgrave South", postcode: "3160", lga: "Shire of Yarra Ranges", pronunciation: "behl·grayv·sow+" },
+  { name: "Bell Park", postcode: "3215", lga: "City of Greater Geelong", pronunciation: "behl·pahk" },
+  { name: "Bell Post Hill", postcode: "3215", lga: "City of Greater Geelong", pronunciation: "behl·pohst·hihl" },
+  { name: "Bellarine", postcode: "3223", lga: "City of Greater Geelong", pronunciation: "behl·@·reen" },
+  { name: "Bellbrae", postcode: "3228", lga: "Shire of Surf Coast", pronunciation: "behl·bray" },
+  { name: "Bellfield", postcode: "3081", lga: "City of Banyule", pronunciation: "behl·feeld" },
+  { name: "Bells Beach", postcode: "3228", lga: "Shire of Surf Coast", pronunciation: "behlz·bee¢" },
+  { name: "Belmont", postcode: "3216", lga: "City of Greater Geelong", pronunciation: "behl·mønt" },
+  { name: "Bend Of Islands", postcode: "3097", lga: "Shire of Nillumbik", pronunciation: "behnd·øv·iyl·@ndz" },
+  { name: "Bentleigh", postcode: "3204", lga: "City of Glen Eira", pronunciation: "behnt·lee" },
+  { name: "Bentleigh East", postcode: "3165", lga: "City of Glen Eira", pronunciation: "behnt·lee·eest" },
+  { name: "Berwick", postcode: "3806", lga: "City of Casey", pronunciation: "beh·rihk" },
+  { name: "Beveridge", postcode: "3753", lga: "City of Whittlesea", pronunciation: "behv·rihj" },
+  { name: "Big Pats Creek", postcode: "3799", lga: "Shire of Yarra Ranges", pronunciation: "bihg·pætz·kreek" },
+  { name: "Bittern", postcode: "3918", lga: "Shire of Mornington Peninsula", pronunciation: "biht·@n" },
+  { name: "Black Rock", postcode: "3193", lga: "City of Bayside", pronunciation: "blæk·røk" },
+  { name: "Blackburn", postcode: "3130", lga: "City of Whitehorse", pronunciation: "blæk·bœn" },
+  { name: "Blackburn North", postcode: "3130", lga: "City of Whitehorse", pronunciation: "blæk·bœn·naw+" },
+  { name: "Blackburn South", postcode: "3130", lga: "City of Whitehorse", pronunciation: "blæk·bœn·sow+" },
+  { name: "Blairgowrie", postcode: "3942", lga: "Shire of Mornington Peninsula", pronunciation: "bleh@·gow·ree" },
+  { name: "Blind Bight", postcode: "3980", lga: "City of Casey", pronunciation: "bliynd·biyt" },
+  { name: "Bolinda", postcode: "3432", lga: "Shire of Macdeon Ranges", pronunciation: "b@·lihn·d@" },
+  { name: "Bonbeach", postcode: "3196", lga: "City of Kingston", pronunciation: "bøn·bee¢" },
+  { name: "Boneo", postcode: "3939", lga: "Shire of Mornington Peninsula", pronunciation: "bohn·ee·oh" },
+  { name: "Bonnie Brook", postcode: "3335", lga: "City of Melton", pronunciation: "bøn·ee·bruuk" },
+  { name: "Boronia", postcode: "3155", lga: "City of Knox", pronunciation: "b@·rohn·ee·@" },
+  { name: "Botanic Ridge", postcode: "3977", lga: "City of Casey", pronunciation: "b@·tæn·@k·rihj" },
+  { name: "Box Hill", postcode: "3128", lga: "City of Whitehorse", pronunciation: "bøks·hihl" },
+  { name: "Box Hill North", postcode: "3129", lga: "City of Whitehorse", pronunciation: "bøks·hihl·naw+" },
+  { name: "Box Hill South", postcode: "3128", lga: "City of Whitehorse", pronunciation: "bøks·hihl·sow+" },
+  { name: "Braeside", postcode: "3195", lga: "City of Kingston", pronunciation: "bray·siyd" },
+  { name: "Braybrook", postcode: "3019", lga: "City of Maribyrnong", pronunciation: "bray·bruuk" },
+  { name: "Breakwater", postcode: "3219", lga: "City of Greater Geelong", pronunciation: "brayk·waw·t@" },
+  { name: "Breamlea", postcode: "3227", lga: "City of Greater Geelong", pronunciation: "brehm·lee" },
+  { name: "Briar Hill", postcode: "3088", lga: "City of Banyule", pronunciation: "briy·@·hihl" },
+  { name: "Brighton", postcode: "3186", lga: "City of Bayside", pronunciation: "briyt·@n" },
+  { name: "Brighton East", postcode: "3187", lga: "City of Bayside", pronunciation: "briyt·@n·eest" },
+  { name: "Broadmeadows", postcode: "3047", lga: "City of Hume", pronunciation: "brawd·mehd·ohz" },
+  { name: "Brookfield", postcode: "3338", lga: "City of Melton", pronunciation: "bruuk·feeld" },
+  { name: "Brooklyn", postcode: "3012", lga: "City of Brimbank", pronunciation: "bruuk·l@n" },
+  { name: "Brunswick", postcode: "3056", lga: "City of Merri-bek", pronunciation: "bruhnz·wihk" },
+  { name: "Brunswick East", postcode: "3057", lga: "City of Merri-bek", pronunciation: "bruhnz·wihk·eest" },
+  { name: "Brunswick West", postcode: "3055", lga: "City of Merri-bek", pronunciation: "bruhnz·wihk·wehst" },
+  { name: "Bulla", postcode: "3428", lga: "City of Hume", pronunciation: "buul·uh" },
+  { name: "Bulleen", postcode: "3105", lga: "City of Manningham", pronunciation: "buul·een" },
+  { name: "Bundoora", postcode: "3083", lga: "City of Banyule", pronunciation: "buhnd·u@·ruh" },
+  { name: "Bunyip", postcode: "3815", lga: "Shire of Cardinia", pronunciation: "buhn·yihp" },
+  { name: "Bunyip North", postcode: "3815", lga: "Shire of Cardinia", pronunciation: "buhn·yihp·naw+" },
+  { name: "Burnley", postcode: "3121", lga: "City of Yarra", pronunciation: "bœn·lee" },
+  { name: "Burnside", postcode: "3023", lga: "City of Melton", pronunciation: "bœn·siyd" },
+  { name: "Burnside Heights", postcode: "3023", lga: "City of Melton", pronunciation: "bœn·siyd·hiyts" },
+  { name: "Burwood", postcode: "3125", lga: "City of Whitehorse", pronunciation: "bœ·wuud" },
+  { name: "Burwood East", postcode: "3151", lga: "City of Whitehorse", pronunciation: "bœ·wuud·eest" },
+  { name: "Bylands", postcode: "3762", lga: "Shire of Mitchell", pronunciation: "biy·lændz" },
+  { name: "Cairnlea", postcode: "3023", lga: "City of Brimbank", pronunciation: "keh@n·lee" },
+  { name: "Calder Park", postcode: "3037", lga: "City of Brimbank", pronunciation: "kawl·d@·pahk" },
+  { name: "Caldermeade", postcode: "3984", lga: "Shire of Cardinia", pronunciation: "kawl·d@·meed" },
+  { name: "Camberwell", postcode: "3124", lga: "City of Boroondara", pronunciation: "kæm·b@·wehl" },
+  { name: "Campbellfield", postcode: "3061", lga: "City of Hume", pronunciation: "kæm·b@l·feeld" },
+  { name: "Cannons Creek", postcode: "3977", lga: "City of Casey", pronunciation: "kæn·@nz·kreek" },
+  { name: "Canterbury", postcode: "3126", lga: "City of Boroondara", pronunciation: "kænt·@·bree" },
+  { name: "Cape Schanck", postcode: "3939", lga: "Shire of Mornington Peninsula", pronunciation: "kayp·$æ£k" },
+  // ── ADD REMAINING 570 SUBURBS HERE ──
+  // Replace this comment block with the rest of your data in the same format.
+];
+
+// ── PHONEME TOKENISER ────────────────────────────────────────────────────────
+
+// Build a sorted list of symbols, longest-first so greedy match works correctly.
+// Multi-char symbols like "eh@", "ee@", "ow@", "iy@" must match before "eh", "ee" etc.
+const SORTED_SYMS = [...PHONEMES].sort((a, b) => b.sym.length - a.sym.length);
+const SYM_MAP = Object.fromEntries(PHONEMES.map(p => [p.sym, p]));
+
+function buildTooltip(p) {
+  return `/${p.ipa}/ · ${p.ex}`;
 }
+
+/**
+ * Tokenise a pronunciation string into an array of
+ * { type: 'phoneme'|'punct', text } objects.
+ */
+function tokenise(str) {
+  const tokens = [];
+  let i = 0;
+  while (i < str.length) {
+    // Try each symbol longest-first
+    let matched = false;
+    for (const p of SORTED_SYMS) {
+      if (str.startsWith(p.sym, i)) {
+        tokens.push({ type: 'phoneme', sym: p.sym, text: p.sym });
+        i += p.sym.length;
+        matched = true;
+        break;
+      }
+    }
+    if (!matched) {
+      // Punctuation / syllable dividers / parens
+      tokens.push({ type: 'punct', text: str[i] });
+      i++;
+    }
+  }
+  return tokens;
+}
+
+function renderPronunciation(str) {
+  const tokens = tokenise(str);
+  return tokens.map(t => {
+    if (t.type === 'phoneme') {
+      const p = SYM_MAP[t.sym];
+      const tip = buildTooltip(p);
+      return `<span class="ph" data-tip="${tip}">${escHtml(t.text)}</span>`;
+    }
+    return escHtml(t.text);
+  }).join('');
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── LEGEND ───────────────────────────────────────────────────────────────────
+
+function buildLegend() {
+  const panel = document.getElementById('legend-panel');
+  const vowels = PHONEMES.filter(p => p.seg === 'vowel');
+  const cons   = PHONEMES.filter(p => p.seg === 'consonant');
+
+  function rows(arr) {
+    return `<div class="legend-grid">${arr.map(p =>
+      `<div class="legend-item">
+        <span class="legend-sym">${escHtml(p.sym)}</span>
+        <span class="legend-ipa">${escHtml(p.ipa)}</span>
+        <span class="legend-example">${escHtml(p.ex)}</span>
+      </div>`
+    ).join('')}</div>`;
+  }
+
+  panel.innerHTML = `
+    <p class="legend-title">Phoneme key</p>
+    <p class="legend-section-label">Vowels</p>${rows(vowels)}
+    <p class="legend-section-label">Consonants</p>${rows(cons)}
+  `;
+
+  document.getElementById('legend-toggle').addEventListener('click', () => {
+    const open = panel.classList.toggle('open');
+    document.getElementById('legend-toggle').setAttribute('aria-expanded', open);
+  });
+}
+
+// ── SPEECH ───────────────────────────────────────────────────────────────────
+
+const hasSpeech = 'speechSynthesis' in window;
+if (!hasSpeech) document.getElementById('no-speech').style.display = 'block';
+
+let currentBtn = null;
+
+function speak(name, btn) {
+  if (!hasSpeech) return;
+  window.speechSynthesis.cancel();
+  if (currentBtn && currentBtn !== btn) currentBtn.classList.remove('speaking');
+
+  const utt = new SpeechSynthesisUtterance(name);
+  utt.lang = 'en-AU';
+  utt.rate = 0.85;
+
+  btn.classList.add('speaking');
+  currentBtn = btn;
+  utt.onend = () => btn.classList.remove('speaking');
+  utt.onerror = () => btn.classList.remove('speaking');
+  window.speechSynthesis.speak(utt);
+}
+
+// ── CARD RENDERING ───────────────────────────────────────────────────────────
+
+function playIcon() {
+  return `<svg width="8" height="10" viewBox="0 0 8 10" fill="currentColor"><path d="M0 0l8 5-8 5z"/></svg>`;
+}
+
+function stopIcon() {
+  return `<svg width="8" height="10" viewBox="0 0 8 10" fill="currentColor"><rect width="3" height="10"/><rect x="5" width="3" height="10"/></svg>`;
+}
+
+function renderCard(sub, highlight) {
+  const hl = s => {
+    if (!highlight) return escHtml(s);
+    const re = new RegExp(`(${highlight.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+    return escHtml(s).replace(re, '<mark>$1</mark>');
+  };
+
+  const pronHtml = renderPronunciation(sub.pronunciation);
+
+  return `<div class="suburb-card">
+    <div class="suburb-name">${hl(sub.name)}</div>
+    <div class="suburb-meta">
+      <span class="suburb-postcode">${hl(sub.postcode)}</span>
+      <span class="suburb-lga">${hl(sub.lga)}</span>
+    </div>
+    <div class="pronunciation-row">
+      <span class="pronunciation">${pronHtml}</span>
+      ${hasSpeech ? `<button class="play-btn" aria-label="Listen to ${escHtml(sub.name)}" data-name="${escHtml(sub.name)}">${playIcon()}</button>` : ''}
+    </div>
+  </div>`;
+}
+
+// ── ALPHA INDEX ──────────────────────────────────────────────────────────────
+
+function buildAlphaBar(available) {
+  const inner = document.getElementById('alpha-inner');
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  inner.innerHTML = letters.map(l => {
+    const has = available.has(l);
+    return `<a class="alpha-link${has ? '' : ' disabled'}" href="#letter-${l}" id="alpha-${l}">${l}</a>`;
+  }).join('');
+}
+
+// ── MAIN RENDER ──────────────────────────────────────────────────────────────
+
+function groupByLetter(arr) {
+  const map = {};
+  for (const s of arr) {
+    const l = s.name[0].toUpperCase();
+    if (!map[l]) map[l] = [];
+    map[l].push(s);
+  }
+  return map;
+}
+
+function render(filtered, highlight) {
+  const results = document.getElementById('results');
+  const count   = document.getElementById('count');
+
+  if (!filtered.length) {
+    results.innerHTML = '<p class="empty">No suburbs found.</p>';
+    count.textContent = '0 results';
+    buildAlphaBar(new Set());
+    return;
+  }
+
+  count.textContent = `${filtered.length} suburb${filtered.length !== 1 ? 's' : ''}`;
+
+  const groups = groupByLetter(filtered);
+  const letters = Object.keys(groups).sort();
+  const available = new Set(letters);
+  buildAlphaBar(available);
+
+  results.innerHTML = letters.map(l => `
+    <div class="letter-group" id="letter-${l}">
+      <h2 class="letter-heading">${l}</h2>
+      <div class="suburb-grid">
+        ${groups[l].map(s => renderCard(s, highlight)).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  // Attach play buttons
+  results.querySelectorAll('.play-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.dataset.name;
+      if (btn.classList.contains('speaking')) {
+        window.speechSynthesis.cancel();
+        btn.classList.remove('speaking');
+      } else {
+        speak(name, btn);
+      }
+    });
+  });
+}
+
+// ── FILTERS ──────────────────────────────────────────────────────────────────
+
+function populateLGA() {
+  const sel = document.getElementById('lga-filter');
+  const lgas = [...new Set(SUBURBS.map(s => s.lga))].sort();
+  lgas.forEach(l => {
+    const o = document.createElement('option');
+    o.value = l;
+    o.textContent = l;
+    sel.appendChild(o);
+  });
+}
+
+let searchVal = '';
+let lgaVal    = '';
+
+function filter() {
+  const q = searchVal.trim().toLowerCase();
+  let out = SUBURBS;
+  if (lgaVal) out = out.filter(s => s.lga === lgaVal);
+  if (q) out = out.filter(s =>
+    s.name.toLowerCase().includes(q) ||
+    s.postcode.includes(q) ||
+    s.lga.toLowerCase().includes(q)
+  );
+  out = [...out].sort((a, b) => a.name.localeCompare(b.name));
+  render(out, q.length >= 2 ? q : '');
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+
+buildLegend();
+populateLGA();
+filter(); // initial render with all suburbs
+
+document.getElementById('search').addEventListener('input', e => {
+  searchVal = e.target.value;
+  filter();
+});
+
+document.getElementById('lga-filter').addEventListener('change', e => {
+  lgaVal = e.target.value;
+  filter();
+});
+
+// Sticky header offset for alpha bar
+(function () {
+  const header = document.querySelector('header');
+  const bar = document.getElementById('alpha-bar');
+  function offset() {
+    bar.style.top = header.offsetHeight + 'px';
+  }
+  offset();
+  new ResizeObserver(offset).observe(header);
+})();
+
 </script>
+</body>
+</html>
