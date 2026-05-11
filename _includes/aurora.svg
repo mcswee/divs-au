@@ -10,7 +10,7 @@
 .transit-line.s-line { stroke: #f6bb00; }
 .transit-line.w-line { stroke: #92d050; }
 .transit-line.o-line { stroke: #ac8004; }
-.transit-line.b-line { stroke: #eb0874; }
+.transit-line.b-line { stroke: #ff0874; }
 .transit-line.f-line { stroke: #0067f2; }
 .transit-line.c-line { stroke: #00c057; }
 .transit-line.p-line { stroke: #00b0f0; }
@@ -44,7 +44,7 @@
 .station-icon.s-line { fill: #f6bb00; }
 .station-icon.w-line { fill: #92d050; }
 .station-icon.o-line { fill: #ac8004; }
-.station-icon.b-line { fill: #eb0874; }
+.station-icon.b-line { fill: #ff0874; }
 .station-icon.f-line { fill: #0067f2; }
 .station-icon.c-line { fill: #00c057; }
 .station-icon.p-line { fill: #00b0f0; }
