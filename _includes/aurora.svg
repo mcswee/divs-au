@@ -5,10 +5,10 @@
   stroke-width: 6.875;  
 }
 .transit-line.t-line { stroke: #e87132; }
-.transit-line.w-line { stroke: #9165ff; }
+.transit-line.b-line { stroke: #9165ff; }
 .transit-line.c-line { stroke: #f97fe8; }
 .transit-line.s-line { stroke: #f6bb00; }
-.transit-line.b-line { stroke: #92d050; }
+.transit-line.w-line { stroke: #92d050; }
 .transit-line.o-line { stroke: #ac8004; }
 .transit-line.n-line { stroke: #eb0874; }
 .transit-line.f-line { stroke: #0067f2; }
@@ -39,14 +39,14 @@
 }
 
 .station-icon.t-line { fill: #e87132; }
-.station-icon.w-line { fill: #9165ff; }
-.station-icon.c-line { fill: #f97fe8; }
+.station-icon.c-line { fill: #9165ff; }
+.station-icon.i-line { fill: #f97fe8; }
 .station-icon.s-line { fill: #f6bb00; }
-.station-icon.b-line { fill: #92d050; }
+.station-icon.w-line { fill: #92d050; }
 .station-icon.o-line { fill: #ac8004; }
 .station-icon.n-line { fill: #eb0874; }
 .station-icon.f-line { fill: #0067f2; }
-.station-icon.i-line { fill: #00c057; }
+.station-icon.b-line { fill: #00c057; }
 .station-icon.p-line { fill: #00b0f0; }
 
 .interchange-pill {
