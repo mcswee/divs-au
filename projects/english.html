@@ -1,83 +1,445 @@
----
-layout: default
-title: Guide to Australian English pronunciation
-category: projects
-permalink: /english/
----
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Australian English Phonology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<header class="page-element">
-  <h1>Guide to Australian English pronunciation</h1>
-  <p>This guide uses a custom phonetic system to capture the specific nuances of the Australian English accent. To avoid the ambiguity of standard English spelling, the system follows a one-to-one logic where every sound is represented by a consistent symbol.</p>
-  <p>These pronunciations are based on my own accent as a Melburnian speaking Australian English, which is non-rhotic. For example, words like "park" are represented using <strong>ah</strong> to show the vowel sound without an 'r'.</p>
-  <p>Syllable boundaries are marked with dots (·) to show the natural flow of the word.</p>
+  :root {
+    --bg: #f5f0e8;
+    --surface: #faf7f2;
+    --ink: #1a1610;
+    --ink-mid: #5a5040;
+    --ink-faint: #b0a090;
+    --accent: #c1440e;
+    --accent-pale: #f0e0d8;
+    --mono: 'DM Mono', monospace;
+    --serif: 'Fraunces', serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--mono);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .site-header {
+    padding: 3rem 2rem 0;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .site-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .site-title span {
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .site-sub {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--ink-mid);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .legend {
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 0.72rem;
+    color: var(--ink-mid);
+    border-top: 1px solid var(--ink-faint);
+    padding-top: 1rem;
+  }
+
+  .legend-item { display: flex; align-items: center; gap: 0.4rem; }
+
+  .legend-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .legend-dot--symbol { background: var(--ink); }
+  .legend-dot--ipa { background: transparent; border: 1px solid var(--ink-mid); }
+  .legend-dot--transcript { background: var(--accent-pale); border: 1px solid var(--accent); }
+
+  .legend-hint {
+    margin-left: auto;
+    color: var(--ink-faint);
+    font-size: 0.68rem;
+  }
+
+  /* TABS */
+  .tabs {
+    max-width: 1100px;
+    margin: 2.5rem auto 0;
+    padding: 0 2rem;
+    display: flex;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .tab {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    color: var(--ink-mid);
+    position: relative;
+    transition: color 0.15s;
+  }
+
+  .tab::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.15s;
+  }
+
+  .tab:hover { color: var(--ink); }
+
+  .tab.active {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .tab.active::after { transform: scaleX(1); }
+
+  .tab-count {
+    display: inline-block;
+    margin-left: 0.4rem;
+    font-size: 0.65rem;
+    color: var(--ink-faint);
+  }
+
+  /* GRID */
+  .grid {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 2rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--ink-faint);
+    border: 1px solid var(--ink-faint);
+  }
+
+  .panel { display: none; }
+  .panel.active { display: contents; }
+
+  /* CARD */
+  .card {
+    background: var(--surface);
+    padding: 1.25rem 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+
+  .card:hover { background: var(--bg); }
+  .card.playing { background: var(--accent-pale); }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .symbol-block {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .symbol {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .ipa {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    justify-content: flex-end;
+  }
+
+  .example-word {
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-mid);
+    background: var(--bg);
+    padding: 0.15rem 0.4rem;
+    border: 1px solid var(--ink-faint);
+  }
+
+  .sentence {
+    font-family: var(--serif);
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .transcript {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--ink);
+    line-height: 1.6;
+    background: var(--accent-pale);
+    border-left: 2px solid var(--accent);
+    padding: 0.5rem 0.6rem;
+    word-break: break-word;
+  }
+
+  .play-btn {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: none;
+    border: 1px solid var(--ink-faint);
+    color: var(--ink-mid);
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.7rem;
+    cursor: pointer;
+    transition: all 0.12s;
+    text-transform: uppercase;
+  }
+
+  .play-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .play-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-pale);
+  }
+
+  @media (max-width: 600px) {
+    .site-header { padding: 2rem 1rem 0; }
+    .tabs { padding: 0 1rem; }
+    .grid { padding: 0 1rem 3rem; margin: 1.5rem auto; }
+    .tab { padding: 0.65rem 1rem; }
+    .legend-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1 class="site-title">Australian English <span>Phonology</span></h1>
+  <p class="site-sub">A customised alphabet &amp; transcription system · en-AU</p>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot legend-dot--symbol"></div><span>Custom symbol</span></div>
+    <div class="legend-item"><div class="legend-dot legend-dot--ipa"></div><span>IPA equivalent</span></div>
+    <div class="legend-item"><div class="legend-dot legend-dot--transcript"></div><span>Transcribed sentence</span></div>
+    <span class="legend-hint">Click any card to hear the sentence</span>
+  </div>
 </header>
 
-<section class="page-element phonology-container">
-  
-  <h2>Vowels</h2>
-  <p>Every vowel is represented by either a unique symbol&mdash;like <strong>@</strong> for a schwa, <strong>æ</strong> for a flat 'a'&mdash;or a dedicated two-character combination. These are treated as a single unit representing a single vowel sound.</p>
-  
-  <div id="vowel-grid" class="card-grid">
-    {% assign vowels =  site.data.sounds | where: "segment", "vowel" %}
-    {% for item in vowels %}
-    <article class="project-card phoneme-card">
-      <header class="pronunciation-header" aria-label="Phoneme symbol {{ item.phoneme }}, representing the IPA symbol {{ item.ipa }}">
-        <h3 class="pronunciation-title" aria-hidden="true">{{ item.phoneme }}</h3>
-        <div class="header-right" aria-hidden="true">
-           <span class="ipa-tag">/{{ item.ipa }}/</span>
-           <div class="audio-indicator" role="button" tabindex="0" aria-label="Listen to pronunciation of {{ item.sentence }}" onclick="listen('{{ item.sentence }}')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { listen('{{ item.sentence }}'); event.preventDefault(); }">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
-                 <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-              </svg>
-           </div>
-        </div>
-      </header>
-      <div class="example-text" aria-label="Example sentence">{{ item.sentence }}</div>
-      <div class="pronunciation-string" aria-hidden="true">{{ item.pronunciation }}</div>
-    </article>
-    {% endfor %}
-  </div>
+<nav class="tabs">
+  <button class="tab active" data-tab="vowels">Vowels <span class="tab-count">22</span></button>
+  <button class="tab" data-tab="consonants">Consonants <span class="tab-count">24</span></button>
+</nav>
 
-  <h2>Consonants</h2>
-  <p>Every consonant is represented by a single, consistent letter or symbol. For example, <strong>$</strong> represents 'sh' and <strong>£</strong> is used specifically for the 'ng' sound.</p>
-  
-  <div id="consonant-grid" class="card-grid">
-    {% assign consonants =  site.data.sounds | where: "segment", "consonant" %}
-    {% for item in consonants %}
-    <article class="project-card phoneme-card">
-      <header class="pronunciation-header" aria-label="Phoneme symbol {{ item.phoneme }}, representing the IPA symbol {{ item.ipa }}">
-        <h3 class="pronunciation-title" aria-hidden="true">{{ item.phoneme }}</h3>
-        <div class="header-right" aria-hidden="true">
-           <span class="ipa-tag">/{{ item.ipa }}/</span>
-           <div class="audio-indicator" role="button" tabindex="0" aria-label="Listen to pronunciation of {{ ipa }}" onclick="listen('{{ item.sentence }}')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { listen('{{ item.sentence }}'); event.preventDefault(); }">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
-                 <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-              </svg>
-           </div>
-        </div>
-      </header>
-      <div class="example-text" aria-label="Example sentence">{{ item.sentence }}</div>
-      <div class="pronunciation-string" aria-hidden="true">{{ item.pronunciation }}</div>
-    </article>
-    {% endfor %}
-  </div>
-</section>
+<main class="grid" id="grid">
+  <div class="panel active" id="panel-vowels"></div>
+  <div class="panel" id="panel-consonants"></div>
+</main>
 
 <script>
-function listen(text) {
-    window.speechSynthesis.cancel();
-    
-    let speechString = text;
-    speechString = speechString.replace(/waratah/g, 'warra tar');
-    speechString = speechString.replace(/urinal/g, 'you rinnle');
+const phonemes = [
+  // VOWELS
+  { id: 1, type: "vowel", symbol: "æ", ipa: "æ", examples: ["CAT","BLACK","HAND","BAG"], sentence: "Actually, the lad has a bad attitude and snatched a plaid bag.", transcript: "æk·$@·lee· ‡@· læd· hæz· @· bæd· æt·@·¢ewd· ænd· snæ¢t· @· plæd·bæg" },
+  { id: 2, type: "vowel", symbol: "eh", ipa: "e", examples: ["MET","PEG","HEAD","SAID"], sentence: "Every red head friend says many leopards again bury legs in the end.", transcript: "ehv·ree· rehd· hehd· frehnd· sehz· mehn·ee· lehp·@dz· @·gehn· beh·ree· lehgz· ihn· ‡ee· ehnd" },
+  { id: 3, type: "vowel", symbol: "ih", ipa: "ɪ", examples: ["HID","SITTING","GYM","BUSY"], sentence: "Busy women hid in the gym and built a sieve for pretty fitness kits.", transcript: "bih·zee· wih·m@n· hihd· ihn· ‡@· jihm· æn· bihlt· @· sihv· faw· prih·tee· fiht·n@s· kihts" },
+  { id: 4, type: "vowel", symbol: "ø", ipa: "ɒ", examples: ["HOT","ROCK","WANT","COUGH"], sentence: "The orange dog wants to cough on the hot hollow bottle.", transcript: "‡@· ø·r@nj· døg· wønts· tew· køf· øn· ‡@· høt· hø·loh· bøt·@l" },
+  { id: 5, type: "vowel", symbol: "uh", ipa: "ɐ", examples: ["CUP","LUCK","BLOOD","DONE"], sentence: "The flood has undone my grumpy lovestruck uncle's run of luck.", transcript: "‡@· fluhd· hæz· uhn·duhn· miy· gruhm·pee· luhv·s¢ruhk· uhnk·@lz· ruhn· øv· luhk" },
+  { id: 6, type: "vowel", symbol: "uu", ipa: "ʊ", examples: ["PUT","COULD","LOOK","WOLF"], sentence: "The woman should put a good foot full of pudding in the wooden bookcase for the cook.", transcript: "‡@· wuu·m@n· $uud· puut· @· guud· fuut· fuul· øv· puud·ih£· ihn· ‡@· wuud·@n· buuk·kays· faw· ‡@· kuuk" },
+  { id: 7, type: "vowel", symbol: "ay", ipa: "æɪ", examples: ["SAY","EIGHT","NAME","VEIN"], sentence: "The ailing grey railway station agent raced they who weigh eight steaks today.", transcript: "‡ee· ayl·ih£· gray· rayl·way· stay·$@n· ay·j@nt· raysd· ‡ay· hew· way· ayt· stayks· tew·day" },
+  { id: 8, type: "vowel", symbol: "ee", ipa: "iː", examples: ["SEE","HEAT","PIECE","HAPPY"], sentence: "The happy chief seems to believe reading the extreme machine on the quay is free.", transcript: "‡@· hæ·pee· ¢eef· seemz· tew· b@·leev· reed·ih£· ‡ee· eks·treem· m@·$een· øn· ‡@· kee· ihz· free" },
+  { id: 9, type: "vowel", symbol: "iy", ipa: "ɑe", examples: ["FIVE","EYE","SKY","HEIGHT"], sentence: "I try an idea to spy with my eyesight a magpie flying to the icy height of the sky.", transcript: "iy· triy· æn· iy·dee@· tew· spiy· wih‡· miy· iy·siyt· @· mæg·piy· fliy·ih£· tew· ‡@· iys·ee· hiyt· øv· ‡@· skiy" },
+  { id: 10, type: "vowel", symbol: "oh", ipa: "əʉ", examples: ["GO","HOME","ROAD","HERO"], sentence: "Although the rainbow showed over the road, no local aloe will grow below.", transcript: "awl·‡oh· ‡@· rayn·boh· $ohd· oh·v@· ‡@· rohd· noh· loh·k@l· æl·oh· wihl· groh· b@·loh" },
+  { id: 11, type: "vowel", symbol: "ew", ipa: "ʉː", examples: ["BLUE","FOOD","JUNE","THREW"], sentence: "Who knew you'd brew the juice of oodles of bruised prunes into soup with a few blue balloons.", transcript: "hew· nyew· yewd· brew· ‡@· jews øv· ew·d@lz· øv· brewzd· prewnz· ihn·tew· sewp· wih‡· @· fyew· blew· b@·lewnz" },
+  { id: 12, type: "vowel", symbol: "ah", ipa: "ɐː", examples: ["ARM","FATHER","CALM","SPA"], sentence: "After the spa, my aunt laughed as she calmly parked father's car by the rather large waratah garden.", transcript: "ahf·t@· ‡@· spah· miy· ahnt· lahft· æz· $ee· kahm·lee· pahkt· fah·‡@z· kahr· biy· ‡@· rah·‡@· lahj· wø·r@·tah· gah·d@n" },
+  { id: 13, type: "vowel", symbol: "œ", ipa: "ɜː", examples: ["NURSE","LEARN","BIRD","WORK"], sentence: "The nurse served burns of the furry bird who worked to learn her purpose in the dirty urban herd.", transcript: "‡@· nœs· sœvd· bœnz· øv· ‡@· fœ·ree· bœd· hew· wœkt· tew· lœn· hœ· pœ·p@s· ihn· ‡@· dœ·tee· œb·@n· hœd" },
+  { id: 14, type: "vowel", symbol: "aw", ipa: "oː", examples: ["CALL","FOUR","BOUGHT","LAW"], sentence: "The author taught four boring wartime laws that ought to have brought a tort for all the poor sauce.", transcript: "‡@· aw+·@· tawt· faw· baw·rih£· waw·tiym· lawz· ‡æt· awt· tew· hæv· brawt· @· tawt· faw· awl· ‡@· paw· saws" },
+  { id: 15, type: "vowel", symbol: "ow", ipa: "æɔ", examples: ["NOW","OUT","THOUSAND","BOUGH"], sentence: "How'd they allow a thousand out-of-town cows to pound the drought-browned ground down south?", transcript: "howd· ‡ay· @·low· @· +owz·@nd· owt· øv· town· cowz· tew· pownd· ‡@· jrowt· brownd· grownd· down· sow+" },
+  { id: 16, type: "vowel", symbol: "oi", ipa: "oɪ", examples: ["BOY","JOIN","CHOICE","ANNOY"], sentence: "The appointed boy was annoyed by the choice of noise as the oily buoy was deployed.", transcript: "‡@· @·poin·t@d· boi· wøz· @·noid· biy· ‡@· ¢ois· øv· noiz· æz· ‡ee· oil·ee· boi· wøz· d@·ploid" },
+  { id: 17, type: "vowel", symbol: "eh@", ipa: "eː", examples: ["WHERE","AIR","BEAR","SQUARE"], sentence: "From an aeroplane, a pair of bears stare at their lair in a careful dare.", transcript: "frøm· æn· eh@·r@·playn· @· peh@· øv· beh@z· steh@· æt· ‡eh@· leh@· ihn·@·keh@·f@l·deh@" },
+  { id: 18, type: "vowel", symbol: "ee@", ipa: "ɪə", examples: ["NEAR","HERE","PIER","BEER"], sentence: "Here's a weird theatre idea, beer is dear near the pier.", transcript: "hee@z· @· wee@d· +ee@·t@· iy·dee@· bee@· ihz· dee@· nee@· ‡@· pee@" },
+  { id: 19, type: "vowel", symbol: "iy@", ipa: "ɑeə", examples: ["FIRE","IRON","TYRE","DIARY"], sentence: "The reliable buyer's diary was lying by the higher fire iron.", transcript: "‡@· r@·liy@·b@l· biy@·@z· diy@·ree· wøz· liy@·ih£· biy· ‡@· hiy@· fiy@· iy@n" },
+  { id: 20, type: "vowel", symbol: "ow@", ipa: "ʉːə", examples: ["OUR","POWER","FLOWER","SOUR"], sentence: "We cowered as our hourly dowry was power showered in sour flour.", transcript: "Wee· kow@·d· æz· ow@· ow@·lee· dow@·ree· wøz· pow@· $ow@·d· ihn· sow@· flow@" },
+  { id: 21, type: "vowel", symbol: "u@", ipa: "ʊə", examples: ["PURE","TOUR","CURE","MATURE"], sentence: "The tour of the pure urinal mural is an obscure lure that the mature jury must endure.", transcript: "‡@· tu@· øv· ‡@· pyu@· u@·r@·n@l· mu@·r@l· ihz· æn· øb·skyu@· lu@· ‡æt· ‡@· m@·¢u@· ju@·ree· muhst· ehn·ju@" },
+  { id: 22, type: "vowel", symbol: "@", ipa: "ə", examples: ["AWAY","CINEMA","FOCUS","UNDER"], sentence: "The doctor agreed that a button under the colourful sofa was better.", transcript: "‡@· døk·t@· @·greed· ‡æt· @· buht·@n· uhn·d@· ‡@· c@·l@·fuul· soh·f@· wøz· beht·@" },
+  // CONSONANTS
+  { id: 23, type: "consonant", symbol: "m", ipa: "m", examples: ["MAN","LEMON","HAMMER","COMB"], sentence: "In the morning, mum made me climb a mesmerising column of, I assume, mainly summer and autumn motifs.", transcript: "ihn· ‡@· mawn·ih£· muhm· mayd· mee· kliym· @· mehz·m@·riyz·ih£· køl·@m· øv· iy· @·$ewm· mayn·lee· suhm·@· æn· dawt·@m· moh·teefs" },
+  { id: 24, type: "consonant", symbol: "n", ipa: "n", examples: ["NO","TEN","KNEE","DINNER"], sentence: "No-one knew a nifty mnemonic for the notice \"Pneumatic novices design sunny gnomes on Wednesday.\"", transcript: "noh·wuhn· nyew· @· nihf·tee· n@·møn·@k· faw· ‡@· noh·t@s· nyew·mæt·@k· nøv·@s·@z· d@·ziyn· suh·nee· nohms· øn· wehnz·day" },
+  { id: 25, type: "consonant", symbol: "£", ipa: "ŋ", examples: ["SING","FINGER","BANK","TONGUE"], sentence: "The anxious singer with the long tongue thinks his finger is stronger than the hungry young punk gang.", transcript: "‡@· ay£k·$@s· sih£·@· wih‡· ‡@· lø£· tuh£· +ih£ks· hihz· fih£·g@· ihz· strø£·g@· ‡æn· ‡@· huh£·gree· yuh£· puh£k· gay£" },
+  { id: 26, type: "consonant", symbol: "p", ipa: "p", examples: ["PET","MAP","HAPPY","STOP"], sentence: "The proud shepherd supplied purple apples to help the sheep cope in the upper paddock.", transcript: "‡@· prowd· $ehp·@d· suhp·liyd· pœ·p@l· æp·@lz· tew· hehlp· ‡@· $eep· kohp· ihn· ‡@· uhp·@· pæd·@k" },
+  { id: 27, type: "consonant", symbol: "b", ipa: "b", examples: ["BAD","LAB","BUBBLE","ROBE"], sentence: "The adorable baby boy blew an abundance of bubbles and orbs by his badly labelled crib.", transcript: "‡ee· @·daw·@·b@l· bay·bee· boi· blew· æn· @·buhn·d@ns· øv· buhb·@lz· æn· dawbz· biy· hihz· bæd·lee· lay·b@ld· crihb" },
+  { id: 28, type: "consonant", symbol: "t", ipa: "t", examples: ["TEA","ENTER","HAT","BETTER"], sentence: "Today's topic stopped and turned to two tiny tots who kept sitting and teasing distinctive patterned kittens.", transcript: "tew·dayz· tøp·@k· støpt· æn· tœnd· tew· tew· tiy·nee· tøts· hew· kehp· siht·ih£· æn· teez·ih£· d@·stihnk·t@v· pæt·@nd· kiht·@nz" },
+  { id: 29, type: "consonant", symbol: "d", ipa: "d", examples: ["DID","LADY","ADDED","ROAD"], sentence: "The dyed lady decided to add a dozen odd birds to the dead-end road.", transcript: "‡@· diyd· lay·dee· de·siyd·@d· tew· æd· @· duhz·@n· ød· bœdz· tew· ‡@· dehd· ehnd· rohd" },
+  { id: 30, type: "consonant", symbol: "k", ipa: "k", examples: ["CAT","KEY","QUICK","ECHO"], sentence: "The chemist took a quick look at the unique khaki clock and queried the cause for six keys at the liquor market.", transcript: "‡@· kehm·@st· tuuk· @· kwik· luuk· æt· ‡@· yew·neek· kah·kee· klok· æn· kwee@·reed· ‡@· kawz· faw· siks· keez· æt· ‡@· lik·@· mahk·@t" },
+  { id: 31, type: "consonant", symbol: "g", ipa: "g", examples: ["GIVE","FLAG","GHOST","BIGGER"], sentence: "The eager ghost guarded the flag and giggled again at the groggy green frog.", transcript: "‡@· ee·g@· gohst· gahd·@d· ‡@· flæg· æn· gihg·l@d· @·gehn· æt· ‡@· grø·gee· green· frøg" },
+  { id: 32, type: "consonant", symbol: "f", ipa: "f", examples: ["FIND","IF","PHONE","LAUGH"], sentence: "If they offer half a funny photograph featuring fifty fun staff, I will roughly laugh.", transcript: "ihf· ‡ay· øf·@· hahf· @· fuhn·ee· foh·t@·græf· fee¢·@·rih£· fif·tee· fuhn· stahf· iy· wihl· ruhf·lee· lahf" },
+  { id: 33, type: "consonant", symbol: "v", ipa: "v", examples: ["VOICE","FIVE","OF","STOVE"], sentence: "Even wives love an inviting vivid vista of the avenue from available verandah rooves.", transcript: "ee·v@n· wiyvz· luhv· æn· ihn·viyt·ih£· vih·v@d· vihs·t@· øv· ‡ee· æv·@n·ew· frøm· @·vayl·@·b@l· v@·ræn·d@· rewvz" },
+  { id: 34, type: "consonant", symbol: "+", ipa: "θ", examples: ["THINK","BOTH","THROUGH","MOUTH"], sentence: "We both thank a thin mouth for three healthy pathways through thick earth.", transcript: "wee· bo+· +ay£k· @· +ihn· mow+· faw· +ree· hehl·+ee· pah+·wayz· +rew· +ihk· œ+" },
+  { id: 35, type: "consonant", symbol: "‡", ipa: "ð", examples: ["THIS","MOTHER","BREATHE","SMOOTH"], sentence: "Mother rather smoothly soothes the brothers, others loathe their leathery breathing.", transcript: "muh‡·@· rah·‡@· smew‡·lee· sew‡z· ‡@· bruh‡·@z· uh·‡@z· loh‡· ‡eh@· leh·‡@·ree· bree‡·ih£" },
+  { id: 36, type: "consonant", symbol: "s", ipa: "s", examples: ["SUN","MISS","CITY","SCENE"], sentence: "Stuck in her small city box house, the psychologist's sick sister listened to the sound of a sample score for a sassy dance scene.", transcript: "stuhk· ihn· hœ· smawl· siht·ee· bøks· hows· ‡@· siy·køl·@·j@sts· sihk· sihs·t@· lihs·@nd· tew· ‡@· sownd· øv· @· sæm·p@l· skaw· faw· @· sæs·ee· dæns· seen" },
+  { id: 37, type: "consonant", symbol: "z", ipa: "z", examples: ["ZOO","LAZY","IS","HAS"], sentence: "The zany plaza was abuzz by those pleased as the lazy zealot plays a zesty musical example on his xylophone puzzle.", transcript: "‡@· zay·nee· plah·z@· wøz· uh·buhz· biy· ‡ohz· pleezd· æz· ‡@· lay·zee· zehl·@t· playz· @· zehst·ee· myewz·ihk·@l· ehg·zæmp·@l· øn· hihz· ziyl·@·fohn· puhz·@l" },
+  { id: 38, type: "consonant", symbol: "$", ipa: "ʃ", examples: ["SHE","CRASH","ACTION","CHEF"], sentence: "The shy chef shouted anxiously ensuring the students shielded the special shiny sugar station from the crashing ocean wash.", transcript: "‡@· $iy· $ehf· $owt·@d· ay£k·$@s·lee· ehn·$u@·ih£· ‡@· $¢yew·d@ns· $eeld·@d· ‡@· speh·$@l· $iyn·ee· $uug·@· stay·$@n· frøm· ‡@· kræ$·ih£· oh·$@n· wø$" },
+  { id: 39, type: "consonant", symbol: "§", ipa: "ʒ", examples: ["PLEASURE","VISION","GARAGE","AZURE"], sentence: "The casual division of the treasury into azure and beige genres was, on this occasion, a measured decision.", transcript: "‡@· kæ·§yewl· d@·vih·§@n· øv· ‡@· ¢reh·§@·ree· ihn·tew· æ·§yu@· ænd· bay§· §øn·r@z· wøz· ohn· ‡ihs· @·kay·§@n· @·meh·§@d· d@·sih·§@n" },
+  { id: 40, type: "consonant", symbol: "¢", ipa: "tʃ", examples: ["CHECK","CHURCH","WATCH","BATCH"], sentence: "A cheerful teacher chose the church on Tuesday to question each child on catching chopped cherry trees in nature.", transcript: "@· ¢ee@·fuul· tee¢·@· ¢ohs· ‡@· ¢œ¢· øn· ¢ewz·day· tew· kwehs·¢@n· ee¢· ¢iyld· øn· kæ¢·ih£· ¢øpt· ¢eh@·ree· ¢rees· ihn· nay·¢@" },
+  { id: 41, type: "consonant", symbol: "j", ipa: "dʒ", examples: ["JUST","LARGE","BRIDGE","GIANT"], sentence: "The giant soldier joyfully adjusted the dual objects and judged suggestions the jewelled bridge was magic.", transcript: "‡@· jiy·@nt· søl·j@· joi·f@l·ee· @· juhst·@d· ‡@· jewl· øb·jeks· æn· juhjd· suh·jehs·$@ns· ‡@· jewld· brihj· wøz· maj·ihk" },
+  { id: 42, type: "consonant", symbol: "h", ipa: "h", examples: ["HOW","HELLO","WHO","BEHIND"], sentence: "The hurried host handed a huge ham fajita to the happy homeowner who was behind the whole house.", transcript: "‡@· huh·reed· hohst· hæn·d@d· @· hyewj· hæm· f@·heet·@· tew· ‡@· hæ·pee· hohm·oh·n@· hew· wøz· b@·hiynd· ‡@· hohl· hows" },
+  { id: 43, type: "consonant", symbol: "l", ipa: "l", examples: ["LEG","LITTLE","BELL","FEEL"], sentence: "The lovely little girl fell in the middle of the valley while looking at the school's tall flagpole.", transcript: "‡@· luhv·lee· liht·@l· gœl· fehl· ihn· ‡@· mihd·@l· øv· ‡@· væ·lee· wiyl· luuk·ih£· æt· ‡@· skewlz· tawl· flæg·pohl" },
+  { id: 44, type: "consonant", symbol: "r", ipa: "r", examples: ["RED","TRY","VERY","WRONG"], sentence: "The rude rug-rat had the idea of writing a recurring rhyme related to the blurry drawing when they saw it.", transcript: "‡@· rewd· ruhg· ræt· hæd· ‡@· iy·dee@· røv· riyt·ih£· @· r@·kœ·rih£· riym· r@·layt·@d· tew· ‡@· blœ·ree· jraw·rih£· wehn· ‡ay· saw·riht" },
+  { id: 45, type: "consonant", symbol: "w", ipa: "w", examples: ["WET","WINDOW","WHY","QUICK"], sentence: "One quiet woman awoke to the widower watching a memoir of whales and penguins while persuasive waiters wore white on the walkway.", transcript: "wuhn· kwiy@·@t· wuu·m@n· @·wohk· tew· ‡@· wihd·oh·w@· wø¢·ih£· @· mehm·wah· øv· waylz· æn· pehn·gwihnz· wiyl· p@·sways·ihv· way·t@z· waw· wiyt· øn· ‡@· wawk·way" },
+  { id: 46, type: "consonant", symbol: "y", ipa: "j", examples: ["YES","YELLOW","USE","FEW"], sentence: "You accused the dutiful young deputy of yielding a few yellow onions to use for the new youth uniform.", transcript: "yew· æk·yewsd· ‡@· jyew·t@·f@l· yuh£· dehp·y@·tee· øv· yeeld·ih£· @· fyew· yeh·loh· uhn·y@nz· tew· yews· faw· ‡ee· nyew· yew+· yew·n@·fawm" },
+];
 
-    const utterance = new SpeechSynthesisUtterance(speechString);
-    utterance.lang = 'en-AU';
-    utterance.rate = 0.85;
-    window.speechSynthesis.speak(utterance);
+// Build icons
+const iconPlay = `<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M2.5 2l8 4-8 4V2z"/></svg>`;
+const iconStop = `<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><rect x="2" y="2" width="3.5" height="8" rx="0.5"/><rect x="6.5" y="2" width="3.5" height="8" rx="0.5"/></svg>`;
+
+let currentUtterance = null;
+let currentPlayingId = null;
+
+function stopCurrent() {
+  window.speechSynthesis.cancel();
+  if (currentPlayingId !== null) {
+    const prev = document.querySelector(`.card[data-id="${currentPlayingId}"]`);
+    if (prev) {
+      prev.classList.remove('playing');
+      const btn = prev.querySelector('.play-btn');
+      if (btn) { btn.classList.remove('active'); btn.innerHTML = iconPlay + '<span>play</span>'; }
+    }
+  }
+  currentPlayingId = null;
 }
+
+function playCard(p) {
+  if (currentPlayingId === p.id) { stopCurrent(); return; }
+  stopCurrent();
+
+  const utt = new SpeechSynthesisUtterance(p.sentence);
+  utt.lang = 'en-AU';
+  utt.rate = 0.88;
+  const voices = window.speechSynthesis.getVoices();
+  const auVoice = voices.find(v => v.lang === 'en-AU') || null;
+  if (auVoice) utt.voice = auVoice;
+
+  currentPlayingId = p.id;
+  const card = document.querySelector(`.card[data-id="${p.id}"]`);
+  if (card) {
+    card.classList.add('playing');
+    const btn = card.querySelector('.play-btn');
+    if (btn) { btn.classList.add('active'); btn.innerHTML = iconStop + '<span>playing…</span>'; }
+  }
+
+  utt.onend = utt.onerror = () => {
+    if (currentPlayingId === p.id) {
+      currentPlayingId = null;
+      if (card) {
+        card.classList.remove('playing');
+        const btn = card.querySelector('.play-btn');
+        if (btn) { btn.classList.remove('active'); btn.innerHTML = iconPlay + '<span>play</span>'; }
+      }
+    }
+  };
+
+  window.speechSynthesis.speak(utt);
+}
+
+function buildCard(p) {
+  const exampleHtml = p.examples.map(e => `<span class="example-word">${e}</span>`).join('');
+  const div = document.createElement('div');
+  div.className = 'card';
+  div.dataset.id = p.id;
+  div.innerHTML = `
+    <div class="card-header">
+      <div class="symbol-block">
+        <span class="symbol">${p.symbol}</span>
+        <span class="ipa">/${p.ipa}/</span>
+      </div>
+      <div class="examples">${exampleHtml}</div>
+    </div>
+    <div class="sentence">${p.sentence}</div>
+    <div class="transcript">${p.transcript}</div>
+    <button class="play-btn" aria-label="Play sentence">${iconPlay}<span>play</span></button>
+  `;
+  div.addEventListener('click', () => playCard(p));
+  div.querySelector('.play-btn').addEventListener('click', e => { e.stopPropagation(); playCard(p); });
+  return div;
+}
+
+// Populate panels
+const vowelPanel = document.getElementById('panel-vowels');
+const consonantPanel = document.getElementById('panel-consonants');
+
+phonemes.forEach(p => {
+  const card = buildCard(p);
+  if (p.type === 'vowel') vowelPanel.appendChild(card);
+  else consonantPanel.appendChild(card);
+});
+
+// Tabs
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    stopCurrent();
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// Load voices (some browsers need this trigger)
+window.speechSynthesis.getVoices();
+window.speechSynthesis.addEventListener('voiceschanged', () => window.speechSynthesis.getVoices());
 </script>
+</body>
+</html>
