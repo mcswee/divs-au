@@ -12,9 +12,9 @@ symbolism:
   - title: "The Diamond State"
     text: |
       Keeping the diamond shape maintains the representation with the state's nickname, the Diamond State.
-  -title: "Naturally
-   text: |
-     Replacing thr background with a field of green represents Arkansas's nstuyal environment and nstonsl parks and moves away from the boring, generic "Red, White and Blue".
+  -- title: "Natural landscape"
+    text: |
+      Replacing the background with a field of green represents Arkansas's natural environment and national parks and moves away from the boring, generic "Red, White and Blue".
   - title: "Four stars"
     text: |
       We keep thr four stars, however, slightly changing how they represent four nations that have ruled the land: Spain, France, the USA, and the First Nations.
