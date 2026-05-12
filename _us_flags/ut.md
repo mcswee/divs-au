@@ -18,4 +18,4 @@ symbolism:
   - title: "Unique colors"
     text: |
       Changing from generic "Red, White and Blue" to a unique pallette of blue, yellow and black gives the state a design framework to get around. The black and yellow represent the bee and added to the blue, creates a visually pleasing and distinct scheme.
- ---
+---
