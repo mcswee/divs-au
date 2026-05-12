@@ -10,8 +10,8 @@ description: |
   By changing the red to orange we remove connection to the Confederate color scheme, and get a distinct and attractive local flag.
 symbolism: |
   - title: "Orange"
-     text: |
-       Orange is a colour associated with Tennessee, from the daisies to the University of Texas to the sunses in the Smoky Mountains. Orange has been the colour associated with Tennessee.
+    text: |
+      Orange is a colour associated with Tennessee, from the daisies to the University of Texas to the sunses in the Smoky Mountains. Orange has been the colour associated with Tennessee.
   - title: "Flag evolution"
     text: |
       The current flag is distinctive and unique and represents Tennessee. Evolving the current flag, rather than replacing it, keeps thst association alive.
