@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Royal Lineage of England</title>
+<title>Royal Lineage of thr United Kingdom</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
@@ -399,40 +399,389 @@ function init(data) {
   document.getElementById('btn-in').addEventListener('click', () => zoomBy(1.5));
   document.getElementById('btn-out').addEventListener('click', () => zoomBy(0.67));
   document.getElementById('btn-fit').addEventListener('click', fitAll);
-  document.getElementById('btn-modern').addEventListener('click', goToWindsor);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Lineage of England</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0d0b08; --gold:#c9a84c; --gold-dim:#8a6f2e; --text:#e8dfc8; --dim:#9a8f78; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Cormorant Garamond',Georgia,serif;
+         overflow:hidden; height:100vh; width:100vw; }
 
-  window.addEventListener('resize', () => {
-    svg.attr('width', window.innerWidth).attr('height', window.innerHeight);
-  });
+  #header { position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:14px 24px 10px; pointer-events:none;
+    background:linear-gradient(to bottom,#0d0b08ee,transparent);
+    display:flex; align-items:baseline; gap:20px; }
+  #header h1 { font-family:'Cinzel',serif; font-size:17px; font-weight:600;
+    letter-spacing:.12em; color:var(--gold); text-transform:uppercase; }
+  #header p  { font-size:12px; color:var(--dim); font-style:italic; }
 
-  // Start on Windsor
-  setTimeout(goToWindsor, 150);
+  #controls { position:fixed; bottom:24px; right:24px; z-index:100;
+    display:flex; flex-direction:column; gap:8px; }
+  .btn { width:36px; height:36px; background:#2a2518; border:1px solid var(--gold-dim);
+    color:var(--gold); font-size:17px; cursor:pointer; border-radius:3px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Cinzel',serif; transition:background .15s; }
+  .btn:hover { background:#3a3220; }
+
+  #legend { position:fixed; bottom:24px; left:24px; z-index:100;
+    display:flex; flex-direction:column; gap:4px; max-height:55vh; overflow-y:auto; }
+  #legend::-webkit-scrollbar { width:4px; }
+  #legend::-webkit-scrollbar-thumb { background:var(--gold-dim); }
+  .leg { display:flex; align-items:center; gap:7px; font-size:11px; color:var(--dim);
+    font-family:'Cinzel',serif; letter-spacing:.06em; cursor:pointer; opacity:.85; transition:opacity .15s; }
+  .leg:hover { opacity:1; }
+  .swatch { width:10px; height:10px; border-radius:2px; border:1.5px solid; flex-shrink:0; }
+
+  #tip { position:fixed; z-index:200; pointer-events:none; background:#1e1b12;
+    border:1px solid var(--gold-dim); padding:12px 16px; max-width:260px;
+    opacity:0; transition:opacity .12s; box-shadow:0 8px 32px #00000099; }
+  #tip.on { opacity:1; }
+  #tip .tn { font-family:'Cinzel',serif; font-size:13px; color:var(--gold); margin-bottom:5px; }
+  #tip .tl { font-size:12px; color:var(--dim); line-height:1.75; }
+  #tip .th { font-size:11px; color:var(--dim); margin-top:7px; font-style:italic; }
+
+  #canvas { cursor:grab; }
+  #canvas.drag { cursor:grabbing; }
+  .node-card { cursor:pointer; }
+  .node-card:hover .bg { filter:brightness(1.2) drop-shadow(0 4px 10px #00000099); }
+  .node-card.dim { opacity:.12; }
+  .ep { fill:none; stroke-width:1.2; opacity:.28; }
+  .es { fill:none; stroke-width:.8; stroke-dasharray:4,3; opacity:.2; }
+  .era-lbl { font-family:'Cinzel',serif; font-size:10px; fill:#3a3220; letter-spacing:.07em; }
+</style>
+</head>
+<body>
+<div id="header"><h1>Royal Lineage</h1><p>Alfred the Great to Charles III &mdash; 1,100 years</p></div>
+<div id="legend"></div>
+<div id="controls">
+  <button class="btn" id="bin">+</button>
+  <button class="btn" id="bout">−</button>
+  <button class="btn" id="bfit" style="font-size:12px" title="Fit all">⊞</button>
+  <button class="btn" id="bw"  style="font-size:11px" title="Go to Windsor">W</button>
+</div>
+<div id="tip"><div class="tn" id="tn"></div><div class="tl" id="tl"></div><div class="th" id="th"></div></div>
+<svg id="canvas"></svg>
+
+<script>
+const CW=148, CH=98, SG=158, GG=156;
+
+function yiq(hex){
+  const h=hex.replace('#','');
+  const r=parseInt(h.slice(0,2),16), g=parseInt(h.slice(2,4),16), b=parseInt(h.slice(4,6),16);
+  return (r*299+g*587+b*114)/1000 >= 128 ? '#111' : '#f5edd8';
 }
+function trunc(s,n){ return s&&s.length>n ? s.slice(0,n-1)+'…' : (s||''); }
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
-function cardBg(d) {
-  const c = d.colours;
-  if (!c || !c.member) return '#2a2518';
-  if (d.state === 'excluded') return c.excluded;
-  if (d.state === 'reigning') return c.reigning;
+function cardBg(d){
+  const c=d.colours; if(!c||!c.member) return '#2a2518';
+  if(d.state==='excluded') return c.excluded;
+  if(d.state==='reigning') return c.reigning;
   return c.member;
 }
 
-function trunc(s, n) {
-  if (!s) return '';
-  return s.length > n ? s.slice(0, n-1) + '…' : s;
+function buildLines(d){
+  const L=[];
+  if(d.is_sovereign){
+    L.push({t:trunc(d.name,20),      cinzel:true,  sz:10.5, bold:true });
+    if(d.sobriquet)  L.push({t:trunc(d.sobriquet,24), italic:true, sz:9.5, dim:true});
+    if(d.birth_line) L.push({t:d.birth_line,           sz:9.5, dim:true});
+    if(d.dates)      L.push({t:d.dates,                sz:9.5, dim:true});
+    if(d.post_reign_death) L.push({t:d.post_reign_death, sz:9.5, dim:true});
+  } else if(d.gender==='F'){
+    L.push({t:trunc(d.name,22),      cinzel:true,  sz:10,   bold:true });
+    if(d.sobriquet)  L.push({t:trunc(d.sobriquet,24), italic:true, sz:9.5, dim:true});
+    if(d.birth_line) L.push({t:d.birth_line,           sz:9.5, dim:true});
+    if(d.marriage)   L.push({t:trunc('m. '+d.marriage,24), italic:true, sz:9, dim:true});
+  } else {
+    L.push({t:trunc(d.name,22),      cinzel:true,  sz:10,   bold:true });
+    if(d.sobriquet)    L.push({t:trunc(d.sobriquet,24),   italic:true, sz:9.5, dim:true});
+    if(d.designation) L.push({t:trunc(d.designation,24),  sz:9,   dim:true});
+    if(d.birth_line)  L.push({t:d.birth_line,             sz:9.5, dim:true});
+  }
+  return L.slice(0,5);
 }
 
-function buildLines(d) {
-  const lines = [];
-  if (d.is_sovereign) {
-    lines.push({ text: trunc(d.name, 20), cinzel: true, size: 10.5, bold: true });
-    if (d.sobriquet)  lines.push({ text: trunc(d.sobriquet, 24), italic: true, size: 9.5, dim: true });
-    if (d.birth_line) lines.push({ text: d.birth_line, size: 9.5, dim: true });
-    if (d.dates)      lines.push({ text: d.dates, size: 9.5, dim: true });
-    if (d.post_reign_death) lines.push({ text: d.post_reign_death, size: 9.5, dim: true });
-  } else if (d.gender === 'F') {
-    lines.push({ text: trunc(d.name, 22), cinzel: true, size: 10, bold: true });
+// ── Spine layout (runs in browser from JSON data) ─────────────────────────
+function computeLayout(data){
+  const nm={};
+  data.nodes.forEach(n=>{ nm[n.id]=n; });
+
+  const sovIds = new Set(data.nodes.filter(n=>n.is_sovereign).map(n=>n.id));
+  const sovs   = data.nodes.filter(n=>n.is_sovereign).sort((a,b)=>(a.seq||0)-(b.seq||0));
+
+  // Primary children, sorted by sibling_order
+  const primKids={};
+  data.edges.forEach(e=>{
+    if(e.type!=='primary') return;
+    if(!primKids[e.from]) primKids[e.from]=[];
+    primKids[e.from].push(e.to);
+  });
+  Object.values(primKids).forEach(arr=>arr.sort((a,b)=>(nm[a].sibling_order||0)-(nm[b].sibling_order||0)));
+
+  // Subtree width for non-sovereign branches
+  function bw(id){
+    const kids=(primKids[id]||[]).filter(c=>!sovIds.has(c));
+    if(!kids.length) return 1;
+    return kids.reduce((s,c)=>s+bw(c),0);
+  }
+
+  // Place a non-sovereign subtree; leftSlot is the leftmost column slot
+  function placeSub(id, leftSlot, gen){
+    const n=nm[id];
+    const kids=(primKids[id]||[]).filter(c=>!sovIds.has(c));
+    n.layoutGen=gen;
+    if(!kids.length){ n.layoutX=leftSlot+0.5; return; }
+    let cur=leftSlot;
+    kids.forEach(c=>{ const w=bw(c); placeSub(c,cur,gen+1); cur+=w; });
+    n.layoutX=(nm[kids[0]].layoutX + nm[kids[kids.length-1]].layoutX)/2;
+  }
+
+  // Place non-sovereign branches around a sovereign at spineCol
+  function placeBranches(sovId, spineCol, baseGen){
+    const kids=primKids[sovId]||[];
+    const spineKid=kids.find(c=>sovIds.has(c));
+    const nonSov=kids.filter(c=>!sovIds.has(c));
+    if(!nonSov.length) return;
+
+    const spineOrder = spineKid ? (nm[spineKid].sibling_order||0) : Infinity;
+    const leftKids   = nonSov.filter(c=>(nm[c].sibling_order||0)<spineOrder).reverse();
+    const rightKids  = nonSov.filter(c=>(nm[c].sibling_order||0)>spineOrder);
+
+    // Left branches: place from spine outward leftward
+    let lCur = spineCol - 1;
+    leftKids.forEach(c=>{ const w=bw(c); placeSub(c, lCur-w+1, baseGen+1); lCur-=w; });
+
+    // Right branches: place from spine outward rightward
+    let rCur = spineCol + 1;
+    rightKids.forEach(c=>{ const w=bw(c); placeSub(c, rCur, baseGen+1); rCur+=w; });
+  }
+
+  // Walk sovereign spine
+  const spineCol=0;
+  sovs.forEach(sov=>{
+    sov.layoutX    = spineCol;
+    sov.layoutGen  = sov.generation;
+    placeBranches(sov.id, spineCol, sov.generation);
+  });
+
+  // Place any orphaned nodes not reached above
+  let maxX=Math.max(...data.nodes.map(n=>n.layoutX||0))+2;
+  data.nodes.forEach(n=>{
+    if(n.layoutX===undefined){ n.layoutX=maxX; n.layoutGen=n.generation||1; maxX+=1; }
+  });
+
+  // Pixel coords
+  data.nodes.forEach(n=>{
+    n.px = n.layoutX * SG;
+    n.py = (n.layoutGen-1) * GG;
+  });
+}
+
+// ── Main ──────────────────────────────────────────────────────────────────
+fetch('/assets/data/royal.json')
+  .then(r=>r.json())
+  .then(data=>{
+    computeLayout(data);
+    render(data);
+  })
+  .catch(e=>{
+    document.body.innerHTML=`<div style="color:#c9a84c;padding:40px;font-family:Georgia,serif">
+      <h2>Could not load royal.json</h2>
+      <p>Run both files from a local server: <code>python3 -m http.server 8000</code></p>
+      <pre style="font-size:11px;margin-top:12px;color:#888">${e}</pre></div>`;
+  });
+
+function render(data){
+  const nm={};
+  data.nodes.forEach(n=>{ nm[n.id]=n; });
+
+  const allX=data.nodes.map(n=>n.px), allY=data.nodes.map(n=>n.py);
+  const minX=Math.min(...allX)-80,  maxX=Math.max(...allX)+CW+80;
+  const minY=Math.min(...allY)-80,  maxY=Math.max(...allY)+CH+80;
+
+  const svg=d3.select('#canvas')
+    .attr('width',window.innerWidth).attr('height',window.innerHeight);
+
+  const g=svg.append('g');
+
+  const zoom=d3.zoom().scaleExtent([0.02,3])
+    .on('start',()=>svg.classed('drag',true))
+    .on('zoom', e=>g.attr('transform',e.transform))
+    .on('end',  ()=>svg.classed('drag',false));
+  svg.call(zoom).on('dblclick.zoom',null);
+
+  // Era stripes
+  const ERAS=[
+    ['Wessex',1,9],['Knýtlinga & Godwin',10,14],
+    ['Normandy & Blois',15,20],['Anjou & Plantagenet',21,28],
+    ['Lancaster & York',29,33],['Tudor',34,37],
+    ['Stuart & Interregnum',38,39],['Orange-Nassau to Windsor',40,42],
+  ];
+  const sg=g.append('g');
+  ERAS.forEach(([lbl,g1,g2],i)=>{
+    const y1=(g1-1)*GG-GG*.45, y2=g2*GG+GG*.45;
+    sg.append('rect').attr('x',minX).attr('width',maxX-minX)
+      .attr('y',y1).attr('height',y2-y1)
+      .attr('fill',i%2===0?'#ffffff03':'none');
+    sg.append('text').attr('class','era-lbl')
+      .attr('x',minX+10).attr('y',y1+14).text(lbl);
+  });
+
+  // Spine line
+  const spineX = nm['!!_Alf'].px + CW/2;
+  g.append('line')
+    .attr('x1',spineX).attr('x2',spineX)
+    .attr('y1',minY).attr('y2',maxY)
+    .attr('stroke','#c9a84c').attr('stroke-width',.5).attr('opacity',.08);
+
+  // Edges
+  const eg=g.append('g');
+  data.edges.forEach(e=>{
+    const p=nm[e.from], c=nm[e.to];
+    if(!p||!c) return;
+    const x1=p.px+CW/2, y1=p.py+CH;
+    const x2=c.px+CW/2, y2=c.py;
+    const my=(y1+y2)/2;
+    const col=(p.colours&&p.colours.border)||'#666';
+    eg.append('path')
+      .attr('class',e.type==='primary'?'ep':'es')
+      .attr('stroke',col)
+      .attr('d',`M${x1},${y1} C${x1},${my} ${x2},${my} ${x2},${y2}`);
+  });
+
+  // Nodes
+  const ng=g.append('g');
+  const cards=ng.selectAll('g.node-card')
+    .data(data.nodes).join('g')
+    .attr('class','node-card')
+    .attr('transform',d=>`translate(${d.px},${d.py})`);
+
+  cards.append('rect').attr('class','bg')
+    .attr('width',CW).attr('height',CH).attr('rx',3).attr('ry',3)
+    .attr('fill',d=>cardBg(d))
+    .attr('stroke',d=>(d.colours&&d.colours.border)||'#555')
+    .attr('stroke-width',1.5)
+    .style('filter','drop-shadow(0 2px 5px #00000055)');
+
+  // Sovereign accent bar
+  cards.filter(d=>d.is_sovereign).append('rect')
+    .attr('width',CW).attr('height',3).attr('rx',3)
+    .attr('fill',d=>(d.colours&&d.colours.border)||'#888');
+
+  // Text
+  cards.each(function(d){
+    const el=d3.select(this);
+    const bg=cardBg(d), fill=yiq(bg), fillDim=fill==='#111'?'#444':'#c8bfa8';
+    const lines=buildLines(d);
+    const lh=13.5, total=lines.length*lh;
+    let y=(CH-total)/2+(d.is_sovereign?4:2);
+    lines.forEach(ln=>{
+      el.append('text')
+        .attr('x',CW/2).attr('y',y)
+        .attr('text-anchor','middle').attr('dominant-baseline','hanging')
+        .attr('font-family',ln.cinzel?"'Cinzel',serif":"'Cormorant Garamond',Georgia,serif")
+        .attr('font-size',ln.sz||10)
+        .attr('font-weight',ln.bold?600:400)
+        .attr('font-style',ln.italic?'italic':'normal')
+        .attr('fill',ln.dim?fillDim:fill)
+        .text(ln.t);
+      y+=lh;
+    });
+  });
+
+  // Tooltip
+  const tip=document.getElementById('tip');
+  const tn=document.getElementById('tn');
+  const tl=document.getElementById('tl');
+  const th=document.getElementById('th');
+
+  cards.on('mouseenter',(event,d)=>{
+    const rows=[];
+    if(d.sobriquet)  rows.push(`"${d.sobriquet}"`);
+    if(d.designation) rows.push(d.designation);
+    if(d.is_sovereign&&d.birth_line) rows.push(d.birth_line);
+    if(d.dates) rows.push(`Reign: ${d.dates}`);
+    if(d.post_reign_death) rows.push(d.post_reign_death);
+    if(!d.is_sovereign&&d.birth_line) rows.push(d.birth_line);
+    if(d.marriage) rows.push(`m. ${d.marriage}`);
+    if(d.excl_yr)  rows.push(`Excluded ${d.excl_yr}`);
+    tn.textContent=d.name;
+    tl.innerHTML=rows.map(r=>`<div>${r}</div>`).join('');
+    th.textContent=`House of ${d.house}`;
+    tip.classList.add('on');
+  })
+  .on('mousemove',event=>{
+    const tw=tip.offsetWidth, tth=tip.offsetHeight;
+    let tx=event.clientX+16, ty=event.clientY-tth/2;
+    if(tx+tw>window.innerWidth-8) tx=event.clientX-tw-16;
+    ty=Math.max(8,Math.min(ty,window.innerHeight-tth-8));
+    tip.style.left=tx+'px'; tip.style.top=ty+'px';
+  })
+  .on('mouseleave',()=>tip.classList.remove('on'))
+  .on('click',(event,d)=>{
+    event.stopPropagation();
+    const rel=new Set([d.id]);
+    data.edges.forEach(e=>{
+      if(e.from===d.id) rel.add(e.to);
+      if(e.to===d.id)   rel.add(e.from);
+    });
+    cards.classed('dim',n=>!rel.has(n.id));
+  });
+
+  svg.on('click',()=>cards.classed('dim',false));
+
+  // Legend
+  let legFilter=null;
+  const legEl=document.getElementById('legend');
+  Object.entries(data.house_colours).forEach(([name,c])=>{
+    const item=document.createElement('div');
+    item.className='leg';
+    item.innerHTML=`<div class="swatch" style="background:${c.member};border-color:${c.border}"></div><span>${name}</span>`;
+    item.addEventListener('click',()=>{
+      if(legFilter===name){ cards.classed('dim',false); legFilter=null; }
+      else { cards.classed('dim',n=>n.house!==name); legFilter=name; }
+    });
+    legEl.appendChild(item);
+  });
+
+  // Controls
+  const zBy=f=>svg.transition().duration(300).call(zoom.scaleBy,f);
+  const zTo=t=>svg.transition().duration(700).call(zoom.transform,t);
+
+  function fitAll(){
+    const vw=window.innerWidth, vh=window.innerHeight;
+    const tw=maxX-minX, th=maxY-minY;
+    const sc=Math.min(vw/tw,vh/th)*.88;
+    zTo(d3.zoomIdentity.translate((vw-tw*sc)/2-minX*sc,(vh-th*sc)/2-minY*sc).scale(sc));
+  }
+
+  function goWindsor(){
+    const ws=data.nodes.filter(n=>n.house==='Windsor');
+    const wxs=ws.map(n=>n.px), wys=ws.map(n=>n.py);
+    const cx=(Math.min(...wxs)+Math.max(...wxs))/2+CW/2;
+    const cy=(Math.min(...wys)+Math.max(...wys))/2+CH/2;
+    const sc=1.1, vw=window.innerWidth, vh=window.innerHeight;
+    zTo(d3.zoomIdentity.translate(vw/2-cx*sc,vh/2-cy*sc).scale(sc));
+  }
+
+  document.getElementById('bin').addEventListener('click',()=>zBy(1.5));
+  document.getElementById('bout').addEventListener('click',()=>zBy(0.67));
+  document.getElementById('bfit').addEventListener('click',fitAll);
+  document.getElementById('bw').addEventListener('click',goWindsor);
+  window.addEventListener('resize',()=>svg.attr('width',window.innerWidth).attr('height',window.innerHeight));
+
+  setTimeout(goWindsor,150);
+}
+</script>
+</body>
+</html>
+10, bold: true });
     if (d.sobriquet)  lines.push({ text: trunc(d.sobriquet, 24), italic: true, size: 9.5, dim: true });
     if (d.birth_line) lines.push({ text: d.birth_line, size: 9.5, dim: true });
     if (d.marriage)   lines.push({ text: trunc('m. '+d.marriage, 24), italic: true, size: 9, dim: true });
