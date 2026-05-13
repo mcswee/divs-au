@@ -129,7 +129,7 @@ function yiqText(hex) {
   return ((r*299 + g*587 + b*114)/1000) >= 128 ? '#111111' : '#f5edd8';
 }
 
-fetch('royal.json')
+fetch('/assets/data/royal.json')
   .then(r => r.json())
   .then(init)
   .catch(e => {
