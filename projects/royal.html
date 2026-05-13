@@ -3,211 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Royal Lineage of the United Kingdom</title>
+<title>Royal Lineage of England</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0d0b08;
-    --surface: #1a1710;
     --gold: #c9a84c;
     --gold-dim: #8a6f2e;
     --text: #e8dfc8;
     --text-dim: #9a8f78;
-    --card-w: 148px;
-    --card-h: 102px;
-    --gen-gap: 160px;
-    --sib-gap: 164px;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     background: var(--bg);
     color: var(--text);
     font-family: 'Cormorant Garamond', Georgia, serif;
     overflow: hidden;
-    height: 100vh;
-    width: 100vw;
+    height: 100vh; width: 100vw;
   }
-
   #header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 14px 24px 12px;
-    background: linear-gradient(to bottom, #0d0b08ee, #0d0b0800);
-    display: flex;
-    align-items: baseline;
-    gap: 20px;
+    background: linear-gradient(to bottom, #0d0b08ee, transparent);
+    display: flex; align-items: baseline; gap: 20px;
     pointer-events: none;
   }
-
   #header h1 {
-    font-family: 'Cinzel', serif;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    text-transform: uppercase;
+    font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600;
+    letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase;
   }
-
-  #header p {
-    font-size: 13px;
-    color: var(--text-dim);
-    font-style: italic;
-  }
+  #header p { font-size: 13px; color: var(--text-dim); font-style: italic; }
 
   #controls {
-    position: fixed;
-    bottom: 24px; right: 24px;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    position: fixed; bottom: 24px; right: 24px; z-index: 100;
+    display: flex; flex-direction: column; gap: 8px;
   }
-
   .ctrl-btn {
-    width: 36px; height: 36px;
-    background: #2a2518;
-    border: 1px solid var(--gold-dim);
-    color: var(--gold);
-    font-size: 18px;
-    cursor: pointer;
+    width: 36px; height: 36px; background: #2a2518;
+    border: 1px solid var(--gold-dim); color: var(--gold);
+    font-size: 18px; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    border-radius: 3px;
-    transition: background 0.15s;
+    border-radius: 3px; transition: background 0.15s;
     font-family: 'Cinzel', serif;
   }
   .ctrl-btn:hover { background: #3a3220; }
 
   #house-legend {
-    position: fixed;
-    bottom: 24px; left: 24px;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    max-height: 60vh;
-    overflow-y: auto;
+    position: fixed; bottom: 24px; left: 24px; z-index: 100;
+    display: flex; flex-direction: column; gap: 4px;
+    max-height: 55vh; overflow-y: auto;
   }
   #house-legend::-webkit-scrollbar { width: 4px; }
   #house-legend::-webkit-scrollbar-thumb { background: var(--gold-dim); }
-
   .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 11px;
-    color: var(--text-dim);
-    font-family: 'Cinzel', serif;
-    letter-spacing: 0.06em;
-    cursor: pointer;
-    opacity: 0.85;
-    transition: opacity 0.15s;
+    display: flex; align-items: center; gap: 7px;
+    font-size: 11px; color: var(--text-dim);
+    font-family: 'Cinzel', serif; letter-spacing: 0.06em;
+    cursor: pointer; opacity: 0.85; transition: opacity 0.15s;
   }
   .legend-item:hover { opacity: 1; }
   .legend-swatch {
-    width: 10px; height: 10px;
-    border-radius: 2px;
-    border: 1.5px solid;
-    flex-shrink: 0;
+    width: 10px; height: 10px; border-radius: 2px;
+    border: 1.5px solid; flex-shrink: 0;
   }
 
   #tooltip {
-    position: fixed;
-    z-index: 200;
-    pointer-events: none;
-    background: #1e1b12;
-    border: 1px solid var(--gold-dim);
-    padding: 12px 16px;
-    max-width: 240px;
-    opacity: 0;
-    transition: opacity 0.12s;
+    position: fixed; z-index: 200; pointer-events: none;
+    background: #1e1b12; border: 1px solid var(--gold-dim);
+    padding: 12px 16px; max-width: 260px;
+    opacity: 0; transition: opacity 0.12s;
     box-shadow: 0 8px 32px #00000088;
   }
   #tooltip.visible { opacity: 1; }
-  #tooltip .tt-name {
-    font-family: 'Cinzel', serif;
-    font-size: 13px;
-    color: var(--gold);
-    margin-bottom: 4px;
-  }
-  #tooltip .tt-line {
-    font-size: 12px;
-    color: var(--text-dim);
-    line-height: 1.7;
-  }
-  #tooltip .tt-house {
-    font-size: 11px;
-    color: var(--text-dim);
-    margin-top: 6px;
-    font-style: italic;
-  }
+  #tooltip .tt-name { font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold); margin-bottom: 5px; }
+  #tooltip .tt-line { font-size: 12px; color: var(--text-dim); line-height: 1.75; }
+  #tooltip .tt-house { font-size: 11px; color: var(--text-dim); margin-top: 7px; font-style: italic; }
 
-  svg { display: block; cursor: grab; }
-  svg.dragging { cursor: grabbing; }
+  svg { display: block; }
+  #canvas { cursor: grab; }
+  #canvas.dragging { cursor: grabbing; }
 
-  .node-card {
-    cursor: pointer;
-  }
-
-  .card-rect {
-    rx: 3;
-    ry: 3;
-    filter: drop-shadow(0 2px 6px #00000066);
-    transition: filter 0.15s;
-  }
-
-  .node-card:hover .card-rect {
-    filter: drop-shadow(0 4px 14px #00000099) brightness(1.15);
-  }
-
-  .card-text {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    fill: #f0e8d4;
-    pointer-events: none;
-  }
-  .card-name {
-    font-size: 11px;
-    font-weight: 600;
-    font-family: 'Cinzel', serif;
-    fill: #f5edd8;
-  }
-  .card-sub {
-    font-size: 9.5px;
-    fill: #c8bfa8;
-    font-style: italic;
-  }
-  .card-dates {
-    font-size: 9.5px;
-    fill: #b8af98;
-  }
-
-  .edge-primary {
-    fill: none;
-    stroke-width: 1.2;
-    opacity: 0.35;
-  }
-  .edge-secondary {
-    fill: none;
-    stroke-width: 0.8;
-    stroke-dasharray: 4,3;
-    opacity: 0.25;
-  }
-
-  .node-card.highlighted .card-rect {
-    filter: drop-shadow(0 0 12px currentColor) brightness(1.3);
-  }
-  .node-card.dimmed { opacity: 0.2; }
-
-  .gen-label {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    fill: #4a4230;
-    letter-spacing: 0.08em;
-  }
+  .card-rect { transition: filter 0.15s; }
+  .node-card:hover .card-rect { filter: brightness(1.2) drop-shadow(0 4px 10px #00000099); }
+  .node-card.dimmed { opacity: 0.15; }
+  .edge-primary   { fill: none; stroke-width: 1.2; opacity: 0.3; }
+  .edge-secondary { fill: none; stroke-width: 0.8; stroke-dasharray: 4,3; opacity: 0.22; }
+  .era-label { font-family: 'Cinzel', serif; font-size: 10px; fill: #3a3220; letter-spacing: 0.08em; }
 </style>
 </head>
 <body>
@@ -220,10 +103,10 @@
 <div id="house-legend"></div>
 
 <div id="controls">
-  <button class="ctrl-btn" id="btn-in" title="Zoom in">+</button>
-  <button class="ctrl-btn" id="btn-out" title="Zoom out">−</button>
-  <button class="ctrl-btn" id="btn-fit" title="Fit all" style="font-size:12px">⊞</button>
-  <button class="ctrl-btn" id="btn-modern" title="Go to Windsor" style="font-size:10px;letter-spacing:-0.5px">W</button>
+  <button class="ctrl-btn" id="btn-in">+</button>
+  <button class="ctrl-btn" id="btn-out">−</button>
+  <button class="ctrl-btn" id="btn-fit" style="font-size:12px" title="Fit all">⊞</button>
+  <button class="ctrl-btn" id="btn-modern" style="font-size:11px;letter-spacing:-0.5px" title="Go to Windsor">W</button>
 </div>
 
 <div id="tooltip">
@@ -235,350 +118,331 @@
 <svg id="canvas"></svg>
 
 <script>
-// ─── Constants ────────────────────────────────────────────────────────────────
-const CW = 148, CH = 102, GG = 168, SG = 162;
-const PAD = 40;
+const CW = 148, CH = 98, GG = 156, SG = 158;
 
-// ─── Load data ───────────────────────────────────────────────────────────────
-fetch('/assets/data/royal.json')
+// YIQ contrast: returns '#000' or '#fff' for best readability
+function yiqText(hex) {
+  const h = hex.replace('#','');
+  const r = parseInt(h.slice(0,2),16);
+  const g = parseInt(h.slice(2,4),16);
+  const b = parseInt(h.slice(4,6),16);
+  return ((r*299 + g*587 + b*114)/1000) >= 128 ? '#111111' : '#f5edd8';
+}
+
+fetch('royal.json')
   .then(r => r.json())
-  .then(data => init(data))
+  .then(init)
   .catch(e => {
-    document.body.innerHTML = `<div style="color:#c9a84c;padding:40px;font-family:serif">
+    document.body.innerHTML = `<div style="color:#c9a84c;padding:40px;font-family:Georgia,serif">
       <h2>Could not load royal.json</h2>
-      <p>Ensure royal.json is in the same directory as this HTML file.</p>
-      <pre style="font-size:12px;margin-top:12px;color:#888">${e}</pre>
-    </div>`;
+      <p>Serve both files from the same web server (e.g. <code>python3 -m http.server 8000</code>).</p>
+      <pre style="font-size:11px;margin-top:12px;color:#888">${e}</pre></div>`;
   });
 
 function init(data) {
   const nodeMap = {};
-  data.nodes.forEach(n => nodeMap[n.id] = n);
+  data.nodes.forEach(n => { nodeMap[n.id] = n; });
 
-  // ─── Compute layout positions ─────────────────────────────────────────────
-  // Group children by primary parent, respecting sibling_order
+  // ── 1. Build primary children map, sorted by sibling_order ──────────────
   const primaryChildren = {};
   data.edges.forEach(e => {
-    if (e.type === 'primary') {
-      if (!primaryChildren[e.from]) primaryChildren[e.from] = [];
-      primaryChildren[e.from].push(e.to);
-    }
+    if (e.type !== 'primary') return;
+    if (!primaryChildren[e.from]) primaryChildren[e.from] = [];
+    primaryChildren[e.from].push(e.to);
   });
-  // Sort by sibling_order
-  Object.values(primaryChildren).forEach(arr => {
-    arr.sort((a, b) => (nodeMap[a].sibling_order || 0) - (nodeMap[b].sibling_order || 0));
-  });
+  Object.values(primaryChildren).forEach(arr =>
+    arr.sort((a,b) => (nodeMap[a].sibling_order||0) - (nodeMap[b].sibling_order||0))
+  );
 
-  // Assign x positions via post-order tree layout
-  // Use generation as y, compute x by recursive subtree width
-  function subtreeWidth(id) {
-    const children = primaryChildren[id] || [];
-    if (!children.length) return 1;
-    return children.reduce((s, c) => s + subtreeWidth(c), 0);
-  }
-
-  function assignX(id, left) {
-    const n = nodeMap[id];
+  // ── 2. Assign x positions via recursive subtree layout ──────────────────
+  // Returns the next available x slot after placing this subtree.
+  // Stores result in node.layoutX (unit columns, converted to px later).
+  function place(id, cursor) {
     const children = primaryChildren[id] || [];
     if (!children.length) {
-      n._x = left + 0.5;
-      return left + 1;
+      nodeMap[id].layoutX = cursor + 0.5;
+      return cursor + 1;
     }
-    let cursor = left;
-    let minX = Infinity, maxX = -Infinity;
-    children.forEach(cid => {
-      cursor = assignX(cid, cursor);
-      minX = Math.min(minX, nodeMap[cid]._x);
-      maxX = Math.max(maxX, nodeMap[cid]._x);
-    });
-    n._x = (minX + maxX) / 2;
+    let start = cursor;
+    children.forEach(cid => { cursor = place(cid, cursor); });
+    // Centre parent over its children
+    const firstX = nodeMap[children[0]].layoutX;
+    const lastX  = nodeMap[children[children.length-1]].layoutX;
+    nodeMap[id].layoutX = (firstX + lastX) / 2;
     return cursor;
   }
+  place('!!_Alf', 0);
 
-  // Find root (Alfred)
-  const rootId = '!!_Alf';
-  assignX(rootId, 0);
+  // Handle any nodes not reached from Alfred (isolated or secondary-only)
+  let maxX = Math.max(...data.nodes.map(n => n.layoutX || 0)) + 2;
+  data.nodes.forEach(n => {
+    if (n.layoutX === undefined) { n.layoutX = maxX; maxX += 1; }
+  });
 
   // Convert to pixel coords
-  // Y: generation * GG, but invert so oldest is top (generation 1 = top)
-  const maxGen = Math.max(...data.nodes.map(n => n.generation || 1));
   data.nodes.forEach(n => {
-    n.px = n._x * SG;
+    n.px = n.layoutX * SG;
     n.py = ((n.generation || 1) - 1) * GG;
   });
 
-  // ─── Canvas bounds ────────────────────────────────────────────────────────
   const allX = data.nodes.map(n => n.px);
   const allY = data.nodes.map(n => n.py);
-  const minX = Math.min(...allX) - PAD;
-  const maxX = Math.max(...allX) + CW + PAD;
-  const minY = Math.min(...allY) - PAD;
-  const maxY = Math.max(...allY) + CH + PAD;
-  const totalW = maxX - minX;
-  const totalH = maxY - minY;
+  const minX = Math.min(...allX) - 60;
+  const maxXpx = Math.max(...allX) + CW + 60;
+  const minY = Math.min(...allY) - 60;
+  const maxYpx = Math.max(...allY) + CH + 60;
 
-  // ─── SVG setup ────────────────────────────────────────────────────────────
+  // ── 3. SVG + zoom ────────────────────────────────────────────────────────
   const svg = d3.select('#canvas')
     .attr('width', window.innerWidth)
     .attr('height', window.innerHeight);
 
+  const g = svg.append('g').attr('class', 'root');
+
   const zoom = d3.zoom()
-    .scaleExtent([0.03, 2.5])
-    .on('zoom', e => {
-      g.attr('transform', e.transform);
-      svg.classed('dragging', e.sourceEvent && e.sourceEvent.type === 'mousemove');
-    })
-    .on('end', () => svg.classed('dragging', false));
+    .scaleExtent([0.02, 3])
+    .on('start', () => svg.classed('dragging', true))
+    .on('zoom',  e  => g.attr('transform', e.transform))
+    .on('end',   () => svg.classed('dragging', false));
 
-  svg.call(zoom);
+  svg.call(zoom).on('dblclick.zoom', null);
 
-  const g = svg.append('g');
-
-  // Generation stripe backgrounds
-  const stripes = g.append('g').attr('class', 'stripes');
-  // Subtle alternating bands
-  const HOUSE_ERAS = [
-    { name: 'Wessex', gen: [1, 9] },
-    { name: 'Knýtlinga & Godwin', gen: [10, 14] },
-    { name: 'Normandy & Blois', gen: [15, 20] },
-    { name: 'Anjou & Plantagenet', gen: [21, 28] },
-    { name: 'Lancaster & York', gen: [29, 33] },
-    { name: 'Tudor', gen: [34, 37] },
-    { name: 'Stuart & Interregnum', gen: [38, 38] },
-    { name: 'Restoration onward', gen: [39, 42] },
+  // ── 4. Era stripe labels ──────────────────────────────────────────────────
+  const ERAS = [
+    ['Wessex', 1, 9], ['Knýtlinga & Godwin', 10, 14],
+    ['Normandy & Blois', 15, 20], ['Anjou & Plantagenet', 21, 28],
+    ['Lancaster & York', 29, 33], ['Tudor', 34, 37],
+    ['Stuart & Interregnum', 38, 39], ['Orange-Nassau to Windsor', 40, 42],
   ];
-
-  HOUSE_ERAS.forEach((era, i) => {
-    const y1 = (era.gen[0] - 1) * GG - GG * 0.45;
-    const y2 = era.gen[1] * GG + GG * 0.45;
-    stripes.append('rect')
-      .attr('x', minX).attr('y', y1)
-      .attr('width', totalW).attr('height', y2 - y1)
-      .attr('fill', i % 2 === 0 ? '#ffffff04' : '#ffffff00');
-    stripes.append('text')
-      .attr('class', 'gen-label')
-      .attr('x', minX + 8)
-      .attr('y', y1 + 14)
-      .text(era.name);
+  const stripG = g.append('g');
+  ERAS.forEach(([label, g1, g2], i) => {
+    const y1 = (g1 - 1) * GG - GG * 0.45;
+    const y2 = g2 * GG + GG * 0.45;
+    stripG.append('rect')
+      .attr('x', minX).attr('width', maxXpx - minX)
+      .attr('y', y1).attr('height', y2 - y1)
+      .attr('fill', i % 2 === 0 ? '#ffffff03' : 'none');
+    stripG.append('text').attr('class', 'era-label')
+      .attr('x', minX + 10).attr('y', y1 + 15)
+      .text(label);
   });
 
-  // ─── Edges ────────────────────────────────────────────────────────────────
-  const edgeG = g.append('g').attr('class', 'edges');
-
+  // ── 5. Edges ──────────────────────────────────────────────────────────────
+  const edgeG = g.append('g');
   data.edges.forEach(e => {
     const p = nodeMap[e.from], c = nodeMap[e.to];
-    if (!p || !c) return;
-    const x1 = p.px + CW / 2, y1 = p.py + CH;
-    const x2 = c.px + CW / 2, y2 = c.py;
+    if (!p || !c || p.px == null || c.px == null) return;
+    const x1 = p.px + CW/2, y1 = p.py + CH;
+    const x2 = c.px + CW/2, y2 = c.py;
     const my = (y1 + y2) / 2;
-
-    const col = (p.colours && p.colours.member) || '#888';
+    const col = (p.colours && p.colours.border) || '#666';
     edgeG.append('path')
       .attr('class', e.type === 'primary' ? 'edge-primary' : 'edge-secondary')
       .attr('stroke', col)
       .attr('d', `M${x1},${y1} C${x1},${my} ${x2},${my} ${x2},${y2}`);
   });
 
-  // ─── Nodes ────────────────────────────────────────────────────────────────
-  const nodeG = g.append('g').attr('class', 'nodes');
-
-  const nodeEls = nodeG.selectAll('.node-card')
+  // ── 6. Node cards ──────────────────────────────────────────────────────────
+  const nodeG = g.append('g');
+  const nodeEls = nodeG.selectAll('g.node-card')
     .data(data.nodes)
     .join('g')
     .attr('class', 'node-card')
-    .attr('transform', d => `translate(${d.px},${d.py})`);
+    .attr('transform', d => `translate(${d.px},${d.py})`)
+    .style('cursor', 'pointer');
 
-  // Card background
+  // Background rect
   nodeEls.append('rect')
     .attr('class', 'card-rect')
-    .attr('width', CW).attr('height', CH)
-    .attr('fill', d => cardFill(d))
+    .attr('width', CW).attr('height', CH).attr('rx', 3).attr('ry', 3)
+    .attr('fill',   d => cardBg(d))
     .attr('stroke', d => (d.colours && d.colours.border) || '#555')
-    .attr('stroke-width', 1.5);
+    .attr('stroke-width', 1.5)
+    .style('filter', 'drop-shadow(0 2px 5px #00000055)');
 
-  // Sovereign top accent bar
+  // Sovereign accent bar
   nodeEls.filter(d => d.is_sovereign)
     .append('rect')
-    .attr('width', CW).attr('height', 3)
-    .attr('fill', d => (d.colours && d.colours.border) || '#888')
-    .attr('opacity', 0.9);
+    .attr('width', CW).attr('height', 3).attr('rx', 3)
+    .attr('fill', d => (d.colours && d.colours.border) || '#888');
 
-  // Card content
+  // Text lines
   nodeEls.each(function(d) {
-    const el = d3.select(this);
-    const lines = cardLines(d);
-    const lineH = 13;
-    const totalH_lines = lines.length * lineH;
-    const startY = (CH - totalH_lines) / 2 + 6;
+    const el   = d3.select(this);
+    const bg   = cardBg(d);
+    const fill = yiqText(bg);
+    const fillDim = fill === '#111111' ? '#333333' : '#c8bfa8';
+    const lines = buildLines(d);
+    const lineH = 13.5;
+    const totalH = lines.length * lineH;
+    let y = (CH - totalH) / 2 + (d.is_sovereign ? 4 : 2);
 
-    lines.forEach((line, i) => {
+    lines.forEach(line => {
       el.append('text')
-        .attr('class', `card-text ${line.cls}`)
         .attr('x', CW / 2)
-        .attr('y', startY + i * lineH)
+        .attr('y', y)
         .attr('text-anchor', 'middle')
         .attr('dominant-baseline', 'hanging')
+        .attr('font-family', line.cinzel ? "'Cinzel', serif" : "'Cormorant Garamond', Georgia, serif")
+        .attr('font-size',   line.size || 10)
+        .attr('font-weight', line.bold ? 600 : 400)
+        .attr('font-style',  line.italic ? 'italic' : 'normal')
+        .attr('fill', line.dim ? fillDim : fill)
         .text(line.text);
+      y += lineH;
     });
   });
 
-  // ─── Tooltip ─────────────────────────────────────────────────────────────
-  const tooltip = document.getElementById('tooltip');
-  const ttName  = document.getElementById('tt-name');
-  const ttLines = document.getElementById('tt-lines');
-  const ttHouse = document.getElementById('tt-house');
+  // ── 7. Tooltip ────────────────────────────────────────────────────────────
+  const tooltip  = document.getElementById('tooltip');
+  const ttName   = document.getElementById('tt-name');
+  const ttLines  = document.getElementById('tt-lines');
+  const ttHouse  = document.getElementById('tt-house');
 
   nodeEls
-    .on('mousemove', function(event, d) {
-      ttName.textContent = d.name;
-      const lines = [];
-      if (d.sobriquet) lines.push(`"${d.sobriquet}"`);
-      if (d.designation) lines.push(d.designation);
-      if (d.is_sovereign && d.birth_line) lines.push(d.birth_line);
-      if (d.dates) lines.push(`Reign: ${d.dates}`);
-      if (d.post_reign_death) lines.push(d.post_reign_death);
-      if (!d.is_sovereign && d.birth_line) lines.push(d.birth_line);
-      if (d.marriage) lines.push(`m. ${d.marriage}`);
-      if (d.excl_yr) lines.push(`Excluded ${d.excl_yr}`);
-      ttLines.innerHTML = lines.map(l => `<div>${l}</div>`).join('');
+    .on('mouseenter', function(event, d) {
+      const rows = [];
+      if (d.sobriquet)  rows.push(`"${d.sobriquet}"`);
+      if (d.designation) rows.push(d.designation);
+      if (d.is_sovereign && d.birth_line) rows.push(d.birth_line);
+      if (d.dates)       rows.push(`Reign: ${d.dates}`);
+      if (d.post_reign_death) rows.push(d.post_reign_death);
+      if (!d.is_sovereign && d.birth_line) rows.push(d.birth_line);
+      if (d.marriage)    rows.push(`m. ${d.marriage}`);
+      if (d.excl_yr)     rows.push(`Excluded ${d.excl_yr}`);
+      ttName.textContent  = d.name;
+      ttLines.innerHTML   = rows.map(r => `<div>${r}</div>`).join('');
       ttHouse.textContent = `House of ${d.house}`;
       tooltip.classList.add('visible');
-      positionTooltip(event);
     })
-    .on('mousemove.pos', function(event) { positionTooltip(event); })
+    .on('mousemove', function(event) { positionTip(event); })
     .on('mouseleave', () => tooltip.classList.remove('visible'))
     .on('click', function(event, d) {
       event.stopPropagation();
-      highlightFamily(d, nodeEls, data.edges, nodeMap);
+      highlightFamily(d);
     });
 
-  svg.on('click', () => clearHighlight(nodeEls));
+  svg.on('click', clearHighlight);
 
-  function positionTooltip(event) {
+  function positionTip(event) {
     const tw = tooltip.offsetWidth, th = tooltip.offsetHeight;
-    let tx = event.clientX + 14, ty = event.clientY - th / 2;
-    if (tx + tw > window.innerWidth - 10) tx = event.clientX - tw - 14;
-    if (ty < 10) ty = 10;
-    if (ty + th > window.innerHeight - 10) ty = window.innerHeight - th - 10;
+    let tx = event.clientX + 16, ty = event.clientY - th / 2;
+    if (tx + tw > window.innerWidth - 8) tx = event.clientX - tw - 16;
+    ty = Math.max(8, Math.min(ty, window.innerHeight - th - 8));
     tooltip.style.left = tx + 'px';
     tooltip.style.top  = ty + 'px';
   }
 
-  // ─── Legend ───────────────────────────────────────────────────────────────
+  function highlightFamily(d) {
+    const related = new Set([d.id]);
+    data.edges.forEach(e => {
+      if (e.from === d.id) related.add(e.to);
+      if (e.to   === d.id) related.add(e.from);
+    });
+    nodeEls.classed('dimmed', n => !related.has(n.id));
+  }
+
+  function clearHighlight() {
+    nodeEls.classed('dimmed', false);
+  }
+
+  // ── 8. Legend ─────────────────────────────────────────────────────────────
   const legendEl = document.getElementById('house-legend');
+  let legendFiltered = null;
   Object.entries(data.house_colours).forEach(([name, c]) => {
     const item = document.createElement('div');
     item.className = 'legend-item';
-    item.innerHTML = `
-      <div class="legend-swatch" style="background:${c.member};border-color:${c.border}"></div>
-      <span>${name}</span>`;
-    item.addEventListener('click', () => filterByHouse(name, nodeEls));
+    item.innerHTML = `<div class="legend-swatch" style="background:${c.member};border-color:${c.border}"></div><span>${name}</span>`;
+    item.addEventListener('click', () => {
+      if (legendFiltered === name) {
+        clearHighlight();
+        legendFiltered = null;
+      } else {
+        nodeEls.classed('dimmed', n => n.house !== name);
+        legendFiltered = name;
+      }
+    });
     legendEl.appendChild(item);
   });
 
-  // ─── Controls ─────────────────────────────────────────────────────────────
-  document.getElementById('btn-in').addEventListener('click', () => {
-    svg.transition().duration(300).call(zoom.scaleBy, 1.5);
-  });
-  document.getElementById('btn-out').addEventListener('click', () => {
-    svg.transition().duration(300).call(zoom.scaleBy, 0.67);
-  });
-  document.getElementById('btn-fit').addEventListener('click', () => fitAll());
-  document.getElementById('btn-modern').addEventListener('click', () => goToWindsor());
+  // ── 9. Control buttons ────────────────────────────────────────────────────
+  function zoomBy(factor) {
+    svg.transition().duration(300).call(zoom.scaleBy, factor);
+  }
+
+  function zoomTo(transform) {
+    svg.transition().duration(700).call(zoom.transform, transform);
+  }
 
   function fitAll() {
     const vw = window.innerWidth, vh = window.innerHeight;
-    const scale = Math.min(vw / totalW, vh / totalH) * 0.9;
-    const tx = (vw - totalW * scale) / 2 - minX * scale;
-    const ty = (vh - totalH * scale) / 2 - minY * scale;
-    svg.transition().duration(600)
-      .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+    const tw = maxXpx - minX, th = maxYpx - minY;
+    const scale = Math.min(vw / tw, vh / th) * 0.88;
+    const tx = (vw - tw * scale) / 2 - minX * scale;
+    const ty = (vh - th * scale) / 2 - minY * scale;
+    zoomTo(d3.zoomIdentity.translate(tx, ty).scale(scale));
   }
 
   function goToWindsor() {
-    // Centre on Windsor nodes
-    const windsor = data.nodes.filter(n => n.house === 'Windsor');
-    const wxs = windsor.map(n => n.px), wys = windsor.map(n => n.py);
+    const ws = data.nodes.filter(n => n.house === 'Windsor');
+    if (!ws.length) return;
+    const wxs = ws.map(n => n.px), wys = ws.map(n => n.py);
     const cx = (Math.min(...wxs) + Math.max(...wxs)) / 2 + CW / 2;
     const cy = (Math.min(...wys) + Math.max(...wys)) / 2 + CH / 2;
-    const scale = 1.2;
+    const scale = 1.1;
     const vw = window.innerWidth, vh = window.innerHeight;
-    svg.transition().duration(800)
-      .call(zoom.transform, d3.zoomIdentity
-        .translate(vw / 2 - cx * scale, vh / 2 - cy * scale)
-        .scale(scale));
+    zoomTo(d3.zoomIdentity
+      .translate(vw / 2 - cx * scale, vh / 2 - cy * scale)
+      .scale(scale));
   }
 
-  // Start on Windsor
-  setTimeout(goToWindsor, 100);
+  document.getElementById('btn-in').addEventListener('click', () => zoomBy(1.5));
+  document.getElementById('btn-out').addEventListener('click', () => zoomBy(0.67));
+  document.getElementById('btn-fit').addEventListener('click', fitAll);
+  document.getElementById('btn-modern').addEventListener('click', goToWindsor);
 
-  // Window resize
   window.addEventListener('resize', () => {
     svg.attr('width', window.innerWidth).attr('height', window.innerHeight);
   });
+
+  // Start on Windsor
+  setTimeout(goToWindsor, 150);
 }
 
-// ─── Card helpers ─────────────────────────────────────────────────────────────
-function cardFill(d) {
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function cardBg(d) {
   const c = d.colours;
   if (!c || !c.member) return '#2a2518';
-  if (d.state === 'reigning') return c.reigning;
   if (d.state === 'excluded') return c.excluded;
+  if (d.state === 'reigning') return c.reigning;
   return c.member;
 }
 
-function cardLines(d) {
+function trunc(s, n) {
+  if (!s) return '';
+  return s.length > n ? s.slice(0, n-1) + '…' : s;
+}
+
+function buildLines(d) {
   const lines = [];
-
-  // Name (always)
-  lines.push({ text: truncate(d.name, 20), cls: 'card-name' });
-
   if (d.is_sovereign) {
-    if (d.sobriquet) lines.push({ text: truncate(d.sobriquet, 22), cls: 'card-sub' });
-    if (d.birth_line) lines.push({ text: d.birth_line, cls: 'card-dates' });
-    if (d.dates)      lines.push({ text: d.dates, cls: 'card-dates' });
-    if (d.post_reign_death) lines.push({ text: d.post_reign_death, cls: 'card-dates' });
+    lines.push({ text: trunc(d.name, 20), cinzel: true, size: 10.5, bold: true });
+    if (d.sobriquet)  lines.push({ text: trunc(d.sobriquet, 24), italic: true, size: 9.5, dim: true });
+    if (d.birth_line) lines.push({ text: d.birth_line, size: 9.5, dim: true });
+    if (d.dates)      lines.push({ text: d.dates, size: 9.5, dim: true });
+    if (d.post_reign_death) lines.push({ text: d.post_reign_death, size: 9.5, dim: true });
   } else if (d.gender === 'F') {
-    if (d.sobriquet) lines.push({ text: truncate(d.sobriquet, 22), cls: 'card-sub' });
-    if (d.birth_line) lines.push({ text: d.birth_line, cls: 'card-dates' });
-    if (d.marriage)  lines.push({ text: truncate('m. ' + d.marriage, 22), cls: 'card-sub' });
+    lines.push({ text: trunc(d.name, 22), cinzel: true, size: 10, bold: true });
+    if (d.sobriquet)  lines.push({ text: trunc(d.sobriquet, 24), italic: true, size: 9.5, dim: true });
+    if (d.birth_line) lines.push({ text: d.birth_line, size: 9.5, dim: true });
+    if (d.marriage)   lines.push({ text: trunc('m. '+d.marriage, 24), italic: true, size: 9, dim: true });
   } else {
-    if (d.sobriquet)    lines.push({ text: truncate(d.sobriquet, 22), cls: 'card-sub' });
-    if (d.designation) lines.push({ text: truncate(d.designation, 22), cls: 'card-sub' });
-    if (d.birth_line)  lines.push({ text: d.birth_line, cls: 'card-dates' });
+    lines.push({ text: trunc(d.name, 22), cinzel: true, size: 10, bold: true });
+    if (d.sobriquet)    lines.push({ text: trunc(d.sobriquet, 24), italic: true, size: 9.5, dim: true });
+    if (d.designation) lines.push({ text: trunc(d.designation, 24), size: 9, dim: true });
+    if (d.birth_line)  lines.push({ text: d.birth_line, size: 9.5, dim: true });
   }
-
   return lines.slice(0, 5);
-}
-
-function truncate(str, len) {
-  if (!str) return '';
-  return str.length > len ? str.slice(0, len - 1) + '…' : str;
-}
-
-// ─── Highlight family on click ────────────────────────────────────────────────
-function highlightFamily(d, nodeEls, edges, nodeMap) {
-  const related = new Set([d.id]);
-  edges.forEach(e => {
-    if (e.from === d.id) related.add(e.to);
-    if (e.to === d.id)   related.add(e.from);
-  });
-  nodeEls
-    .classed('highlighted', n => n.id === d.id)
-    .classed('dimmed', n => !related.has(n.id));
-}
-
-function clearHighlight(nodeEls) {
-  nodeEls.classed('highlighted', false).classed('dimmed', false);
-}
-
-function filterByHouse(house, nodeEls) {
-  const anyDimmed = nodeEls.filter('.dimmed').size() > 0;
-  if (!anyDimmed) {
-    nodeEls.classed('dimmed', n => n.house !== house);
-  } else {
-    clearHighlight(nodeEls);
-  }
 }
 </script>
 </body>
