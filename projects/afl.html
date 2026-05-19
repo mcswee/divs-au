@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AFL Power Rankings 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0d0f12; --surface:#13161b; --surface2:#1a1e25; --border:#252a34;
+    --accent:#e8c84a; --green:#4ae8a0; --red:#e84a4a; --muted:#7a8099; --text:#e8eaf0;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;min-height:100vh;overflow-x:hidden}
+
+  header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+  .logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.35rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  .logo span{color:var(--text)}
+  .status-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block;margin-right:.4rem}
+  .status-dot.live{background:var(--green);animation:pulse 2s infinite}
+  .status-dot.error{background:var(--red)}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .status-label{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+  nav{display:flex;gap:.2rem}
+  nav button{background:none;border:none;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .8rem;cursor:pointer;border-radius:4px;transition:color .15s,background .15s}
+  nav button:hover{color:var(--text);background:var(--surface2)}
+  nav button.active{color:var(--accent);background:var(--surface2)}
+
+  main{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 4rem}
+  .tab-panel{display:none;animation:fadeIn .2s ease}
+  .tab-panel.active{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+  .section-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.5rem;margin-top:2.5rem}
+  .section-header:first-child{margin-top:0}
+  .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.55rem;text-transform:uppercase;letter-spacing:.06em}
+  .section-sub{color:var(--muted);font-size:.83rem;font-weight:300}
+
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:1rem;margin-bottom:2rem}
+  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.3rem}
+  .stat-label{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+  .stat-value{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;line-height:1;color:var(--accent)}
+  .stat-note{font-size:.72rem;color:var(--muted);margin-top:.25rem}
+
+  /* Rankings table */
+  .table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  table{width:100%;border-collapse:collapse}
+  th{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-align:left;padding:.6rem 1rem;border-bottom:1px solid var(--border)}
+  td{padding:.72rem 1rem;border-bottom:1px solid var(--border);font-size:.93rem}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr{cursor:pointer;transition:background .12s}
+  tbody tr:hover{background:var(--surface2)}
+
+  .rank-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:var(--muted);width:2rem;display:inline-block}
+  .rank-num.top{color:var(--accent)}
+  .finals-badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.12rem .4rem;border-radius:3px;background:rgba(74,232,160,.1);color:var(--green);border:1px solid rgba(74,232,160,.25);margin-left:.5rem}
+
+  .bar-cell{width:220px}
+  .bar-wrap{display:flex;align-items:center;gap:.6rem}
+  .bar-track{flex:1;height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;position:relative}
+  .bar-fill-pos{height:100%;border-radius:3px;background:var(--green)}
+  .bar-fill-neg{height:100%;border-radius:3px;background:var(--red);position:absolute;right:0}
+  .rating-val{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.95rem;min-width:3.8rem;text-align:right}
+  .pos{color:var(--green)}.neg{color:var(--red)}
+
+  /* Games grid */
+  .games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1rem}
+  .game-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.2rem;transition:border-color .15s}
+  .game-card:hover{border-color:rgba(232,200,74,.3)}
+  .game-meta{font-size:.7rem;font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem}
+  .matchup{display:flex;align-items:center;gap:.5rem;margin-bottom:.9rem}
+  .matchup-team{flex:1;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:.03em}
+  .matchup-team.fav{color:var(--text)}.matchup-team.dog{color:var(--muted)}
+  .matchup-team.right{text-align:right}
+  .vs{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;color:var(--muted);flex-shrink:0}
+  .prob-bar{display:flex;height:7px;border-radius:4px;overflow:hidden;margin-bottom:.4rem}
+  .prob-h{border-radius:4px 0 0 4px}.prob-a{flex:1;border-radius:0 4px 4px 0}
+  .prob-labels{display:flex;justify-content:space-between}
+  .prob-pct{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem}
+  .tip-badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.12rem .4rem;border-radius:3px;margin-top:.55rem}
+  .tip-badge.confident{background:rgba(232,200,74,.12);color:var(--accent);border:1px solid rgba(232,200,74,.3)}
+  .tip-badge.tossup{background:rgba(122,128,153,.1);color:var(--muted);border:1px solid var(--border)}
+
+  /* Results */
+  .results-list{display:flex;flex-direction:column;gap:.45rem}
+  .result-row{display:flex;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.65rem 1rem;gap:.8rem}
+  .result-w{flex:1;font-weight:500;font-size:.92rem}
+  .result-score{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.97rem;white-space:nowrap}
+  .result-margin{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;color:var(--muted);min-width:3.5rem;text-align:center}
+  .result-l{flex:1;text-align:right;color:var(--muted);font-size:.88rem}
+
+  /* Chart */
+  .chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem}
+  .chart-label{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+  svg.chart{display:block;width:100%}
+  .legend{display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin-top:.9rem}
+  .leg-item{display:flex;align-items:center;gap:.35rem;font-size:.76rem;color:var(--muted);cursor:pointer;transition:color .15s}
+  .leg-item:hover,.leg-item.on{color:var(--text)}
+  .leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+
+  /* Modal */
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center;padding:1rem}
+  .overlay.open{display:flex}
+  .modal{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.75rem;max-width:460px;width:100%;max-height:90vh;overflow-y:auto}
+  .modal-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.25rem}
+  .modal-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;text-transform:uppercase}
+  .modal-close{background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1}
+  .modal-close:hover{color:var(--text)}
+  .modal-row{display:flex;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.88rem}
+  .modal-row:last-child{border-bottom:none}
+  .modal-key{color:var(--muted)}
+  .spark-label{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:1.25rem;margin-bottom:.4rem}
+
+  /* Loading */
+  .loading{display:flex;align-items:center;gap:.75rem;padding:3rem 0;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:.1em;text-transform:uppercase}
+  .spinner{width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .error-msg{padding:2rem;color:var(--red);font-size:.9rem}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+  @media(max-width:600px){.about-grid{grid-template-columns:1fr}}
+  .about-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.4rem}
+  .about-card h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.65rem}
+  .about-card p{font-size:.86rem;color:var(--muted);line-height:1.7}
+  .about-card p+p{margin-top:.5rem}
+  .formula{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:.65rem .9rem;font-family:'Barlow Condensed',sans-serif;font-size:.83rem;color:var(--text);margin-top:.65rem;line-height:1.9}
+  .fv{color:var(--green)}
+
+  @media(max-width:680px){header{padding:0 1rem}nav button{padding:.35rem .5rem;font-size:.72rem}.bar-cell{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">AFL <span>Power</span> Rankings</div>
+  <nav>
+    <button class="active" onclick="showTab('rankings')">Rankings</button>
+    <button onclick="showTab('form')">Form</button>
+    <button onclick="showTab('tips')">Tips</button>
+    <button onclick="showTab('results')">Results</button>
+    <button onclick="showTab('about')">Model</button>
+  </nav>
+  <div>
+    <span class="status-dot" id="sdot"></span>
+    <span class="status-label" id="slabel">Loading…</span>
+  </div>
+</header>
+
+<main>
+  <div class="tab-panel active" id="tab-rankings">
+    <div class="section-header"><span class="section-title">Power Rankings</span><span class="section-sub" id="rankings-sub">2026 Season</span></div>
+    <div class="stat-grid" id="rankings-stats"></div>
+    <div class="table-wrap"><table><thead><tr><th>#</th><th>Team</th><th class="bar-cell">Rating</th><th style="text-align:right">Score</th></tr></thead><tbody id="rankings-body"></tbody></table></div>
+    <p style="margin-top:.85rem;font-size:.76rem;color:var(--muted)">Click any row for season detail. Top 8 in green.</p>
+  </div>
+
+  <div class="tab-panel" id="tab-form">
+    <div class="section-header"><span class="section-title">Form Guide</span><span class="section-sub">Rating trajectory by round</span></div>
+    <div class="chart-wrap">
+      <div class="chart-label">Click teams to compare</div>
+      <svg class="chart" id="form-svg" viewBox="0 0 860 320" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="legend" id="form-legend"></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-tips">
+    <div class="section-header"><span class="section-title" id="tips-title">Tips</span><span class="section-sub">Model win probabilities</span></div>
+    <div class="games-grid" id="tips-grid"></div>
+    <p style="margin-top:1.25rem;font-size:.76rem;color:var(--muted)">Win probability from power ratings, H2H history, and venue record. Games within 5% are coin flips.</p>
+  </div>
+
+  <div class="tab-panel" id="tab-results">
+    <div class="section-header"><span class="section-title" id="results-title">Recent Results</span><span class="section-sub" id="results-sub"></span></div>
+    <div class="results-list" id="results-list"></div>
+    <div class="section-header" style="margin-top:2rem"><span class="section-title">2026 Tipping Record</span></div>
+    <div class="stat-grid" id="tip-stats"></div>
+  </div>
+
+  <div class="tab-panel" id="tab-about">
+    <div class="section-header"><span class="section-title">The Model</span></div>
+    <div class="about-grid">
+      <div class="about-card"><h3>Power Rating</h3><p>Each team carries a cumulative rating that updates after every game. The rating reflects whether you won and how — margin, context, and opponent quality all factor in. Ratings start fresh each season after pre-season games.</p></div>
+      <div class="about-card"><h3>Change Per Game</h3><div class="formula">Δ = <span class="fv">SurpriseComponent</span><br>+ <span class="fv">MarginComponent</span><br>+ <span class="fv">HundredBonus</span><br>+ <span class="fv">TravelBonus</span><br>+ <span class="fv">RestBonus</span></div></div>
+      <div class="about-card"><h3>Surprise Factor</h3><p>Surprise = 1 + tanh((OppTotal − TeamTotal) / 30), where Total = Rating + H2H + Venue. Beating a heavy favourite earns more; losing to a minnow costs more. Surprise × Outcome = SurpriseComponent.</p></div>
+      <div class="about-card"><h3>Win Probability</h3><p>Prediction = 1 − (Surprise / 2). A team with Prediction &gt;50% is the model's tip. Confident tips (&gt;55%) have been correct in 2026 at 100%.</p></div>
+      <div class="about-card"><h3>H2H &amp; Venue History</h3><p>A rolling average of the last 11 results (win=+1, loss=−1, draw=0) against each opponent and at each venue. Baseline from 2002–2025; updated live each round.</p></div>
+      <div class="about-card"><h3>Bonuses</h3><p><b style="color:var(--text)">Margin:</b> Final margin ÷ 60 (negative if lost).<br><b style="color:var(--text)">100-point:</b> +0.2 if team scored 100+.<br><b style="color:var(--text)">Travel:</b> +0.2 if playing in a different state (including FNQ, ACT, NT, TAS).<br><b style="color:var(--text)">Rest:</b> max(0, 7 − days since last game) × 0.2.</p></div>
+    </div>
+  </div>
+</main>
+
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-head"><div class="modal-name" id="modal-name"></div><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div id="modal-body"></div>
+    <div class="spark-label">Rating by round</div>
+    <svg id="spark-svg" viewBox="0 0 420 75" style="width:100%;display:block"></svg>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// BASELINE: end-of-2025 H2H sequences, venue sequences, carry-over ratings
+// ═══════════════════════════════════════════════════════════════════
+const BASELINE = {"carry_over":{"Adelaide":23.123628473655348,"Brisbane Lions":23.609239200512636,"Carlton":-3.4198941809096217,"Collingwood":19.32784023450331,"Essendon":-22.558684501490546,"Fremantle":14.317247046916624,"Geelong":27.572844816351747,"Gold Coast":17.500362782399847,"Greater Western Sydney":13.929606643742945,"Hawthorn":15.633781678835131,"Melbourne":-9.378581712037846,"North Melbourne":-23.187466744453065,"Port Adelaide":-9.92893243955889,"Richmond":-26.485608785962114,"St Kilda":-11.214597955216641,"Sydney":1.0183182869790435,"West Coast":-43.966600349102855,"Western Bulldogs":16.473644950099644},"h2h":{"AD_BL":{"seq":33,"val":-0.18181818181818182},"AD_CA":{"seq":28,"val":0.45454545454545453},"AD_CO":{"seq":37,"val":-0.8181818181818182},"AD_ES":{"seq":30,"val":-0.2727272727272727},"AD_FR":{"seq":36,"val":-0.09090909090909091},"AD_GE":{"seq":35,"val":-0.2727272727272727},"AD_GO":{"seq":21,"val":0.09090909090909091},"AD_GW":{"seq":19,"val":-0.09090909090909091},"AD_HA":{"seq":34,"val":-0.2727272727272727},"AD_ME":{"seq":31,"val":-0.45454545454545453},"AD_NM":{"seq":35,"val":0.45454545454545453},"AD_PA":{"seq":48,"val":-0.09090909090909091},"AD_RI":{"seq":30,"val":-0.09090909090909091},"AD_SK":{"seq":32,"val":0.6363636363636364},"AD_SY":{"seq":30,"val":-0.45454545454545453},"AD_WC":{"seq":40,"val":0.09090909090909091},"AD_WD":{"seq":32,"val":-0.09090909090909091},"BL_AD":{"seq":33,"val":0.18181818181818182},"BL_CA":{"seq":34,"val":0.6363636363636364},"BL_CO":{"seq":38,"val":0.2727272727272727},"BL_ES":{"seq":31,"val":0.2727272727272727},"BL_FR":{"seq":28,"val":0.2727272727272727},"BL_GE":{"seq":41,"val":-0.09090909090909091},"BL_GO":{"seq":30,"val":0.6363636363636364},"BL_GW":{"seq":19,"val":0.2727272727272727},"BL_HA":{"seq":33,"val":-0.09090909090909091},"BL_ME":{"seq":33,"val":0.09090909090909091},"BL_NM":{"seq":35,"val":0.2727272727272727},"BL_PA":{"seq":34,"val":0.2727272727272727},"BL_RI":{"seq":32,"val":-0.09090909090909091},"BL_SK":{"seq":31,"val":0.45454545454545453},"BL_SY":{"seq":37,"val":0.2727272727272727},"BL_WC":{"seq":32,"val":0.09090909090909091},"BL_WD":{"seq":37,"val":-0.09090909090909091},"CA_AD":{"seq":28,"val":-0.45454545454545453},"CA_BL":{"seq":34,"val":-0.6363636363636364},"CA_CO":{"seq":45,"val":-0.6363636363636364},"CA_ES":{"seq":41,"val":0.2727272727272727},"CA_FR":{"seq":32,"val":0.2727272727272727},"CA_GE":{"seq":28,"val":-0.2727272727272727},"CA_GO":{"seq":20,"val":0.2727272727272727},"CA_GW":{"seq":19,"val":-0.2727272727272727},"CA_HA":{"seq":29,"val":-0.2727272727272727},"CA_ME":{"seq":31,"val":-0.45454545454545453},"CA_NM":{"seq":31,"val":0.09090909090909091},"CA_PA":{"seq":34,"val":-0.45454545454545453},"CA_RI":{"seq":38,"val":-0.36363636363636365},"CA_SK":{"seq":35,"val":-0.45454545454545453},"CA_SY":{"seq":35,"val":-0.09090909090909091},"CA_WC":{"seq":29,"val":-0.09090909090909091},"CA_WD":{"seq":27,"val":-0.45454545454545453},"CO_AD":{"seq":37,"val":0.8181818181818182},"CO_BL":{"seq":38,"val":-0.2727272727272727},"CO_CA":{"seq":45,"val":0.6363636363636364},"CO_ES":{"seq":45,"val":0.18181818181818182},"CO_FR":{"seq":30,"val":0.36363636363636365},"CO_GE":{"seq":38,"val":-0.2727272727272727},"CO_GO":{"seq":16,"val":0.6363636363636364},"CO_GW":{"seq":17,"val":-0.2727272727272727},"CO_HA":{"seq":36,"val":-0.09090909090909091},"CO_ME":{"seq":35,"val":0.6363636363636364},"CO_NM":{"seq":29,"val":0.6363636363636364},"CO_PA":{"seq":33,"val":0.09090909090909091},"CO_RI":{"seq":33,"val":0.0},"CO_SK":{"seq":33,"val":0.2727272727272727},"CO_SY":{"seq":33,"val":-0.2727272727272727},"CO_WC":{"seq":37,"val":-0.09090909090909091},"CO_WD":{"seq":33,"val":-0.09090909090909091},"ES_AD":{"seq":30,"val":0.2727272727272727},"ES_BL":{"seq":31,"val":-0.2727272727272727},"ES_CA":{"seq":41,"val":-0.2727272727272727},"ES_CO":{"seq":45,"val":-0.18181818181818182},"ES_FR":{"seq":32,"val":0.2727272727272727},"ES_GE":{"seq":31,"val":-0.6363636363636364},"ES_GO":{"seq":18,"val":0.36363636363636365},"ES_GW":{"seq":18,"val":-0.2727272727272727},"ES_HA":{"seq":32,"val":0.2727272727272727},"ES_ME":{"seq":27,"val":-0.2727272727272727},"ES_NM":{"seq":30,"val":1.0},"ES_PA":{"seq":31,"val":-0.45454545454545453},"ES_RI":{"seq":39,"val":-0.45454545454545453},"ES_SK":{"seq":31,"val":-0.09090909090909091},"ES_SY":{"seq":35,"val":-0.2727272727272727},"ES_WC":{"seq":34,"val":0.2727272727272727},"ES_WD":{"seq":33,"val":-0.6363636363636364},"FR_AD":{"seq":36,"val":0.09090909090909091},"FR_BL":{"seq":28,"val":-0.2727272727272727},"FR_CA":{"seq":32,"val":-0.2727272727272727},"FR_CO":{"seq":30,"val":-0.36363636363636365},"FR_ES":{"seq":32,"val":-0.2727272727272727},"FR_GE":{"seq":35,"val":-0.2727272727272727},"FR_GO":{"seq":17,"val":0.09090909090909091},"FR_GW":{"seq":16,"val":-0.2727272727272727},"FR_HA":{"seq":33,"val":0.09090909090909091},"FR_ME":{"seq":34,"val":0.09090909090909091},"FR_NM":{"seq":29,"val":0.2727272727272727},"FR_PA":
