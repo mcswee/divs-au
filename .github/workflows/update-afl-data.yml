@@ -16,7 +16,7 @@ jobs:
       - name: Fetch from Squiggle
         run: |
           mkdir -p assets/data
-          curl -s "https://api.squiggle.com.au/?q=games;year=2026" -H "Accept: application/json" -o assets/data/games.json
+          curl -s "https://api.squiggle.com.au/?q=games;year=2026" -A "https://github.com/mcswee/divs-au" -o assets/data/games.json
 
       - name: Commit and push if changed
         run: |
