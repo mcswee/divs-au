@@ -2,9 +2,9 @@ name: Update AFL Data
 
 on:
   schedule:
-    - cron: '0 11 * * 0'   # Sunday 11:00 UTC = Monday 9pm AEST (11pm AEDT)
-    - cron: '0 11 * * 3'   # Wednesday 11:00 UTC = Wednesday 9pm AEST (11pm AEDT)
-  workflow_dispatch:         # Also allows manual trigger from GitHub Actions tab
+    - cron: '0 11 * * 0'
+    - cron: '0 11 * * 3'
+  workflow_dispatch:
 
 jobs:
   fetch:
@@ -15,13 +15,11 @@ jobs:
 
       - name: Fetch from Squiggle
         run: |
-          curl -s "https://api.squiggle.com.au/?q=games;year=2026" \
-            -H "Accept: application/json" \
-            -o assets/data/games.json
-
-- name: Commit and push if changed
-        run: |
           mkdir -p assets/data
+          curl -s "https://api.squiggle.com.au/?q=games;year=2026" -H "Accept: application/json" -o assets/data/games.json
+
+      - name: Commit and push if changed
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add assets/data/games.json
