@@ -128,6 +128,10 @@
   .formula{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:.65rem .9rem;font-family:'Barlow Condensed',sans-serif;font-size:.83rem;color:var(--text);margin-top:.65rem;line-height:1.9}
   .fv{color:var(--green)}
 
+  .team-icon{display:inline-block;vertical-align:middle;flex-shrink:0}
+  .team-cell{display:flex;align-items:center;gap:.6rem}
+  .matchup-side{display:flex;align-items:center;gap:.5rem;flex:1}
+  .matchup-side.right{flex-direction:row-reverse}
   @media(max-width:680px){header{padding:0 1rem}nav button{padding:.35rem .5rem;font-size:.72rem}.bar-cell{display:none}}
 </style>
 </head>
@@ -201,6 +205,139 @@
 </div>
 
 <script>
+// ═══════════════════════════════════════════════════════════════════
+// TEAM ICONS
+// ═══════════════════════════════════════════════════════════════════
+const ICON_SIZE = 28;
+const ICON_R = 3;
+
+function makeIcon(paths) {
+  const ns = 'http://www.w3.org/2000/svg';
+  const S = ICON_SIZE;
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('viewBox', `0 0 ${S} ${S}`);
+  svg.setAttribute('width', S);
+  svg.setAttribute('height', S);
+  svg.setAttribute('class', 'team-icon');
+  const defs = document.createElementNS(ns, 'defs');
+  const clipId = 'c' + Math.random().toString(36).slice(2);
+  const clipPath = document.createElementNS(ns, 'clipPath');
+  clipPath.setAttribute('id', clipId);
+  const cr = document.createElementNS(ns, 'rect');
+  cr.setAttribute('width', S); cr.setAttribute('height', S);
+  cr.setAttribute('rx', ICON_R); cr.setAttribute('ry', ICON_R);
+  clipPath.appendChild(cr); defs.appendChild(clipPath); svg.appendChild(defs);
+  const g = document.createElementNS(ns, 'g');
+  g.setAttribute('clip-path', `url(#${clipId})`);
+  paths.forEach(p => {
+    let el;
+    if (p.type === 'rect') {
+      el = document.createElementNS(ns, 'rect');
+      el.setAttribute('x', p.x ?? 0); el.setAttribute('y', p.y ?? 0);
+      el.setAttribute('width', p.w ?? S); el.setAttribute('height', p.h ?? S);
+    } else if (p.type === 'polygon') {
+      el = document.createElementNS(ns, 'polygon');
+      el.setAttribute('points', p.points);
+    } else if (p.type === 'path') {
+      el = document.createElementNS(ns, 'path');
+      el.setAttribute('d', p.d);
+    }
+    el.setAttribute('fill', p.fill ?? 'none');
+    if (p.stroke) { el.setAttribute('stroke', p.stroke); el.setAttribute('stroke-width', p.sw ?? 1); }
+    g.appendChild(el);
+  });
+  svg.appendChild(g);
+  return svg;
+}
+
+function teamIcon(team) {
+  const S = ICON_SIZE;
+  const sw = S * 0.2;
+  const makers = {
+    'Adelaide': () => makeIcon([
+      {type:'rect',fill:'#0f1432'},
+      {type:'rect',y:0,h:S/5,fill:'#0f1432'},{type:'rect',y:S/5,h:S/5,fill:'#ff001e'},
+      {type:'rect',y:S/5*2,h:S/5,fill:'#0f1432'},{type:'rect',y:S/5*3,h:S/5,fill:'#ffaa00'},
+      {type:'rect',y:S/5*4,h:S/5,fill:'#0f1432'},
+    ]),
+    'Brisbane Lions': () => makeIcon([
+      {type:'rect',y:0,h:S*0.4,fill:'#0055a3'},
+      {type:'rect',y:S*0.4,h:S*0.2,fill:'#fdeb57'},
+      {type:'rect',y:S*0.6,h:S*0.4,fill:'#a30946'},
+    ]),
+    'Carlton': () => makeIcon([{type:'rect',fill:'#031A29'}]),
+    'Collingwood': () => makeIcon([
+      {type:'rect',x:0,w:S/5,fill:'#000'},{type:'rect',x:S/5,w:S/5,fill:'#fff'},
+      {type:'rect',x:S/5*2,w:S/5,fill:'#000'},{type:'rect',x:S/5*3,w:S/5,fill:'#fff'},
+      {type:'rect',x:S/5*4,w:S/5,fill:'#000'},
+    ]),
+    'Essendon': () => makeIcon([
+      {type:'rect',fill:'#000'},
+      {type:'polygon',fill:'#cc2031',points:`${S},${-sw} ${S+sw},0 0,${S+sw} ${-sw},${S}`},
+    ]),
+    'Fremantle': () => makeIcon([
+      {type:'rect',fill:'#2a0d54'},
+      {type:'path',fill:'none',stroke:'#fff',sw:sw,d:`M0,0 L${S/2},${S/2} L${S},0`},
+    ]),
+    'Geelong': () => makeIcon([
+      {type:'rect',y:0,h:S/5,fill:'#002b5c'},{type:'rect',y:S/5,h:S/5,fill:'#fff'},
+      {type:'rect',y:S/5*2,h:S/5,fill:'#002b5c'},{type:'rect',y:S/5*3,h:S/5,fill:'#fff'},
+      {type:'rect',y:S/5*4,h:S/5,fill:'#002b5c'},
+    ]),
+    'Gold Coast': () => makeIcon([
+      {type:'rect',fill:'#bc0100'},
+      {type:'rect',x:0,w:S*0.1,fill:'#ffdd00'},{type:'rect',x:S*0.9,w:S*0.1,fill:'#ffdd00'},
+    ]),
+    'Greater Western Sydney': () => makeIcon([
+      {type:'rect',y:0,h:S*0.4,fill:'#03061c'},
+      {type:'rect',y:S*0.4,h:S*0.2,fill:'#fff'},
+      {type:'rect',y:S*0.6,h:S*0.4,fill:'#ff7909'},
+    ]),
+    'Hawthorn': () => makeIcon([
+      {type:'rect',x:0,w:S/5,fill:'#4d2004'},{type:'rect',x:S/5,w:S/5,fill:'#fbbf15'},
+      {type:'rect',x:S/5*2,w:S/5,fill:'#4d2004'},{type:'rect',x:S/5*3,w:S/5,fill:'#fbbf15'},
+      {type:'rect',x:S/5*4,w:S/5,fill:'#4d2004'},
+    ]),
+    'Melbourne': () => makeIcon([
+      {type:'rect',fill:'#0f1131'},
+      {type:'polygon',fill:'#cc2031',points:`0,0 ${S},0 ${S/2},${S/2}`},
+    ]),
+    'North Melbourne': () => makeIcon([
+      {type:'rect',x:0,w:S/5,fill:'#13388f'},{type:'rect',x:S/5,w:S/5,fill:'#fff'},
+      {type:'rect',x:S/5*2,w:S/5,fill:'#13388f'},{type:'rect',x:S/5*3,w:S/5,fill:'#fff'},
+      {type:'rect',x:S/5*4,w:S/5,fill:'#13388f'},
+    ]),
+    'Port Adelaide': () => makeIcon([
+      {type:'rect',fill:'#000'},
+      {type:'polygon',fill:'#008aab',points:`0,0 ${S},0 ${S/2},${S/2}`},
+      {type:'path',fill:'none',stroke:'#fff',sw:sw,d:`M0,0 L${S/2},${S/2} L${S},0`},
+    ]),
+    'Richmond': () => makeIcon([
+      {type:'rect',fill:'#000'},
+      {type:'polygon',fill:'#ffd200',points:`${S},${-sw} ${S+sw},0 0,${S+sw} ${-sw},${S}`},
+    ]),
+    'St Kilda': () => makeIcon([
+      {type:'rect',x:0,w:S/3,fill:'#ed1b2f'},
+      {type:'rect',x:S/3,w:S/3,fill:'#fff'},
+      {type:'rect',x:S/3*2,w:S/3,fill:'#000'},
+    ]),
+    'Sydney': () => makeIcon([
+      {type:'rect',fill:'#fff'},
+      {type:'path',fill:'none',stroke:'#e1251b',sw:sw,d:`M0,0 L${S/2},${S/2} L${S},0`},
+    ]),
+    'West Coast': () => makeIcon([
+      {type:'rect',x:0,w:S*0.2,fill:'#f2a900'},
+      {type:'rect',x:S*0.2,w:S*0.6,fill:'#003087'},
+      {type:'rect',x:S*0.8,w:S*0.2,fill:'#f2a900'},
+    ]),
+    'Western Bulldogs': () => makeIcon([
+      {type:'rect',y:0,h:S/4,fill:'#20539d'},{type:'rect',y:S/4,h:S/4,fill:'#bd002b'},
+      {type:'rect',y:S/2,h:S/4,fill:'#fff'},{type:'rect',y:S*3/4,h:S/4,fill:'#20539d'},
+    ]),
+  };
+  return makers[team] ? makers[team]() : makeIcon([{type:'rect',fill:'#333'}]);
+}
+
 // ═══════════════════════════════════════════════════════════════════
 // BASELINE: end-of-2025 H2H sequences, venue sequences, carry-over ratings
 // ═══════════════════════════════════════════════════════════════════
@@ -487,10 +624,13 @@ function renderRankings() {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><span class="rank-num ${top8?'top':''}">${r.rank}</span></td>
-      <td>${r.team}${top8?'<span class="finals-badge">Finals</span>':''}</td>
+      <td><div class="team-cell"><span class="team-name-text">${r.team}${top8?'<span class="finals-badge">Finals</span>':''}</span></div></td>
       <td class="bar-cell"><div class="bar-wrap"><div class="bar-track" style="position:relative;width:120px;">${pos?`<div class="bar-fill-pos" style="width:${pct}%"></div>`:`<div class="bar-fill-neg" style="width:${pct}%"></div>`}</div></div></td>
       <td><span class="rating-val ${pos?'pos':'neg'}">${pos?'+':''}${r.rating.toFixed(2)}</span></td>
     `;
+    // Insert icon into team cell
+    const teamCell = tr.querySelector('.team-cell');
+    teamCell.insertBefore(teamIcon(r.team), teamCell.firstChild);
     tr.addEventListener('click', () => openModal(r.team));
     tbody.appendChild(tr);
   });
@@ -501,6 +641,12 @@ function openModal(team) {
   const r = STATE.rankings.find(x=>x.team===team);
   const traj = STATE.trajectory[team] || [];
   document.getElementById('modal-name').textContent = team;
+  const modalHead = document.querySelector('.modal-head');
+  const existingIcon = modalHead.querySelector('.team-icon');
+  if (existingIcon) existingIcon.remove();
+  const icon = teamIcon(team);
+  icon.setAttribute('width', 40); icon.setAttribute('height', 40);
+  modalHead.insertBefore(icon, modalHead.firstChild);
   const last = traj[traj.length-1], prev = traj[traj.length-2];
   const change = last && prev ? (last.rating-prev.rating) : null;
   const hi = traj.length ? Math.max(...traj.map(t=>t.rating)) : 0;
@@ -629,9 +775,13 @@ function renderTips() {
     card.innerHTML=`
       <div class="game-meta">📍 ${g.venue||'TBC'}</div>
       <div class="matchup">
-        <span class="matchup-team ${homeFav?'fav':'dog'}">${g.home}</span>
+        <div class="matchup-side">
+          <span class="matchup-team ${homeFav?'fav':'dog'}">${g.home}</span>
+        </div>
         <span class="vs">vs</span>
-        <span class="matchup-team right ${!homeFav?'fav':'dog'}">${g.away}</span>
+        <div class="matchup-side right">
+          <span class="matchup-team right ${!homeFav?'fav':'dog'}">${g.away}</span>
+        </div>
       </div>
       <div class="prob-bar">
         <div class="prob-h" style="width:${(hp*100).toFixed(1)}%;background:${homeFav?'#e8c84a':'#2a2f3a'}"></div>
@@ -645,6 +795,9 @@ function renderTips() {
         ${confident?`▶ Tip: ${tipTeam} (${(tipProb*100).toFixed(0)}%)`:'⚖ Toss-up'}
       </span>
     `;
+    // Insert icons into matchup sides
+    card.querySelector('.matchup-side:first-child').insertBefore(teamIcon(g.home), card.querySelector('.matchup-side:first-child').firstChild);
+    card.querySelector('.matchup-side.right').appendChild(teamIcon(g.away));
     grid.appendChild(card);
   });
 }
@@ -658,12 +811,21 @@ function renderResults() {
   recentResults.forEach(r=>{
     const row=document.createElement('div');
     row.className='result-row';
-    row.innerHTML=`
-      <span class="result-w">${r.w}</span>
-      <span class="result-score"><span class="pos">${r.ws}</span> – <span class="neg">${r.ls}</span></span>
-      <span class="result-margin">+${r.margin} pts</span>
-      <span class="result-l">${r.l}</span>
-    `;
+    row.appendChild(teamIcon(r.w));
+    const inner = document.createElement('span');
+    inner.className='result-w';inner.textContent=r.w;
+    row.appendChild(inner);
+    const score = document.createElement('span');
+    score.className='result-score';
+    score.innerHTML=`<span class="pos">${r.ws}</span> – <span class="neg">${r.ls}</span>`;
+    row.appendChild(score);
+    const margin = document.createElement('span');
+    margin.className='result-margin';margin.textContent=`+${r.margin} pts`;
+    row.appendChild(margin);
+    const loser = document.createElement('span');
+    loser.className='result-l';loser.textContent=r.l;
+    row.appendChild(loser);
+    row.appendChild(teamIcon(r.l));
     list.appendChild(row);
   });
   const {tipTotal,tipCorrect,upsets} = tipping;
@@ -680,7 +842,7 @@ async function init() {
   const dot=document.getElementById('sdot');
   const lbl=document.getElementById('slabel');
   try {
-const res = await fetch('/assets/data/games.json');
+    const res = await fetch('/assets/data/games.json');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
     const games = json.games;
