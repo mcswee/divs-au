@@ -892,9 +892,7 @@ async function init() {
   const dot=document.getElementById('sdot');
   const lbl=document.getElementById('slabel');
   try {
-    const res = await fetch('https://api.squiggle.com.au/?q=games;year=2026',{
-      headers:{'User-Agent':'DMARK AFL Power Index / contact via github'}
-    });
+    const res = await fetch('/assets/data/games.json');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
     STATE = processGames(json.games);
