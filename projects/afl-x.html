@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AFL Power Rankings 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0d0f12; --surface:#13161b; --surface2:#1a1e25; --border:#252a34;
+    --accent:#e8c84a; --green:#4ae8a0; --red:#e84a4a; --muted:#7a8099; --text:#e8eaf0;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;min-height:100vh;overflow-x:hidden}
+
+  header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+  .logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.35rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  .logo span{color:var(--text)}
+  .status-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block;margin-right:.4rem}
+  .status-dot.live{background:var(--green);animation:pulse 2s infinite}
+  .status-dot.error{background:var(--red)}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .status-label{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+  nav{display:flex;gap:.2rem}
+  nav button{background:none;border:none;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .8rem;cursor:pointer;border-radius:4px;transition:color .15s,background .15s}
+  nav button:hover{color:var(--text);background:var(--surface2)}
+  nav button.active{color:var(--accent);background:var(--surface2)}
+
+  main{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 4rem}
+  .tab-panel{display:none;animation:fadeIn .2s ease}
+  .tab-panel.active{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+  .section-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.5rem;margin-top:2.5rem}
+  .section-header:first-child{margin-top:0}
+  .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.55rem;text-transform:uppercase;letter-spacing:.06em}
+  .section-sub{color:var(--muted);font-size:.83rem;font-weight:300}
+
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:1rem;margin-bottom:2rem}
+  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.3rem}
+  .stat-label{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+  .stat-value{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;line-height:1;color:var(--accent)}
+  .stat-note{font-size:.72rem;color:var(--muted);margin-top:.25rem}
+
+  /* Rankings table */
+  .table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  table{width:100%;border-collapse:collapse}
+  th{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-align:left;padding:.6rem 1rem;border-bottom:1px solid var(--border)}
+  td{padding:.72rem 1rem;border-bottom:1px solid var(--border);font-size:.93rem}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr{cursor:pointer;transition:background .12s}
+  tbody tr:hover{background:var(--surface2)}
+
+  .rank-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:var(--muted);width:2rem;display:inline-block}
+  .rank-num.top{color:var(--accent)}
+  .finals-badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.12rem .4rem;border-radius:3px;background:rgba(74,232,160,.1);color:var(--green);border:1px solid rgba(74,232,160,.25);margin-left:.5rem}
+
+  .bar-cell{width:220px}
+  .bar-wrap{display:flex;align-items:center;gap:.6rem}
+  .bar-track{flex:1;height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;position:relative}
+  .bar-fill-pos{height:100%;border-radius:3px;background:var(--green)}
+  .bar-fill-neg{height:100%;border-radius:3px;background:var(--red);position:absolute;right:0}
+  .rating-val{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.95rem;min-width:3.8rem;text-align:right}
+  .pos{color:var(--green)}.neg{color:var(--red)}
+
+  /* Games grid */
+  .games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1rem}
+  .game-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.2rem;transition:border-color .15s}
+  .game-card:hover{border-color:rgba(232,200,74,.3)}
+  .game-meta{font-size:.7rem;font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem}
+  .matchup{display:flex;align-items:center;gap:.5rem;margin-bottom:.9rem}
+  .matchup-team{flex:1;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:.03em}
+  .matchup-team.fav{color:var(--text)}.matchup-team.dog{color:var(--muted)}
+  .matchup-team.right{text-align:right}
+  .vs{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;color:var(--muted);flex-shrink:0}
+  .prob-bar{display:flex;height:7px;border-radius:4px;overflow:hidden;margin-bottom:.4rem}
+  .prob-h{border-radius:4px 0 0 4px}.prob-a{flex:1;border-radius:0 4px 4px 0}
+  .prob-labels{display:flex;justify-content:space-between}
+  .prob-pct{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem}
+  .tip-badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.12rem .4rem;border-radius:3px;margin-top:.55rem}
+  .tip-badge.confident{background:rgba(232,200,74,.12);color:var(--accent);border:1px solid rgba(232,200,74,.3)}
+  .tip-badge.tossup{background:rgba(122,128,153,.1);color:var(--muted);border:1px solid var(--border)}
+
+  /* Results */
+  .results-list{display:flex;flex-direction:column;gap:.45rem}
+  .result-row{display:flex;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.65rem 1rem;gap:.8rem}
+  .result-w{flex:1;font-weight:500;font-size:.92rem}
+  .result-score{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.97rem;white-space:nowrap}
+  .result-margin{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;color:var(--muted);min-width:3.5rem;text-align:center}
+  .result-l{flex:1;text-align:right;color:var(--muted);font-size:.88rem}
+
+  /* Chart */
+  .chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem}
+  .chart-label{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+  svg.chart{display:block;width:100%}
+  .legend{display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin-top:.9rem}
+  .leg-item{display:flex;align-items:center;gap:.35rem;font-size:.76rem;color:var(--muted);cursor:pointer;transition:color .15s}
+  .leg-item:hover,.leg-item.on{color:var(--text)}
+  .leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+
+  /* Modal */
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center;padding:1rem}
+  .overlay.open{display:flex}
+  .modal{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.75rem;max-width:460px;width:100%;max-height:90vh;overflow-y:auto}
+  .modal-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.25rem}
+  .modal-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;text-transform:uppercase}
+  .modal-close{background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1}
+  .modal-close:hover{color:var(--text)}
+  .modal-row{display:flex;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.88rem}
+  .modal-row:last-child{border-bottom:none}
+  .modal-key{color:var(--muted)}
+  .spark-label{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:1.25rem;margin-bottom:.4rem}
+
+  /* Loading */
+  .loading{display:flex;align-items:center;gap:.75rem;padding:3rem 0;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:.1em;text-transform:uppercase}
+  .spinner{width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .error-msg{padding:2rem;color:var(--red);font-size:.9rem}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+  @media(max-width:600px){.about-grid{grid-template-columns:1fr}}
+  .about-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.4rem}
+  .about-card h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.65rem}
+  .about-card p{font-size:.86rem;color:var(--muted);line-height:1.7}
+  .about-card p+p{margin-top:.5rem}
+  .formula{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:.65rem .9rem;font-family:'Barlow Condensed',sans-serif;font-size:.83rem;color:var(--text);margin-top:.65rem;line-height:1.9}
+  .fv{color:var(--green)}
+
+  .team-icon{display:inline-block;vertical-align:middle;flex-shrink:0}
+  .team-cell{display:flex;align-items:center;gap:.6rem}
+  .matchup-side{display:flex;align-items:center;gap:.5rem;flex:1}
+  .matchup-side.right{flex-direction:row-reverse}
+  @media(max-width:680px){header{padding:0 1rem}nav button{padding:.35rem .5rem;font-size:.72rem}.bar-cell{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">AFL <span>Power</span> Rankings</div>
+  <nav>
+    <button class="active" onclick="showTab('rankings')">Rankings</button>
+    <button onclick="showTab('form')">Form</button>
+    <button onclick="showTab('tips')">Tips</button>
+    <button onclick="showTab('results')">Results</button>
+    <button onclick="showTab('about')">Model</button>
+  </nav>
+  <div>
+    <span class="status-dot" id="sdot"></span>
+    <span class="status-label" id="slabel">Loading…</span>
+  </div>
+</header>
+
+<main>
+  <div class="tab-panel active" id="tab-rankings">
+    <div class="section-header"><span class="section-title">Power Rankings</span><span class="section-sub" id="rankings-sub">2026 Season</span></div>
+    <div class="stat-grid" id="rankings-stats"></div>
+    <div class="table-wrap"><table><thead><tr><th>#</th><th>Team</th><th class="bar-cell">Rating</th><th style="text-align:right">Score</th></tr></thead><tbody id="rankings-body"></tbody></table></div>
+    <p style="margin-top:.85rem;font-size:.76rem;color:var(--muted)">Click any row for season detail. Top 8 in green.</p>
+  </div>
+
+  <div class="tab-panel" id="tab-form">
+    <div class="section-header"><span class="section-title">Form Guide</span><span class="section-sub">Rating trajectory by round</span></div>
+    <div class="chart-wrap">
+      <div class="chart-label">Click teams to compare</div>
+      <svg class="chart" id="form-svg" viewBox="0 0 860 320" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="legend" id="form-legend"></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-tips">
+    <div class="section-header"><span class="section-title" id="tips-title">Tips</span><span class="section-sub">Model win probabilities</span></div>
+    <div class="games-grid" id="tips-grid"></div>
+    <p style="margin-top:1.25rem;font-size:.76rem;color:var(--muted)">Win probability from power ratings, H2H history, and venue record. Games within 5% are coin flips.</p>
+  </div>
+
+  <div class="tab-panel" id="tab-results">
+    <div class="section-header"><span class="section-title" id="results-title">Recent Results</span><span class="section-sub" id="results-sub"></span></div>
+    <div class="results-list" id="results-list"></div>
+    <div class="section-header" style="margin-top:2rem"><span class="section-title">2026 Tipping Record</span></div>
+    <div class="stat-grid" id="tip-stats"></div>
+  </div>
+
+  <div class="tab-panel" id="tab-about">
+    <div class="section-header"><span class="section-title">The Model</span></div>
+    <div class="about-grid">
+      <div class="about-card"><h3>Power Rating</h3><p>Each team carries a cumulative rating that updates after every game. The rating reflects whether you won and how — margin, context, and opponent quality all factor in. Ratings start fresh each season after pre-season games.</p></div>
+      <div class="about-card"><h3>Change Per Game</h3><div class="formula">Δ = <span class="fv">SurpriseComponent</span><br>+ <span class="fv">MarginComponent</span><br>+ <span class="fv">HundredBonus</span><br>+ <span class="fv">TravelBonus</span><br>+ <span class="fv">RestBonus</span></div></div>
+      <div class="about-card"><h3>Surprise Factor</h3><p>Surprise = 1 + tanh((OppTotal − TeamTotal) / 30), where Total = Rating + H2H + Venue. Beating a heavy favourite earns more; losing to a minnow costs more. Surprise × Outcome = SurpriseComponent.</p></div>
+      <div class="about-card"><h3>Win Probability</h3><p>Prediction = 1 − (Surprise / 2). A team with Prediction &gt;50% is the model's tip. Confident tips (&gt;55%) have been correct in 2026 at 100%.</p></div>
+      <div class="about-card"><h3>H2H &amp; Venue History</h3><p>A rolling average of the last 11 results (win=+1, loss=−1, draw=0) against each opponent and at each venue. Baseline from 2002–2025; updated live each round.</p></div>
+      <div class="about-card"><h3>Bonuses</h3><p><b style="color:var(--text)">Margin:</b> Final margin ÷ 60 (negative if lost).<br><b style="color:var(--text)">100-point:</b> +0.2 if team scored 100+.<br><b style="color:var(--text)">Travel:</b> +0.2 if playing in a different state (including FNQ, ACT, NT, TAS).<br><b style="color:var(--text)">Rest:</b> max(0, 7 − days since last game) × 0.2.</p></div>
+    </div>
+  </div>
+</main>
+
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-head"><div class="modal-name" id="modal-name"></div><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div id="modal-body"></div>
+    <div class="spark-label">Rating by round</div>
+    <svg id="spark-svg" viewBox="0 0 420 75" style="width:100%;display:block"></svg>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// TEAM ICONS
+// ═══════════════════════════════════════════════════════════════════
+const ICON_SIZE = 28;
+const ICON_R = 3;
+
+function makeIcon(paths) {
+  const ns = 'http://www.w3.org/2000/svg';
+  const S = ICON_SIZE;
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('viewBox', `0 0 ${S} ${S}`);
+  svg.setAttribute('width', S);
+  svg.setAttribute('height', S);
+  svg.setAttribute('class', 'team-icon');
+  const defs = document.createElementNS(ns, 'defs');
+  const clipId = 'c' + Math.random().toString(36).slice(2);
+  const clipPath = document.createElementNS(ns, 'clipPath');
+  clipPath.setAttribute('id', clipId);
+  const cr = document.createElementNS(ns, 'rect');
+  cr.setAttribute('width', S); cr.setAttribute('height', S);
+  cr.setAttribute('rx', ICON_R); cr.setAttribute('ry', ICON_R);
+  clipPath.appendChild(cr); defs.appendChild(clipPath); svg.appendChild(defs);
+  const g = document.createElementNS(ns, 'g');
+  g.setAttribute('clip-path', `url(#${clipId})`);
+  paths.forEach(p => {
+    let el;
+    if (p.type === 'rect') {
+      el = document.createElementNS(ns, 'rect');
+      el.setAttribute('x', p.x ?? 0); el.setAttribute('y', p.y ?? 0);
+      el.setAttribute('width', p.w ?? S); el.setAttribute('height', p.h ?? S);
+    } else if (p.type === 'polygon') {
+      el = document.createElementNS(ns, 'polygon');
+      el.setAttribute('points', p.points);
+    } else if (p.type === 'path') {
+      el = document.createElementNS(ns, 'path');
+      el.setAttribute('d', p.d);
+    }
+    el.setAttribute('fill', p.fill ?? 'none');
+    if (p.stroke) { el.setAttribute('stroke', p.stroke); el.setAttribute('stroke-width', p.sw ?? 1); }
+    g.appendChild(el);
+  });
+  svg.appendChild(g);
+  return svg;
+}
+
+function teamIcon(team) {
+  const S = ICON_SIZE;
+  const sw = S * 0.2;
+  const makers = {
+    'Adelaide': () => makeIcon([
+      {type:'rect',fill:'#0f1432'},
+      {type:'rect',y:0,h:S/5,fill:'#0f1432'},{type:'rect',y:S/5,h:S/5,fill:'#ff001e'},
+      {type:'rect',y:S/5*2,h:S/5,fill:'#0f1432'},{type:'rect',y:S/5*3,h:S/5,fill:'#ffaa00'},
+      {type:'rect',y:S/5*4,h:S/5,fill:'#0f1432'},
+    ]),
+    'Brisbane Lions': () => makeIcon([
+      {type:'rect',y:0,h:S*0.4,fill:'#0055a3'},
+      {type:'rect',y:S*0.4,h:S*0.2,fill:'#fdeb57'},
+      {type:'rect',y:S*0.6,h:S*0.4,fill:'#a30946'},
+    ]),
+    'Carlton': () => makeIcon([{type:'rect',fill:'#031A29'}]),
+    'Collingwood': () => makeIcon([
+      {type:'rect',x:0,w:S/5,fill:'#000'},{type:'rect',x:S/5,w:S/5,fill:'#fff'},
+      {type:'rect',x:S/5*2,w:S/5,fill:'#000'},{type:'rect',x:S/5*3,w:S/5,fill:'#fff'},
+      {type:'rect',x:S/5*4,w:S/5,fill:'#000'},
+    ]),
+    'Essendon': () => makeIcon([
+      {type:'rect',fill:'#000'},
+      {type:'polygon',fill:'#cc2031',points:`${S},${-sw} ${S+sw},0 0,${S+sw} ${-sw},${S}`},
+    ]),
+    'Fremantle': () => makeIcon([
+      {type:'rect',fill:'#2a0d54'},
+      {type:'path',fill:'none',stroke:'#fff',sw:sw,d:`M0,0 L${S/2},${S/2} L${S},0`},
+    ]),
+    'Geelong': () => makeIcon([
+      {type:'rect',y:0,h:S/5,fill:'#002b5c'},{type:'rect',y:S/5,h:S/5,fill:'#fff'},
+      {type:'rect',y:S/5*2,h:S/5,fill:'#002b5c'},{type:'rect',y:S/5*3,h:S/5,fill:'#fff'},
+      {type:'rect',y:S/5*4,h:S/5,fill:'#002b5c'},
+    ]),
+    'Gold Coast': () => makeIcon([
+      {type:'rect',fill:'#bc0100'},
+      {type:'rect',x:0,w:S*0.1,fill:'#ffdd00'},{type:'rect',x:S*0.9,w:S*0.1,fill:'#ffdd00'},
+    ]),
+    'Greater Western Sydney': () => makeIcon([
+      {type:'rect',y:0,h:S*0.4,fill:'#03061c'},
+      {type:'rect',y:S*0.4,h:S*0.2,fill:'#fff'},
+      {type:'rect',y:S*0.6,h:S*0.4,fill:'#ff7909'},
+    ]),
+    'Hawthorn': () => makeIcon([
+      {type:'rect',x:0,w:S/5,fill:'#4d2004'},{type:'rect',x:S/5,w:S/5,fill:'#fbbf15'},
+      {type:'rect',x:S/5*2,w:S/5,fill:'#4d2004'},{type:'rect',x:S/5*3,w:S/5,fill:'#fbbf15'},
+      {type:'rect',x:S/5*4,w:S/5,fill:'#4d2004'},
+    ]),
+    'Melbourne': () => makeIcon([
+      {type:'rect',fill:'#0f1131'},
+      {type:'polygon',fill:'#cc2031',points:`0,0 ${S},0 ${S/2},${S/2}`},
+    ]),
+    'North Melbourne': () => makeIcon([
+      {type:'rect',x:0,w:S/5,fill:'#13388f'},{type:'rect',x:S/5,w:S/5,fill:'#fff'},
+      {type:'rect',x:S/5*2,w:S/5,fill:'#13388f'},{type:'rect',x:S/5*3,w:S/5,fill:'#fff'},
+      {type:'rect',x:S/5*4,w:S/5,fill:'#13388f'},
+    ]),
+    'Port Adelaide': () => makeIcon([
+      {type:'rect',fill:'#000'},
+      {type:'polygon',fill:'#008aab',points:`0,0 ${S},0 ${S/2},${S/2}`},
+      {type:'path',fill:'none',stroke:'#fff',sw:sw,d:`M0,0 L${S/2},${S/2} L${S},0`},
+    ]),
+    'Richmond': () => makeIcon([
+      {type:'rect',fill:'#000'},
+      {type:'polygon',fill:'#ffd200',points:`${S},${-sw} ${S+sw},0 0,${S+sw} ${-sw},${S}`},
+    ]),
+    'St Kilda': () => makeIcon([
+      {type:'rect',x:0,w:S/3,fill:'#ed1b2f'},
+      {type:'rect',x:S/3,w:S/3,fill:'#fff'},
+      {type:'rect',x:S/3*2,w:S/3,fill:'#000'},
+    ]),
+    'Sydney': () => makeIcon([
+      {type:'rect',fill:'#fff'},
+      {type:'path',fill:'none',stroke:'#e1251b',sw:sw,d:`M0,0 L${S/2},${S/2} L${S},0`},
+    ]),
+    'West Coast': () => makeIcon([
+      {type:'rect',x:0,w:S*0.2,fill:'#f2a900'},
+      {type:'rect',x:S*0.2,w:S*0.6,fill:'#003087'},
+      {type:'rect',x:S*0.8,w:S*0.2,fill:'#f2a900'},
+    ]),
+    'Western Bulldogs': () => makeIcon([
+      {type:'rect',y:0,h:S/4,fill:'#20539d'},{type:'rect',y:S/4,h:S/4,fill:'#bd002b'},
+      {type:'rect',y:S/2,h:S/4,fill:'#fff'},{type:'rect',y:S*3/4,h:S/4,fill:'#20539d'},
+    ]),
+  };
+  return makers[team] ? makers[team]() : makeIcon([{type:'rect',fill:'#333'}]);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// BASELINE: end-of-2025 H2H sequences, venue sequences, carry-over ratings
+// ═══════════════════════════════════════════════════════════════════
+const BASELINE = {"carry_over":{"Adelaide":23.123628473655348,"Brisbane Lions":23.609239200512636,"Carlton":-3.4198941809096217,"Collingwood":19.32784023450331,"Essendon":-22.558684501490546,"Fremantle":14.317247046916624,"Geelong":27.572844816351747,"Gold Coast":17.500362782399847,"Greater Western Sydney":13.929606643742945,"Hawthorn":15.633781678835131,"Melbourne":-9.378581712037846,"North Melbourne":-23.187466744453065,"Port Adelaide":-9.92893243955889,"Richmond":-26.485608785962114,"St Kilda":-11.214597955216641,"Sydney":1.0183182869790435,"West Coast":-43.966600349102855,"Western Bulldogs":16.473644950099644},"h2h":{"AD_BL":{"seq":33,"val":-0.18181818181818182},"AD_CA":{"seq":28,"val":0.45454545454545453},"AD_CO":{"seq":37,"val":-0.8181818181818182},"AD_ES":{"seq":30,"val":-0.2727272727272727},"AD_FR":{"seq":36,"val":-0.09090909090909091},"AD_GE":{"seq":35,"val":-0.2727272727272727},"AD_GO":{"seq":21,"val":0.09090909090909091},"AD_GW":{"seq":19,"val":-0.09090909090909091},"AD_HA":{"seq":34,"val":-0.2727272727272727},"AD_ME":{"seq":31,"val":-0.45454545454545453},"AD_NM":{"seq":35,"val":0.45454545454545453},"AD_PA":{"seq":48,"val":-0.09090909090909091},"AD_RI":{"seq":30,"val":-0.09090909090909091},"AD_SK":{"seq":32,"val":0.6363636363636364},"AD_SY":{"seq":30,"val":-0.45454545454545453},"AD_WC":{"seq":40,"val":0.09090909090909091},"AD_WD":{"seq":32,"val":-0.09090909090909091},"BL_AD":{"seq":33,"val":0.18181818181818182},"BL_CA":{"seq":34,"val":0.6363636363636364},"BL_CO":{"seq":38,"val":0.2727272727272727},"BL_ES":{"seq":31,"val":0.2727272727272727},"BL_FR":{"seq":28,"val":0.2727272727272727},"BL_GE":{"seq":41,"val":-0.09090909090909091},"BL_GO":{"seq":30,"val":0.6363636363636364},"BL_GW":{"seq":19,"val":0.2727272727272727},"BL_HA":{"seq":33,"val":-0.09090909090909091},"BL_ME":{"seq":33,"val":0.09090909090909091},"BL_NM":{"seq":35,"val":0.2727272727272727},"BL_PA":{"seq":34,"val":0.2727272727272727},"BL_RI":{"seq":32,"val":-0.09090909090909091},"BL_SK":{"seq":31,"val":0.45454545454545453},"BL_SY":{"seq":37,"val":0.2727272727272727},"BL_WC":{"seq":32,"val":0.09090909090909091},"BL_WD":{"seq":37,"val":-0.09090909090909091},"CA_AD":{"seq":28,"val":-0.45454545454545453},"CA_BL":{"seq":34,"val":-0.6363636363636364},"CA_CO":{"seq":45,"val":-0.6363636363636364},"CA_ES":{"seq":41,"val":0.2727272727272727},"CA_FR":{"seq":32,"val":0.2727272727272727},"CA_GE":{"seq":28,"val":-0.2727272727272727},"CA_GO":{"seq":20,"val":0.2727272727272727},"CA_GW":{"seq":19,"val":-0.2727272727272727},"CA_HA":{"seq":29,"val":-0.2727272727272727},"CA_ME":{"seq":31,"val":-0.45454545454545453},"CA_NM":{"seq":31,"val":0.09090909090909091},"CA_PA":{"seq":34,"val":-0.45454545454545453},"CA_RI":{"seq":38,"val":-0.36363636363636365},"CA_SK":{"seq":35,"val":-0.45454545454545453},"CA_SY":{"seq":35,"val":-0.09090909090909091},"CA_WC":{"seq":29,"val":-0.09090909090909091},"CA_WD":{"seq":27,"val":-0.45454545454545453},"CO_AD":{"seq":37,"val":0.8181818181818182},"CO_BL":{"seq":38,"val":-0.2727272727272727},"CO_CA":{"seq":45,"val":0.6363636363636364},"CO_ES":{"seq":45,"val":0.18181818181818182},"CO_FR":{"seq":30,"val":0.36363636363636365},"CO_GE":{"seq":38,"val":-0.2727272727272727},"CO_GO":{"seq":16,"val":0.6363636363636364},"CO_GW":{"seq":17,"val":-0.2727272727272727},"CO_HA":{"seq":36,"val":-0.09090909090909091},"CO_ME":{"seq":35,"val":0.6363636363636364},"CO_NM":{"seq":29,"val":0.6363636363636364},"CO_PA":{"seq":33,"val":0.09090909090909091},"CO_RI":{"seq":33,"val":0.0},"CO_SK":{"seq":33,"val":0.2727272727272727},"CO_SY":{"seq":33,"val":-0.2727272727272727},"CO_WC":{"seq":37,"val":-0.09090909090909091},"CO_WD":{"seq":33,"val":-0.09090909090909091},"ES_AD":{"seq":30,"val":0.2727272727272727},"ES_BL":{"seq":31,"val":-0.2727272727272727},"ES_CA":{"seq":41,"val":-0.2727272727272727},"ES_CO":{"seq":45,"val":-0.18181818181818182},"ES_FR":{"seq":32,"val":0.2727272727272727},"ES_GE":{"seq":31,"val":-0.6363636363636364},"ES_GO":{"seq":18,"val":0.36363636363636365},"ES_GW":{"seq":18,"val":-0.2727272727272727},"ES_HA":{"seq":32,"val":0.2727272727272727},"ES_ME":{"seq":27,"val":-0.2727272727272727},"ES_NM":{"seq":30,"val":1.0},"ES_PA":{"seq":31,"val":-0.45454545454545453},"ES_RI":{"seq":39,"val":-0.45454545454545453},"ES_SK":{"seq":31,"val":-0.09090909090909091},"ES_SY":{"seq":35,"val":-0.2727272727272727},"ES_WC":{"seq":34,"val":0.2727272727272727},"ES_WD":{"seq":33,"val":-0.6363636363636364},"FR_AD":{"seq":36,"val":0.09090909090909091},"FR_BL":{"seq":28,"val":-0.2727272727272727},"FR_CA":{"seq":32,"val":-0.2727272727272727},"FR_CO":{"seq":30,"val":-0.36363636363636365},"FR_ES":{"seq":32,"val":-0.2727272727272727},"FR_GE":{"seq":35,"val":-0.2727272727272727},"FR_GO":{"seq":17,"val":0.09090909090909091},"FR_GW":{"seq":16,"val":-0.2727272727272727},"FR_HA":{"seq":33,"val":0.09090909090909091},"FR_ME":{"seq":34,"val":0.09090909090909091},"FR_NM":{"seq":29,"val":0.2727272727272727},"FR_PA":{"seq":37,"val":-0.2727272727272727},"FR_RI":{"seq":34,"val":-0.18181818181818182},"FR_SK":{"seq":36,"val":-0.09090909090909091},"FR_SY":{"seq":35,"val":-0.09090909090909091},"FR_WC":{"seq":47,"val":0.2727272727272727},"FR_WD":{"seq":33,"val":-0.09090909090909091},"GE_AD":{"seq":35,"val":0.2727272727272727},"GE_BL":{"seq":41,"val":0.09090909090909091},"GE_CA":{"seq":28,"val":0.2727272727272727},"GE_CO":{"seq":38,"val":0.2727272727272727},"GE_ES":{"seq":31,"val":0.6363636363636364},"GE_FR":{"seq":35,"val":0.2727272727272727},"GE_GO":{"seq":17,"val":0.45454545454545453},"GE_GW":{"seq":18,"val":-0.18181818181818182},"GE_HA":{"seq":44,"val":0.2727272727272727},"GE_ME":{"seq":34,"val":0.09090909090909091},"GE_NM":{"seq":38,"val":1.0},"GE_PA":{"seq":37,"val":0.2727272727272727},"GE_RI":{"seq":34,"val":0.09090909090909091},"GE_SK":{"seq":37,"val":0.2727272727272727},"GE_SY":{"seq":40,"val":0.18181818181818182},"GE_WC":{"seq":31,"val":0.45454545454545453},"GE_WD":{"seq":37,"val":0.2727272727272727},"GO_AD":{"seq":21,"val":-0.09090909090909091},"GO_BL":{"seq":30,"val":-0.6363636363636364},"GO_CA":{"seq":20,"val":-0.2727272727272727},"GO_CO":{"seq":16,"val":-0.6363636363636364},"GO_ES":{"seq":18,"val":-0.36363636363636365},"GO_FR":{"seq":17,"val":-0.09090909090909091},"GO_GE":{"seq":17,"val":-0.45454545454545453},"GO_GW":{"seq":21,"val":-0.8181818181818182},"GO_HA":{"seq":19,"val":0.09090909090909091},"GO_ME":{"seq":20,"val":-0.8181818181818182},"GO_NM":{"seq":22,"val":0.09090909090909091},"GO_PA":{"seq":17,"val":-0.8181818181818182},"GO_RI":{"seq":17,"val":-0.09090909090909091},"GO_SK":{"seq":20,"val":-0.6363636363636364},"GO_SY":{"seq":18,"val":-0.2727272727272727},"GO_WC":{"seq":19,"val":0.09090909090909091},"GO_WD":{"seq":18,"val":-0.6363636363636364},"GW_AD":{"seq":19,"val":0.09090909090909091},"GW_BL":{"seq":19,"val":-0.2727272727272727},"GW_CA":{"seq":19,"val":0.2727272727272727},"GW_CO":{"seq":17,"val":0.2727272727272727},"GW_ES":{"seq":18,"val":0.2727272727272727},"GW_FR":{"seq":16,"val":0.2727272727272727},"GW_GE":{"seq":18,"val":0.18181818181818182},"GW_GO":{"seq":21,"val":0.8181818181818182},"GW_HA":{"seq":18,"val":0.09090909090909091},"GW_ME":{"seq":19,"val":-0.09090909090909091},"GW_NM":{"seq":15,"val":0.18181818181818182},"GW_PA":{"seq":17,"val":0.2727272727272727},"GW_RI":{"seq":20,"val":-0.09090909090909091},"GW_SK":{"seq":18,"val":0.0},"GW_SY":{"seq":31,"val":-0.45454545454545453},"GW_WC":{"seq":18,"val":0.09090909090909091},"GW_WD":{"seq":22,"val":-0.6363636363636364},"HA_AD":{"seq":34,"val":0.2727272727272727},"HA_BL":{"seq":33,"val":0.09090909090909091},"HA_CA":{"seq":29,"val":0.2727272727272727},"HA_CO":{"seq":36,"val":0.09090909090909091},"HA_ES":{"seq":32,"val":-0.2727272727272727},"HA_FR":{"seq":33,"val":-0.09090909090909091},"HA_GE":{"seq":44,"val":-0.2727272727272727},"HA_GO":{"seq":19,"val":-0.09090909090909091},"HA_GW":{"seq":18,"val":-0.09090909090909091},"HA_ME":{"seq":35,"val":-0.5454545454545454},"HA_NM":{"seq":39,"val":0.45454545454545453},"HA_PA":{"seq":35,"val":-0.2727272727272727},"HA_RI":{"seq":34,"val":-0.36363636363636365},"HA_SK":{"seq":29,"val":-0.2727272727272727},"HA_SY":{"seq":40,"val":-0.09090909090909091},"HA_WC":{"seq":34,"val":0.09090909090909091},"HA_WD":{"seq":33,"val":0.09090909090909091},"ME_AD":{"seq":31,"val":0.45454545454545453},"ME_BL":{"seq":33,"val":-0.09090909090909091},"ME_CA":{"seq":31,"val":0.45454545454545453},"ME_CO":{"seq":35,"val":-0.6363636363636364},"ME_ES":{"seq":27,"val":0.2727272727272727},"ME_FR":{"seq":34,"val":-0.09090909090909091},"ME_GE":{"seq":34,"val":-0.09090909090909091},"ME_GO":{"seq":20,"val":0.8181818181818182},"ME_GW":{"seq":19,"val":0.09090909090909091},"ME_HA":{"seq":35,"val":0.5454545454545454},"ME_ME":{"seq":34,"val":0.2727272727272727},"ME_NM":{"seq":34,"val":0.2727272727272727},"ME_PA":{"seq":35,"val":0.09090909090909091},"ME_RI":{"seq":33,"val":0.09090909090909091},"ME_SK":{"seq":35,"val":0.2727272727272727},"ME_SY":{"seq":33,"val":-0.2727272727272727},"ME_WC":{"seq":34,"val":0.09090909090909091},"ME_WD":{"seq":39,"val":0.09090909090909091},"NM_AD":{"seq":35,"val":-0.45454545454545453},"NM_BL":{"seq":35,"val":-0.2727272727272727},"NM_CA":{"seq":31,"val":-0.09090909090909091},"NM_CO":{"seq":29,"val":-0.6363636363636364},"NM_ES":{"seq":30,"val":-1.0},"NM_FR":{"seq":29,"val":-0.2727272727272727},"NM_GE":{"seq":38,"val":-1.0},"NM_GO":{"seq":22,"val":-0.09090909090909091},"NM_GW":{"seq":15,"val":-0.18181818181818182},"NM_HA":{"seq":39,"val":-0.45454545454545453},"NM_ME":{"seq":34,"val":-0.2727272727272727},"NM_PA":{"seq":34,"val":-0.8181818181818182},"NM_RI":{"seq":29,"val":0.09090909090909091},"NM_SK":{"seq":34,"val":-0.2727272727272727},"NM_SY":{"seq":35,"val":-0.8181818181818182},"NM_WC":{"seq":33,"val":-0.09090909090909091},"NM_WD":{"seq":38,"val":-0.6363636363636364},"PA_AD":{"seq":48,"val":0.09090909090909091},"PA_BL":{"seq":34,"val":-0.2727272727272727},"PA_CA":{"seq":34,"val":0.45454545454545453},"PA_CO":{"seq":33,"val":-0.09090909090909091},"PA_ES":{"seq":31,"val":0.45454545454545453},"PA_FR":{"seq":37,"val":0.2727272727272727},"PA_GE":{"seq":37,"val":-0.2727272727272727},"PA_GO":{"seq":17,"val":0.8181818181818182},"PA_GW":{"seq":17,"val":-0.2727272727272727},"PA_HA":{"seq":35,"val":0.2727272727272727},"PA_ME":{"seq":35,"val":-0.09090909090909091},"PA_NM":{"seq":34,"val":0.8181818181818182},"PA_RI":{"seq":36,"val":0.09090909090909091},"PA_SK":{"seq":31,"val":0.8181818181818182},"PA_SY":{"seq":31,"val":0.6363636363636364},"PA_WC":{"seq":34,"val":0.09090909090909091},"PA_WD":{"seq":31,"val":0.45454545454545453},"RI_AD":{"seq":30,"val":0.09090909090909091},"RI_BL":{"seq":32,"val":0.09090909090909091},"RI_CA":{"seq":38,"val":0.36363636363636365},"RI_CO":{"seq":33,"val":0.0},"RI_ES":{"seq":39,"val":0.45454545454545453},"RI_FR":{"seq":34,"val":0.18181818181818182},"RI_GE":{"seq":34,"val":-0.09090909090909091},"RI_GO":{"seq":17,"val":0.09090909090909091},"RI_GW":{"seq":20,"val":0.09090909090909091},"RI_HA":{"seq":34,"val":0.36363636363636365},"RI_ME":{"seq":33,"val":-0.09090909090909091},"RI_NM":{"seq":29,"val":-0.09090909090909091},"RI_PA":{"seq":36,"val":-0.09090909090909091},"RI_SK":{"seq":39,"val":-0.2727272727272727},"RI_SY":{"seq":34,"val":0.09090909090909091},"RI_WC":{"seq":30,"val":0.45454545454545453},"RI_WD":{"seq":30,"val":-0.2727272727272727},"SK_AD":{"seq":32,"val":-0.6363636363636364},"SK_BL":{"seq":31,"val":-0.45454545454545453},"SK_CA":{"seq":35,"val":0.45454545454545453},"SK_CO":{"seq":33,"val":-0.2727272727272727},"SK_ES":{"seq":31,"val":0.09090909090909091},"SK_FR":{"seq":36,"val":0.09090909090909091},"SK_GE":{"seq":37,"val":-0.2727272727272727},"SK_GO":{"seq":20,"val":0.6363636363636364},"SK_GW":{"seq":18,"val":0.0},"SK_HA":{"seq":29,"val":0.2727272727272727},"SK_ME":{"seq":35,"val":-0.2727272727272727},"SK_NM":{"seq":34,"val":0.2727272727272727},"SK_PA":{"seq":31,"val":-0.8181818181818182},"SK_RI":{"seq":39,"val":0.2727272727272727},"SK_SY":{"seq":36,"val":-0.2727272727272727},"SK_WC":{"seq":33,"val":0.09090909090909091},"SK_WD":{"seq":36,"val":-0.09090909090909091},"SY_AD":{"seq":30,"val":0.45454545454545453},"SY_BL":{"seq":37,"val":-0.2727272727272727},"SY_CA":{"seq":35,"val":0.09090909090909091},"SY_CO":{"seq":33,"val":0.2727272727272727},"SY_ES":{"seq":35,"val":0.2727272727272727},"SY_FR":{"seq":35,"val":0.09090909090909091},"SY_GE":{"seq":40,"val":-0.18181818181818182},"SY_GO":{"seq":18,"val":0.2727272727272727},"SY_GW":{"seq":31,"val":0.45454545454545453},"SY_HA":{"seq":40,"val":0.09090909090909091},"SY_ME":{"seq":33,"val":0.2727272727272727},"SY_NM":{"seq":35,"val":0.8181818181818182},"SY_PA":{"seq":31,"val":-0.6363636363636364},"SY_RI":{"seq":34,"val":-0.09090909090909091},"SY_SK":{"seq":36,"val":0.2727272727272727},"SY_WC":{"seq":33,"val":0.45454545454545453},"SY_WD":{"seq":34,"val":0.09090909090909091},"WC_AD":{"seq":40,"val":-0.09090909090909091},"WC_BL":{"seq":32,"val":-0.09090909090909091},"WC_CA":{"seq":29,"val":0.09090909090909091},"WC_CO":{"seq":37,"val":0.09090909090909091},"WC_ES":{"seq":34,"val":-0.2727272727272727},"WC_FR":{"seq":47,"val":-0.2727272727272727},"WC_GE":{"seq":31,"val":-0.45454545454545453},"WC_GO":{"seq":19,"val":-0.09090909090909091},"WC_GW":{"seq":18,"val":-0.09090909090909091},"WC_HA":{"seq":34,"val":-0.09090909090909091},"WC_ME":{"seq":34,"val":-0.09090909090909091},"WC_NM":{"seq":33,"val":0.09090909090909091},"WC_PA":{"seq":34,"val":-0.09090909090909091},"WC_RI":{"seq":30,"val":-0.45454545454545453},"WC_SK":{"seq":33,"val":-0.09090909090909091},"WC_SY":{"seq":33,"val":-0.45454545454545453},"WC_WD":{"seq":37,"val":0.09090909090909091},"WD_AD":{"seq":32,"val":0.09090909090909091},"WD_BL":{"seq":37,"val":0.09090909090909091},"WD_CA":{"seq":27,"val":0.45454545454545453},"WD_CO":{"seq":33,"val":0.09090909090909091},"WD_ES":{"seq":33,"val":0.6363636363636364},"WD_FR":{"seq":33,"val":0.09090909090909091},"WD_GE":{"seq":37,"val":-0.2727272727272727},"WD_GO":{"seq":18,"val":0.6363636363636364},"WD_GW":{"seq":22,"val":0.6363636363636364},"WD_HA":{"seq":33,"val":-0.09090909090909091},"WD_ME":{"seq":39,"val":-0.09090909090909091},"WD_NM":{"seq":38,"val":0.6363636363636364},"WD_PA":{"seq":31,"val":-0.45454545454545453},"WD_RI":{"seq":30,"val":0.2727272727272727},"WD_SK":{"seq":36,"val":0.09090909090909091},"WD_SY":{"seq":34,"val":-0.09090909090909091},"WD_WC":{"seq":37,"val":-0.09090909090909091}},"venues":{"AD_Adelaide Oval":{"seq":148,"val":0.8181818181818182},"AD_Bellerive Oval":{"seq":4,"val":-0.3333333333333333},"AD_Carrara":{"seq":18,"val":-0.09090909090909091},"AD_Cazaly's Stadium":{"seq":1,"val":0.0},"AD_Docklands":{"seq":67,"val":-0.09090909090909091},"AD_Eureka Stadium":{"seq":4,"val":-0.3333333333333333},"AD_Football Park":{"seq":153,"val":-0.2727272727272727},"AD_Gabba":{"seq":21,"val":0.09090909090909091},"AD_Kardinia Park":{"seq":16,"val":-1.0},"AD_M.C.G.":{"seq":50,"val":-0.8181818181818182},"AD_Manuka Oval":{"seq":2,"val":-1.0},"AD_Marrara Oval":{"seq":3,"val":1.0},"AD_Perth Stadium":{"seq":8,"val":-0.42857142857142855},"AD_Princes Park":{"seq":3,"val":0.0},"AD_S.C.G.":{"seq":15,"val":0.09090909090909091},"AD_Subiaco":{"seq":24,"val":0.09090909090909091},"AD_Sydney Showground":{"seq":6,"val":0.2},"AD_Traeger Park":{"seq":1,"val":0.0},"AD_York Park":{"seq":7,"val":-0.3333333333333333},"BL_Adelaide Oval":{"seq":15,"val":-0.18181818181818182},"BL_Bellerive Oval":{"seq":2,"val":1.0},"BL_Carrara":{"seq":22,"val":0.2727272727272727},"BL_Cazaly's Stadium":{"seq":1,"val":0.0},"BL_Docklands":{"seq":77,"val":0.6363636363636364},"BL_Eureka Stadium":{"seq":2,"val":-1.0},"BL_Football Park":{"seq":15,"val":0.2727272727272727},"BL_Gabba":{"seq":283,"val":0.2727272727272727},"BL_Kardinia Park":{"seq":16,"val":-1.0},"BL_M.C.G.":{"seq":54,"val":0.2727272727272727},"BL_Manuka Oval":{"seq":3,"val":1.0},"BL_Marrara Oval":{"seq":1,"val":0.0},"BL_Norwood Oval":{"seq":2,"val":1.0},"BL_Perth Stadium":{"seq":8,"val":0.14285714285714285},"BL_Princes Park":{"seq":1,"val":0.0},"BL_S.C.G.":{"seq":14,"val":-0.6363636363636364},"BL_Stadium Australia":{"seq":3,"val":0.0},"BL_Subiaco":{"seq":19,"val":-0.45454545454545453},"BL_Summit Sport Park":{"seq":1,"val":0.0},"BL_Sydney Showground":{"seq":6,"val":-0.2},"BL_Wellington":{"seq":1,"val":0.0},"BL_York Park":{"seq":12,"val":-0.45454545454545453},"CA_Adelaide Oval":{"seq":12,"val":-0.45454545454545453},"CA_Bellerive Oval":{"seq":1,"val":0.0},"CA_Carrara":{"seq":15,"val":0.09090909090909091},"CA_Docklands":{"seq":179,"val":-0.2727272727272727},"CA_Football Park":{"seq":17,"val":-0.09090909090909091},"CA_Gabba":{"seq":24,"val":-0.6363636363636364},"CA_Kardinia Park":{"seq":3,"val":-1.0},"CA_M.C.G.":{"seq":194,"val":-0.2727272727272727},"CA_Marrara Oval":{"seq":2,"val":-1.0},"CA_Perth Stadium":{"seq":12,"val":0.2727272727272727},"CA_Princes Park":{"seq":20,"val":-0.2727272727272727},"CA_S.C.G.":{"seq":16,"val":-0.8181818181818182},"CA_Stadium Australia":{"seq":4,"val":-1.0},"CA_Subiaco":{"seq":26,"val":-0.2727272727272727},"CA_Sydney Showground":{"seq":8,"val":-0.42857142857142855},"CA_Wellington":{"seq":1,"val":0.0},"CA_York Park":{"seq":2,"val":-1.0},"CO_Adelaide Oval":{"seq":16,"val":0.8181818181818182},"CO_Carrara":{"seq":10,"val":0.3333333333333333},"CO_Docklands":{"seq":91,"val":0.2727272727272727},"CO_Football Park":{"seq":17,"val":0.45454545454545453},"CO_Gabba":{"seq":26,"val":-0.2727272727272727},"CO_M.C.G.":{"seq":347,"val":0.2727272727272727},"CO_Perth Stadium":{"seq":12,"val":0.18181818181818182},"CO_S.C.G.":{"seq":10,"val":-0.3333333333333333},"CO_Stadium Australia":{"seq":13,"val":0.45454545454545453},"CO_Subiaco":{"seq":17,"val":-0.2727272727272727},"CO_Sydney Showground":{"seq":9,"val":0.0},"ES_Adelaide Oval":{"seq":16,"val":0.09090909090909091},"ES_Carrara":{"seq":16,"val":-0.18181818181818182},"ES_Docklands":{"seq":208,"val":-0.45454545454545453},"ES_Football Park":{"seq":19,"val":-0.45454545454545453},"ES_Gabba":{"seq":17,"val":-0.09090909090909091},"ES_Kardinia Park":{"seq":4,"val":-0.3333333333333333},"ES_M.C.G.":{"seq":185,"val":-0.45454545454545453},"ES_Marrara Oval":{"seq":1,"val":0.0},"ES_Perth Stadium":{"seq":13,"val":0.09090909090909091},"ES_S.C.G.":{"seq":15,"val":-0.8181818181818182},"ES_Stadium Australia":{"seq":7,"val":-0.6666666666666666},"ES_Subiaco":{"seq":25,"val":-0.45454545454545453},"ES_Sydney Showground":{"seq":10,"val":-0.1111111111111111},"ES_York Park":{"seq":2,"val":1.0},"FR_Adelaide Oval":{"seq":16,"val":-0.6363636363636364},"FR_Barossa Park":{"seq":1,"val":0.0},"FR_Bellerive Oval":{"seq":1,"val":0.0},"FR_Carrara":{"seq":15,"val":-0.2727272727272727},"FR_Cazaly's Stadium":{"seq":2,"val":1.0},"FR_Docklands":{"seq":65,"val":0.0},"FR_Football Park":{"seq":22,"val":-0.2727272727272727},"FR_Gabba":{"seq":12,"val":-0.2727272727272727},"FR_Kardinia Park":{"seq":15,"val":-0.2727272727272727},"FR_M.C.G.":{"seq":51,"val":-0.2727272727272727},"FR_Manuka Oval":{"seq":4,"val":-0.3333333333333333},"FR_Marrara Oval":{"seq":4,"val":-0.3333333333333333},"FR_Norwood Oval":{"seq":1,"val":0.0},"FR_Perth Stadium":{"seq":94,"val":0.6363636363636364},"FR_Princes Park":{"seq":3,"val":-1.0},"FR_S.C.G.":{"seq":17,"val":-0.18181818181818182},"FR_Stadium Australia":{"seq":2,"val":-1.0},"FR_Subiaco":{"seq":199,"val":-0.09090909090909091},"FR_Sydney Showground":{"seq":5,"val":-1.0},"FR_Traeger Park":{"seq":1,"val":0.0},"FR_York Park":{"seq":14,"val":-0.6363636363636364},"GE_Adelaide Oval":{"seq":23,"val":0.2727272727272727},"GE_Bellerive Oval":{"seq":3,"val":1.0},"GE_Carrara":{"seq":12,"val":0.45454545454545453},"GE_Docklands":{"seq":94,"val":-0.09090909090909091},"GE_Football Park":{"seq":17,"val":0.45454545454545453},"GE_Gabba":{"seq":24,"val":0.2727272727272727},"GE_Kardinia Park":{"seq":190,"val":0.6363636363636364},"GE_M.C.G.":{"seq":141,"val":0.45454545454545453},"GE_Manuka Oval":{"seq":5,"val":-0.5},"GE_Marrara Oval":{"seq":1,"val":0.0},"GE_Perth Stadium":{"seq":12,"val":-0.09090909090909091},"GE_Princes Park":{"seq":1,"val":0.0},"GE_S.C.G.":{"seq":17,"val":0.0},"GE_Stadium Australia":{"seq":5,"val":0.5},"GE_Subiaco":{"seq":24,"val":-0.09090909090909091},"GE_Sydney Showground":{"seq":5,"val":0.25},"GE_York Park":{"seq":1,"val":0.0},"GO_Adelaide Oval":{"seq":13,"val":-1.0},"GO_Barossa Park":{"seq":1,"val":0.0},"GO_Bellerive Oval":{"seq":2,"val":-1.0},"GO_Carrara":{"seq":142,"val":0.2727272727272727},"GO_Cazaly's Stadium":{"seq":8,"val":-0.42857142857142855},"GO_Docklands":{"seq":41,"val":-0.09090909090909091},"GO_Eureka Stadium":{"seq":4,"val":-0.3333333333333333},"GO_Football Park":{"seq":4,"val":-0.3333333333333333},"GO_Gabba":{"seq":22,"val":-0.8181818181818182},"GO_Jiangwan Stadium":{"seq":2,"val":-1.0},"GO_Kardinia Park":{"seq":9,"val":-1.0},"GO_M.C.G.":{"seq":19,"val":-0.45454545454545453},"GO_Manuka Oval":{"seq":4,"val":-0.3333333333333333},"GO_Marrara Oval":{"seq":10,"val":0.5555555555555556},"GO_Norwood Oval":{"seq":1,"val":0.0},"GO_Perth Stadium":{"seq":11,"val":-0.4},"GO_Riverway Stadium":{"seq":1,"val":0.0},"GO_S.C.G.":{"seq":10,"val":-0.1111111111111111},"GO_Subiaco":{"seq":10,"val":-0.7777777777777778},"GO_Summit Sport Park":{"seq":1,"val":0.0},"GO_Sydney Showground":{"seq":8,"val":-1.0},"GO_Traeger Park":{"seq":1,"val":0.0},"GO_York Park":{"seq":6,"val":-1.0},"GW_Adelaide Oval":{"seq":19,"val":0.09090909090909091},"GW_Bellerive Oval":{"seq":6,"val":0.0},"GW_Blacktown":{"seq":1,"val":0.0},"GW_Carrara":{"seq":13,"val":0.2727272727272727},"GW_Docklands":{"seq":35,"val":0.09090909090909091},"GW_Eureka Stadium":{"seq":3,"val":0.0},"GW_Football Park":{"seq":2,"val":-1.0},"GW_Gabba":{"seq":13,"val":0.09090909090909091},"GW_Kardinia Park":{"seq":9,"val":0.0},"GW_M.C.G.":{"seq":32,"val":-0.09090909090909091},"GW_Manuka Oval":{"seq":39,"val":-0.2727272727272727},"GW_Norwood Oval":{"seq":2,"val":1.0},"GW_Perth Stadium":{"seq":11,"val":-0.6},"GW_S.C.G.":{"seq":14,"val":-0.09090909090909091},"GW_Stadium Australia":{"seq":5,"val":-0.5},"GW_Subiaco":{"seq":8,"val":-0.7142857142857143},"GW_Summit Sport Park":{"seq":1,"val":0.0},"GW_Sydney Showground":{"seq":106,"val":0.6363636363636364},"GW_Traeger Park":{"seq":1,"val":0.0},"GW_York Park":{"seq":5,"val":-0.25},"HA_Adelaide Oval":{"seq":22,"val":-0.45454545454545453},"HA_Bellerive Oval":{"seq":1,"val":0.0},"HA_Carrara":{"seq":7,"val":-0.3333333333333333},"HA_Docklands":{"seq":87,"val":0.45454545454545453},"HA_Football Park":{"seq":17,"val":-0.09090909090909091},"HA_Gabba":{"seq":11,"val":-0.6},"HA_Kardinia Park":{"seq":4,"val":-0.3333333333333333},"HA_M.C.G.":{"seq":256,"val":0.45454545454545453},"HA_Manuka Oval":{"seq":2,"val":1.0},"HA_Marrara Oval":{"seq":2,"val":-1.0},"HA_Norwood Oval":{"seq":1,"val":0.0},"HA_Perth Stadium":{"seq":10,"val":-0.1111111111111111},"HA_Princes Park":{"seq":1,"val":0.0},"HA_S.C.G.":{"seq":16,"val":0.09090909090909091},"HA_Stadium Australia":{"seq":4,"val":-0.3333333333333333},"HA_Subiaco":{"seq":22,"val":-0.2727272727272727},"HA_Sydney Showground":{"seq":9,"val":-1.0},"HA_York Park":{"seq":85,"val":0.8181818181818182},"ME_Adelaide Oval":{"seq":22,"val":0.09090909090909091},"ME_Bellerive Oval":{"seq":5,"val":-0.5},"ME_Carrara":{"seq":12,"val":0.09090909090909091},"ME_Cazaly's Stadium":{"seq":2,"val":-1.0},"ME_Docklands":{"seq":65,"val":0.09090909090909091},"ME_Football Park":{"seq":15,"val":-1.0},"ME_Gabba":{"seq":22,"val":-0.09090909090909091},"ME_Kardinia Park":{"seq":19,"val":-0.6363636363636364},"ME_M.C.G.":{"seq":294,"val":-0.2727272727272727},"ME_Manuka Oval":{"seq":8,"val":-0.42857142857142855},"ME_Marrara Oval":{"seq":10,"val":-0.1111111111111111},"ME_Perth Stadium":{"seq":13,"val":0.09090909090909091},"ME_Princes Park":{"seq":5,"val":0.5},"ME_S.C.G.":{"seq":11,"val":-0.2},"ME_Stadium Australia":{"seq":1,"val":0.0},"ME_Subiaco":{"seq":22,"val":-1.0},"ME_Sydney Showground":{"seq":5,"val":0.0},"ME_Traeger Park":{"seq":11,"val":-0.2},"NM_Adelaide Oval":{"seq":13,"val":-1.0},"NM_Barossa Park":{"seq":1,"val":0.0},"NM_Bellerive Oval":{"seq":41,"val":-0.7272727272727273},"NM_Carrara":{"seq":24,"val":-0.6363636363636364},"NM_Cazaly's Stadium":{"seq":1,"val":0.0},"NM_Docklands":{"seq":253,"val":-0.6363636363636364},"NM_Football Park":{"seq":18,"val":-0.2727272727272727},"NM_Gabba":{"seq":19,"val":-0.2727272727272727},"NM_Hands Oval":{"seq":1,"val":0.0},"NM_Kardinia Park":{"seq":18,"val":-0.8181818181818182},"NM_M.C.G.":{"seq":63,"val":-0.6363636363636364},"NM_Manuka Oval":{"seq":16,"val":0.09090909090909091},"NM_Marrara Oval":{"seq":2,"val":-1.0},"NM_Norwood Oval":{"seq":1,"val":0.0},"NM_Perth Stadium":{"seq":10,"val":-0.1111111111111111},"NM_Princes Park":{"seq":2,"val":1.0},"NM_S.C.G.":{"seq":13,"val":-0.45454545454545453},"NM_Stadium Australia":{"seq":3,"val":-1.0},"NM_Subiaco":{"seq":25,"val":-0.6363636363636364},"NM_Summit Sport Park":{"seq":1,"val":0.0},"NM_Sydney Showground":{"seq":4,"val":1.0},"NM_York Park":{"seq":11,"val":-0.4},"PA_Adelaide Oval":{"seq":151,"val":-0.09090909090909091},"PA_Bellerive Oval":{"seq":4,"val":0.3333333333333333},"PA_Carrara":{"seq":13,"val":0.8181818181818182},"PA_Cazaly's Stadium":{"seq":1,"val":0.0},"PA_Docklands":{"seq":62,"val":0.6363636363636364},"PA_Eureka Stadium":{"seq":3,"val":1.0},"PA_Football Park":{"seq":152,"val":0.45454545454545453},"PA_Gabba":{"seq":20,"val":-0.09090909090909091},"PA_Jiangwan Stadium":{"seq":3,"val":1.0},"PA_Kardinia Park":{"seq":15,"val":-0.6363636363636364},"PA_M.C.G.":{"seq":47,"val":0.09090909090909091},"PA_Manuka Oval":{"seq":5,"val":-0.5},"PA_Marrara Oval":{"seq":10,"val":-0.1111111111111111},"PA_Perth Stadium":{"seq":9,"val":-0.25},"PA_Princes Park":{"seq":3,"val":0.0},"PA_S.C.G.":{"seq":15,"val":-0.45454545454545453},"PA_Subiaco":{"seq":24,"val":-0.45454545454545453},"PA_Sydney Showground":{"seq":3,"val":0.0},"PA_Traeger Park":{"seq":4,"val":1.0},"PA_York Park":{"seq":11,"val":0.0},"RI_Adelaide Oval":{"seq":23,"val":-0.09090909090909091},"RI_Barossa Park":{"seq":1,"val":0.0},"RI_Bellerive Oval":{"seq":3,"val":-1.0},"RI_Carrara":{"seq":16,"val":0.6363636363636364},"RI_Cazaly's Stadium":{"seq":3,"val":-1.0},"RI_Docklands":{"seq":96,"val":-0.7272727272727273},"RI_Football Park":{"seq":19,"val":-0.09090909090909091},"RI_Gabba":{"seq":19,"val":0.2727272727272727},"RI_Kardinia Park":{"seq":9,"val":-0.75},"RI_M.C.G.":{"seq":291,"val":-0.6363636363636364},"RI_Manuka Oval":{"seq":1,"val":0.0},"RI_Marrara Oval":{"seq":2,"val":-1.0},"RI_Norwood Oval":{"seq":1,"val":0.0},"RI_Perth Stadium":{"seq":11,"val":0.0},"RI_S.C.G.":{"seq":11,"val":-0.6},"RI_Stadium Australia":{"seq":2,"val":-1.0},"RI_Subiaco":{"seq":23,"val":-0.09090909090909091},"RI_Sydney Showground":{"seq":10,"val":0.1111111111111111},"RI_York Park":{"seq":1,"val":0.0},"SK_Adelaide Oval":{"seq":20,"val":-0.45454545454545453},"SK_Bellerive Oval":{"seq":4,"val":-1.0},"SK_Carrara":{"seq":16,"val":0.09090909090909091},"SK_Cazaly's Stadium":{"seq":2,"val":-1.0},"SK_Docklands":{"seq":293,"val":-0.2727272727272727},"SK_Football Park":{"seq":18,"val":-0.45454545454545453},"SK_Gabba":{"seq":22,"val":-0.09090909090909091},"SK_Jiangwan Stadium":{"seq":1,"val":0.0},"SK_Kardinia Park":{"seq":11,"val":-1.0},"SK_M.C.G.":{"seq":77,"val":-0.09090909090909091},"SK_Manuka Oval":{"seq":4,"val":0.3333333333333333},"SK_Norwood Oval":{"seq":2,"val":1.0},"SK_Perth Stadium":{"seq":10,"val":-0.1111111111111111},"SK_Princes Park":{"seq":2,"val":1.0},"SK_Riverway Stadium":{"seq":1,"val":0.0},"SK_S.C.G.":{"seq":14,"val":-0.6363636363636364},"SK_Stadium Australia":{"seq":3,"val":0.0},"SK_Subiaco":{"seq":23,"val":-0.09090909090909091},"SK_Sydney Showground":{"seq":5,"val":0.0},"SK_Traeger Park":{"seq":2,"val":-1.0},"SK_Wellington":{"seq":3,"val":-1.0},"SK_York Park":{"seq":13,"val":0.09090909090909091},"SY_Adelaide Oval":{"seq":16,"val":-0.09090909090909091},"SY_Bellerive Oval":{"seq":3,"val":1.0},"SY_Carrara":{"seq":13,"val":0.2727272727272727},"SY_Cazaly's Stadium":{"seq":2,"val":1.0},"SY_Docklands":{"seq":65,"val":0.2727272727272727},"SY_Football Park":{"seq":17,"val":0.2727272727272727},"SY_Gabba":{"seq":22,"val":-0.09090909090909091},"SY_Kardinia Park":{"seq":16,"val":-0.09090909090909091},"SY_M.C.G.":{"seq":73,"val":-0.45454545454545453},"SY_Manuka Oval":{"seq":12,"val":0.09090909090909091},"SY_Perth Stadium":{"seq":11,"val":0.4},"SY_Princes Park":{"seq":3,"val":1.0},"SY_S.C.G.":{"seq":225,"val":0.09090909090909091},"SY_Stadium Australia":{"seq":56,"val":0.09090909090909091},"SY_Subiaco":{"seq":22,"val":0.09090909090909091},"SY_Summit Sport Park":{"seq":1,"val":0.0},"SY_Sydney Showground":{"seq":9,"val":0.25},"SY_Wellington":{"seq":1,"val":0.0},"SY_York Park":{"seq":3,"val":0.0},"WC_Adelaide Oval":{"seq":21,"val":-0.6363636363636364},"WC_Bellerive Oval":{"seq":4,"val":-0.3333333333333333},"WC_Blacktown":{"seq":1,"val":0.0},"WC_Carrara":{"seq":12,"val":-0.36363636363636365},"WC_Docklands":{"seq":71,"val":-0.8181818181818182},"WC_Football Park":{"seq":22,"val":-0.45454545454545453},"WC_Gabba":{"seq":24,"val":0.09090909090909091},"WC_Hands Oval":{"seq":1,"val":0.0},"WC_Kardinia Park":{"seq":14,"val":-0.8181818181818182},"WC_M.C.G.":{"seq":50,"val":-0.2727272727272727},"WC_Manuka Oval":{"seq":3,"val":0.0},"WC_Marrara Oval":{"seq":1,"val":0.0},"WC_Perth Stadium":{"seq":95,"val":-0.8181818181818182},"WC_Princes Park":{"seq":4,"val":-0.3333333333333333},"WC_S.C.G.":{"seq":8,"val":-0.7142857142857143},"WC_Stadium Australia":{"seq":4,"val":-0.3333333333333333},"WC_Subiaco":{"seq":202,"val":0.45454545454545453},"WC_Summit Sport Park":{"seq":1,"val":0.0},"WC_Sydney Showground":{"seq":8,"val":-0.14285714285714285},"WC_Traeger Park":{"seq":1,"val":0.0},"WC_York Park":{"seq":8,"val":-0.42857142857142855},"WD_Adelaide Oval":{"seq":16,"val":-0.2727272727272727},"WD_Carrara":{"seq":12,"val":0.09090909090909091},"WD_Cazaly's Stadium":{"seq":5,"val":1.0},"WD_Docklands":{"seq":283,"val":0.6363636363636364},"WD_Eureka Stadium":{"seq":14,"val":0.45454545454545453},"WD_Football Park":{"seq":16,"val":-0.2727272727272727},"WD_Gabba":{"seq":19,"val":-0.45454545454545453},"WD_Kardinia Park":{"seq":16,"val":-0.6363636363636364},"WD_M.C.G.":{"seq":72,"val":-0.2727272727272727},"WD_Manuka Oval":{"seq":14,"val":0.45454545454545453},"WD_Marrara Oval":{"seq":11,"val":0.4},"WD_Norwood Oval":{"seq":1,"val":0.0},"WD_Perth Stadium":{"seq":12,"val":-0.2727272727272727},"WD_Princes Park":{"seq":4,"val":0.3333333333333333},"WD_S.C.G.":{"seq":17,"val":-0.09090909090909091},"WD_Subiaco":{"seq":23,"val":-0.6363636363636364},"WD_Sydney Showground":{"seq":6,"val":0.2},"WD_York Park":{"seq":9,"val":-0.25}},"team_abbrev":{"Brisbane Lions":"BL","Carlton":"CA","Collingwood":"CO","Essendon":"ES","Fremantle":"FR","Geelong":"GE","Gold Coast":"GO","Greater Western Sydney":"GW","Hawthorn":"HA","Melbourne":"ME","North Melbourne":"NM","Port Adelaide":"PA","Richmond":"RI","St Kilda":"SK","Sydney":"SY","West Coast":"WC","Western Bulldogs":"WD"}};
+
+// Adelaide not in abbrev map — add it
+BASELINE.team_abbrev['Adelaide'] = 'AD';
+
+// ─── Lookups ───────────────────────────────────────────────────────────────
+const TEAM_STATE = {
+  'Adelaide':'SA','Brisbane Lions':'QLD','Carlton':'VIC','Collingwood':'VIC',
+  'Essendon':'VIC','Fremantle':'WA','Geelong':'VIC','Gold Coast':'QLD',
+  'Greater Western Sydney':'NSW','Hawthorn':'VIC','Melbourne':'VIC',
+  'North Melbourne':'VIC','Port Adelaide':'SA','Richmond':'VIC','St Kilda':'VIC',
+  'Sydney':'NSW','West Coast':'WA','Western Bulldogs':'VIC'
+};
+const VENUE_STATE = {
+  'Adelaide Oval':'SA','Barossa Park':'SA','Bellerive Oval':'TAS','Blacktown':'NSW',
+  'Carrara':'QLD',"Cazaly's Stadium":'FNQ','Docklands':'VIC','Eureka Stadium':'VIC',
+  'Football Park':'SA','Gabba':'QLD','Hands Oval':'WA','Jiangwan Stadium':'OS',
+  'Kardinia Park':'VIC','M.C.G.':'VIC','Manuka Oval':'ACT','Marrara Oval':'NT',
+  'Norwood Oval':'SA','Princes Park':'VIC','Perth Stadium':'WA','Riverway Stadium':'FNQ',
+  'S.C.G.':'NSW','Stadium Australia':'NSW','Subiaco':'WA','Summit Sport Park':'SA',
+  'Sydney Showground':'NSW','Traeger Park':'NT','Wellington':'OS','York Park':'TAS'
+};
+
+const TEAMS = Object.keys(TEAM_STATE);
+const ABBREV = BASELINE.team_abbrev;
+const abbrevOf = t => ABBREV[t] || t.substring(0,2).toUpperCase();
+
+// ─── Rating engine ─────────────────────────────────────────────────────────
+function updateH2H(state, abbA, abbB, outcome) {
+  // outcome: +1 win, -1 loss, 0 draw for team A
+  const key = `${abbA}_${abbB}`;
+  if (!state[key]) state[key] = {seq:0, val:0};
+  const s = state[key];
+  s.seq++;
+  if (s.seq === 1) { s.val = 0; return; }
+  s.val = s.val + (outcome - s.val) / (s.seq - 1);
+  // Cap at last-11 equivalent
+  const eff = Math.min(s.seq - 1, 11);
+  if (s.seq > 12) s.val = s.val; // already rolling average naturally
+}
+
+function updateVenue(state, abbTeam, venue, outcome) {
+  const key = `${abbTeam}_${venue}`;
+  if (!state[key]) state[key] = {seq:0, val:0};
+  const s = state[key];
+  s.seq++;
+  if (s.seq === 1) { s.val = 0; return; }
+  s.val = s.val + (outcome - s.val) / (s.seq - 1);
+}
+
+function getH2H(state, abbA, abbB) {
+  const s = state[`${abbA}_${abbB}`];
+  return s && s.seq > 1 ? s.val : 0;
+}
+function getVenue(state, abbTeam, venue) {
+  const s = state[`${abbTeam}_${venue}`];
+  return s && s.seq > 1 ? s.val : 0;
+}
+
+function calcSurprise(teamRating, teamH2H, teamVenue, oppRating, oppH2H, oppVenue) {
+  const teamTotal = teamRating + teamH2H + teamVenue;
+  const oppTotal  = oppRating  + oppH2H  + oppVenue;
+  return 1 + Math.tanh((oppTotal - teamTotal) / 30);
+}
+
+function travelBonus(team, venue) {
+  const ts = TEAM_STATE[team], vs = VENUE_STATE[venue];
+  if (!ts || !vs) return 0;
+  return ts !== vs ? 0.2 : 0;
+}
+
+function restBonus(daysSince) {
+  if (daysSince === null || daysSince === undefined) return 0;
+  return Math.max(0, (7.0 - daysSince) * 0.2);
+}
+
+// ─── Process Squiggle games ────────────────────────────────────────────────
+function processGames(rawGames) {
+  // Deep-copy baseline state
+  const h2h = JSON.parse(JSON.stringify(BASELINE.h2h));
+  const ven = JSON.parse(JSON.stringify(BASELINE.venues));
+
+  // Ratings start at 0 for all teams; will be seeded from carry_over via preseason
+  const ratings = {};
+  const lastGameDate = {}; // team → Date of last completed game
+  const trajectory = {}; // team → [{round, rating}]
+  TEAMS.forEach(t => {
+    ratings[t] = 0;
+    trajectory[t] = [];
+  });
+
+  // Sort games by date then round
+  const games = rawGames
+    .filter(g => g.year == 2026)
+    .sort((a,b) => new Date(a.date) - new Date(b.date));
+
+  // Group by round number
+  const byRound = {};
+  games.forEach(g => {
+    const r = g.round;
+    if (!byRound[r]) byRound[r] = [];
+    byRound[r].push(g);
+  });
+
+  const rounds = Object.keys(byRound).map(Number).sort((a,b)=>a-b);
+  
+  // Track tipping
+  let tipTotal = 0, tipCorrect = 0, upsets = 0;
+  let latestCompletedRound = -1;
+  let nextRound = null;
+  const recentResults = [];
+
+  rounds.forEach(roundNum => {
+    const roundGames = byRound[roundNum];
+    const roundComplete = roundGames.some(g => g.complete);
+
+    roundGames.forEach(g => {
+      const hTeam = g.hteam, aTeam = g.ateam;
+      if (!TEAMS.includes(hTeam) || !TEAMS.includes(aTeam)) return;
+
+      const hAbb = abbrevOf(hTeam), aAbb = abbrevOf(aTeam);
+      const venue = g.venue || '';
+
+      // Ratings going INTO this game
+      // Round 0 (preseason): use carry_over as starting rating
+      const hRating = roundNum === 0 ? (BASELINE.carry_over[hTeam] || 0) : ratings[hTeam];
+      const aRating = roundNum === 0 ? (BASELINE.carry_over[aTeam] || 0) : ratings[aTeam];
+
+      // H2H and venue BEFORE this game
+      const hH2H = getH2H(h2h, hAbb, aAbb);
+      const aH2H = getH2H(h2h, aAbb, hAbb);
+      const hVen = getVenue(ven, hAbb, venue);
+      const aVen = getVenue(ven, aAbb, venue);
+
+      const hSurprise = calcSurprise(hRating, hH2H, hVen, aRating, aH2H, aVen);
+      const aSurprise = calcSurprise(aRating, aH2H, aVen, hRating, hH2H, hVen);
+      const hProb = 1 - hSurprise / 2;
+      const aProb = 1 - aSurprise / 2;
+
+      if (!g.complete) {
+        // Upcoming game — store prediction
+        if (nextRound === null || roundNum < nextRound.round) {
+          nextRound = {round: roundNum, games: []};
+        }
+        if (nextRound.round === roundNum) {
+          // Deduplicate (each game appears once from each team's perspective in Squiggle? No — Squiggle has one row per game)
+          nextRound.games.push({
+            home: hTeam, away: aTeam, venue,
+            prob_home: hProb, prob_away: aProb
+          });
+        }
+        return;
+      }
+
+      // Completed game
+      latestCompletedRound = Math.max(latestCompletedRound, roundNum);
+      const hScore = g.hscore, aScore = g.ascore;
+      const margin = hScore - aScore;
+      const hOutcome = margin > 0 ? 1 : margin < 0 ? -1 : 0;
+      const aOutcome = -hOutcome;
+
+      // Tipping (exclude preseason round 0 from tipping stats if desired)
+      if (roundNum > 0) {
+        const hTip = hProb > 0.5;
+        const aTip = aProb > 0.5;
+        if (hTip) {
+          tipTotal++;
+          if (hOutcome === 1) tipCorrect++;
+          else upsets++;
+        } else if (aTip) {
+          tipTotal++;
+          if (aOutcome === 1) tipCorrect++;
+          else upsets++;
+        }
+      }
+
+      // Rest bonus: days since last game
+      const gameDate = new Date(g.date);
+      const hRest = lastGameDate[hTeam] ? (gameDate - lastGameDate[hTeam]) / 86400000 : null;
+      const aRest = lastGameDate[aTeam] ? (gameDate - lastGameDate[aTeam]) / 86400000 : null;
+
+      // Rating changes
+      const hMarg = margin / 60;
+      const aMarg = -margin / 60;
+      const hHundred = hScore >= 100 ? 0.2 : 0;
+      const aHundred = aScore >= 100 ? 0.2 : 0;
+      const hTravel = travelBonus(hTeam, venue);
+      const aTravel = travelBonus(aTeam, venue);
+      const hRest_ = restBonus(hRest);
+      const aRest_ = restBonus(aRest);
+
+      const hChange = (hSurprise * hOutcome) + hMarg + hHundred + hTravel + hRest_;
+      const aChange = (aSurprise * aOutcome) + aMarg + aHundred + aTravel + aRest_;
+
+      // Round 0: new rating = carry_over + change (but only if they played)
+      // Round 1+: new rating = old rating + change
+      // However for teams that didn't play preseason, R1 rating = 0
+      if (roundNum === 0) {
+        ratings[hTeam] = (BASELINE.carry_over[hTeam] || 0) + hChange;
+        ratings[aTeam] = (BASELINE.carry_over[aTeam] || 0) + aChange;
+      } else {
+        ratings[hTeam] = ratings[hTeam] + hChange;
+        ratings[aTeam] = ratings[aTeam] + aChange;
+      }
+
+      // Update H2H and venue sequences
+      updateH2H(h2h, hAbb, aAbb, hOutcome);
+      updateH2H(h2h, aAbb, hAbb, aOutcome);
+      updateVenue(ven, hAbb, venue, hOutcome);
+      updateVenue(ven, aAbb, venue, aOutcome);
+
+      // Track last game date
+      lastGameDate[hTeam] = gameDate;
+      lastGameDate[aTeam] = gameDate;
+
+      // Trajectory
+      trajectory[hTeam].push({round: roundNum, rating: ratings[hTeam]});
+      trajectory[aTeam].push({round: roundNum, rating: ratings[aTeam]});
+
+      // Store recent results
+      if (roundNum === latestCompletedRound) {
+        recentResults.push({
+          w: hOutcome >= 0 ? hTeam : aTeam,
+          l: hOutcome >= 0 ? aTeam : hTeam,
+          ws: hOutcome >= 0 ? hScore : aScore,
+          ls: hOutcome >= 0 ? aScore : hScore,
+          margin: Math.abs(margin)
+        });
+      }
+    });
+  });
+
+  // Build sorted rankings
+  const rankings = TEAMS.map(t => ({team:t, rating: ratings[t]}))
+    .sort((a,b) => b.rating - a.rating)
+    .map((r,i) => ({...r, rank: i+1}));
+
+  return {rankings, trajectory, nextRound, latestCompletedRound, recentResults, tipping:{tipTotal, tipCorrect, upsets}};
+}
+
+// ─── Chart colours ─────────────────────────────────────────────────────────
+const COLORS = ['#e8c84a','#4ae8a0','#e84a7a','#4ab3e8','#e87a4a','#a04ae8',
+  '#4ae8e8','#e8e84a','#4a8ae8','#e8a04a','#7ae84a','#e84ab3','#4ae84a',
+  '#b34ae8','#4ae8b3','#e8b34a','#4ab3e8','#e84a4a'];
+const teamColor = {};
+TEAMS.forEach((t,i) => { teamColor[t] = COLORS[i % COLORS.length]; });
+
+// ─── State ─────────────────────────────────────────────────────────────────
+let STATE = null;
+let activeTeams = new Set(['Sydney','Fremantle','Geelong','Hawthorn','Richmond','Essendon']);
+
+// ─── Tabs ──────────────────────────────────────────────────────────────────
+function showTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  const idx = ['rankings','form','tips','results','about'].indexOf(name);
+  document.querySelectorAll('nav button')[idx].classList.add('active');
+  if (name === 'form' && STATE) renderForm();
+}
+
+// ─── Rankings ──────────────────────────────────────────────────────────────
+function renderRankings() {
+  const {rankings, latestCompletedRound} = STATE;
+  document.getElementById('rankings-sub').textContent =
+    `After Round ${latestCompletedRound} · 2026 Season`;
+  const maxAbs = Math.max(...rankings.map(r=>Math.abs(r.rating)));
+  const leader = rankings[0], bottom = rankings[rankings.length-1];
+  document.getElementById('rankings-stats').innerHTML = `
+    <div class="stat-card"><div class="stat-label">Top Rated</div><div class="stat-value" style="font-size:1.2rem">${leader.team}</div><div class="stat-note">Rating ${leader.rating.toFixed(2)}</div></div>
+    <div class="stat-card"><div class="stat-label">Finals Line</div><div class="stat-value" style="font-size:1.2rem">${rankings[7].team}</div><div class="stat-note">8th · ${rankings[7].rating.toFixed(2)}</div></div>
+    <div class="stat-card"><div class="stat-label">Round</div><div class="stat-value">${latestCompletedRound}</div><div class="stat-note">of 23 regular season</div></div>
+    <div class="stat-card"><div class="stat-label">Bottom Rated</div><div class="stat-value" style="font-size:1.2rem;color:var(--red)">${bottom.team}</div><div class="stat-note">${bottom.rating.toFixed(2)}</div></div>
+  `;
+  const tbody = document.getElementById('rankings-body');
+  tbody.innerHTML = '';
+  rankings.forEach(r => {
+    const top8 = r.rank <= 8;
+    const pos = r.rating >= 0;
+    const pct = (Math.abs(r.rating)/maxAbs*100).toFixed(1);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="rank-num ${top8?'top':''}">${r.rank}</span></td>
+      <td><div class="team-cell"><span class="team-name-text">${r.team}${top8?'<span class="finals-badge">Finals</span>':''}</span></div></td>
+      <td class="bar-cell"><div class="bar-wrap"><div class="bar-track" style="position:relative;width:120px;">${pos?`<div class="bar-fill-pos" style="width:${pct}%"></div>`:`<div class="bar-fill-neg" style="width:${pct}%"></div>`}</div></div></td>
+      <td><span class="rating-val ${pos?'pos':'neg'}">${pos?'+':''}${r.rating.toFixed(2)}</span></td>
+    `;
+    // Insert icon into team cell
+    const teamCell = tr.querySelector('.team-cell');
+    teamCell.insertBefore(teamIcon(r.team), teamCell.firstChild);
+    tr.addEventListener('click', () => openModal(r.team));
+    tbody.appendChild(tr);
+  });
+}
+
+// ─── Modal ─────────────────────────────────────────────────────────────────
+function openModal(team) {
+  const r = STATE.rankings.find(x=>x.team===team);
+  const traj = STATE.trajectory[team] || [];
+  document.getElementById('modal-name').textContent = team;
+  const modalHead = document.querySelector('.modal-head');
+  const existingIcon = modalHead.querySelector('.team-icon');
+  if (existingIcon) existingIcon.remove();
+  const icon = teamIcon(team);
+  icon.setAttribute('width', 40); icon.setAttribute('height', 40);
+  modalHead.insertBefore(icon, modalHead.firstChild);
+  const last = traj[traj.length-1], prev = traj[traj.length-2];
+  const change = last && prev ? (last.rating-prev.rating) : null;
+  const hi = traj.length ? Math.max(...traj.map(t=>t.rating)) : 0;
+  const hiRound = traj.length ? traj[traj.map(t=>t.rating).indexOf(hi)].round : '—';
+  document.getElementById('modal-body').innerHTML = `
+    <div class="modal-row"><span class="modal-key">Rating</span><span style="color:${r.rating>=0?'var(--green)':'var(--red)'};font-weight:500">${r.rating>=0?'+':''}${r.rating.toFixed(3)}</span></div>
+    <div class="modal-row"><span class="modal-key">Rank</span><span style="font-weight:500">#${r.rank} of 18</span></div>
+    <div class="modal-row"><span class="modal-key">Finals</span><span style="font-weight:500">${r.rank<=8?'✓ Top 8':`${r.rank-8} outside`}</span></div>
+    <div class="modal-row"><span class="modal-key">Last round change</span><span style="font-weight:500">${change!==null?(change>=0?'+':'')+change.toFixed(2):'—'}</span></div>
+    <div class="modal-row"><span class="modal-key">Season high</span><span style="font-weight:500">${hi.toFixed(2)} (Rd ${hiRound})</span></div>
+  `;
+  drawSpark(traj);
+  document.getElementById('overlay').classList.add('open');
+}
+
+function drawSpark(traj) {
+  const svg = document.getElementById('spark-svg');
+  svg.innerHTML = '';
+  if (!traj.length) return;
+  const W=420,H=75,P=6;
+  const vals = traj.map(t=>t.rating);
+  const rounds = traj.map(t=>t.round);
+  const minV = Math.min(...vals,0), maxV = Math.max(...vals,0);
+  const rng = maxV-minV||1;
+  const maxR = Math.max(...rounds)||1;
+  const sx = r => P + (r/maxR)*(W-P*2);
+  const sy = v => H-P - ((v-minV)/rng)*(H-P*2);
+  // zero line
+  const zl = el('line',{x1:P,y1:sy(0),x2:W-P,y2:sy(0),stroke:'#252a34','stroke-width':1});
+  svg.appendChild(zl);
+  // path
+  let d=''; traj.forEach((pt,i)=>{d+=(i?'L':'M')+`${sx(pt.round).toFixed(1)},${sy(pt.rating).toFixed(1)} `;});
+  svg.appendChild(el('path',{d:d.trim(),fill:'none',stroke:'#e8c84a','stroke-width':2,'stroke-linejoin':'round'}));
+  traj.forEach(pt=>{
+    svg.appendChild(el('circle',{cx:sx(pt.round),cy:sy(pt.rating),r:3,fill:pt.rating>=0?'var(--green)':'var(--red)'}));
+  });
+}
+
+function el(tag,attrs) {
+  const e = document.createElementNS('http://www.w3.org/2000/svg',tag);
+  Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));
+  return e;
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('overlay')) return;
+  document.getElementById('overlay').classList.remove('open');
+}
+
+// ─── Form chart ────────────────────────────────────────────────────────────
+function renderForm() {
+  const svg = document.getElementById('form-svg');
+  const W=860,H=320,L=48,R=18,T=18,B=38;
+  svg.innerHTML = '';
+  const active = [...activeTeams].filter(t=>STATE.trajectory[t]?.length);
+  let allVals = [];
+  active.forEach(t=>STATE.trajectory[t].forEach(pt=>allVals.push(pt.rating)));
+  if (!allVals.length) return;
+  const minV=Math.min(...allVals)-1, maxV=Math.max(...allVals)+1;
+  const maxR = Math.max(...active.flatMap(t=>STATE.trajectory[t].map(pt=>pt.round)))||1;
+  const sx = r => L + (r/maxR)*(W-L-R);
+  const sy = v => T + (1-(v-minV)/(maxV-minV))*(H-T-B);
+  // gridlines
+  for(let r=0;r<=maxR;r++){
+    const x=sx(r);
+    svg.appendChild(el('line',{x1:x,y1:T,x2:x,y2:H-B,stroke:'#1a1e25','stroke-width':1}));
+    const lbl=document.createElementNS('http://www.w3.org/2000/svg','text');
+    lbl.setAttribute('x',x);lbl.setAttribute('y',H-B+16);lbl.setAttribute('text-anchor','middle');
+    lbl.setAttribute('fill','#4a4f60');lbl.setAttribute('font-size','11');lbl.setAttribute('font-family','Barlow Condensed,sans-serif');
+    lbl.textContent=r===0?'Pre':`R${r}`;
+    svg.appendChild(lbl);
+  }
+  // zero line
+  svg.appendChild(el('line',{x1:L,y1:sy(0),x2:W-R,y2:sy(0),stroke:'#252a34','stroke-width':1.5,'stroke-dasharray':'4,3'}));
+  // y ticks
+  [-20,-15,-10,-5,0,5,10,15,20,25].filter(v=>v>=minV&&v<=maxV).forEach(v=>{
+    const lbl=document.createElementNS('http://www.w3.org/2000/svg','text');
+    lbl.setAttribute('x',L-5);lbl.setAttribute('y',sy(v)+4);lbl.setAttribute('text-anchor','end');
+    lbl.setAttribute('fill','#3a3f50');lbl.setAttribute('font-size','10');lbl.setAttribute('font-family','Barlow Condensed,sans-serif');
+    lbl.textContent=v>0?`+${v}`:v;
+    svg.appendChild(lbl);
+  });
+  // lines
+  active.forEach(team=>{
+    const traj=STATE.trajectory[team];
+    let d='';traj.forEach((pt,i)=>{d+=(i?'L':'M')+`${sx(pt.round).toFixed(1)},${sy(pt.rating).toFixed(1)} `;});
+    svg.appendChild(el('path',{d:d.trim(),fill:'none',stroke:teamColor[team],'stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'}));
+    const last=traj[traj.length-1];
+    svg.appendChild(el('circle',{cx:sx(last.round),cy:sy(last.rating),r:4,fill:teamColor[team]}));
+  });
+  // legend
+  const leg=document.getElementById('form-legend');
+  leg.innerHTML='';
+  TEAMS.forEach(t=>{
+    const on=activeTeams.has(t);
+    const item=document.createElement('div');
+    item.className='leg-item'+(on?' on':'');
+    item.innerHTML=`<div class="leg-dot" style="background:${teamColor[t]}"></div>${t}`;
+    item.addEventListener('click',()=>{
+      if(activeTeams.has(t)){if(activeTeams.size>1)activeTeams.delete(t);}
+      else activeTeams.add(t);
+      renderForm();
+    });
+    leg.appendChild(item);
+  });
+}
+
+// ─── Tips ──────────────────────────────────────────────────────────────────
+function renderTips() {
+  const {nextRound} = STATE;
+  if (!nextRound) {
+    document.getElementById('tips-grid').innerHTML='<p style="color:var(--muted);font-size:.88rem">No upcoming games found.</p>';
+    return;
+  }
+  document.getElementById('tips-title').textContent = `Round ${nextRound.round} Tips`;
+  const grid=document.getElementById('tips-grid');
+  grid.innerHTML='';
+  nextRound.games.forEach(g=>{
+    const hp=g.prob_home, ap=g.prob_away;
+    const homeFav=hp>=ap;
+    const confident=Math.abs(hp-0.5)>=0.05;
+    const tipTeam=homeFav?g.home:g.away;
+    const tipProb=homeFav?hp:ap;
+    const card=document.createElement('div');
+    card.className='game-card';
+    card.innerHTML=`
+      <div class="game-meta">📍 ${g.venue||'TBC'}</div>
+      <div class="matchup">
+        <div class="matchup-side">
+          <span class="matchup-team ${homeFav?'fav':'dog'}">${g.home}</span>
+        </div>
+        <span class="vs">vs</span>
+        <div class="matchup-side right">
+          <span class="matchup-team right ${!homeFav?'fav':'dog'}">${g.away}</span>
+        </div>
+      </div>
+      <div class="prob-bar">
+        <div class="prob-h" style="width:${(hp*100).toFixed(1)}%;background:${homeFav?'#e8c84a':'#2a2f3a'}"></div>
+        <div class="prob-a" style="background:${!homeFav?'#e8c84a':'#1a1e25'}"></div>
+      </div>
+      <div class="prob-labels">
+        <span class="prob-pct" style="color:${homeFav?'var(--accent)':'var(--muted)'}">${(hp*100).toFixed(0)}%</span>
+        <span class="prob-pct" style="color:${!homeFav?'var(--accent)':'var(--muted)'}">${(ap*100).toFixed(0)}%</span>
+      </div>
+      <span class="tip-badge ${confident?'confident':'tossup'}">
+        ${confident?`▶ Tip: ${tipTeam} (${(tipProb*100).toFixed(0)}%)`:'⚖ Toss-up'}
+      </span>
+    `;
+    // Insert icons into matchup sides
+    card.querySelector('.matchup-side:first-child').insertBefore(teamIcon(g.home), card.querySelector('.matchup-side:first-child').firstChild);
+    card.querySelector('.matchup-side.right').appendChild(teamIcon(g.away));
+    grid.appendChild(card);
+  });
+}
+
+// ─── Results ───────────────────────────────────────────────────────────────
+function renderResults() {
+  const {recentResults, latestCompletedRound, tipping} = STATE;
+  document.getElementById('results-title').textContent = `Round ${latestCompletedRound} Results`;
+  const list=document.getElementById('results-list');
+  list.innerHTML='';
+  recentResults.forEach(r=>{
+    const row=document.createElement('div');
+    row.className='result-row';
+    row.appendChild(teamIcon(r.w));
+    const inner = document.createElement('span');
+    inner.className='result-w';inner.textContent=r.w;
+    row.appendChild(inner);
+    const score = document.createElement('span');
+    score.className='result-score';
+    score.innerHTML=`<span class="pos">${r.ws}</span> – <span class="neg">${r.ls}</span>`;
+    row.appendChild(score);
+    const margin = document.createElement('span');
+    margin.className='result-margin';margin.textContent=`+${r.margin} pts`;
+    row.appendChild(margin);
+    const loser = document.createElement('span');
+    loser.className='result-l';loser.textContent=r.l;
+    row.appendChild(loser);
+    row.appendChild(teamIcon(r.l));
+    list.appendChild(row);
+  });
+  const {tipTotal,tipCorrect,upsets} = tipping;
+  const acc = tipTotal ? Math.round(tipCorrect/tipTotal*100) : 0;
+  document.getElementById('tip-stats').innerHTML=`
+    <div class="stat-card"><div class="stat-label">Confident Tips</div><div class="stat-value">${tipCorrect}/${tipTotal}</div><div class="stat-note">${acc}% accuracy</div></div>
+    <div class="stat-card"><div class="stat-label">Upsets</div><div class="stat-value" style="color:var(--red)">${upsets}</div><div class="stat-note">favourite lost</div></div>
+    <div class="stat-card"><div class="stat-label">Round</div><div class="stat-value">${latestCompletedRound}</div><div class="stat-note">completed</div></div>
+  `;
+}
+
+// ─── Fetch & init ──────────────────────────────────────────────────────────
+async function init() {
+  const dot=document.getElementById('sdot');
+  const lbl=document.getElementById('slabel');
+  try {
+    const res = await fetch('/assets/data/games.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    const games = json.games;
+    STATE = processGames(games);
+    dot.classList.add('live');
+    const now = new Date().toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'});
+    lbl.textContent = `Live · ${now}`;
+    renderRankings();
+    renderTips();
+    renderResults();
+  } catch(e) {
+    dot.classList.add('error');
+    lbl.textContent = 'Error loading data';
+    console.error(e);
+    document.getElementById('rankings-body').innerHTML = `<tr><td colspan="4"><div class="error-msg">Could not load data from Squiggle API. Check console for details.</div></td></tr>`;
+  }
+}
+
+init();
+</script>
+</body>
+</html>
