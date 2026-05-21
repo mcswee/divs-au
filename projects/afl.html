@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Surprise Footy Metrics - SMF rating system</title>
+<title>SAGE: Surprise Adjusted Game Evaluation Footy Index</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -170,7 +170,7 @@
 <body>
  
 <header>
-  <div class="logo">SMF<span>Surprise Footy Metrics AFL football rating system</span></div>
+  <div class="logo">SAGE<span>Footy Index</span></div>
   <nav>
     <button class="active" onclick="showTab('rankings')">Rankings</button>
     <button onclick="showTab('form')">Form</button>
@@ -187,7 +187,7 @@
 <main>
   <!-- RANKINGS -->
   <div class="tab-panel active" id="tab-rankings">
-    <div class="section-header"><span class="section-title">SMF Rating</span><span class="section-sub" id="rankings-sub">2026 Season</span></div>
+    <div class="section-header"><span class="section-title">SAGE Index Rating</span><span class="section-sub" id="rankings-sub">2026 Season</span></div>
     <div class="slider-wrap" id="slider-wrap" style="display:none">
       <label>Round</label>
       <input type="range" id="round-slider" min="0" step="1" oninput="onSlider()">
@@ -236,7 +236,7 @@
       <div class="about-card"><h3>Win Probability</h3><p>Prediction = 1 − (Surprise / 2). A team with Prediction &gt;50% is the model's tip. Confident tips (&gt;55%) have been correct in 2026 at a high rate.</p></div>
       <div class="about-card"><h3>H2H &amp; Venue History</h3><p>A rolling average of the last 11 results (win=+1, loss=−1, draw=0) against each opponent and at each venue. Baseline from 2002–2025; updated live each round.</p></div>
       <div class="about-card"><h3>Bonuses</h3><p><b style="color:var(--text)">Margin:</b> Final margin ÷ 60 (negative if lost).<br><b style="color:var(--text)">100-point:</b> +0.2 if team scored 100+.<br><b style="color:var(--text)">Travel:</b> +0.2 if playing in a different state.<br><b style="color:var(--text)">Rest:</b> max(0, 7 − days since last game) × 0.2.</p></div>
-      <div class-"about-card"><h3>Source</h3><p>Game data is sourced twice weekly from <a href="https://api.squiggle.com.au/">Squiggle API</a></p>
+      <div class="about-card"><h3>Source</h3><p>Game data is sourced twice weekly from <a href="https://api.squiggle.com.au/">Squiggle API</a></p>
     </div>
   </div>
 </main>
@@ -614,6 +614,7 @@ function processGames(rawGames) {
 let STATE = null;
 let activeTeams = new Set(['Sydney','Fremantle','Geelong','Hawthorn','Melbourne','Essendon']);
 let sliderRound = null; // null = current
+let chartGeo = null;
  
 function showTab(name) {
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
@@ -822,14 +823,17 @@ function renderForm() {
     lbl.textContent=v>0?`+${v}`:v;
     svg.appendChild(lbl);
   });
-  // lines
+// lines
+  const chartGeoTeams = [];
   active.forEach(team=>{
     const traj=STATE.trajectory[team];
     let d='';traj.forEach((pt,i)=>{d+=(i?'L':'M')+`${sx(pt.round).toFixed(1)},${sy(pt.rating).toFixed(1)} `;});
-    svg.appendChild(el('path',{d:d.trim(),fill:'none',stroke:teamColor[team],'stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'}));
+    svg.appendChild(el('path',{d:d.trim(),fill:'none',stroke:CHART_COLOR[team]||'#888','stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'}));
     const last=traj[traj.length-1];
-    svg.appendChild(el('circle',{cx:sx(last.round),cy:sy(last.rating),r:4,fill:teamColor[team]}));
+    svg.appendChild(el('circle',{cx:sx(last.round),cy:sy(last.rating),r:4,fill:CHART_COLOR[team]||'#888'}));
+    chartGeoTeams.push({team, traj, col:CHART_COLOR[team]||'#888'});
   });
+  chartGeo = {L,R,T,B,maxR,sx,sy,teams:chartGeoTeams};
   // legend
   const leg=document.getElementById('form-legend');
   leg.innerHTML='';
