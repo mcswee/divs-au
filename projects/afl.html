@@ -841,7 +841,7 @@ function renderForm() {
     const on=activeTeams.has(t);
     const item=document.createElement('div');
     item.className='leg-item'+(on?' on':'');
-    item.innerHTML=`<div class="leg-dot" style="background:${teamColor[t]}"></div>${t}`;
+    item.innerHTML=`<div class="leg-dot" style="background:${CHART_COLOR[t]||'#888'}"></div>${t}`;
     item.addEventListener('click',()=>{
       if(activeTeams.has(t)){if(activeTeams.size>1)activeTeams.delete(t);}
       else activeTeams.add(t);
