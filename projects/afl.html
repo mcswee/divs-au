@@ -325,7 +325,7 @@ const ICONS = {
   ]),
   'Carlton': () => makeIcon([
     {t:'rect', fill:'#0e1e2d'},
-    {t:'rect', x:2, y:2, w:96, h:96, border:'#fff', bw:4, rx:4},
+    {t:'rect', x:2, y:2, w:96, h:96, border:'#fff', bw:4, rx:8},
   ]),
   'Collingwood': () => makeIcon([
     {t:'rect', fill:'#000'},
@@ -522,6 +522,8 @@ function processGames(rawGames) {
       const aH2H = getH2H(h2h, aAbb, hAbb);
       const hVen = getVenue(ven, hAbb, venue);
       const aVen = getVenue(ven, aAbb, venue);
+      const aRest = getRest(rest, aAbb, last_date);
+      const hRest = getRest(rest, hAbb, last_date);
  
       const hSurprise = calcSurprise(hRating, hH2H, hVen, aRating, aH2H, aVen);
       const aSurprise = calcSurprise(aRating, aH2H, aVen, hRating, hH2H, hVen);
@@ -536,7 +538,8 @@ function processGames(rawGames) {
             prob_home:hProb, prob_away:aProb,
             h_rating:hRating, a_rating:aRating,
             h_h2h:hH2H, a_h2h:aH2H,
-            h_ven:hVen, a_ven:aVen
+            h_ven:hVen, a_ven:aVen,
+            h_rest:hRest, a_rest:aRest
           });
         }
         return;
@@ -975,12 +978,14 @@ function renderTips() {
           <div class="stat-item"><div class="stat-item-label">Rating</div><div class="stat-item-val" style="color:${hBarCol}">${g.h_rating>=0?'+':''}${g.h_rating.toFixed(3)}</div></div>
           <div class="stat-item"><div class="stat-item-label">Head to Head</div><div class="stat-item-val">${g.h_h2h>=0?'+':''}${g.h_h2h.toFixed(3)}</div></div>
           <div class="stat-item"><div class="stat-item-label">Venue history</div><div class="stat-item-val">${g.h_ven>=0?'+':''}${g.h_ven.toFixed(3)}</div></div>
+          <div class="stat-item"><div class="stat-item-label">Rest</div><div class="stat-item-val">${g.h_rest>0?'+':''}${g.h_rest.tofixed(3)}</div></div>        
         </div>
         <div class="stats-divider"></div>
         <div class="stats-side right">
           <div class="stat-item"><div class="stat-item-label">Rating</div><div class="stat-item-val" style="color:${aBarCol}">${g.a_rating>=0?'+':''}${g.a_rating.toFixed(3)}</div></div>
           <div class="stat-item"><div class="stat-item-label">Head to Head</div><div class="stat-item-val">${g.a_h2h>=0?'+':''}${g.a_h2h.toFixed(3)}</div></div>
           <div class="stat-item"><div class="stat-item-label">Venue History</div><div class="stat-item-val">${g.a_ven>=0?'+':''}${g.a_ven.toFixed(3)}</div></div>
+          <div class="stat-item"><div class="stat-item-label">Rest</div><div class="stat-item-val">${g.a_rest>0?'+':''}${g.a_rest.tofixed(3)}</div></div>
         </div>
       </div>
       <hr class="divider-line">
@@ -989,11 +994,11 @@ function renderTips() {
         <div class="prob-a" style="flex:1;background:${aBarCol}"></div>
       </div>
       <div class="prob-labels">
-        <span class="prob-pct" style="color:${homeFav?'var(--accent)':'var(--muted)'}">${(hp*100).toFixed(2)}%</span>
-        <span class="prob-pct" style="color:${!homeFav?'var(--accent)':'var(--muted)'}">${(ap*100).toFixed(2)}%</span>
+        <span class="prob-pct" style="color:${homeFav?'var(--accent)':'var(--muted)'}">${(hp*100).toFixed(1)}%</span>
+        <span class="prob-pct" style="color:${!homeFav?'var(--accent)':'var(--muted)'}">${(ap*100).toFixed(1)}%</span>
       </div>
       <span class="tip-badge ${confident?'confident':'tossup'}">
-        ${confident?`▶ ${tipTeam} (${(tipProb*100).toFixed(2)}%)`:'⚖ Toss-up'}
+        ${confident?`▶ ${tipTeam} (${(tipProb*100).toFixed(1)}%)`:'⚖ Toss-up'}
       </span>
     `;
     grid.appendChild(card);
