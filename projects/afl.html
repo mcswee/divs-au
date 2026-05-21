@@ -312,96 +312,92 @@ function makeIcon(shapes) {
   return svg;
 }
  
-const ICONS = {
-  'Adelaide': () => makeIcon([
-    {t:'rect', fill:'#002b5c'},
-    {t:'rect', y:20, h:20, fill:'#e21937'},
-    {t:'rect', y:60, h:20, fill:'#ffd200'},
-  ]),
-  'Brisbane Lions': () => makeIcon([
-    {t:'rect', fill:'#a30046'},
-    {t:'rect', y:0,  h:40, fill:'#0055a3'},
-    {t:'rect', y:40, h:20, fill:'#fdbe57'},
-  ]),
-  'Carlton': () => makeIcon([
-    {t:'rect', fill:'#0e1e2d'},
-    {t:'rect', x:3, y:3, w:94, h:94, border:'#ffffff', bw:6},
-  ]),
-  'Collingwood': () => makeIcon([
-    {t:'rect', fill:'#000'},
-    {t:'rect', x:20, w:20, fill:'#fff'},
-    {t:'rect', x:60, w:20, fill:'#fff'},
-  ]),
-  'Essendon': () => makeIcon([
-    {t:'rect', fill:'#000'},
-    {t:'poly', fill:'#cc2031', pts:'80,0 100,0 100,20 20,100 0,100 0,80'},
-  ]),
-  'Fremantle': () => makeIcon([
-    {t:'rect', fill:'#2a1a54'},
-    {t:'path', d:'M0,0 L50,50 L100,0', stroke:'#ffffff', sw:20},
-  ]),
-  'Geelong': () => makeIcon([
-    {t:'rect', fill:'#1c3c63'},
-    {t:'rect', y:20, h:20, fill:'#ffffff'},
-    {t:'rect', y:60, h:20, fill:'#ffffff'},
-  ]),
-  'Gold Coast': () => makeIcon([
-    {t:'rect', fill:'#d93e39'},
-    {t:'rect', x:20, w:10, fill:'#ffe600'},
-    {t:'rect', x:50, w:10, fill:'#ffe600'},
-    {t:'rect', x:80, w:10, fill:'#ffe600'},
-  ]),
-  'Greater Western Sydney': () => makeIcon([
-    {t:'rect', fill:'#384752'},
-    {t:'rect', y:0,  h:40, fill:'#f15c22'},
-    {t:'rect', y:40, h:20, fill:'#ffffff'},
-  ]),
-  'Hawthorn': () => makeIcon([
-    {t:'rect', fill:'#4d2004'},
-    {t:'rect', x:20, w:20, fill:'#fbbf15'},
-    {t:'rect', x:60, w:20, fill:'#fbbf15'},
-  ]),
-  'Melbourne': () => makeIcon([
-    {t:'rect', fill:'#0f1131'},
-    {t:'poly', fill:'#cc2031', pts:'0,0 100,0 50,50'},
-  ]),
-  'North Melbourne': () => makeIcon([
-    {t:'rect', fill:'#013b9f'},
-    {t:'rect', x:20, w:20, fill:'#ffffff'},
-    {t:'rect', x:60, w:20, fill:'#ffffff'},
-  ]),
-  'Port Adelaide': () => makeIcon([
-    {t:'rect', fill:'#000000'},
-    {t:'poly', fill:'#008aab', pts:'0,0 100,0 50,50'},
-    {t:'path', d:'M0,0 L50,50 L100,0', stroke:'#ffffff', sw:20},
-  ]),
-  'Richmond': () => makeIcon([
-    {t:'rect', fill:'#000'},
-    {t:'poly', fill:'#fed102', pts:'80,0 100,0 100,20 20,100 0,100 0,80'},
-  ]),
-  'St Kilda': () => makeIcon([
-    {t:'rect', fill:'#000'},
-    {t:'rect', x:0,  w:33, fill:'#ed0f05'},
-    {t:'rect', x:33, w:34, fill:'#ffffff'},
-  ]),
-  'Sydney': () => makeIcon([
-    {t:'rect', fill:'#ffffff'},
-    {t:'path', d:'M0,0 L50,50 L100,0', stroke:'#ed171f', sw:20},
-  ]),
-  'West Coast': () => makeIcon([
-    {t:'rect', fill:'#062ee2'},
-    {t:'rect', x:20, w:20, fill:'#f2a900'},
-    {t:'rect', x:60, w:20, fill:'#f2a900'},
-  ]),
-  'Western Bulldogs': () => makeIcon([
-    {t:'rect', fill:'#014896'},
-    {t:'rect', y:25, h:25, fill:'#c70136'},
-    {t:'rect', y:50, h:25, fill:'#ffffff'},
-  ]),
-};
- 
 function teamIcon(name) {
-  return ICONS[name] ? ICONS[name]() : makeIcon([{t:'rect',fill:'#333'}]);
+  const S = ICON_SIZE;
+  const sw = S * 0.2;
+  const makers = {
+    'Adelaide': () => makeIcon([
+      {type:'rect',fill:'#0f1432'},
+      {type:'rect',y:0,h:S/5,fill:'#0f1432'},{type:'rect',y:S/5,h:S/5,fill:'#ff001e'},
+      {type:'rect',y:S/5*2,h:S/5,fill:'#0f1432'},{type:'rect',y:S/5*3,h:S/5,fill:'#ffaa00'},
+      {type:'rect',y:S/5*4,h:S/5,fill:'#0f1432'},
+    ]),
+    'Brisbane Lions': () => makeIcon([
+      {type:'rect',y:0,h:S*0.4,fill:'#0055a3'},
+      {type:'rect',y:S*0.4,h:S*0.2,fill:'#fdeb57'},
+      {type:'rect',y:S*0.6,h:S*0.4,fill:'#a30946'},
+    ]),
+    'Carlton': () => makeIcon([{type:'rect',fill:'#031A29'}]),
+    'Collingwood': () => makeIcon([
+      {type:'rect',x:0,w:S/5,fill:'#000'},{type:'rect',x:S/5,w:S/5,fill:'#fff'},
+      {type:'rect',x:S/5*2,w:S/5,fill:'#000'},{type:'rect',x:S/5*3,w:S/5,fill:'#fff'},
+      {type:'rect',x:S/5*4,w:S/5,fill:'#000'},
+    ]),
+    'Essendon': () => makeIcon([
+      {type:'rect',fill:'#000'},
+      {type:'polygon',fill:'#cc2031',points:`${S},${-sw} ${S+sw},0 0,${S+sw} ${-sw},${S}`},
+    ]),
+    'Fremantle': () => makeIcon([
+      {type:'rect',fill:'#2a0d54'},
+      {type:'path',fill:'none',stroke:'#fff',sw:sw,d:`M0,0 L${S/2},${S/2} L${S},0`},
+    ]),
+    'Geelong': () => makeIcon([
+      {type:'rect',y:0,h:S/5,fill:'#002b5c'},{type:'rect',y:S/5,h:S/5,fill:'#fff'},
+      {type:'rect',y:S/5*2,h:S/5,fill:'#002b5c'},{type:'rect',y:S/5*3,h:S/5,fill:'#fff'},
+      {type:'rect',y:S/5*4,h:S/5,fill:'#002b5c'},
+    ]),
+    'Gold Coast': () => makeIcon([
+      {type:'rect',fill:'#bc0100'},
+      {type:'rect',x:0,w:S*0.1,fill:'#ffdd00'},{type:'rect',x:S*0.9,w:S*0.1,fill:'#ffdd00'},
+    ]),
+    'Greater Western Sydney': () => makeIcon([
+      {type:'rect',y:0,h:S*0.4,fill:'#03061c'},
+      {type:'rect',y:S*0.4,h:S*0.2,fill:'#fff'},
+      {type:'rect',y:S*0.6,h:S*0.4,fill:'#ff7909'},
+    ]),
+    'Hawthorn': () => makeIcon([
+      {type:'rect',x:0,w:S/5,fill:'#4d2004'},{type:'rect',x:S/5,w:S/5,fill:'#fbbf15'},
+      {type:'rect',x:S/5*2,w:S/5,fill:'#4d2004'},{type:'rect',x:S/5*3,w:S/5,fill:'#fbbf15'},
+      {type:'rect',x:S/5*4,w:S/5,fill:'#4d2004'},
+    ]),
+    'Melbourne': () => makeIcon([
+      {type:'rect',fill:'#0f1131'},
+      {type:'polygon',fill:'#cc2031',points:`0,0 ${S},0 ${S/2},${S/2}`},
+    ]),
+    'North Melbourne': () => makeIcon([
+      {type:'rect',x:0,w:S/5,fill:'#13388f'},{type:'rect',x:S/5,w:S/5,fill:'#fff'},
+      {type:'rect',x:S/5*2,w:S/5,fill:'#13388f'},{type:'rect',x:S/5*3,w:S/5,fill:'#fff'},
+      {type:'rect',x:S/5*4,w:S/5,fill:'#13388f'},
+    ]),
+    'Port Adelaide': () => makeIcon([
+      {type:'rect',fill:'#000'},
+      {type:'polygon',fill:'#008aab',points:`0,0 ${S},0 ${S/2},${S/2}`},
+      {type:'path',fill:'none',stroke:'#fff',sw:sw,d:`M0,0 L${S/2},${S/2} L${S},0`},
+    ]),
+    'Richmond': () => makeIcon([
+      {type:'rect',fill:'#000'},
+      {type:'polygon',fill:'#ffd200',points:`${S},${-sw} ${S+sw},0 0,${S+sw} ${-sw},${S}`},
+    ]),
+    'St Kilda': () => makeIcon([
+      {type:'rect',x:0,w:S/3,fill:'#ed1b2f'},
+      {type:'rect',x:S/3,w:S/3,fill:'#fff'},
+      {type:'rect',x:S/3*2,w:S/3,fill:'#000'},
+    ]),
+    'Sydney': () => makeIcon([
+      {type:'rect',fill:'#fff'},
+      {type:'path',fill:'none',stroke:'#e1251b',sw:sw,d:`M0,0 L${S/2},${S/2} L${S},0`},
+    ]),
+    'West Coast': () => makeIcon([
+      {type:'rect',x:0,w:S*0.2,fill:'#f2a900'},
+      {type:'rect',x:S*0.2,w:S*0.6,fill:'#003087'},
+      {type:'rect',x:S*0.8,w:S*0.2,fill:'#f2a900'},
+    ]),
+    'Western Bulldogs': () => makeIcon([
+      {type:'rect',y:0,h:S/4,fill:'#20539d'},{type:'rect',y:S/4,h:S/4,fill:'#bd002b'},
+      {type:'rect',y:S/2,h:S/4,fill:'#fff'},{type:'rect',y:S*3/4,h:S/4,fill:'#20539d'},
+    ]),
+  };
+  return makers[team] ? makers[team]() : makeIcon([{type:'rect',fill:'#333'}]);
 }
  
 // ═══════════════════════════════════════════════════════════════════
