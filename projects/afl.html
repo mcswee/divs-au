@@ -170,7 +170,7 @@
 <body>
  
 <header>
-  <div class="logo">SUPRISE FOOTY METRIC<span>Surprise Footy Metrics rating system &amp; Kinetics</span></div>
+  <div class="logo">SMF<span>Surprise Footy Metrics</span>Football rating system</div>
   <nav>
     <button class="active" onclick="showTab('rankings')">Rankings</button>
     <button onclick="showTab('form')">Form</button>
@@ -187,7 +187,7 @@
 <main>
   <!-- RANKINGS -->
   <div class="tab-panel active" id="tab-rankings">
-    <div class="section-header"><span class="section-title">Power Rankings</span><span class="section-sub" id="rankings-sub">2026 Season</span></div>
+    <div class="section-header"><span class="section-title">SMF Rating</span><span class="section-sub" id="rankings-sub">2026 Season</span></div>
     <div class="slider-wrap" id="slider-wrap" style="display:none">
       <label>Round</label>
       <input type="range" id="round-slider" min="0" step="1" oninput="onSlider()">
@@ -217,7 +217,7 @@
   <div class="tab-panel" id="tab-tips">
     <div class="section-header"><span class="section-title" id="tips-title">Tips</span><span class="section-sub">Model win probabilities</span></div>
     <div class="games-grid" id="tips-grid"></div>
-    <p style="margin-top:1.25rem;font-size:.76rem;color:var(--muted)">Win probability from power ratings, H2H history, and venue record. Games within 5% are coin flips.</p>
+    <p style="margin-top:1.25rem;font-size:.76rem;color:var(--muted)">Win probability from ratings, Head to head and venue record. Games within 5% are coin flips.</p>
   </div>
  
   <!-- TIMELINE -->
@@ -230,9 +230,9 @@
   <div class="tab-panel" id="tab-about">
     <div class="section-header"><span class="section-title">The Model</span></div>
     <div class="about-grid">
-      <div class="about-card"><h3>Power Rating</h3><p>Each team carries a cumulative rating that updates after every game. All teams start the season at zero — carry-over from prior seasons is used only to calibrate H2H and venue baselines, not the rating itself. This ensures Round 1 comparisons are fair regardless of bye timing.</p></div>
-      <div class="about-card"><h3>Change Per Game</h3><div class="formula">Δ = <span class="fv">SurpriseComponent</span><br>+ <span class="fv">MarginComponent</span><br>+ <span class="fv">HundredBonus</span><br>+ <span class="fv">TravelBonus</span><br>+ <span class="fv">RestBonus</span></div></div>
-      <div class="about-card"><h3>Surprise Factor</h3><p>Surprise = 1 + tanh((OppTotal − TeamTotal) / 30), where Total = Rating + H2H + Venue. Beating a heavy favourite earns more; losing to a minnow costs more. Surprise × Outcome = SurpriseComponent.</p></div>
+      <div class="about-card"><h3>Rating</h3><p>Each team carries a cumulative rating that updates after every game. All teams reset the start of the season at zero. This ensures Round 1 comparisons are fair regardless of bye timing.</p></div>
+      <div class="about-card"><h3>Change Per Game</h3><div class="formula">Δ = <span class="fv">Surprise component</span><br>+ <span class="fv">Margin component</span><br>+ <span class="fv">Hundred Bonus</span><br>+ <span class="fv">Travel Bonus</span><br>+ <span class="fv">Rest Bonus</span></div></div>
+      <div class="about-card"><h3>Surprise Factor</h3><p>Surprise = 1 + tanh (( OppTotal − TeamTotal ) / 30 ), where Total = Rating + H2H + Venue - Rest. Beating a heavy favourite earns more; losing to the Wooden Spooner takes a hit. Surprise × Outcome = Surprise Component.</p></div>
       <div class="about-card"><h3>Win Probability</h3><p>Prediction = 1 − (Surprise / 2). A team with Prediction &gt;50% is the model's tip. Confident tips (&gt;55%) have been correct in 2026 at a high rate.</p></div>
       <div class="about-card"><h3>H2H &amp; Venue History</h3><p>A rolling average of the last 11 results (win=+1, loss=−1, draw=0) against each opponent and at each venue. Baseline from 2002–2025; updated live each round.</p></div>
       <div class="about-card"><h3>Bonuses</h3><p><b style="color:var(--text)">Margin:</b> Final margin ÷ 60 (negative if lost).<br><b style="color:var(--text)">100-point:</b> +0.2 if team scored 100+.<br><b style="color:var(--text)">Travel:</b> +0.2 if playing in a different state.<br><b style="color:var(--text)">Rest:</b> max(0, 7 − days since last game) × 0.2.</p></div>
@@ -472,7 +472,7 @@ function restBonus(daysSince) {
 function restAdjustment(daysSince) {
   // Pre-game penalty for short rest — feeds into surprise/prediction
   if (daysSince === null || daysSince === undefined) return 0;
-  return Math.min(0, (daysSince - 6.95) * 0.2);
+  return Math.min(0, (daysSince - 7) * 0.2);
 }
  
 // ─── Process Squiggle games ────────────────────────────────────────────────
@@ -990,6 +990,7 @@ function renderTips() {
           <div class="stat-item"><div class="stat-item-label">Rating</div><div class="stat-item-val" style="color:${aBarCol}">${g.a_rating>=0?'+':''}${g.a_rating.toFixed(3)}</div></div>
           <div class="stat-item"><div class="stat-item-label">Head to head</div><div class="stat-item-val">${g.a_h2h>=0?'+':''}${g.a_h2h.toFixed(3)}</div></div>
           <div class="stat-item"><div class="stat-item-label">Record at venue</div><div class="stat-item-val">${g.a_ven>=0?'+':''}${g.a_ven.toFixed(3)}</div></div>
+          <div class="stat-item"><div class="stat-item-label">Short rest</div><div class="stat-item-val">${g.a_ven>=0?'+':''}${g.a_ven.toFixed(3)}</div></div>
         </div>
       </div>
       <hr class="divider-line">
