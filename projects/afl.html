@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DMARK — AFL Power Index</title>
+<title>SFM - the Suprise Footy Metric rating system</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -170,7 +170,7 @@
 <body>
  
 <header>
-  <div class="logo">DMARK<span>Dynamic Match-Adjusted Rating &amp; Kinetics</span></div>
+  <div class="logo">SFM<span>Surprise Footy Metric rating system</span></div>
   <nav>
     <button class="active" onclick="showTab('rankings')">Rankings</button>
     <button onclick="showTab('form')">Form</button>
@@ -232,7 +232,7 @@
     <div class="about-grid">
       <div class="about-card"><h3>Power Rating</h3><p>Each team carries a cumulative rating that updates after every game. All teams start the season at zero — carry-over from prior seasons is used only to calibrate H2H and venue baselines, not the rating itself. This ensures Round 1 comparisons are fair regardless of bye timing.</p></div>
       <div class="about-card"><h3>Change Per Game</h3><div class="formula">Δ = <span class="fv">SurpriseComponent</span><br>+ <span class="fv">MarginComponent</span><br>+ <span class="fv">HundredBonus</span><br>+ <span class="fv">TravelBonus</span><br>+ <span class="fv">RestBonus</span></div></div>
-      <div class="about-card"><h3>Surprise Factor</h3><p>Surprise = 1 + tanh((OppTotal − TeamTotal) / 30), where Total = Rating + H2H + Venue. Beating a heavy favourite earns more; losing to a minnow costs more. Surprise × Outcome = SurpriseComponent.</p></div>
+      <div class="about-card"><h3>Surprise Factor</h3><p>Surprise = 1 + tanh((OppTotal − TeamTotal) / 30), where Total = Rating + H2H + Venue + Rest. Beating a heavy favourite earns more; losing to the wooden spooners costs more. Surprise × Outcome = SurpriseComponent.</p></div>
       <div class="about-card"><h3>Win Probability</h3><p>Prediction = 1 − (Surprise / 2). A team with Prediction &gt;50% is the model's tip. Confident tips (&gt;55%) have been correct in 2026 at a high rate.</p></div>
       <div class="about-card"><h3>H2H &amp; Venue History</h3><p>A rolling average of the last 11 results (win=+1, loss=−1, draw=0) against each opponent and at each venue. Baseline from 2002–2025; updated live each round.</p></div>
       <div class="about-card"><h3>Bonuses</h3><p><b style="color:var(--text)">Margin:</b> Final margin ÷ 60 (negative if lost).<br><b style="color:var(--text)">100-point:</b> +0.2 if team scored 100+.<br><b style="color:var(--text)">Travel:</b> +0.2 if playing in a different state.<br><b style="color:var(--text)">Rest:</b> max(0, 7 − days since last game) × 0.2.</p></div>
