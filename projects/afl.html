@@ -522,8 +522,6 @@ function processGames(rawGames) {
       const aH2H = getH2H(h2h, aAbb, hAbb);
       const hVen = getVenue(ven, hAbb, venue);
       const aVen = getVenue(ven, aAbb, venue);
-      const aRest = getRest(rest, aAbb, last_date);
-      const hRest = getRest(rest, hAbb, last_date);
  
       const hSurprise = calcSurprise(hRating, hH2H, hVen, aRating, aH2H, aVen);
       const aSurprise = calcSurprise(aRating, aH2H, aVen, hRating, hH2H, hVen);
@@ -539,7 +537,6 @@ function processGames(rawGames) {
             h_rating:hRating, a_rating:aRating,
             h_h2h:hH2H, a_h2h:aH2H,
             h_ven:hVen, a_ven:aVen,
-            h_rest:hRest, a_rest:aRest
           });
         }
         return;
