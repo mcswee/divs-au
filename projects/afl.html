@@ -651,17 +651,17 @@ function renderRankings(round) {
   const maxAbs = Math.max(...rankings.map(x=>Math.abs(x.rating)), 0.01);
   const leader = rankings[0], bottom = rankings[rankings.length-1];
   document.getElementById('rankings-stats').innerHTML = `
-    <div class="stat-card"><div class="stat-label">Top Rated</div><div class="stat-value" style="font-size:1.2rem">${leader.team}</div><div class="stat-note">Rating ${leader.rating.toFixed(2)}</div></div>
+    <div class="stat-card"><div class="stat-label">Top Rated</div><div class="stat-value" style="font-size:1.2rem">${leader.team}</div><div class="stat-note">Rating ${leader.rating.toFixed(3)}</div></div>
     <div class="stat-card"><div class="stat-label">Round</div><div class="stat-value">${r}</div><div class="stat-note">of 23 regular season</div></div>
     <div class="stat-card"><div class="stat-label">Tipping</div><div class="stat-value">${STATE.tipping.tipCorrect}/${STATE.tipping.tipTotal}</div><div class="stat-note">${STATE.tipping.tipTotal?Math.round(STATE.tipping.tipCorrect/STATE.tipping.tipTotal*100):0}% accuracy</div></div>
-    <div class="stat-card"><div class="stat-label">Bottom Rated</div><div class="stat-value" style="font-size:1.2rem;color:var(--red)">${bottom.team}</div><div class="stat-note">${bottom.rating.toFixed(2)}</div></div>
+    <div class="stat-card"><div class="stat-label">Bottom Rated</div><div class="stat-value" style="font-size:1.2rem;color:var(--red)">${bottom.team}</div><div class="stat-note">${bottom.rating.toFixed(3)}</div></div>
   `;
  
   const tbody = document.getElementById('rankings-body');
   tbody.innerHTML = '';
   rankings.forEach(rx => {
     const pos = rx.rating >= 0;
-    const pct = (Math.abs(rx.rating)/maxAbs*100).toFixed(1);
+    const pct = (Math.abs(rx.rating)/maxAbs*100).toFixed(3);
     const col = CHART_COLOR[rx.team] || '#888';
     const tr = document.createElement('tr');
  
@@ -682,7 +682,7 @@ function renderRankings(round) {
  
     // Score cell
     const td4 = document.createElement('td');
-    td4.innerHTML = `<span class="rating-val ${pos?'pos':'neg'}">${pos?'+':''}${rx.rating.toFixed(2)}</span>`;
+    td4.innerHTML = `<span class="rating-val ${pos?'pos':'neg'}">${pos?'+':''}${rx.rating.toFixed(3)}</span>`;
  
     tr.append(td1, td2, td3, td4);
     tr.addEventListener('click', () => openModal(rx.team));
@@ -713,8 +713,8 @@ function openModal(team) {
   document.getElementById('modal-body').innerHTML = `
     <div class="modal-row"><span class="modal-key">Rating</span><span style="color:${r.rating>=0?'var(--green)':'var(--red)'};font-weight:500">${r.rating>=0?'+':''}${r.rating.toFixed(3)}</span></div>
     <div class="modal-row"><span class="modal-key">Rank</span><span style="font-weight:500">#${r.rank} of 18</span></div>
-    <div class="modal-row"><span class="modal-key">Last round change</span><span style="font-weight:500">${change!==null?(change>=0?'+':'')+change.toFixed(2):'—'}</span></div>
-    <div class="modal-row"><span class="modal-key">Season high</span><span style="font-weight:500">${hi.toFixed(2)} (Rd ${hiRound})</span></div>
+    <div class="modal-row"><span class="modal-key">Last round change</span><span style="font-weight:500">${change!==null?(change>=0?'+':'')+change.toFixed(3):'—'}</span></div>
+    <div class="modal-row"><span class="modal-key">Season high</span><span style="font-weight:500">${hi.toFixed(3)} (Rd ${hiRound})</span></div>
     <div class="modal-row"><span class="modal-key">Games played</span><span style="font-weight:500">${traj.length}</span></div>
   `;
   drawSpark(traj, team);
@@ -823,7 +823,7 @@ function renderForm() {
   active.forEach(team=>{
     const traj=STATE.trajectory[team];
     const col=CHART_COLOR[team]||'#888';
-    let d='';traj.forEach((pt,i)=>{d+=(i?'L':'M')+`${sx(pt.round).toFixed(1)},${sy(pt.rating).toFixed(1)} `;});
+    let d='';traj.forEach((pt,i)=>{d+=(i?'L':'M')+`${sx(pt.round).toFixed(3)},${sy(pt.rating).toFixed(1)} `;});
     svg.appendChild(el('path',{d:d.trim(),fill:'none',stroke:col,'stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'}));
     const last=traj[traj.length-1];
     svg.appendChild(el('circle',{cx:sx(last.round),cy:sy(last.rating),r:4,fill:col}));
@@ -972,28 +972,28 @@ function renderTips() {
     card.innerHTML += `
       <div class="stats-row">
         <div class="stats-side">
-          <div class="stat-item"><div class="stat-item-label">Rating</div><div class="stat-item-val" style="color:${hBarCol}">${g.h_rating>=0?'+':''}${g.h_rating.toFixed(1)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">H2H</div><div class="stat-item-val">${g.h_h2h>=0?'+':''}${g.h_h2h.toFixed(2)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">Venue</div><div class="stat-item-val">${g.h_ven>=0?'+':''}${g.h_ven.toFixed(2)}</div></div>
+          <div class="stat-item"><div class="stat-item-label">Rating</div><div class="stat-item-val" style="color:${hBarCol}">${g.h_rating>=0?'+':''}${g.h_rating.toFixed(3)}</div></div>
+          <div class="stat-item"><div class="stat-item-label">Head to Head</div><div class="stat-item-val">${g.h_h2h>=0?'+':''}${g.h_h2h.toFixed(3)}</div></div>
+          <div class="stat-item"><div class="stat-item-label">Venue history</div><div class="stat-item-val">${g.h_ven>=0?'+':''}${g.h_ven.toFixed(3)}</div></div>
         </div>
         <div class="stats-divider"></div>
         <div class="stats-side right">
-          <div class="stat-item"><div class="stat-item-label">Rating</div><div class="stat-item-val" style="color:${aBarCol}">${g.a_rating>=0?'+':''}${g.a_rating.toFixed(1)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">H2H</div><div class="stat-item-val">${g.a_h2h>=0?'+':''}${g.a_h2h.toFixed(2)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">Venue</div><div class="stat-item-val">${g.a_ven>=0?'+':''}${g.a_ven.toFixed(2)}</div></div>
+          <div class="stat-item"><div class="stat-item-label">Rating</div><div class="stat-item-val" style="color:${aBarCol}">${g.a_rating>=0?'+':''}${g.a_rating.toFixed(3)}</div></div>
+          <div class="stat-item"><div class="stat-item-label">Head to Head</div><div class="stat-item-val">${g.a_h2h>=0?'+':''}${g.a_h2h.toFixed(3)}</div></div>
+          <div class="stat-item"><div class="stat-item-label">Venue History</div><div class="stat-item-val">${g.a_ven>=0?'+':''}${g.a_ven.toFixed(3)}</div></div>
         </div>
       </div>
       <hr class="divider-line">
       <div class="prob-bar">
-        <div class="prob-h" style="width:${(hp*100).toFixed(1)}%;background:${hBarCol}"></div>
+        <div class="prob-h" style="width:${(hp*100).toFixed(2)}%;background:${hBarCol}"></div>
         <div class="prob-a" style="flex:1;background:${aBarCol}"></div>
       </div>
       <div class="prob-labels">
-        <span class="prob-pct" style="color:${homeFav?'var(--accent)':'var(--muted)'}">${(hp*100).toFixed(0)}%</span>
-        <span class="prob-pct" style="color:${!homeFav?'var(--accent)':'var(--muted)'}">${(ap*100).toFixed(0)}%</span>
+        <span class="prob-pct" style="color:${homeFav?'var(--accent)':'var(--muted)'}">${(hp*100).toFixed(2)}%</span>
+        <span class="prob-pct" style="color:${!homeFav?'var(--accent)':'var(--muted)'}">${(ap*100).toFixed(2)}%</span>
       </div>
       <span class="tip-badge ${confident?'confident':'tossup'}">
-        ${confident?`▶ ${tipTeam} (${(tipProb*100).toFixed(0)}%)`:'⚖ Toss-up'}
+        ${confident?`▶ ${tipTeam} (${(tipProb*100).toFixed(2)}%)`:'⚖ Toss-up'}
       </span>
     `;
     grid.appendChild(card);
