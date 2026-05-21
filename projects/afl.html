@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SFM - the Suprise Footy Metric rating system</title>
+<title>Surprise Footy Metrics - SMF rating system</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -65,7 +65,7 @@
   .bar-track{flex:1;height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;position:relative}
   .bar-fill-pos{height:100%;border-radius:3px;background:var(--green)}
   .bar-fill-neg{height:100%;border-radius:3px;background:var(--red);position:absolute;right:0}
-  .rating-val{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.2rem;min-width:3.8rem;text-align:right}
+  .rating-val{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.95rem;min-width:3.8rem;text-align:right}
   .pos{color:var(--green)}.neg{color:var(--red)}
  
   /* Games grid */
@@ -170,7 +170,7 @@
 <body>
  
 <header>
-  <div class="logo">SFM<span>Surprise Footy Metric rating system</span></div>
+  <div class="logo">SUPRISE FOOTY METRIC<span>Surprise Footy Metrics rating system &amp; Kinetics</span></div>
   <nav>
     <button class="active" onclick="showTab('rankings')">Rankings</button>
     <button onclick="showTab('form')">Form</button>
@@ -232,7 +232,7 @@
     <div class="about-grid">
       <div class="about-card"><h3>Power Rating</h3><p>Each team carries a cumulative rating that updates after every game. All teams start the season at zero — carry-over from prior seasons is used only to calibrate H2H and venue baselines, not the rating itself. This ensures Round 1 comparisons are fair regardless of bye timing.</p></div>
       <div class="about-card"><h3>Change Per Game</h3><div class="formula">Δ = <span class="fv">SurpriseComponent</span><br>+ <span class="fv">MarginComponent</span><br>+ <span class="fv">HundredBonus</span><br>+ <span class="fv">TravelBonus</span><br>+ <span class="fv">RestBonus</span></div></div>
-      <div class="about-card"><h3>Surprise Factor</h3><p>Surprise = 1 + tanh((OppTotal − TeamTotal) / 30), where Total = Rating + H2H + Venue + Rest. Beating a heavy favourite earns more; losing to the wooden spooners costs more. Surprise × Outcome = SurpriseComponent.</p></div>
+      <div class="about-card"><h3>Surprise Factor</h3><p>Surprise = 1 + tanh((OppTotal − TeamTotal) / 30), where Total = Rating + H2H + Venue. Beating a heavy favourite earns more; losing to a minnow costs more. Surprise × Outcome = SurpriseComponent.</p></div>
       <div class="about-card"><h3>Win Probability</h3><p>Prediction = 1 − (Surprise / 2). A team with Prediction &gt;50% is the model's tip. Confident tips (&gt;55%) have been correct in 2026 at a high rate.</p></div>
       <div class="about-card"><h3>H2H &amp; Venue History</h3><p>A rolling average of the last 11 results (win=+1, loss=−1, draw=0) against each opponent and at each venue. Baseline from 2002–2025; updated live each round.</p></div>
       <div class="about-card"><h3>Bonuses</h3><p><b style="color:var(--text)">Margin:</b> Final margin ÷ 60 (negative if lost).<br><b style="color:var(--text)">100-point:</b> +0.2 if team scored 100+.<br><b style="color:var(--text)">Travel:</b> +0.2 if playing in a different state.<br><b style="color:var(--text)">Rest:</b> max(0, 7 − days since last game) × 0.2.</p></div>
@@ -257,12 +257,12 @@
 // ═══════════════════════════════════════════════════════════════════
 // Chart line colours — visible on dark background, true to club
 const CHART_COLOR = {
-  'Adelaide':'#ffaa00','Brisbane Lions':'#a30046','Carlton':'#aaa',
-  'Collingwood':'#666','Essendon':'#cc2031','Fremantle':'#7b5ea7',
-  'Geelong':'#4a90c4','Gold Coast':'#d93e39','Greater Western Sydney':'#f15c22',
-  'Hawthorn':'#6d4024','Melbourne':'#cc2031','North Melbourne':'#013b9f',
+  'Adelaide':'#e21937','Brisbane Lions':'#fdbe57','Carlton':'#4a7fd4',
+  'Collingwood':'#aaaaaa','Essendon':'#cc2031','Fremantle':'#7b5ea7',
+  'Geelong':'#4a90c4','Gold Coast':'#ffe600','Greater Western Sydney':'#f15c22',
+  'Hawthorn':'#fbbf15','Melbourne':'#e05c70','North Melbourne':'#4d8fff',
   'Port Adelaide':'#008aab','Richmond':'#fed102','St Kilda':'#ed0f05',
-  'Sydney':'#ed171f','West Coast':'#062ee2','Western Bulldogs':'#014896',
+  'Sydney':'#ed171f','West Coast':'#f2a900','Western Bulldogs':'#014896',
 };
  
 // ─── Icon engine ─────────────────────────────────────────────────────────────
@@ -325,7 +325,7 @@ const ICONS = {
   ]),
   'Carlton': () => makeIcon([
     {t:'rect', fill:'#0e1e2d'},
-    {t:'rect', x:2, y:2, w:96, h:96, border:'#fff', bw:4, rx:8},
+    {t:'rect', x:3, y:3, w:94, h:94, border:'#ffffff', bw:6},
   ]),
   'Collingwood': () => makeIcon([
     {t:'rect', fill:'#000'},
@@ -338,22 +338,23 @@ const ICONS = {
   ]),
   'Fremantle': () => makeIcon([
     {t:'rect', fill:'#2a1a54'},
-    {t:'path', d:'M0,0 L50,50 L100,0', stroke:'#fff', sw:20},
+    {t:'path', d:'M0,0 L50,50 L100,0', stroke:'#ffffff', sw:20},
   ]),
   'Geelong': () => makeIcon([
     {t:'rect', fill:'#1c3c63'},
-    {t:'rect', y:20, h:20, fill:'#fff'},
-    {t:'rect', y:60, h:20, fill:'#fff'},
+    {t:'rect', y:20, h:20, fill:'#ffffff'},
+    {t:'rect', y:60, h:20, fill:'#ffffff'},
   ]),
   'Gold Coast': () => makeIcon([
     {t:'rect', fill:'#d93e39'},
-    {t:'rect', x:0, w:10, fill:'#ffe600'},
-    {t:'rect', x:90, w:10, fill:'#ffe600'},
+    {t:'rect', x:20, w:10, fill:'#ffe600'},
+    {t:'rect', x:50, w:10, fill:'#ffe600'},
+    {t:'rect', x:80, w:10, fill:'#ffe600'},
   ]),
   'Greater Western Sydney': () => makeIcon([
     {t:'rect', fill:'#384752'},
     {t:'rect', y:0,  h:40, fill:'#f15c22'},
-    {t:'rect', y:40, h:20, fill:'#ffff'},
+    {t:'rect', y:40, h:20, fill:'#ffffff'},
   ]),
   'Hawthorn': () => makeIcon([
     {t:'rect', fill:'#4d2004'},
@@ -366,13 +367,13 @@ const ICONS = {
   ]),
   'North Melbourne': () => makeIcon([
     {t:'rect', fill:'#013b9f'},
-    {t:'rect', x:20, w:20, fill:'#fff'},
-    {t:'rect', x:60, w:20, fill:'#fff'},
+    {t:'rect', x:20, w:20, fill:'#ffffff'},
+    {t:'rect', x:60, w:20, fill:'#ffffff'},
   ]),
   'Port Adelaide': () => makeIcon([
-    {t:'rect', fill:'#000'},
+    {t:'rect', fill:'#000000'},
     {t:'poly', fill:'#008aab', pts:'0,0 100,0 50,50'},
-    {t:'path', d:'M0,0 L50,50 L100,0', stroke:'#fff', sw:20},
+    {t:'path', d:'M0,0 L50,50 L100,0', stroke:'#ffffff', sw:20},
   ]),
   'Richmond': () => makeIcon([
     {t:'rect', fill:'#000'},
@@ -381,16 +382,16 @@ const ICONS = {
   'St Kilda': () => makeIcon([
     {t:'rect', fill:'#000'},
     {t:'rect', x:0,  w:33, fill:'#ed0f05'},
-    {t:'rect', x:33, w:34, fill:'#fff'},
+    {t:'rect', x:33, w:34, fill:'#ffffff'},
   ]),
   'Sydney': () => makeIcon([
-    {t:'rect', fill:'#fff'},
+    {t:'rect', fill:'#ffffff'},
     {t:'path', d:'M0,0 L50,50 L100,0', stroke:'#ed171f', sw:20},
   ]),
   'West Coast': () => makeIcon([
     {t:'rect', fill:'#062ee2'},
-    {t:'rect', x:0, w:20, fill:'#f2a900'},
-    {t:'rect', x:80, w:20, fill:'#f2a900'},
+    {t:'rect', x:20, w:20, fill:'#f2a900'},
+    {t:'rect', x:60, w:20, fill:'#f2a900'},
   ]),
   'Western Bulldogs': () => makeIcon([
     {t:'rect', fill:'#014896'},
@@ -402,7 +403,6 @@ const ICONS = {
 function teamIcon(name) {
   return ICONS[name] ? ICONS[name]() : makeIcon([{t:'rect',fill:'#333'}]);
 }
-
  
 // ═══════════════════════════════════════════════════════════════════
 // BASELINE
@@ -456,9 +456,9 @@ function getVenue(state, abbTeam, venue) {
   const s = state[`${abbTeam}_${venue}`];
   return s && s.seq > 1 ? s.val : 0;
 }
-function calcSurprise(teamRating, teamH2H, teamVenue, oppRating, oppH2H, oppVenue) {
-  const teamTotal = teamRating + teamH2H + teamVenue;
-  const oppTotal  = oppRating  + oppH2H  + oppVenue;
+function calcSurprise(teamRating, teamH2H, teamVenue, teamRestAdj, oppRating, oppH2H, oppVenue, oppRestAdj) {
+  const teamTotal = teamRating + teamH2H + teamVenue + teamRestAdj;
+  const oppTotal  = oppRating  + oppH2H  + oppVenue  + oppRestAdj;
   return 1 + Math.tanh((oppTotal - teamTotal) / 30);
 }
 function travelBonus(team, venue) {
@@ -466,8 +466,14 @@ function travelBonus(team, venue) {
   return (ts && vs && ts !== vs) ? 0.2 : 0;
 }
 function restBonus(daysSince) {
+  // Post-game rating bonus for short rest
   if (daysSince === null || daysSince === undefined) return 0;
-  return Math.max(0, (7.0 - daysSince) * 0.2);
+  return Math.max(0, (6.95 - daysSince) * 0.2);
+}
+function restAdjustment(daysSince) {
+  // Pre-game penalty for short rest — feeds into surprise/prediction
+  if (daysSince === null || daysSince === undefined) return 0;
+  return Math.min(0, (daysSince - 6.95) * 0.2);
 }
  
 // ─── Process Squiggle games ────────────────────────────────────────────────
@@ -523,8 +529,15 @@ function processGames(rawGames) {
       const hVen = getVenue(ven, hAbb, venue);
       const aVen = getVenue(ven, aAbb, venue);
  
-      const hSurprise = calcSurprise(hRating, hH2H, hVen, aRating, aH2H, aVen);
-      const aSurprise = calcSurprise(aRating, aH2H, aVen, hRating, hH2H, hVen);
+      // Calculate rest days before surprise so it feeds into prediction
+      const gameDate = new Date(g.date);
+      const hRestDays = lastGameDate[hTeam] ? (gameDate - lastGameDate[hTeam])/86400000 : null;
+      const aRestDays = lastGameDate[aTeam] ? (gameDate - lastGameDate[aTeam])/86400000 : null;
+      const hRestAdj = restAdjustment(hRestDays);
+      const aRestAdj = restAdjustment(aRestDays);
+ 
+      const hSurprise = calcSurprise(hRating, hH2H, hVen, hRestAdj, aRating, aH2H, aVen, aRestAdj);
+      const aSurprise = calcSurprise(aRating, aH2H, aVen, aRestAdj, hRating, hH2H, hVen, hRestAdj);
       const hProb = 1 - hSurprise / 2;
       const aProb = 1 - aSurprise / 2;
  
@@ -537,6 +550,7 @@ function processGames(rawGames) {
             h_rating:hRating, a_rating:aRating,
             h_h2h:hH2H, a_h2h:aH2H,
             h_ven:hVen, a_ven:aVen,
+            h_rest:hRestAdj, a_rest:aRestAdj
           });
         }
         return;
@@ -554,14 +568,10 @@ function processGames(rawGames) {
         else if (aTip) { tipTotal++; if (aOutcome===1) tipCorrect++; else upsets++; }
       }
  
-      const gameDate = new Date(g.date);
-      const hRest = lastGameDate[hTeam] ? (gameDate - lastGameDate[hTeam])/86400000 : null;
-      const aRest = lastGameDate[aTeam] ? (gameDate - lastGameDate[aTeam])/86400000 : null;
- 
       const hMarg = margin/60, aMarg = -margin/60;
       const hHundred = hScore>=100?0.2:0, aHundred = aScore>=100?0.2:0;
       const hTravel = travelBonus(hTeam,venue), aTravel = travelBonus(aTeam,venue);
-      const hRest_ = restBonus(hRest), aRest_ = restBonus(aRest);
+      const hRest_ = restBonus(hRestDays), aRest_ = restBonus(aRestDays);
  
       const hChange = (hSurprise*hOutcome) + hMarg + hHundred + hTravel + hRest_;
       const aChange = (aSurprise*aOutcome) + aMarg + aHundred + aTravel + aRest_;
@@ -661,7 +671,7 @@ function renderRankings(round) {
   tbody.innerHTML = '';
   rankings.forEach(rx => {
     const pos = rx.rating >= 0;
-    const pct = (Math.abs(rx.rating)/maxAbs*100).toFixed(3);
+    const pct = (Math.abs(rx.rating)/maxAbs*100).toFixed(1);
     const col = CHART_COLOR[rx.team] || '#888';
     const tr = document.createElement('tr');
  
@@ -682,7 +692,7 @@ function renderRankings(round) {
  
     // Score cell
     const td4 = document.createElement('td');
-    td4.innerHTML = `<span class="rating-val ${pos?'pos':'neg'}">${pos?'+':''}${rx.rating.toFixed(3)}</span>`;
+    td4.innerHTML = `<span style="font-size:1.2rem" class="rating-val ${pos?'pos':'neg'}">${pos?'+':''}${rx.rating.toFixed(3)}</span>`;
  
     tr.append(td1, td2, td3, td4);
     tr.addEventListener('click', () => openModal(rx.team));
@@ -823,7 +833,7 @@ function renderForm() {
   active.forEach(team=>{
     const traj=STATE.trajectory[team];
     const col=CHART_COLOR[team]||'#888';
-    let d='';traj.forEach((pt,i)=>{d+=(i?'L':'M')+`${sx(pt.round).toFixed(3)},${sy(pt.rating).toFixed(1)} `;});
+    let d='';traj.forEach((pt,i)=>{d+=(i?'L':'M')+`${sx(pt.round).toFixed(1)},${sy(pt.rating).toFixed(1)} `;});
     svg.appendChild(el('path',{d:d.trim(),fill:'none',stroke:col,'stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'}));
     const last=traj[traj.length-1];
     svg.appendChild(el('circle',{cx:sx(last.round),cy:sy(last.rating),r:4,fill:col}));
@@ -973,29 +983,27 @@ function renderTips() {
       <div class="stats-row">
         <div class="stats-side">
           <div class="stat-item"><div class="stat-item-label">Rating</div><div class="stat-item-val" style="color:${hBarCol}">${g.h_rating>=0?'+':''}${g.h_rating.toFixed(3)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">Head to Head</div><div class="stat-item-val">${g.h_h2h>=0?'+':''}${g.h_h2h.toFixed(3)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">Venue history</div><div class="stat-item-val">${g.h_ven>=0?'+':''}${g.h_ven.toFixed(3)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">Rest</div><div class="stat-item-val">${g.h_rest>0?'+':''}${g.h_rest.tofixed(3)}</div></div>        
+          <div class="stat-item"><div class="stat-item-label">Head to head</div><div class="stat-item-val">${g.h_h2h>=0?'+':''}${g.h_h2h.toFixed(3)}</div></div>
+          <div class="stat-item"><div class="stat-item-label">Record at venue</div><div class="stat-item-val">${g.h_ven>=0?'+':''}${g.h_ven.toFixed(3)}</div></div>
         </div>
         <div class="stats-divider"></div>
         <div class="stats-side right">
           <div class="stat-item"><div class="stat-item-label">Rating</div><div class="stat-item-val" style="color:${aBarCol}">${g.a_rating>=0?'+':''}${g.a_rating.toFixed(3)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">Head to Head</div><div class="stat-item-val">${g.a_h2h>=0?'+':''}${g.a_h2h.toFixed(3)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">Venue History</div><div class="stat-item-val">${g.a_ven>=0?'+':''}${g.a_ven.toFixed(3)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">Rest</div><div class="stat-item-val">${g.a_rest>0?'+':''}${g.a_rest.tofixed(3)}</div></div>
+          <div class="stat-item"><div class="stat-item-label">Head to head</div><div class="stat-item-val">${g.a_h2h>=0?'+':''}${g.a_h2h.toFixed(3)}</div></div>
+          <div class="stat-item"><div class="stat-item-label">Record at venue</div><div class="stat-item-val">${g.a_ven>=0?'+':''}${g.a_ven.toFixed(3)}</div></div>
         </div>
       </div>
       <hr class="divider-line">
       <div class="prob-bar">
-        <div class="prob-h" style="width:${(hp*100).toFixed(2)}%;background:${hBarCol}"></div>
+        <div class="prob-h" style="width:${(hp*100).toFixed(1)}%;background:${hBarCol}"></div>
         <div class="prob-a" style="flex:1;background:${aBarCol}"></div>
       </div>
       <div class="prob-labels">
-        <span class="prob-pct" style="color:${homeFav?'var(--accent)':'var(--muted)'}">${(hp*100).toFixed(1)}%</span>
-        <span class="prob-pct" style="color:${!homeFav?'var(--accent)':'var(--muted)'}">${(ap*100).toFixed(1)}%</span>
+        <span class="prob-pct" style="color:${homeFav?'var(--accent)':'var(--muted)'}">${(hp*100).toFixed(0)}%</span>
+        <span class="prob-pct" style="color:${!homeFav?'var(--accent)':'var(--muted)'}">${(ap*100).toFixed(0)}%</span>
       </div>
       <span class="tip-badge ${confident?'confident':'tossup'}">
-        ${confident?`▶ ${tipTeam} (${(tipProb*100).toFixed(1)}%)`:'⚖ Toss-up'}
+        ${confident?`▶ ${tipTeam} (${(tipProb*100).toFixed(0)}%)`:'⚖ Toss-up'}
       </span>
     `;
     grid.appendChild(card);
