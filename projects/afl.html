@@ -170,7 +170,7 @@
 <body>
  
 <header>
-  <div class="logo">SMF<span>Surprise Footy Metrics</span>Football rating system</div>
+  <div class="logo"><span>Surprise Footy Metrics</span> football rating system</div>
   <nav>
     <button class="active" onclick="showTab('rankings')">Rankings</button>
     <button onclick="showTab('form')">Form</button>
@@ -230,12 +230,13 @@
   <div class="tab-panel" id="tab-about">
     <div class="section-header"><span class="section-title">The Model</span></div>
     <div class="about-grid">
-      <div class="about-card"><h3>Rating</h3><p>Each team carries a cumulative rating that updates after every game. All teams reset the start of the season at zero. This ensures Round 1 comparisons are fair regardless of bye timing.</p></div>
+      <div class="about-card"><h3>Rating</h3><p>Each team carries a cumulative rating that updates after every game. The rating reflects not just whether you won and by how much, but also who you beat, where, and how — margin, context, and opponent quality all factor in. Ratings start from zero each season.</p></div>
       <div class="about-card"><h3>Change Per Game</h3><div class="formula">Δ = <span class="fv">Surprise component</span><br>+ <span class="fv">Margin component</span><br>+ <span class="fv">Hundred Bonus</span><br>+ <span class="fv">Travel Bonus</span><br>+ <span class="fv">Rest Bonus</span></div></div>
-      <div class="about-card"><h3>Surprise Factor</h3><p>Surprise = 1 + tanh (( OppTotal − TeamTotal ) / 30 ), where Total = Rating + H2H + Venue - Rest. Beating a heavy favourite earns more; losing to the Wooden Spooner takes a hit. Surprise × Outcome = Surprise Component.</p></div>
+      <div class="about-card"><h3>Surprise Factor</h3><p>Surprise = 1 + tanh ( ( OppTotal − TeamTotal ) / 30 ), where Total = Rating + H2H + Venue - Rest. Beating a heavy favourite earns more; the top team losing to the wooden spooner costs more than the other way round. Surprise × Outcome = Surprise Component.</p></div>
       <div class="about-card"><h3>Win Probability</h3><p>Prediction = 1 − (Surprise / 2). A team with Prediction &gt;50% is the model's tip. Confident tips (&gt;55%) have been correct in 2026 at a high rate.</p></div>
       <div class="about-card"><h3>H2H &amp; Venue History</h3><p>A rolling average of the last 11 results (win=+1, loss=−1, draw=0) against each opponent and at each venue. Baseline from 2002–2025; updated live each round.</p></div>
       <div class="about-card"><h3>Bonuses</h3><p><b style="color:var(--text)">Margin:</b> Final margin ÷ 60 (negative if lost).<br><b style="color:var(--text)">100-point:</b> +0.2 if team scored 100+.<br><b style="color:var(--text)">Travel:</b> +0.2 if playing in a different state.<br><b style="color:var(--text)">Rest:</b> max(0, 7 − days since last game) × 0.2.</p></div>
+      <div class-"about-card"><h3>Source</h3><p>Game data is sourced twice weekly from <a href="https://api.squiggle.com.au/">Squiggle API</a></p>
     </div>
   </div>
 </main>
@@ -789,15 +790,10 @@ function closeModal(e) {
 }
  
 // ─── Form chart ────────────────────────────────────────────────────────────
-// Store chart geometry for tooltip hit-testing
-let chartGeo = null;
- 
 function renderForm() {
   const svg = document.getElementById('form-svg');
   const W=860,H=320,L=48,R=18,T=18,B=38;
   svg.innerHTML = '';
-  chartGeo = {W,H,L,R,T,B,teams:[]};
- 
   const active = [...activeTeams].filter(t=>STATE.trajectory[t]?.length);
   let allVals = [];
   active.forEach(t=>STATE.trajectory[t].forEach(pt=>allVals.push(pt.rating)));
@@ -806,21 +802,19 @@ function renderForm() {
   const maxR = Math.max(...active.flatMap(t=>STATE.trajectory[t].map(pt=>pt.round)))||1;
   const sx = r => L + (r/maxR)*(W-L-R);
   const sy = v => T + (1-(v-minV)/(maxV-minV))*(H-T-B);
- 
-  chartGeo.sx = sx; chartGeo.sy = sy;
-  chartGeo.minV = minV; chartGeo.maxV = maxV; chartGeo.maxR = maxR;
- 
-  // grid
+  // gridlines
   for(let r=0;r<=maxR;r++){
     const x=sx(r);
     svg.appendChild(el('line',{x1:x,y1:T,x2:x,y2:H-B,stroke:'#1a1e25','stroke-width':1}));
     const lbl=document.createElementNS('http://www.w3.org/2000/svg','text');
     lbl.setAttribute('x',x);lbl.setAttribute('y',H-B+16);lbl.setAttribute('text-anchor','middle');
     lbl.setAttribute('fill','#4a4f60');lbl.setAttribute('font-size','11');lbl.setAttribute('font-family','Barlow Condensed,sans-serif');
-    lbl.textContent=r===0?'R0':`R${r}`;
+    lbl.textContent=r===0?'Pre':`R${r}`;
     svg.appendChild(lbl);
   }
+  // zero line
   svg.appendChild(el('line',{x1:L,y1:sy(0),x2:W-R,y2:sy(0),stroke:'#252a34','stroke-width':1.5,'stroke-dasharray':'4,3'}));
+  // y ticks
   [-20,-15,-10,-5,0,5,10,15,20,25].filter(v=>v>=minV&&v<=maxV).forEach(v=>{
     const lbl=document.createElementNS('http://www.w3.org/2000/svg','text');
     lbl.setAttribute('x',L-5);lbl.setAttribute('y',sy(v)+4);lbl.setAttribute('text-anchor','end');
@@ -828,43 +822,28 @@ function renderForm() {
     lbl.textContent=v>0?`+${v}`:v;
     svg.appendChild(lbl);
   });
- 
+  // lines
   active.forEach(team=>{
     const traj=STATE.trajectory[team];
-    const col=CHART_COLOR[team]||'#888';
     let d='';traj.forEach((pt,i)=>{d+=(i?'L':'M')+`${sx(pt.round).toFixed(1)},${sy(pt.rating).toFixed(1)} `;});
-    svg.appendChild(el('path',{d:d.trim(),fill:'none',stroke:col,'stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'}));
+    svg.appendChild(el('path',{d:d.trim(),fill:'none',stroke:teamColor[team],'stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'}));
     const last=traj[traj.length-1];
-    svg.appendChild(el('circle',{cx:sx(last.round),cy:sy(last.rating),r:4,fill:col}));
-    chartGeo.teams.push({team, traj, col});
+    svg.appendChild(el('circle',{cx:sx(last.round),cy:sy(last.rating),r:4,fill:teamColor[team]}));
   });
- 
-  // invisible hover overlay
-  const overlay = document.createElementNS('http://www.w3.org/2000/svg','rect');
-  overlay.setAttribute('x',L);overlay.setAttribute('y',T);
-  overlay.setAttribute('width',W-L-R);overlay.setAttribute('height',H-T-B);
-  overlay.setAttribute('fill','transparent');
-  overlay.setAttribute('style','cursor:crosshair');
-  svg.appendChild(overlay);
- 
-  const legend=document.getElementById('form-legend');
-  legend.innerHTML='';
+  // legend
+  const leg=document.getElementById('form-legend');
+  leg.innerHTML='';
   TEAMS.forEach(t=>{
     const on=activeTeams.has(t);
     const item=document.createElement('div');
     item.className='leg-item'+(on?' on':'');
-    item.style.opacity = on ? '1' : '0.35';
-    item.style.transition = 'opacity .15s';
-    item.appendChild(teamIcon(t));
-    const lbl=document.createElement('span');
-    lbl.textContent=t;
-    item.appendChild(lbl);
+    item.innerHTML=`<div class="leg-dot" style="background:${teamColor[t]}"></div>${t}`;
     item.addEventListener('click',()=>{
       if(activeTeams.has(t)){if(activeTeams.size>1)activeTeams.delete(t);}
       else activeTeams.add(t);
       renderForm();
     });
-    legend.appendChild(item);
+    leg.appendChild(item);
   });
 }
  
