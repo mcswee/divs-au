@@ -564,6 +564,7 @@ function processGames(rawGames) {
   const trajectory = {};
   const roundRatings = {};
   const completedGamesByRound = {};
+  const roundSurprises = {};
   const roundImpacts = {};
   const roundStats = {};
 
@@ -637,6 +638,31 @@ function processGames(rawGames) {
 
       const hProb = 1 - hSurprise / 2;
       const aProb = 1 - aSurprise / 2;
+
+      const actualHomeWin = hOutcome === 1 ? 1 : 0;
+
+      // ignore coin-flip games (prevents 49–51 noise)
+      const confidenceGap = Math.abs(hProb - 0.5);
+      const isCoinFlip = confidenceGap < 0.08;
+      
+      // surprise score (single clean metric)
+      const surpriseFactor = isCoinFlip
+        ? 0
+        : Math.abs(hProb - actualHomeWin);
+      
+      // track most surprising game in this round
+      if (!isCoinFlip) {
+        if (
+          !roundSurprises[roundNum] ||
+          surpriseFactor > roundSurprises[roundNum].surprise
+        ) {
+          roundSurprises[roundNum] = {
+            hTeam,
+            aTeam,
+            surprise: surpriseFactor
+          };
+        }
+      }
 
       // ─── Future game handling ─────────────────────────────
       if (!g.complete) {
@@ -816,6 +842,13 @@ function processGames(rawGames) {
     });
 
     roundRatings[roundNum] = { ...ratings };
+
+    if (!STATE.roundStats) STATE.roundStats = {};
+
+    STATE.roundStats[roundNum] = {
+      ...STATE.roundStats[roundNum],
+      mostSurprising: roundSurprises[roundNum] || null
+    };
   });
 
   const rankings = TEAMS
