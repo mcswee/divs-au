@@ -1,0 +1,34 @@
+name: Update SAGE Index
+
+on:
+  schedule:
+    # Runs at 6:00 AM AEST (20:00 UTC) every day
+    - cron: "0 20 * * *"
+  workflow_dispatch:  # allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-sage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run SAGE computation
+        run: python scripts/compute_sage.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/data/sage.json
+          git diff --cached --quiet || git commit -m "chore: update SAGE index [$(date -u '+%Y-%m-%d')]"
+          git push
