@@ -668,195 +668,165 @@ function processGames(rawGames) {
         return;
       }
 
-      // ─── Completed game processing ────────────────────────
-      latestCompletedRound = Math.max(latestCompletedRound, roundNum);
+// ─── Completed game processing ────────────────────────
+latestCompletedRound = Math.max(latestCompletedRound, roundNum);
 
-      const hScore = g.hscore;
-      const aScore = g.ascore;
-      const margin = hScore - aScore;
+const hScore = g.hscore;
+const aScore = g.ascore;
+const margin = hScore - aScore;
 
-      const hOutcome = margin > 0 ? 1 : margin < 0 ? -1 : 0;
-      const aOutcome = -hOutcome;
+const hOutcome = margin > 0 ? 1 : margin < 0 ? -1 : 0;
+const aOutcome = -hOutcome;
 
-      const actualHomeWin = margin > 0 ? 1 : 0;
+// ratings impact components
+const hMarg = margin / 60;
+const aMarg = -margin / 60;
 
-      const surprise = Math.abs(hProb - actualHomeWin);
-      
-      const isCoinFlip = Math.abs(hProb - 0.5) < 0.08;
-      
-      const gameSurprise = {
-        hTeam,
-        aTeam,
-        surprise
-      };
-      
-      if (!isCoinFlip) {
-        if (
-          !rs.mostSurprising ||
-          surprise > rs.mostSurprising.surprise
-        ) {
-          rs.mostSurprising = gameSurprise;
-        }
-      }
+const hHundred = hScore >= 100 ? 0.2 : 0;
+const aHundred = aScore >= 100 ? 0.2 : 0;
 
-      if (roundNum > 0) {
-        const hTip = hProb > 0.5;
-        const aTip = aProb > 0.5;
+const hTravel = travelBonus(hTeam, venue);
+const aTravel = travelBonus(aTeam, venue);
 
-        if (hTip) {
-          tipTotal++;
-          if (hOutcome === 1) tipCorrect++;
-          else upsets++;
-        } else if (aTip) {
-          tipTotal++;
-          if (aOutcome === 1) tipCorrect++;
-          else upsets++;
-        }
-      }
+const hRest_ = restBonus(hRestDays);
+const aRest_ = restBonus(aRestDays);
 
-      const hMarg = margin / 60;
-      const aMarg = -margin / 60;
+// final rating changes
+const hChange =
+  (hSurprise * hOutcome) +
+  hMarg + hHundred + hTravel + hRest_;
 
-      const hHundred = hScore >= 100 ? 0.2 : 0;
-      const aHundred = aScore >= 100 ? 0.2 : 0;
+const aChange =
+  (aSurprise * aOutcome) +
+  aMarg + aHundred + aTravel + aRest_;
 
-      const hTravel = travelBonus(hTeam, venue);
-      const aTravel = travelBonus(aTeam, venue);
+// apply ratings
+ratings[hTeam] += hChange;
+ratings[aTeam] += aChange;
 
-      const hRest_ = restBonus(hRestDays);
-      const aRest_ = restBonus(aRestDays);
+// update tracking
+updateH2H(h2h, hAbb, aAbb, hOutcome);
+updateH2H(h2h, aAbb, hAbb, aOutcome);
 
-      const hChange =
-        (hSurprise * hOutcome) +
-        hMarg + hHundred + hTravel + hRest_;
+updateVenue(ven, hAbb, venue, hOutcome);
+updateVenue(ven, aAbb, venue, aOutcome);
 
-      const aChange =
-        (aSurprise * aOutcome) +
-        aMarg + aHundred + aTravel + aRest_;
+lastGameDate[hTeam] = gameDate;
+lastGameDate[aTeam] = gameDate;
 
-      ratings[hTeam] += hChange;
-      ratings[aTeam] += aChange;
+// trajectory
+trajectory[hTeam].push({
+  round: roundNum,
+  rating: ratings[hTeam],
+  change: hChange
+});
 
-      updateH2H(h2h, hAbb, aAbb, hOutcome);
-      updateH2H(h2h, aAbb, hAbb, aOutcome);
+trajectory[aTeam].push({
+  round: roundNum,
+  rating: ratings[aTeam],
+  change: aChange
+});
 
-      updateVenue(ven, hAbb, venue, hOutcome);
-      updateVenue(ven, aAbb, venue, aOutcome);
-
-      lastGameDate[hTeam] = gameDate;
-      lastGameDate[aTeam] = gameDate;
-
-      trajectory[hTeam].push({
-        round: roundNum,
-        rating: ratings[hTeam],
-        change: hChange
-      });
-
-      trajectory[aTeam].push({
-        round: roundNum,
-        rating: ratings[aTeam],
-        change: aChange
-      });
-
-      if (!roundStats[roundNum]) {
-        roundStats[roundNum] = {
-          biggestRise: null,
-          biggestFall: null,
-          mostInfluential: null,
-          mostSurprising: null,
-          closestImpact: null
-        };
-      }
-      
-      const rs = roundStats[roundNum];
-      
-      const gameRise = { team: hTeam, change: hChange, opponent: aTeam };
-      const gameFall = { team: aTeam, change: aChange, opponent: hTeam };
-      
-      const impactTotal = Math.abs(hChange) + Math.abs(aChange);
-      const closeness = Math.abs(hChange + aChange);
-      
-      // biggest rise
-      if (!rs.biggestRise || hChange > rs.biggestRise.change) {
-        rs.biggestRise = gameRise;
-      }
-      if (!rs.biggestRise || aChange > rs.biggestRise.change) {
-        rs.biggestRise = gameFall;
-      }
-      
-      // biggest fall
-      if (!rs.biggestFall || hChange < rs.biggestFall.change) {
-        rs.biggestFall = gameRise;
-      }
-      if (!rs.biggestFall || aChange < rs.biggestFall.change) {
-        rs.biggestFall = gameFall;
-      }
-      
-      // most influential
-      const gameImpact = { hTeam, aTeam, impact: impactTotal };
-      if (!rs.mostInfluential || impactTotal > rs.mostInfluential.impact) {
-        rs.mostInfluential = gameImpact;
-      }
-      
-      // closest impact
-      const gameCloseness = { hTeam, aTeam, closeness };
-      if (!rs.closestImpact || closeness < rs.closestImpact.closeness) {
-        rs.closestImpact = gameCloseness;
-      }
-      
-      if (!roundImpacts[roundNum]) {
-        roundImpacts[roundNum] = [];
-      }
-
-      roundImpacts[roundNum].push({
-        team: hTeam,
-        change: hChange,
-        opponent: aTeam,
-        margin
-      });
-
-      roundImpacts[roundNum].push({
-        team: aTeam,
-        change: aChange,
-        opponent: hTeam,
-        margin: -margin
-      });
-
-      
-
-      completedGamesByRound[roundNum].push({
-        hteam: hTeam,
-        ateam: aTeam,
-        w: hOutcome >= 0 ? hTeam : aTeam,
-        l: hOutcome >= 0 ? aTeam : hTeam,
-        ws: hOutcome >= 0 ? hScore : aScore,
-        ls: hOutcome >= 0 ? aScore : hScore,
-        margin: Math.abs(margin)
-      });
-
-    });
-
-    roundRatings[roundNum] = { ...ratings };
-  });
-
-  const rankings = TEAMS
-    .map(t => ({ team: t, rating: ratings[t] }))
-    .sort((a, b) => b.rating - a.rating)
-    .map((r, i) => ({ ...r, rank: i + 1 }));
-
-  return {
-    rankings,
-    trajectory,
-    roundRatings,
-    nextRound,
-    latestCompletedRound,
-    completedGamesByRound,
-    roundImpacts,
-    roundStats,
-    rounds,
-    tipping: { tipTotal, tipCorrect, upsets }
+// ─── ROUND STATS INIT ────────────────────────
+if (!roundStats[roundNum]) {
+  roundStats[roundNum] = {
+    biggestRise: null,
+    biggestFall: null,
+    mostInfluential: null,
+    mostSurprising: null,
+    closestImpact: null
   };
 }
+
+const rs = roundStats[roundNum];
+
+// ─── derived metrics ────────────────────────
+const gameRise = { team: hTeam, change: hChange, opponent: aTeam };
+const gameFall = { team: aTeam, change: aChange, opponent: hTeam };
+
+const impactTotal = Math.abs(hChange) + Math.abs(aChange);
+const closeness = Math.abs(hChange + aChange);
+
+// biggest rise
+const higherRise = hChange > aChange ? gameRise : gameFall;
+if (!rs.biggestRise || higherRise.change > rs.biggestRise.change) {
+  rs.biggestRise = higherRise;
+}
+
+// biggest fall
+const lowerFall = hChange < aChange ? gameRise : gameFall;
+if (!rs.biggestFall || lowerFall.change < rs.biggestFall.change) {
+  rs.biggestFall = lowerFall;
+}
+
+// most influential
+if (!rs.mostInfluential || impactTotal > rs.mostInfluential.impact) {
+  rs.mostInfluential = {
+    hTeam,
+    aTeam,
+    impact: impactTotal
+  };
+}
+
+// most surprising
+const actualHomeWin = margin > 0 ? 1 : 0;
+const surpriseFactor = Math.abs(hProb - actualHomeWin);
+const isCoinFlip = Math.abs(hProb - 0.5) < 0.08;
+
+if (!isCoinFlip) {
+  const gameSurprise = {
+    hTeam,
+    aTeam,
+    surprise: surpriseFactor
+  };
+
+  if (
+    !rs.mostSurprising ||
+    surpriseFactor > rs.mostSurprising.surprise
+  ) {
+    rs.mostSurprising = gameSurprise;
+  }
+}
+
+// closest impact
+if (!rs.closestImpact || closeness < rs.closestImpact.closeness) {
+  rs.closestImpact = {
+    hTeam,
+    aTeam,
+    closeness
+  };
+}
+
+// round impacts list
+if (!roundImpacts[roundNum]) {
+  roundImpacts[roundNum] = [];
+}
+
+roundImpacts[roundNum].push(
+  {
+    team: hTeam,
+    change: hChange,
+    opponent: aTeam,
+    margin
+  },
+  {
+    team: aTeam,
+    change: aChange,
+    opponent: hTeam,
+    margin: -margin
+  }
+);
+
+// completed games summary
+completedGamesByRound[roundNum].push({
+  hteam: hTeam,
+  ateam: aTeam,
+  w: hOutcome >= 0 ? hTeam : aTeam,
+  l: hOutcome >= 0 ? aTeam : hTeam,
+  ws: hOutcome >= 0 ? hScore : aScore,
+  ls: hOutcome >= 0 ? aScore : hScore,
+  margin: Math.abs(margin)
+});
  
 // ─── State ─────────────────────────────────────────────────────────────────
 let STATE = null;
