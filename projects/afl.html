@@ -98,22 +98,99 @@
   .divider-line{border:none;border-top:1px solid var(--border);margin:.65rem 0}
  
   /* Timeline */
-  .timeline{display:flex;flex-direction:column;gap:.5rem}
-  .round-block{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
-  .round-header{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.1rem;cursor:pointer;user-select:none;transition:background .12s}
-  .round-header:hover{background:var(--surface2)}
-  .round-header-left{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase}
-  .round-header-right{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;color:var(--muted);letter-spacing:.08em}
-  .round-chevron{color:var(--muted);font-size:.75rem;transition:transform .2s}
-  .round-block.open .round-chevron{transform:rotate(180deg)}
-  .round-games{display:none;padding:.25rem .75rem .75rem}
-  .round-block.open .round-games{display:block}
-  .tl-row{display:flex;align-items:center;padding:.45rem .35rem;border-bottom:1px solid var(--border);gap:.6rem;font-size:.88rem}
-  .tl-row:last-child{border-bottom:none}
-  .tl-w{flex:1;font-weight:500}
-  .tl-score{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;white-space:nowrap}
-  .tl-margin{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;color:var(--muted);min-width:3.5rem;text-align:center}
-  .tl-l{flex:1;text-align:right;color:var(--muted);font-size:.85rem}
+/* Round Impact Timeline */
+.timeline{
+  display:flex;
+  flex-direction:column;
+  gap:.75rem;
+}
+
+.round-block{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.round-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:.85rem 1rem;
+  cursor:pointer;
+}
+
+.round-header:hover{
+  background:var(--surface2);
+}
+
+.round-header-left{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.round-header-right{
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--muted);
+  font-size:.75rem;
+}
+
+.round-chevron{
+  color:var(--muted);
+  transition:transform .2s;
+}
+
+.round-block.open .round-chevron{
+  transform:rotate(180deg);
+}
+
+.round-content{
+  display:none;
+  padding:.9rem 1rem 1rem;
+  border-top:1px solid var(--border);
+}
+
+.round-block.open .round-content{
+  display:block;
+}
+
+.impact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.7rem;
+}
+
+.impact-card{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:.75rem;
+}
+
+.impact-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.72rem;
+  letter-spacing:.08em;
+  color:var(--muted);
+  text-transform:uppercase;
+  margin-bottom:.3rem;
+}
+
+.impact-main{
+  font-size:.95rem;
+  font-weight:600;
+}
+
+.impact-sub{
+  font-size:.78rem;
+  color:var(--muted);
+  margin-top:.2rem;
+}
+
+.pos-impact{color:var(--green);}
+.neg-impact{color:var(--red);}
  
   /* Form chart tooltip */
   .chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;position:relative}
@@ -575,6 +652,34 @@ function processGames(rawGames) {
  
       const hChange = (hSurprise*hOutcome) + hMarg + hHundred + hTravel + hRest_;
       const aChange = (aSurprise*aOutcome) + aMarg + aHundred + aTravel + aRest_;
+      const roundImpacts = {};
+      if(!roundImpacts[roundNum]) roundImpacts[roundNum] = [];
+
+      roundImpacts[roundNum].push({
+        team:hTeam,
+        change:hChange,
+        opponent:aTeam,
+        margin
+      });
+      
+      roundImpacts[roundNum].push({
+        team:aTeam,
+        change:aChange,
+        opponent:hTeam,
+        margin:-margin
+      });
+
+      return {
+        rankings,
+        trajectory,
+        roundRatings,
+        nextRound,
+        latestCompletedRound,
+        completedGamesByRound,
+        roundImpacts,
+        rounds,
+        tipping:{tipTotal,tipCorrect,upsets}
+      };
  
       const hOld = ratings[hTeam], aOld = ratings[aTeam];
       ratings[hTeam] = hOld + hChange;
@@ -996,59 +1101,88 @@ function renderTips() {
  
 // ─── Timeline ──────────────────────────────────────────────────────────────
 function renderTimeline() {
-  const {rounds, completedGamesByRound, latestCompletedRound} = STATE;
+
   const list = document.getElementById('timeline-list');
   list.innerHTML = '';
- 
-  const completedRounds = rounds.filter(r => completedGamesByRound[r]?.length > 0)
+
+  const rounds = Object.keys(STATE.roundImpacts)
+    .map(Number)
     .sort((a,b)=>b-a);
- 
-  completedRounds.forEach((roundNum, idx) => {
-    const games = completedGamesByRound[roundNum];
+
+  rounds.forEach((roundNum,idx)=>{
+
+    const impacts = [...STATE.roundImpacts[roundNum]]
+      .sort((a,b)=>b.change-a.change);
+
+    const biggestRise = impacts[0];
+    const biggestFall = impacts[impacts.length-1];
+
+    const netMovement =
+      impacts.reduce((s,x)=>s+Math.abs(x.change),0);
+
     const block = document.createElement('div');
-    block.className = 'round-block' + (idx===0?' open':'');
- 
-    const label = roundNum === 0 ? 'Round 0' : `Round ${roundNum}`;
-    const gCount = `${games.length} game${games.length!==1?'s':''}`;
- 
-    const header = document.createElement('div');
-    header.className = 'round-header';
-    header.innerHTML = `<span class="round-header-left">${label}</span><span class="round-header-right">${gCount}</span><span class="round-chevron">▼</span>`;
-    header.addEventListener('click', () => block.classList.toggle('open'));
- 
-    const gamesDiv = document.createElement('div');
-    gamesDiv.className = 'round-games';
- 
-    games.forEach(g => {
-      const row = document.createElement('div');
-      row.className = 'tl-row';
- 
-      const wCell = document.createElement('span');
-      wCell.className = 'tl-w';
-      wCell.style.cssText = 'display:flex;align-items:center;gap:.4rem;';
-      wCell.appendChild(teamIcon(g.w));
-      wCell.appendChild(document.createTextNode(g.w));
- 
-      const scoreCell = document.createElement('span');
-      scoreCell.className = 'tl-score';
-      scoreCell.innerHTML = `<span class="pos">${g.ws}</span> – <span class="neg">${g.ls}</span>`;
- 
-      const marginCell = document.createElement('span');
-      marginCell.className = 'tl-margin';
-      marginCell.textContent = `+${g.margin} pts`;
- 
-      const lCell = document.createElement('span');
-      lCell.className = 'tl-l';
-      lCell.style.cssText = 'display:flex;align-items:center;justify-content:flex-end;gap:.4rem;';
-      lCell.appendChild(document.createTextNode(g.l));
-      lCell.appendChild(teamIcon(g.l));
- 
-      row.append(wCell, scoreCell, marginCell, lCell);
-      gamesDiv.appendChild(row);
-    });
- 
-    block.append(header, gamesDiv);
+    block.className =
+      'round-block' + (idx===0 ? ' open' : '');
+
+    block.innerHTML = `
+      <div class="round-header">
+        <span class="round-header-left">
+          Round ${roundNum}
+        </span>
+
+        <span class="round-header-right">
+          Impact ${netMovement.toFixed(1)}
+        </span>
+
+        <span class="round-chevron">▼</span>
+      </div>
+
+      <div class="round-content">
+
+        <div class="impact-grid">
+
+          <div class="impact-card">
+            <div class="impact-title">
+              Biggest Rise
+            </div>
+
+            <div class="impact-main pos-impact">
+              ▲ ${biggestRise.team}
+              (+${biggestRise.change.toFixed(1)})
+            </div>
+
+            <div class="impact-sub">
+              vs ${biggestRise.opponent}
+            </div>
+          </div>
+
+          <div class="impact-card">
+            <div class="impact-title">
+              Biggest Fall
+            </div>
+
+            <div class="impact-main neg-impact">
+              ▼ ${biggestFall.team}
+              (${biggestFall.change.toFixed(1)})
+            </div>
+
+            <div class="impact-sub">
+              vs ${biggestFall.opponent}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    `;
+
+    block.querySelector('.round-header')
+      .addEventListener('click',()=>{
+        block.classList.toggle('open');
+      });
+
     list.appendChild(block);
+
   });
 }
  
