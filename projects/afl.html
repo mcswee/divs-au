@@ -1064,7 +1064,7 @@ function renderTimeline() {
     const block = document.createElement('div');
     block.className = 'round-block' + (idx === 0 ? ' open' : '');
  
-    const label = roundNum === 0 ? 'Pre-season' : `Round ${roundNum}`;
+    const label = roundNum === 0 ? 'Opening Round' : `Round ${roundNum}`;
     const tipStr = rs.tips > 0 ? `${rs.tipCorrect}/${rs.tips} tips` : '';
  
     // Header
