@@ -15,7 +15,7 @@ from pathlib import Path
 # ── Constants ────────────────────────────────────────────────────────────────
 
 SQUIGGLE_BASE = "https://api.squiggle.com.au/"
-USER_AGENT = "SAGE Index - mcswee/divs"
+USER_AGENT = "SAGE Index - https://github.com/mcswee/divs-au/"
 START_YEAR = 2010
 CURRENT_YEAR = datetime.now(timezone.utc).year
 
