@@ -568,6 +568,10 @@ function processGames(rawGames) {
   const roundImpacts = {};
   const roundStats = {};
 
+  // 🔥 FIX: STATE safety
+  if (!window.STATE) window.STATE = {};
+  if (!STATE.roundStats) STATE.roundStats = {};
+
   TEAMS.forEach(t => {
     ratings[t] = 0;
     trajectory[t] = [];
@@ -639,7 +643,7 @@ function processGames(rawGames) {
       const hProb = 1 - hSurprise / 2;
       const aProb = 1 - aSurprise / 2;
 
-      // ─── FUTURE GAME HANDLING ─────────────────────────────
+      // ─── FUTURE GAMES ─────────────────────────────
       if (!g.complete) {
 
         if (nextRound === null || roundNum < nextRound.round) {
@@ -669,7 +673,7 @@ function processGames(rawGames) {
         return;
       }
 
-      // ─── COMPLETED GAME PROCESSING ────────────────────────
+      // ─── COMPLETED GAMES ─────────────────────────────
       latestCompletedRound = Math.max(latestCompletedRound, roundNum);
 
       const hScore = g.hscore;
@@ -679,7 +683,8 @@ function processGames(rawGames) {
       const hOutcome = margin > 0 ? 1 : margin < 0 ? -1 : 0;
       const aOutcome = -hOutcome;
 
-      // ─── MOST SURPRISING (FIXED) ──────────────────────────
+      // ─── MOST SURPRISING (FIXED ORDER) ─────────────────
+
       const actualHomeWin = hScore > aScore ? 1 : 0;
 
       const confidenceGap = Math.abs(hProb - 0.5);
@@ -702,7 +707,7 @@ function processGames(rawGames) {
         }
       }
 
-      // ─── TIPPING ───────────────────────────────────────────
+      // ─── TIPPING ─────────────────────────────
       if (roundNum > 0) {
         const hTip = hProb > 0.5;
         const aTip = aProb > 0.5;
@@ -762,9 +767,9 @@ function processGames(rawGames) {
         change: aChange
       });
 
-      // ─── ROUND STATS ──────────────────────────────────────
-      if (!roundStats[roundNum]) {
-        roundStats[roundNum] = {
+      // ─── ROUND STATS ─────────────────────────────
+      if (!STATE.roundStats[roundNum]) {
+        STATE.roundStats[roundNum] = {
           biggestRise: null,
           biggestFall: null,
           mostInfluential: null,
@@ -773,7 +778,7 @@ function processGames(rawGames) {
         };
       }
 
-      const rs = roundStats[roundNum];
+      const rs = STATE.roundStats[roundNum];
 
       const gameRise = { team: hTeam, change: hChange, opponent: aTeam };
       const gameFall = { team: aTeam, change: aChange, opponent: hTeam };
@@ -781,39 +786,21 @@ function processGames(rawGames) {
       const impactTotal = Math.abs(hChange) + Math.abs(aChange);
       const closeness = Math.abs(hChange + aChange);
 
-      if (!rs.biggestRise || hChange > rs.biggestRise.change) {
-        rs.biggestRise = gameRise;
-      }
-      if (!rs.biggestRise || aChange > rs.biggestRise.change) {
-        rs.biggestRise = gameFall;
-      }
+      if (!rs.biggestRise || hChange > rs.biggestRise.change) rs.biggestRise = gameRise;
+      if (!rs.biggestRise || aChange > rs.biggestRise.change) rs.biggestRise = gameFall;
 
-      if (!rs.biggestFall || hChange < rs.biggestFall.change) {
-        rs.biggestFall = gameRise;
-      }
-      if (!rs.biggestFall || aChange < rs.biggestFall.change) {
-        rs.biggestFall = gameFall;
-      }
+      if (!rs.biggestFall || hChange < rs.biggestFall.change) rs.biggestFall = gameRise;
+      if (!rs.biggestFall || aChange < rs.biggestFall.change) rs.biggestFall = gameFall;
 
       if (!rs.mostInfluential || impactTotal > rs.mostInfluential.impact) {
-        rs.mostInfluential = {
-          hTeam,
-          aTeam,
-          impact: impactTotal
-        };
+        rs.mostInfluential = { hTeam, aTeam, impact: impactTotal };
       }
 
       if (!rs.closestImpact || closeness < rs.closestImpact.closeness) {
-        rs.closestImpact = {
-          hTeam,
-          aTeam,
-          closeness
-        };
+        rs.closestImpact = { hTeam, aTeam, closeness };
       }
 
-      if (!roundImpacts[roundNum]) {
-        roundImpacts[roundNum] = [];
-      }
+      if (!roundImpacts[roundNum]) roundImpacts[roundNum] = [];
 
       roundImpacts[roundNum].push({
         team: hTeam,
@@ -843,12 +830,6 @@ function processGames(rawGames) {
 
     roundRatings[roundNum] = { ...ratings };
 
-    if (!STATE.roundStats) STATE.roundStats = {};
-
-    STATE.roundStats[roundNum] = {
-      ...STATE.roundStats[roundNum],
-      mostSurprising: roundSurprises[roundNum] || null
-    };
   });
 
   const rankings = TEAMS
@@ -864,7 +845,7 @@ function processGames(rawGames) {
     latestCompletedRound,
     completedGamesByRound,
     roundImpacts,
-    roundStats,
+    roundStats: STATE.roundStats,
     rounds,
     tipping: { tipTotal, tipCorrect, upsets }
   };
