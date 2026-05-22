@@ -550,7 +550,14 @@ function processGames(rawGames) {
       const hTotal = hRating + hH2H + hVen + hRestAdj;
       const aTotal = aRating + aH2H + aVen + aRestAdj;
       const ratingGap = Math.abs(hTotal - aTotal);
- 
+       if ((hTeam === 'Carlton' && aTeam === 'Western Bulldogs') || 
+          (hTeam === 'Western Bulldogs' && aTeam === 'Carlton')) {
+        console.log('Carlton v WB:', {
+          hTeam, aTeam, hRating, aRating, 
+          hH2H, aH2H, hVen, aVen, 
+          hRestAdj, aRestAdj, hProb, aProb
+        });
+      }
       if (!g.complete) {
         if (nextRound === null || roundNum < nextRound.round) nextRound = {round:roundNum, games:[]};
         if (nextRound.round === roundNum) {
