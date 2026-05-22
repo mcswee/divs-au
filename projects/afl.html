@@ -478,6 +478,8 @@ function restAdjustment(daysSince) {
  
 // ─── Process Squiggle games ────────────────────────────────────────────────
 function processGames(rawGames) {
+  console.log('Total games in JSON:', rawGames.filter(g=>g.year==2026).length);
+  
   const h2h = JSON.parse(JSON.stringify(BASELINE.h2h));
   const ven = JSON.parse(JSON.stringify(BASELINE.venues));
  
