@@ -191,23 +191,6 @@
 
 .pos-impact{color:var(--green);}
 .neg-impact{color:var(--red);}
-
-.round-summary{
-  display:flex;
-  gap:.75rem;
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:.72rem;
-  color:var(--muted);
-  letter-spacing:.06em;
-}
-
-.round-summary .rise{
-  color:#7CFF9B;
-}
-
-.round-summary .fall{
-  color:#FF6B6B;
-}
  
   /* Form chart tooltip */
   .chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;position:relative}
@@ -1238,72 +1221,111 @@ function renderTips() {
   });
 }
  
-// ─── Timeline (compact strip version) ──────────────────────────────────────
+// ─── Timeline ──────────────────────────────────────────────────────────────
 function renderTimeline() {
 
   const list = document.getElementById('timeline-list');
   list.innerHTML = '';
 
-  const rounds = Object.keys(STATE.roundImpacts)
+  const rounds = Object.keys(STATE.roundStats || {})
     .map(Number)
     .sort((a, b) => b - a);
 
   rounds.forEach((roundNum, idx) => {
 
-    const impacts = [...STATE.roundImpacts[roundNum]]
-      .sort((a, b) => b.change - a.change);
+    const stats = STATE.roundStats[roundNum];
 
-    const biggestRise = impacts[0];
-    const biggestFall = impacts[impacts.length - 1];
-
-    const netMovement = impacts.reduce((s, x) => s + Math.abs(x.change), 0);
+    if (!stats) return;
 
     const block = document.createElement('div');
     block.className = 'round-block' + (idx === 0 ? ' open' : '');
 
-    const header = document.createElement('div');
-    header.className = 'round-header';
+    block.innerHTML = `
+      <div class="round-header">
+        <span class="round-header-left">
+          Round ${roundNum}
+        </span>
 
-    header.innerHTML = `
-      <span class="round-header-left">Round ${roundNum}</span>
+        <span class="round-header-right">
+          ${stats.biggestRise?.team || ''} ▲ / ${stats.biggestFall?.team || ''} ▼
+        </span>
 
-      <span class="round-summary">
-        <span class="rise">▲ ${biggestRise.team} ${biggestRise.change.toFixed(2)}</span>
-        <span class="fall">▼ ${biggestFall.team} ${biggestFall.change.toFixed(2)}</span>
-      </span>
+        <span class="round-chevron">▼</span>
+      </div>
 
-      <span class="round-header-right">
-        Δ ${netMovement.toFixed(1)}
-      </span>
+      <div class="round-content">
 
-      <span class="round-chevron">▼</span>
+        <div class="impact-grid">
+
+          <!-- Biggest Rise -->
+          <div class="impact-card">
+            <div class="impact-title">Biggest Rise</div>
+            <div class="impact-main pos-impact">
+              ▲ ${stats.biggestRise?.team || ''}
+              (+${(stats.biggestRise?.change || 0).toFixed(3)})
+            </div>
+            <div class="impact-sub">
+              vs ${stats.biggestRise?.opponent || ''}
+            </div>
+          </div>
+
+          <!-- Biggest Fall -->
+          <div class="impact-card">
+            <div class="impact-title">Biggest Fall</div>
+            <div class="impact-main neg-impact">
+              ▼ ${stats.biggestFall?.team || ''}
+              (${(stats.biggestFall?.change || 0).toFixed(3)})
+            </div>
+            <div class="impact-sub">
+              vs ${stats.biggestFall?.opponent || ''}
+            </div>
+          </div>
+
+          <!-- Most Influential -->
+          <div class="impact-card">
+            <div class="impact-title">Most Influential</div>
+            <div class="impact-main">
+              ⚡ ${stats.mostInfluential?.hTeam || ''} vs ${stats.mostInfluential?.aTeam || ''}
+            </div>
+            <div class="impact-sub">
+              total swing ${(stats.mostInfluential?.impact || 0).toFixed(3)}
+            </div>
+          </div>
+
+          <!-- Most Surprising -->
+          <div class="impact-card">
+            <div class="impact-title">Most Surprising</div>
+            <div class="impact-main">
+              ❖ ${stats.mostSurprising?.hTeam || ''} vs ${stats.mostSurprising?.aTeam || ''}
+            </div>
+            <div class="impact-sub">
+              upset factor ${(stats.mostSurprising?.surprise || 0).toFixed(3)}
+            </div>
+          </div>
+
+          <!-- Closest Impact -->
+          <div class="impact-card">
+            <div class="impact-title">Closest Game (Impact)</div>
+            <div class="impact-main">
+              ≈ ${stats.closestImpact?.hTeam || ''} vs ${stats.closestImpact?.aTeam || ''}
+            </div>
+            <div class="impact-sub">
+              delta ${(stats.closestImpact?.closeness || 0).toFixed(3)}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
     `;
 
-    header.addEventListener('click', () => {
-      block.classList.toggle('open');
-    });
+    block.querySelector('.round-header')
+      .addEventListener('click', () => {
+        block.classList.toggle('open');
+      });
 
-    const body = document.createElement('div');
-    body.className = 'round-games';
-
-    // Optional: minimal drilldown (only if you still want detail)
-    impacts.slice(0, 6).forEach(p => {
-      const row = document.createElement('div');
-      row.className = 'tl-row';
-
-      row.innerHTML = `
-        <span class="tl-w">${p.team}</span>
-        <span class="tl-score ${p.change >= 0 ? 'pos' : 'neg'}">
-          ${p.change >= 0 ? '+' : ''}${p.change.toFixed(3)}
-        </span>
-        <span class="tl-l">${p.opponent}</span>
-      `;
-
-      body.appendChild(row);
-    });
-
-    block.append(header, body);
     list.appendChild(block);
+
   });
 }
  
