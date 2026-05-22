@@ -176,8 +176,12 @@ def compute_delta(sf: float, outcome: int, margin: int,
     return outcome_multiple + margin_component + century + travel
 
 
-def process_completed_game(game: dict, ratings: dict, history: list) -> dict:
-    """Compute SAGE delta for both teams and return updated ratings + game record."""
+def process_completed_game(game: dict, ratings: dict, history: list, prior_ratings: dict = None) -> dict:
+    """Compute SAGE delta for both teams and return updated ratings + game record.
+
+    ratings       — current season accumulator (starts at 0 each year)
+    prior_ratings — previous season's final ratings, used only in team output seed
+    """
     hteam = game["hteam"]
     ateam = game["ateam"]
     hscore = game.get("hscore", 0) or 0
@@ -211,9 +215,14 @@ def process_completed_game(game: dict, ratings: dict, history: list) -> dict:
     h_rest = compute_rest(hteam, game_dt, history)
     a_rest = compute_rest(ateam, game_dt, history)
 
-    # Team output = rival adv + ground adv + rest + last rating
-    h_output = h_r11 + h_v11 + h_rest + ratings.get(hteam, 0)
-    a_output = a_r11 + a_v11 + a_rest + ratings.get(ateam, 0)
+    # Team output = rival adv + ground adv + rest + current season rating.
+    # In round 1, current season rating is 0, so we add prior year's final
+    # rating as the seed for the surprise factor / prediction calculation only.
+    prior = prior_ratings or {}
+    h_seed = ratings.get(hteam, 0) + prior.get(hteam, 0)
+    a_seed = ratings.get(ateam, 0) + prior.get(ateam, 0)
+    h_output = h_r11 + h_v11 + h_rest + h_seed
+    a_output = a_r11 + a_v11 + a_rest + a_seed
 
     # Surprise factors
     h_sf = surprise_factor(h_output, a_output)
@@ -297,7 +306,11 @@ def predict_game(game: dict, ratings: dict, history: list) -> dict:
 
 def main():
     print("SAGE Index — computing ratings from 2010...")
-    ratings = seed_ratings()
+
+    # prior_ratings holds last season's final values, used only for team output
+    # seeding in round 1. Actual within-season ratings always start at 0.
+    prior_ratings = seed_ratings()
+    ratings = {}          # current season accumulator, resets each year
     all_history = []      # all completed games in chronological order
     game_records = []     # per-game SAGE records
     ratings_by_round = [] # snapshot after each round
@@ -312,6 +325,10 @@ def main():
 
         if not games:
             continue
+
+        # Reset within-season ratings to zero for all teams at start of year.
+        # prior_ratings carries last season's finals for the team output calc.
+        ratings = {team: 0.0 for team in prior_ratings}
 
         # Sort by date
         games.sort(key=lambda g: g.get("date") or "")
@@ -332,7 +349,7 @@ def main():
                 if game.get("hscore") is None:
                     continue
 
-                rec = process_completed_game(game, ratings, all_history)
+                rec = process_completed_game(game, ratings, all_history, prior_ratings)
                 if rec:
                     game_records.append(rec)
                     round_records.append(rec)
@@ -348,6 +365,9 @@ def main():
                     "ratings": {t: round(v, 4) for t, v in ratings.items()},
                 }
                 ratings_by_round.append(snapshot)
+
+        # Carry this season's finals into next year's prior
+        prior_ratings = dict(ratings)
 
         time.sleep(0.5)  # be nice to Squiggle
 
