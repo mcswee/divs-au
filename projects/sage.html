@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAGE Index — AFL Power Rankings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0d0f12;
+    --surface:   #13161b;
+    --border:    #1e2229;
+    --muted:     #3a3f4a;
+    --dim:       #6b7280;
+    --text:      #d4d8e0;
+    --bright:    #f0f2f5;
+    --accent:    #c8f135;
+    --accent2:   #35c8f1;
+    --warn:      #f1a035;
+    --mono:      'DM Mono', monospace;
+    --cond:      'Barlow Condensed', sans-serif;
+    --body:      'Barlow', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Layout ── */
+  .wrapper {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── Header ── */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 32px 0 24px;
+    margin-bottom: 40px;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .wordmark {
+    font-family: var(--cond);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    letter-spacing: -0.02em;
+    color: var(--bright);
+    line-height: 1;
+  }
+
+  .wordmark span {
+    color: var(--accent);
+  }
+
+  .tagline {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .meta {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--dim);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .meta strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ── Tabs ── */
+  .tabs {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tab {
+    font-family: var(--cond);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ── Panels ── */
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* ── Section label ── */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  /* ── Power Rankings ── */
+  .rankings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2px;
+  }
+
+  .rank-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: border-color 0.15s;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .rank-card:hover { border-color: var(--muted); }
+
+  .rank-num {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    width: 24px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .rank-num.top3 { color: var(--accent); font-weight: 500; }
+
+  .rank-bar-wrap {
+    flex: 1;
+  }
+
+  .rank-team {
+    font-family: var(--cond);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--bright);
+    margin-bottom: 6px;
+  }
+
+  .rank-bar-bg {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .rank-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .rank-bar-fill.negative {
+    background: var(--warn);
+  }
+
+  .rank-rating {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text);
+    font-weight: 500;
+    flex-shrink: 0;
+    width: 52px;
+    text-align: right;
+  }
+
+  .rank-rating.positive { color: var(--accent); }
+  .rank-rating.negative { color: var(--warn); }
+
+  /* ── Predictions ── */
+  .predictions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .pred-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .pred-meta {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 14px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .pred-matchup {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .pred-team {
+    font-family: var(--cond);
+    font-weight: 600;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    letter-spacing: 0.01em;
+  }
+
+  .pred-team.home { color: var(--bright); }
+  .pred-team.away { color: var(--text); text-align: right; }
+
+  .pred-team.fav { color: var(--accent); }
+
+  .pred-conf {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--dim);
+    margin-top: 4px;
+  }
+
+  .pred-conf.home { }
+  .pred-conf.away { text-align: right; }
+
+  .pred-conf strong {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .pred-conf.high strong { color: var(--accent); }
+  .pred-conf.mid strong  { color: var(--accent2); }
+  .pred-conf.low strong  { color: var(--dim); }
+
+  .pred-vs {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .pred-bar {
+    margin-top: 14px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .pred-bar-h {
+    background: var(--accent);
+    height: 100%;
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .pred-bar-a {
+    background: var(--warn);
+    height: 100%;
+    flex: 1;
+  }
+
+  /* ── Recent Results ── */
+  .results-table-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+
+  thead tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  th {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  th.num { text-align: right; }
+
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  td.num {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    text-align: right;
+    color: var(--dim);
+  }
+
+  td.team-name {
+    font-family: var(--cond);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--bright);
+  }
+
+  td.winner { color: var(--accent); }
+  td.delta-pos { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); text-align: right; }
+  td.delta-neg { font-family: var(--mono); font-size: 0.72rem; color: var(--warn); text-align: right; }
+
+  tbody tr:hover { background: var(--surface); }
+
+  /* ── Round Selector ── */
+  .round-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .round-select {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 12px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    min-width: 160px;
+  }
+
+  .round-select:focus { border-color: var(--accent); }
+
+  /* ── Empty / Loading ── */
+  .empty {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--dim);
+    padding: 48px 0;
+    text-align: center;
+    letter-spacing: 0.08em;
+  }
+
+  .loading-bar {
+    height: 2px;
+    background: var(--border);
+    margin-bottom: 40px;
+    overflow: hidden;
+    border-radius: 1px;
+  }
+
+  .loading-bar::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 40%;
+    background: var(--accent);
+    animation: sweep 1.2s ease-in-out infinite;
+  }
+
+  @keyframes sweep {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(350%); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── About panel ── */
+  .about-prose {
+    max-width: 680px;
+    line-height: 1.75;
+    color: var(--text);
+  }
+
+  .about-prose h3 {
+    font-family: var(--cond);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--bright);
+    margin: 28px 0 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .about-prose h3:first-child { margin-top: 0; }
+
+  .about-prose p { margin-bottom: 14px; font-size: 0.9rem; }
+
+  .about-prose code {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    color: var(--accent);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .header-inner { flex-direction: column; align-items: flex-start; }
+    .meta { text-align: left; }
+    .pred-matchup { grid-template-columns: 1fr auto 1fr; }
+    .rankings-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <header>
+    <div class="header-inner">
+      <div>
+        <div class="wordmark">S<span>A</span>GE <span>·</span> Index</div>
+        <div class="tagline">Surprise Adjusted Game Evaluation — AFL Power Model</div>
+      </div>
+      <div class="meta" id="meta-block">
+        Loading…
+      </div>
+    </div>
+  </header>
+
+  <div id="loading" class="loading-bar"></div>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-panel="rankings">Power Rankings</button>
+    <button class="tab" data-panel="predictions">Predictions</button>
+    <button class="tab" data-panel="results">Recent Results</button>
+    <button class="tab" data-panel="history">History</button>
+    <button class="tab" data-panel="about">About</button>
+  </nav>
+
+  <!-- Power Rankings -->
+  <div class="panel active" id="panel-rankings">
+    <div class="section-label">Current SAGE Ratings — ranked</div>
+    <div class="rankings-grid" id="rankings-grid">
+      <div class="empty">Loading ratings…</div>
+    </div>
+  </div>
+
+  <!-- Predictions -->
+  <div class="panel" id="panel-predictions">
+    <div class="section-label" id="pred-label">Upcoming matches</div>
+    <div class="predictions-list" id="predictions-list">
+      <div class="empty">Loading predictions…</div>
+    </div>
+  </div>
+
+  <!-- Recent Results -->
+  <div class="panel" id="panel-results">
+    <div class="section-label">Last 40 completed games</div>
+    <div class="results-table-wrap">
+      <table id="results-table">
+        <thead>
+          <tr>
+            <th>Round</th>
+            <th>Home</th>
+            <th class="num">Score</th>
+            <th>Away</th>
+            <th class="num">Score</th>
+            <th class="num">H Conf%</th>
+            <th class="num">A Conf%</th>
+            <th class="num">H Δ</th>
+            <th class="num">A Δ</th>
+          </tr>
+        </thead>
+        <tbody id="results-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- History -->
+  <div class="panel" id="panel-history">
+    <div class="section-label">SAGE ratings by round</div>
+    <div class="round-nav">
+      <select class="round-select" id="round-select">
+        <option value="">Select a round…</option>
+      </select>
+    </div>
+    <div id="history-rankings" class="rankings-grid">
+      <div class="empty">Select a round above</div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <div class="panel" id="panel-about">
+    <div class="about-prose">
+      <h3>What is SAGE?</h3>
+      <p>SAGE — Surprise Adjusted Game Evaluation — is a power rating model for AFL teams. It tracks underlying team strength across every game since 2010, weighting outcomes by how surprising they were relative to what the model expected.</p>
+
+      <h3>How it works</h3>
+      <p>Before each game, SAGE calculates a <strong>Team Output</strong> for each side:</p>
+      <p><code>Team Output = Rival Advantage (R11) + Ground Advantage (V11) + Rest Penalty + Last SAGE Rating</code></p>
+      <p><strong>R11</strong> — the average winning/losing margin across the last 11 head-to-head games between the two teams at any venue.</p>
+      <p><strong>V11</strong> — the average winning/losing margin across the last 11 games each team has played at this specific ground.</p>
+      <p><strong>Rest Penalty</strong> — applied when a team has had fewer than 6.95 days since their last game: <code>(days − 7) × 0.2</code>.</p>
+
+      <h3>Surprise Factor</h3>
+      <p>The surprise factor captures how unexpected an outcome was relative to the model's pre-game read:</p>
+      <p><code>SF = 1 − tanh((Opponent Output − Team Output) / 30)</code></p>
+      <p>Prediction confidence is derived from <code>(SF_home − SF_away) / 2</code>, scaled to percentage. Both teams always sum to 100%.</p>
+
+      <h3>Rating change (Δ)</h3>
+      <p>After each game, a team's rating changes by:</p>
+      <p><code>Δ = (SF × outcome) + (margin / 60) + Century Bonus + Travel Bonus</code></p>
+      <p>Outcome is +1 for a win, −1 for a loss. The <strong>Century Bonus</strong> (+0.2) rewards teams who score 100 or more points. The <strong>Travel Bonus</strong> (+0.2) applies when a team has had to travel interstate or to a remote venue (FNQ, NT, overseas).</p>
+
+      <h3>Starting ratings</h3>
+      <p>All teams were seeded at the start of 2010 using their 2009 final ladder positions, scaled between +1.0 (1st) and −1.0 (last).</p>
+
+      <h3>Data</h3>
+      <p>All match data is sourced from the <a href="https://api.squiggle.com.au" style="color:var(--accent2)">Squiggle API</a>. Ratings are recalculated and updated nightly via GitHub Actions.</p>
+    </div>
+  </div>
+
+</div><!-- /wrapper -->
+
+<script>
+const DATA_URL = '/assets/data/sage.json';
+let data = null;
+
+// ── Fetch ───────────────────────────────────────────────────────────────────
+async function loadData() {
+  try {
+    const res = await fetch(DATA_URL);
+    if (!res.ok) throw new Error(res.status);
+    data = await res.json();
+    document.getElementById('loading').style.display = 'none';
+    render();
+  } catch (e) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('rankings-grid').innerHTML =
+      '<div class="empty">Could not load data. Try refreshing.</div>';
+    console.error(e);
+  }
+}
+
+// ── Tabs ────────────────────────────────────────────────────────────────────
+document.getElementById('tabs').addEventListener('click', e => {
+  const btn = e.target.closest('.tab');
+  if (!btn) return;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + btn.dataset.panel).classList.add('active');
+});
+
+// ── Render ──────────────────────────────────────────────────────────────────
+function render() {
+  renderMeta();
+  renderRankings(data.power_rankings);
+  renderPredictions(data.predictions || []);
+  renderResults(data.game_records || []);
+  renderHistorySelector(data.ratings_by_round || []);
+}
+
+function renderMeta() {
+  const cr = data.current_round;
+  const gen = new Date(data.generated);
+  const fmt = gen.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
+  document.getElementById('meta-block').innerHTML =
+    (cr ? `<strong>${cr.roundname}, ${cr.year}</strong><br>` : '') +
+    `Updated ${fmt}`;
+}
+
+function renderRankings(rankings) {
+  if (!rankings || !rankings.length) {
+    document.getElementById('rankings-grid').innerHTML = '<div class="empty">No data.</div>';
+    return;
+  }
+  const maxAbs = Math.max(...rankings.map(r => Math.abs(r.rating)), 0.01);
+  document.getElementById('rankings-grid').innerHTML = rankings.map((r, i) => {
+    const pct = Math.abs(r.rating) / maxAbs * 100;
+    const isNeg = r.rating < 0;
+    const delay = i * 30;
+    return `
+      <div class="rank-card" style="animation-delay:${delay}ms">
+        <div class="rank-num ${r.rank <= 3 ? 'top3' : ''}">${r.rank}</div>
+        <div class="rank-bar-wrap">
+          <div class="rank-team">${r.team}</div>
+          <div class="rank-bar-bg">
+            <div class="rank-bar-fill ${isNeg ? 'negative' : ''}" style="width:${pct}%"></div>
+          </div>
+        </div>
+        <div class="rank-rating ${isNeg ? 'negative' : 'positive'}">${r.rating > 0 ? '+' : ''}${r.rating.toFixed(3)}</div>
+      </div>`;
+  }).join('');
+}
+
+function confClass(pct) {
+  if (pct >= 65) return 'high';
+  if (pct >= 52) return 'mid';
+  return 'low';
+}
+
+function renderPredictions(preds) {
+  const el = document.getElementById('predictions-list');
+  const label = document.getElementById('pred-label');
+  if (!preds.length) {
+    el.innerHTML = '<div class="empty">No upcoming matches in data — check back after the next update.</div>';
+    return;
+  }
+
+  // Group by round
+  const byRound = {};
+  preds.forEach(p => {
+    const key = `${p.year}__${p.round}`;
+    if (!byRound[key]) byRound[key] = { roundname: p.roundname, year: p.year, games: [] };
+    byRound[key].games.push(p);
+  });
+
+  let html = '';
+  let i = 0;
+  for (const key of Object.keys(byRound)) {
+    const rnd = byRound[key];
+    html += `<div class="section-label" style="margin-top:${i > 0 ? 28 : 0}px;margin-bottom:12px">${rnd.roundname} ${rnd.year}</div>`;
+    rnd.games.forEach(p => {
+      const hFav = p.h_pred >= p.a_pred;
+      const date = p.date ? new Date(p.date).toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' }) : '';
+      const time = p.date ? new Date(p.date).toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' }) : '';
+      html += `
+        <div class="pred-card" style="animation-delay:${i * 40}ms">
+          <div class="pred-meta">
+            <span>${date} ${time}</span>
+            <span>${p.venue || ''}</span>
+          </div>
+          <div class="pred-matchup">
+            <div>
+              <div class="pred-team home ${hFav ? 'fav' : ''}">${p.hteam}</div>
+              <div class="pred-conf home ${confClass(p.h_pred)}"><strong>${p.h_pred.toFixed(1)}%</strong></div>
+            </div>
+            <div class="pred-vs">vs</div>
+            <div>
+              <div class="pred-team away ${!hFav ? 'fav' : ''}">${p.ateam}</div>
+              <div class="pred-conf away ${confClass(p.a_pred)}"><strong>${p.a_pred.toFixed(1)}%</strong></div>
+            </div>
+          </div>
+          <div class="pred-bar">
+            <div class="pred-bar-h" style="width:${p.h_pred}%"></div>
+            <div class="pred-bar-a"></div>
+          </div>
+        </div>`;
+      i++;
+    });
+  }
+  el.innerHTML = html;
+}
+
+function renderResults(records) {
+  const tbody = document.getElementById('results-body');
+  // Show last 40, newest first
+  const recent = [...records].reverse().slice(0, 40);
+  if (!recent.length) {
+    tbody.innerHTML = '<tr><td colspan="9" class="empty">No data.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = recent.map(g => {
+    const hWon = g.hscore > g.ascore;
+    const aWon = g.ascore > g.hscore;
+    return `
+      <tr>
+        <td class="num">${g.roundname || 'R' + g.round}</td>
+        <td class="team-name ${hWon ? 'winner' : ''}">${g.hteam}</td>
+        <td class="num">${g.hscore}</td>
+        <td class="team-name ${aWon ? 'winner' : ''}">${g.ateam}</td>
+        <td class="num">${g.ascore}</td>
+        <td class="num">${g.h_pred?.toFixed(1) ?? '—'}%</td>
+        <td class="num">${g.a_pred?.toFixed(1) ?? '—'}%</td>
+        <td class="${g.h_delta >= 0 ? 'delta-pos' : 'delta-neg'}">${g.h_delta >= 0 ? '+' : ''}${g.h_delta?.toFixed(3)}</td>
+        <td class="${g.a_delta >= 0 ? 'delta-pos' : 'delta-neg'}">${g.a_delta >= 0 ? '+' : ''}${g.a_delta?.toFixed(3)}</td>
+      </tr>`;
+  }).join('');
+}
+
+function renderHistorySelector(rounds) {
+  const sel = document.getElementById('round-select');
+  // Newest first
+  const sorted = [...rounds].reverse();
+  sorted.forEach(r => {
+    const opt = document.createElement('option');
+    opt.value = JSON.stringify({ ratings: r.ratings });
+    opt.textContent = `${r.roundname} ${r.year}`;
+    sel.appendChild(opt);
+  });
+  sel.addEventListener('change', () => {
+    if (!sel.value) return;
+    const { ratings } = JSON.parse(sel.value);
+    const ranked = Object.entries(ratings)
+      .sort((a, b) => b[1] - a[1])
+      .map(([team, rating], i) => ({ rank: i + 1, team, rating }));
+    renderRankings2(ranked);
+  });
+}
+
+function renderRankings2(rankings) {
+  const el = document.getElementById('history-rankings');
+  const maxAbs = Math.max(...rankings.map(r => Math.abs(r.rating)), 0.01);
+  el.innerHTML = rankings.map((r, i) => {
+    const pct = Math.abs(r.rating) / maxAbs * 100;
+    const isNeg = r.rating < 0;
+    return `
+      <div class="rank-card" style="animation-delay:${i * 20}ms">
+        <div class="rank-num ${r.rank <= 3 ? 'top3' : ''}">${r.rank}</div>
+        <div class="rank-bar-wrap">
+          <div class="rank-team">${r.team}</div>
+          <div class="rank-bar-bg">
+            <div class="rank-bar-fill ${isNeg ? 'negative' : ''}" style="width:${pct}%"></div>
+          </div>
+        </div>
+        <div class="rank-rating ${isNeg ? 'negative' : 'positive'}">${r.rating > 0 ? '+' : ''}${r.rating.toFixed(3)}</div>
+      </div>`;
+  }).join('');
+}
+
+loadData();
+</script>
+</body>
+</html>
