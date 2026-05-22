@@ -481,17 +481,12 @@ function processGames(rawGames) {
   const h2h = JSON.parse(JSON.stringify(BASELINE.h2h));
   const ven = JSON.parse(JSON.stringify(BASELINE.venues));
  
-  // KEY CHANGE: all teams start at 0. Round 0 is treated the same as any other round.
   const ratings = {};
   const lastGameDate = {};
-  // trajectory[team] = [{round, rating, change}]
   const trajectory = {};
-  // roundRatings[round][team] = rating after that round (undefined = not played yet)
   const roundRatings = {};
-  // completedGamesByRound[round] = [{w,l,ws,ls,margin,hteam,ateam}]
   const completedGamesByRound = {};
-  // perGameH2H and venue for tips
-  const gameDetails = {};
+  const roundStats = {}; // NEW: per-round metrics
  
   TEAMS.forEach(t => { ratings[t] = 0; trajectory[t] = []; });
  
@@ -515,6 +510,17 @@ function processGames(rawGames) {
     const roundGames = byRound[roundNum];
     completedGamesByRound[roundNum] = [];
  
+    // Init round stats
+    const rs = {
+      biggestRise: null,       // {team, change, opponent}
+      biggestFall: null,       // {team, change, opponent}
+      mostSurprising: null,    // {hTeam, aTeam, prob, actual, factor, winner, loser}
+      mostInfluential: null,   // {hTeam, aTeam, totalSwing}
+      closestCall: null,       // {hTeam, aTeam, ratingGap}
+      tips: 0,
+      tipCorrect: 0,
+    };
+ 
     roundGames.forEach(g => {
       const hTeam = g.hteam, aTeam = g.ateam;
       if (!TEAMS.includes(hTeam) || !TEAMS.includes(aTeam)) return;
@@ -529,7 +535,6 @@ function processGames(rawGames) {
       const hVen = getVenue(ven, hAbb, venue);
       const aVen = getVenue(ven, aAbb, venue);
  
-      // Calculate rest days before surprise so it feeds into prediction
       const gameDate = new Date(g.date);
       const hRestDays = lastGameDate[hTeam] ? (gameDate - lastGameDate[hTeam])/86400000 : null;
       const aRestDays = lastGameDate[aTeam] ? (gameDate - lastGameDate[aTeam])/86400000 : null;
@@ -540,6 +545,11 @@ function processGames(rawGames) {
       const aSurprise = calcSurprise(aRating, aH2H, aVen, aRestAdj, hRating, hH2H, hVen, hRestAdj);
       const hProb = 1 - hSurprise / 2;
       const aProb = 1 - aSurprise / 2;
+ 
+      // Pre-game rating gap (for closest call)
+      const hTotal = hRating + hH2H + hVen + hRestAdj;
+      const aTotal = aRating + aH2H + aVen + aRestAdj;
+      const ratingGap = Math.abs(hTotal - aTotal);
  
       if (!g.complete) {
         if (nextRound === null || roundNum < nextRound.round) nextRound = {round:roundNum, games:[]};
@@ -562,10 +572,16 @@ function processGames(rawGames) {
       const hOutcome = margin > 0 ? 1 : margin < 0 ? -1 : 0;
       const aOutcome = -hOutcome;
  
+      // Tipping
       if (roundNum > 0) {
         const hTip = hProb > 0.5, aTip = aProb > 0.5;
-        if (hTip) { tipTotal++; if (hOutcome===1) tipCorrect++; else upsets++; }
-        else if (aTip) { tipTotal++; if (aOutcome===1) tipCorrect++; else upsets++; }
+        if (hTip) {
+          tipTotal++; rs.tips++;
+          if (hOutcome===1) { tipCorrect++; rs.tipCorrect++; } else upsets++;
+        } else if (aTip) {
+          tipTotal++; rs.tips++;
+          if (aOutcome===1) { tipCorrect++; rs.tipCorrect++; } else upsets++;
+        }
       }
  
       const hMarg = margin/60, aMarg = -margin/60;
@@ -576,9 +592,8 @@ function processGames(rawGames) {
       const hChange = (hSurprise*hOutcome) + hMarg + hHundred + hTravel + hRest_;
       const aChange = (aSurprise*aOutcome) + aMarg + aHundred + aTravel + aRest_;
  
-      const hOld = ratings[hTeam], aOld = ratings[aTeam];
-      ratings[hTeam] = hOld + hChange;
-      ratings[aTeam] = aOld + aChange;
+      ratings[hTeam] += hChange;
+      ratings[aTeam] += aChange;
  
       updateH2H(h2h, hAbb, aAbb, hOutcome);
       updateH2H(h2h, aAbb, hAbb, aOutcome);
@@ -597,9 +612,46 @@ function processGames(rawGames) {
         ws:hOutcome>=0?hScore:aScore, ls:hOutcome>=0?aScore:hScore,
         margin:Math.abs(margin)
       });
+ 
+      // ── Round stats ──────────────────────────────────────────
+      // Biggest rise
+      [
+        {team:hTeam, change:hChange, opponent:aTeam},
+        {team:aTeam, change:aChange, opponent:hTeam}
+      ].forEach(entry => {
+        if (!rs.biggestRise || entry.change > rs.biggestRise.change) rs.biggestRise = entry;
+        if (!rs.biggestFall || entry.change < rs.biggestFall.change) rs.biggestFall = entry;
+      });
+ 
+      // Most surprising: team whose result most defied their probability
+      // hProb = probability home team wins. Surprising if hProb high but lost, or low but won.
+      const surpriseFactor = hOutcome === 1 ? (1 - hProb) : hOutcome === -1 ? hProb : 0;
+      const isCoinFlip = Math.abs(hProb - 0.5) < 0.08;
+      if (!isCoinFlip && (!rs.mostSurprising || surpriseFactor > rs.mostSurprising.factor)) {
+        const winner = hOutcome === 1 ? hTeam : aTeam;
+        const loser  = hOutcome === 1 ? aTeam : hTeam;
+        const winnerProb = hOutcome === 1 ? hProb : aProb;
+        rs.mostSurprising = {hTeam, aTeam, factor:surpriseFactor, winner, loser, winnerProb};
+      }
+ 
+      // Most influential: biggest combined absolute swing
+      const totalSwing = Math.abs(hChange) + Math.abs(aChange);
+      if (!rs.mostInfluential || totalSwing > rs.mostInfluential.totalSwing) {
+        rs.mostInfluential = {hTeam, aTeam, totalSwing,
+          w:hOutcome>=0?hTeam:aTeam, l:hOutcome>=0?aTeam:hTeam,
+          ws:hOutcome>=0?hScore:aScore, ls:hOutcome>=0?aScore:hScore};
+      }
+ 
+      // Closest call: smallest pre-game rating gap
+      if (!rs.closestCall || ratingGap < rs.closestCall.ratingGap) {
+        rs.closestCall = {hTeam, aTeam, ratingGap,
+          w:hOutcome>=0?hTeam:aTeam, l:hOutcome>=0?aTeam:hTeam,
+          ws:hOutcome>=0?hScore:aScore, ls:hOutcome>=0?aScore:hScore,
+          hProb, aProb};
+      }
     });
  
-    // Snapshot all ratings after this round for slider
+    roundStats[roundNum] = rs;
     roundRatings[roundNum] = {...ratings};
   });
  
@@ -607,8 +659,9 @@ function processGames(rawGames) {
     .sort((a,b)=>b.rating-a.rating).map((r,i)=>({...r,rank:i+1}));
  
   return {rankings, trajectory, roundRatings, nextRound, latestCompletedRound,
-          completedGamesByRound, rounds, tipping:{tipTotal,tipCorrect,upsets}};
+          completedGamesByRound, roundStats, rounds, tipping:{tipTotal,tipCorrect,upsets}};
 }
+
  
 // ─── State ─────────────────────────────────────────────────────────────────
 let STATE = null;
@@ -996,62 +1049,192 @@ function renderTips() {
  
 // ─── Timeline ──────────────────────────────────────────────────────────────
 function renderTimeline() {
-  const {rounds, completedGamesByRound, latestCompletedRound} = STATE;
+  const {rounds, completedGamesByRound, roundStats, latestCompletedRound} = STATE;
   const list = document.getElementById('timeline-list');
   list.innerHTML = '';
  
-  const completedRounds = rounds.filter(r => completedGamesByRound[r]?.length > 0)
-    .sort((a,b)=>b-a);
+  const completedRounds = rounds
+    .filter(r => completedGamesByRound[r]?.length > 0)
+    .sort((a,b) => b - a);
  
   completedRounds.forEach((roundNum, idx) => {
-    const games = completedGamesByRound[roundNum];
+    const rs = roundStats[roundNum];
+    if (!rs) return;
+ 
     const block = document.createElement('div');
-    block.className = 'round-block' + (idx===0?' open':'');
+    block.className = 'round-block' + (idx === 0 ? ' open' : '');
  
-    const label = roundNum === 0 ? 'Round 0' : `Round ${roundNum}`;
-    const gCount = `${games.length} game${games.length!==1?'s':''}`;
+    const label = roundNum === 0 ? 'Pre-season' : `Round ${roundNum}`;
+    const tipStr = rs.tips > 0 ? `${rs.tipCorrect}/${rs.tips} tips` : '';
  
+    // Header
     const header = document.createElement('div');
     header.className = 'round-header';
-    header.innerHTML = `<span class="round-header-left">${label}</span><span class="round-header-right">${gCount}</span><span class="round-chevron">▼</span>`;
+    header.innerHTML = `
+      <span class="round-header-left">${label}</span>
+      <span class="round-header-right">${tipStr}</span>
+      <span class="round-chevron">▼</span>
+    `;
     header.addEventListener('click', () => block.classList.toggle('open'));
  
-    const gamesDiv = document.createElement('div');
-    gamesDiv.className = 'round-games';
+    // Content
+    const content = document.createElement('div');
+    content.className = 'round-games';
+    content.style.cssText = 'padding:.75rem;';
  
-    games.forEach(g => {
-      const row = document.createElement('div');
-      row.className = 'tl-row';
+    const cards = [];
  
-      const wCell = document.createElement('span');
-      wCell.className = 'tl-w';
-      wCell.style.cssText = 'display:flex;align-items:center;gap:.4rem;';
-      wCell.appendChild(teamIcon(g.w));
-      wCell.appendChild(document.createTextNode(g.w));
+    // Biggest Rise
+    if (rs.biggestRise) {
+      const r = rs.biggestRise;
+      cards.push(statCard(
+        'Biggest Rise',
+        r.team, teamIcon(r.team),
+        `+${r.change.toFixed(2)}`, 'var(--green)',
+        `vs ${r.opponent}`
+      ));
+    }
  
-      const scoreCell = document.createElement('span');
-      scoreCell.className = 'tl-score';
-      scoreCell.innerHTML = `<span class="pos">${g.ws}</span> – <span class="neg">${g.ls}</span>`;
+    // Biggest Fall
+    if (rs.biggestFall) {
+      const r = rs.biggestFall;
+      cards.push(statCard(
+        'Biggest Fall',
+        r.team, teamIcon(r.team),
+        `${r.change.toFixed(2)}`, 'var(--red)',
+        `vs ${r.opponent}`
+      ));
+    }
  
-      const marginCell = document.createElement('span');
-      marginCell.className = 'tl-margin';
-      marginCell.textContent = `+${g.margin} pts`;
+    // Most Surprising
+    if (rs.mostSurprising) {
+      const s = rs.mostSurprising;
+      const pct = Math.round((1 - s.winnerProb) * 100);
+      cards.push(statCard(
+        'Most Surprising',
+        s.winner, teamIcon(s.winner),
+        `${pct}% chance`, 'var(--accent)',
+        `beat ${s.loser}`
+      ));
+    }
  
-      const lCell = document.createElement('span');
-      lCell.className = 'tl-l';
-      lCell.style.cssText = 'display:flex;align-items:center;justify-content:flex-end;gap:.4rem;';
-      lCell.appendChild(document.createTextNode(g.l));
-      lCell.appendChild(teamIcon(g.l));
+    // Most Influential
+    if (rs.mostInfluential) {
+      const m = rs.mostInfluential;
+      cards.push(twoTeamCard(
+        'Most Influential',
+        m.w, teamIcon(m.w), m.ws,
+        m.l, teamIcon(m.l), m.ls,
+        `Combined swing ${m.totalSwing.toFixed(2)}`
+      ));
+    }
  
-      row.append(wCell, scoreCell, marginCell, lCell);
-      gamesDiv.appendChild(row);
-    });
+    // Closest Call
+    if (rs.closestCall) {
+      const c = rs.closestCall;
+      const favPct = Math.round(Math.max(c.hProb, c.aProb) * 100);
+      cards.push(twoTeamCard(
+        'Closest Call',
+        c.w, teamIcon(c.w), c.ws,
+        c.l, teamIcon(c.l), c.ls,
+        `Favourite had just ${favPct}%`
+      ));
+    }
  
-    block.append(header, gamesDiv);
+    // Tipping for round
+    if (rs.tips > 0) {
+      const pct = Math.round(rs.tipCorrect / rs.tips * 100);
+      const col = pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--accent)' : 'var(--red)';
+      cards.push(statCard(
+        'Round Tipping',
+        `${rs.tipCorrect} of ${rs.tips}`, null,
+        `${pct}%`, col,
+        'confident tips correct'
+      ));
+    }
+ 
+    // Grid layout
+    const grid = document.createElement('div');
+    grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.6rem;';
+    cards.forEach(c => grid.appendChild(c));
+    content.appendChild(grid);
+ 
+    block.append(header, content);
     list.appendChild(block);
   });
 }
  
+// ─── Helper: single-team stat card ─────────────────────────────────────────
+function statCard(title, mainText, iconEl, valueText, valueColor, subText) {
+  const card = document.createElement('div');
+  card.style.cssText = `
+    background:var(--surface2);border:1px solid var(--border);border-radius:8px;
+    padding:.75rem;display:flex;flex-direction:column;gap:.3rem;
+  `;
+ 
+  const titleEl = document.createElement('div');
+  titleEl.style.cssText = 'font-family:"Barlow Condensed",sans-serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);';
+  titleEl.textContent = title;
+ 
+  const mainRow = document.createElement('div');
+  mainRow.style.cssText = 'display:flex;align-items:center;gap:.4rem;';
+  if (iconEl) mainRow.appendChild(iconEl);
+  const mainLabel = document.createElement('span');
+  mainLabel.style.cssText = 'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.95rem;';
+  mainLabel.textContent = mainText;
+  mainRow.appendChild(mainLabel);
+ 
+  const valueEl = document.createElement('div');
+  valueEl.style.cssText = `font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:1.3rem;color:${valueColor};line-height:1;`;
+  valueEl.textContent = valueText;
+ 
+  const subEl = document.createElement('div');
+  subEl.style.cssText = 'font-size:.75rem;color:var(--muted);';
+  subEl.textContent = subText;
+ 
+  card.append(titleEl, mainRow, valueEl, subEl);
+  return card;
+}
+ 
+// ─── Helper: two-team matchup card ─────────────────────────────────────────
+function twoTeamCard(title, wTeam, wIcon, wScore, lTeam, lIcon, lScore, subText) {
+  const card = document.createElement('div');
+  card.style.cssText = `
+    background:var(--surface2);border:1px solid var(--border);border-radius:8px;
+    padding:.75rem;display:flex;flex-direction:column;gap:.35rem;
+  `;
+ 
+  const titleEl = document.createElement('div');
+  titleEl.style.cssText = 'font-family:"Barlow Condensed",sans-serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);';
+  titleEl.textContent = title;
+ 
+  const matchupEl = document.createElement('div');
+  matchupEl.style.cssText = 'display:flex;align-items:center;gap:.4rem;font-family:"Barlow Condensed",sans-serif;font-size:.9rem;';
+ 
+  const wRow = document.createElement('span');
+  wRow.style.cssText = 'display:flex;align-items:center;gap:.3rem;flex:1;font-weight:700;';
+  wRow.appendChild(wIcon);
+  wRow.appendChild(document.createTextNode(wTeam));
+ 
+  const scoreEl = document.createElement('span');
+  scoreEl.style.cssText = 'font-weight:700;white-space:nowrap;';
+  scoreEl.innerHTML = `<span style="color:var(--green)">${wScore}</span> – <span style="color:var(--red)">${lScore}</span>`;
+ 
+  const lRow = document.createElement('span');
+  lRow.style.cssText = 'display:flex;align-items:center;justify-content:flex-end;gap:.3rem;flex:1;color:var(--muted);';
+  lRow.appendChild(document.createTextNode(lTeam));
+  lRow.appendChild(lIcon);
+ 
+  matchupEl.append(wRow, scoreEl, lRow);
+ 
+  const subEl = document.createElement('div');
+  subEl.style.cssText = 'font-size:.75rem;color:var(--muted);';
+  subEl.textContent = subText;
+ 
+  card.append(titleEl, matchupEl, subEl);
+  return card;
+}
+
 // ─── Fetch & init ──────────────────────────────────────────────────────────
 async function init() {
   const dot=document.getElementById('sdot');
