@@ -678,6 +678,27 @@ function processGames(rawGames) {
       const hOutcome = margin > 0 ? 1 : margin < 0 ? -1 : 0;
       const aOutcome = -hOutcome;
 
+      const actualHomeWin = margin > 0 ? 1 : 0;
+
+      const surprise = Math.abs(hProb - actualHomeWin);
+      
+      const isCoinFlip = Math.abs(hProb - 0.5) < 0.08;
+      
+      const gameSurprise = {
+        hTeam,
+        aTeam,
+        surprise
+      };
+      
+      if (!isCoinFlip) {
+        if (
+          !rs.mostSurprising ||
+          surprise > rs.mostSurprising.surprise
+        ) {
+          rs.mostSurprising = gameSurprise;
+        }
+      }
+
       if (roundNum > 0) {
         const hTip = hProb > 0.5;
         const aTip = aProb > 0.5;
