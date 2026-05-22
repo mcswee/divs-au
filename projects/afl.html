@@ -555,164 +555,236 @@ function restAdjustment(daysSince) {
  
 // ─── Process Squiggle games ────────────────────────────────────────────────
 function processGames(rawGames) {
+
   const h2h = JSON.parse(JSON.stringify(BASELINE.h2h));
   const ven = JSON.parse(JSON.stringify(BASELINE.venues));
- 
-  // KEY CHANGE: all teams start at 0. Round 0 is treated the same as any other round.
+
   const ratings = {};
   const lastGameDate = {};
-  // trajectory[team] = [{round, rating, change}]
   const trajectory = {};
-  // roundRatings[round][team] = rating after that round (undefined = not played yet)
   const roundRatings = {};
-  // completedGamesByRound[round] = [{w,l,ws,ls,margin,hteam,ateam}]
   const completedGamesByRound = {};
-  // perGameH2H and venue for tips
-  const gameDetails = {};
- 
-  TEAMS.forEach(t => { ratings[t] = 0; trajectory[t] = []; });
- 
+  const roundImpacts = {};
+
+  TEAMS.forEach(t => {
+    ratings[t] = 0;
+    trajectory[t] = [];
+  });
+
   const games = rawGames
     .filter(g => g.year == 2026)
-    .sort((a,b) => new Date(a.date) - new Date(b.date));
- 
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
+
   const byRound = {};
   games.forEach(g => {
     const r = g.round;
     if (!byRound[r]) byRound[r] = [];
     byRound[r].push(g);
   });
- 
-  const rounds = Object.keys(byRound).map(Number).sort((a,b)=>a-b);
-  let tipTotal=0, tipCorrect=0, upsets=0;
+
+  const rounds = Object.keys(byRound).map(Number).sort((a, b) => a - b);
+
+  let tipTotal = 0, tipCorrect = 0, upsets = 0;
   let latestCompletedRound = -1;
   let nextRound = null;
- 
+
   rounds.forEach(roundNum => {
+
     const roundGames = byRound[roundNum];
     completedGamesByRound[roundNum] = [];
- 
+
     roundGames.forEach(g => {
+
       const hTeam = g.hteam, aTeam = g.ateam;
       if (!TEAMS.includes(hTeam) || !TEAMS.includes(aTeam)) return;
- 
-      const hAbb = abbrevOf(hTeam), aAbb = abbrevOf(aTeam);
+
+      const hAbb = abbrevOf(hTeam);
+      const aAbb = abbrevOf(aTeam);
       const venue = g.venue || '';
- 
+
       const hRating = ratings[hTeam];
       const aRating = ratings[aTeam];
+
       const hH2H = getH2H(h2h, hAbb, aAbb);
       const aH2H = getH2H(h2h, aAbb, hAbb);
+
       const hVen = getVenue(ven, hAbb, venue);
       const aVen = getVenue(ven, aAbb, venue);
- 
-      // Calculate rest days before surprise so it feeds into prediction
+
       const gameDate = new Date(g.date);
-      const hRestDays = lastGameDate[hTeam] ? (gameDate - lastGameDate[hTeam])/86400000 : null;
-      const aRestDays = lastGameDate[aTeam] ? (gameDate - lastGameDate[aTeam])/86400000 : null;
+
+      const hRestDays = lastGameDate[hTeam]
+        ? (gameDate - lastGameDate[hTeam]) / 86400000
+        : null;
+
+      const aRestDays = lastGameDate[aTeam]
+        ? (gameDate - lastGameDate[aTeam]) / 86400000
+        : null;
+
       const hRestAdj = restAdjustment(hRestDays);
       const aRestAdj = restAdjustment(aRestDays);
- 
-      const hSurprise = calcSurprise(hRating, hH2H, hVen, hRestAdj, aRating, aH2H, aVen, aRestAdj);
-      const aSurprise = calcSurprise(aRating, aH2H, aVen, aRestAdj, hRating, hH2H, hVen, hRestAdj);
+
+      const hSurprise = calcSurprise(
+        hRating, hH2H, hVen, hRestAdj,
+        aRating, aH2H, aVen, aRestAdj
+      );
+
+      const aSurprise = calcSurprise(
+        aRating, aH2H, aVen, aRestAdj,
+        hRating, hH2H, hVen, hRestAdj
+      );
+
       const hProb = 1 - hSurprise / 2;
       const aProb = 1 - aSurprise / 2;
- 
+
+      // ─── Future game handling ─────────────────────────────
       if (!g.complete) {
-        if (nextRound === null || roundNum < nextRound.round) nextRound = {round:roundNum, games:[]};
+
+        if (nextRound === null || roundNum < nextRound.round) {
+          nextRound = { round: roundNum, games: [] };
+        }
+
         if (nextRound.round === roundNum) {
           nextRound.games.push({
-            home:hTeam, away:aTeam, venue, date:g.date, tz:g.tz,
-            prob_home:hProb, prob_away:aProb,
-            h_rating:hRating, a_rating:aRating,
-            h_h2h:hH2H, a_h2h:aH2H,
-            h_ven:hVen, a_ven:aVen,
-            h_rest:hRestAdj, a_rest:aRestAdj
+            home: hTeam,
+            away: aTeam,
+            venue,
+            date: g.date,
+            tz: g.tz,
+            prob_home: hProb,
+            prob_away: aProb,
+            h_rating: hRating,
+            a_rating: aRating,
+            h_h2h: hH2H,
+            a_h2h: aH2H,
+            h_ven: hVen,
+            a_ven: aVen,
+            h_rest: hRestAdj,
+            a_rest: aRestAdj
           });
         }
+
         return;
       }
- 
+
+      // ─── Completed game processing ────────────────────────
       latestCompletedRound = Math.max(latestCompletedRound, roundNum);
-      const hScore = g.hscore, aScore = g.ascore;
+
+      const hScore = g.hscore;
+      const aScore = g.ascore;
       const margin = hScore - aScore;
+
       const hOutcome = margin > 0 ? 1 : margin < 0 ? -1 : 0;
       const aOutcome = -hOutcome;
- 
+
       if (roundNum > 0) {
-        const hTip = hProb > 0.5, aTip = aProb > 0.5;
-        if (hTip) { tipTotal++; if (hOutcome===1) tipCorrect++; else upsets++; }
-        else if (aTip) { tipTotal++; if (aOutcome===1) tipCorrect++; else upsets++; }
+        const hTip = hProb > 0.5;
+        const aTip = aProb > 0.5;
+
+        if (hTip) {
+          tipTotal++;
+          if (hOutcome === 1) tipCorrect++;
+          else upsets++;
+        } else if (aTip) {
+          tipTotal++;
+          if (aOutcome === 1) tipCorrect++;
+          else upsets++;
+        }
       }
- 
-      const hMarg = margin/60, aMarg = -margin/60;
-      const hHundred = hScore>=100?0.2:0, aHundred = aScore>=100?0.2:0;
-      const hTravel = travelBonus(hTeam,venue), aTravel = travelBonus(aTeam,venue);
-      const hRest_ = restBonus(hRestDays), aRest_ = restBonus(aRestDays);
- 
-      const hChange = (hSurprise*hOutcome) + hMarg + hHundred + hTravel + hRest_;
-      const aChange = (aSurprise*aOutcome) + aMarg + aHundred + aTravel + aRest_;
-      const roundImpacts = {};
-      if(!roundImpacts[roundNum]) roundImpacts[roundNum] = [];
 
-      roundImpacts[roundNum].push({
-        team:hTeam,
-        change:hChange,
-        opponent:aTeam,
-        margin
-      });
-      
-      roundImpacts[roundNum].push({
-        team:aTeam,
-        change:aChange,
-        opponent:hTeam,
-        margin:-margin
-      });
+      const hMarg = margin / 60;
+      const aMarg = -margin / 60;
 
-      return {
-        rankings,
-        trajectory,
-        roundRatings,
-        nextRound,
-        latestCompletedRound,
-        completedGamesByRound,
-        roundImpacts,
-        rounds,
-        tipping:{tipTotal,tipCorrect,upsets}
-      };
- 
-      const hOld = ratings[hTeam], aOld = ratings[aTeam];
-      ratings[hTeam] = hOld + hChange;
-      ratings[aTeam] = aOld + aChange;
- 
+      const hHundred = hScore >= 100 ? 0.2 : 0;
+      const aHundred = aScore >= 100 ? 0.2 : 0;
+
+      const hTravel = travelBonus(hTeam, venue);
+      const aTravel = travelBonus(aTeam, venue);
+
+      const hRest_ = restBonus(hRestDays);
+      const aRest_ = restBonus(aRestDays);
+
+      const hChange =
+        (hSurprise * hOutcome) +
+        hMarg + hHundred + hTravel + hRest_;
+
+      const aChange =
+        (aSurprise * aOutcome) +
+        aMarg + aHundred + aTravel + aRest_;
+
+      ratings[hTeam] += hChange;
+      ratings[aTeam] += aChange;
+
       updateH2H(h2h, hAbb, aAbb, hOutcome);
       updateH2H(h2h, aAbb, hAbb, aOutcome);
+
       updateVenue(ven, hAbb, venue, hOutcome);
       updateVenue(ven, aAbb, venue, aOutcome);
- 
+
       lastGameDate[hTeam] = gameDate;
       lastGameDate[aTeam] = gameDate;
- 
-      trajectory[hTeam].push({round:roundNum, rating:ratings[hTeam], change:hChange});
-      trajectory[aTeam].push({round:roundNum, rating:ratings[aTeam], change:aChange});
- 
-      completedGamesByRound[roundNum].push({
-        hteam:hTeam, ateam:aTeam,
-        w:hOutcome>=0?hTeam:aTeam, l:hOutcome>=0?aTeam:hTeam,
-        ws:hOutcome>=0?hScore:aScore, ls:hOutcome>=0?aScore:hScore,
-        margin:Math.abs(margin)
+
+      trajectory[hTeam].push({
+        round: roundNum,
+        rating: ratings[hTeam],
+        change: hChange
       });
+
+      trajectory[aTeam].push({
+        round: roundNum,
+        rating: ratings[aTeam],
+        change: aChange
+      });
+
+      if (!roundImpacts[roundNum]) {
+        roundImpacts[roundNum] = [];
+      }
+
+      roundImpacts[roundNum].push({
+        team: hTeam,
+        change: hChange,
+        opponent: aTeam,
+        margin
+      });
+
+      roundImpacts[roundNum].push({
+        team: aTeam,
+        change: aChange,
+        opponent: hTeam,
+        margin: -margin
+      });
+
+      completedGamesByRound[roundNum].push({
+        hteam: hTeam,
+        ateam: aTeam,
+        w: hOutcome >= 0 ? hTeam : aTeam,
+        l: hOutcome >= 0 ? aTeam : hTeam,
+        ws: hOutcome >= 0 ? hScore : aScore,
+        ls: hOutcome >= 0 ? aScore : hScore,
+        margin: Math.abs(margin)
+      });
+
     });
- 
-    // Snapshot all ratings after this round for slider
-    roundRatings[roundNum] = {...ratings};
+
+    roundRatings[roundNum] = { ...ratings };
   });
- 
-  const rankings = TEAMS.map(t=>({team:t,rating:ratings[t]}))
-    .sort((a,b)=>b.rating-a.rating).map((r,i)=>({...r,rank:i+1}));
- 
-  return {rankings, trajectory, roundRatings, nextRound, latestCompletedRound,
-          completedGamesByRound, rounds, tipping:{tipTotal,tipCorrect,upsets}};
+
+  const rankings = TEAMS
+    .map(t => ({ team: t, rating: ratings[t] }))
+    .sort((a, b) => b.rating - a.rating)
+    .map((r, i) => ({ ...r, rank: i + 1 }));
+
+  return {
+    rankings,
+    trajectory,
+    roundRatings,
+    nextRound,
+    latestCompletedRound,
+    completedGamesByRound,
+    roundImpacts,
+    rounds,
+    tipping: { tipTotal, tipCorrect, upsets }
+  };
 }
  
 // ─── State ─────────────────────────────────────────────────────────────────
