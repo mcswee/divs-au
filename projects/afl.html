@@ -1246,10 +1246,6 @@ function renderTimeline() {
           Round ${roundNum}
         </span>
 
-        <span class="round-header-right">
-          ${stats.biggestRise?.team || ''} ▲ / ${stats.biggestFall?.team || ''} ▼
-        </span>
-
         <span class="round-chevron">▼</span>
       </div>
 
@@ -1261,7 +1257,7 @@ function renderTimeline() {
           <div class="impact-card">
             <div class="impact-title">Biggest Rise</div>
             <div class="impact-main pos-impact">
-              ▲ ${stats.biggestRise?.team || ''}
+              ${stats.biggestRise?.team || ''}
               (+${(stats.biggestRise?.change || 0).toFixed(3)})
             </div>
             <div class="impact-sub">
@@ -1273,7 +1269,7 @@ function renderTimeline() {
           <div class="impact-card">
             <div class="impact-title">Biggest Fall</div>
             <div class="impact-main neg-impact">
-              ▼ ${stats.biggestFall?.team || ''}
+              ${stats.biggestFall?.team || ''}
               (${(stats.biggestFall?.change || 0).toFixed(3)})
             </div>
             <div class="impact-sub">
@@ -1285,7 +1281,7 @@ function renderTimeline() {
           <div class="impact-card">
             <div class="impact-title">Most Influential</div>
             <div class="impact-main">
-              ⚡ ${stats.mostInfluential?.hTeam || ''} vs ${stats.mostInfluential?.aTeam || ''}
+              ${stats.mostInfluential?.hTeam || ''} vs ${stats.mostInfluential?.aTeam || ''}
             </div>
             <div class="impact-sub">
               total swing ${(stats.mostInfluential?.impact || 0).toFixed(3)}
@@ -1296,7 +1292,7 @@ function renderTimeline() {
           <div class="impact-card">
             <div class="impact-title">Most Surprising</div>
             <div class="impact-main">
-              ❖ ${stats.mostSurprising?.hTeam || ''} vs ${stats.mostSurprising?.aTeam || ''}
+              ${stats.mostSurprising?.hTeam || ''} vs ${stats.mostSurprising?.aTeam || ''}
             </div>
             <div class="impact-sub">
               upset factor ${(stats.mostSurprising?.surprise || 0).toFixed(3)}
@@ -1307,7 +1303,7 @@ function renderTimeline() {
           <div class="impact-card">
             <div class="impact-title">Closest Game (Impact)</div>
             <div class="impact-main">
-              ≈ ${stats.closestImpact?.hTeam || ''} vs ${stats.closestImpact?.aTeam || ''}
+              ${stats.closestImpact?.hTeam || ''} vs ${stats.closestImpact?.aTeam || ''}
             </div>
             <div class="impact-sub">
               delta ${(stats.closestImpact?.closeness || 0).toFixed(3)}
