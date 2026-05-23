@@ -15,7 +15,7 @@ from pathlib import Path
 # ── Constants ────────────────────────────────────────────────────────────────
 
 SQUIGGLE_BASE = "https://api.squiggle.com.au/"
-USER_AGENT = "SAGE Index - https://github.com/mcswee/divs-au/"
+USER_AGENT = "SAGE Index - mcswee/divs"
 START_YEAR = 2010
 CURRENT_YEAR = datetime.now(timezone.utc).year
 
@@ -41,23 +41,12 @@ VENUE_STATE = {
     "York Park": "TAS",
 }
 
-# Seed ratings from 2009 final ladder (1st = highest seed)
-# Scale: position mapped to a starting rating spread of ±1.0
-LADDER_2009 = [
-    "Geelong", "St Kilda", "Western Bulldogs", "Collingwood", "Carlton",
-    "Brisbane Lions", "Adelaide", "Sydney", "Hawthorn", "Fremantle",
-    "Melbourne", "West Coast", "Essendon", "Richmond", "Port Adelaide",
-    "North Melbourne", "Gold Coast", "Greater Western Sydney",
+ALL_TEAMS = [
+    "Adelaide", "Brisbane Lions", "Carlton", "Collingwood", "Essendon",
+    "Fremantle", "Geelong", "Gold Coast", "Greater Western Sydney",
+    "Hawthorn", "Melbourne", "North Melbourne", "Port Adelaide",
+    "Richmond", "St Kilda", "Sydney", "West Coast", "Western Bulldogs",
 ]
-
-def seed_ratings():
-    """Generate starting SAGE ratings from 2009 ladder finish."""
-    n = len(LADDER_2009)
-    ratings = {}
-    for i, team in enumerate(LADDER_2009):
-        # Top team gets +1.0, bottom gets -1.0, linear spread
-        ratings[team] = round(1.0 - (2.0 * i / (n - 1)), 4)
-    return ratings
 
 
 # ── API Fetch ─────────────────────────────────────────────────────────────────
@@ -179,8 +168,9 @@ def compute_delta(sf: float, outcome: int, margin: int,
 def process_completed_game(game: dict, ratings: dict, history: list, prior_ratings: dict = None) -> dict:
     """Compute SAGE delta for both teams and return updated ratings + game record.
 
-    ratings       — current season accumulator (starts at 0 each year)
-    prior_ratings — previous season's final ratings, used only in team output seed
+    If a team's current rating is still 0.0 (hasn't played this season yet),
+    their prior year final rating is used in the team output calculation instead.
+    Once they've played, only the current season rating is used.
     """
     hteam = game["hteam"]
     ateam = game["ateam"]
@@ -215,12 +205,14 @@ def process_completed_game(game: dict, ratings: dict, history: list, prior_ratin
     h_rest = compute_rest(hteam, game_dt, history)
     a_rest = compute_rest(ateam, game_dt, history)
 
-    # Team output = rival adv + ground adv + rest + current season rating.
-    # In round 1, current season rating is 0, so we add prior year's final
-    # rating as the seed for the surprise factor / prediction calculation only.
+    # Team output = R11 + V11 + rest + rating.
+    # If team hasn't played this season yet (rating == 0.0), use last year's
+    # final rating as the seed. Once they have a delta, use current only.
     prior = prior_ratings or {}
-    h_seed = ratings.get(hteam, 0) + prior.get(hteam, 0)
-    a_seed = ratings.get(ateam, 0) + prior.get(ateam, 0)
+    h_rating = ratings.get(hteam, 0.0)
+    a_rating = ratings.get(ateam, 0.0)
+    h_seed = h_rating if h_rating != 0.0 else prior.get(hteam, 0.0)
+    a_seed = a_rating if a_rating != 0.0 else prior.get(ateam, 0.0)
     h_output = h_r11 + h_v11 + h_rest + h_seed
     a_output = a_r11 + a_v11 + a_rest + a_seed
 
@@ -307,10 +299,8 @@ def predict_game(game: dict, ratings: dict, history: list) -> dict:
 def main():
     print("SAGE Index — computing ratings from 2010...")
 
-    # prior_ratings holds last season's final values, used only for team output
-    # seeding in round 1. Actual within-season ratings always start at 0.
-    prior_ratings = seed_ratings()
-    ratings = {}          # current season accumulator, resets each year
+    prior_ratings = {team: 0.0 for team in ALL_TEAMS}  # last season's finals
+    ratings = {}          # current season accumulator, resets to 0 each year
     all_history = []      # all completed games in chronological order
     game_records = []     # per-game SAGE records
     ratings_by_round = [] # snapshot after each round
@@ -326,9 +316,9 @@ def main():
         if not games:
             continue
 
-        # Reset within-season ratings to zero for all teams at start of year.
-        # prior_ratings carries last season's finals for the team output calc.
-        ratings = {team: 0.0 for team in prior_ratings}
+        # Reset all ratings to zero at the start of each season.
+        # prior_ratings holds last season's finals for round 1 team output.
+        ratings = {team: 0.0 for team in ALL_TEAMS}
 
         # Sort by date
         games.sort(key=lambda g: g.get("date") or "")
