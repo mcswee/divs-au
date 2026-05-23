@@ -421,6 +421,162 @@
   }
 
   /* ── About panel ── */
+
+  /* ── Season Graph ── */
+  .graph-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .year-slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .year-label {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-weight: 500;
+    width: 36px;
+    flex-shrink: 0;
+  }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+  }
+
+  input[type=range]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+    cursor: pointer;
+  }
+
+  .graph-wrap {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  #sage-graph {
+    display: block;
+    width: 100%;
+    height: 420px;
+    cursor: crosshair;
+  }
+
+  .graph-tooltip {
+    position: absolute;
+    background: #1a1e26;
+    border: 1px solid var(--muted);
+    padding: 10px 14px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s;
+    z-index: 10;
+    min-width: 180px;
+  }
+
+  .graph-tooltip.visible { opacity: 1; }
+
+  .tooltip-round {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 8px;
+  }
+
+  .tooltip-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text);
+    padding: 2px 0;
+  }
+
+  .tooltip-row .t-name { color: var(--bright); }
+  .tooltip-row .t-val.pos { color: var(--accent); }
+  .tooltip-row .t-val.neg { color: var(--warn); }
+
+  .team-toggles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .team-toggle {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--dim);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .team-toggle.on {
+    border-color: currentColor;
+    color: var(--text);
+  }
+
+  .team-toggle.highlighted {
+    font-weight: 500;
+  }
+
+  .graph-btn {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--dim);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .graph-btn:hover { color: var(--text); border-color: var(--muted); }
+
   .about-prose {
     max-width: 680px;
     line-height: 1.75;
@@ -481,6 +637,7 @@
     <button class="tab" data-panel="predictions">Predictions</button>
     <button class="tab" data-panel="results">Recent Results</button>
     <button class="tab" data-panel="history">History</button>
+    <button class="tab" data-panel="graph">Season Graph</button>
     <button class="tab" data-panel="about">About</button>
   </nav>
 
@@ -536,7 +693,29 @@
     </div>
   </div>
 
-  <!-- About -->
+  <!-- Season Graph -->
+  <div class="panel" id="panel-graph">
+    <div class="graph-controls">
+      <div class="year-slider-wrap">
+        <span style="font-family:var(--mono);font-size:0.62rem;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">Season</span>
+        <input type="range" id="year-slider" min="2010" max="2026" value="2026" step="1">
+        <span class="year-label" id="year-display">2026</span>
+      </div>
+      <button class="graph-btn" id="btn-all-on">All on</button>
+      <button class="graph-btn" id="btn-all-off">All off</button>
+      <button class="graph-btn" id="btn-top8">Top 8</button>
+    </div>
+    <div class="graph-wrap">
+      <canvas id="sage-graph"></canvas>
+      <div class="graph-tooltip" id="graph-tooltip">
+        <div class="tooltip-round" id="tooltip-round"></div>
+        <div id="tooltip-rows"></div>
+      </div>
+    </div>
+    <div class="team-toggles" id="team-toggles"></div>
+  </div>
+
+    <!-- About -->
   <div class="panel" id="panel-about">
     <div class="about-prose">
       <h3>What is SAGE?</h3>
@@ -765,6 +944,367 @@ function renderRankings2(rankings) {
       </div>`;
   }).join('');
 }
+
+
+// ── Season Graph ─────────────────────────────────────────────────────────────
+
+const TEAM_COLORS = {
+  'Adelaide':              '#002b5c',
+  'Brisbane Lions':        '#a30046',
+  'Carlton':               '#0e1c37',
+  'Collingwood':           '#a0a0a0',
+  'Essendon':              '#cc2031',
+  'Fremantle':             '#2c2180',
+  'Geelong':               '#1c3c6e',
+  'Gold Coast':            '#e8292e',
+  'Greater Western Sydney':'#f15a22',
+  'Hawthorn':              '#fbbf15',
+  'Melbourne':             '#cc2031',
+  'North Melbourne':       '#003b6d',
+  'Port Adelaide':         '#008aab',
+  'Richmond':              '#ffd200',
+  'St Kilda':              '#ed1c24',
+  'Sydney':                '#e4002b',
+  'West Coast':            '#002b8c',
+  'Western Bulldogs':      '#0057a8',
+};
+
+// Brighten dark colors for dark background readability
+const TEAM_COLORS_DISPLAY = {
+  'Adelaide':              '#4a7abf',
+  'Brisbane Lions':        '#e0507a',
+  'Carlton':               '#5588cc',
+  'Collingwood':           '#c8c8c8',
+  'Essendon':              '#e85555',
+  'Fremantle':             '#7a70d0',
+  'Geelong':               '#5588bb',
+  'Gold Coast':            '#f07070',
+  'Greater Western Sydney':'#f08050',
+  'Hawthorn':              '#d4a030',
+  'Melbourne':             '#cc4444',
+  'North Melbourne':       '#4488bb',
+  'Port Adelaide':         '#30b8d0',
+  'Richmond':              '#e8cc00',
+  'St Kilda':              '#e85555',
+  'Sydney':                '#e83355',
+  'West Coast':            '#4466cc',
+  'Western Bulldogs':      '#4488dd',
+};
+
+const ALL_TEAMS_LIST = Object.keys(TEAM_COLORS);
+
+let graphYear = null;
+let activeTeams = new Set();
+let highlightedTeam = null;
+let graphRounds = [];   // [{roundname, round, ratings:{team:val}}]
+let graphInited = false;
+
+function initGraph() {
+  if (graphInited) return;
+  graphInited = true;
+
+  const slider = document.getElementById('year-slider');
+  const yearDisplay = document.getElementById('year-display');
+
+  // Set slider range from actual data
+  const years = [...new Set((data.ratings_by_round || []).map(r => r.year))].sort();
+  if (years.length) {
+    slider.min = years[0];
+    slider.max = years[years.length - 1];
+    slider.value = years[years.length - 1];
+  }
+
+  slider.addEventListener('input', () => {
+    yearDisplay.textContent = slider.value;
+    loadGraphYear(parseInt(slider.value));
+  });
+
+  document.getElementById('btn-all-on').addEventListener('click', () => {
+    ALL_TEAMS_LIST.forEach(t => activeTeams.add(t));
+    updateToggles();
+    drawGraph();
+  });
+
+  document.getElementById('btn-all-off').addEventListener('click', () => {
+    activeTeams.clear();
+    updateToggles();
+    drawGraph();
+  });
+
+  document.getElementById('btn-top8').addEventListener('click', () => {
+    activeTeams.clear();
+    getTop8(graphYear || parseInt(slider.value)).forEach(t => activeTeams.add(t));
+    updateToggles();
+    drawGraph();
+  });
+
+  buildToggles();
+  yearDisplay.textContent = slider.value;
+  loadGraphYear(parseInt(slider.value));
+  setupCanvasEvents();
+}
+
+function getTop8(year) {
+  // Get top 8 teams by final rating in the given year
+  const yearRounds = (data.ratings_by_round || []).filter(r => r.year === year);
+  if (!yearRounds.length) {
+    // Fall back to current power rankings
+    return (data.power_rankings || []).slice(0, 8).map(r => r.team);
+  }
+  const last = yearRounds[yearRounds.length - 1];
+  return Object.entries(last.ratings)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8)
+    .map(([t]) => t);
+}
+
+function loadGraphYear(year) {
+  graphYear = year;
+  graphRounds = (data.ratings_by_round || []).filter(r => r.year === year);
+  // Reset highlighted team
+  highlightedTeam = null;
+  drawGraph();
+}
+
+function buildToggles() {
+  const wrap = document.getElementById('team-toggles');
+  wrap.innerHTML = ALL_TEAMS_LIST.map(team => {
+    const color = TEAM_COLORS_DISPLAY[team] || '#aaa';
+    return `<button class="team-toggle" data-team="${team}" style="color:${color};border-color:${color}33">${team}</button>`;
+  }).join('');
+
+  wrap.addEventListener('click', e => {
+    const btn = e.target.closest('.team-toggle');
+    if (!btn) return;
+    const team = btn.dataset.team;
+    if (e.shiftKey || e.metaKey) {
+      // Shift/cmd click = highlight
+      highlightedTeam = highlightedTeam === team ? null : team;
+    } else {
+      if (activeTeams.has(team)) activeTeams.delete(team);
+      else activeTeams.add(team);
+    }
+    updateToggles();
+    drawGraph();
+  });
+}
+
+function updateToggles() {
+  document.querySelectorAll('.team-toggle').forEach(btn => {
+    const team = btn.dataset.team;
+    const on = activeTeams.has(team);
+    const hi = highlightedTeam === team;
+    btn.classList.toggle('on', on);
+    btn.classList.toggle('highlighted', hi);
+    const color = TEAM_COLORS_DISPLAY[team] || '#aaa';
+    btn.style.borderColor = on ? color : color + '33';
+    btn.style.opacity = on ? '1' : '0.4';
+    if (hi) btn.style.boxShadow = `0 0 0 1px ${color}`;
+    else btn.style.boxShadow = '';
+  });
+}
+
+function drawGraph() {
+  const canvas = document.getElementById('sage-graph');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const W = rect.width;
+  const H = rect.height;
+
+  const PAD = { top: 20, right: 20, bottom: 36, left: 48 };
+  const plotW = W - PAD.left - PAD.right;
+  const plotH = H - PAD.top - PAD.bottom;
+
+  ctx.clearRect(0, 0, W, H);
+
+  if (!graphRounds.length) {
+    ctx.fillStyle = '#3a3f4a';
+    ctx.font = '12px DM Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('No data for this season', W / 2, H / 2);
+    return;
+  }
+
+  // Compute y range across all active teams
+  let yMin = Infinity, yMax = -Infinity;
+  graphRounds.forEach(r => {
+    ALL_TEAMS_LIST.forEach(team => {
+      if (!activeTeams.has(team)) return;
+      const v = r.ratings[team];
+      if (v !== undefined) { yMin = Math.min(yMin, v); yMax = Math.max(yMax, v); }
+    });
+  });
+  if (!isFinite(yMin)) { yMin = -5; yMax = 5; }
+  const pad = (yMax - yMin) * 0.12 || 1;
+  yMin -= pad; yMax += pad;
+
+  const xScale = i => PAD.left + (i / (graphRounds.length - 1 || 1)) * plotW;
+  const yScale = v => PAD.top + plotH - ((v - yMin) / (yMax - yMin)) * plotH;
+
+  // Grid lines
+  const gridCount = 5;
+  ctx.strokeStyle = '#1e2229';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= gridCount; i++) {
+    const v = yMin + (yMax - yMin) * (i / gridCount);
+    const y = yScale(v);
+    ctx.beginPath();
+    ctx.moveTo(PAD.left, y);
+    ctx.lineTo(PAD.left + plotW, y);
+    ctx.stroke();
+    ctx.fillStyle = '#3a3f4a';
+    ctx.font = `10px DM Mono, monospace`;
+    ctx.textAlign = 'right';
+    ctx.fillText(v.toFixed(1), PAD.left - 6, y + 4);
+  }
+
+  // Zero line
+  if (yMin < 0 && yMax > 0) {
+    const y0 = yScale(0);
+    ctx.strokeStyle = '#3a3f4a';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    ctx.moveTo(PAD.left, y0);
+    ctx.lineTo(PAD.left + plotW, y0);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // X axis round labels (every ~4 rounds)
+  const step = Math.ceil(graphRounds.length / 8);
+  graphRounds.forEach((r, i) => {
+    if (i % step !== 0 && i !== graphRounds.length - 1) return;
+    const x = xScale(i);
+    ctx.fillStyle = '#3a3f4a';
+    ctx.font = '9px DM Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`R${r.round}`, x, H - PAD.bottom + 14);
+  });
+
+  // Draw inactive/non-highlighted first (dim), then active, then highlight on top
+  const drawTeam = (team, alpha, lineWidth) => {
+    const color = TEAM_COLORS_DISPLAY[team] || '#aaa';
+    ctx.strokeStyle = color;
+    ctx.globalAlpha = alpha;
+    ctx.lineWidth = lineWidth;
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    let started = false;
+    graphRounds.forEach((r, i) => {
+      const v = r.ratings[team];
+      if (v === undefined) return;
+      const x = xScale(i);
+      const y = yScale(v);
+      if (!started) { ctx.moveTo(x, y); started = true; }
+      else ctx.lineTo(x, y);
+    });
+    if (started) ctx.stroke();
+    ctx.globalAlpha = 1;
+  };
+
+  // Draw dimmed active teams (not highlighted)
+  activeTeams.forEach(team => {
+    if (team === highlightedTeam) return;
+    drawTeam(team, highlightedTeam ? 0.15 : 0.7, 1.5);
+  });
+
+  // Draw highlighted on top
+  if (highlightedTeam && activeTeams.has(highlightedTeam)) {
+    drawTeam(highlightedTeam, 1, 2.5);
+    // End label
+    const last = graphRounds[graphRounds.length - 1];
+    const v = last?.ratings[highlightedTeam];
+    if (v !== undefined) {
+      const x = xScale(graphRounds.length - 1);
+      const y = yScale(v);
+      const color = TEAM_COLORS_DISPLAY[highlightedTeam] || '#aaa';
+      ctx.fillStyle = color;
+      ctx.font = 'bold 10px Barlow Condensed, sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(highlightedTeam, x + 6, y + 4);
+    }
+  }
+}
+
+// Canvas mouse events for tooltip
+function setupCanvasEvents() {
+  const canvas = document.getElementById('sage-graph');
+  const tooltip = document.getElementById('graph-tooltip');
+  const tooltipRound = document.getElementById('tooltip-round');
+  const tooltipRows = document.getElementById('tooltip-rows');
+
+  canvas.addEventListener('mousemove', e => {
+    if (!graphRounds.length) return;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const PAD_LEFT = 48, PAD_RIGHT = 20;
+    const plotW = rect.width - PAD_LEFT - PAD_RIGHT;
+    const frac = Math.max(0, Math.min(1, (x - PAD_LEFT) / plotW));
+    const idx = Math.round(frac * (graphRounds.length - 1));
+    const round = graphRounds[idx];
+    if (!round) return;
+
+    tooltipRound.textContent = `${round.roundname || 'Round ' + round.round} · ${graphYear}`;
+
+    // Show visible teams sorted by rating
+    const rows = ALL_TEAMS_LIST
+      .filter(t => activeTeams.has(t))
+      .map(t => ({ team: t, val: round.ratings[t] ?? null }))
+      .filter(r => r.val !== null)
+      .sort((a, b) => b.val - a.val);
+
+    tooltipRows.innerHTML = rows.map(r => {
+      const cls = r.val >= 0 ? 'pos' : 'neg';
+      const hi = r.team === highlightedTeam ? 'style="opacity:1"' : 'style="opacity:0.7"';
+      return `<div class="tooltip-row" ${hi}>
+        <span class="t-name">${r.team}</span>
+        <span class="t-val ${cls}">${r.val >= 0 ? '+' : ''}${r.val.toFixed(3)}</span>
+      </div>`;
+    }).join('');
+
+    // Position tooltip
+    const tw = 200, th = 40 + rows.length * 20;
+    let tx = e.clientX - rect.left + 14;
+    let ty = e.clientY - rect.top - 20;
+    if (tx + tw > rect.width) tx = e.clientX - rect.left - tw - 14;
+    if (ty + th > rect.height) ty = rect.height - th - 10;
+    tooltip.style.left = tx + 'px';
+    tooltip.style.top = Math.max(4, ty) + 'px';
+    tooltip.classList.add('visible');
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    tooltip.classList.remove('visible');
+  });
+
+  // Redraw on resize
+  window.addEventListener('resize', () => {
+    if (document.getElementById('panel-graph').classList.contains('active')) drawGraph();
+  });
+}
+
+// Hook into tab switching to init graph lazily
+const origTabClick = document.getElementById('tabs').onclick;
+document.getElementById('tabs').addEventListener('click', e => {
+  const btn = e.target.closest('.tab');
+  if (btn && btn.dataset.panel === 'graph' && data) {
+    setTimeout(() => {
+      initGraph();
+      // Set default top 8 on first load
+      if (activeTeams.size === 0) {
+        const year = parseInt(document.getElementById('year-slider').value);
+        getTop8(year).forEach(t => activeTeams.add(t));
+        updateToggles();
+        drawGraph();
+      }
+    }, 50);
+  }
+});
 
 loadData();
 </script>
