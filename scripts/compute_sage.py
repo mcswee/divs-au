@@ -15,9 +15,9 @@ from pathlib import Path
 # ── Constants ────────────────────────────────────────────────────────────────
 
 SQUIGGLE_BASE = "https://api.squiggle.com.au/"
-USER_AGENT    = "SAGE Index - https://github.com/mcswee/divs-au/"
-START_YEAR    = 2010
-CURRENT_YEAR  = datetime.now(timezone.utc).year
+USER_AGENT = "SAGE Index - https://github.com/mcswee/divs-au/"
+START_YEAR = 2010
+CURRENT_YEAR = datetime.now(timezone.utc).year
 
 TEAM_STATE = {
     "Adelaide": "SA", "Brisbane Lions": "QLD", "Carlton": "VIC",
@@ -49,7 +49,7 @@ ALL_TEAMS = [
 ]
 
 
-# ── API ───────────────────────────────────────────────────────────────────────
+# ── API Fetch ─────────────────────────────────────────────────────────────────
 
 def fetch(params: str) -> dict:
     url = f"{SQUIGGLE_BASE}?{params}&format=json"
@@ -57,116 +57,147 @@ def fetch(params: str) -> dict:
     with urllib.request.urlopen(req, timeout=30) as resp:
         return json.loads(resp.read())
 
+
 def get_games(year: int) -> list:
-    return fetch(f"q=games;year={year};complete=100").get("games", [])
+    data = fetch(f"q=games;year={year};complete=100")
+    return data.get("games", [])
+
 
 def get_upcoming_games(year: int) -> list:
-    games = fetch(f"q=games;year={year};complete=!100").get("games", [])
+    data = fetch(f"q=games;year={year};complete=!100")
+    games = data.get("games", [])
+    # Filter out byes (no ateam) and in-progress
     return [g for g in games if g.get("ateam") and g.get("complete", 0) == 0]
 
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# ── SAGE Model ────────────────────────────────────────────────────────────────
 
-def parse_dt(date_str: str):
+def parse_dt(date_str: str) -> datetime:
+    """Parse Squiggle date string to UTC datetime."""
     if not date_str:
         return None
     for fmt in ("%Y-%m-%d %H:%M:%S", "%Y-%m-%dT%H:%M:%S.000Z", "%Y-%m-%d"):
         try:
-            return datetime.strptime(date_str[:19], fmt[:19]).replace(tzinfo=timezone.utc)
+            dt = datetime.strptime(date_str[:19], fmt[:len(date_str[:19])])
+            return dt.replace(tzinfo=timezone.utc)
         except ValueError:
             continue
     return None
 
-def game_value(margin: int) -> float:
-    """Outcome + margin/60 — the base unit used in R11, V11, and delta."""
-    outcome = 1 if margin > 0 else (-1 if margin < 0 else 0)
-    return outcome + (margin / 60)
 
-def rest_penalty(team: str, game_dt, history: list) -> float:
-    team_games = [g for g in history if g["hteam"] == team or g["ateam"] == team]
-    if not team_games or not game_dt:
-        return 0.0
-    last_dt = parse_dt(team_games[-1].get("date"))
-    if not last_dt:
-        return 0.0
-    days = (game_dt - last_dt).total_seconds() / 86400
-    return (days - 7) * 0.2 if days < 6.95 else 0.0
+def rest_penalty(days_between: float) -> float:
+    if days_between < 6.95:
+        return (days_between - 7) * 0.2
+    return 0.0
+
 
 def travel_bonus(team: str, venue: str) -> float:
-    ts = TEAM_STATE.get(team)
-    vs = VENUE_STATE.get(venue)
-    if not ts or not vs:
+    team_state = TEAM_STATE.get(team)
+    venue_state = VENUE_STATE.get(venue)
+    if team_state is None or venue_state is None:
         return 0.0
-    return 0.2 if vs in ("OS", "FNQ", "NT", "ACT", "TAS") or vs != ts else 0.0
+    if venue_state in ("OS", "FNQ", "NT", "ACT", "TAS"):
+        return 0.2
+    if venue_state != team_state:
+        return 0.2
+    return 0.0
+
 
 def compute_r11(team: str, opponent: str, history: list) -> float:
-    """Average game_value across last 11 H2H games (team perspective)."""
+    """Average game value (outcome + margin/60) in last 11 H2H games."""
     h2h = [g for g in history if
            (g["hteam"] == team and g["ateam"] == opponent) or
-           (g["ateam"] == team and g["hteam"] == opponent)][-11:]
+           (g["ateam"] == team and g["hteam"] == opponent)]
+    h2h = h2h[-11:]
     if not h2h:
         return 0.0
-    vals = []
+    values = []
     for g in h2h:
-        m = (g["hscore"] - g["ascore"]) if g["hteam"] == team else (g["ascore"] - g["hscore"])
-        vals.append(game_value(m))
-    return sum(vals) / len(vals)
+        if g["hteam"] == team:
+            margin = g["hscore"] - g["ascore"]
+        else:
+            margin = g["ascore"] - g["hscore"]
+        outcome = 1 if margin > 0 else (-1 if margin < 0 else 0)
+        values.append(outcome + (margin / 60))
+    return sum(values) / len(values)
+
 
 def compute_v11(team: str, venue: str, history: list) -> float:
-    """Average game_value across last 11 games at this venue (team perspective)."""
-    vg = [g for g in history if
-          g.get("venue") == venue and (g["hteam"] == team or g["ateam"] == team)][-11:]
-    if not vg:
+    """Average game value (outcome + margin/60) in last 11 games at this venue."""
+    venue_games = [g for g in history if
+                   g.get("venue") == venue and
+                   (g["hteam"] == team or g["ateam"] == team)]
+    venue_games = venue_games[-11:]
+    if not venue_games:
         return 0.0
-    vals = []
-    for g in vg:
-        m = (g["hscore"] - g["ascore"]) if g["hteam"] == team else (g["ascore"] - g["hscore"])
-        vals.append(game_value(m))
-    return sum(vals) / len(vals)
+    values = []
+    for g in venue_games:
+        if g["hteam"] == team:
+            margin = g["hscore"] - g["ascore"]
+        else:
+            margin = g["ascore"] - g["hscore"]
+        outcome = 1 if margin > 0 else (-1 if margin < 0 else 0)
+        values.append(outcome + (margin / 60))
+    return sum(values) / len(values)
+
+
+def compute_rest(team: str, game_dt: datetime, history: list) -> float:
+    """Compute rest penalty for team."""
+    team_games = [g for g in history if
+                  g["hteam"] == team or g["ateam"] == team]
+    if not team_games:
+        return 0.0
+    last = team_games[-1]
+    last_dt = parse_dt(last.get("date"))
+    if not last_dt or not game_dt:
+        return 0.0
+    hours = (game_dt - last_dt).total_seconds() / 3600
+    days = hours / 24
+    return rest_penalty(days)
+
 
 def surprise_factor(team_output: float, opp_output: float) -> float:
-    """
-    SF = 1 + tanh((opp_output - team_output) / 30)
-    Stronger team (higher output) gets lower SF.
-    Weaker team gets higher SF — a win by them is more surprising.
-    """
     return 1 + math.tanh((opp_output - team_output) / 30)
 
-def prediction(sf: float) -> float:
+
+def compute_delta(sf: float, outcome: int, margin: int,
+                  scored: int, team: str, venue: str) -> float:
+    outcome_multiple = sf * outcome
+    margin_component = margin / 60
+    century = 0.2 if scored >= 100 else 0.0
+    travel = travel_bonus(team, venue)
+    return outcome_multiple + margin_component + century + travel
+
+
+def process_completed_game(game: dict, ratings: dict, history: list, prior_ratings: dict = None) -> dict:
+    """Compute SAGE delta for both teams and return updated ratings + game record.
+
+    If a team's current rating is still 0.0 (hasn't played this season yet),
+    their prior year final rating is used in the team output calculation instead.
+    Once they've played, only the current season rating is used.
     """
-    Confidence that this team wins = 1 - (SF / 2).
-    Lower SF (stronger team) → higher prediction.
-    """
-    return 1 - (sf / 2)
+    hteam = game["hteam"]
+    ateam = game["ateam"]
+    hscore = game.get("hscore", 0) or 0
+    ascore = game.get("ascore", 0) or 0
+    venue = game.get("venue", "")
+    game_dt = parse_dt(game.get("date"))
 
-def compute_delta(sf: float, outcome: int, margin: int, scored: int,
-                  team: str, venue: str) -> float:
-    return (sf * outcome) + (margin / 60) + (0.2 if scored >= 100 else 0.0) + travel_bonus(team, venue)
-
-
-# ── Core game processor ───────────────────────────────────────────────────────
-
-def process_game(game: dict, ratings: dict, prior_ratings: dict, history: list):
-    """
-    Compute SAGE for one completed game.
-    Updates ratings in-place. Returns a record dict or None (draw/bye).
-    """
-    hteam  = game["hteam"]
-    ateam  = game["ateam"]
-    hscore = game.get("hscore") or 0
-    ascore = game.get("ascore") or 0
-    venue  = game.get("venue", "")
-    gdt    = parse_dt(game.get("date"))
-
+    # Margin from each team's perspective
     h_margin = hscore - ascore
     a_margin = ascore - hscore
 
-    if h_margin > 0:
+    # Outcome flags
+    if hscore > ascore:
         h_outcome, a_outcome = 1, -1
-    elif h_margin < 0:
+    elif ascore > hscore:
         h_outcome, a_outcome = -1, 1
     else:
-        return None  # draw — no change
+        h_outcome = a_outcome = 0
+
+    # Draw = no SAGE change
+    if h_outcome == 0:
+        return None
 
     # R11 / V11
     h_r11 = compute_r11(hteam, ateam, history)
@@ -175,87 +206,95 @@ def process_game(game: dict, ratings: dict, prior_ratings: dict, history: list):
     a_v11 = compute_v11(ateam, venue, history)
 
     # Rest
-    h_rest = rest_penalty(hteam, gdt, history)
-    a_rest = rest_penalty(ateam, gdt, history)
+    h_rest = compute_rest(hteam, game_dt, history)
+    a_rest = compute_rest(ateam, game_dt, history)
 
-    # Rating seed: use current season rating if they've played, else prior year's final
-    h_rat = ratings.get(hteam, 0.0)
-    a_rat = ratings.get(ateam, 0.0)
-    h_seed = h_rat if h_rat != 0.0 else prior_ratings.get(hteam, 0.0)
-    a_seed = a_rat if a_rat != 0.0 else prior_ratings.get(ateam, 0.0)
-
+    # Team output = R11 + V11 + rest + rating.
+    # If team hasn't played this season yet (rating == 0.0), use last year's
+    # final rating as the seed. Once they have a delta, use current only.
+    prior = prior_ratings or {}
+    h_rating = ratings.get(hteam, 0.0)
+    a_rating = ratings.get(ateam, 0.0)
+    h_seed = h_rating if h_rating != 0.0 else prior.get(hteam, 0.0)
+    a_seed = a_rating if a_rating != 0.0 else prior.get(ateam, 0.0)
     h_output = h_r11 + h_v11 + h_rest + h_seed
     a_output = a_r11 + a_v11 + a_rest + a_seed
 
+    # Surprise factors
     h_sf = surprise_factor(h_output, a_output)
     a_sf = surprise_factor(a_output, h_output)
 
-    h_pred = prediction(h_sf)
-    a_pred = prediction(a_sf)
+    # Prediction (pre-game, stored for display)
+    h_pred = 1 - (h_sf / 2)
+    a_pred = 1 - (a_sf / 2)
 
+    # Delta
     h_delta = compute_delta(h_sf, h_outcome, h_margin, hscore, hteam, venue)
     a_delta = compute_delta(a_sf, a_outcome, a_margin, ascore, ateam, venue)
 
-    ratings[hteam] = round(ratings.get(hteam, 0.0) + h_delta, 4)
-    ratings[ateam] = round(ratings.get(ateam, 0.0) + a_delta, 4)
+    # New ratings
+    new_h = ratings.get(hteam, 0) + h_delta
+    new_a = ratings.get(ateam, 0) + a_delta
+
+    ratings[hteam] = round(new_h, 4)
+    ratings[ateam] = round(new_a, 4)
 
     return {
-        "game_id":        game["id"],
-        "year":           game["year"],
-        "round":          game["round"],
-        "roundname":      game.get("roundname", f"Round {game['round']}"),
-        "date":           game.get("date"),
-        "venue":          venue,
-        "hteam":          hteam,
-        "ateam":          ateam,
-        "hscore":         hscore,
-        "ascore":         ascore,
-        "h_pred":         round(h_pred * 100, 1),
-        "a_pred":         round(a_pred * 100, 1),
-        "h_delta":        round(h_delta, 4),
-        "a_delta":        round(a_delta, 4),
+        "game_id": game["id"],
+        "year": game["year"],
+        "round": game["round"],
+        "roundname": game.get("roundname", f"Round {game['round']}"),
+        "date": game.get("date"),
+        "venue": venue,
+        "hteam": hteam,
+        "ateam": ateam,
+        "hscore": hscore,
+        "ascore": ascore,
+        "h_pred": round(h_pred * 100, 1),
+        "a_pred": round(a_pred * 100, 1),
+        "h_delta": round(h_delta, 4),
+        "a_delta": round(a_delta, 4),
         "h_rating_after": ratings[hteam],
         "a_rating_after": ratings[ateam],
     }
 
 
-def predict_upcoming(game: dict, ratings: dict, prior_ratings: dict, history: list) -> dict:
+def predict_game(game: dict, ratings: dict, history: list) -> dict:
+    """Generate prediction for an upcoming game."""
     hteam = game["hteam"]
     ateam = game["ateam"]
     venue = game.get("venue", "")
-    gdt   = parse_dt(game.get("date"))
+    game_dt = parse_dt(game.get("date"))
 
     h_r11 = compute_r11(hteam, ateam, history)
     a_r11 = -h_r11
     h_v11 = compute_v11(hteam, venue, history)
     a_v11 = compute_v11(ateam, venue, history)
-    h_rest = rest_penalty(hteam, gdt, history)
-    a_rest = rest_penalty(ateam, gdt, history)
+    h_rest = compute_rest(hteam, game_dt, history)
+    a_rest = compute_rest(ateam, game_dt, history)
 
-    h_rat  = ratings.get(hteam, 0.0)
-    a_rat  = ratings.get(ateam, 0.0)
-    h_seed = h_rat if h_rat != 0.0 else prior_ratings.get(hteam, 0.0)
-    a_seed = a_rat if a_rat != 0.0 else prior_ratings.get(ateam, 0.0)
-
-    h_output = h_r11 + h_v11 + h_rest + h_seed
-    a_output = a_r11 + a_v11 + a_rest + a_seed
+    h_output = h_r11 + h_v11 + h_rest + ratings.get(hteam, 0)
+    a_output = a_r11 + a_v11 + a_rest + ratings.get(ateam, 0)
 
     h_sf = surprise_factor(h_output, a_output)
     a_sf = surprise_factor(a_output, h_output)
 
+    h_pred = 1 - (h_sf / 2)
+    a_pred = 1 - (a_sf / 2)
+
     return {
-        "game_id":  game["id"],
-        "year":     game["year"],
-        "round":    game["round"],
-        "roundname":game.get("roundname", f"Round {game['round']}"),
-        "date":     game.get("date"),
-        "venue":    venue,
-        "hteam":    hteam,
-        "ateam":    ateam,
-        "h_pred":   round(prediction(h_sf) * 100, 1),
-        "a_pred":   round(prediction(a_sf) * 100, 1),
-        "h_rating": round(h_seed, 4),
-        "a_rating": round(a_seed, 4),
+        "game_id": game["id"],
+        "year": game["year"],
+        "round": game["round"],
+        "roundname": game.get("roundname", f"Round {game['round']}"),
+        "date": game.get("date"),
+        "venue": venue,
+        "hteam": hteam,
+        "ateam": ateam,
+        "h_pred": round(h_pred * 100, 1),
+        "a_pred": round(a_pred * 100, 1),
+        "h_rating": round(ratings.get(hteam, 0), 4),
+        "a_rating": round(ratings.get(ateam, 0), 4),
     }
 
 
@@ -264,82 +303,99 @@ def predict_upcoming(game: dict, ratings: dict, prior_ratings: dict, history: li
 def main():
     print("SAGE Index — computing ratings from 2010...")
 
-    prior_ratings  = {t: 0.0 for t in ALL_TEAMS}
-    ratings        = {t: 0.0 for t in ALL_TEAMS}
-    all_history    = []
-    game_records   = []
-    ratings_by_round = []
+    prior_ratings = {team: 0.0 for team in ALL_TEAMS}  # last season's finals
+    ratings = {}          # current season accumulator, resets to 0 each year
+    all_history = []      # all completed games in chronological order
+    game_records = []     # per-game SAGE records
+    ratings_by_round = [] # snapshot after each round
 
     for year in range(START_YEAR, CURRENT_YEAR + 1):
         print(f"  Fetching {year}...")
         try:
             games = get_games(year)
         except Exception as e:
-            print(f"    Error: {e}")
+            print(f"    Error fetching {year}: {e}")
             continue
+
         if not games:
             continue
 
-        # Reset season ratings
-        ratings = {t: 0.0 for t in ALL_TEAMS}
+        # Reset all ratings to zero at the start of each season.
+        # prior_ratings holds last season's finals for round 1 team output.
+        ratings = {team: 0.0 for team in ALL_TEAMS}
 
+        # Sort by date
         games.sort(key=lambda g: g.get("date") or "")
 
+        # Group by round
         rounds = {}
         for g in games:
-            rounds.setdefault(g.get("round", 0), []).append(g)
+            r = g.get("round", 0)
+            rounds.setdefault(r, []).append(g)
 
         for rnd in sorted(rounds.keys()):
+            round_games = rounds[rnd]
             round_records = []
-            for game in rounds[rnd]:
+            for game in round_games:
+                # Skip byes and walkovers
                 if not game.get("ateam") or not game.get("hteam"):
                     continue
                 if game.get("hscore") is None:
                     continue
-                rec = process_game(game, ratings, prior_ratings, all_history)
+
+                rec = process_completed_game(game, ratings, all_history, prior_ratings)
                 if rec:
                     game_records.append(rec)
                     round_records.append(rec)
+
                 all_history.append(game)
 
+            # Snapshot ratings after this round
             if round_records:
-                ratings_by_round.append({
-                    "year":      year,
-                    "round":     rnd,
+                snapshot = {
+                    "year": year,
+                    "round": rnd,
                     "roundname": round_records[0]["roundname"],
-                    "ratings":   {t: round(v, 4) for t, v in ratings.items()},
-                })
+                    "ratings": {t: round(v, 4) for t, v in ratings.items()},
+                }
+                ratings_by_round.append(snapshot)
 
+        # Carry this season's finals into next year's prior
         prior_ratings = dict(ratings)
-        time.sleep(0.5)
 
-    # Power rankings
+        time.sleep(0.5)  # be nice to Squiggle
+
+    # Current ratings → ranked
+    ranked = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
     power_rankings = [
         {"rank": i + 1, "team": t, "rating": round(v, 4)}
-        for i, (t, v) in enumerate(sorted(ratings.items(), key=lambda x: x[1], reverse=True))
+        for i, (t, v) in enumerate(ranked)
     ]
 
     # Upcoming predictions
     print("  Fetching upcoming games...")
     predictions = []
     try:
-        for game in get_upcoming_games(CURRENT_YEAR):
-            predictions.append(predict_upcoming(game, ratings, prior_ratings, all_history))
+        upcoming = get_upcoming_games(CURRENT_YEAR)
+        for game in upcoming:
+            pred = predict_game(game, ratings, all_history)
+            predictions.append(pred)
         predictions.sort(key=lambda g: g.get("date") or "")
     except Exception as e:
         print(f"  Could not fetch upcoming games: {e}")
 
+    # Determine current round
     current_round = None
     if game_records:
         last = game_records[-1]
         current_round = {"year": last["year"], "round": last["round"], "roundname": last["roundname"]}
 
     output = {
-        "generated":       datetime.now(timezone.utc).isoformat(),
-        "current_round":   current_round,
-        "power_rankings":  power_rankings,
-        "predictions":     predictions,
-        "game_records":    game_records[-200:],
+        "generated": datetime.now(timezone.utc).isoformat(),
+        "current_round": current_round,
+        "power_rankings": power_rankings,
+        "predictions": predictions,
+        "game_records": game_records,
         "ratings_by_round": ratings_by_round,
     }
 
