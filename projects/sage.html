@@ -682,6 +682,21 @@
     height: 64px;
   }
 
+
+  /* ── Tipping ── */
+  td.tip-team {
+    font-family: var(--cond);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--dim);
+  }
+  td.tip-correct { color: var(--accent) !important; }
+  td.tip-wrong   { color: var(--warn) !important; }
+  td.tip-none    { color: var(--muted) !important; }
+  .tick  { font-size: 0.85rem; color: var(--accent); }
+  .cross { font-size: 0.85rem; color: var(--warn); }
+  .dash  { font-size: 0.85rem; color: var(--muted); }
+
   .about-prose {
     max-width: 680px;
     line-height: 1.75;
@@ -764,12 +779,18 @@
 
   <!-- Recent Results -->
   <div class="panel" id="panel-results">
-    <div class="section-label">Last 40 completed games</div>
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div class="section-label" style="margin-bottom:0">Completed games</div>
+      <select class="round-select" id="results-year-select" style="min-width:100px"></select>
+      <div class="section-label" style="margin-bottom:0;margin-left:auto" id="tips-summary"></div>
+    </div>
     <div class="results-table-wrap">
       <table id="results-table">
         <thead>
           <tr>
             <th>Round</th>
+            <th>Tip</th>
+            <th></th>
             <th>Home</th>
             <th class="num">Score</th>
             <th>Away</th>
@@ -903,6 +924,7 @@ function render() {
   renderPredictions(data.predictions || []);
   renderResults(data.game_records || []);
   renderHistorySelector(data.ratings_by_round || []);
+  initResultsYearFilter();
 }
 
 function renderMeta() {
@@ -997,20 +1019,85 @@ function renderPredictions(preds) {
   el.innerHTML = html;
 }
 
+function getTipResult(g) {
+  // Returns { tipped, correct }
+  // tipped = team name tipped, or null for 50/50
+  const hp = g.h_pred ?? 50;
+  const ap = g.a_pred ?? 50;
+  const isDraw = g.hscore === g.ascore;
+  const hWon = g.hscore > g.ascore;
+
+  if (hp === ap) {
+    // No tip — only correct if draw
+    return { tipped: null, correct: isDraw };
+  }
+  const tipped = hp > ap ? g.hteam : g.ateam;
+  const tippedWon = hp > ap ? hWon : !hWon && !isDraw;
+  return { tipped, correct: tippedWon && !isDraw };
+}
+
+function initResultsYearFilter() {
+  const sel = document.getElementById('results-year-select');
+  const years = [...new Set((data.game_records || []).map(g => g.year))].sort((a,b) => b-a);
+  years.forEach(y => {
+    const opt = document.createElement('option');
+    opt.value = y;
+    opt.textContent = y;
+    sel.appendChild(opt);
+  });
+  // Default to current year
+  const currentYear = data.current_round ? data.current_round.year : years[0];
+  sel.value = currentYear;
+  sel.addEventListener('change', () => renderResults(data.game_records || []));
+}
+
 function renderResults(records) {
   const tbody = document.getElementById('results-body');
-  // Show last 40, newest first
-  const recent = [...records].reverse().slice(0, 40);
-  if (!recent.length) {
-    tbody.innerHTML = '<tr><td colspan="9" class="empty">No data.</td></tr>';
+  const sel = document.getElementById('results-year-select');
+  const selectedYear = sel ? parseInt(sel.value) : null;
+
+  // Filter by year, newest first
+  const filtered = [...records]
+    .filter(g => !selectedYear || g.year === selectedYear)
+    .reverse();
+
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="11" class="empty">No data.</td></tr>';
+    document.getElementById('tips-summary').textContent = '';
     return;
   }
-  tbody.innerHTML = recent.map(g => {
+
+  // Tipping summary for selected year
+  let correct = 0, total = 0, noTip = 0;
+  filtered.forEach(g => {
+    const { tipped, correct: c } = getTipResult(g);
+    if (tipped === null) { noTip++; return; }
+    total++;
+    if (c) correct++;
+  });
+  const pct = total > 0 ? ((correct / total) * 100).toFixed(1) : '—';
+  document.getElementById('tips-summary').textContent =
+    `${correct}/${total} correct (${pct}%)${noTip > 0 ? ' · ' + noTip + ' no tip' : ''}`;
+
+  tbody.innerHTML = filtered.map(g => {
     const hWon = g.hscore > g.ascore;
     const aWon = g.ascore > g.hscore;
+    const { tipped, correct: tipCorrect } = getTipResult(g);
+    const noTipGame = tipped === null;
+
+    const tipCell = noTipGame
+      ? '<td class="tip-team tip-none">—</td>'
+      : `<td class="tip-team ${tipCorrect ? 'tip-correct' : 'tip-wrong'}">${tipped}</td>`;
+
+    const tickCell = noTipGame
+      ? '<td class="dash">·</td>'
+      : `<td class="${tipCorrect ? 'tick' : 'cross'}">${tipCorrect ? '✓' : '✗'}</td>`;
+
     return `
       <tr>
         <td class="num">${g.roundname || 'R' + g.round}</td>
+        ${tipCell}
+        ${tickCell}
         <td class="team-name ${hWon ? 'winner' : ''}">${g.hteam}</td>
         <td class="num">${g.hscore}</td>
         <td class="team-name ${aWon ? 'winner' : ''}">${g.ateam}</td>
@@ -1534,862 +1621,37 @@ function setupCanvasEvents() {
       const cls = r.val >= 0 ? 'pos' : 'neg';
       const hi = r.team === highlightedTeam ? 'style="opacity:1"' : 'style="opacity:0.7"';
       return `<div class="tooltip-row" ${hi}>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SAGE Index — AFL Power Rankings</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg:        #0d0f12;
-    --surface:   #13161b;
-    --border:    #1e2229;
-    --muted:     #3a3f4a;
-    --dim:       #6b7280;
-    --text:      #d4d8e0;
-    --bright:    #f0f2f5;
-    --accent:    #c8f135;
-    --accent2:   #35c8f1;
-    --warn:      #f1a035;
-    --mono:      'DM Mono', monospace;
-    --cond:      'Barlow Condensed', sans-serif;
-    --body:      'Barlow', sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { font-size: 16px; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--body);
-    font-weight: 300;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* ── Layout ── */
-  .wrapper {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  /* ── Header ── */
-  header {
-    border-bottom: 1px solid var(--border);
-    padding: 32px 0 24px;
-    margin-bottom: 40px;
-  }
-
-  .header-inner {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .wordmark {
-    font-family: var(--cond);
-    font-weight: 700;
-    font-size: clamp(2.4rem, 6vw, 4rem);
-    letter-spacing: -0.02em;
-    color: var(--bright);
-    line-height: 1;
-  }
-
-  .wordmark span {
-    color: var(--accent);
-  }
-
-  .tagline {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--dim);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-top: 6px;
-  }
-
-  .meta {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    color: var(--dim);
-    text-align: right;
-    line-height: 1.8;
-  }
-
-  .meta strong {
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  /* ── Tabs ── */
-  .tabs {
-    display: flex;
-    gap: 2px;
-    margin-bottom: 32px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .tab {
-    font-family: var(--cond);
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--dim);
-    background: none;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    transition: color 0.15s, border-color 0.15s;
-  }
-
-  .tab:hover { color: var(--text); }
-  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-
-  /* ── Panels ── */
-  .panel { display: none; }
-  .panel.active { display: block; }
-
-  /* ── Section label ── */
-  .section-label {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-
-  /* ── Power Rankings ── */
-  .rankings-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2px;
-  }
-
-  .rank-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    transition: border-color 0.15s;
-    animation: fadeUp 0.4s ease both;
-  }
-
-  .rank-card:hover { border-color: var(--muted); }
-
-  .rank-num {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--muted);
-    width: 24px;
-    flex-shrink: 0;
-    text-align: right;
-  }
-
-  .rank-num.top3 { color: var(--accent); font-weight: 500; }
-
-  .rank-bar-wrap {
-    flex: 1;
-  }
-
-  .rank-team {
-    font-family: var(--cond);
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: var(--bright);
-    margin-bottom: 6px;
-  }
-
-  .rank-bar-bg {
-    height: 3px;
-    background: var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .rank-bar-fill {
-    height: 100%;
-    background: var(--accent);
-    border-radius: 2px;
-    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .rank-bar-fill.negative {
-    background: var(--warn);
-  }
-
-  .rank-rating {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--text);
-    font-weight: 500;
-    flex-shrink: 0;
-    width: 52px;
-    text-align: right;
-  }
-
-  .rank-rating.positive { color: var(--accent); }
-  .rank-rating.negative { color: var(--warn); }
-
-  /* ── Predictions ── */
-  .predictions-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .pred-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 20px 24px;
-    animation: fadeUp 0.4s ease both;
-  }
-
-  .pred-meta {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--dim);
-    margin-bottom: 14px;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .pred-matchup {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .pred-team {
-    font-family: var(--cond);
-    font-weight: 600;
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
-    letter-spacing: 0.01em;
-  }
-
-  .pred-team.home { color: var(--bright); }
-  .pred-team.away { color: var(--text); text-align: right; }
-
-  .pred-team.fav { color: var(--accent); }
-
-  .pred-conf {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--dim);
-    margin-top: 4px;
-  }
-
-  .pred-conf.home { }
-  .pred-conf.away { text-align: right; }
-
-  .pred-conf strong {
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-
-  .pred-conf.high strong { color: var(--accent); }
-  .pred-conf.mid strong  { color: var(--accent2); }
-  .pred-conf.low strong  { color: var(--dim); }
-
-  .pred-vs {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    color: var(--muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    text-align: center;
-  }
-
-  .pred-bar {
-    margin-top: 14px;
-    height: 4px;
-    background: var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-    display: flex;
-  }
-
-  .pred-bar-h {
-    background: var(--accent);
-    height: 100%;
-    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .pred-bar-a {
-    background: var(--warn);
-    height: 100%;
-    flex: 1;
-  }
-
-  /* ── Recent Results ── */
-  .results-table-wrap {
-    overflow-x: auto;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.82rem;
-  }
-
-  thead tr {
-    border-bottom: 1px solid var(--border);
-  }
-
-  th {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: 8px 12px;
-    text-align: left;
-    font-weight: 400;
-    white-space: nowrap;
-  }
-
-  th.num { text-align: right; }
-
-  td {
-    padding: 10px 12px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text);
-    white-space: nowrap;
-  }
-
-  td.num {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    text-align: right;
-    color: var(--dim);
-  }
-
-  td.team-name {
-    font-family: var(--cond);
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: var(--bright);
-  }
-
-  td.winner { color: var(--accent); }
-  td.delta-pos { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); text-align: right; }
-  td.delta-neg { font-family: var(--mono); font-size: 0.72rem; color: var(--warn); text-align: right; }
-
-  tbody tr:hover { background: var(--surface); }
-
-  /* ── Round Selector ── */
-  .round-nav {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-  }
-
-  .round-select {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 6px 12px;
-    cursor: pointer;
-    outline: none;
-    appearance: none;
-    min-width: 160px;
-  }
-
-  .round-select:focus { border-color: var(--accent); }
-
-  /* ── Empty / Loading ── */
-  .empty {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--dim);
-    padding: 48px 0;
-    text-align: center;
-    letter-spacing: 0.08em;
-  }
-
-  .loading-bar {
-    height: 2px;
-    background: var(--border);
-    margin-bottom: 40px;
-    overflow: hidden;
-    border-radius: 1px;
-  }
-
-  .loading-bar::after {
-    content: '';
-    display: block;
-    height: 100%;
-    width: 40%;
-    background: var(--accent);
-    animation: sweep 1.2s ease-in-out infinite;
-  }
-
-  @keyframes sweep {
-    0%   { transform: translateX(-100%); }
-    100% { transform: translateX(350%); }
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── About panel ── */
-
-  /* ── Season Graph ── */
-  .graph-controls {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 20px;
-  }
-
-  .year-slider-wrap {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex: 1;
-    min-width: 200px;
-  }
-
-  .year-label {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--accent);
-    font-weight: 500;
-    width: 36px;
-    flex-shrink: 0;
-  }
-
-  input[type=range] {
-    -webkit-appearance: none;
-    appearance: none;
-    flex: 1;
-    height: 3px;
-    background: var(--border);
-    border-radius: 2px;
-    outline: none;
-    cursor: pointer;
-  }
-
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--accent);
-    cursor: pointer;
-  }
-
-  input[type=range]::-moz-range-thumb {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--accent);
-    border: none;
-    cursor: pointer;
-  }
-
-  .graph-wrap {
-    position: relative;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    margin-bottom: 20px;
-    overflow: hidden;
-  }
-
-  #sage-graph {
-    display: block;
-    width: 100%;
-    height: 420px;
-    cursor: crosshair;
-  }
-
-  .graph-tooltip {
-    position: absolute;
-    background: #1a1e26;
-    border: 1px solid var(--muted);
-    padding: 10px 14px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.1s;
-    z-index: 10;
-    min-width: 180px;
-  }
-
-  .graph-tooltip.visible { opacity: 1; }
-
-  .tooltip-round {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--dim);
-    margin-bottom: 8px;
-  }
-
-  .tooltip-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--text);
-    padding: 2px 0;
-  }
-
-  .tooltip-row .t-name { color: var(--bright); }
-  .tooltip-row .t-val.pos { color: var(--accent); }
-  .tooltip-row .t-val.neg { color: var(--warn); }
-
-  .team-toggles {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 24px;
-  }
-
-  .team-toggle {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.06em;
-    padding: 4px 10px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--dim);
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.15s;
-    white-space: nowrap;
-  }
-
-  .team-toggle.on {
-    border-color: currentColor;
-    color: var(--text);
-  }
-
-  .team-toggle.highlighted {
-    font-weight: 500;
-  }
-
-  .graph-btn {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--dim);
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.15s;
-    white-space: nowrap;
-  }
-
-  .graph-btn:hover { color: var(--text); border-color: var(--muted); }
-
-
-  /* ── Team Popup ── */
-  .popup-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-
-  .popup-overlay.open {
-    display: flex;
-  }
-
-  .popup {
-    background: #13161b;
-    border: 1px solid var(--muted);
-    width: 100%;
-    max-width: 420px;
-    padding: 28px;
-    position: relative;
-    animation: fadeUp 0.2s ease both;
-  }
-
-  .popup-close {
-    position: absolute;
-    top: 14px;
-    right: 16px;
-    background: none;
-    border: none;
-    color: var(--dim);
-    font-size: 1.2rem;
-    cursor: pointer;
-    line-height: 1;
-    padding: 4px;
-  }
-
-  .popup-close:hover { color: var(--text); }
-
-  .popup-team {
-    font-family: var(--cond);
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--bright);
-    letter-spacing: 0.02em;
-    margin-bottom: 4px;
-  }
-
-  .popup-rank {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--dim);
-    margin-bottom: 24px;
-  }
-
-  .popup-stat {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    gap: 16px;
-  }
-
-  .popup-stat:last-of-type { border-bottom: none; }
-
-  .popup-stat-label {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--dim);
-  }
-
-  .popup-stat-value {
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--text);
-  }
-
-  .popup-stat-value.pos { color: var(--accent); }
-  .popup-stat-value.neg { color: var(--warn); }
-
-  .popup-spark-label {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--dim);
-    margin-top: 20px;
-    margin-bottom: 8px;
-  }
-
-  .popup-spark {
-    display: block;
-    width: 100%;
-    height: 64px;
-  }
-
-
-  /* ── Tipping ── */
-  td.tip-team {
-    font-family: var(--cond);
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--dim);
-  }
-  td.tip-correct { color: var(--accent) !important; }
-  td.tip-wrong   { color: var(--warn) !important; }
-  td.tip-none    { color: var(--muted) !important; }
-  .tick  { font-size: 0.85rem; color: var(--accent); }
-  .cross { font-size: 0.85rem; color: var(--warn); }
-  .dash  { font-size: 0.85rem; color: var(--muted); }
-
-  .about-prose {
-    max-width: 680px;
-    line-height: 1.75;
-    color: var(--text);
-  }
-
-  .about-prose h3 {
-    font-family: var(--cond);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--bright);
-    margin: 28px 0 10px;
-    letter-spacing: 0.04em;
-  }
-
-  .about-prose h3:first-child { margin-top: 0; }
-
-  .about-prose p { margin-bottom: 14px; font-size: 0.9rem; }
-
-  .about-prose code {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2px 6px;
-    color: var(--accent);
-  }
-
-  /* ── Responsive ── */
-  @media (max-width: 600px) {
-    .header-inner { flex-direction: column; align-items: flex-start; }
-    .meta { text-align: left; }
-    .pred-matchup { grid-template-columns: 1fr auto 1fr; }
-    .rankings-grid { grid-template-columns: 1fr; }
-  }
-</style>
-</head>
-<body>
-
-<div class="wrapper">
-
-  <header>
-    <div class="header-inner">
-      <div>
-        <div class="wordmark">S<span>A</span>GE <span>·</span> Index</div>
-        <div class="tagline">Surprise Adjusted Game Evaluation — AFL Power Model</div>
-      </div>
-      <div class="meta" id="meta-block">
-        Loading…
-      </div>
-    </div>
-  </header>
-
-  <div id="loading" class="loading-bar"></div>
-
-  <nav class="tabs" id="tabs">
-    <button class="tab active" data-panel="rankings">Power Rankings</button>
-    <button class="tab" data-panel="predictions">Predictions</button>
-    <button class="tab" data-panel="results">Recent Results</button>
-    <button class="tab" data-panel="history">History</button>
-    <button class="tab" data-panel="graph">Season Graph</button>
-    <button class="tab" data-panel="about">About</button>
-  </nav>
-
-  <!-- Power Rankings -->
-  <div class="panel active" id="panel-rankings">
-    <div class="section-label">Current SAGE Ratings — ranked</div>
-    <div class="rankings-grid" id="rankings-grid">
-      <div class="empty">Loading ratings…</div>
-    </div>
-  </div>
-
-  <!-- Predictions -->
-  <div class="panel" id="panel-predictions">
-    <div class="section-label" id="pred-label">Upcoming matches</div>
-    <div class="predictions-list" id="predictions-list">
-      <div class="empty">Loading predictions…</div>
-    </div>
-  </div>
-
-  <!-- Recent Results -->
-  <div class="panel" id="panel-results">
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap">
-      <div class="section-label" style="margin-bottom:0">Completed games</div>
-      <select class="round-select" id="results-year-select" style="min-width:100px"></select>
-      <div class="section-label" style="margin-bottom:0;margin-left:auto" id="tips-summary"></div>
-    </div>
-    <div class="results-table-wrap">
-      <table id="results-table">
-        <thead>
-          <tr>
-            <th>Round</th>
-            <th>Tip</th>
-            <th></th>
-            <th>Home</th>
-            <th class="num">Score</th>
-            <th>Away</th>
-            <th class="num">Score</th>
-            <th class="num">H Conf%</th>
-            <th class="num">A Conf%</th>
-            <th class="num">H Δ</th>
-            <th class="num">A Δ</th>
-          </tr>
-        </thead>
-        <tbody id="results-body"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- History -->
-  <div class="panel" id="panel-history">
-    <div class="section-label">SAGE ratings by round</div>
-    <div class="round-nav">
-      <select class="round-select" id="round-select">
-        <option value="">Select a round…</option>
-      </select>
-    </div>
-    <div id="history-rankings" class="rankings-grid">
-      <div class="empty">Select a round above</div>
-    </div>
-  </div>
-
-  <!-- Season Graph -->
-  <div class="panel" id="panel-graph">
-    <div class="graph-controls">
-      <div class="year-slider-wrap">
-        <span style="font-family:var(--mono);font-size:0.62rem;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">Season</span>
-        <input type="range" id="year-slider" min="2010" max="2026" value="2026" step="1">
-        <span class="year-label" id="year-display">2026</span>
-      </div>
-      <button class="graph-btn" id="btn-all-on">All on</button>
-      <button class="graph-btn" id="btn-all-off">All off</button>
-      <button class="graph-btn" id="btn-top8">Top 8</button>
-    </div>
-    <div class="graph-wrap">
-      <canvas id="sage-graph"></canvas>
-      <div class="graph-tooltip" id="graph-tooltip">
-        <div class="tooltip-round" id="tooltip-round"></div>
-        <div id="tooltip-rows"></div>
-      </div>
-    </div>
-    <div class="team-toggles" id="team-toggles"></div>
-  </div>
-
-    <!-- About -->
-  <div class="panel" id="panel-about">
-    <div class="about-prose">
-      <h3>What is SAGE?</h3>
-      <p>SAGE — Surprise Adjusted Game Evaluation — is a power rating model for AFL teams. It tracks underlying team strength across every game since 2010, weighting outcomes by how surprising they were relative to what the model expected.</p>
-
-      <h3>How it works</h3>
-      <p>Before each game, SAGE calculates a <strong>Team Output</strong> for each side:</p>
-      <p><code>Team Output = Rival Advantage (R11) + Ground Advantage (V11) + Rest Penalty + Last SAGE Rating</code></p>
-      <p><strong>R11</strong> — the average winning/losing margin across the last 11 head-to-head games between the two teams at any venue.</p>
-      <p><strong>V11</strong> — the average winning/losing margin across the last 11 games each team has played at this specific ground.</p>
-      <p><strong>Rest Penalty</strong> — applied when a team has had fewer than 6.95 days since their last game: <code>(da
-&& data) {
+        <span class="t-name">${r.team}</span>
+        <span class="t-val ${cls}">${r.val >= 0 ? '+' : ''}${r.val.toFixed(3)}</span>
+      </div>`;
+    }).join('');
+
+    // Position tooltip
+    const tw = 200, th = 40 + rows.length * 20;
+    let tx = e.clientX - rect.left + 14;
+    let ty = e.clientY - rect.top - 20;
+    if (tx + tw > rect.width) tx = e.clientX - rect.left - tw - 14;
+    if (ty + th > rect.height) ty = rect.height - th - 10;
+    tooltip.style.left = tx + 'px';
+    tooltip.style.top = Math.max(4, ty) + 'px';
+    tooltip.classList.add('visible');
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    tooltip.classList.remove('visible');
+  });
+
+  // Redraw on resize
+  window.addEventListener('resize', () => {
+    if (document.getElementById('panel-graph').classList.contains('active')) drawGraph();
+  });
+}
+
+// Hook into tab switching to init graph lazily
+const origTabClick = document.getElementById('tabs').onclick;
+document.getElementById('tabs').addEventListener('click', e => {
+  const btn = e.target.closest('.tab');
+  if (btn && btn.dataset.panel === 'graph' && data) {
     setTimeout(() => {
       initGraph();
       // Set default top 8 on first load
