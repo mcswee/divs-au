@@ -883,6 +883,7 @@
 <script>
 const DATA_URL = '/assets/data/sage.json';
 let data = null;
+let selectedRoundContext = null; // { year, round, roundname } of currently displayed rankings
 
 // ── Fetch ───────────────────────────────────────────────────────────────────
 async function loadData() {
@@ -913,6 +914,10 @@ document.getElementById('tabs').addEventListener('click', e => {
 // ── Render ──────────────────────────────────────────────────────────────────
 function render() {
   renderMeta();
+  // Set context to current round for popup
+  if (data.current_round) {
+    selectedRoundContext = { year: data.current_round.year, roundname: data.current_round.roundname, round: data.current_round.round };
+  }
   renderRankings(data.power_rankings);
   renderPredictions(data.predictions || []);
   renderResults(data.game_records || []);
@@ -1137,10 +1142,12 @@ function initRankingsSelector() {
   function applyRoundSelection() {
     if (!roundSel.value) return;
     const { ratings, roundname, year } = JSON.parse(roundSel.value);
+    // Find round number from ratings_by_round
+    const roundData = (data.ratings_by_round || []).find(r => r.year === year && r.roundname === roundname);
+    selectedRoundContext = { year, roundname, round: roundData ? roundData.round : null };
     const ranked = Object.entries(ratings)
       .sort((a, b) => b[1] - a[1])
       .map(([team, rating], i) => ({ rank: i + 1, team, rating }));
-    // Update section label
     document.querySelector('#panel-rankings .section-label').textContent =
       `SAGE Ratings — ${roundname} ${year}`;
     renderRankings(ranked);
@@ -1157,13 +1164,20 @@ function initRankingsSelector() {
 // ── Team Popup ────────────────────────────────────────────────────────────────
 
 function openTeamPopup(team, rank, rating) {
-  // Find last game involving this team
-  const records = (data.game_records || []);
-  const lastGame = [...records].reverse().find(g => g.hteam === team || g.ateam === team);
+  const ctx = selectedRoundContext || data.current_round || {};
+  const ctxYear = ctx.year || new Date().getFullYear();
+  const ctxRound = ctx.round;
 
-  // Get current season sparkline data
-  const currentYear = data.current_round ? data.current_round.year : new Date().getFullYear();
-  const seasonRounds = (data.ratings_by_round || []).filter(r => r.year === currentYear);
+  // Find last game for this team up to and including the selected round
+  const records = (data.game_records || []);
+  const eligibleGames = records.filter(g =>
+    (g.hteam === team || g.ateam === team) &&
+    (g.year < ctxYear || (g.year === ctxYear && (ctxRound === null || g.round <= ctxRound)))
+  );
+  const lastGame = eligibleGames.length ? eligibleGames[eligibleGames.length - 1] : null;
+
+  // Sparkline for the selected year
+  const seasonRounds = (data.ratings_by_round || []).filter(r => r.year === ctxYear);
 
   // Build stats
   let statsHtml = '';
@@ -1204,7 +1218,7 @@ function openTeamPopup(team, rank, rating) {
   }
 
   document.getElementById('popup-team').textContent = team;
-  document.getElementById('popup-rank').textContent = `Rank ${rank} · ${currentYear} season`;
+  document.getElementById('popup-rank').textContent = `Rank ${rank} · ${ctx.roundname || ''} ${ctxYear}`;
   document.getElementById('popup-stats').innerHTML = statsHtml;
 
   // Sparkline
