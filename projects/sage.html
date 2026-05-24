@@ -756,14 +756,19 @@
     <button class="tab active" data-panel="rankings">Power Rankings</button>
     <button class="tab" data-panel="predictions">Predictions</button>
     <button class="tab" data-panel="results">Recent Results</button>
-    <button class="tab" data-panel="history">History</button>
     <button class="tab" data-panel="graph">Season Graph</button>
     <button class="tab" data-panel="about">About</button>
   </nav>
 
   <!-- Power Rankings -->
   <div class="panel active" id="panel-rankings">
-    <div class="section-label">Current SAGE Ratings — ranked</div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap">
+      <div class="section-label" style="margin-bottom:0;flex:1">SAGE Ratings</div>
+      <select class="round-select" id="rankings-year-select" style="min-width:80px"></select>
+      <select class="round-select" id="rankings-round-select" style="min-width:140px">
+        <option value="">Select round…</option>
+      </select>
+    </div>
     <div class="rankings-grid" id="rankings-grid">
       <div class="empty">Loading ratings…</div>
     </div>
@@ -806,18 +811,6 @@
     </div>
   </div>
 
-  <!-- History -->
-  <div class="panel" id="panel-history">
-    <div class="section-label">SAGE ratings by round</div>
-    <div class="round-nav">
-      <select class="round-select" id="round-select">
-        <option value="">Select a round…</option>
-      </select>
-    </div>
-    <div id="history-rankings" class="rankings-grid">
-      <div class="empty">Select a round above</div>
-    </div>
-  </div>
 
   <!-- Season Graph -->
   <div class="panel" id="panel-graph">
@@ -923,7 +916,7 @@ function render() {
   renderRankings(data.power_rankings);
   renderPredictions(data.predictions || []);
   renderResults(data.game_records || []);
-  renderHistorySelector(data.ratings_by_round || []);
+  initRankingsSelector();
   initResultsYearFilter();
 }
 
@@ -1110,44 +1103,53 @@ function renderResults(records) {
   }).join('');
 }
 
-function renderHistorySelector(rounds) {
-  const sel = document.getElementById('round-select');
-  // Newest first
-  const sorted = [...rounds].reverse();
-  sorted.forEach(r => {
+function initRankingsSelector() {
+  const yearSel = document.getElementById('rankings-year-select');
+  const roundSel = document.getElementById('rankings-round-select');
+  const rounds = data.ratings_by_round || [];
+
+  // Build year list newest first
+  const years = [...new Set(rounds.map(r => r.year))].sort((a, b) => b - a);
+  years.forEach(y => {
     const opt = document.createElement('option');
-    opt.value = JSON.stringify({ ratings: r.ratings });
-    opt.textContent = `${r.roundname} ${r.year}`;
-    sel.appendChild(opt);
+    opt.value = y;
+    opt.textContent = y;
+    yearSel.appendChild(opt);
   });
-  sel.addEventListener('change', () => {
-    if (!sel.value) return;
-    const { ratings } = JSON.parse(sel.value);
+
+  // Default to current year
+  const currentYear = data.current_round ? data.current_round.year : years[0];
+  yearSel.value = currentYear;
+
+  function populateRounds(year) {
+    roundSel.innerHTML = '';
+    const yearRounds = rounds.filter(r => r.year === parseInt(year)).reverse();
+    yearRounds.forEach((r, i) => {
+      const opt = document.createElement('option');
+      opt.value = JSON.stringify({ ratings: r.ratings, roundname: r.roundname, year: r.year });
+      opt.textContent = r.roundname;
+      if (i === 0) opt.selected = true;
+      roundSel.appendChild(opt);
+    });
+    applyRoundSelection();
+  }
+
+  function applyRoundSelection() {
+    if (!roundSel.value) return;
+    const { ratings, roundname, year } = JSON.parse(roundSel.value);
     const ranked = Object.entries(ratings)
       .sort((a, b) => b[1] - a[1])
       .map(([team, rating], i) => ({ rank: i + 1, team, rating }));
-    renderRankings2(ranked);
-  });
-}
+    // Update section label
+    document.querySelector('#panel-rankings .section-label').textContent =
+      `SAGE Ratings — ${roundname} ${year}`;
+    renderRankings(ranked);
+  }
 
-function renderRankings2(rankings) {
-  const el = document.getElementById('history-rankings');
-  const maxAbs = Math.max(...rankings.map(r => Math.abs(r.rating)), 0.01);
-  el.innerHTML = rankings.map((r, i) => {
-    const pct = Math.abs(r.rating) / maxAbs * 100;
-    const isNeg = r.rating < 0;
-    return `
-      <div class="rank-card" style="animation-delay:${i * 20}ms">
-        <div class="rank-num ${r.rank <= 3 ? 'top3' : ''}">${r.rank}</div>
-        <div class="rank-bar-wrap">
-          <div class="rank-team">${r.team}</div>
-          <div class="rank-bar-bg">
-            <div class="rank-bar-fill ${isNeg ? 'negative' : ''}" style="width:${pct}%"></div>
-          </div>
-        </div>
-        <div class="rank-rating ${isNeg ? 'negative' : 'positive'}">${r.rating > 0 ? '+' : ''}${r.rating.toFixed(3)}</div>
-      </div>`;
-  }).join('');
+  yearSel.addEventListener('change', () => populateRounds(yearSel.value));
+  roundSel.addEventListener('change', applyRoundSelection);
+
+  populateRounds(currentYear);
 }
 
 
