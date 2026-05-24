@@ -15,7 +15,7 @@ from pathlib import Path
 # ── Constants ────────────────────────────────────────────────────────────────
 
 SQUIGGLE_BASE = "https://api.squiggle.com.au/"
-USER_AGENT = "SAGE Index - mcswee/divs"
+USER_AGENT = "SAGE Index - https://github.com/mcswee/divs-au/"
 START_YEAR = 2010
 CURRENT_YEAR = datetime.now(timezone.utc).year
 
@@ -221,8 +221,8 @@ def process_completed_game(game: dict, ratings: dict, history: list, prior_ratin
     a_sf = surprise_factor(a_output, h_output)
 
     # Prediction (pre-game, stored for display)
-    h_pred = (h_sf - a_sf) / 2
-    a_pred = (a_sf - h_sf) / 2
+    h_pred = 1 - (h_sf / 2)
+    a_pred = 1 - (a_sf / 2)
 
     # Delta
     h_delta = compute_delta(h_sf, h_outcome, h_margin, hscore, hteam, venue)
@@ -275,8 +275,8 @@ def predict_game(game: dict, ratings: dict, history: list) -> dict:
     h_sf = surprise_factor(h_output, a_output)
     a_sf = surprise_factor(a_output, h_output)
 
-    h_pred = (h_sf - a_sf) / 2
-    a_pred = (a_sf - h_sf) / 2
+    h_pred = 1 - (h_sf / 2)
+    a_pred = 1 - (a_sf / 2)
 
     return {
         "game_id": game["id"],
