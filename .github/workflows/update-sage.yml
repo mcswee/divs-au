@@ -2,8 +2,10 @@ name: Update SAGE Index
 
 on:
   schedule:
-    # Runs at 6:00 AM AEST (20:00 UTC) every day
-    - cron: "0 20 * * *"
+    # Monday 6 AM AEST (Sunday 20:00 UTC) — picks up weekend results
+    - cron: "0 20 * * 0"
+    # Thursday 6 AM AEST (Wednesday 20:00 UTC) — picks up mid-week games
+    - cron: "0 20 * * 3"
   workflow_dispatch:  # allow manual trigger
 
 permissions:
