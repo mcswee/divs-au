@@ -577,6 +577,111 @@
 
   .graph-btn:hover { color: var(--text); border-color: var(--muted); }
 
+
+  /* ── Team Popup ── */
+  .popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .popup-overlay.open {
+    display: flex;
+  }
+
+  .popup {
+    background: #13161b;
+    border: 1px solid var(--muted);
+    width: 100%;
+    max-width: 420px;
+    padding: 28px;
+    position: relative;
+    animation: fadeUp 0.2s ease both;
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--dim);
+    font-size: 1.2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+  }
+
+  .popup-close:hover { color: var(--text); }
+
+  .popup-team {
+    font-family: var(--cond);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--bright);
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+  }
+
+  .popup-rank {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 24px;
+  }
+
+  .popup-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+  }
+
+  .popup-stat:last-of-type { border-bottom: none; }
+
+  .popup-stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  .popup-stat-value {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .popup-stat-value.pos { color: var(--accent); }
+  .popup-stat-value.neg { color: var(--warn); }
+
+  .popup-spark-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+
+  .popup-spark {
+    display: block;
+    width: 100%;
+    height: 64px;
+  }
+
   .about-prose {
     max-width: 680px;
     line-height: 1.75;
@@ -746,6 +851,19 @@
     </div>
   </div>
 
+
+  <!-- Team Popup -->
+  <div class="popup-overlay" id="team-popup">
+    <div class="popup">
+      <button class="popup-close" id="popup-close">&#x2715;</button>
+      <div class="popup-team" id="popup-team"></div>
+      <div class="popup-rank" id="popup-rank"></div>
+      <div id="popup-stats"></div>
+      <div class="popup-spark-label">Season rating</div>
+      <canvas class="popup-spark" id="popup-spark"></canvas>
+    </div>
+  </div>
+
 </div><!-- /wrapper -->
 
 <script>
@@ -807,7 +925,7 @@ function renderRankings(rankings) {
     const isNeg = r.rating < 0;
     const delay = i * 30;
     return `
-      <div class="rank-card" style="animation-delay:${delay}ms">
+      <div class="rank-card" style="animation-delay:${delay}ms;cursor:pointer" onclick="openTeamPopup('${r.team}', ${r.rank}, ${r.rating})">
         <div class="rank-num ${r.rank <= 3 ? 'top3' : ''}">${r.rank}</div>
         <div class="rank-bar-wrap">
           <div class="rank-team">${r.team}</div>
@@ -945,6 +1063,160 @@ function renderRankings2(rankings) {
   }).join('');
 }
 
+
+
+// ── Team Popup ────────────────────────────────────────────────────────────────
+
+function openTeamPopup(team, rank, rating) {
+  // Find last game involving this team
+  const records = (data.game_records || []);
+  const lastGame = [...records].reverse().find(g => g.hteam === team || g.ateam === team);
+
+  // Get current season sparkline data
+  const currentYear = data.current_round ? data.current_round.year : new Date().getFullYear();
+  const seasonRounds = (data.ratings_by_round || []).filter(r => r.year === currentYear);
+
+  // Build stats
+  let statsHtml = '';
+
+  const ratingCls = rating >= 0 ? 'pos' : 'neg';
+  const ratingStr = (rating >= 0 ? '+' : '') + rating.toFixed(4);
+  statsHtml += `<div class="popup-stat">
+    <span class="popup-stat-label">SAGE Rating</span>
+    <span class="popup-stat-value ${ratingCls}">${ratingStr}</span>
+  </div>`;
+
+  if (lastGame) {
+    const isHome = lastGame.hteam === team;
+    const opponent = isHome ? lastGame.ateam : lastGame.hteam;
+    const delta = isHome ? lastGame.h_delta : lastGame.a_delta;
+    const ratingAfter = isHome ? lastGame.h_rating_after : lastGame.a_rating_after;
+    const deltaCls = delta >= 0 ? 'pos' : 'neg';
+    const deltaStr = (delta >= 0 ? '+' : '') + delta.toFixed(4);
+    const result = isHome
+      ? (lastGame.hscore > lastGame.ascore ? 'W' : lastGame.hscore < lastGame.ascore ? 'L' : 'D')
+      : (lastGame.ascore > lastGame.hscore ? 'W' : lastGame.ascore < lastGame.hscore ? 'L' : 'D');
+    const score = isHome
+      ? `${lastGame.hscore} – ${lastGame.ascore}`
+      : `${lastGame.ascore} – ${lastGame.hscore}`;
+
+    statsHtml += `<div class="popup-stat">
+      <span class="popup-stat-label">Last game</span>
+      <span class="popup-stat-value">${result} vs ${opponent} &nbsp;${score}</span>
+    </div>`;
+    statsHtml += `<div class="popup-stat">
+      <span class="popup-stat-label">Last Δ</span>
+      <span class="popup-stat-value ${deltaCls}">${deltaStr}</span>
+    </div>`;
+    statsHtml += `<div class="popup-stat">
+      <span class="popup-stat-label">Round</span>
+      <span class="popup-stat-value">${lastGame.roundname}</span>
+    </div>`;
+  }
+
+  document.getElementById('popup-team').textContent = team;
+  document.getElementById('popup-rank').textContent = `Rank ${rank} · ${currentYear} season`;
+  document.getElementById('popup-stats').innerHTML = statsHtml;
+
+  // Sparkline
+  drawSparkline(team, seasonRounds);
+
+  document.getElementById('team-popup').classList.add('open');
+}
+
+function drawSparkline(team, rounds) {
+  const canvas = document.getElementById('popup-spark');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const W = rect.width;
+  const H = rect.height;
+
+  ctx.clearRect(0, 0, W, H);
+
+  const vals = rounds.map(r => r.ratings[team]).filter(v => v !== undefined);
+  if (vals.length < 2) {
+    ctx.fillStyle = '#3a3f4a';
+    ctx.font = '10px DM Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('No season data', W / 2, H / 2);
+    return;
+  }
+
+  const PAD = { top: 6, right: 4, bottom: 6, left: 4 };
+  const pw = W - PAD.left - PAD.right;
+  const ph = H - PAD.top - PAD.bottom;
+
+  let yMin = Math.min(...vals);
+  let yMax = Math.max(...vals);
+  const pad = (yMax - yMin) * 0.15 || 0.5;
+  yMin -= pad; yMax += pad;
+
+  const xS = i => PAD.left + (i / (vals.length - 1)) * pw;
+  const yS = v => PAD.top + ph - ((v - yMin) / (yMax - yMin)) * ph;
+
+  // Zero line
+  if (yMin < 0 && yMax > 0) {
+    const y0 = yS(0);
+    ctx.strokeStyle = '#1e2229';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath();
+    ctx.moveTo(PAD.left, y0);
+    ctx.lineTo(PAD.left + pw, y0);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // Gradient fill
+  const lastVal = vals[vals.length - 1];
+  const grad = ctx.createLinearGradient(0, PAD.top, 0, PAD.top + ph);
+  const col = lastVal >= 0 ? 'rgba(200,241,53,' : 'rgba(241,160,53,';
+  grad.addColorStop(0, col + '0.25)');
+  grad.addColorStop(1, col + '0)');
+
+  ctx.beginPath();
+  vals.forEach((v, i) => i === 0 ? ctx.moveTo(xS(i), yS(v)) : ctx.lineTo(xS(i), yS(v)));
+  ctx.lineTo(xS(vals.length - 1), PAD.top + ph);
+  ctx.lineTo(PAD.left, PAD.top + ph);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Line
+  ctx.strokeStyle = lastVal >= 0 ? '#c8f135' : '#f1a035';
+  ctx.lineWidth = 1.5;
+  ctx.lineJoin = 'round';
+  ctx.beginPath();
+  vals.forEach((v, i) => i === 0 ? ctx.moveTo(xS(i), yS(v)) : ctx.lineTo(xS(i), yS(v)));
+  ctx.stroke();
+
+  // End dot
+  const ex = xS(vals.length - 1);
+  const ey = yS(lastVal);
+  ctx.beginPath();
+  ctx.arc(ex, ey, 3, 0, Math.PI * 2);
+  ctx.fillStyle = lastVal >= 0 ? '#c8f135' : '#f1a035';
+  ctx.fill();
+}
+
+// Close popup
+document.getElementById('popup-close').addEventListener('click', () => {
+  document.getElementById('team-popup').classList.remove('open');
+});
+
+document.getElementById('team-popup').addEventListener('click', e => {
+  if (e.target === document.getElementById('team-popup')) {
+    document.getElementById('team-popup').classList.remove('open');
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('team-popup').classList.remove('open');
+});
 
 // ── Season Graph ─────────────────────────────────────────────────────────────
 
