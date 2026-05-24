@@ -104,37 +104,41 @@ def travel_bonus(team: str, venue: str) -> float:
 
 
 def compute_r11(team: str, opponent: str, history: list) -> float:
-    """Average margin (team perspective) in last 11 H2H games."""
+    """Average game value (outcome + margin/60) in last 11 H2H games."""
     h2h = [g for g in history if
            (g["hteam"] == team and g["ateam"] == opponent) or
            (g["ateam"] == team and g["hteam"] == opponent)]
     h2h = h2h[-11:]
     if not h2h:
         return 0.0
-    margins = []
+    values = []
     for g in h2h:
         if g["hteam"] == team:
-            margins.append(g["hscore"] - g["ascore"])
+            margin = g["hscore"] - g["ascore"]
         else:
-            margins.append(g["ascore"] - g["hscore"])
-    return sum(margins) / len(margins)
+            margin = g["ascore"] - g["hscore"]
+        outcome = 1 if margin > 0 else (-1 if margin < 0 else 0)
+        values.append(outcome + (margin / 60))
+    return sum(values) / len(values)
 
 
 def compute_v11(team: str, venue: str, history: list) -> float:
-    """Average margin (team perspective) in last 11 games at this venue."""
+    """Average game value (outcome + margin/60) in last 11 games at this venue."""
     venue_games = [g for g in history if
                    g.get("venue") == venue and
                    (g["hteam"] == team or g["ateam"] == team)]
     venue_games = venue_games[-11:]
     if not venue_games:
         return 0.0
-    margins = []
+    values = []
     for g in venue_games:
         if g["hteam"] == team:
-            margins.append(g["hscore"] - g["ascore"])
+            margin = g["hscore"] - g["ascore"]
         else:
-            margins.append(g["ascore"] - g["hscore"])
-    return sum(margins) / len(margins)
+            margin = g["ascore"] - g["hscore"]
+        outcome = 1 if margin > 0 else (-1 if margin < 0 else 0)
+        values.append(outcome + (margin / 60))
+    return sum(values) / len(values)
 
 
 def compute_rest(team: str, game_dt: datetime, history: list) -> float:
@@ -221,8 +225,8 @@ def process_completed_game(game: dict, ratings: dict, history: list, prior_ratin
     a_sf = surprise_factor(a_output, h_output)
 
     # Prediction (pre-game, stored for display)
-    h_pred = 1 - (h_sf / 2)
-    a_pred = 1 - (a_sf / 2)
+    h_pred = h_sf / 2
+    a_pred = a_sf / 2
 
     # Delta
     h_delta = compute_delta(h_sf, h_outcome, h_margin, hscore, hteam, venue)
@@ -275,8 +279,8 @@ def predict_game(game: dict, ratings: dict, history: list) -> dict:
     h_sf = surprise_factor(h_output, a_output)
     a_sf = surprise_factor(a_output, h_output)
 
-    h_pred = 1 - (h_sf / 2)
-    a_pred = 1 - (a_sf / 2)
+    h_pred = h_sf / 2
+    a_pred = a_sf / 2
 
     return {
         "game_id": game["id"],
