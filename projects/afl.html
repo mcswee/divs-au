@@ -3,1268 +3,1733 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SAGE: Surprise Adjusted Game Evaluation Footy Index</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<title>SAGE Index — AFL Power Rankings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:#0d0f12; --surface:#13161b; --surface2:#1a1e25; --border:#252a34;
-    --accent:#e8c84a; --green:#4ae8a0; --red:#e84a4a; --muted:#7a8099; --text:#e8eaf0;
+    --bg:        #0d0f12;
+    --surface:   #13161b;
+    --border:    #1e2229;
+    --muted:     #3a3f4a;
+    --dim:       #6b7280;
+    --text:      #d4d8e0;
+    --bright:    #f0f2f5;
+    --accent:    #c8f135;
+    --accent2:   #35c8f1;
+    --warn:      #f1a035;
+    --mono:      'DM Mono', monospace;
+    --cond:      'Barlow Condensed', sans-serif;
+    --body:      'Barlow', sans-serif;
   }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;min-height:100vh;overflow-x:hidden}
- 
-  header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
-  .logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.35rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
-  .logo span{color:var(--muted);font-weight:400;font-size:.85rem;letter-spacing:.12em;margin-left:.5rem;vertical-align:middle}
-  .status-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block;margin-right:.4rem}
-  .status-dot.live{background:var(--green);animation:pulse 2s infinite}
-  .status-dot.error{background:var(--red)}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  .status-label{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
- 
-  nav{display:flex;gap:.2rem}
-  nav button{background:none;border:none;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .8rem;cursor:pointer;border-radius:4px;transition:color .15s,background .15s}
-  nav button:hover{color:var(--text);background:var(--surface2)}
-  nav button.active{color:var(--accent);background:var(--surface2)}
- 
-  main{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 4rem}
-  .tab-panel{display:none;animation:fadeIn .2s ease}
-  .tab-panel.active{display:block}
-  @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
- 
-  .section-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.5rem;margin-top:2.5rem}
-  .section-header:first-child{margin-top:0}
-  .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.55rem;text-transform:uppercase;letter-spacing:.06em}
-  .section-sub{color:var(--muted);font-size:.83rem;font-weight:300}
- 
-  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:1rem;margin-bottom:2rem}
-  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.3rem}
-  .stat-label{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
-  .stat-value{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;line-height:1;color:var(--accent)}
-  .stat-note{font-size:.72rem;color:var(--muted);margin-top:.25rem}
- 
-  /* Round slider */
-  .slider-wrap{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.85rem 1.2rem}
-  .slider-wrap label{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-  .slider-wrap input[type=range]{flex:1;accent-color:var(--accent);height:4px;cursor:pointer}
-  .slider-val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:var(--accent);min-width:4rem;text-align:right}
- 
-  /* Rankings table */
-  .table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
-  table{width:100%;border-collapse:collapse}
-  th{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-align:left;padding:.6rem 1rem;border-bottom:1px solid var(--border)}
-  td{padding:.72rem 1rem;border-bottom:1px solid var(--border);font-size:.93rem}
-  tbody tr:last-child td{border-bottom:none}
-  tbody tr{cursor:pointer;transition:background .12s}
-  tbody tr:hover{background:var(--surface2)}
- 
-  .rank-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:var(--muted);width:2rem;display:inline-block}
- 
-  .bar-cell{width:220px}
-  .bar-wrap{display:flex;align-items:center;gap:.6rem}
-  .bar-track{flex:1;height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;position:relative}
-  .bar-fill-pos{height:100%;border-radius:3px;background:var(--green)}
-  .bar-fill-neg{height:100%;border-radius:3px;background:var(--red);position:absolute;right:0}
-  .rating-val{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.95rem;min-width:3.8rem;text-align:right}
-  .pos{color:var(--green)}.neg{color:var(--red)}
- 
-  /* Games grid */
-  .games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem}
-  .game-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.2rem;transition:border-color .15s}
-  .game-card:hover{border-color:rgba(232,200,74,.3)}
-  .game-meta{font-size:.7rem;font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem}
-  .matchup{display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem}
-  .matchup-team{flex:1;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:.03em}
-  .matchup-team.right{text-align:right}
-  .vs{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;color:var(--muted);flex-shrink:0}
- 
-  /* Stats breakdown row */
-  .stats-row{display:flex;align-items:stretch;margin-bottom:.65rem;gap:0}
-  .stats-side{flex:1;display:flex;flex-direction:column;gap:.2rem}
-  .stats-side.right{text-align:right;align-items:flex-end}
-  .stat-item{display:flex;flex-direction:column}
-  .stat-item-label{font-family:'Barlow Condensed',sans-serif;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-  .stat-item-val{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.82rem;color:var(--text)}
-  .stats-divider{width:1px;background:var(--border);margin:0 .6rem;flex-shrink:0}
- 
-  /* Two-colour prob bar */
-  .prob-bar{display:flex;height:8px;border-radius:5px;overflow:hidden;margin-bottom:.4rem}
-  .prob-h{height:100%}.prob-a{height:100%}
-  .prob-labels{display:flex;justify-content:space-between;margin-bottom:.4rem}
-  .prob-pct{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem}
-  .tip-badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.12rem .4rem;border-radius:3px;margin-top:.3rem}
-  .tip-badge.confident{background:rgba(232,200,74,.12);color:var(--accent);border:1px solid rgba(232,200,74,.3)}
-  .tip-badge.tossup{background:rgba(122,128,153,.1);color:var(--muted);border:1px solid var(--border)}
-  .divider-line{border:none;border-top:1px solid var(--border);margin:.65rem 0}
- 
-  /* Timeline */
-  .timeline{display:flex;flex-direction:column;gap:.5rem}
-  .round-block{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
-  .round-header{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.1rem;cursor:pointer;user-select:none;transition:background .12s}
-  .round-header:hover{background:var(--surface2)}
-  .round-header-left{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase}
-  .round-header-right{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;color:var(--muted);letter-spacing:.08em}
-  .round-chevron{color:var(--muted);font-size:.75rem;transition:transform .2s}
-  .round-block.open .round-chevron{transform:rotate(180deg)}
-  .round-games{display:none;padding:.25rem .75rem .75rem}
-  .round-block.open .round-games{display:block}
-  .tl-row{display:flex;align-items:center;padding:.45rem .35rem;border-bottom:1px solid var(--border);gap:.6rem;font-size:.88rem}
-  .tl-row:last-child{border-bottom:none}
-  .tl-w{flex:1;font-weight:500}
-  .tl-score{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;white-space:nowrap}
-  .tl-margin{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;color:var(--muted);min-width:3.5rem;text-align:center}
-  .tl-l{flex:1;text-align:right;color:var(--muted);font-size:.85rem}
- 
-  /* Form chart tooltip */
-  .chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;position:relative}
-  .chart-label{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
-  svg.chart{display:block;width:100%}
-  .legend{display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin-top:.9rem}
-  .leg-item{display:flex;align-items:center;gap:.35rem;font-size:.76rem;color:var(--muted);cursor:pointer;transition:color .15s}
-  .leg-item:hover,.leg-item.on{color:var(--text)}
-  .leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-  #chart-tooltip{position:absolute;background:#1a1e25;border:1px solid var(--border);border-radius:6px;padding:.45rem .65rem;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;pointer-events:none;display:none;z-index:10;line-height:1.5;white-space:nowrap}
-  #chart-tooltip .tt-team{font-weight:700;font-size:.9rem;margin-bottom:.15rem}
-  #chart-tooltip .tt-rating{color:var(--accent)}
-  #chart-tooltip .tt-change{font-size:.75rem}
- 
-  /* Modal */
-  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center;padding:1rem}
-  .overlay.open{display:flex}
-  .modal{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.75rem;max-width:480px;width:100%;max-height:90vh;overflow-y:auto}
-  .modal-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.25rem}
-  .modal-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;text-transform:uppercase}
-  .modal-close{background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1}
-  .modal-close:hover{color:var(--text)}
-  .modal-row{display:flex;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.88rem}
-  .modal-row:last-child{border-bottom:none}
-  .modal-key{color:var(--muted)}
-  .spark-label{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:1.25rem;margin-bottom:.4rem}
-  .modal-section-title{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:1.25rem;margin-bottom:.5rem}
-  .last-results{display:flex;flex-direction:column;gap:.3rem}
-  .lr-row{display:flex;align-items:center;gap:.5rem;font-size:.82rem;padding:.3rem 0;border-bottom:1px solid var(--border)}
-  .lr-row:last-child{border-bottom:none}
-  .lr-outcome{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;width:1.2rem;flex-shrink:0}
-  .lr-opp{flex:1;color:var(--muted)}
-  .lr-score{font-family:'Barlow Condensed',sans-serif;font-weight:600}
- 
-  /* Loading */
-  .loading{display:flex;align-items:center;gap:.75rem;padding:3rem 0;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:.1em;text-transform:uppercase}
-  .spinner{width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .error-msg{padding:2rem;color:var(--red);font-size:.9rem}
- 
-  /* About */
-  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
-  @media(max-width:600px){.about-grid{grid-template-columns:1fr}}
-  .about-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.4rem}
-  .about-card h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.65rem}
-  .about-card p{font-size:.86rem;color:var(--muted);line-height:1.7}
-  .about-card p+p{margin-top:.5rem}
-  .formula{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:.65rem .9rem;font-family:'Barlow Condensed',sans-serif;font-size:.83rem;color:var(--text);margin-top:.65rem;line-height:1.9}
-  .fv{color:var(--green)}
- 
-  @media(max-width:680px){header{padding:0 1rem}nav button{padding:.35rem .5rem;font-size:.72rem}.bar-cell{display:none}}
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Layout ── */
+  .wrapper {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── Header ── */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 32px 0 24px;
+    margin-bottom: 40px;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .wordmark {
+    font-family: var(--cond);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    letter-spacing: -0.02em;
+    color: var(--bright);
+    line-height: 1;
+  }
+
+  .wordmark span {
+    color: var(--accent);
+  }
+
+  .tagline {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .meta {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--dim);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .meta strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ── Tabs ── */
+  .tabs {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tab {
+    font-family: var(--cond);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ── Panels ── */
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* ── Section label ── */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  /* ── Power Rankings ── */
+  .rankings-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .rank-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: border-color 0.15s;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .rank-card:hover { border-color: var(--muted); }
+
+  .rank-num {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    width: 24px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .rank-num.top3 { color: var(--accent); font-weight: 500; }
+
+  .rank-bar-wrap {
+    flex: 1;
+  }
+
+  .rank-team {
+    font-family: var(--cond);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--bright);
+    margin-bottom: 6px;
+  }
+
+  .rank-bar-bg {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .rank-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .rank-bar-fill.negative {
+    background: var(--warn);
+  }
+
+  .rank-rating {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text);
+    font-weight: 500;
+    flex-shrink: 0;
+    width: 52px;
+    text-align: right;
+  }
+
+  .rank-rating.positive { color: var(--accent); }
+  .rank-rating.negative { color: var(--warn); }
+
+  /* ── Predictions ── */
+  .predictions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .pred-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .pred-meta {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 14px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .pred-matchup {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .pred-team {
+    font-family: var(--cond);
+    font-weight: 600;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    letter-spacing: 0.01em;
+  }
+
+  .pred-team.home { color: var(--bright); }
+  .pred-team.away { color: var(--text); text-align: right; }
+
+  .pred-team.fav { color: var(--accent); }
+
+  .pred-conf {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--dim);
+    margin-top: 4px;
+  }
+
+  .pred-conf.home { }
+  .pred-conf.away { text-align: right; }
+
+  .pred-conf strong {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .pred-conf.high strong { color: var(--accent); }
+  .pred-conf.mid strong  { color: var(--warn); }
+  .pred-conf.low strong  { color: var(--dim); }
+
+  .pred-vs {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .pred-bar {
+    margin-top: 14px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .pred-bar-h {
+    background: var(--accent);
+    height: 100%;
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .pred-bar-a {
+    background: var(--warn);
+    height: 100%;
+    flex: 1;
+  }
+
+  /* ── Recent Results ── */
+  .results-table-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+
+  thead tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  th {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  th.num { text-align: right; }
+
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  td.num {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    text-align: right;
+    color: var(--dim);
+  }
+
+  td.team-name {
+    font-family: var(--cond);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--bright);
+  }
+
+  td.winner { color: var(--accent); }
+  td.delta-pos { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); text-align: right; }
+  td.delta-neg { font-family: var(--mono); font-size: 0.72rem; color: var(--warn); text-align: right; }
+
+  tbody tr:hover { background: var(--surface); }
+
+  /* ── Round Selector ── */
+  .round-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .round-select {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 12px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    min-width: 160px;
+  }
+
+  .round-select:focus { border-color: var(--accent); }
+
+  /* ── Empty / Loading ── */
+  .empty {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--dim);
+    padding: 48px 0;
+    text-align: center;
+    letter-spacing: 0.08em;
+  }
+
+  .loading-bar {
+    height: 2px;
+    background: var(--border);
+    margin-bottom: 40px;
+    overflow: hidden;
+    border-radius: 1px;
+  }
+
+  .loading-bar::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 40%;
+    background: var(--accent);
+    animation: sweep 1.2s ease-in-out infinite;
+  }
+
+  @keyframes sweep {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(350%); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── About panel ── */
+
+  /* ── Season Graph ── */
+  .graph-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .year-slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .year-label {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-weight: 500;
+    width: 36px;
+    flex-shrink: 0;
+  }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+  }
+
+  input[type=range]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+    cursor: pointer;
+  }
+
+  .graph-wrap {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  #sage-graph {
+    display: block;
+    width: 100%;
+    height: 420px;
+    cursor: crosshair;
+  }
+
+  .graph-tooltip {
+    position: absolute;
+    background: #1a1e26;
+    border: 1px solid var(--muted);
+    padding: 10px 14px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s;
+    z-index: 10;
+    min-width: 180px;
+  }
+
+  .graph-tooltip.visible { opacity: 1; }
+
+  .tooltip-round {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 8px;
+  }
+
+  .tooltip-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text);
+    padding: 2px 0;
+  }
+
+  .tooltip-row .t-name { color: var(--bright); }
+  .tooltip-row .t-val.pos { color: var(--accent); }
+  .tooltip-row .t-val.neg { color: var(--warn); }
+
+  .team-toggles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .team-toggle {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--dim);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .team-toggle.on {
+    border-color: currentColor;
+    color: var(--text);
+  }
+
+  .team-toggle.highlighted {
+    font-weight: 500;
+  }
+
+  .graph-btn {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--dim);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .graph-btn:hover { color: var(--text); border-color: var(--muted); }
+
+
+  /* ── Team Popup ── */
+  .popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .popup-overlay.open {
+    display: flex;
+  }
+
+  .popup {
+    background: #13161b;
+    border: 1px solid var(--muted);
+    width: 100%;
+    max-width: 420px;
+    padding: 28px;
+    position: relative;
+    animation: fadeUp 0.2s ease both;
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--dim);
+    font-size: 1.2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+  }
+
+  .popup-close:hover { color: var(--text); }
+
+  .popup-team {
+    font-family: var(--cond);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--bright);
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+  }
+
+  .popup-rank {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 24px;
+  }
+
+  .popup-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+  }
+
+  .popup-stat:last-of-type { border-bottom: none; }
+
+  .popup-stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  .popup-stat-value {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .popup-stat-value.pos { color: var(--accent); }
+  .popup-stat-value.neg { color: var(--warn); }
+
+
+  /* ── Tipping ── */
+  td.tip-result { text-align: center; width: 28px; padding: 6px 8px; }
+  .tip-svg { width: 18px; height: 18px; display: inline-block; vertical-align: middle; }
+
+
+  /* ── Prediction math breakdown ── */
+  .pred-math {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+  }
+
+  .pred-math.open { max-height: 300px; }
+
+  .pred-math-toggle {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 0 0;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .pred-math-toggle:hover { color: var(--text); }
+  .pred-math-toggle .arrow { transition: transform 0.2s; display: inline-block; }
+  .pred-math-toggle.open .arrow { transform: rotate(90deg); }
+
+  .pred-math-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+    padding: 12px 0;
+  }
+
+  .math-team-block { }
+
+  .math-team-name {
+    font-family: var(--cond);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--bright);
+    margin-bottom: 6px;
+  }
+
+  .math-line {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: var(--dim);
+    line-height: 1.8;
+  }
+
+  .math-line .val {
+    color: var(--text);
+  }
+
+  .math-line .val.pos { color: var(--accent); }
+  .math-line .val.neg { color: var(--warn); }
+
+  .math-line .eq {
+    color: var(--bright);
+    font-weight: 500;
+  }
+
+  .math-result {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  .about-prose {
+    max-width: 680px;
+    line-height: 1.75;
+    color: var(--text);
+  }
+
+  .about-prose h3 {
+    font-family: var(--cond);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--bright);
+    margin: 28px 0 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .about-prose h3:first-child { margin-top: 0; }
+
+  .about-prose p { margin-bottom: 14px; font-size: 0.9rem; }
+
+  .about-prose code {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    color: var(--accent);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .header-inner { flex-direction: column; align-items: flex-start; }
+    .meta { text-align: left; }
+    .pred-matchup { grid-template-columns: 1fr auto 1fr; }
+    
+  }
 </style>
 </head>
 <body>
- 
-<header>
-  <div class="logo">SAGE<span>Footy Index</span></div>
-  <nav>
-    <button class="active" onclick="showTab('rankings')">Rankings</button>
-    <button onclick="showTab('form')">Form</button>
-    <button onclick="showTab('tips')">Tips</button>
-    <button onclick="showTab('timeline')">Timeline</button>
-    <button onclick="showTab('about')">Model</button>
-  </nav>
-  <div>
-    <span class="status-dot" id="sdot"></span>
-    <span class="status-label" id="slabel">Loading…</span>
-  </div>
-</header>
- 
-<main>
-  <!-- RANKINGS -->
-  <div class="tab-panel active" id="tab-rankings">
-    <div class="section-header"><span class="section-title">SAGE Index Rating</span><span class="section-sub" id="rankings-sub">2026 Season</span></div>
-    <div class="slider-wrap" id="slider-wrap" style="display:none">
-      <label>Round</label>
-      <input type="range" id="round-slider" min="0" step="1" oninput="onSlider()">
-      <span class="slider-val" id="slider-val">Current</span>
-    </div>
-    <div class="stat-grid" id="rankings-stats"></div>
-    <div class="table-wrap"><table><thead><tr><th>#</th><th>Team</th><th class="bar-cell">Rating</th><th style="text-align:right">Score</th></tr></thead><tbody id="rankings-body"></tbody></table></div>
-    <p style="margin-top:.85rem;font-size:.76rem;color:var(--muted)">Click any row for season detail. Use the slider to view historical rounds.</p>
-  </div>
- 
-  <!-- FORM -->
-  <div class="tab-panel" id="tab-form">
-    <div class="section-header"><span class="section-title">Form Guide</span><span class="section-sub">Rating trajectory by round</span></div>
-    <div class="chart-wrap">
-      <div class="chart-label">Click teams below to compare · Hover chart for detail</div>
-      <div id="chart-tooltip">
-        <div class="tt-team" id="tt-team"></div>
-        <div class="tt-rating" id="tt-rating"></div>
-        <div class="tt-change" id="tt-change"></div>
+
+<div class="wrapper">
+
+  <header>
+    <div class="header-inner">
+      <div>
+        <div class="wordmark">S<span>A</span>GE <span>·</span> Index</div>
+        <div class="tagline">Surprise Adjusted Game Evaluation — AFL Power Model</div>
       </div>
-      <svg class="chart" id="form-svg" viewBox="0 0 860 320" preserveAspectRatio="xMidYMid meet"></svg>
-      <div class="legend" id="form-legend"></div>
+      <div class="meta" id="meta-block">
+        Loading…
+      </div>
+    </div>
+  </header>
+
+  <div id="loading" class="loading-bar"></div>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-panel="rankings">Power Rankings</button>
+    <button class="tab" data-panel="predictions">Predictions</button>
+    <button class="tab" data-panel="results">Results</button>
+    <button class="tab" data-panel="graph">Season Graph</button>
+    <button class="tab" data-panel="about">About</button>
+  </nav>
+
+  <!-- Power Rankings -->
+  <div class="panel active" id="panel-rankings">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap">
+      <div class="section-label" style="margin-bottom:0;flex:1">SAGE Ratings</div>
+      <select class="round-select" id="rankings-year-select" style="min-width:80px"></select>
+      <select class="round-select" id="rankings-round-select" style="min-width:140px">
+        <option value="">Select round…</option>
+      </select>
+    </div>
+    <div class="rankings-grid" id="rankings-grid">
+      <div class="empty">Loading ratings…</div>
     </div>
   </div>
- 
-  <!-- TIPS -->
-  <div class="tab-panel" id="tab-tips">
-    <div class="section-header"><span class="section-title" id="tips-title">Tips</span><span class="section-sub">Model win probabilities</span></div>
-    <div class="games-grid" id="tips-grid"></div>
-    <p style="margin-top:1.25rem;font-size:.76rem;color:var(--muted)">Win probability from ratings, Head to head and venue record. Games within 5% are coin flips.</p>
-  </div>
- 
-  <!-- TIMELINE -->
-  <div class="tab-panel" id="tab-timeline">
-    <div class="section-header"><span class="section-title">Season Timeline</span><span class="section-sub" id="timeline-sub">2026 results by round</span></div>
-    <div class="timeline" id="timeline-list"></div>
-  </div>
- 
-  <!-- ABOUT -->
-  <div class="tab-panel" id="tab-about">
-    <div class="section-header"><span class="section-title">The Model</span></div>
-    <div class="about-grid">
-      <div class="about-card"><h3>Rating</h3><p>Each team carries a cumulative rating that updates after every game. The rating reflects not just whether you won and by how much, but also who you beat, where, and how — margin, context, and opponent quality all factor in. Ratings start from zero each season.</p></div>
-      <div class="about-card"><h3>Change Per Game</h3><div class="formula">Δ = <span class="fv">Surprise component</span><br>+ <span class="fv">Margin component</span><br>+ <span class="fv">Hundred Bonus</span><br>+ <span class="fv">Travel Bonus</span><br>+ <span class="fv">Rest Bonus</span></div></div>
-      <div class="about-card"><h3>Surprise Factor</h3><p>Surprise = 1 + tanh ( ( OppTotal − TeamTotal ) / 30 ), where Total = Rating + H2H + Venue - Rest. Beating a heavy favourite earns more; the top team losing to the wooden spooner costs more than the other way round. Surprise × Outcome = Surprise Component.</p></div>
-      <div class="about-card"><h3>Win Probability</h3><p>Prediction = 1 − (Surprise / 2). A team with Prediction &gt;50% is the model's tip. Confident tips (&gt;55%) have been correct in 2026 at a high rate.</p></div>
-      <div class="about-card"><h3>H2H &amp; Venue History</h3><p>A rolling average of the last 11 results (win=+1, loss=−1, draw=0) against each opponent and at each venue. Baseline from 2002–2025; updated live each round.</p></div>
-      <div class="about-card"><h3>Bonuses</h3><p><b style="color:var(--text)">Margin:</b> Final margin ÷ 60 (negative if lost).<br><b style="color:var(--text)">100-point:</b> +0.2 if team scored 100+.<br><b style="color:var(--text)">Travel:</b> +0.2 if playing in a different state.<br><b style="color:var(--text)">Rest:</b> max(0, 7 − days since last game) × 0.2.</p></div>
-      <div class="about-card"><h3>Source</h3><p>Game data is sourced twice weekly from <a href="https://api.squiggle.com.au/">Squiggle API</a></p>
+
+  <!-- Predictions -->
+  <div class="panel" id="panel-predictions">
+    <div class="section-label" id="pred-label">Upcoming matches</div>
+    <div class="predictions-list" id="predictions-list">
+      <div class="empty">Loading predictions…</div>
     </div>
   </div>
-</main>
- 
-<div class="overlay" id="overlay" onclick="closeModal(event)">
-  <div class="modal">
-    <div class="modal-head"><div class="modal-name" id="modal-name"></div><button class="modal-close" onclick="closeModal()">✕</button></div>
-    <div id="modal-body"></div>
-    <div class="spark-label">Rating by round</div>
-    <svg id="spark-svg" viewBox="0 0 420 75" style="width:100%;display:block"></svg>
-    <div class="modal-section-title">Last Round Results</div>
-    <div class="last-results" id="modal-results"></div>
+
+  <!-- Recent Results -->
+  <div class="panel" id="panel-results">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div class="section-label" style="margin-bottom:0">Completed games</div>
+      <select class="round-select" id="results-year-select" style="min-width:100px"></select>
+      <div class="section-label" style="margin-bottom:0;margin-left:auto" id="tips-summary"></div>
+    </div>
+    <div class="results-table-wrap">
+      <table id="results-table">
+        <thead>
+          <tr>
+            <th>Round</th>
+            <th>Date / Venue</th>
+            <th>Home</th>
+            <th class="num">Score</th>
+            <th class="num">Δ</th>
+            <th class="num">Conf%</th>
+            <th class="num"></th>
+            <th class="num">Conf%</th>
+            <th class="num">Δ</th>
+            <th class="num">Score</th>
+            <th>Away</th>
+          </tr>
+        </thead>
+        <tbody id="results-body"></tbody>
+      </table>
+    </div>
   </div>
-</div>
- 
+
+
+  <!-- Season Graph -->
+  <div class="panel" id="panel-graph">
+    <div class="graph-controls">
+      <div class="year-slider-wrap">
+        <span style="font-family:var(--mono);font-size:0.62rem;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">Season</span>
+        <input type="range" id="year-slider" min="2010" max="2026" value="2026" step="1">
+        <span class="year-label" id="year-display">2026</span>
+      </div>
+      <button class="graph-btn" id="btn-all-on">All on</button>
+      <button class="graph-btn" id="btn-all-off">All off</button>
+      <button class="graph-btn" id="btn-top8">Top 8</button>
+    </div>
+    <div class="graph-wrap">
+      <canvas id="sage-graph"></canvas>
+      <div class="graph-tooltip" id="graph-tooltip">
+        <div class="tooltip-round" id="tooltip-round"></div>
+        <div id="tooltip-rows"></div>
+      </div>
+    </div>
+    <div class="team-toggles" id="team-toggles"></div>
+  </div>
+
+    <!-- About -->
+  <div class="panel" id="panel-about">
+    <div class="about-prose">
+      <h3>What is SAGE?</h3>
+      <p>SAGE — Surprise Adjusted Game Evaluation — is a power rating model for AFL teams. It tracks underlying team strength across every game since 2010, weighting outcomes by how surprising they were relative to what the model expected.</p>
+
+      <h3>How it works</h3>
+      <p>Before each game, SAGE calculates a <strong>Team Output</strong> for each side:</p>
+      <p><code>Team Output = SAGE Rating + Rival Advantage (R11) + Ground Advantage (V11) + Rest Penalty</code></p>
+
+      <p><strong>R11</strong> — the average game value across the last 11 head-to-head games between the two teams. Game value is <code>outcome + (margin / 60)</code>, where outcome is +1 for a win, −1 for a loss, and 0 for a draw.</p>
+      <p><strong>V11</strong> — the same calculation across the last 11 games each team has played at the specific venue.</p>
+      <p><strong>Rest Penalty</strong> — applied when a team has had fewer than 6.95 days since their last game: <code>(days − 7) × 0.2</code>. This is always zero or negative.</p>
+      <p><strong>SAGE Rating</strong> — the team's accumulated rating from earlier in the current season. In round 1, or before a team has played their first game of the season, their final rating from the previous season is used instead.</p>
+
+      <h3>Surprise Factor</h3>
+      <p>The surprise factor captures how unexpected a result would be given the two teams' outputs:</p>
+      <p><code>SF = 1 + tanh((Opponent Output − Team Output) / 30)</code></p>
+      <p>A stronger team (higher output) gets a lower SF. An upset win by the weaker team produces a higher SF, meaning the result was more surprising.</p>
+      <p>Prediction confidence for each team is: <code>1 − (SF / 2)</code>. The stronger team gets a lower SF and therefore a higher confidence percentage.</p>
+
+      <h3>Rating change (Δ)</h3>
+      <p>After each game, a team's SAGE rating changes by:</p>
+      <p><code>Δ = (SF × outcome) + (margin / 60) + Century Bonus + Travel Bonus</code></p>
+      <p>Outcome is +1 for a win, −1 for a loss, 0 for a draw. Draws still accumulate delta from margin, century, and travel components.</p>
+      <p>The <strong>Century Bonus</strong> (+0.2) rewards teams who score 100 or more points. The <strong>Travel Bonus</strong> (+0.2) applies when a team plays away from their home state, or at a remote venue — Far North Queensland, Northern Territory, overseas, ACT, or Tasmania.</p>
+
+      <h3>Season ratings</h3>
+      <p>Ratings reset to zero at the start of each season. They accumulate round by round through the year and do not carry over. The previous season's final rating is used only to seed the Team Output calculation for a team's first game of the new season.</p>
+
+      <h3>Data</h3>
+      <p>All match data is sourced from the <a href="https://api.squiggle.com.au" style="color:var(--accent2)">Squiggle API</a>. Ratings are recomputed from 2010 and updated every Monday and Thursday morning via GitHub Actions.</p>
+    </div>
+  </div>
+
+
+  <!-- Team Popup -->
+  <div class="popup-overlay" id="team-popup">
+    <div class="popup">
+      <button class="popup-close" id="popup-close">&#x2715;</button>
+      <div class="popup-team" id="popup-team"></div>
+      <div class="popup-rank" id="popup-rank"></div>
+      <div id="popup-stats"></div>
+      <div class="popup-spark-label" style="color:var(--dim);font-size:0.6rem;margin-top:16px">See Season Graph tab for full trajectory</div>
+    </div>
+  </div>
+
+</div><!-- /wrapper -->
+
 <script>
-// ═══════════════════════════════════════════════════════════════════
-// TEAM COLOURS (primary AFL club colours)
-// ═══════════════════════════════════════════════════════════════════
-// Chart line colours — visible on dark background, true to club
-const CHART_COLOR = {
-  'Adelaide':'#e21937','Brisbane Lions':'#fdbe57','Carlton':'#4a7fd4',
-  'Collingwood':'#aaaaaa','Essendon':'#cc2031','Fremantle':'#7b5ea7',
-  'Geelong':'#4a90c4','Gold Coast':'#ffe600','Greater Western Sydney':'#f15c22',
-  'Hawthorn':'#fbbf15','Melbourne':'#e05c70','North Melbourne':'#4d8fff',
-  'Port Adelaide':'#008aab','Richmond':'#fed102','St Kilda':'#ed0f05',
-  'Sydney':'#ed171f','West Coast':'#f2a900','Western Bulldogs':'#014896',
-};
- 
-// ─── Icon engine ─────────────────────────────────────────────────────────────
-const ICON_SIZE = 32;
-const ICON_R = 12;
- 
-function makeIcon(shapes) {
-  const ns = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(ns, 'svg');
-  svg.setAttribute('viewBox', '0 0 100 100');
-  svg.setAttribute('width', ICON_SIZE);
-  svg.setAttribute('height', ICON_SIZE);
-  svg.style.flexShrink = '0';
-  const defs = document.createElementNS(ns, 'defs');
-  const clipId = 'ic' + Math.random().toString(36).slice(2,7);
-  const cp = document.createElementNS(ns, 'clipPath');
-  cp.setAttribute('id', clipId);
-  const cr = document.createElementNS(ns, 'rect');
-  cr.setAttribute('width','100'); cr.setAttribute('height','100');
-  cr.setAttribute('rx', ICON_R);
-  cp.appendChild(cr); defs.appendChild(cp); svg.appendChild(defs);
-  const g = document.createElementNS(ns, 'g');
-  g.setAttribute('clip-path', `url(#${clipId})`);
-  shapes.forEach(s => {
-    let el;
-    if (s.t === 'rect') {
-      el = document.createElementNS(ns, 'rect');
-      el.setAttribute('x', s.x??0); el.setAttribute('y', s.y??0);
-      el.setAttribute('width', s.w??100); el.setAttribute('height', s.h??100);
-      el.setAttribute('fill', s.fill ?? 'none');
-      if (s.border) { el.setAttribute('stroke', s.border); el.setAttribute('stroke-width', s.bw ?? 6); el.setAttribute('fill','none'); }
-    } else if (s.t === 'poly') {
-      el = document.createElementNS(ns, 'polygon');
-      el.setAttribute('points', s.pts);
-      el.setAttribute('fill', s.fill ?? 'none');
-    } else if (s.t === 'path') {
-      el = document.createElementNS(ns, 'path');
-      el.setAttribute('d', s.d);
-      el.setAttribute('fill', 'none');
-      el.setAttribute('stroke', s.stroke);
-      el.setAttribute('stroke-width', s.sw ?? 20);
-      el.setAttribute('stroke-linejoin', 'miter');
-    }
-    g.appendChild(el);
-  });
-  svg.appendChild(g);
-  return svg;
-}
- 
-const ICONS = {
-  'Adelaide': () => makeIcon([
-    {t:'rect', fill:'#041432'},
-    {t:'rect', y:20, h:20, fill:'#ff001e'},
-    {t:'rect', y:60, h:20, fill:'#ffaa00'},
-  ]),
-  'Brisbane Lions': () => makeIcon([
-    {t:'rect', fill:'#a30046'},
-    {t:'rect', y:0,  h:40, fill:'#0055a3'},
-    {t:'rect', y:40, h:20, fill:'#fdbe57'},
-  ]),
-  'Carlton': () => makeIcon([
-    {t:'rect', fill:'#0e1e2d'},
-    {t:'rect', x:3, y:3, w:94, h:94, border:'#ffffff', bw:6},
-  ]),
-  'Collingwood': () => makeIcon([
-    {t:'rect', fill:'#000'},
-    {t:'rect', x:20, w:20, fill:'#fff'},
-    {t:'rect', x:60, w:20, fill:'#fff'},
-  ]),
-  'Essendon': () => makeIcon([
-    {t:'rect', fill:'#000'},
-    {t:'poly', fill:'#cc2031', pts:'80,0 100,0 100,20 20,100 0,100 0,80'},
-  ]),
-  'Fremantle': () => makeIcon([
-    {t:'rect', fill:'#2a1a54'},
-    {t:'path', d:'M0,0 L50,50 L100,0', stroke:'#ffffff', sw:20},
-  ]),
-  'Geelong': () => makeIcon([
-    {t:'rect', fill:'#1c3c63'},
-    {t:'rect', y:20, h:20, fill:'#ffffff'},
-    {t:'rect', y:60, h:20, fill:'#ffffff'},
-  ]),
-  'Gold Coast': () => makeIcon([
-    {t:'rect', fill:'#d93e39'},
-    {t:'rect', x:00, w:10, fill:'#ffe600'},
-    {t:'rect', x:90, w:10, fill:'#ffe600'},
-  ]),
-  'Greater Western Sydney': () => makeIcon([
-    {t:'rect', fill:'#384752'},
-    {t:'rect', y:0,  h:40, fill:'#f15c22'},
-    {t:'rect', y:40, h:20, fill:'#ffffff'},
-  ]),
-  'Hawthorn': () => makeIcon([
-    {t:'rect', fill:'#4d2004'},
-    {t:'rect', x:20, w:20, fill:'#fbbf15'},
-    {t:'rect', x:60, w:20, fill:'#fbbf15'},
-  ]),
-  'Melbourne': () => makeIcon([
-    {t:'rect', fill:'#0f1131'},
-    {t:'poly', fill:'#cc2031', pts:'0,0 100,0 50,50'},
-  ]),
-  'North Melbourne': () => makeIcon([
-    {t:'rect', fill:'#013b9f'},
-    {t:'rect', x:20, w:20, fill:'#ffffff'},
-    {t:'rect', x:60, w:20, fill:'#ffffff'},
-  ]),
-  'Port Adelaide': () => makeIcon([
-    {t:'rect', fill:'#000000'},
-    {t:'poly', fill:'#008aab', pts:'0,0 100,0 50,50'},
-    {t:'path', d:'M0,0 L50,50 L100,0', stroke:'#ffffff', sw:20},
-  ]),
-  'Richmond': () => makeIcon([
-    {t:'rect', fill:'#000'},
-    {t:'poly', fill:'#fed102', pts:'80,0 100,0 100,20 20,100 0,100 0,80'},
-  ]),
-  'St Kilda': () => makeIcon([
-    {t:'rect', fill:'#000'},
-    {t:'rect', x:0,  w:33, fill:'#ed0f05'},
-    {t:'rect', x:33, w:34, fill:'#ffffff'},
-  ]),
-  'Sydney': () => makeIcon([
-    {t:'rect', fill:'#ffffff'},
-    {t:'path', d:'M0,0 L50,50 L100,0', stroke:'#ed171f', sw:20},
-  ]),
-  'West Coast': () => makeIcon([
-    {t:'rect', fill:'#062ee2'},
-    {t:'rect', x:00, w:20, fill:'#f2a900'},
-    {t:'rect', x:80, w:20, fill:'#f2a900'},
-  ]),
-  'Western Bulldogs': () => makeIcon([
-    {t:'rect', fill:'#014896'},
-    {t:'rect', y:25, h:25, fill:'#c70136'},
-    {t:'rect', y:50, h:25, fill:'#ffffff'},
-  ]),
-};
- 
-function teamIcon(name) {
-  return ICONS[name] ? ICONS[name]() : makeIcon([{t:'rect',fill:'#333'}]);
-}
- 
-// ═══════════════════════════════════════════════════════════════════
-// BASELINE
-// ═══════════════════════════════════════════════════════════════════
-const BASELINE = {"carry_over":{"Adelaide":23.123628473655348,"Brisbane Lions":23.609239200512636,"Carlton":-3.4198941809096217,"Collingwood":19.32784023450331,"Essendon":-22.558684501490546,"Fremantle":14.317247046916624,"Geelong":27.572844816351747,"Gold Coast":17.500362782399847,"Greater Western Sydney":13.929606643742945,"Hawthorn":15.633781678835131,"Melbourne":-9.378581712037846,"North Melbourne":-23.187466744453065,"Port Adelaide":-9.92893243955889,"Richmond":-26.485608785962114,"St Kilda":-11.214597955216641,"Sydney":1.0183182869790435,"West Coast":-43.966600349102855,"Western Bulldogs":16.473644950099644},"h2h":{"AD_BL":{"seq":33,"val":-0.18181818181818182},"AD_CA":{"seq":28,"val":0.45454545454545453},"AD_CO":{"seq":37,"val":-0.8181818181818182},"AD_ES":{"seq":30,"val":-0.2727272727272727},"AD_FR":{"seq":36,"val":-0.09090909090909091},"AD_GE":{"seq":35,"val":-0.2727272727272727},"AD_GO":{"seq":21,"val":0.09090909090909091},"AD_GW":{"seq":19,"val":-0.09090909090909091},"AD_HA":{"seq":34,"val":-0.2727272727272727},"AD_ME":{"seq":31,"val":-0.45454545454545453},"AD_NM":{"seq":35,"val":0.45454545454545453},"AD_PA":{"seq":48,"val":-0.09090909090909091},"AD_RI":{"seq":30,"val":-0.09090909090909091},"AD_SK":{"seq":32,"val":0.6363636363636364},"AD_SY":{"seq":30,"val":-0.45454545454545453},"AD_WC":{"seq":40,"val":0.09090909090909091},"AD_WD":{"seq":32,"val":-0.09090909090909091},"BL_AD":{"seq":33,"val":0.18181818181818182},"BL_CA":{"seq":34,"val":0.6363636363636364},"BL_CO":{"seq":38,"val":0.2727272727272727},"BL_ES":{"seq":31,"val":0.2727272727272727},"BL_FR":{"seq":28,"val":0.2727272727272727},"BL_GE":{"seq":41,"val":-0.09090909090909091},"BL_GO":{"seq":30,"val":0.6363636363636364},"BL_GW":{"seq":19,"val":0.2727272727272727},"BL_HA":{"seq":33,"val":-0.09090909090909091},"BL_ME":{"seq":33,"val":0.09090909090909091},"BL_NM":{"seq":35,"val":0.2727272727272727},"BL_PA":{"seq":34,"val":0.2727272727272727},"BL_RI":{"seq":32,"val":-0.09090909090909091},"BL_SK":{"seq":31,"val":0.45454545454545453},"BL_SY":{"seq":37,"val":0.2727272727272727},"BL_WC":{"seq":32,"val":0.09090909090909091},"BL_WD":{"seq":37,"val":-0.09090909090909091},"CA_AD":{"seq":28,"val":-0.45454545454545453},"CA_BL":{"seq":34,"val":-0.6363636363636364},"CA_CO":{"seq":45,"val":-0.6363636363636364},"CA_ES":{"seq":41,"val":0.2727272727272727},"CA_FR":{"seq":32,"val":0.2727272727272727},"CA_GE":{"seq":28,"val":-0.2727272727272727},"CA_GO":{"seq":20,"val":0.2727272727272727},"CA_GW":{"seq":19,"val":-0.2727272727272727},"CA_HA":{"seq":29,"val":-0.2727272727272727},"CA_ME":{"seq":31,"val":-0.45454545454545453},"CA_NM":{"seq":31,"val":0.09090909090909091},"CA_PA":{"seq":34,"val":-0.45454545454545453},"CA_RI":{"seq":38,"val":-0.36363636363636365},"CA_SK":{"seq":35,"val":-0.45454545454545453},"CA_SY":{"seq":35,"val":-0.09090909090909091},"CA_WC":{"seq":29,"val":-0.09090909090909091},"CA_WD":{"seq":27,"val":-0.45454545454545453},"CO_AD":{"seq":37,"val":0.8181818181818182},"CO_BL":{"seq":38,"val":-0.2727272727272727},"CO_CA":{"seq":45,"val":0.6363636363636364},"CO_ES":{"seq":45,"val":0.18181818181818182},"CO_FR":{"seq":30,"val":0.36363636363636365},"CO_GE":{"seq":38,"val":-0.2727272727272727},"CO_GO":{"seq":16,"val":0.6363636363636364},"CO_GW":{"seq":17,"val":-0.2727272727272727},"CO_HA":{"seq":36,"val":-0.09090909090909091},"CO_ME":{"seq":35,"val":0.6363636363636364},"CO_NM":{"seq":29,"val":0.6363636363636364},"CO_PA":{"seq":33,"val":0.09090909090909091},"CO_RI":{"seq":33,"val":0.0},"CO_SK":{"seq":33,"val":0.2727272727272727},"CO_SY":{"seq":33,"val":-0.2727272727272727},"CO_WC":{"seq":37,"val":-0.09090909090909091},"CO_WD":{"seq":33,"val":-0.09090909090909091},"ES_AD":{"seq":30,"val":0.2727272727272727},"ES_BL":{"seq":31,"val":-0.2727272727272727},"ES_CA":{"seq":41,"val":-0.2727272727272727},"ES_CO":{"seq":45,"val":-0.18181818181818182},"ES_FR":{"seq":32,"val":0.2727272727272727},"ES_GE":{"seq":31,"val":-0.6363636363636364},"ES_GO":{"seq":18,"val":0.36363636363636365},"ES_GW":{"seq":18,"val":-0.2727272727272727},"ES_HA":{"seq":32,"val":0.2727272727272727},"ES_ME":{"seq":27,"val":-0.2727272727272727},"ES_NM":{"seq":30,"val":1.0},"ES_PA":{"seq":31,"val":-0.45454545454545453},"ES_RI":{"seq":39,"val":-0.45454545454545453},"ES_SK":{"seq":31,"val":-0.09090909090909091},"ES_SY":{"seq":35,"val":-0.2727272727272727},"ES_WC":{"seq":34,"val":0.2727272727272727},"ES_WD":{"seq":33,"val":-0.6363636363636364},"FR_AD":{"seq":36,"val":0.09090909090909091},"FR_BL":{"seq":28,"val":-0.2727272727272727},"FR_CA":{"seq":32,"val":-0.2727272727272727},"FR_CO":{"seq":30,"val":-0.36363636363636365},"FR_ES":{"seq":32,"val":-0.2727272727272727},"FR_GE":{"seq":35,"val":-0.2727272727272727},"FR_GO":{"seq":17,"val":0.09090909090909091},"FR_GW":{"seq":16,"val":-0.2727272727272727},"FR_HA":{"seq":33,"val":0.09090909090909091},"FR_ME":{"seq":34,"val":0.09090909090909091},"FR_NM":{"seq":29,"val":0.2727272727272727},"FR_PA":{"seq":37,"val":-0.2727272727272727},"FR_RI":{"seq":34,"val":-0.18181818181818182},"FR_SK":{"seq":36,"val":-0.09090909090909091},"FR_SY":{"seq":35,"val":-0.09090909090909091},"FR_WC":{"seq":47,"val":0.2727272727272727},"FR_WD":{"seq":33,"val":-0.09090909090909091},"GE_AD":{"seq":35,"val":0.2727272727272727},"GE_BL":{"seq":41,"val":0.09090909090909091},"GE_CA":{"seq":28,"val":0.2727272727272727},"GE_CO":{"seq":38,"val":0.2727272727272727},"GE_ES":{"seq":31,"val":0.6363636363636364},"GE_FR":{"seq":35,"val":0.2727272727272727},"GE_GO":{"seq":17,"val":0.45454545454545453},"GE_GW":{"seq":18,"val":-0.18181818181818182},"GE_HA":{"seq":44,"val":0.2727272727272727},"GE_ME":{"seq":34,"val":0.09090909090909091},"GE_NM":{"seq":38,"val":1.0},"GE_PA":{"seq":37,"val":0.2727272727272727},"GE_RI":{"seq":34,"val":0.09090909090909091},"GE_SK":{"seq":37,"val":0.2727272727272727},"GE_SY":{"seq":40,"val":0.18181818181818182},"GE_WC":{"seq":31,"val":0.45454545454545453},"GE_WD":{"seq":37,"val":0.2727272727272727},"GO_AD":{"seq":21,"val":-0.09090909090909091},"GO_BL":{"seq":30,"val":-0.6363636363636364},"GO_CA":{"seq":20,"val":-0.2727272727272727},"GO_CO":{"seq":16,"val":-0.6363636363636364},"GO_ES":{"seq":18,"val":-0.36363636363636365},"GO_FR":{"seq":17,"val":-0.09090909090909091},"GO_GE":{"seq":17,"val":-0.45454545454545453},"GO_GW":{"seq":21,"val":-0.8181818181818182},"GO_HA":{"seq":19,"val":0.09090909090909091},"GO_ME":{"seq":20,"val":-0.8181818181818182},"GO_NM":{"seq":22,"val":0.09090909090909091},"GO_PA":{"seq":17,"val":-0.8181818181818182},"GO_RI":{"seq":17,"val":-0.09090909090909091},"GO_SK":{"seq":20,"val":-0.6363636363636364},"GO_SY":{"seq":18,"val":-0.2727272727272727},"GO_WC":{"seq":19,"val":0.09090909090909091},"GO_WD":{"seq":18,"val":-0.6363636363636364},"GW_AD":{"seq":19,"val":0.09090909090909091},"GW_BL":{"seq":19,"val":-0.2727272727272727},"GW_CA":{"seq":19,"val":0.2727272727272727},"GW_CO":{"seq":17,"val":0.2727272727272727},"GW_ES":{"seq":18,"val":0.2727272727272727},"GW_FR":{"seq":16,"val":0.2727272727272727},"GW_GE":{"seq":18,"val":0.18181818181818182},"GW_GO":{"seq":21,"val":0.8181818181818182},"GW_HA":{"seq":18,"val":0.09090909090909091},"GW_ME":{"seq":19,"val":-0.09090909090909091},"GW_NM":{"seq":15,"val":0.18181818181818182},"GW_PA":{"seq":17,"val":0.2727272727272727},"GW_RI":{"seq":20,"val":-0.09090909090909091},"GW_SK":{"seq":18,"val":0.0},"GW_SY":{"seq":31,"val":-0.45454545454545453},"GW_WC":{"seq":18,"val":0.09090909090909091},"GW_WD":{"seq":22,"val":-0.6363636363636364},"HA_AD":{"seq":34,"val":0.2727272727272727},"HA_BL":{"seq":33,"val":0.09090909090909091},"HA_CA":{"seq":29,"val":0.2727272727272727},"HA_CO":{"seq":36,"val":0.09090909090909091},"HA_ES":{"seq":32,"val":-0.2727272727272727},"HA_FR":{"seq":33,"val":-0.09090909090909091},"HA_GE":{"seq":44,"val":-0.2727272727272727},"HA_GO":{"seq":19,"val":-0.09090909090909091},"HA_GW":{"seq":18,"val":-0.09090909090909091},"HA_ME":{"seq":35,"val":-0.5454545454545454},"HA_NM":{"seq":39,"val":0.45454545454545453},"HA_PA":{"seq":35,"val":-0.2727272727272727},"HA_RI":{"seq":34,"val":-0.36363636363636365},"HA_SK":{"seq":29,"val":-0.2727272727272727},"HA_SY":{"seq":40,"val":-0.09090909090909091},"HA_WC":{"seq":34,"val":0.09090909090909091},"HA_WD":{"seq":33,"val":0.09090909090909091},"ME_AD":{"seq":31,"val":0.45454545454545453},"ME_BL":{"seq":33,"val":-0.09090909090909091},"ME_CA":{"seq":31,"val":0.45454545454545453},"ME_CO":{"seq":35,"val":-0.6363636363636364},"ME_ES":{"seq":27,"val":0.2727272727272727},"ME_FR":{"seq":34,"val":-0.09090909090909091},"ME_GE":{"seq":34,"val":-0.09090909090909091},"ME_GO":{"seq":20,"val":0.8181818181818182},"ME_GW":{"seq":19,"val":0.09090909090909091},"ME_HA":{"seq":35,"val":0.5454545454545454},"ME_ME":{"seq":34,"val":0.2727272727272727},"ME_NM":{"seq":34,"val":0.2727272727272727},"ME_PA":{"seq":35,"val":0.09090909090909091},"ME_RI":{"seq":33,"val":0.09090909090909091},"ME_SK":{"seq":35,"val":0.2727272727272727},"ME_SY":{"seq":33,"val":-0.2727272727272727},"ME_WC":{"seq":34,"val":0.09090909090909091},"ME_WD":{"seq":39,"val":0.09090909090909091},"NM_AD":{"seq":35,"val":-0.45454545454545453},"NM_BL":{"seq":35,"val":-0.2727272727272727},"NM_CA":{"seq":31,"val":-0.09090909090909091},"NM_CO":{"seq":29,"val":-0.6363636363636364},"NM_ES":{"seq":30,"val":-1.0},"NM_FR":{"seq":29,"val":-0.2727272727272727},"NM_GE":{"seq":38,"val":-1.0},"NM_GO":{"seq":22,"val":-0.09090909090909091},"NM_GW":{"seq":15,"val":-0.18181818181818182},"NM_HA":{"seq":39,"val":-0.45454545454545453},"NM_ME":{"seq":34,"val":-0.2727272727272727},"NM_PA":{"seq":34,"val":-0.8181818181818182},"NM_RI":{"seq":29,"val":0.09090909090909091},"NM_SK":{"seq":34,"val":-0.2727272727272727},"NM_SY":{"seq":35,"val":-0.8181818181818182},"NM_WC":{"seq":33,"val":-0.09090909090909091},"NM_WD":{"seq":38,"val":-0.6363636363636364},"PA_AD":{"seq":48,"val":0.09090909090909091},"PA_BL":{"seq":34,"val":-0.2727272727272727},"PA_CA":{"seq":34,"val":0.45454545454545453},"PA_CO":{"seq":33,"val":-0.09090909090909091},"PA_ES":{"seq":31,"val":0.45454545454545453},"PA_FR":{"seq":37,"val":0.2727272727272727},"PA_GE":{"seq":37,"val":-0.2727272727272727},"PA_GO":{"seq":17,"val":0.8181818181818182},"PA_GW":{"seq":17,"val":-0.2727272727272727},"PA_HA":{"seq":35,"val":0.2727272727272727},"PA_ME":{"seq":35,"val":-0.09090909090909091},"PA_NM":{"seq":34,"val":0.8181818181818182},"PA_RI":{"seq":36,"val":0.09090909090909091},"PA_SK":{"seq":31,"val":0.8181818181818182},"PA_SY":{"seq":31,"val":0.6363636363636364},"PA_WC":{"seq":34,"val":0.09090909090909091},"PA_WD":{"seq":31,"val":0.45454545454545453},"RI_AD":{"seq":30,"val":0.09090909090909091},"RI_BL":{"seq":32,"val":0.09090909090909091},"RI_CA":{"seq":38,"val":0.36363636363636365},"RI_CO":{"seq":33,"val":0.0},"RI_ES":{"seq":39,"val":0.45454545454545453},"RI_FR":{"seq":34,"val":0.18181818181818182},"RI_GE":{"seq":34,"val":-0.09090909090909091},"RI_GO":{"seq":17,"val":0.09090909090909091},"RI_GW":{"seq":20,"val":0.09090909090909091},"RI_HA":{"seq":34,"val":0.36363636363636365},"RI_ME":{"seq":33,"val":-0.09090909090909091},"RI_NM":{"seq":29,"val":-0.09090909090909091},"RI_PA":{"seq":36,"val":-0.09090909090909091},"RI_SK":{"seq":39,"val":-0.2727272727272727},"RI_SY":{"seq":34,"val":0.09090909090909091},"RI_WC":{"seq":30,"val":0.45454545454545453},"RI_WD":{"seq":30,"val":-0.2727272727272727},"SK_AD":{"seq":32,"val":-0.6363636363636364},"SK_BL":{"seq":31,"val":-0.45454545454545453},"SK_CA":{"seq":35,"val":0.45454545454545453},"SK_CO":{"seq":33,"val":-0.2727272727272727},"SK_ES":{"seq":31,"val":0.09090909090909091},"SK_FR":{"seq":36,"val":0.09090909090909091},"SK_GE":{"seq":37,"val":-0.2727272727272727},"SK_GO":{"seq":20,"val":0.6363636363636364},"SK_GW":{"seq":18,"val":0.0},"SK_HA":{"seq":29,"val":0.2727272727272727},"SK_ME":{"seq":35,"val":-0.2727272727272727},"SK_NM":{"seq":34,"val":0.2727272727272727},"SK_PA":{"seq":31,"val":-0.8181818181818182},"SK_RI":{"seq":39,"val":0.2727272727272727},"SK_SY":{"seq":36,"val":-0.2727272727272727},"SK_WC":{"seq":33,"val":0.09090909090909091},"SK_WD":{"seq":36,"val":-0.09090909090909091},"SY_AD":{"seq":30,"val":0.45454545454545453},"SY_BL":{"seq":37,"val":-0.2727272727272727},"SY_CA":{"seq":35,"val":0.09090909090909091},"SY_CO":{"seq":33,"val":0.2727272727272727},"SY_ES":{"seq":35,"val":0.2727272727272727},"SY_FR":{"seq":35,"val":0.09090909090909091},"SY_GE":{"seq":40,"val":-0.18181818181818182},"SY_GO":{"seq":18,"val":0.2727272727272727},"SY_GW":{"seq":31,"val":0.45454545454545453},"SY_HA":{"seq":40,"val":0.09090909090909091},"SY_ME":{"seq":33,"val":0.2727272727272727},"SY_NM":{"seq":35,"val":0.8181818181818182},"SY_PA":{"seq":31,"val":-0.6363636363636364},"SY_RI":{"seq":34,"val":-0.09090909090909091},"SY_SK":{"seq":36,"val":0.2727272727272727},"SY_WC":{"seq":33,"val":0.45454545454545453},"SY_WD":{"seq":34,"val":0.09090909090909091},"WC_AD":{"seq":40,"val":-0.09090909090909091},"WC_BL":{"seq":32,"val":-0.09090909090909091},"WC_CA":{"seq":29,"val":0.09090909090909091},"WC_CO":{"seq":37,"val":0.09090909090909091},"WC_ES":{"seq":34,"val":-0.2727272727272727},"WC_FR":{"seq":47,"val":-0.2727272727272727},"WC_GE":{"seq":31,"val":-0.45454545454545453},"WC_GO":{"seq":19,"val":-0.09090909090909091},"WC_GW":{"seq":18,"val":-0.09090909090909091},"WC_HA":{"seq":34,"val":-0.09090909090909091},"WC_ME":{"seq":34,"val":-0.09090909090909091},"WC_NM":{"seq":33,"val":0.09090909090909091},"WC_PA":{"seq":34,"val":-0.09090909090909091},"WC_RI":{"seq":30,"val":-0.45454545454545453},"WC_SK":{"seq":33,"val":-0.09090909090909091},"WC_SY":{"seq":33,"val":-0.45454545454545453},"WC_WD":{"seq":37,"val":0.09090909090909091},"WD_AD":{"seq":32,"val":0.09090909090909091},"WD_BL":{"seq":37,"val":0.09090909090909091},"WD_CA":{"seq":27,"val":0.45454545454545453},"WD_CO":{"seq":33,"val":0.09090909090909091},"WD_ES":{"seq":33,"val":0.6363636363636364},"WD_FR":{"seq":33,"val":0.09090909090909091},"WD_GE":{"seq":37,"val":-0.2727272727272727},"WD_GO":{"seq":18,"val":0.6363636363636364},"WD_GW":{"seq":22,"val":0.6363636363636364},"WD_HA":{"seq":33,"val":-0.09090909090909091},"WD_ME":{"seq":39,"val":-0.09090909090909091},"WD_NM":{"seq":38,"val":0.6363636363636364},"WD_PA":{"seq":31,"val":-0.45454545454545453},"WD_RI":{"seq":30,"val":0.2727272727272727},"WD_SK":{"seq":36,"val":0.09090909090909091},"WD_SY":{"seq":34,"val":-0.09090909090909091},"WD_WC":{"seq":37,"val":-0.09090909090909091}},"venues":{"AD_Adelaide Oval":{"seq":148,"val":0.8181818181818182},"AD_Bellerive Oval":{"seq":4,"val":-0.3333333333333333},"AD_Carrara":{"seq":18,"val":-0.09090909090909091},"AD_Cazaly's Stadium":{"seq":1,"val":0.0},"AD_Docklands":{"seq":67,"val":-0.09090909090909091},"AD_Eureka Stadium":{"seq":4,"val":-0.3333333333333333},"AD_Football Park":{"seq":153,"val":-0.2727272727272727},"AD_Gabba":{"seq":21,"val":0.09090909090909091},"AD_Kardinia Park":{"seq":16,"val":-1.0},"AD_M.C.G.":{"seq":50,"val":-0.8181818181818182},"AD_Manuka Oval":{"seq":2,"val":-1.0},"AD_Marrara Oval":{"seq":3,"val":1.0},"AD_Perth Stadium":{"seq":8,"val":-0.42857142857142855},"AD_Princes Park":{"seq":3,"val":0.0},"AD_S.C.G.":{"seq":15,"val":0.09090909090909091},"AD_Subiaco":{"seq":24,"val":0.09090909090909091},"AD_Sydney Showground":{"seq":6,"val":0.2},"AD_Traeger Park":{"seq":1,"val":0.0},"AD_York Park":{"seq":7,"val":-0.3333333333333333},"BL_Adelaide Oval":{"seq":15,"val":-0.18181818181818182},"BL_Bellerive Oval":{"seq":2,"val":1.0},"BL_Carrara":{"seq":22,"val":0.2727272727272727},"BL_Cazaly's Stadium":{"seq":1,"val":0.0},"BL_Docklands":{"seq":77,"val":0.6363636363636364},"BL_Eureka Stadium":{"seq":2,"val":-1.0},"BL_Football Park":{"seq":15,"val":0.2727272727272727},"BL_Gabba":{"seq":283,"val":0.2727272727272727},"BL_Kardinia Park":{"seq":16,"val":-1.0},"BL_M.C.G.":{"seq":54,"val":0.2727272727272727},"BL_Manuka Oval":{"seq":3,"val":1.0},"BL_Marrara Oval":{"seq":1,"val":0.0},"BL_Norwood Oval":{"seq":2,"val":1.0},"BL_Perth Stadium":{"seq":8,"val":0.14285714285714285},"BL_Princes Park":{"seq":1,"val":0.0},"BL_S.C.G.":{"seq":14,"val":-0.6363636363636364},"BL_Stadium Australia":{"seq":3,"val":0.0},"BL_Subiaco":{"seq":19,"val":-0.45454545454545453},"BL_Summit Sport Park":{"seq":1,"val":0.0},"BL_Sydney Showground":{"seq":6,"val":-0.2},"BL_Wellington":{"seq":1,"val":0.0},"BL_York Park":{"seq":12,"val":-0.45454545454545453},"CA_Adelaide Oval":{"seq":12,"val":-0.45454545454545453},"CA_Bellerive Oval":{"seq":1,"val":0.0},"CA_Carrara":{"seq":15,"val":0.09090909090909091},"CA_Docklands":{"seq":179,"val":-0.2727272727272727},"CA_Football Park":{"seq":17,"val":-0.09090909090909091},"CA_Gabba":{"seq":24,"val":-0.6363636363636364},"CA_Kardinia Park":{"seq":3,"val":-1.0},"CA_M.C.G.":{"seq":194,"val":-0.2727272727272727},"CA_Marrara Oval":{"seq":2,"val":-1.0},"CA_Perth Stadium":{"seq":12,"val":0.2727272727272727},"CA_Princes Park":{"seq":20,"val":-0.2727272727272727},"CA_S.C.G.":{"seq":16,"val":-0.8181818181818182},"CA_Stadium Australia":{"seq":4,"val":-1.0},"CA_Subiaco":{"seq":26,"val":-0.2727272727272727},"CA_Sydney Showground":{"seq":8,"val":-0.42857142857142855},"CA_Wellington":{"seq":1,"val":0.0},"CA_York Park":{"seq":2,"val":-1.0},"CO_Adelaide Oval":{"seq":16,"val":0.8181818181818182},"CO_Carrara":{"seq":10,"val":0.3333333333333333},"CO_Docklands":{"seq":91,"val":0.2727272727272727},"CO_Football Park":{"seq":17,"val":0.45454545454545453},"CO_Gabba":{"seq":26,"val":-0.2727272727272727},"CO_M.C.G.":{"seq":347,"val":0.2727272727272727},"CO_Perth Stadium":{"seq":12,"val":0.18181818181818182},"CO_S.C.G.":{"seq":10,"val":-0.3333333333333333},"CO_Stadium Australia":{"seq":13,"val":0.45454545454545453},"CO_Subiaco":{"seq":17,"val":-0.2727272727272727},"CO_Sydney Showground":{"seq":9,"val":0.0},"ES_Adelaide Oval":{"seq":16,"val":0.09090909090909091},"ES_Carrara":{"seq":16,"val":-0.18181818181818182},"ES_Docklands":{"seq":208,"val":-0.45454545454545453},"ES_Football Park":{"seq":19,"val":-0.45454545454545453},"ES_Gabba":{"seq":17,"val":-0.09090909090909091},"ES_Kardinia Park":{"seq":4,"val":-0.3333333333333333},"ES_M.C.G.":{"seq":185,"val":-0.45454545454545453},"ES_Marrara Oval":{"seq":1,"val":0.0},"ES_Perth Stadium":{"seq":13,"val":0.09090909090909091},"ES_S.C.G.":{"seq":15,"val":-0.8181818181818182},"ES_Stadium Australia":{"seq":7,"val":-0.6666666666666666},"ES_Subiaco":{"seq":25,"val":-0.45454545454545453},"ES_Sydney Showground":{"seq":10,"val":-0.1111111111111111},"ES_York Park":{"seq":2,"val":1.0},"FR_Adelaide Oval":{"seq":16,"val":-0.6363636363636364},"FR_Barossa Park":{"seq":1,"val":0.0},"FR_Bellerive Oval":{"seq":1,"val":0.0},"FR_Carrara":{"seq":15,"val":-0.2727272727272727},"FR_Cazaly's Stadium":{"seq":2,"val":1.0},"FR_Docklands":{"seq":65,"val":0.0},"FR_Football Park":{"seq":22,"val":-0.2727272727272727},"FR_Gabba":{"seq":12,"val":-0.2727272727272727},"FR_Kardinia Park":{"seq":15,"val":-0.2727272727272727},"FR_M.C.G.":{"seq":51,"val":-0.2727272727272727},"FR_Manuka Oval":{"seq":4,"val":-0.3333333333333333},"FR_Marrara Oval":{"seq":4,"val":-0.3333333333333333},"FR_Norwood Oval":{"seq":1,"val":0.0},"FR_Perth Stadium":{"seq":94,"val":0.6363636363636364},"FR_Princes Park":{"seq":3,"val":-1.0},"FR_S.C.G.":{"seq":17,"val":-0.18181818181818182},"FR_Stadium Australia":{"seq":2,"val":-1.0},"FR_Subiaco":{"seq":199,"val":-0.09090909090909091},"FR_Sydney Showground":{"seq":5,"val":-1.0},"FR_Traeger Park":{"seq":1,"val":0.0},"FR_York Park":{"seq":14,"val":-0.6363636363636364},"GE_Adelaide Oval":{"seq":23,"val":0.2727272727272727},"GE_Bellerive Oval":{"seq":3,"val":1.0},"GE_Carrara":{"seq":12,"val":0.45454545454545453},"GE_Docklands":{"seq":94,"val":-0.09090909090909091},"GE_Football Park":{"seq":17,"val":0.45454545454545453},"GE_Gabba":{"seq":24,"val":0.2727272727272727},"GE_Kardinia Park":{"seq":190,"val":0.6363636363636364},"GE_M.C.G.":{"seq":141,"val":0.45454545454545453},"GE_Manuka Oval":{"seq":5,"val":-0.5},"GE_Marrara Oval":{"seq":1,"val":0.0},"GE_Perth Stadium":{"seq":12,"val":-0.09090909090909091},"GE_Princes Park":{"seq":1,"val":0.0},"GE_S.C.G.":{"seq":17,"val":0.0},"GE_Stadium Australia":{"seq":5,"val":0.5},"GE_Subiaco":{"seq":24,"val":-0.09090909090909091},"GE_Sydney Showground":{"seq":5,"val":0.25},"GE_York Park":{"seq":1,"val":0.0},"GO_Adelaide Oval":{"seq":13,"val":-1.0},"GO_Barossa Park":{"seq":1,"val":0.0},"GO_Bellerive Oval":{"seq":2,"val":-1.0},"GO_Carrara":{"seq":142,"val":0.2727272727272727},"GO_Cazaly's Stadium":{"seq":8,"val":-0.42857142857142855},"GO_Docklands":{"seq":41,"val":-0.09090909090909091},"GO_Eureka Stadium":{"seq":4,"val":-0.3333333333333333},"GO_Football Park":{"seq":4,"val":-0.3333333333333333},"GO_Gabba":{"seq":22,"val":-0.8181818181818182},"GO_Jiangwan Stadium":{"seq":2,"val":-1.0},"GO_Kardinia Park":{"seq":9,"val":-1.0},"GO_M.C.G.":{"seq":19,"val":-0.45454545454545453},"GO_Manuka Oval":{"seq":4,"val":-0.3333333333333333},"GO_Marrara Oval":{"seq":10,"val":0.5555555555555556},"GO_Norwood Oval":{"seq":1,"val":0.0},"GO_Perth Stadium":{"seq":11,"val":-0.4},"GO_Riverway Stadium":{"seq":1,"val":0.0},"GO_S.C.G.":{"seq":10,"val":-0.1111111111111111},"GO_Subiaco":{"seq":10,"val":-0.7777777777777778},"GO_Summit Sport Park":{"seq":1,"val":0.0},"GO_Sydney Showground":{"seq":8,"val":-1.0},"GO_Traeger Park":{"seq":1,"val":0.0},"GO_York Park":{"seq":6,"val":-1.0},"GW_Adelaide Oval":{"seq":19,"val":0.09090909090909091},"GW_Bellerive Oval":{"seq":6,"val":0.0},"GW_Blacktown":{"seq":1,"val":0.0},"GW_Carrara":{"seq":13,"val":0.2727272727272727},"GW_Docklands":{"seq":35,"val":0.09090909090909091},"GW_Eureka Stadium":{"seq":3,"val":0.0},"GW_Football Park":{"seq":2,"val":-1.0},"GW_Gabba":{"seq":13,"val":0.09090909090909091},"GW_Kardinia Park":{"seq":9,"val":0.0},"GW_M.C.G.":{"seq":32,"val":-0.09090909090909091},"GW_Manuka Oval":{"seq":39,"val":-0.2727272727272727},"GW_Norwood Oval":{"seq":2,"val":1.0},"GW_Perth Stadium":{"seq":11,"val":-0.6},"GW_S.C.G.":{"seq":14,"val":-0.09090909090909091},"GW_Stadium Australia":{"seq":5,"val":-0.5},"GW_Subiaco":{"seq":8,"val":-0.7142857142857143},"GW_Summit Sport Park":{"seq":1,"val":0.0},"GW_Sydney Showground":{"seq":106,"val":0.6363636363636364},"GW_Traeger Park":{"seq":1,"val":0.0},"GW_York Park":{"seq":5,"val":-0.25},"HA_Adelaide Oval":{"seq":22,"val":-0.45454545454545453},"HA_Bellerive Oval":{"seq":1,"val":0.0},"HA_Carrara":{"seq":7,"val":-0.3333333333333333},"HA_Docklands":{"seq":87,"val":0.45454545454545453},"HA_Football Park":{"seq":17,"val":-0.09090909090909091},"HA_Gabba":{"seq":11,"val":-0.6},"HA_Kardinia Park":{"seq":4,"val":-0.3333333333333333},"HA_M.C.G.":{"seq":256,"val":0.45454545454545453},"HA_Manuka Oval":{"seq":2,"val":1.0},"HA_Marrara Oval":{"seq":2,"val":-1.0},"HA_Norwood Oval":{"seq":1,"val":0.0},"HA_Perth Stadium":{"seq":10,"val":-0.1111111111111111},"HA_Princes Park":{"seq":1,"val":0.0},"HA_S.C.G.":{"seq":16,"val":0.09090909090909091},"HA_Stadium Australia":{"seq":4,"val":-0.3333333333333333},"HA_Subiaco":{"seq":22,"val":-0.2727272727272727},"HA_Sydney Showground":{"seq":9,"val":-1.0},"HA_York Park":{"seq":85,"val":0.8181818181818182},"ME_Adelaide Oval":{"seq":22,"val":0.09090909090909091},"ME_Bellerive Oval":{"seq":5,"val":-0.5},"ME_Carrara":{"seq":12,"val":0.09090909090909091},"ME_Cazaly's Stadium":{"seq":2,"val":-1.0},"ME_Docklands":{"seq":65,"val":0.09090909090909091},"ME_Football Park":{"seq":15,"val":-1.0},"ME_Gabba":{"seq":22,"val":-0.09090909090909091},"ME_Kardinia Park":{"seq":19,"val":-0.6363636363636364},"ME_M.C.G.":{"seq":294,"val":-0.2727272727272727},"ME_Manuka Oval":{"seq":8,"val":-0.42857142857142855},"ME_Marrara Oval":{"seq":10,"val":-0.1111111111111111},"ME_Perth Stadium":{"seq":13,"val":0.09090909090909091},"ME_Princes Park":{"seq":5,"val":0.5},"ME_S.C.G.":{"seq":11,"val":-0.2},"ME_Stadium Australia":{"seq":1,"val":0.0},"ME_Subiaco":{"seq":22,"val":-1.0},"ME_Sydney Showground":{"seq":5,"val":0.0},"ME_Traeger Park":{"seq":11,"val":-0.2},"NM_Adelaide Oval":{"seq":13,"val":-1.0},"NM_Barossa Park":{"seq":1,"val":0.0},"NM_Bellerive Oval":{"seq":41,"val":-0.7272727272727273},"NM_Carrara":{"seq":24,"val":-0.6363636363636364},"NM_Cazaly's Stadium":{"seq":1,"val":0.0},"NM_Docklands":{"seq":253,"val":-0.6363636363636364},"NM_Football Park":{"seq":18,"val":-0.2727272727272727},"NM_Gabba":{"seq":19,"val":-0.2727272727272727},"NM_Hands Oval":{"seq":1,"val":0.0},"NM_Kardinia Park":{"seq":18,"val":-0.8181818181818182},"NM_M.C.G.":{"seq":63,"val":-0.6363636363636364},"NM_Manuka Oval":{"seq":16,"val":0.09090909090909091},"NM_Marrara Oval":{"seq":2,"val":-1.0},"NM_Norwood Oval":{"seq":1,"val":0.0},"NM_Perth Stadium":{"seq":10,"val":-0.1111111111111111},"NM_Princes Park":{"seq":2,"val":1.0},"NM_S.C.G.":{"seq":13,"val":-0.45454545454545453},"NM_Stadium Australia":{"seq":3,"val":-1.0},"NM_Subiaco":{"seq":25,"val":-0.6363636363636364},"NM_Summit Sport Park":{"seq":1,"val":0.0},"NM_Sydney Showground":{"seq":4,"val":1.0},"NM_York Park":{"seq":11,"val":-0.4},"PA_Adelaide Oval":{"seq":151,"val":-0.09090909090909091},"PA_Bellerive Oval":{"seq":4,"val":0.3333333333333333},"PA_Carrara":{"seq":13,"val":0.8181818181818182},"PA_Cazaly's Stadium":{"seq":1,"val":0.0},"PA_Docklands":{"seq":62,"val":0.6363636363636364},"PA_Eureka Stadium":{"seq":3,"val":1.0},"PA_Football Park":{"seq":152,"val":0.45454545454545453},"PA_Gabba":{"seq":20,"val":-0.09090909090909091},"PA_Jiangwan Stadium":{"seq":3,"val":1.0},"PA_Kardinia Park":{"seq":15,"val":-0.6363636363636364},"PA_M.C.G.":{"seq":47,"val":0.09090909090909091},"PA_Manuka Oval":{"seq":5,"val":-0.5},"PA_Marrara Oval":{"seq":10,"val":-0.1111111111111111},"PA_Perth Stadium":{"seq":9,"val":-0.25},"PA_Princes Park":{"seq":3,"val":0.0},"PA_S.C.G.":{"seq":15,"val":-0.45454545454545453},"PA_Subiaco":{"seq":24,"val":-0.45454545454545453},"PA_Sydney Showground":{"seq":3,"val":0.0},"PA_Traeger Park":{"seq":4,"val":1.0},"PA_York Park":{"seq":11,"val":0.0},"RI_Adelaide Oval":{"seq":23,"val":-0.09090909090909091},"RI_Barossa Park":{"seq":1,"val":0.0},"RI_Bellerive Oval":{"seq":3,"val":-1.0},"RI_Carrara":{"seq":16,"val":0.6363636363636364},"RI_Cazaly's Stadium":{"seq":3,"val":-1.0},"RI_Docklands":{"seq":96,"val":-0.7272727272727273},"RI_Football Park":{"seq":19,"val":-0.09090909090909091},"RI_Gabba":{"seq":19,"val":0.2727272727272727},"RI_Kardinia Park":{"seq":9,"val":-0.75},"RI_M.C.G.":{"seq":291,"val":-0.6363636363636364},"RI_Manuka Oval":{"seq":1,"val":0.0},"RI_Marrara Oval":{"seq":2,"val":-1.0},"RI_Norwood Oval":{"seq":1,"val":0.0},"RI_Perth Stadium":{"seq":11,"val":0.0},"RI_S.C.G.":{"seq":11,"val":-0.6},"RI_Stadium Australia":{"seq":2,"val":-1.0},"RI_Subiaco":{"seq":23,"val":-0.09090909090909091},"RI_Sydney Showground":{"seq":10,"val":0.1111111111111111},"RI_York Park":{"seq":1,"val":0.0},"SK_Adelaide Oval":{"seq":20,"val":-0.45454545454545453},"SK_Bellerive Oval":{"seq":4,"val":-1.0},"SK_Carrara":{"seq":16,"val":0.09090909090909091},"SK_Cazaly's Stadium":{"seq":2,"val":-1.0},"SK_Docklands":{"seq":293,"val":-0.2727272727272727},"SK_Football Park":{"seq":18,"val":-0.45454545454545453},"SK_Gabba":{"seq":22,"val":-0.09090909090909091},"SK_Jiangwan Stadium":{"seq":1,"val":0.0},"SK_Kardinia Park":{"seq":11,"val":-1.0},"SK_M.C.G.":{"seq":77,"val":-0.09090909090909091},"SK_Manuka Oval":{"seq":4,"val":0.3333333333333333},"SK_Norwood Oval":{"seq":2,"val":1.0},"SK_Perth Stadium":{"seq":10,"val":-0.1111111111111111},"SK_Princes Park":{"seq":2,"val":1.0},"SK_Riverway Stadium":{"seq":1,"val":0.0},"SK_S.C.G.":{"seq":14,"val":-0.6363636363636364},"SK_Stadium Australia":{"seq":3,"val":0.0},"SK_Subiaco":{"seq":23,"val":-0.09090909090909091},"SK_Sydney Showground":{"seq":5,"val":0.0},"SK_Traeger Park":{"seq":2,"val":-1.0},"SK_Wellington":{"seq":3,"val":-1.0},"SK_York Park":{"seq":13,"val":0.09090909090909091},"SY_Adelaide Oval":{"seq":16,"val":-0.09090909090909091},"SY_Bellerive Oval":{"seq":3,"val":1.0},"SY_Carrara":{"seq":13,"val":0.2727272727272727},"SY_Cazaly's Stadium":{"seq":2,"val":1.0},"SY_Docklands":{"seq":65,"val":0.2727272727272727},"SY_Football Park":{"seq":17,"val":0.2727272727272727},"SY_Gabba":{"seq":22,"val":-0.09090909090909091},"SY_Kardinia Park":{"seq":16,"val":-0.09090909090909091},"SY_M.C.G.":{"seq":73,"val":-0.45454545454545453},"SY_Manuka Oval":{"seq":12,"val":0.09090909090909091},"SY_Perth Stadium":{"seq":11,"val":0.4},"SY_Princes Park":{"seq":3,"val":1.0},"SY_S.C.G.":{"seq":225,"val":0.09090909090909091},"SY_Stadium Australia":{"seq":56,"val":0.09090909090909091},"SY_Subiaco":{"seq":22,"val":0.09090909090909091},"SY_Summit Sport Park":{"seq":1,"val":0.0},"SY_Sydney Showground":{"seq":9,"val":0.25},"SY_Wellington":{"seq":1,"val":0.0},"SY_York Park":{"seq":3,"val":0.0},"WC_Adelaide Oval":{"seq":21,"val":-0.6363636363636364},"WC_Bellerive Oval":{"seq":4,"val":-0.3333333333333333},"WC_Blacktown":{"seq":1,"val":0.0},"WC_Carrara":{"seq":12,"val":-0.36363636363636365},"WC_Docklands":{"seq":71,"val":-0.8181818181818182},"WC_Football Park":{"seq":22,"val":-0.45454545454545453},"WC_Gabba":{"seq":24,"val":0.09090909090909091},"WC_Hands Oval":{"seq":1,"val":0.0},"WC_Kardinia Park":{"seq":14,"val":-0.8181818181818182},"WC_M.C.G.":{"seq":50,"val":-0.2727272727272727},"WC_Manuka Oval":{"seq":3,"val":0.0},"WC_Marrara Oval":{"seq":1,"val":0.0},"WC_Perth Stadium":{"seq":95,"val":-0.8181818181818182},"WC_Princes Park":{"seq":4,"val":-0.3333333333333333},"WC_S.C.G.":{"seq":8,"val":-0.7142857142857143},"WC_Stadium Australia":{"seq":4,"val":-0.3333333333333333},"WC_Subiaco":{"seq":202,"val":0.45454545454545453},"WC_Summit Sport Park":{"seq":1,"val":0.0},"WC_Sydney Showground":{"seq":8,"val":-0.14285714285714285},"WC_Traeger Park":{"seq":1,"val":0.0},"WC_York Park":{"seq":8,"val":-0.42857142857142855},"WD_Adelaide Oval":{"seq":16,"val":-0.2727272727272727},"WD_Carrara":{"seq":12,"val":0.09090909090909091},"WD_Cazaly's Stadium":{"seq":5,"val":1.0},"WD_Docklands":{"seq":283,"val":0.6363636363636364},"WD_Eureka Stadium":{"seq":14,"val":0.45454545454545453},"WD_Football Park":{"seq":16,"val":-0.2727272727272727},"WD_Gabba":{"seq":19,"val":-0.45454545454545453},"WD_Kardinia Park":{"seq":16,"val":-0.6363636363636364},"WD_M.C.G.":{"seq":72,"val":-0.2727272727272727},"WD_Manuka Oval":{"seq":14,"val":0.45454545454545453},"WD_Marrara Oval":{"seq":11,"val":0.4},"WD_Norwood Oval":{"seq":1,"val":0.0},"WD_Perth Stadium":{"seq":12,"val":-0.2727272727272727},"WD_Princes Park":{"seq":4,"val":0.3333333333333333},"WD_S.C.G.":{"seq":17,"val":-0.09090909090909091},"WD_Subiaco":{"seq":23,"val":-0.6363636363636364},"WD_Sydney Showground":{"seq":6,"val":0.2},"WD_York Park":{"seq":9,"val":-0.25}},"team_abbrev":{"Brisbane Lions":"BL","Carlton":"CA","Collingwood":"CO","Essendon":"ES","Fremantle":"FR","Geelong":"GE","Gold Coast":"GO","Greater Western Sydney":"GW","Hawthorn":"HA","Melbourne":"ME","North Melbourne":"NM","Port Adelaide":"PA","Richmond":"RI","St Kilda":"SK","Sydney":"SY","West Coast":"WC","Western Bulldogs":"WD"}};
-BASELINE.team_abbrev['Adelaide'] = 'AD';
- 
-const TEAM_STATE = {
-  'Adelaide':'SA','Brisbane Lions':'QLD','Carlton':'VIC','Collingwood':'VIC',
-  'Essendon':'VIC','Fremantle':'WA','Geelong':'VIC','Gold Coast':'QLD',
-  'Greater Western Sydney':'NSW','Hawthorn':'VIC','Melbourne':'VIC',
-  'North Melbourne':'VIC','Port Adelaide':'SA','Richmond':'VIC','St Kilda':'VIC',
-  'Sydney':'NSW','West Coast':'WA','Western Bulldogs':'VIC'
-};
-const VENUE_STATE = {
-  'Adelaide Oval':'SA','Barossa Park':'SA','Bellerive Oval':'TAS','Blacktown':'NSW',
-  'Carrara':'QLD',"Cazaly's Stadium":'FNQ','Docklands':'VIC','Eureka Stadium':'VIC',
-  'Football Park':'SA','Gabba':'QLD','Hands Oval':'WA','Jiangwan Stadium':'OS',
-  'Kardinia Park':'VIC','M.C.G.':'VIC','Manuka Oval':'ACT','Marrara Oval':'NT',
-  'Norwood Oval':'SA','Princes Park':'VIC','Perth Stadium':'WA','Riverway Stadium':'FNQ',
-  'S.C.G.':'NSW','Stadium Australia':'NSW','Subiaco':'WA','Summit Sport Park':'SA',
-  'Sydney Showground':'NSW','Traeger Park':'NT','Wellington':'OS','York Park':'TAS'
-};
- 
-const TEAMS = Object.keys(TEAM_STATE);
-const ABBREV = BASELINE.team_abbrev;
-const abbrevOf = t => ABBREV[t] || t.substring(0,2).toUpperCase();
- 
-// ─── Rating engine ─────────────────────────────────────────────────────────
-function updateH2H(state, abbA, abbB, outcome) {
-  const key = `${abbA}_${abbB}`;
-  if (!state[key]) state[key] = {seq:0, val:0};
-  const s = state[key];
-  s.seq++;
-  if (s.seq === 1) { s.val = 0; return; }
-  s.val = s.val + (outcome - s.val) / (s.seq - 1);
-}
-function updateVenue(state, abbTeam, venue, outcome) {
-  const key = `${abbTeam}_${venue}`;
-  if (!state[key]) state[key] = {seq:0, val:0};
-  const s = state[key];
-  s.seq++;
-  if (s.seq === 1) { s.val = 0; return; }
-  s.val = s.val + (outcome - s.val) / (s.seq - 1);
-}
-function getH2H(state, abbA, abbB) {
-  const s = state[`${abbA}_${abbB}`];
-  return s && s.seq > 1 ? s.val : 0;
-}
-function getVenue(state, abbTeam, venue) {
-  const s = state[`${abbTeam}_${venue}`];
-  return s && s.seq > 1 ? s.val : 0;
-}
-function calcSurprise(teamRating, teamH2H, teamVenue, teamRestAdj, oppRating, oppH2H, oppVenue, oppRestAdj) {
-  const teamTotal = teamRating + teamH2H + teamVenue + teamRestAdj;
-  const oppTotal  = oppRating  + oppH2H  + oppVenue  + oppRestAdj;
-  return 1 + Math.tanh((oppTotal - teamTotal) / 30);
-}
-function travelBonus(team, venue) {
-  const ts = TEAM_STATE[team], vs = VENUE_STATE[venue];
-  return (ts && vs && ts !== vs) ? 0.2 : 0;
-}
-function restBonus(daysSince) {
-  // Post-game rating bonus for short rest
-  if (daysSince === null || daysSince === undefined) return 0;
-  return Math.max(0, (6.95 - daysSince) * 0.2);
-}
-function restAdjustment(daysSince) {
-  // Pre-game penalty for short rest — feeds into surprise/prediction
-  if (daysSince === null || daysSince === undefined) return 0;
-  return Math.min(0, (daysSince - 7) * 0.2);
-}
- 
-// ─── Process Squiggle games ────────────────────────────────────────────────
-function processGames(rawGames) {
-  console.log('Total games in JSON:', rawGames.filter(g=>g.year==2026).length);
-  
-  const h2h = JSON.parse(JSON.stringify(BASELINE.h2h));
-  const ven = JSON.parse(JSON.stringify(BASELINE.venues));
- 
-  const ratings = {};
-  const lastGameDate = {};
-  const trajectory = {};
-  const roundRatings = {};
-  const completedGamesByRound = {};
-  const roundStats = {}; // NEW: per-round metrics
- 
-  TEAMS.forEach(t => { ratings[t] = 0; trajectory[t] = []; });
- 
-  const games = rawGames
-    .filter(g => g.year == 2026)
-    .sort((a,b) => new Date(a.date) - new Date(b.date));
- 
-  const byRound = {};
-  games.forEach(g => {
-    const r = g.round;
-    if (!byRound[r]) byRound[r] = [];
-    byRound[r].push(g);
-  });
- 
-  const rounds = Object.keys(byRound).map(Number).sort((a,b)=>a-b);
-  let tipTotal=0, tipCorrect=0, upsets=0;
-  let latestCompletedRound = -1;
-  let nextRound = null;
- 
-  rounds.forEach(roundNum => {
-    const roundGames = byRound[roundNum];
-    completedGamesByRound[roundNum] = [];
- 
-    // Init round stats
-    const rs = {
-      biggestRise: null,       // {team, change, opponent}
-      biggestFall: null,       // {team, change, opponent}
-      mostSurprising: null,    // {hTeam, aTeam, prob, actual, factor, winner, loser}
-      mostInfluential: null,   // {hTeam, aTeam, totalSwing}
-      closestCall: null,       // {hTeam, aTeam, ratingGap}
-      tips: 0,
-      tipCorrect: 0,
-    };
- 
-    roundGames.forEach(g => {
-      const hTeam = g.hteam, aTeam = g.ateam;
-      if (!TEAMS.includes(hTeam) || !TEAMS.includes(aTeam)) return;
- 
-      const hAbb = abbrevOf(hTeam), aAbb = abbrevOf(aTeam);
-      const venue = g.venue || '';
- 
-      const hRating = ratings[hTeam];
-      const aRating = ratings[aTeam];
-      const hH2H = getH2H(h2h, hAbb, aAbb);
-      const aH2H = getH2H(h2h, aAbb, hAbb);
-      const hVen = getVenue(ven, hAbb, venue);
-      const aVen = getVenue(ven, aAbb, venue);
- 
-      const gameDate = new Date(g.date);
-      const hRestDays = lastGameDate[hTeam] ? (gameDate - lastGameDate[hTeam])/86400000 : null;
-      const aRestDays = lastGameDate[aTeam] ? (gameDate - lastGameDate[aTeam])/86400000 : null;
-      const hRestAdj = restAdjustment(hRestDays);
-      const aRestAdj = restAdjustment(aRestDays);
- 
-      const hSurprise = calcSurprise(hRating, hH2H, hVen, hRestAdj, aRating, aH2H, aVen, aRestAdj);
-      const aSurprise = calcSurprise(aRating, aH2H, aVen, aRestAdj, hRating, hH2H, hVen, hRestAdj);
-      const hProb = 1 - hSurprise / 2;
-      const aProb = 1 - aSurprise / 2;
- 
-      // Pre-game rating gap (for closest call)
-      const hTotal = hRating + hH2H + hVen + hRestAdj;
-      const aTotal = aRating + aH2H + aVen + aRestAdj;
-      const ratingGap = Math.abs(hTotal - aTotal);
-       if ((hTeam === 'Carlton' && aTeam === 'Western Bulldogs') || 
-          (hTeam === 'Western Bulldogs' && aTeam === 'Carlton')) {
-        console.log('game:', hTeam, 'vs', aTeam, hProb.toFixed(2), aProb.toFixed(2));
-      }
-      if (!g.complete) {
-        if (nextRound === null || roundNum < nextRound.round) nextRound = {round:roundNum, games:[]};
-        if (nextRound.round === roundNum) {
-          nextRound.games.push({
-            home:hTeam, away:aTeam, venue, date:g.date, tz:g.tz,
-            prob_home:hProb, prob_away:aProb,
-            h_rating:hRating, a_rating:aRating,
-            h_h2h:hH2H, a_h2h:aH2H,
-            h_ven:hVen, a_ven:aVen,
-            h_rest:hRestAdj, a_rest:aRestAdj
-          });
-        }
-        return;
-      }
- 
-      latestCompletedRound = Math.max(latestCompletedRound, roundNum);
-      const hScore = g.hscore, aScore = g.ascore;
-      const margin = hScore - aScore;
-      const hOutcome = margin > 0 ? 1 : margin < 0 ? -1 : 0;
-      const aOutcome = -hOutcome;
- 
-      // Tipping
-      if (roundNum > 0) {
-        const hTip = hProb > 0.5, aTip = aProb > 0.5;
-        if (hTip) {
-          tipTotal++; rs.tips++;
-          if (hOutcome===1) { tipCorrect++; rs.tipCorrect++; } else upsets++;
-        } else if (aTip) {
-          tipTotal++; rs.tips++;
-          if (aOutcome===1) { tipCorrect++; rs.tipCorrect++; } else upsets++;
-        }
-      }
- 
-      const hMarg = margin/60, aMarg = -margin/60;
-      const hHundred = hScore>=100?0.2:0, aHundred = aScore>=100?0.2:0;
-      const hTravel = travelBonus(hTeam,venue), aTravel = travelBonus(aTeam,venue);
-      const hRest_ = restBonus(hRestDays), aRest_ = restBonus(aRestDays);
- 
-      const hChange = (hSurprise*hOutcome) + hMarg + hHundred + hTravel + hRest_;
-      const aChange = (aSurprise*aOutcome) + aMarg + aHundred + aTravel + aRest_;
- 
-      ratings[hTeam] += hChange;
-      ratings[aTeam] += aChange;
- 
-      updateH2H(h2h, hAbb, aAbb, hOutcome);
-      updateH2H(h2h, aAbb, hAbb, aOutcome);
-      updateVenue(ven, hAbb, venue, hOutcome);
-      updateVenue(ven, aAbb, venue, aOutcome);
- 
-      lastGameDate[hTeam] = gameDate;
-      lastGameDate[aTeam] = gameDate;
- 
-      trajectory[hTeam].push({round:roundNum, rating:ratings[hTeam], change:hChange});
-      trajectory[aTeam].push({round:roundNum, rating:ratings[aTeam], change:aChange});
- 
-      completedGamesByRound[roundNum].push({
-        hteam:hTeam, ateam:aTeam,
-        w:hOutcome>=0?hTeam:aTeam, l:hOutcome>=0?aTeam:hTeam,
-        ws:hOutcome>=0?hScore:aScore, ls:hOutcome>=0?aScore:hScore,
-        margin:Math.abs(margin)
-      });
- 
-      // ── Round stats ──────────────────────────────────────────
-      // Biggest rise
-      [
-        {team:hTeam, change:hChange, opponent:aTeam},
-        {team:aTeam, change:aChange, opponent:hTeam}
-      ].forEach(entry => {
-        if (!rs.biggestRise || entry.change > rs.biggestRise.change) rs.biggestRise = entry;
-        if (!rs.biggestFall || entry.change < rs.biggestFall.change) rs.biggestFall = entry;
-      });
- 
-      // Most surprising: team whose result most defied their probability
-      // hProb = probability home team wins. Surprising if hProb high but lost, or low but won.
-      const surpriseFactor = hOutcome === 1 ? (1 - hProb) : hOutcome === -1 ? hProb : 0;
-      const isCoinFlip = Math.abs(hProb - 0.5) < 0.08;
-      if (!isCoinFlip && (!rs.mostSurprising || surpriseFactor > rs.mostSurprising.factor)) {
-        const winner = hOutcome === 1 ? hTeam : aTeam;
-        const loser  = hOutcome === 1 ? aTeam : hTeam;
-        const winnerProb = hOutcome === 1 ? hProb : aProb;
-        rs.mostSurprising = {hTeam, aTeam, factor:surpriseFactor, winner, loser, winnerProb};
-      }
- 
-      // Most influential: biggest combined absolute swing
-      const totalSwing = Math.abs(hChange) + Math.abs(aChange);
-      if (!rs.mostInfluential || totalSwing > rs.mostInfluential.totalSwing) {
-        rs.mostInfluential = {hTeam, aTeam, totalSwing,
-          w:hOutcome>=0?hTeam:aTeam, l:hOutcome>=0?aTeam:hTeam,
-          ws:hOutcome>=0?hScore:aScore, ls:hOutcome>=0?aScore:hScore};
-      }
- 
-      // Closest call: smallest pre-game rating gap
-      if (!rs.closestCall || ratingGap < rs.closestCall.ratingGap) {
-        rs.closestCall = {hTeam, aTeam, ratingGap,
-          w:hOutcome>=0?hTeam:aTeam, l:hOutcome>=0?aTeam:hTeam,
-          ws:hOutcome>=0?hScore:aScore, ls:hOutcome>=0?aScore:hScore,
-          hProb, aProb};
-      }
-    });
- 
-    roundStats[roundNum] = rs;
-    roundRatings[roundNum] = {...ratings};
-  });
- 
-  const rankings = TEAMS.map(t=>({team:t,rating:ratings[t]}))
-    .sort((a,b)=>b.rating-a.rating).map((r,i)=>({...r,rank:i+1}));
- 
-  return {rankings, trajectory, roundRatings, nextRound, latestCompletedRound,
-          completedGamesByRound, roundStats, rounds, tipping:{tipTotal,tipCorrect,upsets}};
+const DATA_URL = '/assets/data/sage.json';
+let data = null;
+let selectedRoundContext = null; // { year, round, roundname } of currently displayed rankings
+
+// ── Fetch ───────────────────────────────────────────────────────────────────
+async function loadData() {
+  try {
+    const res = await fetch(DATA_URL);
+    if (!res.ok) throw new Error(res.status);
+    data = await res.json();
+    document.getElementById('loading').style.display = 'none';
+    render();
+  } catch (e) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('rankings-grid').innerHTML =
+      '<div class="empty">Could not load data. Try refreshing.</div>';
+    console.error(e);
+  }
 }
 
- 
-// ─── State ─────────────────────────────────────────────────────────────────
-let STATE = null;
-let activeTeams = new Set(['Sydney','Fremantle','Geelong','Hawthorn','Melbourne','Essendon']);
-let sliderRound = null; // null = current
-let chartGeo = null;
- 
-function showTab(name) {
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+name).classList.add('active');
-  const idx = ['rankings','form','tips','timeline','about'].indexOf(name);
-  document.querySelectorAll('nav button')[idx].classList.add('active');
-  if (name==='form' && STATE) renderForm();
-}
- 
-// ─── Rankings ──────────────────────────────────────────────────────────────
-function getRankingsForRound(round) {
-  if (!STATE) return [];
-  const snap = round === null ? null : STATE.roundRatings[round];
-  if (!snap) {
-    return STATE.rankings;
-  }
-  return TEAMS.map(t=>({team:t, rating: snap[t] !== undefined ? snap[t] : 0}))
-    .sort((a,b)=>b.rating-a.rating).map((r,i)=>({...r,rank:i+1}));
-}
- 
-function renderRankings(round) {
-  const {latestCompletedRound} = STATE;
-  const r = round === null ? latestCompletedRound : round;
-  const rankings = getRankingsForRound(round === null ? null : round);
- 
-  document.getElementById('rankings-sub').textContent =
-    `After Round ${r} · 2026 Season`;
- 
-  const slider = document.getElementById('round-slider');
-  const sliderWrap = document.getElementById('slider-wrap');
-  const completedRounds = STATE.rounds.filter(rn => STATE.completedGamesByRound[rn]?.length > 0);
-  if (completedRounds.length > 1) {
-    sliderWrap.style.display = 'flex';
-    slider.min = completedRounds[0];
-    slider.max = latestCompletedRound;
-    if (!slider.dataset.init) {
-      slider.value = latestCompletedRound;
-      slider.dataset.init = '1';
-    }
-    document.getElementById('slider-val').textContent =
-      `Round ${r}${round === null || round === latestCompletedRound ? ' (now)' : ''}`;
-  }
- 
-  const maxAbs = Math.max(...rankings.map(x=>Math.abs(x.rating)), 0.01);
-  const leader = rankings[0], bottom = rankings[rankings.length-1];
-  document.getElementById('rankings-stats').innerHTML = `
-    <div class="stat-card"><div class="stat-label">Top Rated</div><div class="stat-value" style="font-size:1.2rem">${leader.team}</div><div class="stat-note">Rating ${leader.rating.toFixed(3)}</div></div>
-    <div class="stat-card"><div class="stat-label">Round</div><div class="stat-value">${r}</div><div class="stat-note">of 23 regular season</div></div>
-    <div class="stat-card"><div class="stat-label">Tipping</div><div class="stat-value">${STATE.tipping.tipCorrect}/${STATE.tipping.tipTotal}</div><div class="stat-note">${STATE.tipping.tipTotal?Math.round(STATE.tipping.tipCorrect/STATE.tipping.tipTotal*100):0}% accuracy</div></div>
-    <div class="stat-card"><div class="stat-label">Bottom Rated</div><div class="stat-value" style="font-size:1.2rem;color:var(--red)">${bottom.team}</div><div class="stat-note">${bottom.rating.toFixed(3)}</div></div>
-  `;
- 
-  const tbody = document.getElementById('rankings-body');
-  tbody.innerHTML = '';
-  rankings.forEach(rx => {
-    const pos = rx.rating >= 0;
-    const pct = (Math.abs(rx.rating)/maxAbs*100).toFixed(1);
-    const col = CHART_COLOR[rx.team] || '#888';
-    const tr = document.createElement('tr');
- 
-    // Rank cell
-    const td1 = document.createElement('td');
-    td1.innerHTML = `<span class="rank-num">${rx.rank}</span>`;
- 
-    // Name + icon cell
-    const td2 = document.createElement('td');
-    td2.style.cssText = 'display:flex;align-items:center;gap:.5rem;padding:.72rem 1rem;';
-    td2.appendChild(teamIcon(rx.team));
-    td2.appendChild(document.createTextNode(rx.team));
- 
-    // Bar cell
-    const td3 = document.createElement('td');
-    td3.className = 'bar-cell';
-    td3.innerHTML = `<div class="bar-wrap"><div class="bar-track" style="position:relative;width:120px;"><div class="${pos?'bar-fill-pos':'bar-fill-neg'}" style="width:${pct}%;background:${col}"></div></div></div>`;
- 
-    // Score cell
-    const td4 = document.createElement('td');
-    td4.innerHTML = `<span style="font-size:1.2rem" class="rating-val ${pos?'pos':'neg'}">${pos?'+':''}${rx.rating.toFixed(3)}</span>`;
- 
-    tr.append(td1, td2, td3, td4);
-    tr.addEventListener('click', () => openModal(rx.team));
-    tbody.appendChild(tr);
-  });
-}
- 
-function onSlider() {
-  const v = parseInt(document.getElementById('round-slider').value);
-  sliderRound = v;
-  renderRankings(v);
-}
- 
-// ─── Modal ─────────────────────────────────────────────────────────────────
-function openModal(team) {
-  const rankings = getRankingsForRound(sliderRound);
-  const r = rankings.find(x=>x.team===team);
-  const traj = STATE.trajectory[team] || [];
-  document.getElementById('modal-name').textContent = '';
-  const mHead = document.getElementById('modal-name');
-  mHead.style.cssText = 'display:flex;align-items:center;gap:.6rem;';
-  mHead.appendChild(teamIcon(team));
-  mHead.appendChild(document.createTextNode(team));
-  const last = traj[traj.length-1], prev = traj[traj.length-2];
-  const change = last && prev ? (last.rating-prev.rating) : null;
-  const hi = traj.length ? Math.max(...traj.map(t=>t.rating)) : 0;
-  const hiRound = traj.length ? traj[traj.map(t=>t.rating).indexOf(hi)].round : '—';
-  document.getElementById('modal-body').innerHTML = `
-    <div class="modal-row"><span class="modal-key">Rating</span><span style="color:${r.rating>=0?'var(--green)':'var(--red)'};font-weight:500">${r.rating>=0?'+':''}${r.rating.toFixed(3)}</span></div>
-    <div class="modal-row"><span class="modal-key">Rank</span><span style="font-weight:500">#${r.rank} of 18</span></div>
-    <div class="modal-row"><span class="modal-key">Last round change</span><span style="font-weight:500">${change!==null?(change>=0?'+':'')+change.toFixed(3):'—'}</span></div>
-    <div class="modal-row"><span class="modal-key">Season high</span><span style="font-weight:500">${hi.toFixed(3)} (Rd ${hiRound})</span></div>
-    <div class="modal-row"><span class="modal-key">Games played</span><span style="font-weight:500">${traj.length}</span></div>
-  `;
-  drawSpark(traj, team);
- 
-  // Last round results
-  const lrDiv = document.getElementById('modal-results');
-  lrDiv.innerHTML = '';
-  const lrGames = (STATE.completedGamesByRound[STATE.latestCompletedRound]||[])
-    .filter(g => g.hteam===team||g.ateam===team);
-  if (!lrGames.length) {
-    lrDiv.innerHTML = '<span style="color:var(--muted);font-size:.82rem">No game this round (bye)</span>';
-  } else {
-    lrGames.forEach(g => {
-      const won = g.w === team;
-      const opp = g.hteam===team ? g.ateam : g.hteam;
-      const ts = won ? g.ws : g.ls;
-      const os = won ? g.ls : g.ws;
-      const row = document.createElement('div');
-      row.className = 'lr-row';
-      row.innerHTML = `
-        <span class="lr-outcome" style="color:${won?'var(--green)':'var(--red)'}">${won?'W':'L'}</span>
-        <span class="lr-opp">vs ${opp}</span>
-        <span class="lr-score" style="color:${won?'var(--green)':'var(--red)'}">${ts} – ${os}</span>
-        <span style="font-size:.72rem;color:var(--muted);margin-left:.4rem">(${won?'+':''}${won?g.margin:-g.margin})</span>
-      `;
-      lrDiv.appendChild(row);
-    });
-  }
- 
-  document.getElementById('overlay').classList.add('open');
-}
- 
-function drawSpark(traj, team) {
-  const svg = document.getElementById('spark-svg');
-  svg.innerHTML = '';
-  if (!traj.length) return;
-  const W=420,H=75,P=6;
-  const vals = traj.map(t=>t.rating);
-  const rounds = traj.map(t=>t.round);
-  const minV = Math.min(...vals,0), maxV = Math.max(...vals,0);
-  const rng = maxV-minV||1;
-  const maxR = Math.max(...rounds)||1;
-  const sx = r => P + (r/maxR)*(W-P*2);
-  const sy = v => H-P - ((v-minV)/rng)*(H-P*2);
-  svg.appendChild(el('line',{x1:P,y1:sy(0),x2:W-P,y2:sy(0),stroke:'#252a34','stroke-width':1}));
-  let d=''; traj.forEach((pt,i)=>{d+=(i?'L':'M')+`${sx(pt.round).toFixed(1)},${sy(pt.rating).toFixed(1)} `;});
-  const col = CHART_COLOR[team] || '#e8c84a';
-  svg.appendChild(el('path',{d:d.trim(),fill:'none',stroke:col,'stroke-width':2,'stroke-linejoin':'round'}));
-  traj.forEach(pt=>{
-    svg.appendChild(el('circle',{cx:sx(pt.round),cy:sy(pt.rating),r:3,fill:pt.rating>=0?'var(--green)':'var(--red)'}));
-  });
-}
- 
-function el(tag,attrs) {
-  const e = document.createElementNS('http://www.w3.org/2000/svg',tag);
-  Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));
-  return e;
-}
- 
-function closeModal(e) {
-  if (e && e.target !== document.getElementById('overlay')) return;
-  document.getElementById('overlay').classList.remove('open');
-}
- 
-// ─── Form chart ────────────────────────────────────────────────────────────
-function renderForm() {
-  const svg = document.getElementById('form-svg');
-  const W=860,H=320,L=48,R=18,T=18,B=38;
-  svg.innerHTML = '';
-  const active = [...activeTeams].filter(t=>STATE.trajectory[t]?.length);
-  let allVals = [];
-  active.forEach(t=>STATE.trajectory[t].forEach(pt=>allVals.push(pt.rating)));
-  if (!allVals.length) return;
-  const minV=Math.min(...allVals)-1, maxV=Math.max(...allVals)+1;
-  const maxR = Math.max(...active.flatMap(t=>STATE.trajectory[t].map(pt=>pt.round)))||1;
-  const sx = r => L + (r/maxR)*(W-L-R);
-  const sy = v => T + (1-(v-minV)/(maxV-minV))*(H-T-B);
-  // gridlines
-  for(let r=0;r<=maxR;r++){
-    const x=sx(r);
-    svg.appendChild(el('line',{x1:x,y1:T,x2:x,y2:H-B,stroke:'#1a1e25','stroke-width':1}));
-    const lbl=document.createElementNS('http://www.w3.org/2000/svg','text');
-    lbl.setAttribute('x',x);lbl.setAttribute('y',H-B+16);lbl.setAttribute('text-anchor','middle');
-    lbl.setAttribute('fill','#4a4f60');lbl.setAttribute('font-size','11');lbl.setAttribute('font-family','Barlow Condensed,sans-serif');
-    lbl.textContent=r===0?'Pre':`R${r}`;
-    svg.appendChild(lbl);
-  }
-  // zero line
-  svg.appendChild(el('line',{x1:L,y1:sy(0),x2:W-R,y2:sy(0),stroke:'#252a34','stroke-width':1.5,'stroke-dasharray':'4,3'}));
-  // y ticks
-  [-20,-15,-10,-5,0,5,10,15,20,25].filter(v=>v>=minV&&v<=maxV).forEach(v=>{
-    const lbl=document.createElementNS('http://www.w3.org/2000/svg','text');
-    lbl.setAttribute('x',L-5);lbl.setAttribute('y',sy(v)+4);lbl.setAttribute('text-anchor','end');
-    lbl.setAttribute('fill','#3a3f50');lbl.setAttribute('font-size','10');lbl.setAttribute('font-family','Barlow Condensed,sans-serif');
-    lbl.textContent=v>0?`+${v}`:v;
-    svg.appendChild(lbl);
-  });
-// lines
-  const chartGeoTeams = [];
-  active.forEach(team=>{
-    const traj=STATE.trajectory[team];
-    let d='';traj.forEach((pt,i)=>{d+=(i?'L':'M')+`${sx(pt.round).toFixed(1)},${sy(pt.rating).toFixed(1)} `;});
-    svg.appendChild(el('path',{d:d.trim(),fill:'none',stroke:CHART_COLOR[team]||'#888','stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'}));
-    const last=traj[traj.length-1];
-    svg.appendChild(el('circle',{cx:sx(last.round),cy:sy(last.rating),r:4,fill:CHART_COLOR[team]||'#888'}));
-    chartGeoTeams.push({team, traj, col:CHART_COLOR[team]||'#888'});
-  });
-  chartGeo = {L,R,T,B,maxR,sx,sy,teams:chartGeoTeams};
-  // legend
-  const leg=document.getElementById('form-legend');
-  leg.innerHTML='';
-  TEAMS.forEach(t=>{
-    const on=activeTeams.has(t);
-    const item=document.createElement('div');
-    item.className='leg-item'+(on?' on':'');
-    item.innerHTML=`<div class="leg-dot" style="background:${CHART_COLOR[t]||'#888'}"></div>${t}`;
-    item.addEventListener('click',()=>{
-      if(activeTeams.has(t)){if(activeTeams.size>1)activeTeams.delete(t);}
-      else activeTeams.add(t);
-      renderForm();
-    });
-    leg.appendChild(item);
-  });
-}
- 
-// Tooltip
-document.addEventListener('DOMContentLoaded', () => {
-  const svgEl = document.getElementById('form-svg');
-  const tt = document.getElementById('chart-tooltip');
-  const chartWrap = document.querySelector('.chart-wrap');
- 
-  svgEl.addEventListener('mousemove', e => {
-    if (!chartGeo || !chartGeo.teams.length) return;
-    const rect = svgEl.getBoundingClientRect();
-    const scaleX = 860 / rect.width;
-    const scaleY = 320 / rect.height;
-    const mx = (e.clientX - rect.left) * scaleX;
-    const my = (e.clientY - rect.top) * scaleY;
- 
-    // Find closest round
-    const {L,R,T,B,maxR,sx,sy,teams} = chartGeo;
-    if (mx < L || mx > 860-R || my < T || my > 320-B) { tt.style.display='none'; return; }
-    const fracR = (mx - L) / (860-L-R);
-    const nearestRound = Math.round(fracR * maxR);
- 
-    // Find closest team at that round
-    let best = null, bestDist = 999;
-    teams.forEach(({team, traj, col}) => {
-      const pt = traj.find(p=>p.round===nearestRound);
-      if (!pt) return;
-      const px = sx(pt.round), py = sy(pt.rating);
-      const dist = Math.abs(my - py);
-      if (dist < bestDist) { bestDist=dist; best={team,pt,col}; }
-    });
- 
-    if (!best || bestDist > 40) { tt.style.display='none'; return; }
- 
-    const {team, pt, col} = best;
-    const traj = STATE.trajectory[team];
-    const ptIdx = traj.findIndex(p=>p.round===pt.round);
-    const prev = ptIdx > 0 ? traj[ptIdx-1] : null;
-    const chg = pt.change !== undefined ? pt.change : (prev ? pt.rating - prev.rating : null);
- 
-    document.getElementById('tt-team').textContent = team;
-    document.getElementById('tt-team').style.color = col;
-    document.getElementById('tt-rating').textContent =
-      `Round ${pt.round}  ·  ${pt.rating>=0?'+':''}${pt.rating.toFixed(2)}`;
-    document.getElementById('tt-change').textContent = chg !== null
-      ? `Change: ${chg>=0?'+':''}${chg.toFixed(2)}`
-      : '';
- 
-    const wrapRect = chartWrap.getBoundingClientRect();
-    let tx = e.clientX - wrapRect.left + 12;
-    let ty = e.clientY - wrapRect.top + 12;
-    if (tx + 180 > wrapRect.width) tx -= 190;
-    tt.style.left = tx + 'px';
-    tt.style.top = ty + 'px';
-    tt.style.display = 'block';
-  });
- 
-  svgEl.addEventListener('mouseleave', () => { tt.style.display='none'; });
+// ── Tabs ────────────────────────────────────────────────────────────────────
+document.getElementById('tabs').addEventListener('click', e => {
+  const btn = e.target.closest('.tab');
+  if (!btn) return;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + btn.dataset.panel).classList.add('active');
 });
- 
-// ─── Tips ──────────────────────────────────────────────────────────────────
-function fmtDate(dateStr) {
-  if (!dateStr) return '';
-  const d = new Date(dateStr);
-  if (isNaN(d)) return dateStr;
-  return d.toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short'}) +
-    ' · ' + d.toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'});
+
+// ── Render ──────────────────────────────────────────────────────────────────
+function render() {
+  renderMeta();
+  // Set context to current round for popup
+  if (data.current_round) {
+    selectedRoundContext = { year: data.current_round.year, roundname: data.current_round.roundname, round: data.current_round.round };
+  }
+  renderRankings(data.power_rankings);
+  renderPredictions(data.predictions || []);
+  renderResults(data.game_records || []);
+  initRankingsSelector();
+  initResultsYearFilter();
 }
- 
-function renderTips() {
-  const {nextRound} = STATE;
-  if (!nextRound) {
-    document.getElementById('tips-grid').innerHTML='<p style="color:var(--muted);font-size:.88rem">No upcoming games found.</p>';
+
+function renderMeta() {
+  const cr = data.current_round;
+  const gen = new Date(data.generated);
+  const fmt = gen.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
+  document.getElementById('meta-block').innerHTML =
+    (cr ? `<strong>${cr.roundname}, ${cr.year}</strong><br>` : '') +
+    `Updated ${fmt}`;
+}
+
+function renderRankings(rankings) {
+  if (!rankings || !rankings.length) {
+    document.getElementById('rankings-grid').innerHTML = '<div class="empty">No data.</div>';
     return;
   }
-  document.getElementById('tips-title').textContent = `Round ${nextRound.round} Tips`;
-  const grid = document.getElementById('tips-grid');
-  grid.innerHTML = '';
- 
-  nextRound.games.forEach(g => {
-    const hp=g.prob_home, ap=g.prob_away;
-    const homeFav=hp>=ap;
-    const confident=Math.abs(hp-0.5)>=0.05;
-    const tipTeam=homeFav?g.home:g.away;
-    const tipProb=homeFav?hp:ap;
- 
-    const card = document.createElement('div');
-    card.className = 'game-card';
- 
-    // Build matchup row with icons
-    const matchupDiv = document.createElement('div');
-    matchupDiv.className = 'matchup';
-    const hSpan = document.createElement('span');
-    hSpan.className = 'matchup-team';
-    hSpan.style.cssText = 'display:flex;align-items:center;gap:.4rem;';
-    hSpan.appendChild(teamIcon(g.home));
-    hSpan.appendChild(document.createTextNode(g.home));
-    const vsSpan = document.createElement('span');
-    vsSpan.className = 'vs';
-    vsSpan.textContent = 'vs';
-    const aSpan = document.createElement('span');
-    aSpan.className = 'matchup-team right';
-    aSpan.style.cssText = 'display:flex;align-items:center;justify-content:flex-end;gap:.4rem;';
-    aSpan.appendChild(document.createTextNode(g.away));
-    aSpan.appendChild(teamIcon(g.away));
-    matchupDiv.append(hSpan, vsSpan, aSpan);
- 
-    const hBarCol = CHART_COLOR[g.home] || '#555';
-    const aBarCol = CHART_COLOR[g.away] || '#555';
- 
-    card.innerHTML = `<div class="game-meta">${g.venue||'TBC'}${g.date ? ' · ' + fmtDate(g.date) : ''}</div>`;
-    card.appendChild(matchupDiv);
-    card.innerHTML += `
-      <div class="stats-row">
-        <div class="stats-side">
-          <div class="stat-item"><div class="stat-item-label">Rating</div><div class="stat-item-val" style="color:${hBarCol}">${g.h_rating>=0?'+':''}${g.h_rating.toFixed(3)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">Head to head</div><div class="stat-item-val">${g.h_h2h>=0?'+':''}${g.h_h2h.toFixed(3)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">Record at venue</div><div class="stat-item-val">${g.h_ven>=0?'+':''}${g.h_ven.toFixed(3)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">Short rest</div><div class="stat-item-val">${g.h_rest>=0?'+':''}${g.h_rest.toFixed(3)}</div></div>
+  const maxAbs = Math.max(...rankings.map(r => Math.abs(r.rating)), 0.01);
+  document.getElementById('rankings-grid').innerHTML = rankings.map((r, i) => {
+    const pct = Math.abs(r.rating) / maxAbs * 100;
+    const isNeg = r.rating < 0;
+    const delay = i * 30;
+    return `
+      <div class="rank-card" style="animation-delay:${delay}ms;cursor:pointer" onclick="openTeamPopup('${r.team}', ${r.rank}, ${r.rating})">
+        <div class="rank-num ${r.rank <= 3 ? 'top3' : ''}">${r.rank}</div>
+        <div class="rank-bar-wrap">
+          <div class="rank-team">${r.team}</div>
+          <div class="rank-bar-bg">
+            <div class="rank-bar-fill ${isNeg ? 'negative' : ''}" style="width:${pct}%"></div>
+          </div>
         </div>
-        <div class="stats-divider"></div>
-        <div class="stats-side right">
-          <div class="stat-item"><div class="stat-item-label">Rating</div><div class="stat-item-val" style="color:${aBarCol}">${g.a_rating>=0?'+':''}${g.a_rating.toFixed(3)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">Head to head</div><div class="stat-item-val">${g.a_h2h>=0?'+':''}${g.a_h2h.toFixed(3)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">Record at venue</div><div class="stat-item-val">${g.a_ven>=0?'+':''}${g.a_ven.toFixed(3)}</div></div>
-          <div class="stat-item"><div class="stat-item-label">Short rest</div><div class="stat-item-val">${g.a_rest>=0?'+':''}${g.a_rest.toFixed(3)}</div></div>
-        </div>
-      </div>
-      <hr class="divider-line">
-      <div class="prob-bar">
-        <div class="prob-h" style="width:${(hp*100).toFixed(1)}%;background:${hBarCol}"></div>
-        <div class="prob-a" style="flex:1;background:${aBarCol}"></div>
-      </div>
-      <div class="prob-labels">
-        <span class="prob-pct" style="color:${homeFav?'var(--accent)':'var(--muted)'}">${(hp*100).toFixed(0)}%</span>
-        <span class="prob-pct" style="color:${!homeFav?'var(--accent)':'var(--muted)'}">${(ap*100).toFixed(0)}%</span>
-      </div>
-      <span class="tip-badge ${confident?'confident':'tossup'}">
-        ${confident?`▶ ${tipTeam} (${(tipProb*100).toFixed(0)}%)`:'⚖ Toss-up'}
-      </span>
-    `;
-    grid.appendChild(card);
-  });
-}
- 
-// ─── Timeline ──────────────────────────────────────────────────────────────
-function renderTimeline() {
-  const {rounds, completedGamesByRound, roundStats, latestCompletedRound} = STATE;
-  const list = document.getElementById('timeline-list');
-  list.innerHTML = '';
- 
-  const completedRounds = rounds
-    .filter(r => completedGamesByRound[r]?.length > 0)
-    .sort((a,b) => b - a);
- 
-  completedRounds.forEach((roundNum, idx) => {
-    const rs = roundStats[roundNum];
-    if (!rs) return;
- 
-    const block = document.createElement('div');
-    block.className = 'round-block' + (idx === 0 ? ' open' : '');
- 
-    const label = roundNum === 0 ? 'Opening Round' : `Round ${roundNum}`;
-    const tipStr = rs.tips > 0 ? `${rs.tipCorrect}/${rs.tips} tips` : '';
- 
-    // Header
-    const header = document.createElement('div');
-    header.className = 'round-header';
-    header.innerHTML = `
-      <span class="round-header-left">${label}</span>
-      <span class="round-header-right">${tipStr}</span>
-      <span class="round-chevron">▼</span>
-    `;
-    header.addEventListener('click', () => block.classList.toggle('open'));
- 
-    // Content
-    const content = document.createElement('div');
-    content.className = 'round-games';
-    content.style.cssText = 'padding:.75rem;';
- 
-    const cards = [];
- 
-    // Biggest Rise
-    if (rs.biggestRise) {
-      const r = rs.biggestRise;
-      cards.push(statCard(
-        'Biggest Rise',
-        r.team, teamIcon(r.team),
-        `+${r.change.toFixed(2)}`, 'var(--green)',
-        `vs ${r.opponent}`
-      ));
-    }
- 
-    // Biggest Fall
-    if (rs.biggestFall) {
-      const r = rs.biggestFall;
-      cards.push(statCard(
-        'Biggest Fall',
-        r.team, teamIcon(r.team),
-        `${r.change.toFixed(2)}`, 'var(--red)',
-        `vs ${r.opponent}`
-      ));
-    }
- 
-    // Most Surprising
-    if (rs.mostSurprising) {
-      const s = rs.mostSurprising;
-      const pct = Math.round((1 - s.winnerProb) * 100);
-      cards.push(statCard(
-        'Most Surprising',
-        s.winner, teamIcon(s.winner),
-        `${pct}% chance`, 'var(--accent)',
-        `beat ${s.loser}`
-      ));
-    }
- 
-    // Most Influential
-    if (rs.mostInfluential) {
-      const m = rs.mostInfluential;
-      cards.push(twoTeamCard(
-        'Most Influential',
-        m.w, teamIcon(m.w), m.ws,
-        m.l, teamIcon(m.l), m.ls,
-        `Combined swing ${m.totalSwing.toFixed(2)}`
-      ));
-    }
- 
-    // Closest Call
-    if (rs.closestCall) {
-      const c = rs.closestCall;
-      const favPct = Math.round(Math.max(c.hProb, c.aProb) * 100);
-      cards.push(twoTeamCard(
-        'Closest Call',
-        c.w, teamIcon(c.w), c.ws,
-        c.l, teamIcon(c.l), c.ls,
-        `Favourite had just ${favPct}%`
-      ));
-    }
- 
-    // Tipping for round
-    if (rs.tips > 0) {
-      const pct = Math.round(rs.tipCorrect / rs.tips * 100);
-      const col = pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--accent)' : 'var(--red)';
-      cards.push(statCard(
-        'Round Tipping',
-        `${rs.tipCorrect} of ${rs.tips}`, null,
-        `${pct}%`, col,
-        'confident tips correct'
-      ));
-    }
- 
-    // Grid layout
-    const grid = document.createElement('div');
-    grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.6rem;';
-    cards.forEach(c => grid.appendChild(c));
-    content.appendChild(grid);
- 
-    block.append(header, content);
-    list.appendChild(block);
-  });
-}
- 
-// ─── Helper: single-team stat card ─────────────────────────────────────────
-function statCard(title, mainText, iconEl, valueText, valueColor, subText) {
-  const card = document.createElement('div');
-  card.style.cssText = `
-    background:var(--surface2);border:1px solid var(--border);border-radius:8px;
-    padding:.75rem;display:flex;flex-direction:column;gap:.3rem;
-  `;
- 
-  const titleEl = document.createElement('div');
-  titleEl.style.cssText = 'font-family:"Barlow Condensed",sans-serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);';
-  titleEl.textContent = title;
- 
-  const mainRow = document.createElement('div');
-  mainRow.style.cssText = 'display:flex;align-items:center;gap:.4rem;';
-  if (iconEl) mainRow.appendChild(iconEl);
-  const mainLabel = document.createElement('span');
-  mainLabel.style.cssText = 'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.95rem;';
-  mainLabel.textContent = mainText;
-  mainRow.appendChild(mainLabel);
- 
-  const valueEl = document.createElement('div');
-  valueEl.style.cssText = `font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:1.3rem;color:${valueColor};line-height:1;`;
-  valueEl.textContent = valueText;
- 
-  const subEl = document.createElement('div');
-  subEl.style.cssText = 'font-size:.75rem;color:var(--muted);';
-  subEl.textContent = subText;
- 
-  card.append(titleEl, mainRow, valueEl, subEl);
-  return card;
-}
- 
-// ─── Helper: two-team matchup card ─────────────────────────────────────────
-function twoTeamCard(title, wTeam, wIcon, wScore, lTeam, lIcon, lScore, subText) {
-  const card = document.createElement('div');
-  card.style.cssText = `
-    background:var(--surface2);border:1px solid var(--border);border-radius:8px;
-    padding:.75rem;display:flex;flex-direction:column;gap:.35rem;
-  `;
- 
-  const titleEl = document.createElement('div');
-  titleEl.style.cssText = 'font-family:"Barlow Condensed",sans-serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);';
-  titleEl.textContent = title;
- 
-  const matchupEl = document.createElement('div');
-  matchupEl.style.cssText = 'display:flex;align-items:center;gap:.4rem;font-family:"Barlow Condensed",sans-serif;font-size:.9rem;';
- 
-  const wRow = document.createElement('span');
-  wRow.style.cssText = 'display:flex;align-items:center;gap:.3rem;flex:1;font-weight:700;';
-  wRow.appendChild(wIcon);
-  wRow.appendChild(document.createTextNode(wTeam));
- 
-  const scoreEl = document.createElement('span');
-  scoreEl.style.cssText = 'font-weight:700;white-space:nowrap;';
-  scoreEl.innerHTML = `<span style="color:var(--green)">${wScore}</span> – <span style="color:var(--red)">${lScore}</span>`;
- 
-  const lRow = document.createElement('span');
-  lRow.style.cssText = 'display:flex;align-items:center;justify-content:flex-end;gap:.3rem;flex:1;color:var(--muted);';
-  lRow.appendChild(document.createTextNode(lTeam));
-  lRow.appendChild(lIcon);
- 
-  matchupEl.append(wRow, scoreEl, lRow);
- 
-  const subEl = document.createElement('div');
-  subEl.style.cssText = 'font-size:.75rem;color:var(--muted);';
-  subEl.textContent = subText;
- 
-  card.append(titleEl, matchupEl, subEl);
-  return card;
+        <div class="rank-rating ${isNeg ? 'negative' : 'positive'}">${r.rating > 0 ? '+' : ''}${r.rating.toFixed(3)}</div>
+      </div>`;
+  }).join('');
 }
 
-// ─── Fetch & init ──────────────────────────────────────────────────────────
-async function init() {
-  const dot=document.getElementById('sdot');
-  const lbl=document.getElementById('slabel');
-  try {
-    const res = await fetch('/assets/data/games.json');
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    STATE = processGames(json.games);
-    dot.classList.add('live');
-    const now = new Date().toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'});
-    lbl.textContent = `Live · ${now}`;
-    renderRankings(null);
-    renderTips();
-    renderTimeline();
-  } catch(e) {
-    dot.classList.add('error');
-    lbl.textContent = 'Error loading data';
-    console.error(e);
-    document.getElementById('rankings-body').innerHTML =
-      `<tr><td colspan="4"><div class="error-msg">Could not load data. Check console.</div></td></tr>`;
+function confClass(pct) {
+  if (pct >= 65) return 'high';
+  if (pct >= 52) return 'mid';
+  return 'low';
+}
+
+function renderPredictions(preds) {
+  const el = document.getElementById('predictions-list');
+  const label = document.getElementById('pred-label');
+  if (!preds.length) {
+    el.innerHTML = '<div class="empty">No upcoming matches in data — check back after the next update.</div>';
+    return;
+  }
+
+  // Group by round
+  const byRound = {};
+  preds.forEach(p => {
+    const key = `${p.year}__${p.round}`;
+    if (!byRound[key]) byRound[key] = { roundname: p.roundname, year: p.year, games: [] };
+    byRound[key].games.push(p);
+  });
+
+  let html = '';
+  let i = 0;
+  for (const key of Object.keys(byRound)) {
+    const rnd = byRound[key];
+    html += `<div class="section-label" style="margin-top:${i > 0 ? 28 : 0}px;margin-bottom:12px">${rnd.roundname} ${rnd.year}</div>`;
+    rnd.games.forEach(p => {
+      const hFav = p.h_pred >= p.a_pred;
+      const date = p.date ? new Date(p.date).toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' }) : '';
+      const time = p.date ? new Date(p.date).toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' }) : '';
+      const mathId = `math-${i}`;
+      const hasMath = p.h_output !== undefined;
+
+      function fv(v) {
+        if (v === undefined || v === null) return '—';
+        const s = v >= 0 ? '+' : '';
+        return `<span class="val ${v >= 0 ? 'pos' : 'neg'}">${s}${v.toFixed(3)}</span>`;
+      }
+
+      let mathHtml = '';
+      if (hasMath) {
+        const hRestLabel = p.h_rest !== 0 ? ` Rest <span class="val ${p.h_rest >= 0 ? 'pos':'neg'}">${p.h_rest >= 0?'+':''}${p.h_rest.toFixed(3)}</span>` : '';
+        const aRestLabel = p.a_rest !== 0 ? ` Rest <span class="val ${p.a_rest >= 0 ? 'pos':'neg'}">${p.a_rest >= 0?'+':''}${p.a_rest.toFixed(3)}</span>` : '';
+
+        mathHtml = `
+          <div class="pred-math" id="${mathId}">
+            <div class="pred-math-inner">
+              <div class="math-team-block">
+                <div class="math-team-name">${p.hteam}</div>
+                <div class="math-line">SAGE ${fv(p.h_rating)} R11 ${fv(p.h_r11)} V11 ${fv(p.h_v11)}${hRestLabel}</div>
+                <div class="math-line">Output = <span class="eq">${fv(p.h_output)}</span></div>
+                <div class="math-line">SF = 1 + tanh((${p.a_output?.toFixed(3)} − ${p.h_output?.toFixed(3)}) / 30)</div>
+                <div class="math-line">SF = <span class="eq">${p.h_sf?.toFixed(3)}</span></div>
+                <div class="math-result">1 − (${p.h_sf?.toFixed(3)} / 2) = ${p.h_pred.toFixed(1)}%</div>
+              </div>
+              <div class="math-team-block">
+                <div class="math-team-name">${p.ateam}</div>
+                <div class="math-line">SAGE ${fv(p.a_rating)} R11 ${fv(p.a_r11)} V11 ${fv(p.a_v11)}${aRestLabel}</div>
+                <div class="math-line">Output = <span class="eq">${fv(p.a_output)}</span></div>
+                <div class="math-line">SF = 1 + tanh((${p.h_output?.toFixed(3)} − ${p.a_output?.toFixed(3)}) / 30)</div>
+                <div class="math-line">SF = <span class="eq">${p.a_sf?.toFixed(3)}</span></div>
+                <div class="math-result">1 − (${p.a_sf?.toFixed(3)} / 2) = ${p.a_pred.toFixed(1)}%</div>
+              </div>
+            </div>
+          </div>`;
+      }
+
+      html += `
+        <div class="pred-card" style="animation-delay:${i * 40}ms">
+          <div class="pred-meta">
+            <span>${date} ${time}</span>
+            <span>${p.venue || ''}</span>
+          </div>
+          <div class="pred-matchup">
+            <div>
+              <div class="pred-team home ${hFav ? 'fav' : ''}">${p.hteam}</div>
+              <div class="pred-conf home ${confClass(p.h_pred)}"><strong>${p.h_pred.toFixed(1)}%</strong></div>
+            </div>
+            <div class="pred-vs">vs</div>
+            <div>
+              <div class="pred-team away ${!hFav ? 'fav' : ''}">${p.ateam}</div>
+              <div class="pred-conf away ${confClass(p.a_pred)}"><strong>${p.a_pred.toFixed(1)}%</strong></div>
+            </div>
+          </div>
+          <div class="pred-bar">
+            <div class="pred-bar-h" style="width:${p.h_pred}%"></div>
+            <div class="pred-bar-a"></div>
+          </div>
+          ${hasMath ? `<button class="pred-math-toggle" onclick="toggleMath('${mathId}', this)"><span class="arrow">▶</span> Show working</button>` : ''}
+          ${mathHtml}
+        </div>`;
+      i++;
+    });
+  }
+  el.innerHTML = html;
+}
+
+const SVG_TICK = `<svg class="tip-svg" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="9" cy="9" r="9" fill="#c8f135"/>
+  <polyline points="4.5,9.5 7.5,12.5 13.5,6" stroke="#0d0f12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>`;
+
+const SVG_CROSS = `<svg class="tip-svg" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="9" cy="9" r="9" fill="#f1a035"/>
+  <line x1="5.5" y1="5.5" x2="12.5" y2="12.5" stroke="#0d0f12" stroke-width="2" stroke-linecap="round"/>
+  <line x1="12.5" y1="5.5" x2="5.5" y2="12.5" stroke="#0d0f12" stroke-width="2" stroke-linecap="round"/>
+</svg>`;
+
+const SVG_DASH = `<svg class="tip-svg" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="9" cy="9" r="9" fill="#3a3f4a"/>
+  <line x1="5" y1="9" x2="13" y2="9" stroke="#6b7280" stroke-width="2" stroke-linecap="round"/>
+</svg>`;
+
+function getTipResult(g) {
+  const hp = g.h_pred ?? 50;
+  const ap = g.a_pred ?? 50;
+  const isDraw = g.hscore === g.ascore;
+  const hWon = g.hscore > g.ascore;
+
+  if (hp === ap) {
+    return { tipped: null, correct: isDraw };
+  }
+  const tipped = hp > ap ? g.hteam : g.ateam;
+  const tippedWon = hp > ap ? hWon : !hWon && !isDraw;
+  return { tipped, correct: tippedWon && !isDraw };
+}
+
+function initResultsYearFilter() {
+  const sel = document.getElementById('results-year-select');
+  const years = [...new Set((data.game_records || []).map(g => g.year))].sort((a,b) => b-a);
+  years.forEach(y => {
+    const opt = document.createElement('option');
+    opt.value = y;
+    opt.textContent = y;
+    sel.appendChild(opt);
+  });
+  // Default to current year
+  const currentYear = data.current_round ? data.current_round.year : years[0];
+  sel.value = currentYear;
+  sel.addEventListener('change', () => renderResults(data.game_records || []));
+}
+
+function renderResults(records) {
+  const tbody = document.getElementById('results-body');
+  const sel = document.getElementById('results-year-select');
+  const selectedYear = sel ? parseInt(sel.value) : null;
+
+  // Filter by year, newest first
+  const filtered = [...records]
+    .filter(g => !selectedYear || g.year === selectedYear)
+    .reverse();
+
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="11" style="text-align:center;padding:48px;font-family:var(--mono);font-size:0.72rem;color:var(--dim)">No data.</td></tr>';
+    document.getElementById('tips-summary').textContent = '';
+    return;
+  }
+
+  // Tipping summary for selected year
+  let correct = 0, total = 0, noTip = 0;
+  filtered.forEach(g => {
+    const { tipped, correct: c } = getTipResult(g);
+    if (tipped === null) { noTip++; return; }
+    total++;
+    if (c) correct++;
+  });
+  const pct = total > 0 ? ((correct / total) * 100).toFixed(1) : '—';
+  document.getElementById('tips-summary').textContent =
+    `${correct}/${total} correct (${pct}%)${noTip > 0 ? ' · ' + noTip + ' no tip' : ''}`;
+
+  tbody.innerHTML = filtered.map(g => {
+    const hWon = g.hscore > g.ascore;
+    const aWon = g.ascore > g.hscore;
+    const { tipped, correct: tipCorrect } = getTipResult(g);
+    const noTipGame = tipped === null;
+    const tipIcon = noTipGame ? SVG_DASH : (tipCorrect ? SVG_TICK : SVG_CROSS);
+
+    const date = g.date ? new Date(g.date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short' }) : '—';
+    const venue = g.venue || '';
+
+    return `
+      <tr>
+        <td class="num">${g.roundname || 'R' + g.round}</td>
+        <td style="font-family:var(--mono);font-size:0.65rem;color:var(--dim);line-height:1.5">${date}<br><span style="color:var(--muted)">${venue}</span></td>
+        <td class="team-name ${hWon ? 'winner' : ''}">${g.hteam}</td>
+        <td class="num">${g.hscore}</td>
+        <td class="${g.h_delta >= 0 ? 'delta-pos' : 'delta-neg'}">${g.h_delta >= 0 ? '+' : ''}${g.h_delta?.toFixed(3)}</td>
+        <td class="num">${g.h_pred?.toFixed(1) ?? '—'}%</td>
+        <td class="tip-result">${tipIcon}</td>
+        <td class="num">${g.a_pred?.toFixed(1) ?? '—'}%</td>
+        <td class="${g.a_delta >= 0 ? 'delta-pos' : 'delta-neg'}">${g.a_delta >= 0 ? '+' : ''}${g.a_delta?.toFixed(3)}</td>
+        <td class="num">${g.ascore}</td>
+        <td class="team-name ${aWon ? 'winner' : ''}">${g.ateam}</td>
+      </tr>`;
+  }).join('');
+}
+
+function initRankingsSelector() {
+  const yearSel = document.getElementById('rankings-year-select');
+  const roundSel = document.getElementById('rankings-round-select');
+  const rounds = data.ratings_by_round || [];
+
+  // Build year list newest first
+  const years = [...new Set(rounds.map(r => r.year))].sort((a, b) => b - a);
+  years.forEach(y => {
+    const opt = document.createElement('option');
+    opt.value = y;
+    opt.textContent = y;
+    yearSel.appendChild(opt);
+  });
+
+  // Default to current year
+  const currentYear = data.current_round ? data.current_round.year : years[0];
+  yearSel.value = currentYear;
+
+  function populateRounds(year) {
+    roundSel.innerHTML = '';
+    const yearRounds = rounds.filter(r => r.year === parseInt(year)).reverse();
+    yearRounds.forEach((r, i) => {
+      const opt = document.createElement('option');
+      opt.value = JSON.stringify({ ratings: r.ratings, roundname: r.roundname, year: r.year });
+      opt.textContent = r.roundname;
+      if (i === 0) opt.selected = true;
+      roundSel.appendChild(opt);
+    });
+    applyRoundSelection();
+  }
+
+  function applyRoundSelection() {
+    if (!roundSel.value) return;
+    const { ratings, roundname, year } = JSON.parse(roundSel.value);
+    // Find round number from ratings_by_round
+    const roundData = (data.ratings_by_round || []).find(r => r.year === year && r.roundname === roundname);
+    selectedRoundContext = { year, roundname, round: roundData ? roundData.round : null };
+    const ranked = Object.entries(ratings)
+      .sort((a, b) => b[1] - a[1])
+      .map(([team, rating], i) => ({ rank: i + 1, team, rating }));
+    document.querySelector('#panel-rankings .section-label').textContent =
+      `SAGE Ratings — ${roundname} ${year}`;
+    renderRankings(ranked);
+  }
+
+  yearSel.addEventListener('change', () => populateRounds(yearSel.value));
+  roundSel.addEventListener('change', applyRoundSelection);
+
+  populateRounds(currentYear);
+}
+
+
+
+// ── Team Popup ────────────────────────────────────────────────────────────────
+
+function openTeamPopup(team, rank, rating) {
+  const ctx = selectedRoundContext || data.current_round || {};
+  const ctxYear = ctx.year || new Date().getFullYear();
+  const ctxRound = ctx.round;
+
+  // Find last game for this team up to and including the selected round
+  const records = (data.game_records || []);
+  const eligibleGames = records.filter(g =>
+    (g.hteam === team || g.ateam === team) &&
+    (g.year < ctxYear || (g.year === ctxYear && (ctxRound === null || g.round <= ctxRound)))
+  );
+  const lastGame = eligibleGames.length ? eligibleGames[eligibleGames.length - 1] : null;
+
+  // Sparkline for the selected year
+  const seasonRounds = (data.ratings_by_round || []).filter(r => r.year === ctxYear);
+
+  // Build stats
+  let statsHtml = '';
+
+  const ratingCls = rating >= 0 ? 'pos' : 'neg';
+  const ratingStr = (rating >= 0 ? '+' : '') + rating.toFixed(4);
+  statsHtml += `<div class="popup-stat">
+    <span class="popup-stat-label">SAGE Rating</span>
+    <span class="popup-stat-value ${ratingCls}">${ratingStr}</span>
+  </div>`;
+
+  if (lastGame) {
+    const isHome = lastGame.hteam === team;
+    const opponent = isHome ? lastGame.ateam : lastGame.hteam;
+    const delta = isHome ? lastGame.h_delta : lastGame.a_delta;
+    const ratingAfter = isHome ? lastGame.h_rating_after : lastGame.a_rating_after;
+    const deltaCls = delta >= 0 ? 'pos' : 'neg';
+    const deltaStr = (delta >= 0 ? '+' : '') + delta.toFixed(4);
+    const result = isHome
+      ? (lastGame.hscore > lastGame.ascore ? 'W' : lastGame.hscore < lastGame.ascore ? 'L' : 'D')
+      : (lastGame.ascore > lastGame.hscore ? 'W' : lastGame.ascore < lastGame.hscore ? 'L' : 'D');
+    const score = isHome
+      ? `${lastGame.hscore} – ${lastGame.ascore}`
+      : `${lastGame.ascore} – ${lastGame.hscore}`;
+
+    statsHtml += `<div class="popup-stat">
+      <span class="popup-stat-label">Last game</span>
+      <span class="popup-stat-value">${result} vs ${opponent} &nbsp;${score}</span>
+    </div>`;
+    statsHtml += `<div class="popup-stat">
+      <span class="popup-stat-label">Last Δ</span>
+      <span class="popup-stat-value ${deltaCls}">${deltaStr}</span>
+    </div>`;
+    statsHtml += `<div class="popup-stat">
+      <span class="popup-stat-label">Round</span>
+      <span class="popup-stat-value">${lastGame.roundname}</span>
+    </div>`;
+  }
+
+  document.getElementById('popup-team').textContent = team;
+  document.getElementById('popup-rank').textContent = `Rank ${rank} · ${ctx.roundname || ''} ${ctxYear}`;
+  document.getElementById('popup-stats').innerHTML = statsHtml;
+
+  document.getElementById('team-popup').classList.add('open');
+}
+
+
+// Close popup
+document.getElementById('popup-close').addEventListener('click', () => {
+  document.getElementById('team-popup').classList.remove('open');
+});
+
+document.getElementById('team-popup').addEventListener('click', e => {
+  if (e.target === document.getElementById('team-popup')) {
+    document.getElementById('team-popup').classList.remove('open');
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('team-popup').classList.remove('open');
+});
+
+// ── Season Graph ─────────────────────────────────────────────────────────────
+
+const TEAM_COLORS = {
+  'Adelaide':              '#002b5c',
+  'Brisbane Lions':        '#a30046',
+  'Carlton':               '#0e1c37',
+  'Collingwood':           '#a0a0a0',
+  'Essendon':              '#cc2031',
+  'Fremantle':             '#2c2180',
+  'Geelong':               '#1c3c6e',
+  'Gold Coast':            '#e8292e',
+  'Greater Western Sydney':'#f15a22',
+  'Hawthorn':              '#fbbf15',
+  'Melbourne':             '#cc2031',
+  'North Melbourne':       '#003b6d',
+  'Port Adelaide':         '#008aab',
+  'Richmond':              '#ffd200',
+  'St Kilda':              '#ed1c24',
+  'Sydney':                '#e4002b',
+  'West Coast':            '#002b8c',
+  'Western Bulldogs':      '#0057a8',
+};
+
+// Brighten dark colors for dark background readability
+const TEAM_COLORS_DISPLAY = {
+  'Adelaide':              '#4a7abf',
+  'Brisbane Lions':        '#e0507a',
+  'Carlton':               '#5588cc',
+  'Collingwood':           '#c8c8c8',
+  'Essendon':              '#e85555',
+  'Fremantle':             '#7a70d0',
+  'Geelong':               '#5588bb',
+  'Gold Coast':            '#f07070',
+  'Greater Western Sydney':'#f08050',
+  'Hawthorn':              '#d4a030',
+  'Melbourne':             '#cc4444',
+  'North Melbourne':       '#4488bb',
+  'Port Adelaide':         '#30b8d0',
+  'Richmond':              '#e8cc00',
+  'St Kilda':              '#e85555',
+  'Sydney':                '#e83355',
+  'West Coast':            '#4466cc',
+  'Western Bulldogs':      '#4488dd',
+};
+
+const ALL_TEAMS_LIST = Object.keys(TEAM_COLORS);
+
+let graphYear = null;
+let activeTeams = new Set();
+let highlightedTeam = null;
+let graphRounds = [];   // [{roundname, round, ratings:{team:val}}]
+let graphInited = false;
+let graphHoverX = null;
+
+function initGraph() {
+  if (graphInited) return;
+  graphInited = true;
+
+  const slider = document.getElementById('year-slider');
+  const yearDisplay = document.getElementById('year-display');
+
+  // Set slider range from actual data
+  const years = [...new Set((data.ratings_by_round || []).map(r => r.year))].sort();
+  if (years.length) {
+    slider.min = years[0];
+    slider.max = years[years.length - 1];
+    slider.value = years[years.length - 1];
+  }
+
+  slider.addEventListener('input', () => {
+    yearDisplay.textContent = slider.value;
+    loadGraphYear(parseInt(slider.value));
+  });
+
+  document.getElementById('btn-all-on').addEventListener('click', () => {
+    ALL_TEAMS_LIST.forEach(t => activeTeams.add(t));
+    updateToggles();
+    drawGraph();
+  });
+
+  document.getElementById('btn-all-off').addEventListener('click', () => {
+    activeTeams.clear();
+    updateToggles();
+    drawGraph();
+  });
+
+  document.getElementById('btn-top8').addEventListener('click', () => {
+    activeTeams.clear();
+    getTop8(graphYear || parseInt(slider.value)).forEach(t => activeTeams.add(t));
+    updateToggles();
+    drawGraph();
+  });
+
+  buildToggles();
+  yearDisplay.textContent = slider.value;
+  loadGraphYear(parseInt(slider.value));
+  setupCanvasEvents();
+}
+
+function getTop8(year) {
+  // Get top 8 teams by final rating in the given year
+  const yearRounds = (data.ratings_by_round || []).filter(r => r.year === year);
+  if (!yearRounds.length) {
+    // Fall back to current power rankings
+    return (data.power_rankings || []).slice(0, 8).map(r => r.team);
+  }
+  const last = yearRounds[yearRounds.length - 1];
+  return Object.entries(last.ratings)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8)
+    .map(([t]) => t);
+}
+
+function loadGraphYear(year) {
+  graphYear = year;
+  graphRounds = (data.ratings_by_round || []).filter(r => r.year === year);
+  // Reset highlighted team
+  highlightedTeam = null;
+  drawGraph();
+}
+
+function buildToggles() {
+  const wrap = document.getElementById('team-toggles');
+  wrap.innerHTML = ALL_TEAMS_LIST.map(team => {
+    const color = TEAM_COLORS_DISPLAY[team] || '#aaa';
+    return `<button class="team-toggle" data-team="${team}" style="color:${color};border-color:${color}33">${team}</button>`;
+  }).join('');
+
+  wrap.addEventListener('click', e => {
+    const btn = e.target.closest('.team-toggle');
+    if (!btn) return;
+    const team = btn.dataset.team;
+    if (e.shiftKey || e.metaKey) {
+      // Shift/cmd click = highlight
+      highlightedTeam = highlightedTeam === team ? null : team;
+    } else {
+      if (activeTeams.has(team)) activeTeams.delete(team);
+      else activeTeams.add(team);
+    }
+    updateToggles();
+    drawGraph();
+  });
+}
+
+function updateToggles() {
+  document.querySelectorAll('.team-toggle').forEach(btn => {
+    const team = btn.dataset.team;
+    const on = activeTeams.has(team);
+    const hi = highlightedTeam === team;
+    btn.classList.toggle('on', on);
+    btn.classList.toggle('highlighted', hi);
+    const color = TEAM_COLORS_DISPLAY[team] || '#aaa';
+    btn.style.borderColor = on ? color : color + '33';
+    btn.style.opacity = on ? '1' : '0.4';
+    if (hi) btn.style.boxShadow = `0 0 0 1px ${color}`;
+    else btn.style.boxShadow = '';
+  });
+}
+
+function drawGraph() {
+  const canvas = document.getElementById('sage-graph');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const W = rect.width;
+  const H = rect.height;
+
+  const PAD = { top: 20, right: 20, bottom: 36, left: 48 };
+  const plotW = W - PAD.left - PAD.right;
+  const plotH = H - PAD.top - PAD.bottom;
+
+  ctx.clearRect(0, 0, W, H);
+
+  if (!graphRounds.length) {
+    ctx.fillStyle = '#3a3f4a';
+    ctx.font = '12px DM Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('No data for this season', W / 2, H / 2);
+    return;
+  }
+
+  // Compute y range across all active teams
+  let yMin = Infinity, yMax = -Infinity;
+  graphRounds.forEach(r => {
+    ALL_TEAMS_LIST.forEach(team => {
+      if (!activeTeams.has(team)) return;
+      const v = r.ratings[team];
+      if (v !== undefined) { yMin = Math.min(yMin, v); yMax = Math.max(yMax, v); }
+    });
+  });
+  if (!isFinite(yMin)) { yMin = -5; yMax = 5; }
+  const pad = (yMax - yMin) * 0.12 || 1;
+  yMin -= pad; yMax += pad;
+
+  const xScale = i => PAD.left + (i / (graphRounds.length - 1 || 1)) * plotW;
+  const yScale = v => PAD.top + plotH - ((v - yMin) / (yMax - yMin)) * plotH;
+
+  // Grid lines
+  const gridCount = 5;
+  ctx.strokeStyle = '#1e2229';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= gridCount; i++) {
+    const v = yMin + (yMax - yMin) * (i / gridCount);
+    const y = yScale(v);
+    ctx.beginPath();
+    ctx.moveTo(PAD.left, y);
+    ctx.lineTo(PAD.left + plotW, y);
+    ctx.stroke();
+    ctx.fillStyle = '#3a3f4a';
+    ctx.font = `10px DM Mono, monospace`;
+    ctx.textAlign = 'right';
+    ctx.fillText(v.toFixed(1), PAD.left - 6, y + 4);
+  }
+
+  // Zero line
+  if (yMin < 0 && yMax > 0) {
+    const y0 = yScale(0);
+    ctx.strokeStyle = '#3a3f4a';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    ctx.moveTo(PAD.left, y0);
+    ctx.lineTo(PAD.left + plotW, y0);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // X axis round labels (every ~4 rounds)
+  const step = Math.ceil(graphRounds.length / 8);
+  graphRounds.forEach((r, i) => {
+    if (i % step !== 0 && i !== graphRounds.length - 1) return;
+    const x = xScale(i);
+    ctx.fillStyle = '#3a3f4a';
+    ctx.font = '9px DM Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`R${r.round}`, x, H - PAD.bottom + 14);
+  });
+
+  // Draw inactive/non-highlighted first (dim), then active, then highlight on top
+  const drawTeam = (team, alpha, lineWidth) => {
+    const color = TEAM_COLORS_DISPLAY[team] || '#aaa';
+    ctx.strokeStyle = color;
+    ctx.globalAlpha = alpha;
+    ctx.lineWidth = lineWidth;
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    let started = false;
+    graphRounds.forEach((r, i) => {
+      const v = r.ratings[team];
+      if (v === undefined) return;
+      const x = xScale(i);
+      const y = yScale(v);
+      if (!started) { ctx.moveTo(x, y); started = true; }
+      else ctx.lineTo(x, y);
+    });
+    if (started) ctx.stroke();
+    ctx.globalAlpha = 1;
+  };
+
+  // Draw dimmed active teams (not highlighted)
+  activeTeams.forEach(team => {
+    if (team === highlightedTeam) return;
+    drawTeam(team, highlightedTeam ? 0.15 : 0.7, 1.5);
+  });
+
+  // Draw highlighted on top
+  if (highlightedTeam && activeTeams.has(highlightedTeam)) {
+    drawTeam(highlightedTeam, 1, 2.5);
+    const last = graphRounds[graphRounds.length - 1];
+    const v = last?.ratings[highlightedTeam];
+    if (v !== undefined) {
+      const x = xScale(graphRounds.length - 1);
+      const y = yScale(v);
+      const color = TEAM_COLORS_DISPLAY[highlightedTeam] || '#aaa';
+      ctx.fillStyle = color;
+      ctx.font = 'bold 10px Barlow Condensed, sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(highlightedTeam, x + 6, y + 4);
+    }
+  }
+
+  // Hover line (drawn last so it's on top)
+  if (graphHoverX !== null) {
+    const hx = xScale(graphHoverX);
+    ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    ctx.moveTo(hx, PAD.top);
+    ctx.lineTo(hx, PAD.top + plotH);
+    ctx.stroke();
+    ctx.setLineDash([]);
   }
 }
- 
-init();
+
+// Canvas mouse events for tooltip
+function setupCanvasEvents() {
+  const canvas = document.getElementById('sage-graph');
+  const tooltip = document.getElementById('graph-tooltip');
+  const tooltipRound = document.getElementById('tooltip-round');
+  const tooltipRows = document.getElementById('tooltip-rows');
+
+  canvas.addEventListener('mousemove', e => {
+    if (!graphRounds.length) return;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const PAD_LEFT = 48, PAD_RIGHT = 20;
+    const plotW = rect.width - PAD_LEFT - PAD_RIGHT;
+    const frac = Math.max(0, Math.min(1, (x - PAD_LEFT) / plotW));
+    const idx = Math.round(frac * (graphRounds.length - 1));
+    const round = graphRounds[idx];
+    if (!round) return;
+    graphHoverX = idx;
+    drawGraph();
+
+    tooltipRound.textContent = `${round.roundname || 'Round ' + round.round} · ${graphYear}`;
+
+    // Show visible teams sorted by rating
+    const rows = ALL_TEAMS_LIST
+      .filter(t => activeTeams.has(t))
+      .map(t => ({ team: t, val: round.ratings[t] ?? null }))
+      .filter(r => r.val !== null)
+      .sort((a, b) => b.val - a.val);
+
+    tooltipRows.innerHTML = rows.map(r => {
+      const cls = r.val >= 0 ? 'pos' : 'neg';
+      const hi = r.team === highlightedTeam ? 'style="opacity:1"' : 'style="opacity:0.7"';
+      return `<div class="tooltip-row" ${hi}>
+        <span class="t-name">${r.team}</span>
+        <span class="t-val ${cls}">${r.val >= 0 ? '+' : ''}${r.val.toFixed(3)}</span>
+      </div>`;
+    }).join('');
+
+    // Position tooltip
+    const tw = 200, th = 40 + rows.length * 20;
+    let tx = e.clientX - rect.left + 14;
+    let ty = e.clientY - rect.top - 20;
+    if (tx + tw > rect.width) tx = e.clientX - rect.left - tw - 14;
+    if (ty + th > rect.height) ty = rect.height - th - 10;
+    tooltip.style.left = tx + 'px';
+    tooltip.style.top = Math.max(4, ty) + 'px';
+    tooltip.classList.add('visible');
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    tooltip.classList.remove('visible');
+    graphHoverX = null;
+    drawGraph();
+  });
+
+  // Redraw on resize
+  window.addEventListener('resize', () => {
+    if (document.getElementById('panel-graph').classList.contains('active')) drawGraph();
+  });
+}
+
+// Hook into tab switching to init graph lazily
+const origTabClick = document.getElementById('tabs').onclick;
+document.getElementById('tabs').addEventListener('click', e => {
+  const btn = e.target.closest('.tab');
+  if (btn && btn.dataset.panel === 'graph' && data) {
+    setTimeout(() => {
+      initGraph();
+      // Set default top 8 on first load
+      if (activeTeams.size === 0) {
+        const year = parseInt(document.getElementById('year-slider').value);
+        getTop8(year).forEach(t => activeTeams.add(t));
+        updateToggles();
+        drawGraph();
+      }
+    }, 50);
+  }
+});
+
+
+function toggleMath(id, btn) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const isOpen = el.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  btn.querySelector('.arrow').style.transform = isOpen ? 'rotate(90deg)' : '';
+  btn.childNodes[1].textContent = isOpen ? ' Hide working' : ' Show working';
+}
+
+loadData();
 </script>
 </body>
 </html>
