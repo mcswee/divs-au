@@ -671,6 +671,83 @@
   td.tip-result { text-align: center; width: 28px; padding: 6px 8px; }
   .tip-svg { width: 18px; height: 18px; display: inline-block; vertical-align: middle; }
 
+
+  /* ── Prediction math breakdown ── */
+  .pred-math {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+  }
+
+  .pred-math.open { max-height: 300px; }
+
+  .pred-math-toggle {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 0 0;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .pred-math-toggle:hover { color: var(--text); }
+  .pred-math-toggle .arrow { transition: transform 0.2s; display: inline-block; }
+  .pred-math-toggle.open .arrow { transform: rotate(90deg); }
+
+  .pred-math-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+    padding: 12px 0;
+  }
+
+  .math-team-block { }
+
+  .math-team-name {
+    font-family: var(--cond);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--bright);
+    margin-bottom: 6px;
+  }
+
+  .math-line {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: var(--dim);
+    line-height: 1.8;
+  }
+
+  .math-line .val {
+    color: var(--text);
+  }
+
+  .math-line .val.pos { color: var(--accent); }
+  .math-line .val.neg { color: var(--warn); }
+
+  .math-line .eq {
+    color: var(--bright);
+    font-weight: 500;
+  }
+
+  .math-result {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
   .about-prose {
     max-width: 680px;
     line-height: 1.75;
@@ -962,6 +1039,43 @@ function renderPredictions(preds) {
       const hFav = p.h_pred >= p.a_pred;
       const date = p.date ? new Date(p.date).toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' }) : '';
       const time = p.date ? new Date(p.date).toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' }) : '';
+      const mathId = `math-${i}`;
+      const hasMath = p.h_output !== undefined;
+
+      function fv(v) {
+        if (v === undefined || v === null) return '—';
+        const s = v >= 0 ? '+' : '';
+        return `<span class="val ${v >= 0 ? 'pos' : 'neg'}">${s}${v.toFixed(3)}</span>`;
+      }
+
+      let mathHtml = '';
+      if (hasMath) {
+        const hRestLabel = p.h_rest !== 0 ? ` Rest <span class="val ${p.h_rest >= 0 ? 'pos':'neg'}">${p.h_rest >= 0?'+':''}${p.h_rest.toFixed(3)}</span>` : '';
+        const aRestLabel = p.a_rest !== 0 ? ` Rest <span class="val ${p.a_rest >= 0 ? 'pos':'neg'}">${p.a_rest >= 0?'+':''}${p.a_rest.toFixed(3)}</span>` : '';
+
+        mathHtml = `
+          <div class="pred-math" id="${mathId}">
+            <div class="pred-math-inner">
+              <div class="math-team-block">
+                <div class="math-team-name">${p.hteam}</div>
+                <div class="math-line">SAGE ${fv(p.h_rating)} R11 ${fv(p.h_r11)} V11 ${fv(p.h_v11)}${hRestLabel}</div>
+                <div class="math-line">Output = <span class="eq">${fv(p.h_output)}</span></div>
+                <div class="math-line">SF = 1 + tanh((${p.a_output?.toFixed(3)} − ${p.h_output?.toFixed(3)}) / 30)</div>
+                <div class="math-line">SF = <span class="eq">${p.h_sf?.toFixed(3)}</span></div>
+                <div class="math-result">1 − (${p.h_sf?.toFixed(3)} / 2) = ${p.h_pred.toFixed(1)}%</div>
+              </div>
+              <div class="math-team-block">
+                <div class="math-team-name">${p.ateam}</div>
+                <div class="math-line">SAGE ${fv(p.a_rating)} R11 ${fv(p.a_r11)} V11 ${fv(p.a_v11)}${aRestLabel}</div>
+                <div class="math-line">Output = <span class="eq">${fv(p.a_output)}</span></div>
+                <div class="math-line">SF = 1 + tanh((${p.h_output?.toFixed(3)} − ${p.a_output?.toFixed(3)}) / 30)</div>
+                <div class="math-line">SF = <span class="eq">${p.a_sf?.toFixed(3)}</span></div>
+                <div class="math-result">1 − (${p.a_sf?.toFixed(3)} / 2) = ${p.a_pred.toFixed(1)}%</div>
+              </div>
+            </div>
+          </div>`;
+      }
+
       html += `
         <div class="pred-card" style="animation-delay:${i * 40}ms">
           <div class="pred-meta">
@@ -983,6 +1097,8 @@ function renderPredictions(preds) {
             <div class="pred-bar-h" style="width:${p.h_pred}%"></div>
             <div class="pred-bar-a"></div>
           </div>
+          ${hasMath ? `<button class="pred-math-toggle" onclick="toggleMath('${mathId}', this)"><span class="arrow">▶</span> Show working</button>` : ''}
+          ${mathHtml}
         </div>`;
       i++;
     });
@@ -1598,6 +1714,16 @@ document.getElementById('tabs').addEventListener('click', e => {
     }, 50);
   }
 });
+
+
+function toggleMath(id, btn) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const isOpen = el.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  btn.querySelector('.arrow').style.transform = isOpen ? 'rotate(90deg)' : '';
+  btn.childNodes[1].textContent = isOpen ? ' Hide working' : ' Show working';
+}
 
 loadData();
 </script>
