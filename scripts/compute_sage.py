@@ -28,6 +28,17 @@ TEAM_STATE = {
     "Sydney": "NSW", "West Coast": "WA", "Western Bulldogs": "VIC",
 }
 
+VENUE_ALIASES = {
+    "GMHBA Stadium":                     "Kardinia Park",
+    "Marvel Stadium":                    "Docklands",
+    "UNSW Canberra Oval":               "Manuka Oval",
+    "University of Tasmania Stadium":    "York Park",
+    "Adelaide Arena at Jiangwan Stadium":"Jiangwan Stadium",
+    "Optus Stadium":                     "Perth Stadium",
+    "Mars Stadium":                      "Eureka Stadium",
+    "Adelaide Hills":                    "Summit Sport Park",
+}
+
 VENUE_STATE = {
     "Adelaide Oval": "SA", "Barossa Park": "SA", "Bellerive Oval": "TAS",
     "Blacktown": "NSW", "Carrara": "QLD", "Cazaly's Stadium": "FNQ",
@@ -180,7 +191,7 @@ def process_completed_game(game: dict, ratings: dict, history: list, prior_ratin
     ateam = game["ateam"]
     hscore = game.get("hscore", 0) or 0
     ascore = game.get("ascore", 0) or 0
-    venue = game.get("venue", "")
+    venue = VENUE_ALIASES.get(game.get("venue", ""), game.get("venue", ""))
     game_dt = parse_dt(game.get("date"))
 
     # Margin from each team's perspective
@@ -261,7 +272,7 @@ def predict_game(game: dict, ratings: dict, history: list) -> dict:
     """Generate prediction for an upcoming game."""
     hteam = game["hteam"]
     ateam = game["ateam"]
-    venue = game.get("venue", "")
+    venue = VENUE_ALIASES.get(game.get("venue", ""), game.get("venue", ""))
     game_dt = parse_dt(game.get("date"))
 
     h_r11 = compute_r11(hteam, ateam, history)
