@@ -271,8 +271,11 @@ def predict_game(game: dict, ratings: dict, history: list) -> dict:
     h_rest = compute_rest(hteam, game_dt, history)
     a_rest = compute_rest(ateam, game_dt, history)
 
-    h_output = h_r11 + h_v11 + h_rest + ratings.get(hteam, 0)
-    a_output = a_r11 + a_v11 + a_rest + ratings.get(ateam, 0)
+    h_rating = ratings.get(hteam, 0)
+    a_rating = ratings.get(ateam, 0)
+
+    h_output = h_r11 + h_v11 + h_rest + h_rating
+    a_output = a_r11 + a_v11 + a_rest + a_rating
 
     h_sf = surprise_factor(h_output, a_output)
     a_sf = surprise_factor(a_output, h_output)
@@ -280,19 +283,31 @@ def predict_game(game: dict, ratings: dict, history: list) -> dict:
     h_pred = 1 - (h_sf / 2)
     a_pred = 1 - (a_sf / 2)
 
+    def r(v): return round(v, 3)
+
     return {
-        "game_id": game["id"],
-        "year": game["year"],
-        "round": game["round"],
-        "roundname": game.get("roundname", f"Round {game['round']}"),
-        "date": game.get("date"),
-        "venue": venue,
-        "hteam": hteam,
-        "ateam": ateam,
-        "h_pred": round(h_pred * 100, 1),
-        "a_pred": round(a_pred * 100, 1),
-        "h_rating": round(ratings.get(hteam, 0), 4),
-        "a_rating": round(ratings.get(ateam, 0), 4),
+        "game_id":  game["id"],
+        "year":     game["year"],
+        "round":    game["round"],
+        "roundname":game.get("roundname", f"Round {game['round']}"),
+        "date":     game.get("date"),
+        "venue":    venue,
+        "hteam":    hteam,
+        "ateam":    ateam,
+        "h_pred":   round(h_pred * 100, 1),
+        "a_pred":   round(a_pred * 100, 1),
+        "h_rating": r(h_rating),
+        "a_rating": r(a_rating),
+        "h_r11":    r(h_r11),
+        "a_r11":    r(a_r11),
+        "h_v11":    r(h_v11),
+        "a_v11":    r(a_v11),
+        "h_rest":   r(h_rest),
+        "a_rest":   r(a_rest),
+        "h_output": r(h_output),
+        "a_output": r(a_output),
+        "h_sf":     r(h_sf),
+        "a_sf":     r(a_sf),
     }
 
 
