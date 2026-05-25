@@ -137,7 +137,7 @@
   /* ── Power Rankings ── */
   .rankings-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: 1fr;
     gap: 2px;
   }
 
@@ -270,7 +270,7 @@
   }
 
   .pred-conf.high strong { color: var(--accent); }
-  .pred-conf.mid strong  { color: var(--accent2); }
+  .pred-conf.mid strong  { color: var(--warn); }
   .pred-conf.low strong  { color: var(--dim); }
 
   .pred-vs {
@@ -666,36 +666,10 @@
   .popup-stat-value.pos { color: var(--accent); }
   .popup-stat-value.neg { color: var(--warn); }
 
-  .popup-spark-label {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--dim);
-    margin-top: 20px;
-    margin-bottom: 8px;
-  }
-
-  .popup-spark {
-    display: block;
-    width: 100%;
-    height: 64px;
-  }
-
 
   /* ── Tipping ── */
-  td.tip-team {
-    font-family: var(--cond);
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--dim);
-  }
-  td.tip-correct { color: var(--accent) !important; }
-  td.tip-wrong   { color: var(--warn) !important; }
-  td.tip-none    { color: var(--muted) !important; }
-  .tick  { font-size: 0.85rem; color: var(--accent); }
-  .cross { font-size: 0.85rem; color: var(--warn); }
-  .dash  { font-size: 0.85rem; color: var(--muted); }
+  td.tip-result { text-align: center; width: 28px; padding: 6px 8px; }
+  .tip-svg { width: 18px; height: 18px; display: inline-block; vertical-align: middle; }
 
   .about-prose {
     max-width: 680px;
@@ -730,7 +704,7 @@
     .header-inner { flex-direction: column; align-items: flex-start; }
     .meta { text-align: left; }
     .pred-matchup { grid-template-columns: 1fr auto 1fr; }
-    .rankings-grid { grid-template-columns: 1fr; }
+    
   }
 </style>
 </head>
@@ -755,7 +729,7 @@
   <nav class="tabs" id="tabs">
     <button class="tab active" data-panel="rankings">Power Rankings</button>
     <button class="tab" data-panel="predictions">Predictions</button>
-    <button class="tab" data-panel="results">Recent Results</button>
+    <button class="tab" data-panel="results">Results</button>
     <button class="tab" data-panel="graph">Season Graph</button>
     <button class="tab" data-panel="about">About</button>
   </nav>
@@ -794,16 +768,16 @@
         <thead>
           <tr>
             <th>Round</th>
-            <th>Tip</th>
-            <th></th>
+            <th>Date / Venue</th>
             <th>Home</th>
             <th class="num">Score</th>
-            <th>Away</th>
+            <th class="num">Δ</th>
+            <th class="num">Conf%</th>
+            <th class="num"></th>
+            <th class="num">Conf%</th>
+            <th class="num">Δ</th>
             <th class="num">Score</th>
-            <th class="num">H Conf%</th>
-            <th class="num">A Conf%</th>
-            <th class="num">H Δ</th>
-            <th class="num">A Δ</th>
+            <th>Away</th>
           </tr>
         </thead>
         <tbody id="results-body"></tbody>
@@ -873,8 +847,7 @@
       <div class="popup-team" id="popup-team"></div>
       <div class="popup-rank" id="popup-rank"></div>
       <div id="popup-stats"></div>
-      <div class="popup-spark-label">Season rating</div>
-      <canvas class="popup-spark" id="popup-spark"></canvas>
+      <div class="popup-spark-label" style="color:var(--dim);font-size:0.6rem;margin-top:16px">See Season Graph tab for full trajectory</div>
     </div>
   </div>
 
@@ -1017,16 +990,29 @@ function renderPredictions(preds) {
   el.innerHTML = html;
 }
 
+const SVG_TICK = `<svg class="tip-svg" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="9" cy="9" r="9" fill="#c8f135"/>
+  <polyline points="4.5,9.5 7.5,12.5 13.5,6" stroke="#0d0f12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>`;
+
+const SVG_CROSS = `<svg class="tip-svg" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="9" cy="9" r="9" fill="#f1a035"/>
+  <line x1="5.5" y1="5.5" x2="12.5" y2="12.5" stroke="#0d0f12" stroke-width="2" stroke-linecap="round"/>
+  <line x1="12.5" y1="5.5" x2="5.5" y2="12.5" stroke="#0d0f12" stroke-width="2" stroke-linecap="round"/>
+</svg>`;
+
+const SVG_DASH = `<svg class="tip-svg" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="9" cy="9" r="9" fill="#3a3f4a"/>
+  <line x1="5" y1="9" x2="13" y2="9" stroke="#6b7280" stroke-width="2" stroke-linecap="round"/>
+</svg>`;
+
 function getTipResult(g) {
-  // Returns { tipped, correct }
-  // tipped = team name tipped, or null for 50/50
   const hp = g.h_pred ?? 50;
   const ap = g.a_pred ?? 50;
   const isDraw = g.hscore === g.ascore;
   const hWon = g.hscore > g.ascore;
 
   if (hp === ap) {
-    // No tip — only correct if draw
     return { tipped: null, correct: isDraw };
   }
   const tipped = hp > ap ? g.hteam : g.ateam;
@@ -1060,7 +1046,7 @@ function renderResults(records) {
     .reverse();
 
   if (!filtered.length) {
-    tbody.innerHTML = '<tr><td colspan="11" class="empty">No data.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="11" style="text-align:center;padding:48px;font-family:var(--mono);font-size:0.72rem;color:var(--dim)">No data.</td></tr>';
     document.getElementById('tips-summary').textContent = '';
     return;
   }
@@ -1082,28 +1068,24 @@ function renderResults(records) {
     const aWon = g.ascore > g.hscore;
     const { tipped, correct: tipCorrect } = getTipResult(g);
     const noTipGame = tipped === null;
+    const tipIcon = noTipGame ? SVG_DASH : (tipCorrect ? SVG_TICK : SVG_CROSS);
 
-    const tipCell = noTipGame
-      ? '<td class="tip-team tip-none">—</td>'
-      : `<td class="tip-team ${tipCorrect ? 'tip-correct' : 'tip-wrong'}">${tipped}</td>`;
-
-    const tickCell = noTipGame
-      ? '<td class="dash">·</td>'
-      : `<td class="${tipCorrect ? 'tick' : 'cross'}">${tipCorrect ? '✓' : '✗'}</td>`;
+    const date = g.date ? new Date(g.date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short' }) : '—';
+    const venue = g.venue || '';
 
     return `
       <tr>
         <td class="num">${g.roundname || 'R' + g.round}</td>
-        ${tipCell}
-        ${tickCell}
+        <td style="font-family:var(--mono);font-size:0.65rem;color:var(--dim);line-height:1.5">${date}<br><span style="color:var(--muted)">${venue}</span></td>
         <td class="team-name ${hWon ? 'winner' : ''}">${g.hteam}</td>
         <td class="num">${g.hscore}</td>
-        <td class="team-name ${aWon ? 'winner' : ''}">${g.ateam}</td>
-        <td class="num">${g.ascore}</td>
-        <td class="num">${g.h_pred?.toFixed(1) ?? '—'}%</td>
-        <td class="num">${g.a_pred?.toFixed(1) ?? '—'}%</td>
         <td class="${g.h_delta >= 0 ? 'delta-pos' : 'delta-neg'}">${g.h_delta >= 0 ? '+' : ''}${g.h_delta?.toFixed(3)}</td>
+        <td class="num">${g.h_pred?.toFixed(1) ?? '—'}%</td>
+        <td class="tip-result">${tipIcon}</td>
+        <td class="num">${g.a_pred?.toFixed(1) ?? '—'}%</td>
         <td class="${g.a_delta >= 0 ? 'delta-pos' : 'delta-neg'}">${g.a_delta >= 0 ? '+' : ''}${g.a_delta?.toFixed(3)}</td>
+        <td class="num">${g.ascore}</td>
+        <td class="team-name ${aWon ? 'winner' : ''}">${g.ateam}</td>
       </tr>`;
   }).join('');
 }
@@ -1221,90 +1203,9 @@ function openTeamPopup(team, rank, rating) {
   document.getElementById('popup-rank').textContent = `Rank ${rank} · ${ctx.roundname || ''} ${ctxYear}`;
   document.getElementById('popup-stats').innerHTML = statsHtml;
 
-  // Sparkline
-  drawSparkline(team, seasonRounds);
-
   document.getElementById('team-popup').classList.add('open');
 }
 
-function drawSparkline(team, rounds) {
-  const canvas = document.getElementById('popup-spark');
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  const rect = canvas.getBoundingClientRect();
-  canvas.width = rect.width * dpr;
-  canvas.height = rect.height * dpr;
-  ctx.scale(dpr, dpr);
-  const W = rect.width;
-  const H = rect.height;
-
-  ctx.clearRect(0, 0, W, H);
-
-  const vals = rounds.map(r => r.ratings[team]).filter(v => v !== undefined);
-  if (vals.length < 2) {
-    ctx.fillStyle = '#3a3f4a';
-    ctx.font = '10px DM Mono, monospace';
-    ctx.textAlign = 'center';
-    ctx.fillText('No season data', W / 2, H / 2);
-    return;
-  }
-
-  const PAD = { top: 6, right: 4, bottom: 6, left: 4 };
-  const pw = W - PAD.left - PAD.right;
-  const ph = H - PAD.top - PAD.bottom;
-
-  let yMin = Math.min(...vals);
-  let yMax = Math.max(...vals);
-  const pad = (yMax - yMin) * 0.15 || 0.5;
-  yMin -= pad; yMax += pad;
-
-  const xS = i => PAD.left + (i / (vals.length - 1)) * pw;
-  const yS = v => PAD.top + ph - ((v - yMin) / (yMax - yMin)) * ph;
-
-  // Zero line
-  if (yMin < 0 && yMax > 0) {
-    const y0 = yS(0);
-    ctx.strokeStyle = '#1e2229';
-    ctx.lineWidth = 1;
-    ctx.setLineDash([3, 3]);
-    ctx.beginPath();
-    ctx.moveTo(PAD.left, y0);
-    ctx.lineTo(PAD.left + pw, y0);
-    ctx.stroke();
-    ctx.setLineDash([]);
-  }
-
-  // Gradient fill
-  const lastVal = vals[vals.length - 1];
-  const grad = ctx.createLinearGradient(0, PAD.top, 0, PAD.top + ph);
-  const col = lastVal >= 0 ? 'rgba(200,241,53,' : 'rgba(241,160,53,';
-  grad.addColorStop(0, col + '0.25)');
-  grad.addColorStop(1, col + '0)');
-
-  ctx.beginPath();
-  vals.forEach((v, i) => i === 0 ? ctx.moveTo(xS(i), yS(v)) : ctx.lineTo(xS(i), yS(v)));
-  ctx.lineTo(xS(vals.length - 1), PAD.top + ph);
-  ctx.lineTo(PAD.left, PAD.top + ph);
-  ctx.closePath();
-  ctx.fillStyle = grad;
-  ctx.fill();
-
-  // Line
-  ctx.strokeStyle = lastVal >= 0 ? '#c8f135' : '#f1a035';
-  ctx.lineWidth = 1.5;
-  ctx.lineJoin = 'round';
-  ctx.beginPath();
-  vals.forEach((v, i) => i === 0 ? ctx.moveTo(xS(i), yS(v)) : ctx.lineTo(xS(i), yS(v)));
-  ctx.stroke();
-
-  // End dot
-  const ex = xS(vals.length - 1);
-  const ey = yS(lastVal);
-  ctx.beginPath();
-  ctx.arc(ex, ey, 3, 0, Math.PI * 2);
-  ctx.fillStyle = lastVal >= 0 ? '#c8f135' : '#f1a035';
-  ctx.fill();
-}
 
 // Close popup
 document.getElementById('popup-close').addEventListener('click', () => {
@@ -1373,6 +1274,7 @@ let activeTeams = new Set();
 let highlightedTeam = null;
 let graphRounds = [];   // [{roundname, round, ratings:{team:val}}]
 let graphInited = false;
+let graphHoverX = null;
 
 function initGraph() {
   if (graphInited) return;
@@ -1591,7 +1493,6 @@ function drawGraph() {
   // Draw highlighted on top
   if (highlightedTeam && activeTeams.has(highlightedTeam)) {
     drawTeam(highlightedTeam, 1, 2.5);
-    // End label
     const last = graphRounds[graphRounds.length - 1];
     const v = last?.ratings[highlightedTeam];
     if (v !== undefined) {
@@ -1603,6 +1504,19 @@ function drawGraph() {
       ctx.textAlign = 'left';
       ctx.fillText(highlightedTeam, x + 6, y + 4);
     }
+  }
+
+  // Hover line (drawn last so it's on top)
+  if (graphHoverX !== null) {
+    const hx = xScale(graphHoverX);
+    ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    ctx.moveTo(hx, PAD.top);
+    ctx.lineTo(hx, PAD.top + plotH);
+    ctx.stroke();
+    ctx.setLineDash([]);
   }
 }
 
@@ -1623,6 +1537,8 @@ function setupCanvasEvents() {
     const idx = Math.round(frac * (graphRounds.length - 1));
     const round = graphRounds[idx];
     if (!round) return;
+    graphHoverX = idx;
+    drawGraph();
 
     tooltipRound.textContent = `${round.roundname || 'Round ' + round.round} · ${graphYear}`;
 
@@ -1655,6 +1571,8 @@ function setupCanvasEvents() {
 
   canvas.addEventListener('mouseleave', () => {
     tooltip.classList.remove('visible');
+    graphHoverX = null;
+    drawGraph();
   });
 
   // Redraw on resize
