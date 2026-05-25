@@ -195,9 +195,7 @@ def process_completed_game(game: dict, ratings: dict, history: list, prior_ratin
     else:
         h_outcome = a_outcome = 0
 
-    # Draw = no SAGE change
-    if h_outcome == 0:
-        return None
+    # Draws still process — outcome multiple is 0 but bonuses still apply
 
     # R11 / V11
     h_r11 = compute_r11(hteam, ateam, history)
