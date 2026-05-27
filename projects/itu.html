@@ -490,16 +490,41 @@ const COUNTRIES = RAW.countries;
 const DATA = RAW.data;
 const ALL_PREFIXES = Object.keys(DATA).sort();
 
-// Build a color palette for country codes — deterministic hashing
+// Fixed palette for major allocators; hash fallback for the rest
+const FIXED_PALETTE = {
+  "US": "#2a6496",
+  "GB": "#c0392b",
+  "FR": "#1a3a6b",
+  "SU": "#8b0000",
+  "IT": "#2e7d4f",
+  "CN": "#d45500",
+  "JP": "#b5446e",
+  "DE": "#6b7280",
+  "ID": "#c06030",
+  "CA": "#e74c3c",
+  "NO": "#7b1a14",
+  "RU": "#2657a0",
+  "MX": "#27ae60",
+  "BC": "#d98ecf",
+  "BR": "#c9a800",
+  "SE": "#e8c400",
+  "AR": "#5bc8d0",
+  "NL": "#e07b20",
+  "AN": "#d4943a",
+  "CW": "#d4943a",
+  "DN": "#d4943a",
+  "AU": "#b8860b",
+  "NZ": "#e8e9e0",
+  "ZA": "#1a5c2a"
+};
 const CC_COLORS = {};
 function ccColor(cc) {
   if (cc === 'ZZ' || !cc) return null;
+  if (FIXED_PALETTE[cc]) return FIXED_PALETTE[cc];
   if (CC_COLORS[cc]) return CC_COLORS[cc];
-  // hash cc to hue
   let h = 0;
   for (let i=0; i<cc.length; i++) h = (h*31 + cc.charCodeAt(i)) & 0xffffffff;
   const hue = Math.abs(h) % 360;
-  // Keep away from amber (45°) by shifting
   const adj = (hue + 60) % 360;
   const color = `hsl(${adj},55%,40%)`;
   CC_COLORS[cc] = color;
