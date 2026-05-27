@@ -271,6 +271,17 @@ input[type="text"]::placeholder { color: var(--text-dim); }
   position: relative;
   background: #1a1c18;
 }
+.tl-bar::after {
+  content: '';
+  position: absolute;
+  left: calc((21 / 121) * 100%);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(200,168,75,0.35);
+  pointer-events: none;
+  z-index: 3;
+}
 .tl-seg {
   height: 100%;
   position: relative;
@@ -688,6 +699,7 @@ function renderCountry() {
       document.getElementById('search').value = chip.dataset.pfx;
       searchQ = chip.dataset.pfx;
       setMode('code');
+      pushURL();
       render();
     });
   });
@@ -731,15 +743,47 @@ function setMode(m) {
   document.getElementById('legend-code').classList.toggle('hidden', m !== 'code');
 }
 
+// URL state
+function pushURL() {
+  const params = new URLSearchParams();
+  if (searchQ) params.set('q', searchQ);
+  if (mode !== 'code') params.set('mode', mode);
+  if (fromY !== MIN_Y) params.set('from', fromY);
+  if (toY !== MAX_Y) params.set('to', toY);
+  const str = params.toString();
+  history.replaceState(null, '', str ? '?' + str : window.location.pathname);
+}
+
+function readURL() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('q')) {
+    searchQ = params.get('q');
+    document.getElementById('search').value = searchQ;
+  }
+  if (params.has('mode')) {
+    setMode(params.get('mode'));
+  }
+  if (params.has('from')) {
+    fromY = Math.max(MIN_Y, Math.min(MAX_Y, parseInt(params.get('from'))));
+    document.getElementById('yr-from').value = fromY;
+  }
+  if (params.has('to')) {
+    toY = Math.max(MIN_Y, Math.min(MAX_Y, parseInt(params.get('to'))));
+    document.getElementById('yr-to').value = toY;
+  }
+}
+
 // Events
 document.getElementById('search').addEventListener('input', e => {
   searchQ = e.target.value;
+  pushURL();
   render();
 });
 
 document.querySelectorAll('.mode-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     setMode(btn.dataset.mode);
+    pushURL();
     render();
   });
 });
@@ -751,13 +795,25 @@ function onYearChange() {
     fromY = Math.max(MIN_Y, Math.min(MAX_Y, parseInt(document.getElementById('yr-from').value)||MIN_Y));
     toY   = Math.max(MIN_Y, Math.min(MAX_Y, parseInt(document.getElementById('yr-to').value)||MAX_Y));
     if (fromY > toY) [fromY, toY] = [toY, fromY];
+    pushURL();
     render();
   }, 400);
 }
 document.getElementById('yr-from').addEventListener('input', onYearChange);
 document.getElementById('yr-to').addEventListener('input', onYearChange);
 
-// Init
+// Escape to clear search
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && searchQ) {
+    searchQ = '';
+    document.getElementById('search').value = '';
+    pushURL();
+    render();
+  }
+});
+
+// Init from URL then render
+readURL();
 render();
 </script>
 </body>
