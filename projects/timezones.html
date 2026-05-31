@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timezone Curiosities</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@300;400&family=IBM+Plex+Sans:wght@300;400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1612;
+    --paper: #f5f0e8;
+    --paper-dark: #ede7d8;
+    --rule: #c8bfaf;
+    --accent: #b5441a;
+    --accent-pale: #f0ddd6;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --serif: 'Playfair Display', Georgia, serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Subtle grid texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, var(--rule) 39px, var(--rule) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, var(--rule) 39px, var(--rule) 40px);
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 5rem 0 3rem;
+    border-bottom: 1.5px solid var(--rule);
+    margin-bottom: 1rem;
+  }
+
+  .header-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.1s;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.4rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.2s;
+  }
+
+  .header-intro {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #4a4440;
+    max-width: 58ch;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.35s;
+  }
+
+  /* ── LIVE CLOCK ── */
+  .live-section {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 0;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.5s;
+  }
+
+  .live-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #8a7f74;
+    margin-bottom: 1rem;
+  }
+
+  .clock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0;
+  }
+
+  .clock-item {
+    padding: 0.9rem 1.2rem 0.9rem 0;
+    border-right: 1px solid var(--rule);
+    margin-right: -1px;
+  }
+
+  .clock-item:last-child { border-right: none; }
+
+  .clock-place {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: #6a5f54;
+    margin-bottom: 0.25rem;
+  }
+
+  .clock-time {
+    font-family: var(--mono);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+
+  .clock-offset {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: #9a8f84;
+    margin-top: 0.1rem;
+  }
+
+  /* ── CATEGORIES ── */
+  .category-nav {
+    display: flex;
+    gap: 0;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards 0.6s;
+  }
+
+  .cat-btn {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6a5f54;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem 1.2rem 0.4rem 0;
+    transition: color 0.15s;
+  }
+
+  .cat-btn:hover, .cat-btn.active { color: var(--accent); }
+
+  /* ── ENTRIES ── */
+  .entries { padding: 1rem 0; }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    gap: 0 1.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule);
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+    transition: background 0.15s;
+  }
+
+  .entry:hover { background: rgba(0,0,0,0.015); }
+
+  .entry.hidden { display: none; }
+
+  .entry-num {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: #b0a598;
+    padding-top: 0.25rem;
+    letter-spacing: 0.06em;
+    text-align: right;
+  }
+
+  .entry-body {}
+
+  .entry-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.6rem;
+  }
+
+  .entry-place {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .entry-tag {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-pale);
+    padding: 0.15rem 0.55rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .entry-offset {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: #6a5f54;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .entry-text {
+    font-size: 0.93rem;
+    line-height: 1.72;
+    color: #3a3430;
+    max-width: 62ch;
+  }
+
+  .entry-text em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: #1a1612;
+  }
+
+  .entry-detail {
+    margin-top: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: #8a7f74;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 3rem 0 4rem;
+    border-top: 1.5px solid var(--rule);
+    margin-top: 2rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-note {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: #8a7f74;
+    line-height: 1.7;
+    max-width: 40ch;
+  }
+
+  .footer-stat {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: #8a7f74;
+    text-align: right;
+  }
+
+  .footer-stat span {
+    display: block;
+    font-size: 1.4rem;
+    color: var(--ink);
+    font-weight: 400;
+    margin-top: 0.2rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* delay entries progressively */
+  .entry:nth-child(1)  { animation-delay: 0.7s; }
+  .entry:nth-child(2)  { animation-delay: 0.78s; }
+  .entry:nth-child(3)  { animation-delay: 0.86s; }
+  .entry:nth-child(4)  { animation-delay: 0.94s; }
+  .entry:nth-child(5)  { animation-delay: 1.02s; }
+  .entry:nth-child(6)  { animation-delay: 1.10s; }
+  .entry:nth-child(7)  { animation-delay: 1.18s; }
+  .entry:nth-child(8)  { animation-delay: 1.26s; }
+  .entry:nth-child(9)  { animation-delay: 1.34s; }
+  .entry:nth-child(10) { animation-delay: 1.42s; }
+  .entry:nth-child(11) { animation-delay: 1.50s; }
+  .entry:nth-child(12) { animation-delay: 1.58s; }
+  .entry:nth-child(13) { animation-delay: 1.66s; }
+  .entry:nth-child(14) { animation-delay: 1.74s; }
+  .entry:nth-child(15) { animation-delay: 1.82s; }
+  .entry:nth-child(16) { animation-delay: 1.90s; }
+  .entry:nth-child(17) { animation-delay: 1.98s; }
+  .entry:nth-child(18) { animation-delay: 2.06s; }
+  .entry:nth-child(19) { animation-delay: 2.14s; }
+  .entry:nth-child(20) { animation-delay: 2.22s; }
+
+  @media (max-width: 560px) {
+    header { padding: 3rem 0 2rem; }
+    .clock-grid { grid-template-columns: 1fr 1fr; }
+    .entry { grid-template-columns: 2.5rem 1fr; gap: 0 1rem; }
+    .entry-offset { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="header-label">Reference · Geography · Timekeeping</div>
+    <h1>Timezone<br>Curiosities</h1>
+    <p class="header-intro">
+      The world's time zones are supposed to divide the globe into neat, 
+      hourly bands. In practice, they follow rivers, colonial borders, 
+      mountain ranges, and political convenience. These are the places 
+      that didn't get the memo.
+    </p>
+  </header>
+
+  <!-- Live clocks for the fractional-offset curiosities -->
+  <div class="live-section">
+    <div class="live-label">Current time at selected curiosities</div>
+    <div class="clock-grid" id="clockGrid"></div>
+  </div>
+
+  <!-- Category filter -->
+  <nav class="category-nav" id="catNav">
+    <button class="cat-btn active" data-cat="all">All</button>
+    <button class="cat-btn" data-cat="fractional">Fractional offsets</button>
+    <button class="cat-btn" data-cat="political">Political anomalies</button>
+    <button class="cat-btn" data-cat="dateline">Date line</button>
+    <button class="cat-btn" data-cat="dst">Daylight saving</button>
+    <button class="cat-btn" data-cat="history">Historical</button>
+  </nav>
+
+  <div class="entries" id="entries"></div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-note">
+        Offsets are standard (non-DST) unless otherwise noted. 
+        The number of recognised time zones depends on how you count 
+        them — UTC offsets range from −12:00 to +14:00, but many 
+        countries observe multiple zones internally.
+      </div>
+      <div class="footer-stat">
+        Distinct UTC offsets in use
+        <span>37</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const ENTRIES = [
+  {
+    place: "Nepal",
+    offset: "UTC+5:45",
+    tag: "fractional",
+    tagLabel: "Fractional offset",
+    text: "Nepal observes UTC+5:45 — a fifteen-minute deviation not shared by any neighbouring country. The story usually told is that it was set to assert distinctly <em>not being India</em> (UTC+5:30). The practical consequence is that Nepali clocks always show a quarter-past or quarter-to the hour relative to Coordinated Universal Time.",
+    detail: "Offset: +5:45 · Population: ~30 million · Neighbours: India (+5:30), China (+8:00)"
+  },
+  {
+    place: "India",
+    offset: "UTC+5:30",
+    tag: "fractional",
+    tagLabel: "Fractional offset",
+    text: "A country of 1.4 billion people, spanning roughly 30 degrees of longitude, uses a single half-hour timezone. The logical span would be UTC+5 to UTC+7. The unified zone was set by the British in 1905 and has remained unchanged since independence. Sunrise in the far northeast (Arunachal Pradesh) can occur almost three hours before it does in Gujarat.",
+    detail: "Offset: +5:30 · Longitudinal span: ~30° · Solar noon in Mumbai: approx. 12:29 · Solar noon in Agartala: approx. 11:00"
+  },
+  {
+    place: "Chatham Islands",
+    offset: "UTC+12:45",
+    tag: "fractional",
+    tagLabel: "Fractional offset",
+    text: "New Zealand's remote Chatham Islands observe UTC+12:45 — or UTC+13:45 during daylight saving — making them one of the furthest-ahead inhabited places on Earth. The odd offset follows from New Zealand's +12:00 base plus an additional 45-minute local adjustment established in 1957 to give islanders a meaningful time difference from the mainland.",
+    detail: "Offset: +12:45 (CHAST) / +13:45 (CHADT) · Distance from Wellington: ~800 km · Population: ~600"
+  },
+  {
+    place: "Iran",
+    offset: "UTC+3:30",
+    tag: "fractional",
+    tagLabel: "Fractional offset",
+    text: "Iran uses UTC+3:30 (Iran Standard Time), a half-hour offset that has been in place since 1946. It also observes daylight saving, shifting to UTC+4:30 in summer — meaning Iranian clocks are always half-past the hour relative to UTC. The offset places Iran neatly between its neighbours: Afghanistan is at +4:30 and Iraq at +3:00.",
+    detail: "Offset: +3:30 (IRST) / +4:30 (IRDT) · Capital: Tehran · DST observed: yes"
+  },
+  {
+    place: "Afghanistan",
+    offset: "UTC+4:30",
+    tag: "fractional",
+    tagLabel: "Fractional offset",
+    text: "Afghanistan uses UTC+4:30 and, unusually, does not observe daylight saving time — making it stable year-round at a half-hour offset. It sits between Pakistan (+5:00) and Iran (+3:30), and the half-hour step feels like an honest compromise between the two, if not a deliberate one.",
+    detail: "Offset: +4:30 (AFT) · DST observed: no · Neighbours: Iran (+3:30), Pakistan (+5:00)"
+  },
+  {
+    place: "Xinjiang, China",
+    offset: "UTC+8:00 (official) / UTC+6:00 (informal)",
+    tag: "political",
+    tagLabel: "Political anomaly",
+    text: "China operates on a single national timezone — Beijing Standard Time, UTC+8 — despite spanning five natural timezone bands. In Xinjiang, the westernmost province, this means official sunrise can occur after 10am in winter. The Uyghur population widely uses an unofficial local time (UTC+6) that aligns with the sun, creating a situation where two parallel times operate in the same city depending on who you ask.",
+    detail: "Geographic span: UTC+5 to UTC+9 would be natural · Official: UTC+8 · Informal Uyghur practice: UTC+6"
+  },
+  {
+    place: "Spain",
+    offset: "UTC+1:00",
+    tag: "political",
+    tagLabel: "Political anomaly",
+    text: "Spain is geographically aligned with the United Kingdom and Portugal — its solar noon falls close to 1:30pm. Yet it has been on Central European Time (UTC+1 in winter, UTC+2 in summer) since 1940, when Franco aligned the country with Nazi Germany. The result: Spain eats dinner late partly because the clock says 9pm when the sun says 8pm. A parliamentary commission recommended returning to GMT in 2013, but the change has never happened.",
+    detail: "Current zone: CET/CEST (UTC+1/+2) · Solar alignment: ~UTC+0 · Changed from GMT: 1940"
+  },
+  {
+    place: "Western China border with Pakistan",
+    offset: "+2 hours across a line",
+    tag: "political",
+    tagLabel: "Political anomaly",
+    text: "The Khunjerab Pass border crossing between China and Pakistan holds a claim to the world's largest timezone jump at a land border: two hours. Step across from Pakistan (UTC+5) into China (UTC+8) and your watch jumps forward — or back — by three hours, though the effective jump from Pakistani local to Chinese local time as experienced on the ground is about two hours due to the informal Xinjiang time in use nearby.",
+    detail: "Pakistan: UTC+5 · China (official): UTC+8 · Jump: 3 hours on paper, ~2 in practice"
+  },
+  {
+    place: "North Korea",
+    offset: "UTC+9:00 (from 2018)",
+    tag: "political",
+    tagLabel: "Political anomaly",
+    text: "In 2015, North Korea created Pyongyang Time (UTC+8:30) — explicitly framed as decolonisation from Japanese Standard Time. In 2018, ahead of the inter-Korean summit, it shifted back to UTC+9 to align with South Korea. The episode is notable as a timezone being created and abolished for overtly political reasons within three years, documented in state media both times as a sovereign act.",
+    detail: "2015–2018: UTC+8:30 (KPT) · From 2018: UTC+9:00 · Reason for change: inter-Korean summit"
+  },
+  {
+    place: "Samoa",
+    offset: "UTC+13:00",
+    tag: "dateline",
+    tagLabel: "Date line",
+    text: "In December 2011, Samoa skipped an entire day — jumping from Thursday 29 December directly to Saturday 31 December — by moving the International Date Line to its other side. For most of its history, Samoa had been on the American side of the date line (UTC−11) to facilitate trade with the US. The switch to UTC+13 aligned it with Australia and New Zealand, its primary trading partners today.",
+    detail: "Pre-2011: UTC−11 · From 2011: UTC+13 · Day skipped: Friday 30 December 2011"
+  },
+  {
+    place: "Kiribati (Line Islands)",
+    offset: "UTC+14:00",
+    tag: "dateline",
+    tagLabel: "Date line",
+    text: "The Line Islands, part of Kiribati, are at UTC+14 — the furthest-ahead timezone on Earth, a full 26 hours ahead of Baker Island (UTC−12) at the other extreme. The date line was adjusted in 1995 so that Kiribati, which straddles the 180° meridian, would share a calendar day across its territory. Caroline Island was renamed Millennium Island to capitalise on being the first land to see the year 2000.",
+    detail: "Offset: UTC+14 · Furthest ahead of UTC: yes · Formerly: UTC−10, straddling the date line"
+  },
+  {
+    place: "Arizona, USA",
+    offset: "UTC−7:00 (year-round)",
+    tag: "dst",
+    tagLabel: "Daylight saving",
+    text: "Arizona (except the Navajo Nation) does not observe daylight saving time, remaining on Mountain Standard Time year-round. This creates a situation in summer where Arizona shares a time with Utah, Colorado, and New Mexico during standard time, but falls behind when they spring forward. The Navajo Nation within Arizona does observe DST — and the Hopi Reservation, entirely surrounded by the Navajo Nation, does not, creating nested timezone rings within a single state.",
+    detail: "Arizona: UTC−7 (no DST) · Navajo Nation (within Arizona): UTC−6 in summer · Hopi (within Navajo): UTC−7"
+  },
+  {
+    place: "Lord Howe Island",
+    offset: "UTC+10:30 / UTC+11:00",
+    tag: "dst",
+    tagLabel: "Daylight saving",
+    text: "Lord Howe Island, an Australian territory in the Tasman Sea, observes a thirty-minute daylight saving shift — moving from UTC+10:30 to UTC+11:00 in summer. It is one of only a handful of places in the world where daylight saving adds exactly 30 minutes rather than an hour. The island has a population of around 350 people.",
+    detail: "Standard: UTC+10:30 · DST: UTC+11:00 · DST shift: 30 minutes · Population: ~350"
+  },
+  {
+    place: "Russia (11 zones)",
+    offset: "UTC+2 to UTC+12",
+    tag: "political",
+    tagLabel: "Political anomaly",
+    text: "Russia spans eleven time zones — the most of any country — running from Kaliningrad (UTC+2) on the Baltic to Kamchatka (UTC+12) on the Pacific. A flight from Moscow to Vladivostok crosses eight hours of timezone. In 2014, Russia abolished daylight saving time permanently, meaning that some Russian cities now observe summer hours effectively year-round on their clocks while the sun behaves otherwise.",
+    detail: "Zones: UTC+2 through UTC+12 · DST abolished: 2014 · Span: ~9,000 km east–west"
+  },
+  {
+    place: "The Samoa-Tonga line",
+    offset: "Same time, different date",
+    tag: "dateline",
+    tagLabel: "Date line",
+    text: "Samoa and Tonga are near neighbours. Since Samoa's 2011 switch, they share the same UTC+13 offset and their clocks display identical times — yet they observe the same moment as occurring on different calendar dates for approximately half of each year due to their differing DST schedules. Two islands, same clock time, different day: a useful illustration of how the date line is a human construct with arbitrary tolerances.",
+    detail: "Samoa: UTC+13 (UTC+14 DST) · Tonga: UTC+13 (no DST) · Result: same time, different date possible"
+  },
+  {
+    place: "Eucla, Western Australia",
+    offset: "UTC+8:45",
+    tag: "fractional",
+    tagLabel: "Fractional offset",
+    text: "The tiny community of Eucla, population around 50, sits on the Western Australian–South Australian border and informally observes UTC+8:45 — splitting the difference between Western Australia (UTC+8) and South Australia (UTC+9:30). The offset has no legal status; it persists purely by local convention among the motel, roadhouse, and border checkpoint staff who work across both state times.",
+    detail: "Unofficial offset: UTC+8:45 · Population: ~50 · Status: informal convention only"
+  },
+  {
+    place: "Vladivostok vs Moscow",
+    offset: "+7 hours apart",
+    tag: "political",
+    tagLabel: "Political anomaly",
+    text: "Moscow and Vladivostok are seven hours apart, yet both are Russia. A presidential address broadcast live at 8pm Moscow time airs at 3am in Vladivostok. Russian national television schedules are set in Moscow time, which means prime-time programming airs in the middle of the night across much of Siberia and the Russian Far East — a recurring point of local frustration.",
+    detail: "Moscow: UTC+3 · Vladivostok: UTC+10 · Gap: 7 hours · Distance: ~9,000 km"
+  },
+  {
+    place: "International Space Station",
+    offset: "UTC+0:00",
+    tag: "history",
+    tagLabel: "Historical note",
+    text: "The ISS uses Coordinated Universal Time (UTC) as its working timezone, having no meaningful geographic position to anchor to. Crew members observe an artificial 24-hour schedule regardless of orbital position — the station completes approximately 15.5 orbits per day, meaning it experiences roughly 15 sunrises and sunsets every 24 hours. Timekeeping becomes entirely conventional at that altitude.",
+    detail: "Timezone: UTC+0 · Orbits per day: ~15.5 · Altitude: ~400 km · Orbital period: ~92 minutes"
+  },
+  {
+    place: "Svalbard",
+    offset: "UTC+1:00",
+    tag: "history",
+    tagLabel: "Historical note",
+    text: "Svalbard, the Norwegian archipelago in the high Arctic, observes Central European Time — despite being at 78°N, where the solar geometry renders standard timekeeping largely meaningless for months at a time. The midnight sun runs from late April to late August; polar night from late October to mid-February. The timezone persists for administrative alignment with mainland Norway, a matter of convenience rather than solar logic.",
+    detail: "Offset: UTC+1 (CET) / UTC+2 (CEST) · Latitude: 74–81°N · Midnight sun: ~April 20 – August 23"
+  },
+  {
+    place: "Tonga",
+    offset: "UTC+13:00",
+    tag: "dateline",
+    tagLabel: "Date line",
+    text: "Tonga was among the first places to adopt UTC+13, doing so in 1994 to place itself entirely on the western side of the date line despite its geography. At the time, Tonga marketed itself as 'the land where time begins' and 'the first country to greet the new millennium' — though the actual first sunrise of the year 2000 fell on other Pacific islands depending on topography.",
+    detail: "Offset: UTC+13 (no DST) · Changed: 1994 · Former offset: UTC+13 but with seasonal variation"
+  }
+];
+
+// Clocks to show live: the fractional-offset places
+const CLOCKS = [
+  { label: "Kathmandu", offset: 5.75 },
+  { label: "Mumbai",    offset: 5.5 },
+  { label: "Tehran",    offset: 3.5 },
+  { label: "Kabul",     offset: 4.5 },
+  { label: "Chatham Is.", offset: 12.75 },
+  { label: "Lord Howe", offset: 10.5 },
+];
+
+function formatTime(offsetHours) {
+  const now = new Date();
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  const local = new Date(utc + offsetHours * 3600000);
+  const h = String(local.getHours()).padStart(2, '0');
+  const m = String(local.getMinutes()).padStart(2, '0');
+  const s = String(local.getSeconds()).padStart(2, '0');
+  return `${h}:${m}:${s}`;
+}
+
+function offsetLabel(h) {
+  const sign = h >= 0 ? '+' : '−';
+  const abs = Math.abs(h);
+  const hours = Math.floor(abs);
+  const mins = Math.round((abs - hours) * 60);
+  return `UTC${sign}${String(hours).padStart(2,'0')}:${String(mins).padStart(2,'0')}`;
+}
+
+function renderClocks() {
+  const grid = document.getElementById('clockGrid');
+  grid.innerHTML = CLOCKS.map(c => `
+    <div class="clock-item">
+      <div class="clock-place">${c.label}</div>
+      <div class="clock-time" id="clock-${c.label.replace(/\s/g,'')}">${formatTime(c.offset)}</div>
+      <div class="clock-offset">${offsetLabel(c.offset)}</div>
+    </div>
+  `).join('');
+}
+
+function tickClocks() {
+  CLOCKS.forEach(c => {
+    const el = document.getElementById('clock-' + c.label.replace(/\s/g,''));
+    if (el) el.textContent = formatTime(c.offset);
+  });
+}
+
+renderClocks();
+setInterval(tickClocks, 1000);
+
+// Render entries
+function renderEntries(filter) {
+  const container = document.getElementById('entries');
+  container.innerHTML = '';
+  const filtered = filter === 'all' ? ENTRIES : ENTRIES.filter(e => e.tag === filter);
+  filtered.forEach((e, i) => {
+    const div = document.createElement('div');
+    div.className = 'entry';
+    div.innerHTML = `
+      <div class="entry-num">${String(i + 1).padStart(2, '0')}</div>
+      <div class="entry-body">
+        <div class="entry-header">
+          <div class="entry-place">${e.place}</div>
+          <span class="entry-tag">${e.tagLabel}</span>
+          <div class="entry-offset">${e.offset}</div>
+        </div>
+        <div class="entry-text">${e.text}</div>
+        <div class="entry-detail">${e.detail}</div>
+      </div>
+    `;
+    // re-trigger animation
+    div.style.animationDelay = `${i * 0.04}s`;
+    container.appendChild(div);
+  });
+}
+
+renderEntries('all');
+
+// Category filter
+document.getElementById('catNav').addEventListener('click', e => {
+  if (!e.target.classList.contains('cat-btn')) return;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  renderEntries(e.target.dataset.cat);
+});
+</script>
+</body>
+</html>
