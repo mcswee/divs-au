@@ -360,7 +360,7 @@
     <button class="cat-btn" data-cat="political">Political anomalies</button>
     <button class="cat-btn" data-cat="dateline">Date line</button>
     <button class="cat-btn" data-cat="dst">Daylight saving</button>
-    <button class="cat-btn" data-cat="history">Historical</button>
+    <button class="cat-btn" data-cat="international">International</button>
   </nav>
 
   <div class="entries" id="entries"></div>
@@ -523,16 +523,16 @@ const ENTRIES = [
   {
     place: "International Space Station",
     offset: "UTC+0:00",
-    tag: "history",
-    tagLabel: "Historical note",
+    tag: "international",
+    tagLabel: "International",
     text: "The ISS uses Coordinated Universal Time (UTC) as its working timezone, having no meaningful geographic position to anchor to. Crew members observe an artificial 24-hour schedule regardless of orbital position — the station completes approximately 15.5 orbits per day, meaning it experiences roughly 15 sunrises and sunsets every 24 hours. Timekeeping becomes entirely conventional at that altitude.",
     detail: "Timezone: UTC+0 · Orbits per day: ~15.5 · Altitude: ~400 km · Orbital period: ~92 minutes"
   },
   {
     place: "Svalbard",
     offset: "UTC+1:00",
-    tag: "history",
-    tagLabel: "Historical note",
+    tag: "international",
+    tagLabel: "International",
     text: "Svalbard, the Norwegian archipelago in the high Arctic, observes Central European Time — despite being at 78°N, where the solar geometry renders standard timekeeping largely meaningless for months at a time. The midnight sun runs from late April to late August; polar night from late October to mid-February. The timezone persists for administrative alignment with mainland Norway, a matter of convenience rather than solar logic.",
     detail: "Offset: UTC+1 (CET) / UTC+2 (CEST) · Latitude: 74–81°N · Midnight sun: ~April 20 – August 23"
   },
@@ -543,6 +543,70 @@ const ENTRIES = [
     tagLabel: "Date line",
     text: "Tonga was among the first places to adopt UTC+13, doing so in 1994 to place itself entirely on the western side of the date line despite its geography. At the time, Tonga marketed itself as 'the land where time begins' and 'the first country to greet the new millennium' — though the actual first sunrise of the year 2000 fell on other Pacific islands depending on topography.",
     detail: "Offset: UTC+13 (no DST) · Changed: 1994 · Former offset: UTC+13 but with seasonal variation"
+  },
+  {
+    place: "Central Australia",
+    offset: "UTC+9:30 / UTC+10:30",
+    tag: "fractional",
+    tagLabel: "Fractional offset",
+    text: "Australian Central Standard Time — observed by the Northern Territory, South Australia, and a slice of western New South Wales — sits at UTC+9:30, splitting the difference between the eastern and western coasts. South Australia observes daylight saving (shifting to UTC+10:30 in summer), while the Northern Territory does not, and has never done so. The NT's resistance is partly practical — at tropical latitudes, the daylight hours don't vary enough for DST to make much difference — and partly the accumulated inertia of a territory that simply decided not to bother.",
+    detail: "ACST: UTC+9:30 · ACDT (SA only): UTC+10:30 · NT: UTC+9:30 year-round · States observing: SA, NT"
+  },
+  {
+    place: "Australia (DST patchwork)",
+    offset: "Three policies, one country",
+    tag: "dst",
+    tagLabel: "Daylight saving",
+    text: "Australia has five distinct daylight saving arrangements operating simultaneously. New South Wales, Victoria, Tasmania, South Australia, and the ACT observe DST. Queensland does not — it last tried in the early 1990s and rejected it by referendum, partly on the grounds that fading curtains and confused cattle are genuine concerns in a state that stretches to 29°S. Western Australia held three referendums on DST between 1975 and 2009 and rejected it each time. The Northern Territory has never observed it. The result is that during summer, the east coast alone spans three different UTC offsets, and a Sydney–Brisbane flight of under two hours can involve a one-hour time change depending on the time of year.",
+    detail: "DST observed: NSW, VIC, TAS, SA, ACT · Not observed: QLD, WA, NT · QLD last trial: 1992 · WA last referendum: 2009"
+  },
+  {
+    place: "Newfoundland, Canada",
+    offset: "UTC−3:30",
+    tag: "fractional",
+    tagLabel: "Fractional offset",
+    text: "Newfoundland Standard Time is UTC−3:30 — a half-hour offset that places it firmly in the same category as India and Iran, and makes it the only half-hour timezone in the Americas. It also observes daylight saving, shifting to UTC−2:30 in summer. The offset dates to 1935, when Newfoundland was still a self-governing dominion rather than a Canadian province. It joined Confederation in 1949 but kept its timezone, which has been a running source of mild administrative confusion with the rest of Atlantic Canada (UTC−4) ever since.",
+    detail: "NST: UTC−3:30 · NDT (DST): UTC−2:30 · Status when timezone set: independent dominion · Joined Canada: 1949"
+  },
+  {
+    place: "Myanmar & Cocos Islands",
+    offset: "UTC+6:30",
+    tag: "fractional",
+    tagLabel: "Fractional offset",
+    text: "UTC+6:30 has two inhabitants: Myanmar, a country of 55 million, and the Cocos (Keeling) Islands, an Australian territory with a population of around 600. Myanmar's half-hour offset dates to 1930 under British administration and has remained unchanged through independence and every subsequent government. The Cocos Islands, sitting in the Indian Ocean roughly equidistant between Australia and Sri Lanka, follow the same offset — not because of any historical connection to Myanmar, but because it happens to suit their geography.",
+    detail: "Myanmar (MMT): UTC+6:30 · Cocos Islands (CCT): UTC+6:30 · Myanmar population: ~55 million · Cocos population: ~600"
+  },
+  {
+    place: "Canada (DST patchwork)",
+    offset: "Four policies, one country",
+    tag: "dst",
+    tagLabel: "Daylight saving",
+    text: "Canada's DST situation is nearly as fragmented as Australia's. Saskatchewan observes Central Standard Time year-round, declining DST entirely — placing it permanently aligned with Alberta in winter and Manitoba in summer, belonging fully to neither. British Columbia and Yukon have been legislatively poised to adopt permanent Pacific Standard Time (effectively staying on PDT year-round) pending a US agreement that has not materialised, leaving them continuing to change clocks in the meantime. Parts of Nunavut — a territory spanning five natural timezone bands — observe Eastern, Central, Mountain, or Pacific time depending on the community, with some areas not observing DST. Southampton Island uses Eastern time despite its geography. Labrador, geographically its own region within the province of Newfoundland and Labrador, follows Atlantic time rather than Newfoundland time, meaning the two halves of the same province differ by 30 minutes.",
+    detail: "Saskatchewan: CST year-round (UTC−6) · BC/YT: pending permanent PDT · Nunavut: multiple zones · Labrador: AST/ADT (UTC−4/−3)"
+  },
+  {
+    place: "Malaysia & Singapore",
+    offset: "UTC+8:00",
+    tag: "political",
+    tagLabel: "Political anomaly",
+    text: "Both Malaysia and Singapore sit geographically within UTC+7 territory, yet both observe UTC+8. Malaysia shifted east in 1982 to unify its peninsular and Borneo territories under one clock — previously, Sabah and Sarawak used UTC+8 while the peninsula used UTC+7:30. Singapore, which had used UTC+7:30 since separating from Malaysia in 1965, followed suit in 1982 to maintain alignment with its largest trading partner. The result is that Singaporean solar noon falls around 1:05pm, and the sun sets well after 7pm year-round.",
+    detail: "Current offset: UTC+8 · Geographic alignment: ~UTC+7 · Malaysia unification: 1982 · Singapore shift: 1982 · Solar noon Singapore: ~13:05"
+  },
+  {
+    place: "Greenland",
+    offset: "UTC−3:00 (mostly)",
+    tag: "political",
+    tagLabel: "Political anomaly",
+    text: "Greenland occupies the geographic range of roughly UTC−4 to UTC−1, yet most of its populated west coast uses UTC−3 (shifting to UTC−2 in summer). The exception is Danmarkshavn, a weather station on the remote northeast coast, which uses UTC+0 year-round — meaning it sits at the same time as London despite being well west of it. Most of Greenland's territory is geographically better suited to UTC−2 or −3, but political and administrative alignment with Denmark has shaped the clock arrangements more than solar position has.",
+    detail: "West Greenland: UTC−3 (WGT) / UTC−2 (WGST) · Danmarkshavn: UTC+0 year-round · Ittoqqortoormiit: UTC−1 / UTC+0 · Geographic range: ~UTC−4 to UTC−1"
+  },
+  {
+    place: "Antarctica",
+    offset: "UTC−12 to UTC+13",
+    tag: "international",
+    tagLabel: "International",
+    text: "Antarctica has no indigenous population and no political sovereignty, so research stations simply adopt the timezone of their operating nation or nearest resupply point. McMurdo Station (US) and Scott Base (New Zealand) both use New Zealand time — UTC+12 or +13 depending on DST — despite sitting at 78°S where the concept of local solar time is largely academic. The South Pole itself is equidistant from every meridian simultaneously. The Amundsen–Scott South Pole Station uses New Zealand time by convention. Some stations observe their home country's time: Casey Station (Australia) uses AWST (UTC+8), while Concordia (France/Italy) uses UTC+8 for operational reasons. At the pole, every timezone is technically valid and none meaningfully is.",
+    detail: "McMurdo/Scott Base: NZST/NZDT (UTC+12/+13) · Casey: AWST (UTC+8) · Concordia: UTC+8 · South Pole: NZST by convention"
   }
 ];
 
@@ -554,6 +618,9 @@ const CLOCKS = [
   { label: "Kabul",     offset: 4.5 },
   { label: "Chatham Is.", offset: 12.75 },
   { label: "Lord Howe", offset: 10.5 },
+  { label: "Adelaide",   offset: 9.5 },
+  { label: "St John's",  offset: -3.5 },
+  { label: "Yangon",     offset: 6.5 },
 ];
 
 function formatTime(offsetHours) {
