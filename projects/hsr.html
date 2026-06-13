@@ -71,21 +71,18 @@ nav a:hover{color:var(--sky)}
 
 /* dim non-active when selection active */
 .map-wrap.sel .transit-line,
-.map-wrap.sel .station-icon{opacity:.1;transition:opacity .22s}
+.map-wrap.sel .station-icon,
+.map-wrap.sel .xch-pill{opacity:.1;transition:opacity .22s}
 .map-wrap.sel .transit-line.on,
-.map-wrap.sel .station-icon.on{opacity:1}
+.map-wrap.sel .station-icon.on,
+.map-wrap.sel .xch-pill.on{opacity:1}
 
 .transit-line{cursor:pointer;transition:opacity .22s}
 .transit-line:hover{stroke-width:11!important}
 
-/* UNIFIED FILTER BAR — sits between map and cards */
+/* UNIFIED FILTER BAR */
 #lines{padding:0 2.5rem 4rem;max-width:1500px;margin:0 auto}
-
-.filter-wrap{
-  padding:1rem 0;
-  border-top:1px solid var(--border);
-}
-
+.filter-wrap{padding:1rem 0;border-top:1px solid var(--border)}
 .filter-bar{display:flex;gap:.35rem;flex-wrap:wrap}
 .filter-btn{
   background:none;border:1px solid var(--border);color:var(--muted);
@@ -103,7 +100,6 @@ nav a:hover{color:var(--sky)}
   margin:1.5rem 0 1rem;display:flex;align-items:center;gap:.75rem
 }
 .sec-label-cards::after{content:'';flex:1;height:1px;background:var(--border)}
-
 .lines-grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
   gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden
@@ -184,7 +180,7 @@ footer{
       <style id="svgStyle"></style>
       <rect width="1390" height="1080" fill="#080c12"/>
 
-      <!-- LINE PATHS — data-line drives all interaction -->
+      <!-- LINE PATHS -->
       <path class="transit-line t-line" data-line="t" d="M458.5 312.5 458.5 601.976C458.902 612.691 466.806 617.217 473.675 617.103L546.099 617.103C555.525 617.303 568.056 629.508 567.481 638.418L567.481 783.5" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
       <path class="transit-line w-line" data-line="w" d="M164.5 419.5 164.5 795.5"/>
       <path class="transit-line n-line" data-line="n" d="M177.5 527.5 177.5 617.285C177.895 624.922 184.567 630.328 193.542 630.465L543.944 630.465C548.818 630.585 555.636 635.63 555.498 641.997L555.498 784.5"/>
@@ -302,7 +298,7 @@ footer{
       <path class="apt-icon" d="M49.0079 587.538 50.9457 585.601 49.1156 574.942 53.3142 570.744C54.154 569.904 54.8215 568.375 54.1755 567.729 53.5511 567.105 52.0008 567.751 51.1611 568.591L46.9625 572.789 36.3042 570.959 34.3664 572.897 43.7327 576.019 39.0388 580.713 35.0124 580.433 33.7205 581.725 38.2421 583.663 40.18 588.184 41.4719 586.892 41.192 582.866 45.8858 578.172 49.0079 587.538Z"/>
       <path class="apt-icon" d="M334.161 373.732 336.098 371.795 334.268 361.136 338.467 356.938C339.307 356.098 339.974 354.569 339.328 353.923 338.704 353.299 337.153 353.945 336.314 354.785L332.115 358.983 321.457 357.153 319.519 359.091 328.885 362.213 324.191 366.907 320.165 366.627 318.873 367.919 323.395 369.857 325.333 374.378 326.624 373.086 326.345 369.06 331.038 364.366 334.161 373.732Z"/>
 
-      <!-- STATION DOTS — data-line drives interaction -->
+      <!-- STATION DOTS -->
       <circle class="station-icon t-line" data-line="t" cx="458.5" cy="313" r="8"/>
       <circle class="station-icon t-line" data-line="t" cx="458.5" cy="362.5" r="8"/>
       <circle class="station-icon t-line" data-line="t" cx="458.5" cy="413.5" r="8"/>
@@ -366,29 +362,51 @@ footer{
       <circle class="station-icon i-line" data-line="i" cx="668.5" cy="940" r="8"/>
       <circle class="station-icon i-line" data-line="i" cx="778.5" cy="1066" r="8"/>
 
-      <!-- INTERCHANGE PILLS -->
-      <rect class="xch-pill" x="1194.5" y="887.5" width="42" height="16" rx="8" ry="8"/>
-      <rect class="xch-pill" x="1159.5" y="831.5" width="16" height="31" rx="8" ry="8"/>
-      <rect class="xch-pill" x="1128.5" y="378.5" width="16" height="31" rx="8" ry="8"/>
-      <rect class="xch-pill" x="1052.5" y="378.5" width="16" height="31" rx="8" ry="8"/>
-      <rect class="xch-pill" x="974.5" y="320.5" width="42" height="16" rx="8" ry="8"/>
-      <rect class="xch-pill" x="974.5" y="269.5" width="31" height="16" rx="8" ry="8"/>
-      <rect class="xch-pill" x="974.5" y="217.5" width="31" height="16" rx="8" ry="8"/>
-      <rect class="xch-pill" x="797.5" y="388.5" width="16" height="31" rx="8" ry="8"/>
-      <rect class="xch-pill" x="830.5" y="651.5" width="16" height="31" rx="8" ry="8"/>
-      <rect class="xch-pill" x="787.5" y="782.5" width="31" height="16" rx="8" ry="8"/>
-      <rect class="xch-pill" x="939.5" y="66.5" width="16" height="31" rx="8" ry="8"/>
-      <rect class="xch-pill" x="857.5" y="66.5" width="16" height="31" rx="8" ry="8"/>
-      <rect class="xch-pill" x="969.5" y="997.5" width="16" height="31" rx="8" ry="8"/>
-      <rect class="xch-pill" x="888.5" y="997.5" width="16" height="31" rx="8" ry="8"/>
-      <rect class="xch-pill" x="716.5" y="997.5" width="16" height="31" rx="8" ry="8"/>
-      <rect class="xch-pill" x="544.5" y="777.5" width="59" height="16" rx="8" ry="8"/>
-      <rect class="xch-pill" x="544.5" y="704.5" width="42" height="16" rx="8" ry="8"/>
-      <rect class="xch-pill" x="511.5" y="609.5" width="16" height="31" rx="8" ry="8"/>
-      <rect class="xch-pill" x="787.5" y="834.5" width="31" height="16" rx="8" ry="8"/>
-      <rect class="xch-pill" x="1092.5" y="831.5" width="16" height="31" rx="8" ry="8"/>
-      <rect class="xch-pill" x="155.5" y="568" width="31" height="16" rx="8" ry="8"/>
-      <rect class="xch-pill" x="155.5" y="519.5" width="31" height="16" rx="8" ry="8"/>
+      <!-- INTERCHANGE PILLS — data-lines="x y z" lists all serving lines -->
+      <!-- Perth -->
+      <rect class="xch-pill" data-lines="w n" x="155.5" y="568" width="31" height="16" rx="8" ry="8"/>
+      <!-- Perth Airport -->
+      <rect class="xch-pill" data-lines="w n" x="155.5" y="519.5" width="31" height="16" rx="8" ry="8"/>
+      <!-- Port Augusta -->
+      <rect class="xch-pill" data-lines="n t" x="511.5" y="609.5" width="16" height="31" rx="8" ry="8"/>
+      <!-- Salisbury -->
+      <rect class="xch-pill" data-lines="n t b" x="544.5" y="704.5" width="42" height="16" rx="8" ry="8"/>
+      <!-- Keswick Adelaide -->
+      <rect class="xch-pill" data-lines="n t b s" x="544.5" y="777.5" width="59" height="16" rx="8" ry="8"/>
+      <!-- Ballarat -->
+      <rect class="xch-pill" data-lines="s i" x="716.5" y="997.5" width="16" height="31" rx="8" ry="8"/>
+      <!-- Parkes -->
+      <rect class="xch-pill" data-lines="b i" x="830.5" y="651.5" width="16" height="31" rx="8" ry="8"/>
+      <!-- Toowoomba -->
+      <rect class="xch-pill" data-lines="i c" x="797.5" y="388.5" width="16" height="31" rx="8" ry="8"/>
+      <!-- Wangaratta -->
+      <rect class="xch-pill" data-lines="f i" x="787.5" y="834.5" width="31" height="16" rx="8" ry="8"/>
+      <!-- Albury -->
+      <rect class="xch-pill" data-lines="f i" x="787.5" y="782.5" width="31" height="16" rx="8" ry="8"/>
+      <!-- Sunshine -->
+      <rect class="xch-pill" data-lines="s f" x="888.5" y="997.5" width="16" height="31" rx="8" ry="8"/>
+      <!-- Southern Cross Melbourne -->
+      <rect class="xch-pill" data-lines="s f" x="969.5" y="997.5" width="16" height="31" rx="8" ry="8"/>
+      <!-- Western Sydney Airport -->
+      <rect class="xch-pill" data-lines="b f" x="1092.5" y="831.5" width="16" height="31" rx="8" ry="8"/>
+      <!-- Parramatta -->
+      <rect class="xch-pill" data-lines="b f" x="1159.5" y="831.5" width="16" height="31" rx="8" ry="8"/>
+      <!-- Sydney Central -->
+      <rect class="xch-pill" data-lines="b f p" x="1194.5" y="887.5" width="42" height="16" rx="8" ry="8"/>
+      <!-- Gold Coast Airport -->
+      <rect class="xch-pill" data-lines="r p" x="1128.5" y="378.5" width="16" height="31" rx="8" ry="8"/>
+      <!-- Gold Coast -->
+      <rect class="xch-pill" data-lines="r p" x="1052.5" y="378.5" width="16" height="31" rx="8" ry="8"/>
+      <!-- Roma Street Brisbane -->
+      <rect class="xch-pill" data-lines="r p c" x="974.5" y="320.5" width="42" height="16" rx="8" ry="8"/>
+      <!-- Brisbane Airport -->
+      <rect class="xch-pill" data-lines="r c" x="974.5" y="269.5" width="31" height="16" rx="8" ry="8"/>
+      <!-- Sunshine Coast -->
+      <rect class="xch-pill" data-lines="r c" x="974.5" y="217.5" width="31" height="16" rx="8" ry="8"/>
+      <!-- Bundaberg -->
+      <rect class="xch-pill" data-lines="r c" x="939.5" y="66.5" width="16" height="31" rx="8" ry="8"/>
+      <!-- Gladstone -->
+      <rect class="xch-pill" data-lines="r c" x="857.5" y="66.5" width="16" height="31" rx="8" ry="8"/>
     </svg>
   </div>
 </section>
@@ -417,7 +435,7 @@ const LINES = [
     distance:920,  stations:16, journey_time:'4h 45m',
     infra_type:'Dedicated HSR',
     infra:'Dedicated high-speed rail, 300 km/h throughout',
-    station_list:['Sydney Airport','Central (Sydney)','Gosford (Central Coast)','Morisset (Lake Macquarie)','Broadmeadow (Newcastle)','Williamtown (Newcastle Airport)','Taree','Port Macquarie','Coffs Harbour','Grafton','Casino','Lismore','Byron Bay','Coolangatta (Gold Coast Airport)','Robina (Gold Coast)','Roma Street (Brisbane)']
+    station_list:['Sydney Airport','Sydney Central','Central Coast','Lake Macquarie','Newcastle','Williamtown (Newcastle Airport)','Taree','Port Macquarie','Coffs Harbour','Grafton','Casino','Lismore','Byron Bay','Coolangatta (Gold Coast Airport)','Gold Coast','Roma Street Brisbane']
   },
   {
     code:'b', name:'Barrier Line',    color:'#2dd4bf', darkText:true,
@@ -425,7 +443,7 @@ const LINES = [
     distance:1340, stations:11, journey_time:'8h 30m',
     infra_type:'Hybrid HSR / Upgraded',
     infra:'HSR Sydney–Parkes (450 km, 300+ km/h); upgraded conventional Parkes–Adelaide (890 km, 160–200 km/h)',
-    station_list:['Central (Sydney)','Parramatta','Western Sydney Airport','Katoomba (Blue Mountains)','Bathurst','Orange','Parkes','Broken Hill','Greenock (Barossa Valley)','Salisbury','Adelaide (Keswick)']
+    station_list:['Sydney Central','Parramatta','Western Sydney Airport','Blue Mountains','Bathurst','Orange','Parkes','Broken Hill','Barossa Valley','Salisbury','Keswick Adelaide']
   },
   {
     code:'f', name:'Federation Line', color:'#6d28d9', darkText:false,
@@ -433,7 +451,7 @@ const LINES = [
     distance:880,  stations:12, journey_time:'3h 45m',
     infra_type:'Dedicated HSR',
     infra:'Dedicated HSR, 300 km/h',
-    station_list:['Central (Sydney)','Parramatta','Western Sydney Airport','Goulburn','Canberra Airport','Canberra City Centre','Albury','Wangaratta','Seymour','Melbourne Airport','Sunshine','Southern Cross (Melbourne)']
+    station_list:['Sydney Central','Parramatta','Western Sydney Airport','Goulburn','Canberra Airport','Canberra City Centre','Albury','Wangaratta','Seymour','Melbourne Airport','Sunshine','Southern Cross Melbourne']
   },
   {
     code:'s', name:'Southern Line',   color:'#0284c7', darkText:false,
@@ -441,7 +459,7 @@ const LINES = [
     distance:980,  stations:11, journey_time:'4h 45m',
     infra_type:'Mixed / HSR',
     infra:'Upgraded conventional Adelaide–Ballarat (200 km/h); dedicated HSR Ballarat–Traralgon (300+ km/h)',
-    station_list:['Keswick (Adelaide)','Murray Bridge','Bordertown','Horsham','Stawell','Ararat','Ballarat','Sunshine','Southern Cross (Melbourne)','Warragul','Traralgon']
+    station_list:['Keswick Adelaide','Murray Bridge','Bordertown','Horsham','Stawell','Ararat','Ballarat','Sunshine','Southern Cross Melbourne','Warragul','Traralgon']
   },
   {
     code:'n', name:'Nullarbor Line',  color:'#a78bfa', darkText:true,
@@ -449,7 +467,7 @@ const LINES = [
     distance:2700, stations:8,  journey_time:'15h 00m',
     infra_type:'Upgraded Conventional',
     infra:'Upgraded conventional, 160–200 km/h; trans-Australian corridor with generous overtaking loops',
-    station_list:['Keswick (Adelaide)','Salisbury','Port Augusta','Cook (limited supply stop)','Kalgoorlie','Merredin','Northam','Perth Airport','East Perth']
+    station_list:['Keswick Adelaide','Salisbury','Port Augusta','Cook','Kalgoorlie','Merredin','Northam','Perth Airport','East Perth']
   },
   {
     code:'w', name:'Western Line',    color:'#83eff6', darkText:true,
@@ -465,7 +483,7 @@ const LINES = [
     distance:3000, stations:7,  journey_time:'16h 00m',
     infra_type:'Upgraded Conventional',
     infra:'Upgraded conventional, 160–200 km/h; Ghan corridor with shared freight operation',
-    station_list:['Keswick (Adelaide)','Salisbury','Port Augusta','Alice Springs','Katherine','Darwin Airport','Darwin City']
+    station_list:['Keswick Adelaide','Salisbury','Port Augusta','Alice Springs','Katherine','Darwin Airport','Darwin City']
   },
   {
     code:'i', name:'Inland Line',     color:'#f472b6', darkText:true,
@@ -481,7 +499,7 @@ const LINES = [
     distance:1920, stations:13, journey_time:'12h 00m',
     infra_type:'Hybrid HSR / Upgraded',
     infra:'HSR Toowoomba–Rockhampton via Brisbane (~1,100 km, shared with Reef Line); upgraded conventional Rockhampton–Mt Isa (~820 km, 160–180 km/h)',
-    station_list:['Toowoomba','Gatton (Lockyer Valley)','Ipswich','Roma Street (Brisbane)','Brisbane Airport','Rosemount (Sunshine Coast)','Gympie','Bundaberg','Gladstone','Emerald','Longreach','Winton','Mount Isa']
+    station_list:['Toowoomba','Lockyer Valley','Ipswich','Roma Street Brisbane','Brisbane Airport','Sunshine Coast','Gympie','Bundaberg','Gladstone','Emerald','Longreach','Winton','Mount Isa']
   },
   {
     code:'r', name:'Reef Line',       color:'#ed80e9', darkText:true,
@@ -489,7 +507,7 @@ const LINES = [
     distance:1680, stations:13, journey_time:'8h 15m',
     infra_type:'Dedicated HSR',
     infra:'Dedicated HSR, 300–350 km/h; Queensland coast corridor',
-    station_list:['Coolangatta (Gold Coast Airport)','Robina (Gold Coast)','Roma Street (Brisbane)','Brisbane Airport','Rosemount (Sunshine Coast)','Aldershot (Fraser Coast)','Bundaberg','Gladstone','Rockhampton','Mackay','Proserpine (Whitsundays)','Townsville','Cairns']
+    station_list:['Coolangatta (Gold Coast Airport)','Gold Coast','Roma Street Brisbane','Brisbane Airport','Sunshine Coast','Fraser Coast','Bundaberg','Gladstone','Rockhampton','Mackay','Whitsundays','Townsville','Cairns']
   }
 ];
 
@@ -501,7 +519,7 @@ const LINES = [
     .sta-lbl{font-family:'Public Sans',sans-serif;font-weight:400;font-size:13px;fill:#3a5068}
     .apt-icon{fill:#3a4f6a;stroke-width:0;fill-rule:evenodd}
     .station-icon{stroke:#080c12;stroke-width:2}
-    .xch-pill{stroke:#fafafa;stroke-width:1;fill:#1f2d45}
+    .xch-pill{stroke:#fafafa;stroke-width:1;fill:#1f2d45;transition:opacity .22s}
   `;
   LINES.forEach(l=>{
     css+=`.transit-line.${l.code}-line{stroke:${l.color}}\n`;
@@ -522,7 +540,6 @@ const LINES = [
 (function buildFilters(){
   const bar = document.getElementById('filterBar');
 
-  // "All lines" button
   bar.querySelector('[data-filter="all"]').addEventListener('click', ()=>{
     bar.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
     bar.querySelector('[data-filter="all"]').classList.add('active');
@@ -530,7 +547,6 @@ const LINES = [
     clearSel();
   });
 
-  // One button per line
   LINES.forEach(l=>{
     const btn = document.createElement('button');
     btn.className = 'filter-btn';
@@ -539,13 +555,11 @@ const LINES = [
     btn.addEventListener('click', ()=>{
       const isActive = btn.classList.contains('active');
       if(isActive){
-        // second click — reset everything
         bar.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
         bar.querySelector('[data-filter="all"]').classList.add('active');
         showAllCards();
         clearSel();
       } else {
-        // select this line
         bar.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
         filterCards(l.code);
@@ -600,7 +614,7 @@ const LINES = [
   });
 })();
 
-/* ─── 5. SVG path clicks — still work independently ─── */
+/* ─── 5. SVG path clicks ─── */
 document.querySelectorAll('#svgMap .transit-line').forEach(path=>{
   path.addEventListener('click', ()=>{
     if(!path.dataset.line) return;
@@ -629,8 +643,16 @@ let activeLine = null;
 function highlight(code){
   document.getElementById('mapWrap').classList.add('sel');
   activeLine = code;
+
+  // lines and station dots: match data-line exactly
   document.querySelectorAll('#svgMap .transit-line, #svgMap .station-icon').forEach(el=>{
-    el.classList.toggle('on', el.dataset.line===code);
+    el.classList.toggle('on', el.dataset.line === code);
+  });
+
+  // interchange pills: match if code appears as a whole word in data-lines
+  document.querySelectorAll('#svgMap .xch-pill').forEach(el=>{
+    const lines = (el.dataset.lines || '').split(' ');
+    el.classList.toggle('on', lines.includes(code));
   });
 }
 
@@ -642,7 +664,7 @@ function clearSel(){
 
 function filterCards(code){
   document.querySelectorAll('.line-card').forEach(c=>
-    c.classList.toggle('hidden', c.dataset.code!==code));
+    c.classList.toggle('hidden', c.dataset.code !== code));
 }
 
 function showAllCards(){
