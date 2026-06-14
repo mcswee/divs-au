@@ -132,6 +132,22 @@ nav a:hover{color:var(--sky)}
 .sta-dot{width:8px;height:8px;border-radius:50%;border:2px solid;flex-shrink:0}
 .infra-note{margin-top:.8rem;font-size:.72rem;color:var(--muted);line-height:1.5;font-style:italic}
 
+/* ABOUT */
+#about{
+  max-width:1500px;margin:0 auto;
+  padding:0 2.5rem 5rem;
+}
+.about-body{
+  max-width:72ch;
+}
+.about-body p{
+  color:var(--muted);font-size:.92rem;line-height:1.85;font-weight:300;
+  margin-bottom:1.4rem;
+}
+.about-body p:last-child{margin-bottom:0}
+.about-body strong{color:var(--text);font-weight:500}
+
+/* FOOTER */
 footer{
   border-top:1px solid var(--border);padding:1.5rem 2.5rem;
   display:flex;align-items:center;justify-content:space-between;
@@ -145,7 +161,7 @@ footer{
   .stat:last-child{border-bottom:none}
   nav,.wm-sub{display:none}
   .lines-grid{grid-template-columns:1fr}
-  header,#map,#lines,.hero,.stats-row,footer{padding-left:1.2rem;padding-right:1.2rem}
+  header,#map,#lines,#about,.hero,.stats-row,footer{padding-left:1.2rem;padding-right:1.2rem}
 }
 </style>
 </head>
@@ -156,13 +172,13 @@ footer{
     <div class="wm-logo">Au<span class="r1">R</span><span class="o">O</span><span class="r2">R</span><span class="a">a</span></div>
     <div class="wm-sub">Australian Rapid<br>Overland Rail</div>
   </div>
-  <nav><a href="#map">Network Map</a><a href="#lines">Lines</a></nav>
+  <nav><a href="#map">Network Map</a><a href="#lines">Lines</a><a href="#about">About</a></nav>
 </header>
 
 <div class="hero">
   <div class="hero-kicker">Proposed National Rail Network</div>
   <h1>Connecting <span class="hl">Australia</span> by rail</h1>
-  <p class="hero-desc">AuRORa is a proposed national high-speed and rapid rail network spanning the Australian continent — linking capital cities, regional centres, and remote communities through dedicated HSR corridors, upgraded conventional alignments, and shared freight routes.</p>
+  <p class="hero-desc">AuRORa is a fantasy national high-speed and rapid rail network — linking capital cities, regional centres, and remote communities through dedicated HSR corridors, upgraded conventional alignments, and shared freight routes.</p>
 </div>
 
 <div class="stats-row">
@@ -362,50 +378,28 @@ footer{
       <circle class="station-icon i-line" data-line="i" cx="668.5" cy="940" r="8"/>
       <circle class="station-icon i-line" data-line="i" cx="778.5" cy="1066" r="8"/>
 
-      <!-- INTERCHANGE PILLS — data-lines="x y z" lists all serving lines -->
-      <!-- Perth -->
+      <!-- INTERCHANGE PILLS -->
       <rect class="xch-pill" data-lines="w n" x="155.5" y="568" width="31" height="16" rx="8" ry="8"/>
-      <!-- Perth Airport -->
       <rect class="xch-pill" data-lines="w n" x="155.5" y="519.5" width="31" height="16" rx="8" ry="8"/>
-      <!-- Port Augusta -->
       <rect class="xch-pill" data-lines="n t" x="511.5" y="609.5" width="16" height="31" rx="8" ry="8"/>
-      <!-- Salisbury -->
       <rect class="xch-pill" data-lines="n t b" x="544.5" y="704.5" width="42" height="16" rx="8" ry="8"/>
-      <!-- Keswick Adelaide -->
       <rect class="xch-pill" data-lines="n t b s" x="544.5" y="777.5" width="59" height="16" rx="8" ry="8"/>
-      <!-- Ballarat -->
       <rect class="xch-pill" data-lines="s i" x="716.5" y="997.5" width="16" height="31" rx="8" ry="8"/>
-      <!-- Parkes -->
       <rect class="xch-pill" data-lines="b i" x="830.5" y="651.5" width="16" height="31" rx="8" ry="8"/>
-      <!-- Toowoomba -->
       <rect class="xch-pill" data-lines="i c" x="797.5" y="388.5" width="16" height="31" rx="8" ry="8"/>
-      <!-- Wangaratta -->
       <rect class="xch-pill" data-lines="f i" x="787.5" y="834.5" width="31" height="16" rx="8" ry="8"/>
-      <!-- Albury -->
       <rect class="xch-pill" data-lines="f i" x="787.5" y="782.5" width="31" height="16" rx="8" ry="8"/>
-      <!-- Sunshine -->
       <rect class="xch-pill" data-lines="s f" x="888.5" y="997.5" width="16" height="31" rx="8" ry="8"/>
-      <!-- Southern Cross Melbourne -->
       <rect class="xch-pill" data-lines="s f" x="969.5" y="997.5" width="16" height="31" rx="8" ry="8"/>
-      <!-- Western Sydney Airport -->
       <rect class="xch-pill" data-lines="b f" x="1092.5" y="831.5" width="16" height="31" rx="8" ry="8"/>
-      <!-- Parramatta -->
       <rect class="xch-pill" data-lines="b f" x="1159.5" y="831.5" width="16" height="31" rx="8" ry="8"/>
-      <!-- Sydney Central -->
       <rect class="xch-pill" data-lines="b f p" x="1194.5" y="887.5" width="42" height="16" rx="8" ry="8"/>
-      <!-- Gold Coast Airport -->
       <rect class="xch-pill" data-lines="r p" x="1128.5" y="378.5" width="16" height="31" rx="8" ry="8"/>
-      <!-- Gold Coast -->
       <rect class="xch-pill" data-lines="r p" x="1052.5" y="378.5" width="16" height="31" rx="8" ry="8"/>
-      <!-- Roma Street Brisbane -->
       <rect class="xch-pill" data-lines="r p c" x="974.5" y="320.5" width="42" height="16" rx="8" ry="8"/>
-      <!-- Brisbane Airport -->
       <rect class="xch-pill" data-lines="r c" x="974.5" y="269.5" width="31" height="16" rx="8" ry="8"/>
-      <!-- Sunshine Coast -->
       <rect class="xch-pill" data-lines="r c" x="974.5" y="217.5" width="31" height="16" rx="8" ry="8"/>
-      <!-- Bundaberg -->
       <rect class="xch-pill" data-lines="r c" x="939.5" y="66.5" width="16" height="31" rx="8" ry="8"/>
-      <!-- Gladstone -->
       <rect class="xch-pill" data-lines="r c" x="857.5" y="66.5" width="16" height="31" rx="8" ry="8"/>
     </svg>
   </div>
@@ -420,6 +414,16 @@ footer{
   </div>
   <div class="sec-label-cards">Lines &amp; Stations</div>
   <div class="lines-grid" id="linesGrid"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-label">About AuRORa</div>
+  <div class="about-body">
+    <p>AuRORa — <strong>Australian Rapid Overland Rail</strong> — is a fantasy national rail network designed as a thought experiment: what would a serious, continent-spanning high-speed rail system look like if Australia chose to build one? The project began simply enough, with a question about how a Sydney–Melbourne HSR corridor might work — which stations, what alignment, what journey time. That single line became two, then five, then ten, and the network grew until it covered every state and territory capital and a substantial number of regional centres besides.</p>
+    <p>The design follows real infrastructure logic as closely as a fantasy project can. Lines are classified by the technology they'd realistically require: dedicated high-speed rail on high-demand corridors like the Sydney–Melbourne and Queensland coast routes, upgraded conventional alignments where low population density makes full HSR difficult to justify, and hybrid approaches where HSR makes sense for part of a route before handing off to improved existing track. Interchange stations are treated seriously: the network is designed so that every capital city is reachable from every other with at most one change. The <strong>Territory</strong> and <strong>Nullarbor</strong> lines — following the Ghan and Indian Pacific corridors respectively — are a case apart. Upgraded track, signalling, and new rolling stock would reduce journey times meaningfully without eliminating what makes those routes iconic. A Darwin–Adelaide crossing or a transcontinental run to Perth would still be a multi-night journey, still the kind of trip you take for the journey itself — just faster, more comfortable, and more reliably on time.</p>
+    <p>The <strong>Inland Line</strong> has a particular logic to it. It started as an attempt to connect regional Victorian cities — Geelong, Ballarat, Bendigo, Shepparton — that sit off the main Melbourne–Sydney axis. Extended north through Albury and Wagga Wagga, it became clear it was tracing something close to the real Inland Rail freight project's corridor. Rather than fight that alignment, the line follows it, continuing through Dubbo, Tamworth and Armidale before turning northeast to Toowoomba — giving inland New South Wales and Queensland a direct rail spine that bypasses the congested coastal route entirely.</p>
+  </div>
 </section>
 
 <footer>
@@ -539,14 +543,12 @@ const LINES = [
 /* ─── 3. Unified filter buttons ─── */
 (function buildFilters(){
   const bar = document.getElementById('filterBar');
-
   bar.querySelector('[data-filter="all"]').addEventListener('click', ()=>{
     bar.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
     bar.querySelector('[data-filter="all"]').classList.add('active');
     showAllCards();
     clearSel();
   });
-
   LINES.forEach(l=>{
     const btn = document.createElement('button');
     btn.className = 'filter-btn';
@@ -643,13 +645,9 @@ let activeLine = null;
 function highlight(code){
   document.getElementById('mapWrap').classList.add('sel');
   activeLine = code;
-
-  // lines and station dots: match data-line exactly
   document.querySelectorAll('#svgMap .transit-line, #svgMap .station-icon').forEach(el=>{
     el.classList.toggle('on', el.dataset.line === code);
   });
-
-  // interchange pills: match if code appears as a whole word in data-lines
   document.querySelectorAll('#svgMap .xch-pill').forEach(el=>{
     const lines = (el.dataset.lines || '').split(' ');
     el.classList.toggle('on', lines.includes(code));
