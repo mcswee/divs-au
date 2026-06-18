@@ -222,7 +222,7 @@ function render(data){
     .attr('orient','auto')
     .append('path').attr('d','M0,-3.5 L7,0 L0,3.5').attr('fill','#6a6050');
 
-  data.nodes.filter(n=>n.issue==='d.s.p.').forEach(n=>{
+  data.nodes.filter(n=>n.issue==='no issue').forEach(n=>{
     const x=n.px+CW/2, y=n.py+CH;
     const lineLen=28;
     dspG.append('line')
@@ -253,7 +253,7 @@ function render(data){
     if(d.reign) rows.push(`Reign: ${d.reign}`);
     if(d.marriage) rows.push(`m. ${d.marriage}`);
     if(d.is_excluded) rows.push('Excluded from succession');
-    if(d.issue==='d.s.p.') rows.push('d.s.p. — died without issue');
+    if(d.issue==='no issue') rows.push('d.s.p. — died without issue');
     tn.textContent=d.name;
     tl.innerHTML=rows.map(r=>`<div>${r}</div>`).join('');
     th.textContent=`House of ${d.house}`;
