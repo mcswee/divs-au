@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Royal Lineage of the United Kingdom</title>
+<title>Royal Lineage of England</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -90,8 +90,7 @@ function buildLines(d){
     L.push({t:trunc(d.name,20),      cinzel:true,  sz:10.5, bold:true });
     if(d.sobriquet)  L.push({t:trunc(d.sobriquet,24), italic:true, sz:9.5, dim:true});
     if(d.birth_line) L.push({t:d.birth_line,           sz:9.5, dim:true});
-    if(d.dates)      L.push({t:d.dates,                sz:9.5, dim:true});
-    if(d.post_reign_death) L.push({t:d.post_reign_death, sz:9.5, dim:true});
+    if(d.reign)       L.push({t:d.reign,                sz:9.5, dim:true});
   } else if(d.gender==='F'){
     L.push({t:trunc(d.name,22),      cinzel:true,  sz:10,   bold:true });
     if(d.sobriquet)  L.push({t:trunc(d.sobriquet,24), italic:true, sz:9.5, dim:true});
@@ -106,63 +105,16 @@ function buildLines(d){
   return L.slice(0,5);
 }
 
-// ── Layout: standard Reingold-Tilford, all nodes equal ───────────────────
+// ── Layout: use manual Column field directly from spreadsheet ────────────
 function computeLayout(data){
-  const nm={};
-  data.nodes.forEach(n=>{ nm[n.id]=n; });
-
-  // Primary children, sorted by sibling_order
-  const primKids={};
-  data.edges.forEach(e=>{
-    if(e.type!=='primary') return;
-    if(!primKids[e.from]) primKids[e.from]=[];
-    primKids[e.from].push(e.to);
-  });
-  Object.values(primKids).forEach(arr=>
-    arr.sort((a,b)=>(nm[a].sibling_order||0)-(nm[b].sibling_order||0))
-  );
-
-  // Subtree leaf count — every node counts as 1 regardless of children
-  // This gives fixed-width slots; descendants don't push siblings apart
-  function bw(id){
-    const kids=primKids[id]||[];
-    if(!kids.length) return 1;
-    return kids.reduce((s,c)=>s+bw(c),0);
-  }
-
-  // Place subtree rooted at id, starting at leftSlot
-  function place(id, leftSlot){
-    const n=nm[id];
-    const kids=primKids[id]||[];
-    if(!kids.length){
-      n.layoutX=leftSlot;
-      return leftSlot+1;
-    }
-    let cur=leftSlot;
-    kids.forEach(c=>{ cur=place(c,cur); });
-    // Centre parent over its children
-    n.layoutX=(nm[kids[0]].layoutX + nm[kids[kids.length-1]].layoutX) / 2;
-    return cur;
-  }
-
-  // Place from Alfred; use generation field for y
-  place('!!_Alf', 0);
-
-  // Any nodes not reached (orphans, secondary-only parents)
-  let maxX=Math.max(...data.nodes.map(n=>n.layoutX??-Infinity).filter(isFinite))+2;
   data.nodes.forEach(n=>{
-    if(n.layoutX===undefined||n.layoutX===null){ n.layoutX=maxX++; }
-  });
-
-  // Pixel coords — use generation from data for y
-  data.nodes.forEach(n=>{
-    n.px = n.layoutX * SG;
-    n.py = ((n.generation||1)-1) * GG;
+    n.px = (n.column || 0) * SG;
+    n.py = ((n.generation || 1) - 1) * GG;
   });
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────
-fetch('/assets/data/royal.json')
+fetch('royal.json')
   .then(r=>r.json())
   .then(data=>{
     computeLayout(data);
@@ -194,22 +146,15 @@ function render(data){
     .on('end',  ()=>svg.classed('drag',false));
   svg.call(zoom).on('dblclick.zoom',null);
 
-  // Era stripes
-  const ERAS=[
-    ['Wessex',1,9],['Knýtlinga & Godwin',10,14],
-    ['Normandy & Blois',15,20],['Anjou & Plantagenet',21,28],
-    ['Lancaster & York',29,33],['Tudor',34,37],
-    ['Stuart & Interregnum',38,39],['Orange-Nassau to Windsor',40,42],
-  ];
   const sg=g.append('g');
-  ERAS.forEach(([lbl,g1,g2],i)=>{
-    const y1=(g1-1)*GG-GG*.45, y2=g2*GG+GG*.45;
-    sg.append('rect').attr('x',minX).attr('width',maxX-minX)
-      .attr('y',y1).attr('height',y2-y1)
-      .attr('fill',i%2===0?'#ffffff03':'none');
+  const maxGen = Math.max(...data.nodes.map(n=>n.generation||1));
+  for(let gen=1; gen<=maxGen; gen++){
+    const y = (gen-1)*GG;
     sg.append('text').attr('class','era-lbl')
-      .attr('x',minX+10).attr('y',y1+14).text(lbl);
-  });
+      .attr('x',minX+8).attr('y',y+CH/2)
+      .attr('dominant-baseline','middle')
+      .text(`Gen ${gen}`);
+  }
 
   // Edges
   const eg=g.append('g');
@@ -266,6 +211,34 @@ function render(data){
     });
   });
 
+  // d.s.p. markers — short downward arrow + label for nodes with no issue
+  const dspG=g.append('g').attr('pointer-events','none');
+
+  // Arrow marker definition
+  svg.append('defs').append('marker')
+    .attr('id','dsp-arrow').attr('viewBox','0 -4 8 8')
+    .attr('refX',7).attr('refY',0)
+    .attr('markerWidth',5).attr('markerHeight',5)
+    .attr('orient','auto')
+    .append('path').attr('d','M0,-3.5 L7,0 L0,3.5').attr('fill','#6a6050');
+
+  data.nodes.filter(n=>n.issue==='d.s.p.').forEach(n=>{
+    const x=n.px+CW/2, y=n.py+CH;
+    const lineLen=28;
+    dspG.append('line')
+      .attr('x1',x).attr('y1',y+2)
+      .attr('x2',x).attr('y2',y+lineLen)
+      .attr('stroke','#6a6050').attr('stroke-width',1.2)
+      .attr('marker-end','url(#dsp-arrow)');
+    dspG.append('text')
+      .attr('x',x).attr('y',y+lineLen+10)
+      .attr('text-anchor','middle').attr('dominant-baseline','hanging')
+      .attr('font-family',"'Cormorant Garamond',Georgia,serif")
+      .attr('font-style','italic').attr('font-size',8.5)
+      .attr('fill','#6a6050')
+      .text('d.s.p.');
+  });
+
   // Tooltip
   const tip=document.getElementById('tip');
   const tn=document.getElementById('tn');
@@ -276,12 +249,11 @@ function render(data){
     const rows=[];
     if(d.sobriquet)  rows.push(`"${d.sobriquet}"`);
     if(d.designation) rows.push(d.designation);
-    if(d.is_sovereign&&d.birth_line) rows.push(d.birth_line);
-    if(d.dates) rows.push(`Reign: ${d.dates}`);
-    if(d.post_reign_death) rows.push(d.post_reign_death);
-    if(!d.is_sovereign&&d.birth_line) rows.push(d.birth_line);
+    if(d.birth_line) rows.push(d.birth_line);
+    if(d.reign) rows.push(`Reign: ${d.reign}`);
     if(d.marriage) rows.push(`m. ${d.marriage}`);
-    if(d.excl_yr)  rows.push(`Excluded ${d.excl_yr}`);
+    if(d.is_excluded) rows.push('Excluded from succession');
+    if(d.issue==='d.s.p.') rows.push('d.s.p. — died without issue');
     tn.textContent=d.name;
     tl.innerHTML=rows.map(r=>`<div>${r}</div>`).join('');
     th.textContent=`House of ${d.house}`;
