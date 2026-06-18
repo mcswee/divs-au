@@ -114,7 +114,7 @@ function computeLayout(data){
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────
-fetch('royal.json')
+fetch('/assets/data/royal.json')
   .then(r=>r.json())
   .then(data=>{
     computeLayout(data);
