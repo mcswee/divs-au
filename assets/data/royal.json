@@ -7620,7 +7620,7 @@
     },
     {
       "id": "JacVI",
-      "name": "James VI",
+      "name": "James VI and I",
       "raw_name": "James",
       "ordinal": "VI",
       "sobriquet": null,
@@ -8148,7 +8148,7 @@
       "gender": "M",
       "marriage": null,
       "house": "Stuart",
-      "state": "reigning",
+      "state": "excluded",
       "is_sovereign": true,
       "is_excluded": true,
       "generation": 31,
