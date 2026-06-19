@@ -7,7 +7,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#efefef; --gold:#c9a84c; --gold-dim:#8a6f2e; --text:#080f08; --dim:#9a8f78; }
+  :root { --bg:#e8dfc8; --gold:#c9a84c; --gold-dim:#8a6f2e; --text:#0d0b08; --dim:#9a8f78; }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:'Cormorant Garamond',Georgia,serif;
          overflow:hidden; height:100vh; width:100vw; }
@@ -62,7 +62,7 @@
   <button class="btn" id="bin">+</button>
   <button class="btn" id="bout">−</button>
   <button class="btn" id="bfit" style="font-size:12px" title="Fit all">⊞</button>
-  <button class="btn" id="bw"  style="font-size:11px" title="Go to Windsor">♔</button>
+  <button class="btn" id="bw"  style="font-size:11px" title="Go to Windsor">W</button>
 </div>
 <div id="tip"><div class="tn" id="tn"></div><div class="tl" id="tl"></div><div class="th" id="th"></div></div>
 <svg id="canvas"></svg>
@@ -114,7 +114,7 @@ function computeLayout(data){
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────
-fetch('/assets/data/royal.json')
+fetch('royal.json')
   .then(r=>r.json())
   .then(data=>{
     computeLayout(data);
@@ -187,7 +187,7 @@ function render(data){
 
   // Sovereign accent bar
   cards.filter(d=>d.is_sovereign).append('rect')
-    .attr('width',CW).attr('height',5).attr('rx',3)
+    .attr('width',CW).attr('height',3).attr('rx',3)
     .attr('fill',d=>(d.colours&&d.colours.border)||'#888');
 
   // Text
@@ -217,21 +217,21 @@ function render(data){
   // Arrow marker definition
   svg.append('defs').append('marker')
     .attr('id','dsp-arrow').attr('viewBox','0 -4 8 8')
-    .attr('refX',2).attr('refY',0)
-    .attr('markerWidth',10).attr('markerHeight',5)
+    .attr('refX',7).attr('refY',0)
+    .attr('markerWidth',5).attr('markerHeight',5)
     .attr('orient','auto')
-    .append('path').attr('d','M0,-3.5 L2,0 L0,3.5').attr('fill','#6a6050');
+    .append('path').attr('d','M0,-3.5 L7,0 L0,3.5').attr('fill','#6a6050');
 
   data.nodes.filter(n=>n.issue==='no issue').forEach(n=>{
     const x=n.px+CW/2, y=n.py+CH;
-    const lineLen=28;
+    const lineLen=9;
     dspG.append('line')
-      .attr('x1',x).attr('y1',y+2)
+      .attr('x1',x).attr('y1',y+1)
       .attr('x2',x).attr('y2',y+lineLen)
       .attr('stroke','#6a6050').attr('stroke-width',1.2)
       .attr('marker-end','url(#dsp-arrow)');
     dspG.append('text')
-      .attr('x',x).attr('y',y+lineLen+2)
+      .attr('x',x).attr('y',y+lineLen+3)
       .attr('text-anchor','middle').attr('dominant-baseline','hanging')
       .attr('font-family',"'Cormorant Garamond',Georgia,serif")
       .attr('font-style','italic').attr('font-size',8.5)
