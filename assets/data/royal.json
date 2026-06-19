@@ -5045,7 +5045,7 @@
       }
     },
     {
-      "id": "P_Ric_1367",
+      "id": "RicII",
       "name": "Richard II",
       "raw_name": "Richard",
       "ordinal": "II",
@@ -5055,13 +5055,13 @@
       "marriage": null,
       "house": "Plantagenet",
       "state": "excluded",
-      "is_sovereign": false,
+      "is_sovereign": true,
       "is_excluded": true,
       "generation": 20,
       "column": 11,
       "birth_line": "1367 – c. 1400",
-      "reign": null,
-      "issue": "0",
+      "reign": "1377 – 1399",
+      "issue": "no issue",
       "colours": {
         "abbr": "P",
         "border": "#CA7E18",
@@ -8150,10 +8150,10 @@
       "house": "Stuart",
       "state": "reigning",
       "is_sovereign": true,
-      "is_excluded": false,
+      "is_excluded": true,
       "generation": 31,
       "column": 8,
-      "birth_line": "b. 1633",
+      "birth_line": "1633 – 1701",
       "reign": "1685 – 1688",
       "issue": "15",
       "colours": {
