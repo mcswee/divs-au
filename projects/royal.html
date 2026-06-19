@@ -217,8 +217,8 @@ function render(data){
   // Arrow marker definition
   svg.append('defs').append('marker')
     .attr('id','dsp-arrow').attr('viewBox','0 -4 8 8')
-    .attr('refX',7).attr('refY',0)
-    .attr('markerWidth',5).attr('markerHeight',5)
+    .attr('refX',2).attr('refY',0)
+    .attr('markerWidth',10).attr('markerHeight',5)
     .attr('orient','auto')
     .append('path').attr('d','M0,-3.5 L2,0 L0,3.5').attr('fill','#6a6050');
 
@@ -231,7 +231,7 @@ function render(data){
       .attr('stroke','#6a6050').attr('stroke-width',1.2)
       .attr('marker-end','url(#dsp-arrow)');
     dspG.append('text')
-      .attr('x',x).attr('y',y+lineLen+10)
+      .attr('x',x).attr('y',y+lineLen+2)
       .attr('text-anchor','middle').attr('dominant-baseline','hanging')
       .attr('font-family',"'Cormorant Garamond',Georgia,serif")
       .attr('font-style','italic').attr('font-size',8.5)
