@@ -187,7 +187,7 @@ function render(data){
 
   // Sovereign accent bar
   cards.filter(d=>d.is_sovereign).append('rect')
-    .attr('width',CW).attr('height',3).attr('rx',3)
+    .attr('width',CW).attr('height',5).attr('rx',3)
     .attr('fill',d=>(d.colours&&d.colours.border)||'#888');
 
   // Text
@@ -220,7 +220,7 @@ function render(data){
     .attr('refX',7).attr('refY',0)
     .attr('markerWidth',5).attr('markerHeight',5)
     .attr('orient','auto')
-    .append('path').attr('d','M0,-3.5 L7,0 L0,3.5').attr('fill','#6a6050');
+    .append('path').attr('d','M0,-3.5 L2,0 L0,3.5').attr('fill','#6a6050');
 
   data.nodes.filter(n=>n.issue==='no issue').forEach(n=>{
     const x=n.px+CW/2, y=n.py+CH;
