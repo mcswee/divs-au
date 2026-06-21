@@ -1,0 +1,390 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive federal electoral redistribution simulator. Reassign SA1 areas between divisions and check enrolment against AEC quota tolerances.">
+  <meta name="keywords" content="Australia, election, electorate, electoral division, redistribution, redistricting, SA1, quota, AEC, simulator">
+  <meta name="author" content="Darren McSweeney">
+  <title>Redistribution tool | divs.au</title>
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://divs.au/tool/">
+  <meta property="og:title" content="Redistribution tool | divs.au">
+  <meta property="og:description" content="Interactive federal electoral redistribution simulator. Reassign SA1 areas between divisions and check enrolment against AEC quota tolerances.">
+  <meta property="og:image" content="https://divs.au/images/og-map.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://divs.au/tool/">
+  <meta name="twitter:title" content="Redistribution tool | divs.au">
+  <meta name="twitter:description" content="Interactive federal electoral redistribution simulator. Reassign SA1 areas between divisions and check enrolment against AEC quota tolerances.">
+  <meta name="twitter:image" content="https://divs.au/images/og-map.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/star.svg">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+
+  <style>
+    /* ---- Tool-specific layout. Sidebar + map, full viewport. ---- */
+
+    #tool-viewport {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #tool-map {
+        flex: 1 1 auto;
+        position: relative;
+        height: 100%;
+    }
+
+    #sidebar {
+        flex: 0 0 340px;
+        width: 340px;
+        height: 100%;
+        overflow-y: auto;
+        background: var(--highlight);
+        border-right: 1px solid var(--text-accent);
+        display: flex;
+        flex-direction: column;
+        z-index: 10;
+    }
+
+    #sidebar-header {
+        padding: 16px 18px 14px;
+        border-bottom: 1px solid var(--text-accent);
+    }
+
+    #sidebar-header h1 {
+        font-family: 'Vollkorn', serif;
+        font-size: 1.3rem;
+        color: var(--brand-main);
+        margin-bottom: 4px;
+    }
+
+    #sidebar-header p.tagline {
+        font-size: 0.78rem;
+        color: var(--text-highlight);
+        line-height: 1.35;
+    }
+
+    .sidebar-section {
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--text-accent);
+    }
+
+    .sidebar-section h2 {
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-highlight);
+        margin: 0 0 10px;
+        border: none;
+        padding: 0;
+    }
+
+    /* State selector */
+    #state-select {
+        width: 100%;
+        padding: 9px 10px;
+        font-family: inherit;
+        font-size: 0.9rem;
+        border: 2px solid var(--brand-main);
+        border-radius: 6px;
+        background: var(--highlight);
+        color: var(--text-main);
+    }
+
+    #state-select:disabled,
+    #state-select option:disabled {
+        color: var(--text-accent);
+    }
+
+    /* Quota reference */
+    .quota-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-family: "Atkinson Hyperlegible Mono", monospace;
+        font-size: 0.78rem;
+        margin-bottom: 6px;
+    }
+
+    .quota-row .quota-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.74rem;
+        color: var(--text-main);
+    }
+
+    .quota-row .quota-band {
+        color: var(--text-highlight);
+        font-size: 0.72rem;
+    }
+
+    /* Active division selector */
+    #active-division-wrap {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+    }
+
+    .div-swatch {
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        flex-shrink: 0;
+        border: 1px solid rgba(0,0,0,0.15);
+    }
+
+    #active-division-name {
+        font-weight: 700;
+        font-size: 0.92rem;
+        color: var(--brand-main);
+    }
+
+    .helper-text {
+        font-size: 0.72rem;
+        color: var(--text-highlight);
+        line-height: 1.4;
+        margin-top: 6px;
+    }
+
+    /* Division list */
+    #division-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .division-row {
+        border: 2px solid var(--text-accent);
+        border-radius: 6px;
+        padding: 8px 10px;
+        cursor: pointer;
+        background: var(--highlight);
+        transition: border-color 0.12s ease;
+    }
+
+    .division-row:hover {
+        border-color: var(--brand-accent);
+    }
+
+    .division-row.is-active {
+        border-color: var(--brand-main);
+        box-shadow: var(--shadow-main);
+    }
+
+    .division-row-top {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+
+    .division-row-top .div-name {
+        font-weight: 700;
+        font-size: 0.88rem;
+        flex-grow: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .division-row-top .div-sa1-count {
+        font-family: "Atkinson Hyperlegible Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--text-highlight);
+    }
+
+    .division-row-top button.div-action {
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 0.85rem;
+        color: var(--text-highlight);
+        padding: 0 2px;
+        line-height: 1;
+    }
+
+    .division-row-top button.div-action:hover {
+        color: var(--brand-main);
+    }
+
+    .status-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.72rem;
+        font-family: "Atkinson Hyperlegible Mono", monospace;
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-bottom: 3px;
+    }
+
+    .status-line .status-tag {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 0.64rem;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    .status-ok { background: #e6f4ec; color: #0b6b3a; }
+    .status-under { background: #fff4d9; color: #8a6200; }
+    .status-over { background: #fde8ea; color: #a3203b; }
+    .status-empty { background: var(--accent); color: var(--text-highlight); }
+
+    .warning-chip {
+        display: inline-block;
+        margin-top: 4px;
+        font-size: 0.68rem;
+        background: #fde8ea;
+        color: #a3203b;
+        padding: 2px 7px;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    /* Create division button */
+    #create-division-btn {
+        width: 100%;
+        padding: 9px;
+        margin-top: 10px;
+        font-family: inherit;
+        font-size: 0.82rem;
+        font-weight: 600;
+        border: 2px dashed var(--text-accent);
+        border-radius: 6px;
+        background: none;
+        color: var(--text-highlight);
+        cursor: pointer;
+        transition: border-color 0.12s ease, color 0.12s ease;
+    }
+
+    #create-division-btn:hover {
+        border-color: var(--brand-main);
+        color: var(--brand-main);
+    }
+
+    /* SA1 hover/select label on map */
+    .sa1-tooltip {
+        font-family: "Atkinson Hyperlegible Mono", monospace;
+        font-size: 0.74rem;
+    }
+    .sa1-tooltip .sa1-sa2 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 2px;
+    }
+
+    @media (max-width: 760px) {
+        #tool-viewport { flex-direction: column; }
+        #sidebar {
+            flex: 0 0 auto;
+            width: 100%;
+            height: 45%;
+            border-right: none;
+            border-bottom: 1px solid var(--text-accent);
+        }
+        #tool-map { height: 55%; }
+    }
+  </style>
+
+</head>
+
+<body>
+{% include header.html %}
+
+<main id="tool-viewport">
+
+    <aside id="sidebar">
+        <div id="sidebar-header">
+            <h1>Redistribution tool</h1>
+            <p class="tagline">Reassign SA1 areas between divisions and check enrolment against AEC quota tolerances. For simulation and submission-preparation purposes only &mdash; not an official AEC product.</p>
+        </div>
+
+        <div class="sidebar-section">
+            <h2>State</h2>
+            <select id="state-select">
+                <option value="tas" selected>Tasmania</option>
+                <option value="qld" disabled>Queensland &mdash; coming soon</option>
+                <option value="nsw" disabled>New South Wales &mdash; coming soon</option>
+                <option value="vic" disabled>Victoria &mdash; coming soon</option>
+                <option value="wa" disabled>Western Australia &mdash; coming soon</option>
+                <option value="sa" disabled>South Australia &mdash; coming soon</option>
+                <option value="act" disabled>ACT &mdash; coming soon</option>
+                <option value="nt" disabled>Northern Territory &mdash; coming soon</option>
+            </select>
+        </div>
+
+        <div class="sidebar-section">
+            <h2>Quota reference</h2>
+            <div class="quota-row">
+                <span class="quota-label">Actual quota</span>
+                <span id="quota-actual-value">&mdash;</span>
+            </div>
+            <div class="quota-row">
+                <span></span>
+                <span class="quota-band" id="quota-actual-band">&plusmn;10% band: &mdash;</span>
+            </div>
+            <div class="quota-row" style="margin-top:8px;">
+                <span class="quota-label">Projected quota</span>
+                <span id="quota-projected-value">&mdash;</span>
+            </div>
+            <div class="quota-row">
+                <span></span>
+                <span class="quota-band" id="quota-projected-band">&plusmn;3.5% band: &mdash;</span>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h2>Active division</h2>
+            <div id="active-division-wrap">
+                <span class="div-swatch" id="active-division-swatch"></span>
+                <span id="active-division-name">&mdash;</span>
+            </div>
+            <p class="helper-text">Click an SA1 on the map to toggle it into the active division. Double-click an SA1 to assign its whole SA2 area at once.</p>
+        </div>
+
+        <div class="sidebar-section" style="flex-grow:1;">
+            <h2>Divisions</h2>
+            <ul id="division-list"></ul>
+            <button id="create-division-btn" type="button">+ New division</button>
+        </div>
+    </aside>
+
+    <div id="tool-map"
+         role="region"
+         aria-label="Interactive map of SA1 statistical areas for electoral redistribution"
+         aria-describedby="tool-map-description">
+    </div>
+
+    <p id="tool-map-description" class="sr-only">
+        Interactive map of SA1 statistical areas. Select a division in the sidebar, then click an SA1 to assign or unassign it. Double-click an SA1 to assign its entire SA2 area.
+    </p>
+
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/assets/js/nav.js"></script>
+<script src="/assets/js/tool.js"></script>
+
+</body>
+</html>
