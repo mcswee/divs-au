@@ -17,6 +17,11 @@
                 <a href="/" {% if page.url == "/" %}aria-current="page"{% endif %}>Map</a>
             </li>
             <li>
+                <a href="/tool/" 
+                   {% if page.url == "/tool/" %}aria-current="page"{% endif %}
+                   {% if page.category == "tool" and page.url != "/tool/" %}class="active-parent"{% endif %}>Tool</a>
+            </li>
+            <li>
                 <a href="/reports/" 
                    {% if page.url == "/reports/" %}aria-current="page"{% endif %}
                    {% if page.category == "reports" and page.url != "/reports/" %}class="active-parent"{% endif %}>Reports</a>
