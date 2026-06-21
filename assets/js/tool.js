@@ -42,6 +42,7 @@
     quotaActualBand: document.getElementById("quota-actual-band"),
     quotaProjectedValue: document.getElementById("quota-projected-value"),
     quotaProjectedBand: document.getElementById("quota-projected-band"),
+    quotaDivisor: document.getElementById("quota-divisor"),
     activeDivisionSwatch: document.getElementById("active-division-swatch"),
     activeDivisionName: document.getElementById("active-division-name"),
     divisionList: document.getElementById("division-list"),
@@ -338,7 +339,6 @@
   // ---- rendering: sidebar ----
 
   function refreshAll() {
-    refreshQuotaPanel();
     refreshDivisionList();
     // restyle every SA1 in case a rename moved colours around
     Object.keys(sa1Layers).forEach(restyleSa1);
@@ -351,6 +351,7 @@
       el.quotaProjectedValue.textContent = "\u2014";
       el.quotaActualBand.textContent = "\u00b110% band: \u2014";
       el.quotaProjectedBand.textContent = "\u00b13.5% band: \u2014";
+      el.quotaDivisor.textContent = "Based on 0 divisions";
       return;
     }
     el.quotaActualValue.textContent = Math.round(q.actualQuota).toLocaleString();
@@ -361,9 +362,13 @@
     el.quotaProjectedBand.textContent =
       "\u00b13.5% band: " + Math.round(q.projectedQuota * 0.965).toLocaleString() +
       " \u2013 " + Math.round(q.projectedQuota * 1.035).toLocaleString();
+    el.quotaDivisor.textContent =
+      "Based on " + q.divisor + " division" + (q.divisor === 1 ? "" : "s") +
+      " with at least one SA1 assigned";
   }
 
   function refreshDivisionList() {
+    refreshQuotaPanel();
     var q = computeQuota();
     var totals = divisionTotals();
     var names = Object.keys(divisionColours).sort();
