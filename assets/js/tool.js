@@ -27,7 +27,7 @@
    },
    sa: {
      geojson: "/assets/data/sa_sa1.geojson",
-     csv: "/assets/data/aa_sa1.csv",
+     csv: "/assets/data/sa_sa1.csv",
      center: [-31.9, 134.8],  
      zoom: 7                   
    },  
