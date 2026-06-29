@@ -19,12 +19,18 @@
       center: [-42.0, 146.8],
       zoom: 7
     },
-     act: {
-  geojson: "/assets/data/act_sa1.geojson",
-  csv: "/assets/data/act_sa1.csv",
-  center: [-35.3, 149.1],  
-  zoom: 8                   
-},
+    act: {
+     geojson: "/assets/data/act_sa1.geojson",
+     csv: "/assets/data/act_sa1.csv",
+     center: [-35.3, 149.1],  
+     zoom: 8                   
+   },
+   sa: {
+     geojson: "/assets/data/sa_sa1.geojson",
+     csv: "/assets/data/aa_sa1.csv",
+     center: [-31.9, 134.8],  
+     zoom: 7                   
+   },  
   };
 
   var DIVISION_COLOURS = [
