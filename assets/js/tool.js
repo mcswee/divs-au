@@ -30,7 +30,7 @@
      csv: "/assets/data/sa_sa1.csv",
      center: [-31.9, 134.8],  
      zoom: 7                   
-   },  
+   }
   };
 
   var DIVISION_COLOURS = [
