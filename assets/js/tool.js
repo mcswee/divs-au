@@ -13,29 +13,35 @@
   "use strict";
 
   var STATE_FILES = {
+    act: {
+      geojson: "/assets/data/act_sa1.geojson",
+      csv: "/assets/data/act_sa1.csv",
+      center: [-35.3, 149.1],
+      zoom: 8
+    },
+    sa: {
+      geojson: "/assets/data/sa_sa1.geojson",
+      csv: "/assets/data/sa_sa1.csv",
+      center: [-31.8, 135.55],
+      zoom: 6
+    },
     tas: {
       geojson: "/assets/data/tas_sa1.geojson",
       csv: "/assets/data/tas_sa1.csv",
       center: [-42.0, 146.8],
       zoom: 7
-    },
-    act: {
-     geojson: "/assets/data/act_sa1.geojson",
-     csv: "/assets/data/act_sa1.csv",
-     center: [-35.3, 149.1],  
-     zoom: 8                   
-   },
-   sa: {
-     geojson: "/assets/data/sa_sa1.geojson",
-     csv: "/assets/data/sa_sa1.csv",
-     center: [-31.9, 134.8],  
-     zoom: 7                   
-   }
+    }
   };
 
   var DIVISION_COLOURS = [
     "#336699", "#a3203b", "#0b6b3a", "#b3791e",
     "#6a4c93", "#1f7a8c", "#c2541f", "#5c5c8a"
+  ];
+
+  var ALL_COLOURS = [
+    "#336699", "#a3203b", "#0b6b3a", "#b3791e",
+    "#6a4c93", "#1f7a8c", "#c2541f", "#5c5c8a",
+    "#d4521f", "#1b5e20", "#4a148c", "#0d47a1"
   ];
 
   // ---- runtime state ----
@@ -286,6 +292,40 @@
     refreshAll();
   }
 
+  function showColourPicker(swatchEl, divisionName) {
+    // close any existing picker
+    var existing = document.querySelector(".colour-picker");
+    if (existing) existing.remove();
+
+    var picker = document.createElement("div");
+    picker.className = "colour-picker";
+    var currentColour = divisionColours[divisionName];
+
+    ALL_COLOURS.forEach(function (colour) {
+      var option = document.createElement("div");
+      option.className = "colour-option" + (colour === currentColour ? " current" : "");
+      option.style.background = colour;
+      option.addEventListener("click", function (e) {
+        e.stopPropagation();
+        divisionColours[divisionName] = colour;
+        refreshAll();
+      });
+      picker.appendChild(option);
+    });
+
+    swatchEl.parentElement.style.position = "relative";
+    swatchEl.parentElement.appendChild(picker);
+
+    // close on outside click
+    var closeHandler = function (e) {
+      if (!picker.contains(e.target) && e.target !== swatchEl) {
+        picker.remove();
+        document.removeEventListener("click", closeHandler);
+      }
+    };
+    document.addEventListener("click", closeHandler);
+  }
+
   // ---- quota + status calculations ----
 
   function divisionTotals() {
@@ -400,7 +440,7 @@
 
       li.innerHTML =
         '<div class="division-row-top">' +
-          '<span class="div-swatch" style="background:' + divisionColours[name] + '"></span>' +
+          '<span class="div-swatch" style="background:' + divisionColours[name] + '" data-division="' + escapeHtml(name) + '"></span>' +
           '<span class="div-name">' + escapeHtml(name) + '</span>' +
           '<span class="div-sa1-count">' + t.count + ' SA1' + (t.count === 1 ? "" : "s") + '</span>' +
           '<button type="button" class="div-action" data-action="rename" title="Rename">&#9998;</button>' +
@@ -413,6 +453,11 @@
         if (e.target && e.target.getAttribute("data-action") === "rename") {
           e.stopPropagation();
           renameDivision(name);
+          return;
+        }
+        if (e.target && e.target.classList.contains("div-swatch")) {
+          e.stopPropagation();
+          showColourPicker(e.target, name);
           return;
         }
         setActiveDivision(name);
