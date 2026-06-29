@@ -282,6 +282,44 @@ layout: null
         color: var(--brand-main);
     }
 
+    /* Colour picker */
+    .division-row-top .div-swatch {
+        cursor: pointer;
+    }
+
+    .colour-picker {
+        position: absolute;
+        background: var(--highlight);
+        border: 1px solid var(--text-accent);
+        border-radius: 6px;
+        padding: 8px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        z-index: 100;
+        box-shadow: var(--shadow-main);
+        margin-top: 4px;
+    }
+
+    .colour-option {
+        width: 28px;
+        height: 28px;
+        border-radius: 4px;
+        cursor: pointer;
+        border: 2px solid rgba(0,0,0,0.1);
+        transition: transform 0.1s ease, border-color 0.1s ease;
+    }
+
+    .colour-option:hover {
+        transform: scale(1.1);
+        border-color: var(--brand-main);
+    }
+
+    .colour-option.current {
+        border-color: var(--brand-main);
+        box-shadow: 0 0 0 1px var(--brand-main);
+    }
+
     /* SA1 hover/select label on map */
     .sa1-tooltip {
         font-family: "Atkinson Hyperlegible Mono", monospace;
@@ -323,9 +361,9 @@ layout: null
         <div class="sidebar-section">
             <h2>State</h2>
             <select id="state-select">
-                <option value="act" selected>Australian Capital Territory</option>
-                <option value="tas">Tasmania</option>
-                <option value="sa">South Australia</option>              
+                <option value="act">Australian Capital Territory</option>
+                <option value="sa">South Australia</option>
+                <option value="tas" selected>Tasmania</option>
                 <option value="qld" disabled>Queensland &mdash; coming soon</option>
                 <option value="nsw" disabled>New South Wales &mdash; coming soon</option>
                 <option value="vic" disabled>Victoria &mdash; coming soon</option>
