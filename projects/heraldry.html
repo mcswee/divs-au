@@ -1,0 +1,416 @@
+---
+layout: default
+title: AFL Heraldry
+description: Armorial bearings designed for each Australian Football League club.
+---
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500&display=swap');
+
+body {
+  background: #EDE8DE;
+}
+
+.h-page {
+  min-height: 100vh;
+  padding-bottom: 5rem;
+}
+
+.h-header {
+  text-align: center;
+  padding: 3.5rem 1.5rem 2.5rem;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.h-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7A7068;
+  margin: 0 0 1rem;
+}
+
+.h-header h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  font-weight: 400;
+  line-height: 1.15;
+  color: #1C1A18;
+  margin: 0 0 1.25rem;
+}
+
+.h-header h1 em {
+  font-weight: 400;
+}
+
+.h-rule {
+  width: 56px;
+  height: 1px;
+  background: #C8AD7E;
+  margin: 0 auto 1.25rem;
+}
+
+.h-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  color: #7A7068;
+  margin: 0;
+  line-height: 1.65;
+}
+
+/* ── card list ── */
+
+.h-list {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── individual card ── */
+
+.h-card {
+  background: #FAFAF8;
+  border: 1px solid #C8AD7E;
+}
+
+.h-card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #1C1A18;
+  margin: 0;
+  padding: 0.85rem 1.3rem 0.75rem;
+  border-bottom: 1px solid #C8AD7E;
+  letter-spacing: 0.01em;
+}
+
+.h-card-body {
+  display: flex;
+}
+
+/* emblazon */
+
+.h-emblazon {
+  flex: 0 0 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  border-right: 1px solid #C8AD7E;
+}
+
+.h-emblazon img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  display: block;
+}
+
+/* blazon */
+
+.h-blazon {
+  flex: 1;
+  padding: 1.1rem 1.4rem;
+  background: #F4F1EB;
+}
+
+.h-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9A8E83;
+  margin: 0 0 0.5rem;
+}
+
+.h-blazon-text {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.8rem;
+  font-style: italic;
+  line-height: 1.85;
+  color: #1C1A18;
+  margin: 0;
+}
+
+/* symbolism accordion */
+
+.h-sym-wrap {
+  border-top: 1px solid #DDD5C5;
+}
+
+.h-sym-btn {
+  width: 100%;
+  background: #ECEAE3;
+  border: none;
+  padding: 0.65rem 1.3rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9A8E83;
+  transition: color 0.15s;
+}
+
+.h-sym-btn:hover {
+  color: #1C1A18;
+}
+
+.h-sym-chevron {
+  margin-left: auto;
+  font-size: 0.65rem;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.h-sym-btn.open .h-sym-chevron {
+  transform: rotate(180deg);
+}
+
+.h-sym-body {
+  display: none;
+  padding: 0.9rem 1.4rem 1.1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #2E2B28;
+  background: #FAFAF8;
+}
+
+.h-sym-body.open {
+  display: block;
+}
+
+/* AFL divider */
+
+.h-league-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.h-league-rule {
+  flex: 1;
+  height: 1px;
+  background: #C8AD7E;
+}
+
+.h-league-divider .h-label {
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* responsive */
+
+@media (max-width: 560px) {
+  .h-card-body {
+    flex-direction: column;
+  }
+  .h-emblazon {
+    flex: none;
+    border-right: none;
+    border-bottom: 1px solid #C8AD7E;
+    padding: 1rem;
+  }
+  .h-emblazon img {
+    width: 100px;
+    height: 100px;
+  }
+  .h-header h1 {
+    font-size: 2rem;
+  }
+}
+</style>
+
+<div class="h-page">
+
+  <div class="h-header">
+    <p class="h-eyebrow">divs.au</p>
+    <h1>Armorial Bearings<br><em>of the Australian Football League</em></h1>
+    <div class="h-rule"></div>
+    <p class="h-desc">Heraldic designs for each AFL club, with formal blazon and an account of the symbolism.</p>
+  </div>
+
+  <div class="h-list" id="h-list"></div>
+
+</div>
+
+<script>
+/*
+  Image filename convention used: /assets/images/heraldry/{file}.png
+  Multi-word clubs use lowercase hyphenated names — adjust `file` fields below if yours differ.
+*/
+
+const clubs = [
+  {
+    name: "Adelaide",
+    file: "adelaide",
+    blazon: "Or, two bars party per fess, Gules and Azure. Upon a helm and wreath of the colours, a crest, a little raven (Corvus mellori) displayed proper. For supporters, two little ravens close. For a motto Natus Ad Magna Gerenda",
+    symbolism: "The shield represents the colours of the team, with the gold emphasised as the field to maintain Rule of Tincture. The crest and supporters are Little Ravens, or Corvus mellori, which are the only native species of crow or raven in Adelaide. The motto is taken from the current club motto and means \u201cBorn to achieve great things\u201d."
+  },
+  {
+    name: "Brisbane Lions",
+    file: "brisbane-lions",
+    blazon: "Quartered First and Fourth per fess Gules and Azure, a lion passant, the dexter forepaw resting upon a football, all Or. Second and Third Murrey, a chevron Or cotticed Argent. Upon a helm and wreath of the colours, a crest, a koala head erased, Or. For supporters, to the dexter, a lion rampant Or, armed collared and langued Murrey and to the sinister, a bear rampant, Sable armed, collared and langued Or. For a motto Palmam Qui Meruit Ferat.",
+    symbolism: "Quartered to show the two clubs merged. Fitzroy in the first and last, Brisbane Bears in the second and third. The maroon and gold colours of Brisbane were taken from their last guernsey design. A koala as the crest reflects the old Brisbane Bears logo and both supporters, with collars representing the Queensland colours. The motto is the old Fitzroy motto meaning \u201cLet he who merits the palm bear it\u201d."
+  },
+  {
+    name: "Carlton",
+    file: "carlton",
+    blazon: "Azure, four mascles, one, two and one, Argent. A chief invected Buff. Upon a helm and wreath of the colours, a crest, a sulphur-crested cockatoo proper. For supporters, two stags Argent, attired and unguled Azure. For a motto Mens Sana In Corpore Sano.",
+    symbolism: "Navy blue for the Blues. The mascles reflect the club\u2019s CFC monogram while also being four shapes of four points for sixteen premierships. The buff chief harks back to the old lace up guernseys worn featuring the buff collar. The cockatoo is a historic reference to when the club used a live cockatoo at home games. The stags represent stability and strength, and the well known club motto means \u2018a healthy mind in a healthy body\u2019."
+  },
+  {
+    name: "Collingwood",
+    file: "collingwood",
+    blazon: "Sable two pallets Argent. Upon a helm and wreath of the colours, a crest, an Australian white-backed magpie, or Gymnorhina tibicen tyrannica, close regardant proper. For supporters, two Australian white-backed magpies close regardant proper. For a motto Floreat Pica.",
+    symbolism: "Collingwood embrace the black and white. Rather than paly, we keep the shield centred as black with two white stripes. Magpies, in particularly the dominant species around Melbourne Gymnorhina tibicen tyrannica, in the current Collingwood style. The old Latin motto Floreat Pica, \u201cMay the magpie flourish\u201d remains, despite the incorrect taxonomy."
+  },
+  {
+    name: "Essendon",
+    file: "essendon",
+    blazon: "Bendy sinister Gules and Sable, two mosquitos volant en arri\u00e8re, Argent. Upon a helm and wreath Gules and Sable, a crest a grenade Sable enflamed Gules. For supporters, two gryphons segreant, Gules armed, beaked and legged Or, langued and winged Sable. For a motto Suaviter In Modo, Fortiter In Re.",
+    symbolism: "To adhere to the Rule of Tincture, Essendon use a bendy field of black and red instead of a single sash. The mosquitos refer to the old Mosquito Fleet of the 1930s, as well as the club mascot Skeeter. The grenade is a direct reference to the Bombers, and the club\u2019s original Latin motto is kept meaning \u201cgently in manner, firmly in action\u201d."
+  },
+  {
+    name: "Fremantle",
+    file: "fremantle",
+    blazon: "Purpure, two chevronnels Argent. A chief tierced per pale Vert, Argent and Gules. Upon a helm and wreath of the colours, mantle to the Dexter Vert doubled Argent, and to the Sinister Gules doubled Argent. For a crest, a fouled anchor Sable corded Or. For supporters to the Dexter a great white shark and to the Sinister an English bulldog rampant both Argent. For a motto Kalyakoorl Walyalup.",
+    symbolism: "Fremantle embraces the old and new. Purple and white chevrons reflect the current guernsey, while the chief split into green, white and red reflects the original design with a nod to Italian heritage and the starboard-port visual image. This is further reflected in the mantling. The anchor appears in the crest, and the supporters represent the South and East Fremantle clubs. The Noongar motto means \u201cforever Fremantle\u201d."
+  },
+  {
+    name: "Geelong",
+    file: "geelong",
+    blazon: "Barry Argent and Azure, a cat passant Sable. Upon a helm and wreath of the colours, a crest, a Geelong bollard in the form of the Early Footballer proper. For supporters, to the Dexter a cat rampant Sable, and to the Sinister a silver gull proper. For a motto Always On The Ball",
+    symbolism: "Geelong takes the stripes, a black cat representing the history of how the club got its name, as the story goes, and then adds to the history of the seagulls and the Pivotonians. The Geelong bollards are hand carved and span the waterfront."
+  },
+  {
+    name: "Gold Coast",
+    file: "gold-coast",
+    blazon: "Gyronny Gules and Or, a base barry wavy Bleu Celeste and Argent. Upon a helm and wreath of the colours, a crest, two flags per fess Gules Or, crossed in saltire. For supporters, to the Dexter, a great white shark proper, and to the Sinister, a stingray proper. For a motto Fearless.",
+    symbolism: "The appearance of the sun, without using a sun with a face. The base is technically a ford, but using Bleu Celeste instead of normal blue. The crest represents the surf lifesaving motif common on the Gold Coast and repeats the main colours of red and gold. The shark represents the Southport Sharks, while the ray represents the Suns directly. The motto is taken from the revamped slogan of the club."
+  },
+  {
+    name: "Greater Western Sydney",
+    file: "greater-western-sydney",
+    blazon: "Orange, a bend Argent, a chief Charcoal. Upon a helm and wreath of the colours, a crest, a beanstalk Vert, fructed Or. For supporters, two woolly mammoths proper, armed Or. For a motto A Big, Big Sound",
+    symbolism: "Using non-standard tinctures, Orange and Charcoal as the team colours. Avoiding trying to recreate the G used on their guernseys and just going with orange and white. A beanstalk and mammoths give us the references to the Giants while the Big, Big Sound is well known as referring to GWS."
+  },
+  {
+    name: "Hawthorn",
+    file: "hawthorn",
+    blazon: "Brun\u00e2tre a hawk striking Or. Upon a helm and wreath of the colours, a crest, a hawk\u2019s lure Brun\u00e2tre garnished Or, conjoined with a hawk\u2019s bell Or. For supporters, two horses forc\u00e9n\u00e9, Argent, langued and unguled Or. For a motto Spectemur Agendo",
+    symbolism: "Rather than stripes, a large golden hawk on brown works well. The crest is a play on words, with the lure and bell representing the club being \u201clured\u201d to their new home in \u201cDingley\u201d. The two white horses represent the close ties the club has to Box Hill, while we maintain the existing Latin motto meaning \u201cLet Us Be Judged By Our Acts\u201d."
+  },
+  {
+    name: "Melbourne",
+    file: "melbourne",
+    blazon: "Azure a pile Gules, overall, two tridents in saltire Or. Upon a helm and wreath Azure doubled Gules, a crest, two horns Or. For supporters, two dragons segreant, Gules armed, langued and scaled Azure. For a motto Every Heart Beats True",
+    symbolism: "Avoiding demon images and faces, heraldic buffalo-style horns and tridents stand in for pitchforks. The dragons are fire-breathing beasts. The motto is taken from the club song."
+  },
+  {
+    name: "North Melbourne",
+    file: "north-melbourne",
+    blazon: "Paly Bleu C\u00e9leste and Argent, a kangaroo bounding Azure. Upon a helm and wreath Azure doubled Argent, a crest, two bones in saltire Argent. For supporters, two Eastern Grey kangaroos proper. For a motto Victoria Amat Curam",
+    symbolism: "Using sky blue and white for the stripes means the blue kangaroo stands out. The crest refers to the \u201cShinboners\u201d and the kangaroos are continued as supporters. The club\u2019s current Latin motto is retained, meaning \u201cVictory Demands Dedication\u201d."
+  },
+  {
+    name: "Port Adelaide",
+    file: "port-adelaide",
+    blazon: "Sable four endorses Argent. On a chief Sable a fillet, in base, Argent. Overall, a bordure Teal. Upon a helm and wreath Teal doubled Argent, a crest, a thunderbolt Or, winged Argent. For supporters to the Dexter a Red Kangaroo proper collared Teal and to the Sinister an Australian Piping Shrike magpie, or Gymnorhina tibicen telonocua, collared and chained Teal. For a motto Never Tear Us Apart",
+    symbolism: "Port Adelaide relies on its prison bar design, flanked in the teal of the Power. A thunderbolt represents lightning and power. The supporters use a South Australian piping shrike magpie (Gymnorhina tibicen telonocua) instead of the G. tibicen tyrannica featured on the Collingwood arms. The collar and chains keep the magpie grounded in teal. The slogan used by the club is adopted instead of one of the more direct mottos."
+  },
+  {
+    name: "Richmond",
+    file: "richmond",
+    blazon: "Sable a bend sinister Or, overall, a natural tiger salient, Or striped Sable armed and langued Gules. Upon a helm and wreath of the colours, a crest, dexter arm embowed proper brandishing a cutlass Argent hilted Or, the blade goutty de Sang. For supporters two natural tigers rampant proper. For a motto Eat \u2019em Alive",
+    symbolism: "Richmond is tigers, and yellow and black \u2014 so we couldn\u2019t not include the sash and a tiger. Tiger supporters, and the classic slogan. The crest is a reference to Jack Dyer, aka Captain Blood, as a pirate captain taking no quarter."
+  },
+  {
+    name: "St Kilda",
+    file: "st-kilda",
+    blazon: "Per fess Gules and Argent, overall a cross Sable. Upon a helm and wreath of the colours, a crest, a sunburst and clouds proper. For supporters, two Pegasi forc\u00e9n\u00e9 Argent crined and unguled Or. For a motto Fortius Quo Fidelius",
+    symbolism: "While St Kilda already have a shield design for their logo, it uses lettering so it\u2019s replaced with a design inspired by their \u201cCrusader\u201d guernsey. The sunburst crest and Pegasus supporters give an ethereal quality. The current club motto meaning \u201cStrength Through Loyalty\u201d is kept."
+  },
+  {
+    name: "Sydney",
+    file: "sydney",
+    blazon: "Argent on a pile Gules a swan essorant Argent, beaked and legged Or. Upon a helm and wreath of the colours, a crest, a Sydney Harbour Bridge Sable, towered Argent. For supporters to the Dexter a black swan, or Cygnus atratus, proper, and to the Sinister, an angel vested Argent goutty de sang. For a motto Aut Vincere Aut Mori",
+    symbolism: "Sydney uses a pile reflecting their guernsey design, with a swan. The Sydney Harbour Bridge is an iconic emblem and echoes the old shield logo from the 1980s. Supporters as a black swan and angel honour the history \u2014 the Swans name was applied when a large number of Western Australians played for South Melbourne. The angel goutty refers to the old nickname as the Bloods. The old South Melbourne motto means \u201cEither conquer or die\u201d."
+  },
+  {
+    name: "Tasmania",
+    file: "tasmania",
+    blazon: "Per fess Gules and Vert, overall a Tau cross Or. Upon a helm and wreath Vert doubled Or, a crest, a thylacine passant Or striped Gules. For supporters, two Tasmanian devils. For a motto Louder, Prouder, Stronger",
+    symbolism: "The colours red, green and yellow. Using a Tau Cross lets that Tasmania T show without looking like a letter on a map. Obvious fauna symbols for Tasmania follow in the thylacine and Tasmanian devils. The club has started using Louder, Prouder, Stronger as a motto."
+  },
+  {
+    name: "West Coast",
+    file: "west-coast",
+    blazon: "Azure, an eagle displayed between two flaunches, all Or. Upon a helm and wreath of the colours, a crest, a demi sun Or. For supporters, two wedge-tailed eagles, or Aquila audax, proper. For a motto Flying High",
+    symbolism: "The guernsey is reflected in the shield with flaunches as wings. The setting sun acknowledges the west coast. Flying High as a motto is taken from the club theme song."
+  },
+  {
+    name: "Western Bulldogs",
+    file: "western-bulldogs",
+    blazon: "Azure a bar, Argent above a bar Gules. Upon a helm and wreath of the colours, issuant from a coronet Or, jewelled Azure and Gules, a demi English bulldog Argent, maintaining a flag, tierced per pale Azure, Argent and Gules. For supporters two English bulldogs Argent collared Azure and Gules. For a motto Cede Nullis",
+    symbolism: "The Bulldogs use their guernsey design. The crown represents their short time known as the Imperials or Royals, and the flag represents their nickname as the Tricolours. The traditional club motto means \u201cYield to none\u201d."
+  }
+];
+
+const afl = {
+  name: "Australian Football League",
+  file: "afl",
+  blazon: "Per fess enarched Azure and Or. Two endorses between two billets extended, counterchanged. Upon a helm and wreath of the colours, a mullet of seven Or surmounted by an Australian football Gules. For supporters two red kangaroos proper. For a motto Populo ludus populi",
+  symbolism: "Using Australia\u2019s heraldic colours, the field split by a curved line represents both a football and the football field. The four stripes represent the laces on the ball and the goalposts. The crest uses an Australian Commonwealth star, with a red football on it. Two red kangaroos as supporters for the national animal. The Australian National Football Council used the motto meaning \u201cA game of the people, by the people\u201d."
+};
+
+function makeCard(club) {
+  return `<div class="h-card">
+    <h2 class="h-card-name">${club.name}</h2>
+    <div class="h-card-body">
+      <div class="h-emblazon">
+        <img src="/assets/images/heraldry/${club.file}.png" alt="Arms of ${club.name}" loading="lazy">
+      </div>
+      <div class="h-blazon">
+        <p class="h-label">Blazon</p>
+        <p class="h-blazon-text">${club.blazon}</p>
+      </div>
+    </div>
+    <div class="h-sym-wrap">
+      <button class="h-sym-btn" onclick="toggleSym(this)">
+        Symbolism
+        <span class="h-sym-chevron">&#x25BE;</span>
+      </button>
+      <div class="h-sym-body">${club.symbolism}</div>
+    </div>
+  </div>`;
+}
+
+function toggleSym(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+const list = document.getElementById('h-list');
+
+clubs.forEach(c => list.insertAdjacentHTML('beforeend', makeCard(c)));
+
+list.insertAdjacentHTML('beforeend', `
+  <div class="h-league-divider">
+    <div class="h-league-rule"></div>
+    <p class="h-label">The League</p>
+    <div class="h-league-rule"></div>
+  </div>
+`);
+
+list.insertAdjacentHTML('beforeend', makeCard(afl));
+</script>
