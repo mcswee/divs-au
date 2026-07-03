@@ -451,8 +451,9 @@ async function pull(){
 
     if(total < 1) throw new Error('empty prefix, try again');
 
-    const cap = Math.min(total - 1, 9900); // search index practical offset ceiling
-    const offset = Math.floor(Math.random() * (cap + 1));
+    // MusicBrainz's search index has no documented hard offset ceiling —
+    // draw from the full match set, not an artificially narrowed one.
+    const offset = Math.floor(Math.random() * total);
 
     counterMetaEl.textContent = `prefix "${prefix}" · ${total.toLocaleString()} matches`;
 
