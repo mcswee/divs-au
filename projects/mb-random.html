@@ -313,7 +313,7 @@
   <p class="sub">No popularity weighting, no recommendation model, no genre filter. Every pull lands on a real, uniformly random position in a slice of MusicBrainz's open recording index. Might be a symphony. Might be a 2011 SoundCloud demo with four listens.</p>
 
   <div class="counter-block">
-    <div class="counter-label">index position</div>
+    <div class="counter-label">estimated catalog position</div>
     <div class="counter" id="counter">— — — — — —</div>
     <div class="counter-meta" id="counterMeta">press pull</div>
   </div>
@@ -338,9 +338,9 @@
   <details class="how" id="howDetails">
     <summary>what is this, actually</summary>
     <div class="how-body">
-      <p>MusicBrainz indexes recording titles alphabetically-ish under the hood. Each pull picks a random three-character title prefix, asks the index how many recordings match it, then asks for exactly one result at a random offset inside that match set.</p>
-      <p>That offset is the number ticking above &nbsp;&mdash;&nbsp; it's not decorative, it's the actual position in MusicBrainz's <code>/ws/2/recording</code> search index that got pulled. Three characters keeps each match set small (usually hundreds to a few thousand recordings) so the pull stays fast; a single-letter prefix can match millions, and a random offset that deep makes the search slow enough to look broken.</p>
-      <p>It isn't a perfectly uniform sample of all ~40 million recordings &mdash; common prefixes ("the", "you") turn up disproportionately relative to their true share, and there's a 20,000-position safety ceiling on the offset for those outlier prefixes, purely to keep queries fast rather than to shape the result. Nothing here is ranked, scored, or filtered by how well-known it is. Cover art, where shown, comes from the Cover Art Archive and is often just missing.</p>
+      <p>MusicBrainz indexes recording titles alphabetically-ish under the hood. Each pull picks a random three-character title prefix, asks the index how many recordings match it, then asks for exactly one result at a random offset inside that match set. Three characters keeps each match set small (usually hundreds to a few thousand recordings) so the pull stays fast; a single-letter prefix can match millions, and a random offset that deep makes the search slow enough to look broken.</p>
+      <p>The big number in the counter isn't that literal offset &mdash; it's an estimate of where the pulled prefix would fall in the full, alphabetically-sorted catalog (roughly 44 million recordings), scaled by the prefix's position in a-z0-9 order. "caa" lands near the front; "zz9" lands near the back. It's a real calculation from the real prefix that got queried, just not the actual database row number. The small print under the result card shows that real number too, if you want it.</p>
+      <p>It isn't a perfectly uniform sample of all ~40 million recordings &mdash; common prefixes ("the", "you") turn up disproportionately relative to their true share, and there's a 20,000-position ceiling on the real offset for those outlier prefixes, purely to keep queries fast. Nothing here is ranked, scored, or filtered by how well-known it is. Cover art, where shown, comes from the Cover Art Archive and is often just missing.</p>
     </div>
   </details>
 
@@ -369,6 +369,29 @@ function pickPrefix(){
 
 function sleep(ms){ return new Promise(res=>setTimeout(res,ms)); }
 
+// Rough size of the MusicBrainz recording index, used only to scale the
+// displayed position estimate below — not fetched live, just a ballpark.
+const CATALOG_ESTIMATE = 44000000;
+
+// The real query only ever needs a small offset inside a narrow 3-char
+// bucket (see pull()) — that keeps MusicBrainz fast. But "offset 214 of
+// prefix xz9" doesn't feel like picking from 44 million recordings, even
+// though that's genuinely what's happening. So the counter shows an
+// estimated position in the full, alphabetically-sorted catalog: where
+// the prefix falls in a-z0-9 ordering, scaled to the catalog size, plus
+// the real small offset for a bit of jitter. It's a real calculation
+// from real data (the prefix actually queried) — just not the literal
+// database row number.
+function estimateGlobalPosition(prefix, realOffset){
+  let rank = 0;
+  for(const ch of prefix){
+    rank = rank * PREFIX_CHARS.length + PREFIX_CHARS.indexOf(ch);
+  }
+  const bucketCount = Math.pow(PREFIX_CHARS.length, prefix.length);
+  const fraction = rank / bucketCount;
+  return Math.floor(fraction * CATALOG_ESTIMATE) + realOffset;
+}
+
 const counterEl = document.getElementById('counter');
 const counterMetaEl = document.getElementById('counterMeta');
 const pullBtn = document.getElementById('pullBtn');
@@ -389,7 +412,7 @@ function startSpin(){
   let n = 0;
   spinTimer = setInterval(()=>{
     n++;
-    const fake = Math.floor(Math.random()*9999999).toString().padStart(7,'0');
+    const fake = Math.floor(Math.random()*CATALOG_ESTIMATE).toString().padStart(8,'0');
     counterEl.innerHTML = fake.replace(/\d(?=(\d{3})+$)/g, '$&,') ;
   }, 45);
 }
@@ -471,7 +494,7 @@ async function pull(){
     counterMetaEl.textContent = `prefix "${prefix}" · ${total.toLocaleString()} matches`;
 
     await sleep(400); // stay well under MB's 1 req/sec limit
-    stopSpin(offset);
+    stopSpin(estimateGlobalPosition(prefix, offset));
     counterMetaEl.textContent = 'loading track…';
     pullBtn.textContent = 'Loading…';
     await sleep(250);
@@ -533,7 +556,7 @@ async function renderResult(rec, prefix, offset, total){
   ytLink.textContent = 'Search on YouTube';
   rLinks.appendChild(ytLink);
 
-  rProv.textContent = `pulled from prefix "${prefix}" (${total.toLocaleString()} matches) at offset ${offset.toLocaleString()}`;
+  rProv.textContent = `estimated catalog position ${estimateGlobalPosition(prefix, offset).toLocaleString()} · actually pulled from prefix "${prefix}" (${total.toLocaleString()} matches) at offset ${offset.toLocaleString()}`;
 
   artEl.style.backgroundImage = '';
   artEl.classList.remove('has-img');
