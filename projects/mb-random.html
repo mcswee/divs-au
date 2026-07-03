@@ -457,15 +457,20 @@ async function pull(){
 
     counterMetaEl.textContent = `prefix "${prefix}" · ${total.toLocaleString()} matches`;
 
-    await sleep(650); // stay well under MB's 1 req/sec limit
+    await sleep(400); // stay well under MB's 1 req/sec limit
+    stopSpin(offset);
+    counterMetaEl.textContent = 'loading track…';
+    pullBtn.textContent = 'Loading…';
+    await sleep(250);
 
     const dataUrl = `${MB_ROOT}?query=${encodeURIComponent('recording:'+prefix+'*')}&limit=1&offset=${offset}&fmt=json`;
     const data = await fetchJSON(dataUrl);
     const rec = data.recordings && data.recordings[0];
     if(!rec) throw new Error('no recording at that offset');
 
-    stopSpin(offset);
-    renderResult(rec, prefix, offset, total);
+    counterMetaEl.textContent = 'loading track…';
+    await renderResult(rec, prefix, offset, total);
+    counterMetaEl.textContent = `signal locked · prefix "${prefix}"`;
 
   }catch(err){
     stopSpin(0);
