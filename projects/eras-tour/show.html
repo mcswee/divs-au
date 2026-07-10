@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eras Tour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #09090e;
+      --surface: #111118;
+      --border:  #1e1e2a;
+      --text:    #ddddf0;
+      --dim:     #60607a;
+      --muted:   #2a2a3e;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 10; }
+    .nav-brand { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
+    .nav-controls { display: flex; align-items: center; gap: 12px; }
+    .nav-counter { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--dim); min-width: 52px; text-align: center; }
+    .nav-btn { background: none; border: 1px solid var(--border); color: var(--dim); padding: 5px 13px; cursor: pointer; font-family: 'DM Mono', monospace; font-size: 12px; transition: border-color .15s, color .15s; }
+    .nav-btn:hover:not(:disabled) { border-color: var(--dim); color: var(--text); }
+    .nav-btn:disabled { opacity: .25; cursor: default; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
+
+    /* LOADING */
+    .loading { padding: 80px 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .15em; color: var(--muted); text-transform: uppercase; }
+
+    /* SHOW HEADER */
+    .show-header { padding: 48px 0 28px; }
+    .show-number { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .15em; color: var(--dim); margin-bottom: 10px; }
+    .show-city { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 58px; line-height: 1; letter-spacing: -.01em; margin-bottom: 14px; }
+    .show-venue { font-size: 13px; color: var(--dim); margin-bottom: 6px; }
+    .show-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: .06em; display: flex; flex-wrap: wrap; gap: 0 2px; }
+    .show-meta-item + .show-meta-item::before { content: ' · '; }
+
+    /* ERA STRIP */
+    .era-strip { display: flex; height: 3px; margin: 24px 0 6px; gap: 2px; }
+    .era-strip-seg { flex: 1; border-radius: 1px; }
+    .era-strip-labels { display: flex; margin-bottom: 28px; overflow: hidden; }
+    .era-strip-label { flex: 1; font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: .08em; text-transform: uppercase; overflow: hidden; white-space: nowrap; }
+
+    /* ERA SECTIONS */
+    .era-section { margin-top: 36px; padding-left: 14px; border-left: 2px solid; }
+    .era-name { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .28em; text-transform: uppercase; margin-bottom: 16px; }
+    .pieces-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-start; }
+
+    /* PIECE CARD */
+    .piece { width: 96px; }
+    .piece-img-wrap { width: 96px; height: 128px; background: var(--surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 7px; position: relative; overflow: hidden; }
+    .piece-img-wrap img { width: 100%; height: 100%; object-fit: contain; }
+    .piece-placeholder { opacity: .1; width: 52%; }
+    .piece.is-constant .piece-img-wrap { background: transparent; border-style: dashed; border-color: var(--muted); }
+    .piece.is-none .piece-img-wrap { background: transparent; border-style: dashed; border-color: var(--muted); opacity: .4; }
+    .piece-slot { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+    .piece-name { font-size: 11px; color: var(--dim); line-height: 1.35; }
+    .piece.is-constant .piece-name, .piece.is-none .piece-name { color: var(--muted); }
+    .garter-badge { position: absolute; bottom: 4px; right: 4px; font-family: 'DM Mono', monospace; font-size: 7px; color: var(--dim); background: var(--bg); border: 1px solid var(--muted); padding: 1px 4px; }
+
+    /* SURPRISE SONGS */
+    .surprise-section { margin-top: 52px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .section-heading { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .28em; text-transform: uppercase; color: var(--dim); margin-bottom: 24px; }
+    .surprise-instrument { margin-bottom: 20px; }
+    .surprise-instrument-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .surprise-tracks { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 6px; }
+    .surprise-track { display: flex; align-items: baseline; gap: 8px; }
+    .surprise-track-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; font-style: italic; }
+    .surprise-sep { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); }
+
+    /* NIGHT NOTES */
+    .extras-section { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .extras-grid { display: grid; grid-template-columns: 160px 1fr; gap: 10px 16px; }
+    .extras-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
+    .extras-value { font-size: 13px; color: var(--dim); }
+    .extras-value em { font-style: italic; color: var(--text); }
+    .tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 9px; border: 1px solid var(--border); padding: 1px 7px; margin: 0 4px 4px 0; color: var(--dim); }
+
+    /* CANCELLED */
+    .cancelled-banner { margin: 40px 0; padding: 28px; border: 1px solid var(--border); border-left: 3px solid var(--dim); }
+    .cancelled-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); margin-bottom: 10px; }
+    .cancelled-notes { font-size: 13px; color: var(--dim); }
+
+    .show-notes { margin-top: 32px; padding: 16px; border-left: 2px solid var(--muted); font-size: 12px; color: var(--dim); font-style: italic; }
+
+    @media (max-width: 600px) {
+      .show-city { font-size: 38px; }
+      .piece { width: 82px; }
+      .piece-img-wrap { width: 82px; height: 110px; }
+      .extras-grid { grid-template-columns: 1fr; gap: 4px; }
+      .extras-label { color: var(--muted); }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Eras Tour</a>
+  <div class="nav-controls">
+    <button class="nav-btn" id="btn-prev" onclick="navigateShow(-1)">←</button>
+    <span class="nav-counter" id="nav-counter">—</span>
+    <button class="nav-btn" id="btn-next" onclick="navigateShow(1)">→</button>
+  </div>
+</nav>
+
+<main class="container">
+  <div class="loading" id="loading">Loading…</div>
+  <div id="content" hidden></div>
+</main>
+
+<script>
+// ── CONSTANTS ────────────────────────────────────────────────────────────────
+const ERA_ORDER = [
+  'lover','fearless','red','speak_now',
+  'folklore','evermore','ttpd',
+  'reputation','acoustic','1989','midnights'
+];
+const ERA_LABELS = {
+  lover:'Lover', fearless:'Fearless', red:'Red', speak_now:'Speak Now',
+  evermore:'Evermore', folklore:'Folklore', ttpd:'The Tortured Poets Department',
+  reputation:'reputation', acoustic:'Acoustic', '1989':'1989', midnights:'Midnights'
+};
+const ERA_COLORS = {
+  lover:'#f472b6', fearless:'#c9a83c', red:'#dc3545', speak_now:'#9d4fd1',
+  evermore:'#a07840', folklore:'#8a9aaa', reputation:'#5a5a72',
+  '1989':'#4ab8e8', ttpd:'#c8b8a8', acoustic:'#d4a830', midnights:'#7c6edc'
+};
+const SLOT_LABELS = {
+  bodysuit:'Bodysuit', jacket:'Jacket', guitar:'Guitar', dress:'Dress',
+  tshirt:'T-Shirt', romper:'Romper', coat:'Coat', tshirtdress:'T-Shirt Dress',
+  military_jacket:'Military Jacket', tailcoat:'Tailcoat', twopiece:'Two-Piece',
+  gloves:'Gloves', necklace:'Necklace', cloak:'Cloak',
+  top:'Top', skirt:'Skirt', boot_right:'Right Boot', boot_left:'Left Boot'
+};
+const PLACEHOLDER = `<svg class="piece-placeholder" viewBox="0 0 52 72" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><ellipse cx="26" cy="7" rx="6" ry="7"/><path d="M26 14C20 14 14 18 12 26L6 70H46L40 26C38 18 32 14 26 14Z"/></svg>`;
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+let shows = [], pieces = { constants: [], variants: [] };
+let currentId = null, sortedIds = [];
+
+// ── DATA ─────────────────────────────────────────────────────────────────────
+async function loadData() {
+  try {
+    [shows, pieces] = await Promise.all([
+      fetch('assets/data/shows.json').then(r => r.json()),
+      fetch('assets/data/pieces.json').then(r => r.json())
+    ]);
+  } catch(e) {
+    document.getElementById('loading').textContent = 'Could not load data. Serve this page from a web server.';
+    throw e;
+  }
+  sortedIds = shows.map(s => s.show_id).sort((a,b) => a-b);
+}
+
+// ── HELPERS ──────────────────────────────────────────────────────────────────
+function pieceName(variantId, era, slot) {
+  const v = pieces.variants.find(p => p.id === variantId);
+  if (v) return v.name;
+  const prefix = `${era}_${slot}_`;
+  if (variantId.startsWith(prefix))
+    return variantId.slice(prefix.length).replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+  return variantId.replace(/_/g,' ');
+}
+function formatDate(s) {
+  return new Date(s+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'});
+}
+function cityLabel(show) {
+  const night = show.city_id.split('_').pop().toUpperCase();
+  return `${show.city} ${night}`;
+}
+
+// ── NAVIGATION ───────────────────────────────────────────────────────────────
+function navigateShow(delta) {
+  const idx = sortedIds.indexOf(currentId);
+  const next = idx + delta;
+  if (next < 0 || next >= sortedIds.length) return;
+  currentId = sortedIds[next];
+  history.pushState({}, '', `?id=${currentId}`);
+  render();
+}
+window.addEventListener('popstate', () => {
+  currentId = parseInt(new URLSearchParams(location.search).get('id')) || sortedIds[0];
+  render();
+});
+
+// ── RENDER ───────────────────────────────────────────────────────────────────
+function render() {
+  const show = shows.find(s => s.show_id === currentId);
+  const idx = sortedIds.indexOf(currentId);
+  document.getElementById('nav-counter').textContent = `${idx+1} / ${sortedIds.length}`;
+  document.getElementById('btn-prev').disabled = idx === 0;
+  document.getElementById('btn-next').disabled = idx === sortedIds.length-1;
+  document.title = `${cityLabel(show)} — Eras Tour`;
+  document.getElementById('loading').hidden = true;
+  const el = document.getElementById('content');
+  el.hidden = false;
+  el.innerHTML = renderShow(show);
+}
+
+function renderShow(show) {
+  const header = `
+    <div class="show-header">
+      <div class="show-number">Show ${String(show.show_id).padStart(3,'0')} — ${show.leg}</div>
+      <h1 class="show-city">${cityLabel(show)}</h1>
+      <div class="show-venue">${show.venue}</div>
+      <div class="show-meta">
+        <span class="show-meta-item">${formatDate(show.date)}</span>
+        <span class="show-meta-item">${show.territory}</span>
+        ${show.cancelled ? '<span class="show-meta-item" style="color:var(--dim)">Cancelled</span>' : ''}
+      </div>
+    </div>`;
+
+  if (show.cancelled) return header + `
+    <div class="cancelled-banner">
+      <div class="cancelled-label">Show cancelled</div>
+      <p class="cancelled-notes">${show.notes || 'No further information.'}</p>
+    </div>`;
+
+  const presentEras = ERA_ORDER.filter(e => show.costumes[e]);
+  const strip = `
+    <div class="era-strip">
+      ${presentEras.map(e=>`<div class="era-strip-seg" style="background:${ERA_COLORS[e]}" title="${ERA_LABELS[e]}"></div>`).join('')}
+    </div>
+    <div class="era-strip-labels">
+      ${presentEras.map(e=>`<div class="era-strip-label" style="color:${ERA_COLORS[e]}">${ERA_LABELS[e]}</div>`).join('')}
+    </div>`;
+
+  const eras = ERA_ORDER
+    .filter(e => show.costumes[e])
+    .map(e => renderEra(e, show.costumes[e]))
+    .join('');
+
+  const songs   = show.surprise_songs ? renderSurprise(show.surprise_songs) : '';
+  const extras  = renderExtras(show);
+  const notes   = show.notes ? `<div class="show-notes">${show.notes}</div>` : '';
+
+  return header + strip + eras + songs + extras + notes;
+}
+
+function renderEra(eraKey, eraData) {
+  const color = ERA_COLORS[eraKey];
+  const label = ERA_LABELS[eraKey];
+  const eraConstants = pieces.constants.filter(c => c.era === eraKey);
+  const cards = [];
+
+  for (const [slot, value] of Object.entries(eraData)) {
+    if (slot === 'garter') continue;
+    const isNone   = typeof value === 'string' && value.endsWith('_none');
+    const isGarter = eraKey === 'midnights' && slot === 'bodysuit' && eraData.garter;
+    cards.push(`
+      <div class="piece${isNone?' is-none':''}">
+        <div class="piece-img-wrap">
+          ${PLACEHOLDER}
+          ${isGarter?'<span class="garter-badge">garter</span>':''}
+        </div>
+        <div class="piece-slot">${SLOT_LABELS[slot]||slot}</div>
+        <div class="piece-name">${pieceName(value, eraKey, slot)}</div>
+      </div>`);
+  }
+
+  for (const c of eraConstants) {
+    cards.push(`
+      <div class="piece is-constant">
+        <div class="piece-img-wrap">${PLACEHOLDER}</div>
+        <div class="piece-slot">${SLOT_LABELS[c.slot]||c.slot}</div>
+        <div class="piece-name">${c.name}</div>
+      </div>`);
+  }
+
+  return `
+    <div class="era-section" style="border-color:${color}">
+      <div class="era-name" style="color:${color}">${label}</div>
+      <div class="pieces-row">${cards.join('')}</div>
+    </div>`;
+}
+
+function renderSurprise(songs) {
+  const parts = ['guitar','piano']
+    .filter(inst => songs[inst]?.tracks?.length)
+    .map(inst => {
+      const tracksHtml = songs[inst].tracks.map((t,i) => {
+        const sep = i < songs[inst].tracks.length-1
+          ? '<span class="surprise-sep">&thinsp;/&thinsp;</span>' : '';
+        return `<div class="surprise-track"><span class="surprise-track-title">${t}</span></div>${sep}`;
+      }).join('');
+      return `
+        <div class="surprise-instrument">
+          <div class="surprise-instrument-label">${inst}</div>
+          <div class="surprise-tracks">${tracksHtml}</div>
+        </div>`;
+    });
+
+  return `
+    <div class="surprise-section">
+      <div class="section-heading">Acoustic Surprise Songs</div>
+      ${parts.join('')}
+    </div>`;
+}
+
+function renderExtras(show) {
+  const rows = [];
+
+  if (show.opening_acts?.length)
+    rows.push(['Opening acts', show.opening_acts.map(a=>`<span class="tag">${a}</span>`).join('')]);
+
+  if (show.guests?.length)
+    rows.push(['Special guests', show.guests.map(g=>`<span class="tag">${g}</span>`).join('')]);
+
+  if (show.ovation)
+    rows.push(['Champagne Problems', `<em>${show.ovation}</em> standing ovation`]);
+
+  if (show.oh_hi && show.oh_hi !== 'Oh Hi!')
+    rows.push(['Oh Hi!', `<em>"${show.oh_hi}"</em>`]);
+
+  if (show.like_ever)
+    rows.push(['Like Ever!', `<em>"${show.like_ever}"</em>`]);
+
+  if (show.guy_on_the)
+    rows.push(['Guy on the', `<em>${show.guy_on_the}</em>`]);
+
+  if (!rows.length) return '';
+
+  return `
+    <div class="extras-section">
+      <div class="section-heading">Night Notes</div>
+      <div class="extras-grid">
+        ${rows.map(([l,v])=>`<div class="extras-label">${l}</div><div class="extras-value">${v}</div>`).join('')}
+      </div>
+    </div>`;
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+async function init() {
+  const id = parseInt(new URLSearchParams(location.search).get('id'));
+  currentId = sortedIds.includes(id) ? id : sortedIds[0];
+  render();
+}
+
+loadData().then(init).catch(() => {});
+</script>
+</body>
+</html>
