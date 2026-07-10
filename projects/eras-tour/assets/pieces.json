@@ -1,0 +1,173 @@
+{
+  "constants": [
+    { "id": "fearless_guitar",       "era": "fearless", "slot": "guitar",           "name": "Silver Gibson J-180" },
+    { "id": "red_jacket",            "era": "red",      "slot": "jacket",           "name": "Black & Red jacket" },
+    { "id": "folklore_guitar",       "era": "folklore", "slot": "guitar",           "name": "Gibson Hummingbird" },
+    { "id": "ttpd_military_jacket",  "era": "ttpd",     "slot": "military_jacket",  "name": "White military jacket" },
+    { "id": "acoustic_guitar",       "era": "acoustic", "slot": "guitar",           "name": "Taylor PS24CE" }
+  ],
+  "variants": [
+
+    { "id": "lover_bodysuit_pink_and_blue",  "era": "lover", "slot": "bodysuit", "name": "Pink & Blue",   "svg": null, "notes": "" },
+    { "id": "lover_bodysuit_blue_and_gold",  "era": "lover", "slot": "bodysuit", "name": "Blue & Gold",   "svg": null, "notes": "" },
+    { "id": "lover_bodysuit_purple",         "era": "lover", "slot": "bodysuit", "name": "Purple",        "svg": null, "notes": "" },
+    { "id": "lover_bodysuit_orange_and_pink","era": "lover", "slot": "bodysuit", "name": "Orange & Pink", "svg": null, "notes": "" },
+    { "id": "lover_bodysuit_all_pink",       "era": "lover", "slot": "bodysuit", "name": "All Pink",      "svg": null, "notes": "" },
+
+    { "id": "lover_jacket_silver",   "era": "lover", "slot": "jacket", "name": "Silver",   "svg": null, "notes": "" },
+    { "id": "lover_jacket_black",    "era": "lover", "slot": "jacket", "name": "Black",    "svg": null, "notes": "" },
+    { "id": "lover_jacket_indigo",   "era": "lover", "slot": "jacket", "name": "Indigo",   "svg": null, "notes": "" },
+    { "id": "lover_jacket_pink",     "era": "lover", "slot": "jacket", "name": "Pink",     "svg": null, "notes": "" },
+    { "id": "lover_jacket_tangerine","era": "lover", "slot": "jacket", "name": "Tangerine","svg": null, "notes": "" },
+
+    { "id": "lover_guitar_pink",   "era": "lover", "slot": "guitar", "name": "Pink",   "svg": null, "notes": "" },
+    { "id": "lover_guitar_blue",   "era": "lover", "slot": "guitar", "name": "Blue",   "svg": null, "notes": "" },
+    { "id": "lover_guitar_purple", "era": "lover", "slot": "guitar", "name": "Purple", "svg": null, "notes": "" },
+
+    { "id": "fearless_dress_short_gold",         "era": "fearless", "slot": "dress", "name": "Short Gold",         "svg": null, "notes": "" },
+    { "id": "fearless_dress_long_gold",          "era": "fearless", "slot": "dress", "name": "Long Gold",          "svg": null, "notes": "" },
+    { "id": "fearless_dress_long_silver",        "era": "fearless", "slot": "dress", "name": "Long Silver",        "svg": null, "notes": "" },
+    { "id": "fearless_dress_short_black_silver", "era": "fearless", "slot": "dress", "name": "Short Black Silver", "svg": null, "notes": "" },
+    { "id": "fearless_dress_short_tiger_stripes","era": "fearless", "slot": "dress", "name": "Short Tiger Stripes","svg": null, "notes": "" },
+    { "id": "fearless_dress_short_silver_blue",  "era": "fearless", "slot": "dress", "name": "Short Silver Blue",  "svg": null, "notes": "" },
+
+    { "id": "red_tshirt_a_lot",     "era": "red", "slot": "tshirt", "name": "A Lot",     "svg": null, "notes": "There's A LOT going on at the moment" },
+    { "id": "red_tshirt_ew",        "era": "red", "slot": "tshirt", "name": "Ew",        "svg": null, "notes": "Who's Taylor Swift anyway, EW" },
+    { "id": "red_tshirt_never_ever","era": "red", "slot": "tshirt", "name": "Never Ever","svg": null, "notes": "We are NEVER EVER getting back together" },
+    { "id": "red_tshirt_is_not",    "era": "red", "slot": "tshirt", "name": "Is Not",    "svg": null, "notes": "This IS NOT Taylor's Version — added Phase 2" },
+    { "id": "red_tshirt_about_me",  "era": "red", "slot": "tshirt", "name": "About Me",  "svg": null, "notes": "I bet you think ABOUT ME" },
+    { "id": "red_tshirt_trouble",   "era": "red", "slot": "tshirt", "name": "Trouble",   "svg": null, "notes": "I knew you were TROUBLE" },
+
+    { "id": "red_romper_thick_straps","era": "red", "slot": "romper", "name": "Thick Straps","svg": null, "notes": "Phase 1" },
+    { "id": "red_romper_thin_straps", "era": "red", "slot": "romper", "name": "Thin Straps", "svg": null, "notes": "Revised Phase 2" },
+
+    { "id": "red_guitar_red",  "era": "red", "slot": "guitar", "name": "Red",  "svg": null, "notes": "First 5 shows only" },
+    { "id": "red_guitar_black","era": "red", "slot": "guitar", "name": "Black","svg": null, "notes": "" },
+
+    { "id": "speak_now_dress_champagne",         "era": "speak_now", "slot": "dress", "name": "Champagne",         "svg": null, "notes": "" },
+    { "id": "speak_now_dress_pink",              "era": "speak_now", "slot": "dress", "name": "Pink",              "svg": null, "notes": "" },
+    { "id": "speak_now_dress_lavender_cupcake",  "era": "speak_now", "slot": "dress", "name": "Lavender Cupcake",  "svg": null, "notes": "" },
+    { "id": "speak_now_dress_silver",            "era": "speak_now", "slot": "dress", "name": "Silver",            "svg": null, "notes": "" },
+    { "id": "speak_now_dress_white_floral",      "era": "speak_now", "slot": "dress", "name": "White Floral",      "svg": null, "notes": "" },
+    { "id": "speak_now_dress_blue",              "era": "speak_now", "slot": "dress", "name": "Blue",              "svg": null, "notes": "" },
+    { "id": "speak_now_dress_lilac_swirls",      "era": "speak_now", "slot": "dress", "name": "Lilac Swirls",      "svg": null, "notes": "" },
+    { "id": "speak_now_dress_purple_wonderstruck","era": "speak_now","slot": "dress", "name": "Purple Wonderstruck","svg": null, "notes": "" },
+    { "id": "speak_now_dress_teal",              "era": "speak_now", "slot": "dress", "name": "Teal",              "svg": null, "notes": "" },
+
+    { "id": "speak_now_guitar_none", "era": "speak_now", "slot": "guitar", "name": "No guitar",  "svg": null, "notes": "Phase 1 and Phase 3" },
+    { "id": "speak_now_guitar_koi",  "era": "speak_now", "slot": "guitar", "name": "Koi Fish",   "svg": null, "notes": "Phase 2 only; two-song set" },
+
+    { "id": "evermore_dress_orange",        "era": "evermore", "slot": "dress", "name": "Orange",        "svg": null, "notes": "" },
+    { "id": "evermore_dress_bronze_empire", "era": "evermore", "slot": "dress", "name": "Bronze Empire", "svg": null, "notes": "First 2 bronze shows" },
+    { "id": "evermore_dress_bronze_fitted", "era": "evermore", "slot": "dress", "name": "Bronze Fitted", "svg": null, "notes": "Adjusted design" },
+
+    { "id": "evermore_cloak_forest_green",   "era": "evermore", "slot": "cloak", "name": "Forest Green",   "svg": null, "notes": "Phase 1 — Evermore era" },
+    { "id": "evermore_cloak_chocolate_brown","era": "evermore", "slot": "cloak", "name": "Chocolate Brown","svg": null, "notes": "Phase 2 — Folkmore era" },
+
+    { "id": "folklore_dress_mauve", "era": "folklore", "slot": "dress", "name": "Mauve", "svg": null, "notes": "" },
+    { "id": "folklore_dress_cream", "era": "folklore", "slot": "dress", "name": "Cream", "svg": null, "notes": "" },
+    { "id": "folklore_dress_pink",  "era": "folklore", "slot": "dress", "name": "Pink",  "svg": null, "notes": "" },
+    { "id": "folklore_dress_green", "era": "folklore", "slot": "dress", "name": "Green", "svg": null, "notes": "" },
+    { "id": "folklore_dress_blue",  "era": "folklore", "slot": "dress", "name": "Blue",  "svg": null, "notes": "" },
+    { "id": "folklore_dress_butter","era": "folklore", "slot": "dress", "name": "Butter","svg": null, "notes": "" },
+    { "id": "folklore_dress_berry", "era": "folklore", "slot": "dress", "name": "Berry", "svg": null, "notes": "" },
+
+    { "id": "reputation_bodysuit_red_and_black_snakes","era": "reputation","slot": "bodysuit","name": "Red & Black Snakes","svg": null, "notes": "Phase 1 and 2 — 130 shows" },
+    { "id": "reputation_bodysuit_gold_and_black_cobras","era": "reputation","slot": "bodysuit","name": "Gold & Black Cobras","svg": null, "notes": "North American leg only" },
+
+    { "id": "1989_top_rubellite","era": "1989","slot": "top","name": "Rubellite","svg": null, "notes": "Crystal set" },
+    { "id": "1989_top_emerald",  "era": "1989","slot": "top","name": "Emerald",  "svg": null, "notes": "Crystal set" },
+    { "id": "1989_top_topaz",    "era": "1989","slot": "top","name": "Topaz",    "svg": null, "notes": "Crystal set" },
+    { "id": "1989_top_sapphire", "era": "1989","slot": "top","name": "Sapphire", "svg": null, "notes": "Crystal set" },
+    { "id": "1989_top_blue",     "era": "1989","slot": "top","name": "Blue",     "svg": null, "notes": "" },
+    { "id": "1989_top_green",    "era": "1989","slot": "top","name": "Green",    "svg": null, "notes": "" },
+    { "id": "1989_top_orange",   "era": "1989","slot": "top","name": "Orange",   "svg": null, "notes": "" },
+    { "id": "1989_top_pink",     "era": "1989","slot": "top","name": "Pink",     "svg": null, "notes": "" },
+    { "id": "1989_top_violet",   "era": "1989","slot": "top","name": "Violet",   "svg": null, "notes": "" },
+    { "id": "1989_top_yellow",   "era": "1989","slot": "top","name": "Yellow",   "svg": null, "notes": "" },
+
+    { "id": "1989_skirt_rubellite","era": "1989","slot": "skirt","name": "Rubellite","svg": null, "notes": "Crystal set" },
+    { "id": "1989_skirt_emerald",  "era": "1989","slot": "skirt","name": "Emerald",  "svg": null, "notes": "Crystal set" },
+    { "id": "1989_skirt_topaz",    "era": "1989","slot": "skirt","name": "Topaz",    "svg": null, "notes": "Crystal set" },
+    { "id": "1989_skirt_sapphire", "era": "1989","slot": "skirt","name": "Sapphire", "svg": null, "notes": "Crystal set" },
+    { "id": "1989_skirt_blue",     "era": "1989","slot": "skirt","name": "Blue",     "svg": null, "notes": "" },
+    { "id": "1989_skirt_green",    "era": "1989","slot": "skirt","name": "Green",    "svg": null, "notes": "" },
+    { "id": "1989_skirt_orange",   "era": "1989","slot": "skirt","name": "Orange",   "svg": null, "notes": "" },
+    { "id": "1989_skirt_pink",     "era": "1989","slot": "skirt","name": "Pink",     "svg": null, "notes": "" },
+    { "id": "1989_skirt_violet",   "era": "1989","slot": "skirt","name": "Violet",   "svg": null, "notes": "" },
+    { "id": "1989_skirt_yellow",   "era": "1989","slot": "skirt","name": "Yellow",   "svg": null, "notes": "" },
+
+    { "id": "1989_boot_left_blue",  "era": "1989","slot": "boot_left","name": "Blue",  "svg": null, "notes": "" },
+    { "id": "1989_boot_left_green", "era": "1989","slot": "boot_left","name": "Green", "svg": null, "notes": "" },
+    { "id": "1989_boot_left_orange","era": "1989","slot": "boot_left","name": "Orange","svg": null, "notes": "" },
+    { "id": "1989_boot_left_pink",  "era": "1989","slot": "boot_left","name": "Pink",  "svg": null, "notes": "" },
+    { "id": "1989_boot_left_violet","era": "1989","slot": "boot_left","name": "Violet","svg": null, "notes": "" },
+    { "id": "1989_boot_left_yellow","era": "1989","slot": "boot_left","name": "Yellow","svg": null, "notes": "" },
+
+    { "id": "1989_boot_right_blue",  "era": "1989","slot": "boot_right","name": "Blue",  "svg": null, "notes": "" },
+    { "id": "1989_boot_right_green", "era": "1989","slot": "boot_right","name": "Green", "svg": null, "notes": "" },
+    { "id": "1989_boot_right_orange","era": "1989","slot": "boot_right","name": "Orange","svg": null, "notes": "" },
+    { "id": "1989_boot_right_pink",  "era": "1989","slot": "boot_right","name": "Pink",  "svg": null, "notes": "" },
+    { "id": "1989_boot_right_violet","era": "1989","slot": "boot_right","name": "Violet","svg": null, "notes": "" },
+    { "id": "1989_boot_right_yellow","era": "1989","slot": "boot_right","name": "Yellow","svg": null, "notes": "" },
+
+    { "id": "ttpd_dress_ruining_my_life","era": "ttpd","slot": "dress","name": "Ruining My Life","svg": null, "notes": "" },
+    { "id": "ttpd_dress_you_should_be",  "era": "ttpd","slot": "dress","name": "You Should Be",  "svg": null, "notes": "" },
+
+    { "id": "ttpd_gloves_none",         "era": "ttpd","slot": "gloves","name": "No gloves",    "svg": null, "notes": "Early TTPD shows" },
+    { "id": "ttpd_gloves_plain_black",  "era": "ttpd","slot": "gloves","name": "Plain Black",  "svg": null, "notes": "" },
+    { "id": "ttpd_gloves_sparkle_black","era": "ttpd","slot": "gloves","name": "Sparkle Black","svg": null, "notes": "" },
+    { "id": "ttpd_gloves_plain_white",  "era": "ttpd","slot": "gloves","name": "Plain White",  "svg": null, "notes": "" },
+    { "id": "ttpd_gloves_sparkle_white","era": "ttpd","slot": "gloves","name": "Sparkle White","svg": null, "notes": "" },
+
+    { "id": "ttpd_necklace_black","era": "ttpd","slot": "necklace","name": "Black","svg": null, "notes": "" },
+    { "id": "ttpd_necklace_white","era": "ttpd","slot": "necklace","name": "White","svg": null, "notes": "" },
+
+    { "id": "ttpd_twopiece_all_black",  "era": "ttpd","slot": "twopiece","name": "All Black",  "svg": null, "notes": "" },
+    { "id": "ttpd_twopiece_sliver_white","era": "ttpd","slot": "twopiece","name": "Sliver-White","svg": null, "notes": "" },
+    { "id": "ttpd_twopiece_graphite",   "era": "ttpd","slot": "twopiece","name": "Graphite",   "svg": null, "notes": "" },
+    { "id": "ttpd_twopiece_black_and_gold","era": "ttpd","slot": "twopiece","name": "Black & Gold","svg": null, "notes": "" },
+
+    { "id": "ttpd_tailcoat_black_and_gold",  "era": "ttpd","slot": "tailcoat","name": "Black & Gold",  "svg": null, "notes": "" },
+    { "id": "ttpd_tailcoat_white_and_silver","era": "ttpd","slot": "tailcoat","name": "White & Silver","svg": null, "notes": "" },
+    { "id": "ttpd_tailcoat_silver_and_black","era": "ttpd","slot": "tailcoat","name": "Silver & Black","svg": null, "notes": "" },
+    { "id": "ttpd_tailcoat_graphite_and_black","era": "ttpd","slot": "tailcoat","name": "Graphite & Black","svg": null, "notes": "" },
+
+    { "id": "acoustic_dress_magenta",    "era": "acoustic","slot": "dress","name": "Magenta",    "svg": null, "notes": "Phase 1" },
+    { "id": "acoustic_dress_shamrock",   "era": "acoustic","slot": "dress","name": "Shamrock",   "svg": null, "notes": "Phase 1" },
+    { "id": "acoustic_dress_cerulean",   "era": "acoustic","slot": "dress","name": "Cerulean",   "svg": null, "notes": "Phase 1" },
+    { "id": "acoustic_dress_yellow",     "era": "acoustic","slot": "dress","name": "Yellow",     "svg": null, "notes": "Phase 1" },
+    { "id": "acoustic_dress_pink",       "era": "acoustic","slot": "dress","name": "Pink",       "svg": null, "notes": "Phase 2 ombré" },
+    { "id": "acoustic_dress_orange",     "era": "acoustic","slot": "dress","name": "Orange",     "svg": null, "notes": "Phase 2 ombré; also one Phase 3 show" },
+    { "id": "acoustic_dress_blue",       "era": "acoustic","slot": "dress","name": "Blue",       "svg": null, "notes": "Phase 2 ombré" },
+    { "id": "acoustic_dress_betta_fish", "era": "acoustic","slot": "dress","name": "Betta Fish", "svg": null, "notes": "Phase 3 North American leg" },
+    { "id": "acoustic_dress_koi_fish",   "era": "acoustic","slot": "dress","name": "Koi Fish",   "svg": null, "notes": "Phase 3 North American leg" },
+    { "id": "acoustic_dress_supernova",  "era": "acoustic","slot": "dress","name": "Supernova",  "svg": null, "notes": "Phase 3 North American leg" },
+    { "id": "acoustic_dress_karma_sunset","era": "acoustic","slot": "dress","name": "Karma Sunset","svg": null, "notes": "Phase 3 North American leg" },
+
+    { "id": "midnights_coat_lavender_gem",    "era": "midnights","slot": "coat","name": "Lavender Gem",    "svg": null, "notes": "Phase 1 and 2" },
+    { "id": "midnights_coat_lavender_shimmer","era": "midnights","slot": "coat","name": "Lavender Shimmer","svg": null, "notes": "Phase 3 North American leg" },
+
+    { "id": "midnights_tshirtdress_silver",    "era": "midnights","slot": "tshirtdress","name": "Silver",    "svg": null, "notes": "" },
+    { "id": "midnights_tshirtdress_blue",      "era": "midnights","slot": "tshirtdress","name": "Blue",      "svg": null, "notes": "" },
+    { "id": "midnights_tshirtdress_pink",      "era": "midnights","slot": "tshirtdress","name": "Pink",      "svg": null, "notes": "" },
+    { "id": "midnights_tshirtdress_lavender",  "era": "midnights","slot": "tshirtdress","name": "Lavender",  "svg": null, "notes": "" },
+    { "id": "midnights_tshirtdress_iridescent","era": "midnights","slot": "tshirtdress","name": "Iridescent","svg": null, "notes": "" },
+    { "id": "midnights_tshirtdress_orchid",    "era": "midnights","slot": "tshirtdress","name": "Orchid",    "svg": null, "notes": "" },
+    { "id": "midnights_tshirtdress_amethyst",  "era": "midnights","slot": "tshirtdress","name": "Amethyst",  "svg": null, "notes": "Phase 3 North American leg" },
+    { "id": "midnights_tshirtdress_icy_blue",  "era": "midnights","slot": "tshirtdress","name": "Icy Blue",  "svg": null, "notes": "Phase 3 North American leg" },
+
+    { "id": "midnights_bodysuit_lines",    "era": "midnights","slot": "bodysuit","name": "Lines",    "svg": null, "notes": "" },
+    { "id": "midnights_bodysuit_scallops", "era": "midnights","slot": "bodysuit","name": "Scallops", "svg": null, "notes": "" },
+    { "id": "midnights_bodysuit_cutout",   "era": "midnights","slot": "bodysuit","name": "Cutout",   "svg": null, "notes": "" },
+    { "id": "midnights_bodysuit_chevron",  "era": "midnights","slot": "bodysuit","name": "Chevron",  "svg": null, "notes": "" },
+    { "id": "midnights_bodysuit_moonstone","era": "midnights","slot": "bodysuit","name": "Moonstone","svg": null, "notes": "" },
+
+    { "id": "midnights_jacket_pink",      "era": "midnights","slot": "jacket","name": "Pink",      "svg": null, "notes": "" },
+    { "id": "midnights_jacket_magenta",   "era": "midnights","slot": "jacket","name": "Magenta",   "svg": null, "notes": "" },
+    { "id": "midnights_jacket_blue",      "era": "midnights","slot": "jacket","name": "Blue",      "svg": null, "notes": "" },
+    { "id": "midnights_jacket_multicolour","era": "midnights","slot": "jacket","name": "Multicolour","svg": null, "notes": "" },
+    { "id": "midnights_jacket_none",      "era": "midnights","slot": "jacket","name": "No jacket", "svg": null, "notes": "" }
+
+  ]
+}
