@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eras Tour — All Shows</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@300;400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #09090e;
+      --surface: #111118;
+      --border:  #1e1e2a;
+      --text:    #ddddf0;
+      --dim:     #60607a;
+      --muted:   #2a2a3e;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+
+    /* HEADER */
+    .site-header { padding: 52px 24px 40px; max-width: 900px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+    .site-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); margin-bottom: 12px; }
+    .site-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 52px; line-height: 1; letter-spacing: -.01em; margin-bottom: 16px; }
+    .site-description { font-size: 13px; color: var(--dim); max-width: 480px; line-height: 1.7; }
+    .site-stats { display: flex; gap: 32px; margin-top: 24px; }
+    .stat { display: flex; flex-direction: column; gap: 2px; }
+    .stat-number { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 32px; line-height: 1; }
+    .stat-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: var(--dim); }
+
+    /* ERA LEGEND */
+    .era-legend { max-width: 900px; margin: 0 auto; padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 6px 20px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* CONTAINER */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
+    .loading { padding: 80px 0; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .15em; color: var(--muted); text-transform: uppercase; }
+
+    /* LEG GROUP */
+    .leg-group { margin-top: 44px; }
+    .leg-heading { display: flex; align-items: center; gap: 16px; margin-bottom: 4px; }
+    .leg-name { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--dim); white-space: nowrap; }
+    .leg-rule { flex: 1; height: 1px; background: var(--border); }
+    .leg-count { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); }
+
+    /* SHOW ROW */
+    .show-row { display: grid; grid-template-columns: 40px 1fr auto 100px 18px; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); cursor: pointer; transition: background .1s, padding .1s, margin .1s; text-decoration: none; color: inherit; }
+    .show-row:hover { background: var(--surface); margin: 0 -12px; padding: 10px 12px; }
+    .show-row.is-cancelled { opacity: .35; cursor: default; pointer-events: none; }
+    .show-num { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); text-align: right; }
+    .show-city-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; line-height: 1.1; }
+    .show-city-night { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--dim); letter-spacing: .06em; }
+    .show-territory { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); text-align: right; }
+    .show-era-strip { display: flex; gap: 1px; height: 3px; }
+    .show-era-dot { flex: 1; height: 3px; border-radius: 1px; }
+    .show-arrow { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+    .show-row:hover .show-arrow { color: var(--dim); }
+    .cancelled-tag { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--muted); padding: 1px 5px; }
+
+    @media (max-width: 600px) {
+      .site-title { font-size: 38px; }
+      .show-row { grid-template-columns: 34px 1fr auto 16px; }
+      .show-era-strip { display: none; }
+      .site-stats { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-eyebrow">2023 – 2024</div>
+  <h1 class="site-title">The Eras Tour</h1>
+  <p class="site-description">A night-by-night record of the costumes, surprise songs, and setlist variations across Taylor Swift's 2023–2024 world tour.</p>
+  <div class="site-stats" id="stats"></div>
+</header>
+
+<div class="era-legend" id="legend"></div>
+<main class="container">
+  <div class="loading" id="loading">Loading…</div>
+  <div id="content"></div>
+</main>
+
+<script>
+const ERA_ORDER = [
+  'lover','fearless','red','speak_now',
+  'folklore','evermore','ttpd',
+  'reputation','acoustic','1989','midnights'
+];
+const ERA_LABELS = {
+  lover:'Lover', fearless:'Fearless', red:'Red', speak_now:'Speak Now',
+  evermore:'Evermore', folklore:'Folklore', ttpd:'TTPD',
+  reputation:'reputation', acoustic:'Acoustic', '1989':'1989', midnights:'Midnights'
+};
+const ERA_COLORS = {
+  lover:'#f472b6', fearless:'#c9a83c', red:'#dc3545', speak_now:'#9d4fd1',
+  evermore:'#a07840', folklore:'#8a9aaa', reputation:'#5a5a72',
+  '1989':'#4ab8e8', ttpd:'#c8b8a8', acoustic:'#d4a830', midnights:'#7c6edc'
+};
+const LEG_ORDER = [
+  'US leg','Latin American leg','Asia Pacific leg','European leg','North American leg'
+];
+
+async function init() {
+  let shows;
+  try {
+    shows = await fetch('assets/data/shows.json').then(r => r.json());
+  } catch(e) {
+    document.getElementById('loading').textContent = 'Could not load data. Serve this from a web server.';
+    return;
+  }
+  document.getElementById('loading').hidden = true;
+
+  // Stats
+  const performed = shows.filter(s => !s.cancelled).length;
+  const cancelled = shows.filter(s =>  s.cancelled).length;
+  document.getElementById('stats').innerHTML = `
+    <div class="stat"><span class="stat-number">${performed}</span><span class="stat-label">Shows performed</span></div>
+    <div class="stat"><span class="stat-number">${shows.length}</span><span class="stat-label">Scheduled</span></div>
+    <div class="stat"><span class="stat-number">${cancelled}</span><span class="stat-label">Cancelled</span></div>`;
+
+  // Legend
+  document.getElementById('legend').innerHTML = ERA_ORDER.map(e => `
+    <div class="legend-item">
+      <span class="legend-dot" style="background:${ERA_COLORS[e]}"></span>${ERA_LABELS[e]}
+    </div>`).join('');
+
+  // Shows by leg
+  const byLeg = {};
+  for (const leg of LEG_ORDER) byLeg[leg] = [];
+  for (const show of shows) {
+    if (byLeg[show.leg]) byLeg[show.leg].push(show);
+  }
+
+  document.getElementById('content').innerHTML = LEG_ORDER
+    .filter(leg => byLeg[leg].length)
+    .map(leg => renderLeg(leg, byLeg[leg]))
+    .join('');
+}
+
+function formatDate(s) {
+  return new Date(s+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
+}
+
+function renderLeg(name, shows) {
+  const rows = [...shows].sort((a,b) => a.show_id - b.show_id).map(renderRow).join('');
+  return `
+    <div class="leg-group">
+      <div class="leg-heading">
+        <span class="leg-name">${name}</span>
+        <span class="leg-rule"></span>
+        <span class="leg-count">${shows.length}</span>
+      </div>
+      ${rows}
+    </div>`;
+}
+
+function renderRow(show) {
+  const night = show.city_id.split('_').pop().toUpperCase();
+  const presentEras = ERA_ORDER.filter(e => show.costumes?.[e]);
+  const strip = presentEras.map(e =>
+    `<div class="show-era-dot" style="background:${ERA_COLORS[e]}"></div>`).join('');
+
+  if (show.cancelled) return `
+    <div class="show-row is-cancelled">
+      <span class="show-num">${String(show.show_id).padStart(3,'0')}</span>
+      <div><div class="show-city-name">${show.city}</div><div class="show-city-night">${night} · ${formatDate(show.date)}</div></div>
+      <span class="show-territory">${show.territory}</span>
+      <div class="show-era-strip"></div>
+      <span class="cancelled-tag">canc.</span>
+    </div>`;
+
+  return `
+    <a class="show-row" href="show.html?id=${show.show_id}">
+      <span class="show-num">${String(show.show_id).padStart(3,'0')}</span>
+      <div><div class="show-city-name">${show.city}</div><div class="show-city-night">${night} · ${formatDate(show.date)}</div></div>
+      <span class="show-territory">${show.territory}</span>
+      <div class="show-era-strip">${strip}</div>
+      <span class="show-arrow">→</span>
+    </a>`;
+}
+
+init();
+</script>
+</body>
+</html>
