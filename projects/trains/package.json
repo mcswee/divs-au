@@ -1,0 +1,14 @@
+{
+  "name": "vic-departure-board",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "protobufjs": "^7.4.0",
+    "adm-zip": "^0.5.16",
+    "axios": "^1.7.0"
+  }
+}
