@@ -1,4 +1,5 @@
 SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
+SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31002127801,310021278,Esk,Blair,250,257
 31002127802,310021278,Esk,Blair,135,146
 31002127803,310021278,Esk,Blair,350,366
@@ -367,27 +368,27 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31303137011,313031370,Kilcoy,Blair,331,330
 31303137012,313031370,Kilcoy,Blair,214,231
 31303137013,313031370,Kilcoy,Blair,176,189
-30702117909,307021179,Crows Nest - Rosalie,Blair,#VALUE!,#VALUE!
-31002127814,310021278,Esk,Blair,#VALUE!,#VALUE!
-31002128016,310021280,Lockyer Valley - East,Blair,#VALUE!,#VALUE!
-31002128038,310021280,Lockyer Valley - East,Blair,#VALUE!,#VALUE!
-31002128121,310021281,Lowood,Blair,#VALUE!,#VALUE!
-31002128121,310021281,Lowood,Blair,#VALUE!,#VALUE!
-31003128804,310031288,Ipswich - North,Blair,#VALUE!,#VALUE!
-31003128804,310031288,Ipswich - North,Blair,#VALUE!,#VALUE!
-31003128811,310031288,Ipswich - North,Blair,#VALUE!,#VALUE!
-31003128811,310031288,Ipswich - North,Blair,#VALUE!,#VALUE!
-31003128811,310031288,Ipswich - North,Blair,#VALUE!,#VALUE!
-#N/A,#N/A,Bellbird Park - Brookwater,Blair,#VALUE!,#VALUE!
-#N/A,#N/A,Bellbird Park - Brookwater,Blair,#VALUE!,#VALUE!
-#N/A,#N/A,Bellbird Park - Brookwater,Blair,#VALUE!,#VALUE!
-31004129917,310041299,Collingwood Park - Redbank,Blair,#VALUE!,#VALUE!
-31004129918,310041299,Collingwood Park - Redbank,Blair,#VALUE!,#VALUE!
-31004129921,310041299,Collingwood Park - Redbank,Blair,#VALUE!,#VALUE!
-31004130202,310041302,Redbank Plains,Blair,#VALUE!,#VALUE!
-31004130223,310041302,Redbank Plains,Blair,#VALUE!,#VALUE!
-31303137005,313031370,Kilcoy,Blair,#VALUE!,#VALUE!
-31303137113,313031371,Woodford - D'Aguilar,Blair,#VALUE!,#VALUE!
+30702117909,307021179,Crows Nest - Rosalie,Blair,2,2
+31002127814,310021278,Esk,Blair,170,170
+31002128016,310021280,Lockyer Valley - East,Blair,6,7
+31002128038,310021280,Lockyer Valley - East,Blair,153,169
+31002128121,310021281,Lowood,Blair,391,428
+31002128121,310021281,Lowood,Blair,391,428
+31003128804,310031288,Ipswich - North,Blair,260,268
+31003128804,310031288,Ipswich - North,Blair,260,268
+31003128811,310031288,Ipswich - North,Blair,149,164
+31003128811,310031288,Ipswich - North,Blair,149,164
+31003128811,310031288,Ipswich - North,Blair,149,164
+3129601,#N/A,Bellbird Park - Brookwater,Blair,0,0
+3129601,#N/A,Bellbird Park - Brookwater,Blair,0,0
+3129605,#N/A,Bellbird Park - Brookwater,Blair,536,600
+31004129917,310041299,Collingwood Park - Redbank,Blair,1,1
+31004129918,310041299,Collingwood Park - Redbank,Blair,0,0
+31004129921,310041299,Collingwood Park - Redbank,Blair,122,129
+31004130202,310041302,Redbank Plains,Blair,374,374
+31004130223,310041302,Redbank Plains,Blair,211,232
+31303137005,313031370,Kilcoy,Blair,368,395
+31303137113,313031371,Woodford - D'Aguilar,Blair,449,470
 30101100202,301011002,Belmont - Gumdale,Bonner,302,316
 30101100203,301011002,Belmont - Gumdale,Bonner,191,196
 30101100204,301011002,Belmont - Gumdale,Bonner,415,427
@@ -408,7 +409,7 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30101100219,301011002,Belmont - Gumdale,Bonner,404,424
 30101100220,301011002,Belmont - Gumdale,Bonner,212,224
 30101100221,301011002,Belmont - Gumdale,Bonner,321,333
-#N/A,#N/A,Redland Islands,Bonner,153,158
+3101013,#N/A,Redland Islands,Bonner,153,158
 30103101401,301031014,Brisbane Port - Lytton,Bonner,5,5
 30103101402,301031014,Brisbane Port - Lytton,Bonner,0,0
 30103101501,301031015,Manly - Lota,Bonner,174,173
@@ -734,10 +735,10 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30303106623,303031066,Wishart,Bonner,100,105
 30303106624,303031066,Wishart,Bonner,169,174
 30303106625,303031066,Wishart,Bonner,296,316
-30101100201,301011002,Belmont - Gumdale,Bonner,#VALUE!,#VALUE!
-30103101701,301031017,Murarrie,Bonner,#VALUE!,#VALUE!
-30303106026,303031060,Eight Mile Plains,Bonner,#VALUE!,#VALUE!
-30303106310,303031063,Mount Gravatt,Bonner,#VALUE!,#VALUE!
+30101100201,301011002,Belmont - Gumdale,Bonner,199,209
+30103101701,301031017,Murarrie,Bonner,12,13
+30303106026,303031060,Eight Mile Plains,Bonner,309,329
+30303106310,303031063,Mount Gravatt,Bonner,344,447
 30101100101,301011001,Alexandra Hills,Bowman,327,338
 30101100102,301011001,Alexandra Hills,Bowman,201,223
 30101100103,301011001,Alexandra Hills,Bowman,422,485
@@ -976,30 +977,30 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30102100928,301021009,Redland Bay,Bowman,428,448
 30102100929,301021009,Redland Bay,Bowman,229,239
 30102100930,301021009,Redland Bay,Bowman,190,199
-#N/A,#N/A,Redland Islands,Bowman,0,0
-#N/A,#N/A,Redland Islands,Bowman,178,184
-#N/A,#N/A,Redland Islands,Bowman,284,284
-#N/A,#N/A,Redland Islands,Bowman,234,235
-#N/A,#N/A,Redland Islands,Bowman,366,370
-#N/A,#N/A,Redland Islands,Bowman,228,235
-#N/A,#N/A,Redland Islands,Bowman,211,210
-#N/A,#N/A,Redland Islands,Bowman,423,441
-#N/A,#N/A,Redland Islands,Bowman,332,340
-#N/A,#N/A,Redland Islands,Bowman,226,237
-#N/A,#N/A,Redland Islands,Bowman,384,414
-#N/A,#N/A,Redland Islands,Bowman,332,349
-#N/A,#N/A,Redland Islands,Bowman,233,237
-#N/A,#N/A,Redland Islands,Bowman,77,80
-#N/A,#N/A,Redland Islands,Bowman,368,398
-#N/A,#N/A,Redland Islands,Bowman,354,369
-#N/A,#N/A,Redland Islands,Bowman,318,317
-#N/A,#N/A,Redland Islands,Bowman,367,378
-#N/A,#N/A,Redland Islands,Bowman,364,394
-#N/A,#N/A,Redland Islands,Bowman,311,337
-#N/A,#N/A,Redland Islands,Bowman,172,178
-#N/A,#N/A,Redland Islands,Bowman,523,544
-#N/A,#N/A,Redland Islands,Bowman,167,167
-#N/A,#N/A,Redland Islands,Bowman,429,451
+3101001,#N/A,Redland Islands,Bowman,0,0
+3101002,#N/A,Redland Islands,Bowman,178,184
+3101003,#N/A,Redland Islands,Bowman,284,284
+3101004,#N/A,Redland Islands,Bowman,234,235
+30102155005,301021550,North Stradbroke Island,Bowman,366,370
+3101006,#N/A,Redland Islands,Bowman,228,235
+3101007,#N/A,Redland Islands,Bowman,211,210
+30102155008,301021550,North Stradbroke Island,Bowman,423,441
+3101009,#N/A,Redland Islands,Bowman,332,340
+3101010,#N/A,Redland Islands,Bowman,226,237
+30102155011,301021550,North Stradbroke Island,Bowman,384,414
+3101012,#N/A,Redland Islands,Bowman,332,349
+3101014,#N/A,Redland Islands,Bowman,233,237
+3101015,#N/A,Redland Islands,Bowman,77,80
+30102155016,301021550,North Stradbroke Island,Bowman,368,398
+3101017,#N/A,Redland Islands,Bowman,354,369
+3101018,#N/A,Redland Islands,Bowman,318,317
+3101019,#N/A,Redland Islands,Bowman,367,378
+3101020,#N/A,Redland Islands,Bowman,364,394
+30102155021,301021550,North Stradbroke Island,Bowman,311,337
+30102155022,301021550,North Stradbroke Island,Bowman,172,178
+3101023,#N/A,Redland Islands,Bowman,523,544
+3101024,#N/A,Redland Islands,Bowman,167,167
+3101025,#N/A,Redland Islands,Bowman,429,451
 30102101101,301021011,Sheldon - Mount Cotton,Bowman,281,313
 30102101102,301021011,Sheldon - Mount Cotton,Bowman,209,226
 30102101103,301021011,Sheldon - Mount Cotton,Bowman,207,222
@@ -1081,7 +1082,7 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30102101334,301021013,Victoria Point,Bowman,423,435
 30102101335,301021013,Victoria Point,Bowman,253,257
 30102101336,301021013,Victoria Point,Bowman,288,296
-30101100201,301011002,Belmont - Gumdale,Bowman,#VALUE!,#VALUE!
+30101100201,301011002,Belmont - Gumdale,Bowman,199,209
 30202103101,302021031,Kedron - Gordon Park,Brisbane,406,452
 30202103102,302021031,Kedron - Gordon Park,Brisbane,404,459
 30202103103,302021031,Kedron - Gordon Park,Brisbane,258,288
@@ -1430,20 +1431,20 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30504113613,305041136,Red Hill (Qld),Brisbane,381,403
 30504113614,305041136,Red Hill (Qld),Brisbane,248,279
 30504113615,305041136,Red Hill (Qld),Brisbane,0,0
-30201102516,302011025,Everton Park,Brisbane,#VALUE!,#VALUE!
-30202103202,302021032,Stafford,Brisbane,#VALUE!,#VALUE!
-30202103217,302021032,Stafford,Brisbane,#VALUE!,#VALUE!
-30203103601,302031036,Brisbane Airport,Brisbane,#VALUE!,#VALUE!
-30203103702,302031037,Eagle Farm - Pinkenba,Brisbane,#VALUE!,#VALUE!
-30404109801,304041098,Enoggera,Brisbane,#VALUE!,#VALUE!
-30404109816,304041098,Enoggera,Brisbane,#VALUE!,#VALUE!
-30504113205,305041132,Ashgrove,Brisbane,#VALUE!,#VALUE!
-30504113206,305041132,Ashgrove,Brisbane,#VALUE!,#VALUE!
-30504113214,305041132,Ashgrove,Brisbane,#VALUE!,#VALUE!
-30504113214,305041132,Ashgrove,Brisbane,#VALUE!,#VALUE!
-30504113412,305041134,Bardon,Brisbane,#VALUE!,#VALUE!
-30504113413,305041134,Bardon,Brisbane,#VALUE!,#VALUE!
-30504113523,305041135,Paddington - Milton,Brisbane,#VALUE!,#VALUE!
+30201102516,302011025,Everton Park,Brisbane,3,3
+30202103202,302021032,Stafford,Brisbane,0,0
+30202103217,302021032,Stafford,Brisbane,5,6
+30203103601,302031036,Brisbane Airport,Brisbane,1,1
+30203103702,302031037,Eagle Farm - Pinkenba,Brisbane,357,357
+30404109801,304041098,Enoggera,Brisbane,228,233
+30404109816,304041098,Enoggera,Brisbane,386,422
+30504113205,305041132,Ashgrove,Brisbane,37,40
+30504113206,305041132,Ashgrove,Brisbane,236,247
+30504113214,305041132,Ashgrove,Brisbane,192,197
+30504113214,305041132,Ashgrove,Brisbane,192,197
+30504113412,305041134,Bardon,Brisbane,145,156
+30504113413,305041134,Bardon,Brisbane,53,55
+30504113523,305041135,Paddington - Milton,Brisbane,377,395
 30803120501,308031205,Berserker,Capricornia,266,304
 30803120502,308031205,Berserker,Capricornia,262,282
 30803120503,308031205,Berserker,Capricornia,383,413
@@ -1601,34 +1602,34 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30803121708,308031217,Rockhampton City,Capricornia,284,320
 30803121709,308031217,Rockhampton City,Capricornia,257,273
 30803121710,308031217,Rockhampton City,Capricornia,223,226
-#N/A,#N/A,Rockhampton Region - East,Capricornia,281,313
-#N/A,#N/A,Rockhampton Region - East,Capricornia,195,217
-#N/A,#N/A,Rockhampton Region - East,Capricornia,170,174
-#N/A,#N/A,Rockhampton Region - East,Capricornia,253,266
-#N/A,#N/A,Rockhampton Region - East,Capricornia,199,205
-#N/A,#N/A,Rockhampton Region - East,Capricornia,190,207
-#N/A,#N/A,Rockhampton Region - East,Capricornia,370,391
-#N/A,#N/A,Rockhampton Region - East,Capricornia,186,209
-#N/A,#N/A,Rockhampton Region - East,Capricornia,155,169
-#N/A,#N/A,Rockhampton Region - East,Capricornia,155,163
-#N/A,#N/A,Rockhampton Region - East,Capricornia,215,226
-#N/A,#N/A,Rockhampton Region - North,Capricornia,125,134
-#N/A,#N/A,Rockhampton Region - North,Capricornia,0,0
-#N/A,#N/A,Rockhampton Region - North,Capricornia,308,315
-#N/A,#N/A,Rockhampton Region - North,Capricornia,245,248
-#N/A,#N/A,Rockhampton Region - North,Capricornia,177,181
-#N/A,#N/A,Rockhampton Region - North,Capricornia,179,225
-#N/A,#N/A,Rockhampton Region - North,Capricornia,22,22
-#N/A,#N/A,Rockhampton Region - North,Capricornia,274,273
-#N/A,#N/A,Rockhampton Region - North,Capricornia,106,109
-#N/A,#N/A,Rockhampton Region - North,Capricornia,294,304
-#N/A,#N/A,Rockhampton Region - North,Capricornia,197,197
-#N/A,#N/A,Rockhampton Region - North,Capricornia,197,197
-#N/A,#N/A,Rockhampton Region - North,Capricornia,185,200
-#N/A,#N/A,Rockhampton Region - North,Capricornia,213,220
-#N/A,#N/A,Rockhampton Region - North,Capricornia,0,0
-#N/A,#N/A,Rockhampton Region - North,Capricornia,295,310
-#N/A,#N/A,Rockhampton Region - North,Capricornia,172,177
+30803121801,308031218,Rockhampton Surrounds - East,Capricornia,281,313
+30803121802,308031218,Rockhampton Surrounds - East,Capricornia,195,217
+30803121803,308031218,Rockhampton Surrounds - East,Capricornia,170,174
+30803121804,308031218,Rockhampton Surrounds - East,Capricornia,253,266
+30803121805,308031218,Rockhampton Surrounds - East,Capricornia,199,205
+30803121806,308031218,Rockhampton Surrounds - East,Capricornia,190,207
+30803121807,308031218,Rockhampton Surrounds - East,Capricornia,370,391
+30803121808,308031218,Rockhampton Surrounds - East,Capricornia,186,209
+30803121809,308031218,Rockhampton Surrounds - East,Capricornia,155,169
+30803121810,308031218,Rockhampton Surrounds - East,Capricornia,155,163
+30803121811,308031218,Rockhampton Surrounds - East,Capricornia,215,226
+30803121901,308031219,Rockhampton Surrounds - North,Capricornia,125,134
+30803121902,308031219,Rockhampton Surrounds - North,Capricornia,0,0
+30803121903,308031219,Rockhampton Surrounds - North,Capricornia,308,315
+30803121904,308031219,Rockhampton Surrounds - North,Capricornia,245,248
+30803121905,308031219,Rockhampton Surrounds - North,Capricornia,177,181
+30803121906,308031219,Rockhampton Surrounds - North,Capricornia,179,225
+30803121907,308031219,Rockhampton Surrounds - North,Capricornia,22,22
+30803121908,308031219,Rockhampton Surrounds - North,Capricornia,274,273
+30803121909,308031219,Rockhampton Surrounds - North,Capricornia,106,109
+30803121910,308031219,Rockhampton Surrounds - North,Capricornia,294,304
+30803121911,308031219,Rockhampton Surrounds - North,Capricornia,197,197
+30803121912,308031219,Rockhampton Surrounds - North,Capricornia,197,197
+30803121913,308031219,Rockhampton Surrounds - North,Capricornia,185,200
+30803121914,308031219,Rockhampton Surrounds - North,Capricornia,213,220
+30803121915,308031219,Rockhampton Surrounds - North,Capricornia,0,0
+30803121916,308031219,Rockhampton Surrounds - North,Capricornia,295,310
+30803121917,308031219,Rockhampton Surrounds - North,Capricornia,172,177
 30803122101,308031221,Shoalwater Bay,Capricornia,15,15
 30803122201,308031222,The Range - Allenstown,Capricornia,283,298
 30803122202,308031222,The Range - Allenstown,Capricornia,103,101
@@ -1827,20 +1828,20 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31202135721,312021357,Walkerston - Eton,Capricornia,201,204
 31202135722,312021357,Walkerston - Eton,Capricornia,305,321
 31202135723,312021357,Walkerston - Eton,Capricornia,526,634
-30801119118,308011191,Central Highlands - West,Capricornia,#VALUE!,#VALUE!
-30801119118,308011191,Central Highlands - West,Capricornia,#VALUE!,#VALUE!
-30803121702,308031217,Rockhampton City,Capricornia,#VALUE!,#VALUE!
-31201133820,312011338,Broadsound - Nebo,Capricornia,#VALUE!,#VALUE!
-31201133909,312011339,Clermont,Capricornia,#VALUE!,#VALUE!
-31201134008,312011340,Collinsville,Capricornia,#VALUE!,#VALUE!
-31202135003,312021350,Ooralea - Bakers Creek,Capricornia,#VALUE!,#VALUE!
-31202135003,312021350,Ooralea - Bakers Creek,Capricornia,#VALUE!,#VALUE!
-31202135003,312021350,Ooralea - Bakers Creek,Capricornia,#VALUE!,#VALUE!
-31202135010,312021350,Ooralea - Bakers Creek,Capricornia,#VALUE!,#VALUE!
-31202135704,312021357,Walkerston - Eton,Capricornia,#VALUE!,#VALUE!
-31202135704,312021357,Walkerston - Eton,Capricornia,#VALUE!,#VALUE!
-31202135713,312021357,Walkerston - Eton,Capricornia,#VALUE!,#VALUE!
-31202135713,312021357,Walkerston - Eton,Capricornia,#VALUE!,#VALUE!
+30801119118,308011191,Central Highlands - West,Capricornia,275,279
+30801119118,308011191,Central Highlands - West,Capricornia,275,279
+30803121702,308031217,Rockhampton City,Capricornia,12,13
+31201133820,312011338,Broadsound - Nebo,Capricornia,348,352
+31201133909,312011339,Clermont,Capricornia,2,2
+31201134008,312011340,Collinsville,Capricornia,92,94
+31202135003,312021350,Ooralea - Bakers Creek,Capricornia,481,520
+31202135003,312021350,Ooralea - Bakers Creek,Capricornia,481,520
+31202135003,312021350,Ooralea - Bakers Creek,Capricornia,481,520
+31202135010,312021350,Ooralea - Bakers Creek,Capricornia,28,29
+31202135704,312021357,Walkerston - Eton,Capricornia,48,48
+31202135704,312021357,Walkerston - Eton,Capricornia,48,48
+31202135713,312021357,Walkerston - Eton,Capricornia,140,145
+31202135713,312021357,Walkerston - Eton,Capricornia,140,145
 31201133701,312011337,Bowen,Dawson,193,196
 31201133702,312011337,Bowen,Dawson,353,360
 31201133703,312011337,Bowen,Dawson,189,192
@@ -2181,33 +2182,33 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31801146123,318011461,Burdekin,Dawson,236,255
 31801146124,318011461,Burdekin,Dawson,199,199
 31801146125,318011461,Burdekin,Dawson,331,407
-#N/A,#N/A,Annandale,Dawson,274,306
-#N/A,#N/A,Annandale,Dawson,160,160
-#N/A,#N/A,Annandale,Dawson,60,61
-#N/A,#N/A,Annandale,Dawson,194,202
-#N/A,#N/A,Annandale,Dawson,164,165
-#N/A,#N/A,Annandale,Dawson,185,197
-#N/A,#N/A,Annandale,Dawson,205,225
-#N/A,#N/A,Annandale,Dawson,247,248
-#N/A,#N/A,Annandale,Dawson,363,399
-#N/A,#N/A,Annandale,Dawson,211,225
-#N/A,#N/A,Annandale,Dawson,311,314
-#N/A,#N/A,Annandale,Dawson,151,159
-#N/A,#N/A,Annandale,Dawson,1,1
-#N/A,#N/A,Annandale,Dawson,278,290
-#N/A,#N/A,Annandale,Dawson,178,179
-#N/A,#N/A,Annandale,Dawson,253,256
-#N/A,#N/A,Annandale,Dawson,225,241
-#N/A,#N/A,Annandale,Dawson,218,218
-#N/A,#N/A,Annandale,Dawson,343,361
-#N/A,#N/A,Annandale,Dawson,153,156
-#N/A,#N/A,Annandale,Dawson,310,321
-#N/A,#N/A,Annandale,Dawson,170,172
-#N/A,#N/A,Annandale,Dawson,302,309
-#N/A,#N/A,Annandale,Dawson,166,170
-#N/A,#N/A,Annandale,Dawson,154,166
-#N/A,#N/A,Annandale,Dawson,286,305
-#N/A,#N/A,Annandale,Dawson,282,307
+3146801,#N/A,Annandale,Dawson,274,306
+3146802,#N/A,Annandale,Dawson,160,160
+3146803,#N/A,Annandale,Dawson,60,61
+3146804,#N/A,Annandale,Dawson,194,202
+3146805,#N/A,Annandale,Dawson,164,165
+3146806,#N/A,Annandale,Dawson,185,197
+3146807,#N/A,Annandale,Dawson,205,225
+3146808,#N/A,Annandale,Dawson,247,248
+3146809,#N/A,Annandale,Dawson,363,399
+3146810,#N/A,Annandale,Dawson,211,225
+3146812,#N/A,Annandale,Dawson,311,314
+3146813,#N/A,Annandale,Dawson,151,159
+3146814,#N/A,Annandale,Dawson,1,1
+3146815,#N/A,Annandale,Dawson,278,290
+3146816,#N/A,Annandale,Dawson,178,179
+3146817,#N/A,Annandale,Dawson,253,256
+3146818,#N/A,Annandale,Dawson,225,241
+3146819,#N/A,Annandale,Dawson,218,218
+3146820,#N/A,Annandale,Dawson,343,361
+3146821,#N/A,Annandale,Dawson,153,156
+3146822,#N/A,Annandale,Dawson,310,321
+3146823,#N/A,Annandale,Dawson,170,172
+3146824,#N/A,Annandale,Dawson,302,309
+3146825,#N/A,Annandale,Dawson,166,170
+3146826,#N/A,Annandale,Dawson,154,166
+3146827,#N/A,Annandale,Dawson,286,305
+3146828,#N/A,Annandale,Dawson,282,307
 31802148701,318021487,Oonoonba,Dawson,299,318
 31802148702,318021487,Oonoonba,Dawson,196,205
 31802148703,318021487,Oonoonba,Dawson,179,205
@@ -2238,22 +2239,22 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31802149112,318021491,Wulguru - Roseneath,Dawson,264,268
 31802149117,318021491,Wulguru - Roseneath,Dawson,180,192
 31802149118,318021491,Wulguru - Roseneath,Dawson,189,193
-31201134008,312011340,Collinsville,Dawson,#VALUE!,#VALUE!
-31202135010,312021350,Ooralea - Bakers Creek,Dawson,#VALUE!,#VALUE!
-31801146114,318011461,Burdekin,Dawson,#VALUE!,#VALUE!
-31801146115,318011461,Burdekin,Dawson,#VALUE!,#VALUE!
-31802148903,318021489,Townsville - South,Dawson,#VALUE!,#VALUE!
-31802148904,318021489,Townsville - South,Dawson,#VALUE!,#VALUE!
-31802148906,318021489,Townsville - South,Dawson,#VALUE!,#VALUE!
-31802148909,318021489,Townsville - South,Dawson,#VALUE!,#VALUE!
-31802148910,318021489,Townsville - South,Dawson,#VALUE!,#VALUE!
-31802148910,318021489,Townsville - South,Dawson,#VALUE!,#VALUE!
-31802148912,318021489,Townsville - South,Dawson,#VALUE!,#VALUE!
-31802148913,318021489,Townsville - South,Dawson,#VALUE!,#VALUE!
-31802149114,318021491,Wulguru - Roseneath,Dawson,#VALUE!,#VALUE!
-31802149114,318021491,Wulguru - Roseneath,Dawson,#VALUE!,#VALUE!
-31802149115,318021491,Wulguru - Roseneath,Dawson,#VALUE!,#VALUE!
-31802149116,318021491,Wulguru - Roseneath,Dawson,#VALUE!,#VALUE!
+31201134008,312011340,Collinsville,Dawson,92,94
+31202135010,312021350,Ooralea - Bakers Creek,Dawson,28,29
+31801146114,318011461,Burdekin,Dawson,96,96
+31801146115,318011461,Burdekin,Dawson,32,32
+31802148903,318021489,Townsville - South,Dawson,57,57
+31802148904,318021489,Townsville - South,Dawson,0,0
+31802148906,318021489,Townsville - South,Dawson,282,316
+31802148909,318021489,Townsville - South,Dawson,152,170
+31802148910,318021489,Townsville - South,Dawson,82,81
+31802148910,318021489,Townsville - South,Dawson,82,81
+31802148912,318021489,Townsville - South,Dawson,135,139
+31802148913,318021489,Townsville - South,Dawson,7,7
+31802149114,318021491,Wulguru - Roseneath,Dawson,25,26
+31802149114,318021491,Wulguru - Roseneath,Dawson,25,26
+31802149115,318021491,Wulguru - Roseneath,Dawson,125,135
+31802149116,318021491,Wulguru - Roseneath,Dawson,4,4
 30201102304,302011023,Bridgeman Downs,Dickson,408,414
 30201102305,302011023,Bridgeman Downs,Dickson,260,260
 30201102306,302011023,Bridgeman Downs,Dickson,196,199
@@ -2378,66 +2379,66 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31401138518,314011385,Eatons Hill,Dickson,226,243
 31401138519,314011385,Eatons Hill,Dickson,322,344
 31401138520,314011385,Eatons Hill,Dickson,161,168
-#N/A,#N/A,Hills District,Dickson,227,230
-#N/A,#N/A,Hills District,Dickson,401,454
-#N/A,#N/A,Hills District,Dickson,348,355
-#N/A,#N/A,Hills District,Dickson,198,219
-#N/A,#N/A,Hills District,Dickson,361,393
-#N/A,#N/A,Hills District,Dickson,151,156
-#N/A,#N/A,Hills District,Dickson,383,395
-#N/A,#N/A,Hills District,Dickson,307,318
-#N/A,#N/A,Hills District,Dickson,408,449
-#N/A,#N/A,Hills District,Dickson,365,392
-#N/A,#N/A,Hills District,Dickson,157,165
-#N/A,#N/A,Hills District,Dickson,404,430
-#N/A,#N/A,Hills District,Dickson,224,238
-#N/A,#N/A,Hills District,Dickson,371,456
-#N/A,#N/A,Hills District,Dickson,263,279
-#N/A,#N/A,Hills District,Dickson,286,300
-#N/A,#N/A,Hills District,Dickson,241,246
-#N/A,#N/A,Hills District,Dickson,393,422
-#N/A,#N/A,Hills District,Dickson,171,179
-#N/A,#N/A,Hills District,Dickson,171,187
-#N/A,#N/A,Hills District,Dickson,356,385
-#N/A,#N/A,Hills District,Dickson,151,153
-#N/A,#N/A,Hills District,Dickson,172,183
-#N/A,#N/A,Hills District,Dickson,423,451
-#N/A,#N/A,Hills District,Dickson,165,180
-#N/A,#N/A,Hills District,Dickson,0,0
-#N/A,#N/A,Hills District,Dickson,227,243
-#N/A,#N/A,Hills District,Dickson,241,270
-#N/A,#N/A,Hills District,Dickson,182,192
-#N/A,#N/A,Hills District,Dickson,230,246
-#N/A,#N/A,Hills District,Dickson,493,578
-#N/A,#N/A,Hills District,Dickson,264,284
-#N/A,#N/A,Hills District,Dickson,513,597
-#N/A,#N/A,Hills District,Dickson,258,272
-#N/A,#N/A,Hills District,Dickson,375,401
-#N/A,#N/A,Hills District,Dickson,179,198
-#N/A,#N/A,Hills District,Dickson,276,291
-#N/A,#N/A,Hills District,Dickson,304,320
-#N/A,#N/A,Hills District,Dickson,268,282
-#N/A,#N/A,Hills District,Dickson,154,168
-#N/A,#N/A,Hills District,Dickson,255,259
-#N/A,#N/A,Hills District,Dickson,261,274
-#N/A,#N/A,Hills District,Dickson,369,407
-#N/A,#N/A,Hills District,Dickson,336,379
-#N/A,#N/A,Hills District,Dickson,272,316
-#N/A,#N/A,Hills District,Dickson,430,444
-#N/A,#N/A,Hills District,Dickson,357,408
-#N/A,#N/A,Hills District,Dickson,303,337
-#N/A,#N/A,Hills District,Dickson,257,278
-#N/A,#N/A,Hills District,Dickson,150,168
-#N/A,#N/A,Hills District,Dickson,219,224
-#N/A,#N/A,Hills District,Dickson,237,251
-#N/A,#N/A,Hills District,Dickson,313,348
-#N/A,#N/A,Hills District,Dickson,289,319
-#N/A,#N/A,Hills District,Dickson,255,270
-#N/A,#N/A,Hills District,Dickson,247,279
-#N/A,#N/A,Hills District,Dickson,230,243
-#N/A,#N/A,Hills District,Dickson,233,235
-#N/A,#N/A,Hills District,Dickson,184,195
-#N/A,#N/A,Hills District,Dickson,7,8
+3138601,#N/A,Hills District,Dickson,227,230
+3138602,#N/A,Hills District,Dickson,401,454
+3138603,#N/A,Hills District,Dickson,348,355
+3138604,#N/A,Hills District,Dickson,198,219
+3138605,#N/A,Hills District,Dickson,361,393
+3138606,#N/A,Hills District,Dickson,151,156
+3138607,#N/A,Hills District,Dickson,383,395
+3138608,#N/A,Hills District,Dickson,307,318
+3138609,#N/A,Hills District,Dickson,408,449
+3138610,#N/A,Hills District,Dickson,365,392
+3138611,#N/A,Hills District,Dickson,157,165
+3138612,#N/A,Hills District,Dickson,404,430
+3138613,#N/A,Hills District,Dickson,224,238
+3138614,#N/A,Hills District,Dickson,371,456
+3138615,#N/A,Hills District,Dickson,263,279
+3138616,#N/A,Hills District,Dickson,286,300
+3138617,#N/A,Hills District,Dickson,241,246
+3138618,#N/A,Hills District,Dickson,393,422
+3138619,#N/A,Hills District,Dickson,171,179
+3138621,#N/A,Hills District,Dickson,171,187
+3138622,#N/A,Hills District,Dickson,356,385
+3138623,#N/A,Hills District,Dickson,151,153
+3138624,#N/A,Hills District,Dickson,172,183
+3138625,#N/A,Hills District,Dickson,423,451
+3138626,#N/A,Hills District,Dickson,165,180
+3138627,#N/A,Hills District,Dickson,0,0
+3138628,#N/A,Hills District,Dickson,227,243
+3138629,#N/A,Hills District,Dickson,241,270
+3138630,#N/A,Hills District,Dickson,182,192
+3138631,#N/A,Hills District,Dickson,230,246
+3138632,#N/A,Hills District,Dickson,493,578
+3138633,#N/A,Hills District,Dickson,264,284
+3138634,#N/A,Hills District,Dickson,513,597
+3138635,#N/A,Hills District,Dickson,258,272
+3138636,#N/A,Hills District,Dickson,375,401
+3138637,#N/A,Hills District,Dickson,179,198
+3138638,#N/A,Hills District,Dickson,276,291
+3138639,#N/A,Hills District,Dickson,304,320
+3138640,#N/A,Hills District,Dickson,268,282
+3138641,#N/A,Hills District,Dickson,154,168
+3138642,#N/A,Hills District,Dickson,255,259
+3138643,#N/A,Hills District,Dickson,261,274
+3138644,#N/A,Hills District,Dickson,369,407
+3138645,#N/A,Hills District,Dickson,336,379
+3138646,#N/A,Hills District,Dickson,272,316
+3138647,#N/A,Hills District,Dickson,430,444
+3138648,#N/A,Hills District,Dickson,357,408
+3138649,#N/A,Hills District,Dickson,303,337
+3138650,#N/A,Hills District,Dickson,257,278
+3138651,#N/A,Hills District,Dickson,150,168
+3138652,#N/A,Hills District,Dickson,219,224
+3138653,#N/A,Hills District,Dickson,237,251
+3138654,#N/A,Hills District,Dickson,313,348
+3138655,#N/A,Hills District,Dickson,289,319
+3138656,#N/A,Hills District,Dickson,255,270
+3138657,#N/A,Hills District,Dickson,247,279
+3138658,#N/A,Hills District,Dickson,230,243
+3138659,#N/A,Hills District,Dickson,233,235
+3138660,#N/A,Hills District,Dickson,184,195
+3138661,#N/A,Hills District,Dickson,7,8
 31401138701,314011387,Samford Valley,Dickson,350,384
 31401138702,314011387,Samford Valley,Dickson,294,309
 31401138703,314011387,Samford Valley,Dickson,243,262
@@ -2466,31 +2467,31 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31401138726,314011387,Samford Valley,Dickson,260,272
 31401138727,314011387,Samford Valley,Dickson,239,262
 31401138728,314011387,Samford Valley,Dickson,102,101
-#N/A,#N/A,Dakabin - Kallangur,Dickson,232,253
-#N/A,#N/A,Dakabin - Kallangur,Dickson,178,189
-#N/A,#N/A,Dakabin - Kallangur,Dickson,321,350
-#N/A,#N/A,Dakabin - Kallangur,Dickson,170,184
-#N/A,#N/A,Dakabin - Kallangur,Dickson,315,349
-#N/A,#N/A,Dakabin - Kallangur,Dickson,293,320
-#N/A,#N/A,Dakabin - Kallangur,Dickson,10,12
-#N/A,#N/A,Dakabin - Kallangur,Dickson,295,319
-#N/A,#N/A,Dakabin - Kallangur,Dickson,429,463
-#N/A,#N/A,Dakabin - Kallangur,Dickson,463,515
-#N/A,#N/A,Dakabin - Kallangur,Dickson,420,455
-#N/A,#N/A,Dakabin - Kallangur,Dickson,307,321
-#N/A,#N/A,Dakabin - Kallangur,Dickson,471,530
-#N/A,#N/A,Dakabin - Kallangur,Dickson,257,273
-#N/A,#N/A,Dakabin - Kallangur,Dickson,444,483
-#N/A,#N/A,Dakabin - Kallangur,Dickson,381,399
-#N/A,#N/A,Dakabin - Kallangur,Dickson,230,244
-#N/A,#N/A,Dakabin - Kallangur,Dickson,197,208
-#N/A,#N/A,Dakabin - Kallangur,Dickson,317,352
-#N/A,#N/A,Dakabin - Kallangur,Dickson,279,304
-#N/A,#N/A,Dakabin - Kallangur,Dickson,186,207
-#N/A,#N/A,Dakabin - Kallangur,Dickson,222,243
-#N/A,#N/A,Dakabin - Kallangur,Dickson,383,418
-#N/A,#N/A,Dakabin - Kallangur,Dickson,229,248
-#N/A,#N/A,Dakabin - Kallangur,Dickson,543,617
+3138801,#N/A,Dakabin - Kallangur,Dickson,232,253
+3138802,#N/A,Dakabin - Kallangur,Dickson,178,189
+3138803,#N/A,Dakabin - Kallangur,Dickson,321,350
+3138804,#N/A,Dakabin - Kallangur,Dickson,170,184
+3138805,#N/A,Dakabin - Kallangur,Dickson,315,349
+3138806,#N/A,Dakabin - Kallangur,Dickson,293,320
+3138815,#N/A,Dakabin - Kallangur,Dickson,10,12
+3138816,#N/A,Dakabin - Kallangur,Dickson,295,319
+3138817,#N/A,Dakabin - Kallangur,Dickson,429,463
+3138825,#N/A,Dakabin - Kallangur,Dickson,463,515
+3138826,#N/A,Dakabin - Kallangur,Dickson,420,455
+3138827,#N/A,Dakabin - Kallangur,Dickson,307,321
+3138829,#N/A,Dakabin - Kallangur,Dickson,471,530
+3138830,#N/A,Dakabin - Kallangur,Dickson,257,273
+3138831,#N/A,Dakabin - Kallangur,Dickson,444,483
+3138832,#N/A,Dakabin - Kallangur,Dickson,381,399
+3138833,#N/A,Dakabin - Kallangur,Dickson,230,244
+3138834,#N/A,Dakabin - Kallangur,Dickson,197,208
+3138835,#N/A,Dakabin - Kallangur,Dickson,317,352
+3138836,#N/A,Dakabin - Kallangur,Dickson,279,304
+3138837,#N/A,Dakabin - Kallangur,Dickson,186,207
+3138838,#N/A,Dakabin - Kallangur,Dickson,222,243
+3138839,#N/A,Dakabin - Kallangur,Dickson,383,418
+3138840,#N/A,Dakabin - Kallangur,Dickson,229,248
+3138845,#N/A,Dakabin - Kallangur,Dickson,543,617
 31402138901,314021389,Murrumba Downs - Griffin,Dickson,413,446
 31402138902,314021389,Murrumba Downs - Griffin,Dickson,265,289
 31402138903,314021389,Murrumba Downs - Griffin,Dickson,398,447
@@ -2602,18 +2603,18 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31403139428,314031394,Strathpine - Brendale,Dickson,340,372
 31403139429,314031394,Strathpine - Brendale,Dickson,260,285
 31403139430,314031394,Strathpine - Brendale,Dickson,409,432
-30201102311,302011023,Bridgeman Downs,Dickson,#VALUE!,#VALUE!
-30201102312,302011023,Bridgeman Downs,Dickson,#VALUE!,#VALUE!
-30201102313,302011023,Bridgeman Downs,Dickson,#VALUE!,#VALUE!
-30201102314,302011023,Bridgeman Downs,Dickson,#VALUE!,#VALUE!
-30201102610,302011026,McDowall,Dickson,#VALUE!,#VALUE!
-30201102617,302011026,McDowall,Dickson,#VALUE!,#VALUE!
-30201102618,302011026,McDowall,Dickson,#VALUE!,#VALUE!
-30404110107,304041101,Mitchelton,Dickson,#VALUE!,#VALUE!
-#N/A,#N/A,Hills District,Dickson,#VALUE!,#VALUE!
-#N/A,#N/A,Hills District,Dickson,#VALUE!,#VALUE!
-#N/A,#N/A,Dakabin - Kallangur,Dickson,#VALUE!,#VALUE!
-31402138918,314021389,Murrumba Downs - Griffin,Dickson,#VALUE!,#VALUE!
+30201102311,302011023,Bridgeman Downs,Dickson,314,344
+30201102312,302011023,Bridgeman Downs,Dickson,341,363
+30201102313,302011023,Bridgeman Downs,Dickson,397,425
+30201102314,302011023,Bridgeman Downs,Dickson,196,200
+30201102610,302011026,McDowall,Dickson,281,289
+30201102617,302011026,McDowall,Dickson,210,230
+30201102618,302011026,McDowall,Dickson,262,279
+30404110107,304041101,Mitchelton,Dickson,345,368
+3138620,#N/A,Hills District,Dickson,486,567
+3138620,#N/A,Hills District,Dickson,486,567
+3138828,#N/A,Dakabin - Kallangur,Dickson,200,224
+31402138918,314021389,Murrumba Downs - Griffin,Dickson,235,257
 30903123501,309031235,Arundel,Fadden,801,823
 30903123502,309031235,Arundel,Fadden,159,172
 30903123503,309031235,Arundel,Fadden,2,2
@@ -2877,20 +2878,20 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30907125408,309071254,Jacobs Well - Alberton,Fadden,203,212
 30907125409,309071254,Jacobs Well - Alberton,Fadden,335,351
 30907125410,309071254,Jacobs Well - Alberton,Fadden,185,193
-#N/A,#N/A,Ormeau - Yatala,Fadden,407,475
-#N/A,#N/A,Ormeau - Yatala,Fadden,240,262
-#N/A,#N/A,Ormeau - Yatala,Fadden,507,531
-#N/A,#N/A,Ormeau - Yatala,Fadden,285,315
-#N/A,#N/A,Ormeau - Yatala,Fadden,432,461
-#N/A,#N/A,Ormeau - Yatala,Fadden,269,309
-#N/A,#N/A,Ormeau - Yatala,Fadden,304,342
-#N/A,#N/A,Ormeau - Yatala,Fadden,589,666
-#N/A,#N/A,Ormeau - Yatala,Fadden,31,32
-#N/A,#N/A,Ormeau - Yatala,Fadden,159,167
-#N/A,#N/A,Ormeau - Yatala,Fadden,134,149
-#N/A,#N/A,Ormeau - Yatala,Fadden,590,656
-#N/A,#N/A,Ormeau - Yatala,Fadden,450,509
-#N/A,#N/A,Ormeau - Yatala,Fadden,517,554
+3125506,#N/A,Ormeau - Yatala,Fadden,407,475
+3125507,#N/A,Ormeau - Yatala,Fadden,240,262
+3125514,#N/A,Ormeau - Yatala,Fadden,507,531
+3125515,#N/A,Ormeau - Yatala,Fadden,285,315
+3125522,#N/A,Ormeau - Yatala,Fadden,432,461
+3125523,#N/A,Ormeau - Yatala,Fadden,269,309
+3125524,#N/A,Ormeau - Yatala,Fadden,304,342
+3125525,#N/A,Ormeau - Yatala,Fadden,589,666
+3125526,#N/A,Ormeau - Yatala,Fadden,31,32
+3125527,#N/A,Ormeau - Yatala,Fadden,159,167
+3125528,#N/A,Ormeau - Yatala,Fadden,134,149
+3125532,#N/A,Ormeau - Yatala,Fadden,590,656
+3125533,#N/A,Ormeau - Yatala,Fadden,450,509
+3125534,#N/A,Ormeau - Yatala,Fadden,517,554
 30907125613,309071256,Oxenford - Maudsland,Fadden,345,375
 30907125618,309071256,Oxenford - Maudsland,Fadden,235,242
 30907125619,309071256,Oxenford - Maudsland,Fadden,247,262
@@ -2909,10 +2910,10 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30907125632,309071256,Oxenford - Maudsland,Fadden,181,189
 30907125633,309071256,Oxenford - Maudsland,Fadden,246,273
 30907125634,309071256,Oxenford - Maudsland,Fadden,348,387
-#N/A,#N/A,Pimpama,Fadden,183,203
-#N/A,#N/A,Pimpama,Fadden,335,374
-#N/A,#N/A,Pimpama,Fadden,232,257
-#N/A,#N/A,Pimpama,Fadden,2793,3108
+3125701,#N/A,Pimpama,Fadden,183,203
+3125702,#N/A,Pimpama,Fadden,335,374
+3125703,#N/A,Pimpama,Fadden,232,257
+3125704,#N/A,Pimpama,Fadden,2793,3108
 30909126501,309091265,Parkwood,Fadden,266,283
 30909126502,309091265,Parkwood,Fadden,371,386
 30909126503,309091265,Parkwood,Fadden,515,523
@@ -2931,15 +2932,15 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30909126516,309091265,Parkwood,Fadden,178,203
 30909126517,309091265,Parkwood,Fadden,210,227
 30909126518,309091265,Parkwood,Fadden,372,415
-#N/A,#N/A,Southport,Fadden,243,249
-30906124912,309061249,Pacific Pines - Gaven,Fadden,#VALUE!,#VALUE!
-30906124928,309061249,Pacific Pines - Gaven,Fadden,#VALUE!,#VALUE!
-30907125605,309071256,Oxenford - Maudsland,Fadden,#VALUE!,#VALUE!
-30907125606,309071256,Oxenford - Maudsland,Fadden,#VALUE!,#VALUE!
-30907125606,309071256,Oxenford - Maudsland,Fadden,#VALUE!,#VALUE!
-30907125607,309071256,Oxenford - Maudsland,Fadden,#VALUE!,#VALUE!
-30907125612,309071256,Oxenford - Maudsland,Fadden,#VALUE!,#VALUE!
-30910126909,309101269,Main Beach,Fadden,#VALUE!,#VALUE!
+3126628,#N/A,Southport,Fadden,243,249
+30906124912,309061249,Pacific Pines - Gaven,Fadden,645,747
+30906124928,309061249,Pacific Pines - Gaven,Fadden,540,635
+30907125605,309071256,Oxenford - Maudsland,Fadden,193,215
+30907125606,309071256,Oxenford - Maudsland,Fadden,0,0
+30907125606,309071256,Oxenford - Maudsland,Fadden,0,0
+30907125607,309071256,Oxenford - Maudsland,Fadden,0,0
+30907125612,309071256,Oxenford - Maudsland,Fadden,304,334
+30910126909,309101269,Main Beach,Fadden,297,306
 31601141301,316011413,Buderim - North,Fairfax,531,542
 31601141302,316011413,Buderim - North,Fairfax,406,419
 31601141303,316011413,Buderim - North,Fairfax,472,483
@@ -3229,11 +3230,11 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31608154932,316081549,Noosa Hinterland,Fairfax,251,251
 31608154939,316081549,Noosa Hinterland,Fairfax,252,274
 31608154945,316081549,Noosa Hinterland,Fairfax,293,294
-#N/A,#N/A,Peregian,Fairfax,1281,1380
-#N/A,#N/A,Peregian,Fairfax,1745,1825
-#N/A,#N/A,Peregian,Fairfax,358,383
-#N/A,#N/A,Peregian,Fairfax,437,464
-#N/A,#N/A,Peregian,Fairfax,394,414
+3143601,#N/A,Peregian,Fairfax,1281,1380
+3143604,#N/A,Peregian,Fairfax,1745,1825
+3143614,#N/A,Peregian,Fairfax,358,383
+3143615,#N/A,Peregian,Fairfax,437,464
+3143616,#N/A,Peregian,Fairfax,394,414
 31606144301,316061443,Maroochy Hinterland,Fairfax,250,270
 31606144302,316061443,Maroochy Hinterland,Fairfax,283,293
 31606144303,316061443,Maroochy Hinterland,Fairfax,359,381
@@ -3252,17 +3253,17 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31606144318,316061443,Maroochy Hinterland,Fairfax,187,203
 31606144319,316061443,Maroochy Hinterland,Fairfax,320,330
 31606144320,316061443,Maroochy Hinterland,Fairfax,327,331
-31603142817,316031428,Mooloolaba - Alexandra Headland,Fairfax,#VALUE!,#VALUE!
-31603142819,316031428,Mooloolaba - Alexandra Headland,Fairfax,#VALUE!,#VALUE!
-31603142824,316031428,Mooloolaba - Alexandra Headland,Fairfax,#VALUE!,#VALUE!
-31603142825,316031428,Mooloolaba - Alexandra Headland,Fairfax,#VALUE!,#VALUE!
-31608154956,316081549,Noosa Hinterland,Fairfax,#VALUE!,#VALUE!
-31606144017,316061440,Caloundra Hinterland,Fairfax,#VALUE!,#VALUE!
-31606144017,316061440,Caloundra Hinterland,Fairfax,#VALUE!,#VALUE!
-31606144309,316061443,Maroochy Hinterland,Fairfax,#VALUE!,#VALUE!
-31606144310,316061443,Maroochy Hinterland,Fairfax,#VALUE!,#VALUE!
-31606144417,316061444,Palmwoods,Fairfax,#VALUE!,#VALUE!
-31606144418,316061444,Palmwoods,Fairfax,#VALUE!,#VALUE!
+31603142817,316031428,Mooloolaba - Alexandra Headland,Fairfax,157,163
+31603142819,316031428,Mooloolaba - Alexandra Headland,Fairfax,223,227
+31603142824,316031428,Mooloolaba - Alexandra Headland,Fairfax,283,304
+31603142825,316031428,Mooloolaba - Alexandra Headland,Fairfax,84,86
+31608154956,316081549,Noosa Hinterland,Fairfax,175,195
+31606144017,316061440,Caloundra Hinterland,Fairfax,2,2
+31606144017,316061440,Caloundra Hinterland,Fairfax,2,2
+31606144309,316061443,Maroochy Hinterland,Fairfax,241,247
+31606144310,316061443,Maroochy Hinterland,Fairfax,285,292
+31606144417,316061444,Palmwoods,Fairfax,1,1
+31606144418,316061444,Palmwoods,Fairfax,87,87
 31601141408,316011414,Buderim - South,Fisher,201,210
 31601141601,316011416,Sippy Downs,Fisher,0,0
 31601141602,316011416,Sippy Downs,Fisher,1212,1274
@@ -3340,37 +3341,37 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31602141914,316021419,Caloundra - Kings Beach,Fisher,252,253
 31602141915,316021419,Caloundra - Kings Beach,Fisher,0,0
 31602141916,316021419,Caloundra - Kings Beach,Fisher,340,364
-#N/A,#N/A,Caloundra - West,Fisher,454,465
-#N/A,#N/A,Caloundra - West,Fisher,376,403
-#N/A,#N/A,Caloundra - West,Fisher,218,229
-#N/A,#N/A,Caloundra - West,Fisher,449,481
-#N/A,#N/A,Caloundra - West,Fisher,282,290
-#N/A,#N/A,Caloundra - West,Fisher,475,525
-#N/A,#N/A,Caloundra - West,Fisher,380,383
-#N/A,#N/A,Caloundra - West,Fisher,5,5
-#N/A,#N/A,Caloundra - West,Fisher,2287,2308
-#N/A,#N/A,Caloundra - West,Fisher,202,209
-#N/A,#N/A,Caloundra - West,Fisher,200,212
-#N/A,#N/A,Caloundra - West,Fisher,224,231
-#N/A,#N/A,Caloundra - West,Fisher,331,369
-#N/A,#N/A,Caloundra - West,Fisher,620,669
-#N/A,#N/A,Caloundra - West,Fisher,429,472
-#N/A,#N/A,Caloundra - West,Fisher,349,387
-#N/A,#N/A,Caloundra - West,Fisher,436,468
-#N/A,#N/A,Caloundra - West,Fisher,245,262
-#N/A,#N/A,Caloundra - West,Fisher,357,383
-#N/A,#N/A,Caloundra - West,Fisher,504,544
-#N/A,#N/A,Caloundra - West,Fisher,355,398
-#N/A,#N/A,Caloundra - West,Fisher,313,339
-#N/A,#N/A,Caloundra - West,Fisher,1267,1377
-#N/A,#N/A,Caloundra - West,Fisher,348,363
-#N/A,#N/A,Caloundra - West,Fisher,184,198
-#N/A,#N/A,Caloundra - West,Fisher,464,493
-#N/A,#N/A,Caloundra - West,Fisher,276,294
-#N/A,#N/A,Caloundra - West,Fisher,396,438
-#N/A,#N/A,Caloundra - West,Fisher,311,320
-#N/A,#N/A,Caloundra - West,Fisher,328,347
-#N/A,#N/A,Caloundra - West,Fisher,246,259
+3142001,#N/A,Caloundra - West,Fisher,454,465
+3142002,#N/A,Caloundra - West,Fisher,376,403
+3142003,#N/A,Caloundra - West,Fisher,218,229
+3142004,#N/A,Caloundra - West,Fisher,449,481
+3142005,#N/A,Caloundra - West,Fisher,282,290
+3142006,#N/A,Caloundra - West,Fisher,475,525
+3142007,#N/A,Caloundra - West,Fisher,380,383
+3142008,#N/A,Caloundra - West,Fisher,5,5
+3142009,#N/A,Caloundra - West,Fisher,2287,2308
+3142010,#N/A,Caloundra - West,Fisher,202,209
+3142011,#N/A,Caloundra - West,Fisher,200,212
+3142012,#N/A,Caloundra - West,Fisher,224,231
+3142013,#N/A,Caloundra - West,Fisher,331,369
+3142014,#N/A,Caloundra - West,Fisher,620,669
+3142015,#N/A,Caloundra - West,Fisher,429,472
+3142016,#N/A,Caloundra - West,Fisher,349,387
+3142017,#N/A,Caloundra - West,Fisher,436,468
+3142018,#N/A,Caloundra - West,Fisher,245,262
+3142019,#N/A,Caloundra - West,Fisher,357,383
+3142020,#N/A,Caloundra - West,Fisher,504,544
+3142021,#N/A,Caloundra - West,Fisher,355,398
+3142022,#N/A,Caloundra - West,Fisher,313,339
+3142023,#N/A,Caloundra - West,Fisher,1267,1377
+3142024,#N/A,Caloundra - West,Fisher,348,363
+3142025,#N/A,Caloundra - West,Fisher,184,198
+3142026,#N/A,Caloundra - West,Fisher,464,493
+3142027,#N/A,Caloundra - West,Fisher,276,294
+3142028,#N/A,Caloundra - West,Fisher,396,438
+3142029,#N/A,Caloundra - West,Fisher,311,320
+3142030,#N/A,Caloundra - West,Fisher,328,347
+3142031,#N/A,Caloundra - West,Fisher,246,259
 31602142101,316021421,Golden Beach - Pelican Waters,Fisher,337,349
 31602142102,316021421,Golden Beach - Pelican Waters,Fisher,297,306
 31602142103,316021421,Golden Beach - Pelican Waters,Fisher,372,377
@@ -3580,29 +3581,29 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31606144426,316061444,Palmwoods,Fisher,245,251
 31606144427,316061444,Palmwoods,Fisher,200,209
 31606144428,316061444,Palmwoods,Fisher,134,138
-31603142817,316031428,Mooloolaba - Alexandra Headland,Fisher,#VALUE!,#VALUE!
-31603142819,316031428,Mooloolaba - Alexandra Headland,Fisher,#VALUE!,#VALUE!
-31603142824,316031428,Mooloolaba - Alexandra Headland,Fisher,#VALUE!,#VALUE!
-31603142825,316031428,Mooloolaba - Alexandra Headland,Fisher,#VALUE!,#VALUE!
-31606144014,316061440,Caloundra Hinterland,Fisher,#VALUE!,#VALUE!
-31606144017,316061440,Caloundra Hinterland,Fisher,#VALUE!,#VALUE!
-31606144309,316061443,Maroochy Hinterland,Fisher,#VALUE!,#VALUE!
-31606144310,316061443,Maroochy Hinterland,Fisher,#VALUE!,#VALUE!
-31606144401,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
-31606144401,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
-31606144403,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
-31606144403,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
-31606144412,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
-31606144412,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
-31606144415,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
-31606144415,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
-31606144417,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
-31606144418,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
-31606144418,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
-31606144418,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
-31606144418,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
-31606144419,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
-31606144419,316061444,Palmwoods,Fisher,#VALUE!,#VALUE!
+31603142817,316031428,Mooloolaba - Alexandra Headland,Fisher,157,163
+31603142819,316031428,Mooloolaba - Alexandra Headland,Fisher,223,227
+31603142824,316031428,Mooloolaba - Alexandra Headland,Fisher,283,304
+31603142825,316031428,Mooloolaba - Alexandra Headland,Fisher,84,86
+31606144014,316061440,Caloundra Hinterland,Fisher,276,282
+31606144017,316061440,Caloundra Hinterland,Fisher,2,2
+31606144309,316061443,Maroochy Hinterland,Fisher,241,247
+31606144310,316061443,Maroochy Hinterland,Fisher,285,292
+31606144401,316061444,Palmwoods,Fisher,110,110
+31606144401,316061444,Palmwoods,Fisher,110,110
+31606144403,316061444,Palmwoods,Fisher,226,229
+31606144403,316061444,Palmwoods,Fisher,226,229
+31606144412,316061444,Palmwoods,Fisher,59,63
+31606144412,316061444,Palmwoods,Fisher,59,63
+31606144415,316061444,Palmwoods,Fisher,11,12
+31606144415,316061444,Palmwoods,Fisher,11,12
+31606144417,316061444,Palmwoods,Fisher,1,1
+31606144418,316061444,Palmwoods,Fisher,87,87
+31606144418,316061444,Palmwoods,Fisher,87,87
+31606144418,316061444,Palmwoods,Fisher,87,87
+31606144418,316061444,Palmwoods,Fisher,87,87
+31606144419,316061444,Palmwoods,Fisher,101,110
+31606144419,316061444,Palmwoods,Fisher,101,110
 30801119001,308011190,Central Highlands - East,Flynn,126,136
 30801119002,308011190,Central Highlands - East,Flynn,130,139
 30801119003,308011190,Central Highlands - East,Flynn,208,212
@@ -3918,42 +3919,42 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30803121208,308031212,Mount Morgan,Flynn,268,306
 30803121209,308031212,Mount Morgan,Flynn,370,406
 30803121210,308031212,Mount Morgan,Flynn,154,154
-#N/A,#N/A,Rockhampton Region - East,Flynn,195,217
-#N/A,#N/A,Rockhampton Region - West,Flynn,175,187
-#N/A,#N/A,Rockhampton Region - West,Flynn,266,284
-#N/A,#N/A,Rockhampton Region - West,Flynn,165,174
-#N/A,#N/A,Rockhampton Region - West,Flynn,213,252
-#N/A,#N/A,Rockhampton Region - West,Flynn,272,291
-#N/A,#N/A,Rockhampton Region - West,Flynn,350,380
-#N/A,#N/A,Rockhampton Region - West,Flynn,371,411
-#N/A,#N/A,Rockhampton Region - West,Flynn,293,307
+30803121802,308031218,Rockhampton Surrounds - East,Flynn,195,217
+30803122001,308031220,Rockhampton Surrounds - West,Flynn,175,187
+30803122002,308031220,Rockhampton Surrounds - West,Flynn,266,284
+30803122003,308031220,Rockhampton Surrounds - West,Flynn,165,174
+30803122004,308031220,Rockhampton Surrounds - West,Flynn,213,252
+30803122005,308031220,Rockhampton Surrounds - West,Flynn,272,291
+30803122006,308031220,Rockhampton Surrounds - West,Flynn,350,380
+30803122007,308031220,Rockhampton Surrounds - West,Flynn,371,411
+30803122008,308031220,Rockhampton Surrounds - West,Flynn,293,307
 31901149715,319011497,Bundaberg North - Gooburrum,Flynn,254,255
 31901149716,319011497,Bundaberg North - Gooburrum,Flynn,148,159
 31901149717,319011497,Bundaberg North - Gooburrum,Flynn,289,301
 31901149719,319011497,Bundaberg North - Gooburrum,Flynn,149,152
 31901149720,319011497,Bundaberg North - Gooburrum,Flynn,230,237
-#N/A,#N/A,Bundaberg Region - North,Flynn,321,354
-#N/A,#N/A,Bundaberg Region - North,Flynn,679,739
-#N/A,#N/A,Bundaberg Region - North,Flynn,244,254
-#N/A,#N/A,Bundaberg Region - North,Flynn,257,258
-#N/A,#N/A,Bundaberg Region - North,Flynn,269,303
-#N/A,#N/A,Bundaberg Region - North,Flynn,215,221
-#N/A,#N/A,Bundaberg Region - North,Flynn,110,124
-#N/A,#N/A,Bundaberg Region - North,Flynn,306,311
-#N/A,#N/A,Bundaberg Region - North,Flynn,312,322
-#N/A,#N/A,Bundaberg Region - North,Flynn,214,214
-#N/A,#N/A,Bundaberg Region - North,Flynn,196,196
-#N/A,#N/A,Bundaberg Region - North,Flynn,129,134
-#N/A,#N/A,Bundaberg Region - North,Flynn,328,344
-#N/A,#N/A,Bundaberg Region - North,Flynn,357,375
-#N/A,#N/A,Bundaberg Region - North,Flynn,256,275
-#N/A,#N/A,Bundaberg Region - North,Flynn,202,208
-#N/A,#N/A,Bundaberg Region - North,Flynn,330,346
-#N/A,#N/A,Bundaberg Region - North,Flynn,341,373
-#N/A,#N/A,Bundaberg Region - North,Flynn,378,410
-#N/A,#N/A,Bundaberg Region - North,Flynn,293,303
-#N/A,#N/A,Bundaberg Region - North,Flynn,183,207
-#N/A,#N/A,Bundaberg Region - North,Flynn,240,256
+31901149801,319011498,Bundaberg Surrounds - North,Flynn,321,354
+31901149802,319011498,Bundaberg Surrounds - North,Flynn,679,739
+31901149803,319011498,Bundaberg Surrounds - North,Flynn,244,254
+31901149804,319011498,Bundaberg Surrounds - North,Flynn,257,258
+31901149805,319011498,Bundaberg Surrounds - North,Flynn,269,303
+31901149806,319011498,Bundaberg Surrounds - North,Flynn,215,221
+31901149807,319011498,Bundaberg Surrounds - North,Flynn,110,124
+31901149808,319011498,Bundaberg Surrounds - North,Flynn,306,311
+31901149809,319011498,Bundaberg Surrounds - North,Flynn,312,322
+31901149810,319011498,Bundaberg Surrounds - North,Flynn,214,214
+31901149811,319011498,Bundaberg Surrounds - North,Flynn,196,196
+31901149812,319011498,Bundaberg Surrounds - North,Flynn,129,134
+31901149813,319011498,Bundaberg Surrounds - North,Flynn,328,344
+31901149814,319011498,Bundaberg Surrounds - North,Flynn,357,375
+31901149815,319011498,Bundaberg Surrounds - North,Flynn,256,275
+31901149816,319011498,Bundaberg Surrounds - North,Flynn,202,208
+31901149817,319011498,Bundaberg Surrounds - North,Flynn,330,346
+31901149818,319011498,Bundaberg Surrounds - North,Flynn,341,373
+31901149819,319011498,Bundaberg Surrounds - North,Flynn,378,410
+31901149820,319011498,Bundaberg Surrounds - North,Flynn,293,303
+31901149821,319011498,Bundaberg Surrounds - North,Flynn,183,207
+31901149822,319011498,Bundaberg Surrounds - North,Flynn,240,256
 31902150301,319021503,Gayndah - Mundubbera,Flynn,173,185
 31902150302,319021503,Gayndah - Mundubbera,Flynn,195,198
 31902150303,319021503,Gayndah - Mundubbera,Flynn,241,262
@@ -3988,18 +3989,18 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31902150412,319021504,Gin Gin,Flynn,316,337
 31902150413,319021504,Gin Gin,Flynn,443,475
 31902150414,319021504,Gin Gin,Flynn,227,227
-#N/A,#N/A,Kingaroy Region - North,Flynn,190,191
-#N/A,#N/A,Kingaroy Region - North,Flynn,263,264
-#N/A,#N/A,Kingaroy Region - North,Flynn,317,319
-#N/A,#N/A,Kingaroy Region - North,Flynn,169,170
-#N/A,#N/A,Kingaroy Region - North,Flynn,296,299
-#N/A,#N/A,Kingaroy Region - North,Flynn,396,401
-#N/A,#N/A,Kingaroy Region - North,Flynn,196,251
-#N/A,#N/A,Kingaroy Region - North,Flynn,273,274
-#N/A,#N/A,Kingaroy Region - North,Flynn,200,200
-#N/A,#N/A,Kingaroy Region - North,Flynn,182,218
-#N/A,#N/A,Kingaroy Region - North,Flynn,270,268
-#N/A,#N/A,Kingaroy Region - North,Flynn,240,241
+31902150602,319021506,Kingaroy Surrounds - North,Flynn,190,191
+31902150603,319021506,Kingaroy Surrounds - North,Flynn,263,264
+31902150604,319021506,Kingaroy Surrounds - North,Flynn,317,319
+31902150607,319021506,Kingaroy Surrounds - North,Flynn,169,170
+31902150612,319021506,Kingaroy Surrounds - North,Flynn,296,299
+31902150614,319021506,Kingaroy Surrounds - North,Flynn,396,401
+31902150615,319021506,Kingaroy Surrounds - North,Flynn,196,251
+31902150616,319021506,Kingaroy Surrounds - North,Flynn,273,274
+31902150618,319021506,Kingaroy Surrounds - North,Flynn,200,200
+31902150619,319021506,Kingaroy Surrounds - North,Flynn,182,218
+31902150620,319021506,Kingaroy Surrounds - North,Flynn,270,268
+31902150621,319021506,Kingaroy Surrounds - North,Flynn,240,241
 31902150801,319021508,Monto - Eidsvold,Flynn,151,158
 31902150802,319021508,Monto - Eidsvold,Flynn,111,130
 31902150803,319021508,Monto - Eidsvold,Flynn,183,207
@@ -4018,87 +4019,87 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31902150816,319021508,Monto - Eidsvold,Flynn,187,187
 31902150817,319021508,Monto - Eidsvold,Flynn,143,144
 31902151001,319021510,North Burnett,Flynn,4,4
-#N/A,#N/A,Roma Region,Flynn,#VALUE!,#VALUE!
-#N/A,#N/A,Roma Region,Flynn,#VALUE!,#VALUE!
-30801119118,308011191,Central Highlands - West,Flynn,#VALUE!,#VALUE!
-30804152809,308041528,Banana,Flynn,#VALUE!,#VALUE!
-30803121702,308031217,Rockhampton City,Flynn,#VALUE!,#VALUE!
-31201133820,312011338,Broadsound - Nebo,Flynn,#VALUE!,#VALUE!
-31201133909,312011339,Clermont,Flynn,#VALUE!,#VALUE!
-31901149714,319011497,Bundaberg North - Gooburrum,Flynn,#VALUE!,#VALUE!
-#N/A,#N/A,Kingaroy Region - North,Flynn,#VALUE!,#VALUE!
-#N/A,#N/A,Kingaroy Region - North,Flynn,#VALUE!,#VALUE!
-#N/A,#N/A,Kingaroy Region - North,Flynn,#VALUE!,#VALUE!
-#N/A,#N/A,Kingaroy Region - North,Flynn,#VALUE!,#VALUE!
-#N/A,#N/A,Ormeau - Yatala,Forde,132,143
-#N/A,#N/A,Ormeau - Yatala,Forde,160,174
-#N/A,#N/A,Ormeau - Yatala,Forde,155,171
-#N/A,#N/A,Ormeau - Yatala,Forde,371,393
-#N/A,#N/A,Ormeau - Yatala,Forde,132,142
-#N/A,#N/A,Ormeau - Yatala,Forde,285,303
-#N/A,#N/A,Ormeau - Yatala,Forde,232,249
-#N/A,#N/A,Ormeau - Yatala,Forde,166,183
-#N/A,#N/A,Ormeau - Yatala,Forde,308,332
-#N/A,#N/A,Ormeau - Yatala,Forde,255,280
-#N/A,#N/A,Ormeau - Yatala,Forde,295,327
-#N/A,#N/A,Ormeau - Yatala,Forde,348,385
-#N/A,#N/A,Ormeau - Yatala,Forde,1137,1178
-#N/A,#N/A,Ormeau - Yatala,Forde,531,615
-#N/A,#N/A,Ormeau - Yatala,Forde,298,325
-#N/A,#N/A,Ormeau - Yatala,Forde,266,288
-#N/A,#N/A,Ormeau - Yatala,Forde,23,24
-#N/A,#N/A,Ormeau - Yatala,Forde,176,199
-#N/A,#N/A,Ormeau - Yatala,Forde,361,390
-#N/A,#N/A,Ormeau - Yatala,Forde,312,331
-#N/A,#N/A,Ormeau - Yatala,Forde,297,318
-#N/A,#N/A,Ormeau - Yatala,Forde,205,229
-#N/A,#N/A,Pimpama,Forde,979,1136
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,264,292
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,222,247
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,201,224
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,346,395
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,215,237
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,112,121
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,175,197
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,182,196
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,801,846
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,398,421
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,232,266
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,710,803
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,500,569
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,283,319
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,142,158
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,300,329
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,199,225
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,159,176
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,212,229
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,1421,1605
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,669,745
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,345,389
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,561,591
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,350,400
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,178,199
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,315,357
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,172,186
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,247,269
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,210,228
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,158,178
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,322,359
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,227,255
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,274,303
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,366,402
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,396,432
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,340,379
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,326,369
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,217,234
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,726,763
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,632,719
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,976,1103
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,257,286
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,263,300
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,135,147
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,175,197
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,276,314
+30701117717,307011177,Roma Surrounds,Flynn,148,150
+30701117717,307011177,Roma Surrounds,Flynn,148,150
+30801119118,308011191,Central Highlands - West,Flynn,275,279
+30804152809,308041528,Banana,Flynn,182,182
+30803121702,308031217,Rockhampton City,Flynn,12,13
+31201133820,312011338,Broadsound - Nebo,Flynn,348,352
+31201133909,312011339,Clermont,Flynn,2,2
+31901149714,319011497,Bundaberg North - Gooburrum,Flynn,13,14
+31902150608,319021506,Kingaroy Surrounds - North,Flynn,67,67
+31902150611,319021506,Kingaroy Surrounds - North,Flynn,136,135
+31902150611,319021506,Kingaroy Surrounds - North,Flynn,136,135
+31902150617,319021506,Kingaroy Surrounds - North,Flynn,9,9
+3125501,#N/A,Ormeau - Yatala,Forde,132,143
+3125502,#N/A,Ormeau - Yatala,Forde,160,174
+3125503,#N/A,Ormeau - Yatala,Forde,155,171
+3125504,#N/A,Ormeau - Yatala,Forde,371,393
+3125505,#N/A,Ormeau - Yatala,Forde,132,142
+3125508,#N/A,Ormeau - Yatala,Forde,285,303
+3125509,#N/A,Ormeau - Yatala,Forde,232,249
+3125510,#N/A,Ormeau - Yatala,Forde,166,183
+3125511,#N/A,Ormeau - Yatala,Forde,308,332
+3125512,#N/A,Ormeau - Yatala,Forde,255,280
+3125513,#N/A,Ormeau - Yatala,Forde,295,327
+3125516,#N/A,Ormeau - Yatala,Forde,348,385
+3125517,#N/A,Ormeau - Yatala,Forde,1137,1178
+3125518,#N/A,Ormeau - Yatala,Forde,531,615
+3125519,#N/A,Ormeau - Yatala,Forde,298,325
+3125520,#N/A,Ormeau - Yatala,Forde,266,288
+3125521,#N/A,Ormeau - Yatala,Forde,23,24
+3125529,#N/A,Ormeau - Yatala,Forde,176,199
+3125530,#N/A,Ormeau - Yatala,Forde,361,390
+3125531,#N/A,Ormeau - Yatala,Forde,312,331
+3125535,#N/A,Ormeau - Yatala,Forde,297,318
+3125536,#N/A,Ormeau - Yatala,Forde,205,229
+3125705,#N/A,Pimpama,Forde,979,1136
+3125801,#N/A,Upper Coomera - Willow Vale,Forde,264,292
+3125802,#N/A,Upper Coomera - Willow Vale,Forde,222,247
+3125803,#N/A,Upper Coomera - Willow Vale,Forde,201,224
+3125804,#N/A,Upper Coomera - Willow Vale,Forde,346,395
+3125805,#N/A,Upper Coomera - Willow Vale,Forde,215,237
+3125806,#N/A,Upper Coomera - Willow Vale,Forde,112,121
+3125807,#N/A,Upper Coomera - Willow Vale,Forde,175,197
+3125808,#N/A,Upper Coomera - Willow Vale,Forde,182,196
+3125809,#N/A,Upper Coomera - Willow Vale,Forde,801,846
+3125810,#N/A,Upper Coomera - Willow Vale,Forde,398,421
+3125811,#N/A,Upper Coomera - Willow Vale,Forde,232,266
+3125812,#N/A,Upper Coomera - Willow Vale,Forde,710,803
+3125813,#N/A,Upper Coomera - Willow Vale,Forde,500,569
+3125814,#N/A,Upper Coomera - Willow Vale,Forde,283,319
+3125815,#N/A,Upper Coomera - Willow Vale,Forde,142,158
+3125816,#N/A,Upper Coomera - Willow Vale,Forde,300,329
+3125817,#N/A,Upper Coomera - Willow Vale,Forde,199,225
+3125818,#N/A,Upper Coomera - Willow Vale,Forde,159,176
+3125819,#N/A,Upper Coomera - Willow Vale,Forde,212,229
+3125820,#N/A,Upper Coomera - Willow Vale,Forde,1421,1605
+3125821,#N/A,Upper Coomera - Willow Vale,Forde,669,745
+3125822,#N/A,Upper Coomera - Willow Vale,Forde,345,389
+3125823,#N/A,Upper Coomera - Willow Vale,Forde,561,591
+3125824,#N/A,Upper Coomera - Willow Vale,Forde,350,400
+3125825,#N/A,Upper Coomera - Willow Vale,Forde,178,199
+3125826,#N/A,Upper Coomera - Willow Vale,Forde,315,357
+3125827,#N/A,Upper Coomera - Willow Vale,Forde,172,186
+3125828,#N/A,Upper Coomera - Willow Vale,Forde,247,269
+3125829,#N/A,Upper Coomera - Willow Vale,Forde,210,228
+3125830,#N/A,Upper Coomera - Willow Vale,Forde,158,178
+3125831,#N/A,Upper Coomera - Willow Vale,Forde,322,359
+3125832,#N/A,Upper Coomera - Willow Vale,Forde,227,255
+3125833,#N/A,Upper Coomera - Willow Vale,Forde,274,303
+3125834,#N/A,Upper Coomera - Willow Vale,Forde,366,402
+3125835,#N/A,Upper Coomera - Willow Vale,Forde,396,432
+3125836,#N/A,Upper Coomera - Willow Vale,Forde,340,379
+3125837,#N/A,Upper Coomera - Willow Vale,Forde,326,369
+3125838,#N/A,Upper Coomera - Willow Vale,Forde,217,234
+3125839,#N/A,Upper Coomera - Willow Vale,Forde,726,763
+3125840,#N/A,Upper Coomera - Willow Vale,Forde,632,719
+3125841,#N/A,Upper Coomera - Willow Vale,Forde,976,1103
+3125842,#N/A,Upper Coomera - Willow Vale,Forde,257,286
+3125843,#N/A,Upper Coomera - Willow Vale,Forde,263,300
+3125844,#N/A,Upper Coomera - Willow Vale,Forde,135,147
+3125845,#N/A,Upper Coomera - Willow Vale,Forde,175,197
+3125846,#N/A,Upper Coomera - Willow Vale,Forde,276,314
 31102130601,311021306,Beenleigh,Forde,10,10
 31102130602,311021306,Beenleigh,Forde,159,170
 31102130603,311021306,Beenleigh,Forde,299,334
@@ -4239,7 +4240,7 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31103131812,311031318,Munruben - Park Ridge South,Forde,259,291
 31103131813,311031318,Munruben - Park Ridge South,Forde,198,216
 31103131927,311031319,Regents Park - Heritage Park,Forde,0,0
-#N/A,#N/A,Greenbank,Forde,165,173
+3132009,#N/A,Greenbank,Forde,165,173
 31104132213,311041322,Logan Village,Forde,245,254
 31104132215,311041322,Logan Village,Forde,178,195
 31104132217,311041322,Logan Village,Forde,162,171
@@ -4375,13 +4376,13 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31105132813,311051328,Waterford West,Forde,281,299
 31105132814,311051328,Waterford West,Forde,157,175
 31105132815,311051328,Waterford West,Forde,313,362
-30904124231,309041242,Tamborine - Canungra,Forde,#VALUE!,#VALUE!
-#N/A,#N/A,Upper Coomera - Willow Vale,Forde,#VALUE!,#VALUE!
-31103131604,311031316,Hillcrest,Forde,#VALUE!,#VALUE!
-31104132214,311041322,Logan Village,Forde,#VALUE!,#VALUE!
-31105132608,311051326,Loganlea,Forde,#VALUE!,#VALUE!
-31105132610,311051326,Loganlea,Forde,#VALUE!,#VALUE!
-31105132612,311051326,Loganlea,Forde,#VALUE!,#VALUE!
+30904124231,309041242,Tamborine - Canungra,Forde,146,146
+3125847,#N/A,Upper Coomera - Willow Vale,Forde,106,118
+31103131604,311031316,Hillcrest,Forde,3,3
+31104132214,311041322,Logan Village,Forde,1,1
+31105132608,311051326,Loganlea,Forde,0,0
+31105132610,311051326,Loganlea,Forde,5,6
+31105132612,311051326,Loganlea,Forde,357,370
 30103101702,301031017,Murarrie,Griffith,344,397
 30103101703,301031017,Murarrie,Griffith,367,401
 30103101704,301031017,Murarrie,Griffith,256,285
@@ -4721,8 +4722,8 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30502111813,305021118,Norman Park,Griffith,220,241
 30502111814,305021118,Norman Park,Griffith,449,496
 30502111815,305021118,Norman Park,Griffith,215,240
-30103101701,301031017,Murarrie,Griffith,#VALUE!,#VALUE!
-30303106310,303031063,Mount Gravatt,Griffith,#VALUE!,#VALUE!
+30103101701,301031017,Murarrie,Griffith,12,13
+30303106310,303031063,Mount Gravatt,Griffith,344,447
 30702117915,307021179,Crows Nest - Rosalie,Groom,209,209
 30702117916,307021179,Crows Nest - Rosalie,Groom,331,326
 30702117917,307021179,Crows Nest - Rosalie,Groom,270,269
@@ -5085,24 +5086,24 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31701145935,317011459,Wilsonton,Groom,369,379
 31701145936,317011459,Wilsonton,Groom,297,308
 31701145937,317011459,Wilsonton,Groom,291,328
-30702117911,307021179,Crows Nest - Rosalie,Groom,#VALUE!,#VALUE!
-30702117913,307021179,Crows Nest - Rosalie,Groom,#VALUE!,#VALUE!
-30702117918,307021179,Crows Nest - Rosalie,Groom,#VALUE!,#VALUE!
-30702117918,307021179,Crows Nest - Rosalie,Groom,#VALUE!,#VALUE!
-30702117919,307021179,Crows Nest - Rosalie,Groom,#VALUE!,#VALUE!
-30702117920,307021179,Crows Nest - Rosalie,Groom,#VALUE!,#VALUE!
-30702117922,307021179,Crows Nest - Rosalie,Groom,#VALUE!,#VALUE!
-30702117924,307021179,Crows Nest - Rosalie,Groom,#VALUE!,#VALUE!
-30702118024,307021180,Jondaryan,Groom,#VALUE!,#VALUE!
-30702118111,307021181,Millmerran,Groom,#VALUE!,#VALUE!
-30702118317,307021183,Wambo,Groom,#VALUE!,#VALUE!
-30702118318,307021183,Wambo,Groom,#VALUE!,#VALUE!
-30703118407,307031184,Clifton - Greenmount,Groom,#VALUE!,#VALUE!
-30703118413,307031184,Clifton - Greenmount,Groom,#VALUE!,#VALUE!
-31701144510,317011445,Cambooya - Wyreema,Groom,#VALUE!,#VALUE!
-31701145131,317011451,Lockyer Valley - West,Groom,#VALUE!,#VALUE!
-31701145131,317011451,Lockyer Valley - West,Groom,#VALUE!,#VALUE!
-#N/A,#N/A,Ingham Region,Herbert,3,3
+30702117911,307021179,Crows Nest - Rosalie,Groom,159,158
+30702117913,307021179,Crows Nest - Rosalie,Groom,211,210
+30702117918,307021179,Crows Nest - Rosalie,Groom,154,154
+30702117918,307021179,Crows Nest - Rosalie,Groom,154,154
+30702117919,307021179,Crows Nest - Rosalie,Groom,156,156
+30702117920,307021179,Crows Nest - Rosalie,Groom,49,49
+30702117922,307021179,Crows Nest - Rosalie,Groom,0,0
+30702117924,307021179,Crows Nest - Rosalie,Groom,114,120
+30702118024,307021180,Jondaryan,Groom,191,197
+30702118111,307021181,Millmerran,Groom,196,208
+30702118317,307021183,Wambo,Groom,10,11
+30702118318,307021183,Wambo,Groom,5,5
+30703118407,307031184,Clifton - Greenmount,Groom,120,132
+30703118413,307031184,Clifton - Greenmount,Groom,106,106
+31701144510,317011445,Cambooya - Wyreema,Groom,261,287
+31701145131,317011451,Lockyer Valley - West,Groom,127,134
+31701145131,317011451,Lockyer Valley - West,Groom,127,134
+31801146511,318011465,Ingham Surrounds,Herbert,3,3
 31801146601,318011466,Palm Island,Herbert,985,1162
 31801146602,318011466,Palm Island,Herbert,7,7
 31802146701,318021467,Aitkenvale,Herbert,316,334
@@ -5118,7 +5119,7 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31802146711,318021467,Aitkenvale,Herbert,172,186
 31802146712,318021467,Aitkenvale,Herbert,160,165
 31802146713,318021467,Aitkenvale,Herbert,207,212
-#N/A,#N/A,Annandale,Herbert,456,463
+3146811,#N/A,Annandale,Herbert,456,463
 31802146901,318021469,Belgian Gardens - Pallarenda,Herbert,255,273
 31802146902,318021469,Belgian Gardens - Pallarenda,Herbert,224,237
 31802146903,318021469,Belgian Gardens - Pallarenda,Herbert,279,309
@@ -5176,37 +5177,37 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31802147214,318021472,Cranbrook,Herbert,410,444
 31802147215,318021472,Cranbrook,Herbert,235,242
 31802147216,318021472,Cranbrook,Herbert,294,330
-#N/A,#N/A,Deeragun,Herbert,369,428
-#N/A,#N/A,Deeragun,Herbert,394,456
-#N/A,#N/A,Deeragun,Herbert,1830,1944
-#N/A,#N/A,Deeragun,Herbert,342,375
-#N/A,#N/A,Deeragun,Herbert,365,423
-#N/A,#N/A,Deeragun,Herbert,389,434
-#N/A,#N/A,Deeragun,Herbert,666,761
-#N/A,#N/A,Deeragun,Herbert,2322,2382
-#N/A,#N/A,Deeragun,Herbert,303,338
-#N/A,#N/A,Deeragun,Herbert,166,186
-#N/A,#N/A,Deeragun,Herbert,292,315
-#N/A,#N/A,Deeragun,Herbert,401,456
-#N/A,#N/A,Deeragun,Herbert,572,656
-#N/A,#N/A,Deeragun,Herbert,315,354
-#N/A,#N/A,Deeragun,Herbert,431,485
-#N/A,#N/A,Deeragun,Herbert,299,334
-#N/A,#N/A,Deeragun,Herbert,25,26
-#N/A,#N/A,Deeragun,Herbert,325,367
-#N/A,#N/A,Deeragun,Herbert,194,211
-#N/A,#N/A,Deeragun,Herbert,717,827
-#N/A,#N/A,Deeragun,Herbert,210,233
-#N/A,#N/A,Deeragun,Herbert,245,273
-#N/A,#N/A,Deeragun,Herbert,346,395
-#N/A,#N/A,Deeragun,Herbert,200,226
-#N/A,#N/A,Deeragun,Herbert,273,305
-#N/A,#N/A,Deeragun,Herbert,278,306
-#N/A,#N/A,Deeragun,Herbert,170,194
-#N/A,#N/A,Deeragun,Herbert,317,357
-#N/A,#N/A,Deeragun,Herbert,289,332
-#N/A,#N/A,Deeragun,Herbert,504,562
-#N/A,#N/A,Deeragun,Herbert,338,386
+3147301,#N/A,Deeragun,Herbert,369,428
+3147302,#N/A,Deeragun,Herbert,394,456
+3147303,#N/A,Deeragun,Herbert,1830,1944
+3147304,#N/A,Deeragun,Herbert,342,375
+3147305,#N/A,Deeragun,Herbert,365,423
+3147306,#N/A,Deeragun,Herbert,389,434
+3147307,#N/A,Deeragun,Herbert,666,761
+3147308,#N/A,Deeragun,Herbert,2322,2382
+3147309,#N/A,Deeragun,Herbert,303,338
+3147310,#N/A,Deeragun,Herbert,166,186
+3147311,#N/A,Deeragun,Herbert,292,315
+3147312,#N/A,Deeragun,Herbert,401,456
+3147313,#N/A,Deeragun,Herbert,572,656
+3147314,#N/A,Deeragun,Herbert,315,354
+3147315,#N/A,Deeragun,Herbert,431,485
+3147316,#N/A,Deeragun,Herbert,299,334
+3147317,#N/A,Deeragun,Herbert,25,26
+3147318,#N/A,Deeragun,Herbert,325,367
+3147319,#N/A,Deeragun,Herbert,194,211
+3147320,#N/A,Deeragun,Herbert,717,827
+3147321,#N/A,Deeragun,Herbert,210,233
+3147322,#N/A,Deeragun,Herbert,245,273
+3147323,#N/A,Deeragun,Herbert,346,395
+3147324,#N/A,Deeragun,Herbert,200,226
+3147325,#N/A,Deeragun,Herbert,273,305
+3147326,#N/A,Deeragun,Herbert,278,306
+3147327,#N/A,Deeragun,Herbert,170,194
+3147328,#N/A,Deeragun,Herbert,317,357
+3147329,#N/A,Deeragun,Herbert,289,332
+3147330,#N/A,Deeragun,Herbert,504,562
+3147331,#N/A,Deeragun,Herbert,338,386
 31802147401,318021474,Douglas,Herbert,131,140
 31802147402,318021474,Douglas,Herbert,323,369
 31802147403,318021474,Douglas,Herbert,291,321
@@ -5467,15 +5468,15 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31802149017,318021490,Townsville City - North Ward,Herbert,329,365
 31802149018,318021490,Townsville City - North Ward,Herbert,328,359
 31802149019,318021490,Townsville City - North Ward,Herbert,293,344
-31802147005,318021470,Bohle Plains,Herbert,#VALUE!,#VALUE!
-31802147006,318021470,Bohle Plains,Herbert,#VALUE!,#VALUE!
-31802147417,318021474,Douglas,Herbert,#VALUE!,#VALUE!
-31802147417,318021474,Douglas,Herbert,#VALUE!,#VALUE!
-31802148005,318021480,Kelso,Herbert,#VALUE!,#VALUE!
-31802148609,318021486,Northern Beaches,Herbert,#VALUE!,#VALUE!
-31802148609,318021486,Northern Beaches,Herbert,#VALUE!,#VALUE!
-31802148614,318021486,Northern Beaches,Herbert,#VALUE!,#VALUE!
-31802148910,318021489,Townsville - South,Herbert,#VALUE!,#VALUE!
+31802147005,318021470,Bohle Plains,Herbert,174,176
+31802147006,318021470,Bohle Plains,Herbert,92,101
+31802147417,318021474,Douglas,Herbert,1,0
+31802147417,318021474,Douglas,Herbert,1,0
+31802148005,318021480,Kelso,Herbert,0,0
+31802148609,318021486,Northern Beaches,Herbert,142,151
+31802148609,318021486,Northern Beaches,Herbert,142,151
+31802148614,318021486,Northern Beaches,Herbert,0,0
+31802148910,318021489,Townsville - South,Herbert,82,81
 31901149201,319011492,Ashfield - Kepnock,Hinkler,363,366
 31901149202,319011492,Ashfield - Kepnock,Hinkler,324,359
 31901149203,319011492,Ashfield - Kepnock,Hinkler,215,212
@@ -5577,36 +5578,36 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31901149718,319011497,Bundaberg North - Gooburrum,Hinkler,159,166
 31901149721,319011497,Bundaberg North - Gooburrum,Hinkler,278,308
 31901149722,319011497,Bundaberg North - Gooburrum,Hinkler,235,242
-#N/A,#N/A,Bundaberg Region - South,Hinkler,190,191
-#N/A,#N/A,Bundaberg Region - South,Hinkler,291,320
-#N/A,#N/A,Bundaberg Region - South,Hinkler,214,217
-#N/A,#N/A,Bundaberg Region - South,Hinkler,243,265
-#N/A,#N/A,Bundaberg Region - South,Hinkler,399,404
-#N/A,#N/A,Bundaberg Region - South,Hinkler,247,248
-#N/A,#N/A,Bundaberg Region - South,Hinkler,450,469
-#N/A,#N/A,Bundaberg Region - South,Hinkler,158,180
-#N/A,#N/A,Bundaberg Region - South,Hinkler,191,190
-#N/A,#N/A,Bundaberg Region - South,Hinkler,379,395
-#N/A,#N/A,Bundaberg Region - South,Hinkler,222,260
-#N/A,#N/A,Bundaberg Region - South,Hinkler,255,303
-#N/A,#N/A,Bundaberg Region - South,Hinkler,354,356
-#N/A,#N/A,Bundaberg Region - South,Hinkler,269,274
-#N/A,#N/A,Bundaberg Region - South,Hinkler,264,264
-#N/A,#N/A,Bundaberg Region - South,Hinkler,155,154
-#N/A,#N/A,Bundaberg Region - South,Hinkler,345,345
-#N/A,#N/A,Bundaberg Region - South,Hinkler,0,0
-#N/A,#N/A,Bundaberg Region - South,Hinkler,264,270
-#N/A,#N/A,Bundaberg Region - South,Hinkler,261,267
-#N/A,#N/A,Bundaberg Region - South,Hinkler,178,178
-#N/A,#N/A,Bundaberg Region - South,Hinkler,329,328
-#N/A,#N/A,Bundaberg Region - South,Hinkler,201,201
-#N/A,#N/A,Bundaberg Region - South,Hinkler,198,227
-#N/A,#N/A,Bundaberg Region - South,Hinkler,132,131
-#N/A,#N/A,Bundaberg Region - South,Hinkler,267,299
-#N/A,#N/A,Bundaberg Region - South,Hinkler,240,278
-#N/A,#N/A,Bundaberg Region - South,Hinkler,139,137
-#N/A,#N/A,Bundaberg Region - South,Hinkler,89,91
-#N/A,#N/A,Bundaberg Region - South,Hinkler,178,209
+31901149901,319011499,Bundaberg Surrounds - South,Hinkler,190,191
+31901149902,319011499,Bundaberg Surrounds - South,Hinkler,291,320
+31901149903,319011499,Bundaberg Surrounds - South,Hinkler,214,217
+31901149904,319011499,Bundaberg Surrounds - South,Hinkler,243,265
+31901149905,319011499,Bundaberg Surrounds - South,Hinkler,399,404
+31901149906,319011499,Bundaberg Surrounds - South,Hinkler,247,248
+31901149907,319011499,Bundaberg Surrounds - South,Hinkler,450,469
+31901149908,319011499,Bundaberg Surrounds - South,Hinkler,158,180
+31901149909,319011499,Bundaberg Surrounds - South,Hinkler,191,190
+31901149910,319011499,Bundaberg Surrounds - South,Hinkler,379,395
+31901149911,319011499,Bundaberg Surrounds - South,Hinkler,222,260
+31901149912,319011499,Bundaberg Surrounds - South,Hinkler,255,303
+31901149913,319011499,Bundaberg Surrounds - South,Hinkler,354,356
+31901149914,319011499,Bundaberg Surrounds - South,Hinkler,269,274
+31901149915,319011499,Bundaberg Surrounds - South,Hinkler,264,264
+31901149916,319011499,Bundaberg Surrounds - South,Hinkler,155,154
+31901149917,319011499,Bundaberg Surrounds - South,Hinkler,345,345
+31901149918,319011499,Bundaberg Surrounds - South,Hinkler,0,0
+31901149919,319011499,Bundaberg Surrounds - South,Hinkler,264,270
+31901149920,319011499,Bundaberg Surrounds - South,Hinkler,261,267
+31901149921,319011499,Bundaberg Surrounds - South,Hinkler,178,178
+31901149922,319011499,Bundaberg Surrounds - South,Hinkler,329,328
+31901149923,319011499,Bundaberg Surrounds - South,Hinkler,201,201
+31901149924,319011499,Bundaberg Surrounds - South,Hinkler,198,227
+31901149925,319011499,Bundaberg Surrounds - South,Hinkler,132,131
+31901149926,319011499,Bundaberg Surrounds - South,Hinkler,267,299
+31901149927,319011499,Bundaberg Surrounds - South,Hinkler,240,278
+31901149928,319011499,Bundaberg Surrounds - South,Hinkler,139,137
+31901149929,319011499,Bundaberg Surrounds - South,Hinkler,89,91
+31901149930,319011499,Bundaberg Surrounds - South,Hinkler,178,209
 31901150001,319011500,Millbank - Avoca,Hinkler,174,173
 31901150002,319011500,Millbank - Avoca,Hinkler,186,186
 31901150003,319011500,Millbank - Avoca,Hinkler,219,218
@@ -5821,19 +5822,19 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31905152222,319051522,Burrum - Fraser,Hinkler,261,276
 31905152223,319051522,Burrum - Fraser,Hinkler,243,256
 31905152225,319051522,Burrum - Fraser,Hinkler,183,205
-31901149714,319011497,Bundaberg North - Gooburrum,Hinkler,#VALUE!,#VALUE!
-31904151609,319041516,Booral - River Heads,Hinkler,#VALUE!,#VALUE!
-31904151609,319041516,Booral - River Heads,Hinkler,#VALUE!,#VALUE!
-31905152206,319051522,Burrum - Fraser,Hinkler,#VALUE!,#VALUE!
-31905152206,319051522,Burrum - Fraser,Hinkler,#VALUE!,#VALUE!
-31905152206,319051522,Burrum - Fraser,Hinkler,#VALUE!,#VALUE!
-31905152208,319051522,Burrum - Fraser,Hinkler,#VALUE!,#VALUE!
-31905152208,319051522,Burrum - Fraser,Hinkler,#VALUE!,#VALUE!
-31905152214,319051522,Burrum - Fraser,Hinkler,#VALUE!,#VALUE!
-31905152214,319051522,Burrum - Fraser,Hinkler,#VALUE!,#VALUE!
-31905152217,319051522,Burrum - Fraser,Hinkler,#VALUE!,#VALUE!
-31905152226,319051522,Burrum - Fraser,Hinkler,#VALUE!,#VALUE!
-31905152226,319051522,Burrum - Fraser,Hinkler,#VALUE!,#VALUE!
+31901149714,319011497,Bundaberg North - Gooburrum,Hinkler,13,14
+31904151609,319041516,Booral - River Heads,Hinkler,117,120
+31904151609,319041516,Booral - River Heads,Hinkler,117,120
+31905152206,319051522,Burrum - Fraser,Hinkler,5,5
+31905152206,319051522,Burrum - Fraser,Hinkler,5,5
+31905152206,319051522,Burrum - Fraser,Hinkler,5,5
+31905152208,319051522,Burrum - Fraser,Hinkler,198,209
+31905152208,319051522,Burrum - Fraser,Hinkler,198,209
+31905152214,319051522,Burrum - Fraser,Hinkler,169,180
+31905152214,319051522,Burrum - Fraser,Hinkler,169,180
+31905152217,319051522,Burrum - Fraser,Hinkler,0,0
+31905152226,319051522,Burrum - Fraser,Hinkler,194,206
+31905152226,319051522,Burrum - Fraser,Hinkler,194,206
 30602114401,306021144,Bentley Park,Kennedy,323,365
 30602114402,306021144,Bentley Park,Kennedy,291,308
 30602114403,306021144,Bentley Park,Kennedy,231,240
@@ -6181,17 +6182,17 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31502140549,315021405,Mount Isa,Kennedy,122,128
 31502140550,315021405,Mount Isa,Kennedy,76,80
 31502140551,315021405,Mount Isa,Kennedy,124,128
-#N/A,#N/A,Mount Isa Region,Kennedy,221,246
-#N/A,#N/A,Mount Isa Region,Kennedy,175,186
-#N/A,#N/A,Mount Isa Region,Kennedy,230,241
-#N/A,#N/A,Mount Isa Region,Kennedy,200,223
-#N/A,#N/A,Mount Isa Region,Kennedy,79,84
-#N/A,#N/A,Mount Isa Region,Kennedy,172,180
-#N/A,#N/A,Mount Isa Region,Kennedy,188,197
-#N/A,#N/A,Mount Isa Region,Kennedy,129,145
-#N/A,#N/A,Mount Isa Region,Kennedy,202,221
-#N/A,#N/A,Mount Isa Region,Kennedy,203,225
-#N/A,#N/A,Mount Isa Region,Kennedy,131,144
+31502140601,315021406,Mount Isa Surrounds,Kennedy,221,246
+31502140602,315021406,Mount Isa Surrounds,Kennedy,175,186
+31502140603,315021406,Mount Isa Surrounds,Kennedy,230,241
+31502140604,315021406,Mount Isa Surrounds,Kennedy,200,223
+31502140605,315021406,Mount Isa Surrounds,Kennedy,79,84
+31502140606,315021406,Mount Isa Surrounds,Kennedy,172,180
+31502140607,315021406,Mount Isa Surrounds,Kennedy,188,197
+31502140608,315021406,Mount Isa Surrounds,Kennedy,129,145
+31502140609,315021406,Mount Isa Surrounds,Kennedy,202,221
+31502140610,315021406,Mount Isa Surrounds,Kennedy,203,225
+31502140611,315021406,Mount Isa Surrounds,Kennedy,131,144
 31502140701,315021407,Northern Highlands,Kennedy,0,0
 31502140702,315021407,Northern Highlands,Kennedy,133,144
 31502140703,315021407,Northern Highlands,Kennedy,170,189
@@ -6255,25 +6256,25 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31801146412,318011464,Ingham,Kennedy,52,52
 31801146413,318011464,Ingham,Kennedy,71,73
 31801146414,318011464,Ingham,Kennedy,205,209
-#N/A,#N/A,Ingham Region,Kennedy,164,160
-#N/A,#N/A,Ingham Region,Kennedy,244,241
-#N/A,#N/A,Ingham Region,Kennedy,187,185
-#N/A,#N/A,Ingham Region,Kennedy,307,334
-#N/A,#N/A,Ingham Region,Kennedy,346,402
-#N/A,#N/A,Ingham Region,Kennedy,254,248
-#N/A,#N/A,Ingham Region,Kennedy,242,241
-#N/A,#N/A,Ingham Region,Kennedy,226,224
-#N/A,#N/A,Ingham Region,Kennedy,174,172
-#N/A,#N/A,Ingham Region,Kennedy,371,366
-#N/A,#N/A,Ingham Region,Kennedy,223,218
-#N/A,#N/A,Ingham Region,Kennedy,217,215
-#N/A,#N/A,Ingham Region,Kennedy,222,219
-#N/A,#N/A,Ingham Region,Kennedy,388,390
-#N/A,#N/A,Ingham Region,Kennedy,292,289
-#N/A,#N/A,Ingham Region,Kennedy,259,255
-#N/A,#N/A,Ingham Region,Kennedy,255,253
-#N/A,#N/A,Ingham Region,Kennedy,212,227
-#N/A,#N/A,Ingham Region,Kennedy,324,410
+31801146501,318011465,Ingham Surrounds,Kennedy,164,160
+31801146502,318011465,Ingham Surrounds,Kennedy,244,241
+31801146503,318011465,Ingham Surrounds,Kennedy,187,185
+31801146504,318011465,Ingham Surrounds,Kennedy,307,334
+31801146505,318011465,Ingham Surrounds,Kennedy,346,402
+31801146506,318011465,Ingham Surrounds,Kennedy,254,248
+31801146507,318011465,Ingham Surrounds,Kennedy,242,241
+31801146508,318011465,Ingham Surrounds,Kennedy,226,224
+31801146509,318011465,Ingham Surrounds,Kennedy,174,172
+31801146510,318011465,Ingham Surrounds,Kennedy,371,366
+31801146512,318011465,Ingham Surrounds,Kennedy,223,218
+31801146513,318011465,Ingham Surrounds,Kennedy,217,215
+31801146514,318011465,Ingham Surrounds,Kennedy,222,219
+31801146515,318011465,Ingham Surrounds,Kennedy,388,390
+31801146516,318011465,Ingham Surrounds,Kennedy,292,289
+31801146517,318011465,Ingham Surrounds,Kennedy,259,255
+31801146518,318011465,Ingham Surrounds,Kennedy,255,253
+31801146519,318011465,Ingham Surrounds,Kennedy,212,227
+31801146520,318011465,Ingham Surrounds,Kennedy,324,410
 31802147001,318021470,Bohle Plains,Kennedy,243,266
 31802147002,318021470,Bohle Plains,Kennedy,257,281
 31802147007,318021470,Bohle Plains,Kennedy,156,171
@@ -6287,50 +6288,50 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31802148901,318021489,Townsville - South,Kennedy,346,361
 31802148902,318021489,Townsville - South,Kennedy,326,341
 31802149113,318021491,Wulguru - Roseneath,Kennedy,184,200
-30602114413,306021144,Bentley Park,Kennedy,#VALUE!,#VALUE!
-30602114413,306021144,Bentley Park,Kennedy,#VALUE!,#VALUE!
-30602114718,306021147,Edmonton,Kennedy,#VALUE!,#VALUE!
-30602114718,306021147,Edmonton,Kennedy,#VALUE!,#VALUE!
-30602114719,306021147,Edmonton,Kennedy,#VALUE!,#VALUE!
-30602114719,306021147,Edmonton,Kennedy,#VALUE!,#VALUE!
-30602114802,306021148,Gordonvale - Trinity,Kennedy,#VALUE!,#VALUE!
-30602114802,306021148,Gordonvale - Trinity,Kennedy,#VALUE!,#VALUE!
-30602114820,306021148,Gordonvale - Trinity,Kennedy,#VALUE!,#VALUE!
-30602114820,306021148,Gordonvale - Trinity,Kennedy,#VALUE!,#VALUE!
-30602115001,306021150,Lamb Range,Kennedy,#VALUE!,#VALUE!
-30602115307,306021153,Mount Sheridan,Kennedy,#VALUE!,#VALUE!
-30603116302,306031163,Yarrabah,Kennedy,#VALUE!,#VALUE!
-30605116801,306051168,Kuranda,Kennedy,#VALUE!,#VALUE!
-30605116812,306051168,Kuranda,Kennedy,#VALUE!,#VALUE!
-30605116814,306051168,Kuranda,Kennedy,#VALUE!,#VALUE!
-30605116814,306051168,Kuranda,Kennedy,#VALUE!,#VALUE!
-30605116815,306051168,Kuranda,Kennedy,#VALUE!,#VALUE!
-31501140007,315011400,Tablelands,Kennedy,#VALUE!,#VALUE!
-31502140408,315021404,Carpentaria,Kennedy,#VALUE!,#VALUE!
-31502140711,315021407,Northern Highlands,Kennedy,#VALUE!,#VALUE!
-31503140808,315031408,Barcaldine - Blackall,Kennedy,#VALUE!,#VALUE!
-31503141006,315031410,Far Central West,Kennedy,#VALUE!,#VALUE!
-31801146114,318011461,Burdekin,Kennedy,#VALUE!,#VALUE!
-31801146115,318011461,Burdekin,Kennedy,#VALUE!,#VALUE!
-31801146115,318011461,Burdekin,Kennedy,#VALUE!,#VALUE!
-31802147005,318021470,Bohle Plains,Kennedy,#VALUE!,#VALUE!
-31802147005,318021470,Bohle Plains,Kennedy,#VALUE!,#VALUE!
-31802147006,318021470,Bohle Plains,Kennedy,#VALUE!,#VALUE!
-31802147417,318021474,Douglas,Kennedy,#VALUE!,#VALUE!
-31802148005,318021480,Kelso,Kennedy,#VALUE!,#VALUE!
-31802148609,318021486,Northern Beaches,Kennedy,#VALUE!,#VALUE!
-31802148614,318021486,Northern Beaches,Kennedy,#VALUE!,#VALUE!
-31802148903,318021489,Townsville - South,Kennedy,#VALUE!,#VALUE!
-31802148904,318021489,Townsville - South,Kennedy,#VALUE!,#VALUE!
-31802148906,318021489,Townsville - South,Kennedy,#VALUE!,#VALUE!
-31802148906,318021489,Townsville - South,Kennedy,#VALUE!,#VALUE!
-31802148909,318021489,Townsville - South,Kennedy,#VALUE!,#VALUE!
-31802148910,318021489,Townsville - South,Kennedy,#VALUE!,#VALUE!
-31802148912,318021489,Townsville - South,Kennedy,#VALUE!,#VALUE!
-31802148913,318021489,Townsville - South,Kennedy,#VALUE!,#VALUE!
-31802149114,318021491,Wulguru - Roseneath,Kennedy,#VALUE!,#VALUE!
-31802149115,318021491,Wulguru - Roseneath,Kennedy,#VALUE!,#VALUE!
-31802149116,318021491,Wulguru - Roseneath,Kennedy,#VALUE!,#VALUE!
+30602114413,306021144,Bentley Park,Kennedy,0,0
+30602114413,306021144,Bentley Park,Kennedy,0,0
+30602114718,306021147,Edmonton,Kennedy,0,0
+30602114718,306021147,Edmonton,Kennedy,0,0
+30602114719,306021147,Edmonton,Kennedy,24,26
+30602114719,306021147,Edmonton,Kennedy,24,26
+30602114802,306021148,Gordonvale - Trinity,Kennedy,4,4
+30602114802,306021148,Gordonvale - Trinity,Kennedy,4,4
+30602114820,306021148,Gordonvale - Trinity,Kennedy,172,181
+30602114820,306021148,Gordonvale - Trinity,Kennedy,172,181
+30602115001,306021150,Lamb Range,Kennedy,0,0
+30602115307,306021153,Mount Sheridan,Kennedy,11,11
+30603116302,306031163,Yarrabah,Kennedy,368,414
+30605116801,306051168,Kuranda,Kennedy,0,0
+30605116812,306051168,Kuranda,Kennedy,134,134
+30605116814,306051168,Kuranda,Kennedy,4,4
+30605116814,306051168,Kuranda,Kennedy,4,4
+30605116815,306051168,Kuranda,Kennedy,57,57
+31501140007,315011400,Tablelands,Kennedy,10,10
+31502140408,315021404,Carpentaria,Kennedy,107,121
+31502140711,315021407,Northern Highlands,Kennedy,0,0
+31503140808,315031408,Barcaldine - Blackall,Kennedy,0,0
+31503141006,315031410,Far Central West,Kennedy,1,1
+31801146114,318011461,Burdekin,Kennedy,96,96
+31801146115,318011461,Burdekin,Kennedy,32,32
+31801146115,318011461,Burdekin,Kennedy,32,32
+31802147005,318021470,Bohle Plains,Kennedy,174,176
+31802147005,318021470,Bohle Plains,Kennedy,174,176
+31802147006,318021470,Bohle Plains,Kennedy,92,101
+31802147417,318021474,Douglas,Kennedy,1,0
+31802148005,318021480,Kelso,Kennedy,0,0
+31802148609,318021486,Northern Beaches,Kennedy,142,151
+31802148614,318021486,Northern Beaches,Kennedy,0,0
+31802148903,318021489,Townsville - South,Kennedy,57,57
+31802148904,318021489,Townsville - South,Kennedy,0,0
+31802148906,318021489,Townsville - South,Kennedy,282,316
+31802148906,318021489,Townsville - South,Kennedy,282,316
+31802148909,318021489,Townsville - South,Kennedy,152,170
+31802148910,318021489,Townsville - South,Kennedy,82,81
+31802148912,318021489,Townsville - South,Kennedy,135,139
+31802148913,318021489,Townsville - South,Kennedy,7,7
+31802149114,318021491,Wulguru - Roseneath,Kennedy,25,26
+31802149115,318021491,Wulguru - Roseneath,Kennedy,125,135
+31802149116,318021491,Wulguru - Roseneath,Kennedy,4,4
 30601113801,306011138,Brinsmead,Leichhardt,260,275
 30601113802,306011138,Brinsmead,Leichhardt,280,281
 30601113803,306011138,Brinsmead,Leichhardt,353,393
@@ -6745,16 +6746,16 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31501140306,315011403,Weipa,Leichhardt,278,309
 31501140307,315011403,Weipa,Leichhardt,0,0
 31501140308,315011403,Weipa,Leichhardt,215,242
-30602114802,306021148,Gordonvale - Trinity,Leichhardt,#VALUE!,#VALUE!
-30602115001,306021150,Lamb Range,Leichhardt,#VALUE!,#VALUE!
-30602115307,306021153,Mount Sheridan,Leichhardt,#VALUE!,#VALUE!
-30603116302,306031163,Yarrabah,Leichhardt,#VALUE!,#VALUE!
-30605116801,306051168,Kuranda,Leichhardt,#VALUE!,#VALUE!
-30605116812,306051168,Kuranda,Leichhardt,#VALUE!,#VALUE!
-30605116814,306051168,Kuranda,Leichhardt,#VALUE!,#VALUE!
-30605116815,306051168,Kuranda,Leichhardt,#VALUE!,#VALUE!
-31501140007,315011400,Tablelands,Leichhardt,#VALUE!,#VALUE!
-31502140408,315021404,Carpentaria,Leichhardt,#VALUE!,#VALUE!
+30602114802,306021148,Gordonvale - Trinity,Leichhardt,4,4
+30602115001,306021150,Lamb Range,Leichhardt,0,0
+30602115307,306021153,Mount Sheridan,Leichhardt,11,11
+30603116302,306031163,Yarrabah,Leichhardt,368,414
+30605116801,306051168,Kuranda,Leichhardt,0,0
+30605116812,306051168,Kuranda,Leichhardt,134,134
+30605116814,306051168,Kuranda,Leichhardt,4,4
+30605116815,306051168,Kuranda,Leichhardt,57,57
+31501140007,315011400,Tablelands,Leichhardt,10,10
+31502140408,315021404,Carpentaria,Leichhardt,107,121
 30201102301,302011023,Bridgeman Downs,Lilley,366,382
 30201102302,302011023,Bridgeman Downs,Lilley,260,266
 30201102303,302011023,Bridgeman Downs,Lilley,231,243
@@ -7101,22 +7102,22 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30204104620,302041046,Zillmere,Lilley,284,283
 30204104621,302041046,Zillmere,Lilley,9,9
 30204104622,302041046,Zillmere,Lilley,249,273
-30201102311,302011023,Bridgeman Downs,Lilley,#VALUE!,#VALUE!
-30201102312,302011023,Bridgeman Downs,Lilley,#VALUE!,#VALUE!
-30201102313,302011023,Bridgeman Downs,Lilley,#VALUE!,#VALUE!
-30201102313,302011023,Bridgeman Downs,Lilley,#VALUE!,#VALUE!
-30201102314,302011023,Bridgeman Downs,Lilley,#VALUE!,#VALUE!
-30201102516,302011025,Everton Park,Lilley,#VALUE!,#VALUE!
-30201102610,302011026,McDowall,Lilley,#VALUE!,#VALUE!
-30201102617,302011026,McDowall,Lilley,#VALUE!,#VALUE!
-30201102618,302011026,McDowall,Lilley,#VALUE!,#VALUE!
-30202102719,302021027,Aspley,Lilley,#VALUE!,#VALUE!
-30202103202,302021032,Stafford,Lilley,#VALUE!,#VALUE!
-30202103217,302021032,Stafford,Lilley,#VALUE!,#VALUE!
-30203103601,302031036,Brisbane Airport,Lilley,#VALUE!,#VALUE!
-30203103702,302031037,Eagle Farm - Pinkenba,Lilley,#VALUE!,#VALUE!
-30204104517,302041045,Taigum - Fitzgibbon,Lilley,#VALUE!,#VALUE!
-31402138921,314021389,Murrumba Downs - Griffin,Lilley,#VALUE!,#VALUE!
+30201102311,302011023,Bridgeman Downs,Lilley,314,344
+30201102312,302011023,Bridgeman Downs,Lilley,341,363
+30201102313,302011023,Bridgeman Downs,Lilley,397,425
+30201102313,302011023,Bridgeman Downs,Lilley,397,425
+30201102314,302011023,Bridgeman Downs,Lilley,196,200
+30201102516,302011025,Everton Park,Lilley,3,3
+30201102610,302011026,McDowall,Lilley,281,289
+30201102617,302011026,McDowall,Lilley,210,230
+30201102618,302011026,McDowall,Lilley,262,279
+30202102719,302021027,Aspley,Lilley,0,0
+30202103202,302021032,Stafford,Lilley,0,0
+30202103217,302021032,Stafford,Lilley,5,6
+30203103601,302031036,Brisbane Airport,Lilley,1,1
+30203103702,302031037,Eagle Farm - Pinkenba,Lilley,357,357
+30204104517,302041045,Taigum - Fitzgibbon,Lilley,4,4
+31402138921,314021389,Murrumba Downs - Griffin,Lilley,3134,3277
 31301136201,313011362,Beachmere - Sandstone Point,Longman,340,343
 31301136202,313011362,Beachmere - Sandstone Point,Longman,211,217
 31301136203,313011362,Beachmere - Sandstone Point,Longman,826,887
@@ -7204,54 +7205,54 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31302136408,313021364,Burpengary - East,Longman,299,343
 31302136409,313021364,Burpengary - East,Longman,242,262
 31302136410,313021364,Burpengary - East,Longman,161,177
-#N/A,#N/A,Caboolture,Longman,283,301
-#N/A,#N/A,Caboolture,Longman,260,277
-#N/A,#N/A,Caboolture,Longman,198,211
-#N/A,#N/A,Caboolture,Longman,323,330
-#N/A,#N/A,Caboolture,Longman,249,272
-#N/A,#N/A,Caboolture,Longman,193,203
-#N/A,#N/A,Caboolture,Longman,665,703
-#N/A,#N/A,Caboolture,Longman,429,451
-#N/A,#N/A,Caboolture,Longman,233,240
-#N/A,#N/A,Caboolture,Longman,436,462
-#N/A,#N/A,Caboolture,Longman,290,309
-#N/A,#N/A,Caboolture,Longman,85,88
-#N/A,#N/A,Caboolture,Longman,451,479
-#N/A,#N/A,Caboolture,Longman,187,204
-#N/A,#N/A,Caboolture,Longman,325,336
-#N/A,#N/A,Caboolture,Longman,795,838
-#N/A,#N/A,Caboolture,Longman,365,400
-#N/A,#N/A,Caboolture,Longman,216,222
-#N/A,#N/A,Caboolture,Longman,187,192
-#N/A,#N/A,Caboolture,Longman,312,333
-#N/A,#N/A,Caboolture,Longman,344,354
-#N/A,#N/A,Caboolture,Longman,179,180
-#N/A,#N/A,Caboolture,Longman,266,284
-#N/A,#N/A,Caboolture,Longman,929,996
-#N/A,#N/A,Caboolture,Longman,459,486
-#N/A,#N/A,Caboolture,Longman,110,115
-#N/A,#N/A,Caboolture,Longman,357,391
-#N/A,#N/A,Caboolture,Longman,364,398
-#N/A,#N/A,Caboolture,Longman,675,688
-#N/A,#N/A,Caboolture,Longman,358,365
-#N/A,#N/A,Caboolture,Longman,429,480
-#N/A,#N/A,Caboolture,Longman,357,389
-#N/A,#N/A,Caboolture,Longman,380,404
-#N/A,#N/A,Caboolture,Longman,641,712
-#N/A,#N/A,Caboolture,Longman,387,431
-#N/A,#N/A,Caboolture,Longman,142,151
-#N/A,#N/A,Caboolture,Longman,440,446
-#N/A,#N/A,Caboolture,Longman,481,500
-#N/A,#N/A,Caboolture,Longman,304,310
-#N/A,#N/A,Caboolture,Longman,297,310
-#N/A,#N/A,Caboolture,Longman,294,297
-#N/A,#N/A,Caboolture,Longman,272,291
-#N/A,#N/A,Caboolture,Longman,247,269
-#N/A,#N/A,Caboolture,Longman,205,220
-#N/A,#N/A,Caboolture,Longman,410,445
-#N/A,#N/A,Caboolture,Longman,228,242
-#N/A,#N/A,Caboolture,Longman,145,152
-#N/A,#N/A,Caboolture,Longman,323,345
+3136501,#N/A,Caboolture,Longman,283,301
+3136502,#N/A,Caboolture,Longman,260,277
+3136503,#N/A,Caboolture,Longman,198,211
+3136504,#N/A,Caboolture,Longman,323,330
+3136505,#N/A,Caboolture,Longman,249,272
+3136506,#N/A,Caboolture,Longman,193,203
+3136507,#N/A,Caboolture,Longman,665,703
+3136508,#N/A,Caboolture,Longman,429,451
+3136509,#N/A,Caboolture,Longman,233,240
+3136510,#N/A,Caboolture,Longman,436,462
+3136511,#N/A,Caboolture,Longman,290,309
+3136512,#N/A,Caboolture,Longman,85,88
+3136513,#N/A,Caboolture,Longman,451,479
+3136514,#N/A,Caboolture,Longman,187,204
+3136515,#N/A,Caboolture,Longman,325,336
+3136516,#N/A,Caboolture,Longman,795,838
+3136517,#N/A,Caboolture,Longman,365,400
+3136518,#N/A,Caboolture,Longman,216,222
+3136519,#N/A,Caboolture,Longman,187,192
+3136520,#N/A,Caboolture,Longman,312,333
+3136521,#N/A,Caboolture,Longman,344,354
+3136522,#N/A,Caboolture,Longman,179,180
+3136523,#N/A,Caboolture,Longman,266,284
+3136524,#N/A,Caboolture,Longman,929,996
+3136525,#N/A,Caboolture,Longman,459,486
+3136526,#N/A,Caboolture,Longman,110,115
+3136527,#N/A,Caboolture,Longman,357,391
+3136528,#N/A,Caboolture,Longman,364,398
+3136529,#N/A,Caboolture,Longman,675,688
+3136530,#N/A,Caboolture,Longman,358,365
+3136531,#N/A,Caboolture,Longman,429,480
+3136532,#N/A,Caboolture,Longman,357,389
+3136533,#N/A,Caboolture,Longman,380,404
+3136534,#N/A,Caboolture,Longman,641,712
+3136535,#N/A,Caboolture,Longman,387,431
+3136536,#N/A,Caboolture,Longman,142,151
+3136537,#N/A,Caboolture,Longman,440,446
+3136538,#N/A,Caboolture,Longman,481,500
+3136539,#N/A,Caboolture,Longman,304,310
+3136540,#N/A,Caboolture,Longman,297,310
+3136541,#N/A,Caboolture,Longman,294,297
+3136542,#N/A,Caboolture,Longman,272,291
+3136543,#N/A,Caboolture,Longman,247,269
+3136544,#N/A,Caboolture,Longman,205,220
+3136545,#N/A,Caboolture,Longman,410,445
+3136546,#N/A,Caboolture,Longman,228,242
+3136547,#N/A,Caboolture,Longman,145,152
+3136548,#N/A,Caboolture,Longman,323,345
 31302136601,313021366,Caboolture - South,Longman,306,352
 31302136602,313021366,Caboolture - South,Longman,194,212
 31302136603,313021366,Caboolture - South,Longman,258,268
@@ -7430,34 +7431,34 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31304137607,313041376,Upper Caboolture,Longman,221,232
 31304137608,313041376,Upper Caboolture,Longman,251,266
 31304137609,313041376,Upper Caboolture,Longman,344,370
-#N/A,#N/A,Dakabin - Kallangur,Longman,250,265
-#N/A,#N/A,Dakabin - Kallangur,Longman,336,367
-#N/A,#N/A,Dakabin - Kallangur,Longman,490,548
-#N/A,#N/A,Dakabin - Kallangur,Longman,360,386
-#N/A,#N/A,Dakabin - Kallangur,Longman,195,218
-#N/A,#N/A,Dakabin - Kallangur,Longman,165,181
-#N/A,#N/A,Dakabin - Kallangur,Longman,998,1029
-#N/A,#N/A,Dakabin - Kallangur,Longman,296,318
-#N/A,#N/A,Dakabin - Kallangur,Longman,200,217
-#N/A,#N/A,Dakabin - Kallangur,Longman,365,420
-#N/A,#N/A,Dakabin - Kallangur,Longman,226,246
-#N/A,#N/A,Dakabin - Kallangur,Longman,361,409
-#N/A,#N/A,Dakabin - Kallangur,Longman,153,163
-#N/A,#N/A,Dakabin - Kallangur,Longman,176,187
-#N/A,#N/A,Dakabin - Kallangur,Longman,688,791
-#N/A,#N/A,Dakabin - Kallangur,Longman,519,566
-#N/A,#N/A,Dakabin - Kallangur,Longman,206,221
-#N/A,#N/A,Dakabin - Kallangur,Longman,194,201
-#N/A,#N/A,Dakabin - Kallangur,Longman,589,686
-#N/A,#N/A,Dakabin - Kallangur,Longman,208,230
-#N/A,#N/A,Dakabin - Kallangur,Longman,152,166
-#N/A,#N/A,Dakabin - Kallangur,Longman,155,164
-31002127814,310021278,Esk,Longman,#VALUE!,#VALUE!
-31303137005,313031370,Kilcoy,Longman,#VALUE!,#VALUE!
-31303137113,313031371,Woodford - D'Aguilar,Longman,#VALUE!,#VALUE!
-#N/A,#N/A,Dakabin - Kallangur,Longman,#VALUE!,#VALUE!
-31402138918,314021389,Murrumba Downs - Griffin,Longman,#VALUE!,#VALUE!
-31606144014,316061440,Caloundra Hinterland,Longman,#VALUE!,#VALUE!
+3138807,#N/A,Dakabin - Kallangur,Longman,250,265
+3138808,#N/A,Dakabin - Kallangur,Longman,336,367
+3138809,#N/A,Dakabin - Kallangur,Longman,490,548
+3138810,#N/A,Dakabin - Kallangur,Longman,360,386
+3138811,#N/A,Dakabin - Kallangur,Longman,195,218
+3138812,#N/A,Dakabin - Kallangur,Longman,165,181
+3138813,#N/A,Dakabin - Kallangur,Longman,998,1029
+3138814,#N/A,Dakabin - Kallangur,Longman,296,318
+3138818,#N/A,Dakabin - Kallangur,Longman,200,217
+3138819,#N/A,Dakabin - Kallangur,Longman,365,420
+3138820,#N/A,Dakabin - Kallangur,Longman,226,246
+3138821,#N/A,Dakabin - Kallangur,Longman,361,409
+3138822,#N/A,Dakabin - Kallangur,Longman,153,163
+3138823,#N/A,Dakabin - Kallangur,Longman,176,187
+3138824,#N/A,Dakabin - Kallangur,Longman,688,791
+3138841,#N/A,Dakabin - Kallangur,Longman,519,566
+3138842,#N/A,Dakabin - Kallangur,Longman,206,221
+3138843,#N/A,Dakabin - Kallangur,Longman,194,201
+3138844,#N/A,Dakabin - Kallangur,Longman,589,686
+3138846,#N/A,Dakabin - Kallangur,Longman,208,230
+3138847,#N/A,Dakabin - Kallangur,Longman,152,166
+3138848,#N/A,Dakabin - Kallangur,Longman,155,164
+31002127814,310021278,Esk,Longman,170,170
+31303137005,313031370,Kilcoy,Longman,368,395
+31303137113,313031371,Woodford - D'Aguilar,Longman,449,470
+3138828,#N/A,Dakabin - Kallangur,Longman,200,224
+31402138918,314021389,Murrumba Downs - Griffin,Longman,235,257
+31606144014,316061440,Caloundra Hinterland,Longman,276,282
 30701117101,307011171,Balonne,Maranoa,323,340
 30701117102,307011171,Balonne,Maranoa,197,204
 30701117103,307011171,Balonne,Maranoa,204,211
@@ -7552,24 +7553,24 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30701117616,307011176,Roma,Maranoa,347,377
 30701117617,307011176,Roma,Maranoa,330,355
 30701117618,307011176,Roma,Maranoa,270,334
-#N/A,#N/A,Roma Region,Maranoa,165,168
-#N/A,#N/A,Roma Region,Maranoa,103,105
-#N/A,#N/A,Roma Region,Maranoa,168,232
-#N/A,#N/A,Roma Region,Maranoa,202,272
-#N/A,#N/A,Roma Region,Maranoa,160,163
-#N/A,#N/A,Roma Region,Maranoa,322,327
-#N/A,#N/A,Roma Region,Maranoa,159,163
-#N/A,#N/A,Roma Region,Maranoa,300,310
-#N/A,#N/A,Roma Region,Maranoa,220,226
-#N/A,#N/A,Roma Region,Maranoa,241,243
-#N/A,#N/A,Roma Region,Maranoa,179,183
-#N/A,#N/A,Roma Region,Maranoa,387,393
-#N/A,#N/A,Roma Region,Maranoa,293,299
-#N/A,#N/A,Roma Region,Maranoa,97,99
-#N/A,#N/A,Roma Region,Maranoa,274,281
-#N/A,#N/A,Roma Region,Maranoa,204,210
-#N/A,#N/A,Roma Region,Maranoa,417,425
-#N/A,#N/A,Roma Region,Maranoa,237,241
+30701117701,307011177,Roma Surrounds,Maranoa,165,168
+30701117702,307011177,Roma Surrounds,Maranoa,103,105
+30701117703,307011177,Roma Surrounds,Maranoa,168,232
+30701117704,307011177,Roma Surrounds,Maranoa,202,272
+30701117705,307011177,Roma Surrounds,Maranoa,160,163
+30701117706,307011177,Roma Surrounds,Maranoa,322,327
+30701117707,307011177,Roma Surrounds,Maranoa,159,163
+30701117708,307011177,Roma Surrounds,Maranoa,300,310
+30701117709,307011177,Roma Surrounds,Maranoa,220,226
+30701117710,307011177,Roma Surrounds,Maranoa,241,243
+30701117711,307011177,Roma Surrounds,Maranoa,179,183
+30701117712,307011177,Roma Surrounds,Maranoa,387,393
+30701117713,307011177,Roma Surrounds,Maranoa,293,299
+30701117714,307011177,Roma Surrounds,Maranoa,97,99
+30701117715,307011177,Roma Surrounds,Maranoa,274,281
+30701117716,307011177,Roma Surrounds,Maranoa,204,210
+30701117718,307011177,Roma Surrounds,Maranoa,417,425
+30701117719,307011177,Roma Surrounds,Maranoa,237,241
 30701117801,307011178,Tara,Maranoa,236,249
 30701117802,307011178,Tara,Maranoa,253,320
 30701117803,307011178,Tara,Maranoa,209,216
@@ -7696,20 +7697,20 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30703118716,307031187,Stanthorpe,Maranoa,166,172
 30703118717,307031187,Stanthorpe,Maranoa,146,146
 30703118718,307031187,Stanthorpe,Maranoa,308,305
-#N/A,#N/A,Stanthorpe Region,Maranoa,253,320
-#N/A,#N/A,Stanthorpe Region,Maranoa,338,343
-#N/A,#N/A,Stanthorpe Region,Maranoa,257,276
-#N/A,#N/A,Stanthorpe Region,Maranoa,113,118
-#N/A,#N/A,Stanthorpe Region,Maranoa,218,219
-#N/A,#N/A,Stanthorpe Region,Maranoa,337,346
-#N/A,#N/A,Stanthorpe Region,Maranoa,403,411
-#N/A,#N/A,Stanthorpe Region,Maranoa,300,304
-#N/A,#N/A,Stanthorpe Region,Maranoa,332,398
-#N/A,#N/A,Stanthorpe Region,Maranoa,237,245
-#N/A,#N/A,Stanthorpe Region,Maranoa,357,367
-#N/A,#N/A,Stanthorpe Region,Maranoa,378,380
-#N/A,#N/A,Stanthorpe Region,Maranoa,217,221
-#N/A,#N/A,Stanthorpe Region,Maranoa,484,505
+30703118801,307031188,Stanthorpe Surrounds,Maranoa,253,320
+30703118802,307031188,Stanthorpe Surrounds,Maranoa,338,343
+30703118803,307031188,Stanthorpe Surrounds,Maranoa,257,276
+30703118804,307031188,Stanthorpe Surrounds,Maranoa,113,118
+30703118805,307031188,Stanthorpe Surrounds,Maranoa,218,219
+30703118806,307031188,Stanthorpe Surrounds,Maranoa,337,346
+30703118807,307031188,Stanthorpe Surrounds,Maranoa,403,411
+30703118808,307031188,Stanthorpe Surrounds,Maranoa,300,304
+30703118809,307031188,Stanthorpe Surrounds,Maranoa,332,398
+30703118810,307031188,Stanthorpe Surrounds,Maranoa,237,245
+30703118811,307031188,Stanthorpe Surrounds,Maranoa,357,367
+30703118812,307031188,Stanthorpe Surrounds,Maranoa,378,380
+30703118813,307031188,Stanthorpe Surrounds,Maranoa,217,221
+30703118814,307031188,Stanthorpe Surrounds,Maranoa,484,505
 30703118901,307031189,Warwick,Maranoa,208,233
 30703118902,307031189,Warwick,Maranoa,268,290
 30703118903,307031189,Warwick,Maranoa,316,312
@@ -7835,20 +7836,20 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31902150523,319021505,Kingaroy,Maranoa,251,295
 31902150524,319021505,Kingaroy,Maranoa,258,259
 31902150525,319021505,Kingaroy,Maranoa,349,381
-#N/A,#N/A,Kingaroy Region - South,Maranoa,143,146
-#N/A,#N/A,Kingaroy Region - South,Maranoa,229,237
-#N/A,#N/A,Kingaroy Region - South,Maranoa,202,208
-#N/A,#N/A,Kingaroy Region - South,Maranoa,235,248
-#N/A,#N/A,Kingaroy Region - South,Maranoa,225,233
-#N/A,#N/A,Kingaroy Region - South,Maranoa,117,120
-#N/A,#N/A,Kingaroy Region - South,Maranoa,210,218
-#N/A,#N/A,Kingaroy Region - South,Maranoa,217,228
-#N/A,#N/A,Kingaroy Region - South,Maranoa,231,238
-#N/A,#N/A,Kingaroy Region - South,Maranoa,116,137
-#N/A,#N/A,Kingaroy Region - South,Maranoa,130,156
-#N/A,#N/A,Kingaroy Region - South,Maranoa,286,296
-#N/A,#N/A,Kingaroy Region - South,Maranoa,220,230
-#N/A,#N/A,Kingaroy Region - South,Maranoa,347,354
+31902150701,319021507,Kingaroy Surrounds - South,Maranoa,143,146
+31902150702,319021507,Kingaroy Surrounds - South,Maranoa,229,237
+31902150703,319021507,Kingaroy Surrounds - South,Maranoa,202,208
+31902150704,319021507,Kingaroy Surrounds - South,Maranoa,235,248
+31902150705,319021507,Kingaroy Surrounds - South,Maranoa,225,233
+31902150706,319021507,Kingaroy Surrounds - South,Maranoa,117,120
+31902150707,319021507,Kingaroy Surrounds - South,Maranoa,210,218
+31902150708,319021507,Kingaroy Surrounds - South,Maranoa,217,228
+31902150709,319021507,Kingaroy Surrounds - South,Maranoa,231,238
+31902150710,319021507,Kingaroy Surrounds - South,Maranoa,116,137
+31902150711,319021507,Kingaroy Surrounds - South,Maranoa,130,156
+31902150712,319021507,Kingaroy Surrounds - South,Maranoa,286,296
+31902150713,319021507,Kingaroy Surrounds - South,Maranoa,220,230
+31902150714,319021507,Kingaroy Surrounds - South,Maranoa,347,354
 31902150901,319021509,Nanango,Maranoa,259,260
 31902150902,319021509,Nanango,Maranoa,249,336
 31902150903,319021509,Nanango,Maranoa,227,244
@@ -7876,30 +7877,30 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31902150925,319021509,Nanango,Maranoa,355,352
 31902150926,319021509,Nanango,Maranoa,153,151
 31902150927,319021509,Nanango,Maranoa,262,258
-#N/A,#N/A,Roma Region,Maranoa,#VALUE!,#VALUE!
-30702117909,307021179,Crows Nest - Rosalie,Maranoa,#VALUE!,#VALUE!
-30702117911,307021179,Crows Nest - Rosalie,Maranoa,#VALUE!,#VALUE!
-30702117913,307021179,Crows Nest - Rosalie,Maranoa,#VALUE!,#VALUE!
-30702117918,307021179,Crows Nest - Rosalie,Maranoa,#VALUE!,#VALUE!
-30702117919,307021179,Crows Nest - Rosalie,Maranoa,#VALUE!,#VALUE!
-30702117920,307021179,Crows Nest - Rosalie,Maranoa,#VALUE!,#VALUE!
-30702117920,307021179,Crows Nest - Rosalie,Maranoa,#VALUE!,#VALUE!
-30702117920,307021179,Crows Nest - Rosalie,Maranoa,#VALUE!,#VALUE!
-30702117922,307021179,Crows Nest - Rosalie,Maranoa,#VALUE!,#VALUE!
-30702117924,307021179,Crows Nest - Rosalie,Maranoa,#VALUE!,#VALUE!
-30702118024,307021180,Jondaryan,Maranoa,#VALUE!,#VALUE!
-30702118111,307021181,Millmerran,Maranoa,#VALUE!,#VALUE!
-30702118317,307021183,Wambo,Maranoa,#VALUE!,#VALUE!
-30702118318,307021183,Wambo,Maranoa,#VALUE!,#VALUE!
-30703118407,307031184,Clifton - Greenmount,Maranoa,#VALUE!,#VALUE!
-30703118413,307031184,Clifton - Greenmount,Maranoa,#VALUE!,#VALUE!
-30703118507,307031185,Southern Downs - East,Maranoa,#VALUE!,#VALUE!
-30804152809,308041528,Banana,Maranoa,#VALUE!,#VALUE!
-31002127714,310021277,Boonah,Maranoa,#VALUE!,#VALUE!
-31502140711,315021407,Northern Highlands,Maranoa,#VALUE!,#VALUE!
-31503140808,315031408,Barcaldine - Blackall,Maranoa,#VALUE!,#VALUE!
-31503141006,315031410,Far Central West,Maranoa,#VALUE!,#VALUE!
-#N/A,#N/A,Kingaroy Region - North,Maranoa,#VALUE!,#VALUE!
+30701117717,307011177,Roma Surrounds,Maranoa,148,150
+30702117909,307021179,Crows Nest - Rosalie,Maranoa,2,2
+30702117911,307021179,Crows Nest - Rosalie,Maranoa,159,158
+30702117913,307021179,Crows Nest - Rosalie,Maranoa,211,210
+30702117918,307021179,Crows Nest - Rosalie,Maranoa,154,154
+30702117919,307021179,Crows Nest - Rosalie,Maranoa,156,156
+30702117920,307021179,Crows Nest - Rosalie,Maranoa,49,49
+30702117920,307021179,Crows Nest - Rosalie,Maranoa,49,49
+30702117920,307021179,Crows Nest - Rosalie,Maranoa,49,49
+30702117922,307021179,Crows Nest - Rosalie,Maranoa,0,0
+30702117924,307021179,Crows Nest - Rosalie,Maranoa,114,120
+30702118024,307021180,Jondaryan,Maranoa,191,197
+30702118111,307021181,Millmerran,Maranoa,196,208
+30702118317,307021183,Wambo,Maranoa,10,11
+30702118318,307021183,Wambo,Maranoa,5,5
+30703118407,307031184,Clifton - Greenmount,Maranoa,120,132
+30703118413,307031184,Clifton - Greenmount,Maranoa,106,106
+30703118507,307031185,Southern Downs - East,Maranoa,154,155
+30804152809,308041528,Banana,Maranoa,182,182
+31002127714,310021277,Boonah,Maranoa,257,266
+31502140711,315021407,Northern Highlands,Maranoa,0,0
+31503140808,315031408,Barcaldine - Blackall,Maranoa,0,0
+31503141006,315031410,Far Central West,Maranoa,1,1
+31902150617,319021506,Kingaroy Surrounds - North,Maranoa,9,9
 30901122501,309011225,Burleigh Heads,Mcpherson,240,244
 30901122502,309011225,Burleigh Heads,Mcpherson,186,194
 30901122503,309011225,Burleigh Heads,Mcpherson,217,226
@@ -8162,57 +8163,57 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30908126009,309081260,Merrimac,Mcpherson,165,173
 30908126010,309081260,Merrimac,Mcpherson,368,397
 30908126011,309081260,Merrimac,Mcpherson,269,291
-#N/A,#N/A,Robina,Mcpherson,232,244
-#N/A,#N/A,Robina,Mcpherson,289,297
-#N/A,#N/A,Robina,Mcpherson,322,329
-#N/A,#N/A,Robina,Mcpherson,235,242
-#N/A,#N/A,Robina,Mcpherson,419,441
-#N/A,#N/A,Robina,Mcpherson,353,375
-#N/A,#N/A,Robina,Mcpherson,236,245
-#N/A,#N/A,Robina,Mcpherson,212,223
-#N/A,#N/A,Robina,Mcpherson,167,178
-#N/A,#N/A,Robina,Mcpherson,315,338
-#N/A,#N/A,Robina,Mcpherson,370,388
-#N/A,#N/A,Robina,Mcpherson,493,533
-#N/A,#N/A,Robina,Mcpherson,285,307
-#N/A,#N/A,Robina,Mcpherson,414,433
-#N/A,#N/A,Robina,Mcpherson,432,445
-#N/A,#N/A,Robina,Mcpherson,294,316
-#N/A,#N/A,Robina,Mcpherson,273,288
-#N/A,#N/A,Robina,Mcpherson,449,471
-#N/A,#N/A,Robina,Mcpherson,340,373
-#N/A,#N/A,Robina,Mcpherson,502,525
-#N/A,#N/A,Robina,Mcpherson,257,267
-#N/A,#N/A,Robina,Mcpherson,220,227
-#N/A,#N/A,Robina,Mcpherson,250,265
-#N/A,#N/A,Robina,Mcpherson,386,423
-#N/A,#N/A,Robina,Mcpherson,209,226
-#N/A,#N/A,Robina,Mcpherson,242,256
-#N/A,#N/A,Robina,Mcpherson,395,412
-#N/A,#N/A,Robina,Mcpherson,335,343
-#N/A,#N/A,Robina,Mcpherson,273,294
-#N/A,#N/A,Robina,Mcpherson,231,244
-#N/A,#N/A,Robina,Mcpherson,171,185
-#N/A,#N/A,Robina,Mcpherson,88,92
-#N/A,#N/A,Robina,Mcpherson,305,324
-#N/A,#N/A,Robina,Mcpherson,257,268
-#N/A,#N/A,Robina,Mcpherson,293,300
-#N/A,#N/A,Robina,Mcpherson,387,409
-#N/A,#N/A,Robina,Mcpherson,218,224
-#N/A,#N/A,Robina,Mcpherson,319,333
-#N/A,#N/A,Robina,Mcpherson,168,174
-#N/A,#N/A,Robina,Mcpherson,278,288
-#N/A,#N/A,Robina,Mcpherson,238,248
-#N/A,#N/A,Robina,Mcpherson,262,273
-#N/A,#N/A,Robina,Mcpherson,237,250
-#N/A,#N/A,Robina,Mcpherson,242,244
-#N/A,#N/A,Robina,Mcpherson,282,305
-#N/A,#N/A,Robina,Mcpherson,333,348
-#N/A,#N/A,Robina,Mcpherson,294,302
-#N/A,#N/A,Robina,Mcpherson,322,335
-#N/A,#N/A,Robina,Mcpherson,310,323
-#N/A,#N/A,Robina,Mcpherson,184,196
-#N/A,#N/A,Robina,Mcpherson,322,347
+3126101,#N/A,Robina,Mcpherson,232,244
+3126102,#N/A,Robina,Mcpherson,289,297
+3126103,#N/A,Robina,Mcpherson,322,329
+3126104,#N/A,Robina,Mcpherson,235,242
+3126105,#N/A,Robina,Mcpherson,419,441
+3126106,#N/A,Robina,Mcpherson,353,375
+3126107,#N/A,Robina,Mcpherson,236,245
+3126108,#N/A,Robina,Mcpherson,212,223
+3126109,#N/A,Robina,Mcpherson,167,178
+3126110,#N/A,Robina,Mcpherson,315,338
+3126111,#N/A,Robina,Mcpherson,370,388
+3126112,#N/A,Robina,Mcpherson,493,533
+3126113,#N/A,Robina,Mcpherson,285,307
+3126114,#N/A,Robina,Mcpherson,414,433
+3126115,#N/A,Robina,Mcpherson,432,445
+3126116,#N/A,Robina,Mcpherson,294,316
+3126117,#N/A,Robina,Mcpherson,273,288
+3126118,#N/A,Robina,Mcpherson,449,471
+3126119,#N/A,Robina,Mcpherson,340,373
+3126120,#N/A,Robina,Mcpherson,502,525
+3126121,#N/A,Robina,Mcpherson,257,267
+3126122,#N/A,Robina,Mcpherson,220,227
+3126123,#N/A,Robina,Mcpherson,250,265
+3126124,#N/A,Robina,Mcpherson,386,423
+3126125,#N/A,Robina,Mcpherson,209,226
+3126126,#N/A,Robina,Mcpherson,242,256
+3126127,#N/A,Robina,Mcpherson,395,412
+3126128,#N/A,Robina,Mcpherson,335,343
+3126129,#N/A,Robina,Mcpherson,273,294
+3126130,#N/A,Robina,Mcpherson,231,244
+3126131,#N/A,Robina,Mcpherson,171,185
+3126132,#N/A,Robina,Mcpherson,88,92
+3126133,#N/A,Robina,Mcpherson,305,324
+3126134,#N/A,Robina,Mcpherson,257,268
+3126135,#N/A,Robina,Mcpherson,293,300
+3126136,#N/A,Robina,Mcpherson,387,409
+3126137,#N/A,Robina,Mcpherson,218,224
+3126138,#N/A,Robina,Mcpherson,319,333
+3126139,#N/A,Robina,Mcpherson,168,174
+3126140,#N/A,Robina,Mcpherson,278,288
+3126141,#N/A,Robina,Mcpherson,238,248
+3126142,#N/A,Robina,Mcpherson,262,273
+3126143,#N/A,Robina,Mcpherson,237,250
+3126144,#N/A,Robina,Mcpherson,242,244
+3126145,#N/A,Robina,Mcpherson,282,305
+3126146,#N/A,Robina,Mcpherson,333,348
+3126147,#N/A,Robina,Mcpherson,294,302
+3126148,#N/A,Robina,Mcpherson,322,335
+3126149,#N/A,Robina,Mcpherson,310,323
+3126150,#N/A,Robina,Mcpherson,184,196
+3126151,#N/A,Robina,Mcpherson,322,347
 30908126201,309081262,Varsity Lakes,Mcpherson,386,424
 30908126202,309081262,Varsity Lakes,Mcpherson,309,317
 30908126203,309081262,Varsity Lakes,Mcpherson,254,274
@@ -8241,11 +8242,11 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30908126226,309081262,Varsity Lakes,Mcpherson,212,235
 30908126227,309081262,Varsity Lakes,Mcpherson,510,567
 30908126228,309081262,Varsity Lakes,Mcpherson,301,323
-30901122907,309011229,Miami,Mcpherson,#VALUE!,#VALUE!
-30901122916,309011229,Miami,Mcpherson,#VALUE!,#VALUE!
-30905124420,309051244,Mudgeeraba - Bonogin,Mcpherson,#VALUE!,#VALUE!
-30905124433,309051244,Mudgeeraba - Bonogin,Mcpherson,#VALUE!,#VALUE!
-30905124435,309051244,Mudgeeraba - Bonogin,Mcpherson,#VALUE!,#VALUE!
+30901122907,309011229,Miami,Mcpherson,318,341
+30901122916,309011229,Miami,Mcpherson,188,206
+30905124420,309051244,Mudgeeraba - Bonogin,Mcpherson,443,499
+30905124433,309051244,Mudgeeraba - Bonogin,Mcpherson,2,2
+30905124435,309051244,Mudgeeraba - Bonogin,Mcpherson,73,78
 30901122401,309011224,Broadbeach Waters,Moncrieff,406,407
 30901122402,309011224,Broadbeach Waters,Moncrieff,184,205
 30901122403,309011224,Broadbeach Waters,Moncrieff,354,358
@@ -8468,68 +8469,68 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30909126412,309091264,Molendinar,Moncrieff,378,376
 30909126413,309091264,Molendinar,Moncrieff,312,353
 30909126414,309091264,Molendinar,Moncrieff,22,22
-#N/A,#N/A,Southport,Moncrieff,231,242
-#N/A,#N/A,Southport,Moncrieff,251,268
-#N/A,#N/A,Southport,Moncrieff,198,217
-#N/A,#N/A,Southport,Moncrieff,2,2
-#N/A,#N/A,Southport,Moncrieff,206,215
-#N/A,#N/A,Southport,Moncrieff,312,325
-#N/A,#N/A,Southport,Moncrieff,139,147
-#N/A,#N/A,Southport,Moncrieff,172,182
-#N/A,#N/A,Southport,Moncrieff,396,420
-#N/A,#N/A,Southport,Moncrieff,202,219
-#N/A,#N/A,Southport,Moncrieff,193,209
-#N/A,#N/A,Southport,Moncrieff,352,353
-#N/A,#N/A,Southport,Moncrieff,270,292
-#N/A,#N/A,Southport,Moncrieff,274,290
-#N/A,#N/A,Southport,Moncrieff,394,398
-#N/A,#N/A,Southport,Moncrieff,276,273
-#N/A,#N/A,Southport,Moncrieff,630,675
-#N/A,#N/A,Southport,Moncrieff,548,559
-#N/A,#N/A,Southport,Moncrieff,301,322
-#N/A,#N/A,Southport,Moncrieff,357,403
-#N/A,#N/A,Southport,Moncrieff,191,207
-#N/A,#N/A,Southport,Moncrieff,263,285
-#N/A,#N/A,Southport,Moncrieff,310,313
-#N/A,#N/A,Southport,Moncrieff,249,254
-#N/A,#N/A,Southport,Moncrieff,295,295
-#N/A,#N/A,Southport,Moncrieff,149,156
-#N/A,#N/A,Southport,Moncrieff,348,363
-#N/A,#N/A,Southport,Moncrieff,362,389
-#N/A,#N/A,Southport,Moncrieff,229,250
-#N/A,#N/A,Southport,Moncrieff,692,746
-#N/A,#N/A,Southport,Moncrieff,267,294
-#N/A,#N/A,Southport,Moncrieff,234,239
-#N/A,#N/A,Southport,Moncrieff,457,464
-#N/A,#N/A,Southport,Moncrieff,396,406
-#N/A,#N/A,Southport,Moncrieff,285,295
-#N/A,#N/A,Southport,Moncrieff,997,1034
-#N/A,#N/A,Southport,Moncrieff,475,484
-#N/A,#N/A,Southport,Moncrieff,252,257
-#N/A,#N/A,Southport,Moncrieff,231,255
-#N/A,#N/A,Southport,Moncrieff,263,270
-#N/A,#N/A,Southport,Moncrieff,255,255
-#N/A,#N/A,Southport,Moncrieff,283,294
-#N/A,#N/A,Southport,Moncrieff,230,245
-#N/A,#N/A,Southport,Moncrieff,219,235
-#N/A,#N/A,Southport,Moncrieff,55,58
-#N/A,#N/A,Southport,Moncrieff,135,141
-#N/A,#N/A,Southport,Moncrieff,0,0
-#N/A,#N/A,Southport,Moncrieff,445,479
-#N/A,#N/A,Southport,Moncrieff,320,322
-#N/A,#N/A,Southport,Moncrieff,354,379
-#N/A,#N/A,Southport,Moncrieff,256,254
-#N/A,#N/A,Southport,Moncrieff,339,360
-#N/A,#N/A,Southport,Moncrieff,256,264
-#N/A,#N/A,Southport,Moncrieff,281,296
-#N/A,#N/A,Southport,Moncrieff,292,310
-#N/A,#N/A,Southport,Moncrieff,232,245
-#N/A,#N/A,Southport,Moncrieff,306,320
-#N/A,#N/A,Southport,Moncrieff,383,408
-#N/A,#N/A,Southport,Moncrieff,321,339
-#N/A,#N/A,Southport,Moncrieff,211,221
-#N/A,#N/A,Southport,Moncrieff,262,280
-#N/A,#N/A,Southport,Moncrieff,202,216
+3126601,#N/A,Southport,Moncrieff,231,242
+3126602,#N/A,Southport,Moncrieff,251,268
+3126603,#N/A,Southport,Moncrieff,198,217
+3126604,#N/A,Southport,Moncrieff,2,2
+3126605,#N/A,Southport,Moncrieff,206,215
+3126606,#N/A,Southport,Moncrieff,312,325
+3126607,#N/A,Southport,Moncrieff,139,147
+3126608,#N/A,Southport,Moncrieff,172,182
+3126609,#N/A,Southport,Moncrieff,396,420
+3126610,#N/A,Southport,Moncrieff,202,219
+3126611,#N/A,Southport,Moncrieff,193,209
+3126612,#N/A,Southport,Moncrieff,352,353
+3126613,#N/A,Southport,Moncrieff,270,292
+3126614,#N/A,Southport,Moncrieff,274,290
+3126615,#N/A,Southport,Moncrieff,394,398
+3126616,#N/A,Southport,Moncrieff,276,273
+3126617,#N/A,Southport,Moncrieff,630,675
+3126618,#N/A,Southport,Moncrieff,548,559
+3126619,#N/A,Southport,Moncrieff,301,322
+3126620,#N/A,Southport,Moncrieff,357,403
+3126621,#N/A,Southport,Moncrieff,191,207
+3126622,#N/A,Southport,Moncrieff,263,285
+3126623,#N/A,Southport,Moncrieff,310,313
+3126624,#N/A,Southport,Moncrieff,249,254
+3126625,#N/A,Southport,Moncrieff,295,295
+3126626,#N/A,Southport,Moncrieff,149,156
+3126627,#N/A,Southport,Moncrieff,348,363
+3126629,#N/A,Southport,Moncrieff,362,389
+3126630,#N/A,Southport,Moncrieff,229,250
+3126631,#N/A,Southport,Moncrieff,692,746
+3126632,#N/A,Southport,Moncrieff,267,294
+3126633,#N/A,Southport,Moncrieff,234,239
+3126634,#N/A,Southport,Moncrieff,457,464
+3126635,#N/A,Southport,Moncrieff,396,406
+3126636,#N/A,Southport,Moncrieff,285,295
+3126637,#N/A,Southport,Moncrieff,997,1034
+3126638,#N/A,Southport,Moncrieff,475,484
+3126639,#N/A,Southport,Moncrieff,252,257
+3126640,#N/A,Southport,Moncrieff,231,255
+3126641,#N/A,Southport,Moncrieff,263,270
+3126642,#N/A,Southport,Moncrieff,255,255
+3126643,#N/A,Southport,Moncrieff,283,294
+3126644,#N/A,Southport,Moncrieff,230,245
+3126645,#N/A,Southport,Moncrieff,219,235
+3126646,#N/A,Southport,Moncrieff,55,58
+3126647,#N/A,Southport,Moncrieff,135,141
+3126648,#N/A,Southport,Moncrieff,0,0
+3126649,#N/A,Southport,Moncrieff,445,479
+3126650,#N/A,Southport,Moncrieff,320,322
+3126651,#N/A,Southport,Moncrieff,354,379
+3126652,#N/A,Southport,Moncrieff,256,254
+3126653,#N/A,Southport,Moncrieff,339,360
+3126654,#N/A,Southport,Moncrieff,256,264
+3126655,#N/A,Southport,Moncrieff,281,296
+3126656,#N/A,Southport,Moncrieff,292,310
+3126657,#N/A,Southport,Moncrieff,232,245
+3126658,#N/A,Southport,Moncrieff,306,320
+3126659,#N/A,Southport,Moncrieff,383,408
+3126660,#N/A,Southport,Moncrieff,321,339
+3126661,#N/A,Southport,Moncrieff,211,221
+3126662,#N/A,Southport,Moncrieff,262,280
+3126663,#N/A,Southport,Moncrieff,202,216
 30910126701,309101267,Benowa,Moncrieff,611,639
 30910126702,309101267,Benowa,Moncrieff,326,343
 30910126703,309101267,Benowa,Moncrieff,236,248
@@ -8570,62 +8571,62 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30910126906,309101269,Main Beach,Moncrieff,268,293
 30910126907,309101269,Main Beach,Moncrieff,289,291
 30910126908,309101269,Main Beach,Moncrieff,454,466
-#N/A,#N/A,Surfers Paradise,Moncrieff,185,182
-#N/A,#N/A,Surfers Paradise,Moncrieff,338,407
-#N/A,#N/A,Surfers Paradise,Moncrieff,260,260
-#N/A,#N/A,Surfers Paradise,Moncrieff,356,430
-#N/A,#N/A,Surfers Paradise,Moncrieff,404,403
-#N/A,#N/A,Surfers Paradise,Moncrieff,319,315
-#N/A,#N/A,Surfers Paradise,Moncrieff,308,311
-#N/A,#N/A,Surfers Paradise,Moncrieff,299,298
-#N/A,#N/A,Surfers Paradise,Moncrieff,152,175
-#N/A,#N/A,Surfers Paradise,Moncrieff,230,252
-#N/A,#N/A,Surfers Paradise,Moncrieff,299,296
-#N/A,#N/A,Surfers Paradise,Moncrieff,277,309
-#N/A,#N/A,Surfers Paradise,Moncrieff,311,313
-#N/A,#N/A,Surfers Paradise,Moncrieff,145,147
-#N/A,#N/A,Surfers Paradise,Moncrieff,238,238
-#N/A,#N/A,Surfers Paradise,Moncrieff,366,361
-#N/A,#N/A,Surfers Paradise,Moncrieff,271,273
-#N/A,#N/A,Surfers Paradise,Moncrieff,278,276
-#N/A,#N/A,Surfers Paradise,Moncrieff,267,265
-#N/A,#N/A,Surfers Paradise,Moncrieff,207,250
-#N/A,#N/A,Surfers Paradise,Moncrieff,296,294
-#N/A,#N/A,Surfers Paradise,Moncrieff,402,402
-#N/A,#N/A,Surfers Paradise,Moncrieff,404,417
-#N/A,#N/A,Surfers Paradise,Moncrieff,161,175
-#N/A,#N/A,Surfers Paradise,Moncrieff,221,273
-#N/A,#N/A,Surfers Paradise,Moncrieff,273,322
-#N/A,#N/A,Surfers Paradise,Moncrieff,282,340
-#N/A,#N/A,Surfers Paradise,Moncrieff,226,237
-#N/A,#N/A,Surfers Paradise,Moncrieff,300,300
-#N/A,#N/A,Surfers Paradise,Moncrieff,361,357
-#N/A,#N/A,Surfers Paradise,Moncrieff,316,316
-#N/A,#N/A,Surfers Paradise,Moncrieff,312,308
-#N/A,#N/A,Surfers Paradise,Moncrieff,233,289
-#N/A,#N/A,Surfers Paradise,Moncrieff,285,340
-#N/A,#N/A,Surfers Paradise,Moncrieff,403,400
-#N/A,#N/A,Surfers Paradise,Moncrieff,476,478
-#N/A,#N/A,Surfers Paradise,Moncrieff,238,238
-#N/A,#N/A,Surfers Paradise,Moncrieff,183,182
-#N/A,#N/A,Surfers Paradise,Moncrieff,215,248
-#N/A,#N/A,Surfers Paradise,Moncrieff,336,332
-#N/A,#N/A,Surfers Paradise,Moncrieff,215,211
-#N/A,#N/A,Surfers Paradise,Moncrieff,311,307
-#N/A,#N/A,Surfers Paradise,Moncrieff,327,327
-#N/A,#N/A,Surfers Paradise,Moncrieff,401,396
-#N/A,#N/A,Surfers Paradise,Moncrieff,228,231
-#N/A,#N/A,Surfers Paradise,Moncrieff,214,212
-30901122907,309011229,Miami,Moncrieff,#VALUE!,#VALUE!
-30901122916,309011229,Miami,Moncrieff,#VALUE!,#VALUE!
-30906124704,309061247,Highland Park,Moncrieff,#VALUE!,#VALUE!
-30906124817,309061248,Nerang - Mount Nathan,Moncrieff,#VALUE!,#VALUE!
-30906124817,309061248,Nerang - Mount Nathan,Moncrieff,#VALUE!,#VALUE!
-30906124838,309061248,Nerang - Mount Nathan,Moncrieff,#VALUE!,#VALUE!
-30906124844,309061248,Nerang - Mount Nathan,Moncrieff,#VALUE!,#VALUE!
-30906124847,309061248,Nerang - Mount Nathan,Moncrieff,#VALUE!,#VALUE!
-30906125003,309061250,Worongary - Tallai,Moncrieff,#VALUE!,#VALUE!
-30910126909,309101269,Main Beach,Moncrieff,#VALUE!,#VALUE!
+3127001,#N/A,Surfers Paradise,Moncrieff,185,182
+3127002,#N/A,Surfers Paradise,Moncrieff,338,407
+3127003,#N/A,Surfers Paradise,Moncrieff,260,260
+3127004,#N/A,Surfers Paradise,Moncrieff,356,430
+3127005,#N/A,Surfers Paradise,Moncrieff,404,403
+3127006,#N/A,Surfers Paradise,Moncrieff,319,315
+3127007,#N/A,Surfers Paradise,Moncrieff,308,311
+3127008,#N/A,Surfers Paradise,Moncrieff,299,298
+3127009,#N/A,Surfers Paradise,Moncrieff,152,175
+3127010,#N/A,Surfers Paradise,Moncrieff,230,252
+3127011,#N/A,Surfers Paradise,Moncrieff,299,296
+3127012,#N/A,Surfers Paradise,Moncrieff,277,309
+3127013,#N/A,Surfers Paradise,Moncrieff,311,313
+3127014,#N/A,Surfers Paradise,Moncrieff,145,147
+3127015,#N/A,Surfers Paradise,Moncrieff,238,238
+3127016,#N/A,Surfers Paradise,Moncrieff,366,361
+3127017,#N/A,Surfers Paradise,Moncrieff,271,273
+3127018,#N/A,Surfers Paradise,Moncrieff,278,276
+3127019,#N/A,Surfers Paradise,Moncrieff,267,265
+3127020,#N/A,Surfers Paradise,Moncrieff,207,250
+3127021,#N/A,Surfers Paradise,Moncrieff,296,294
+3127022,#N/A,Surfers Paradise,Moncrieff,402,402
+3127023,#N/A,Surfers Paradise,Moncrieff,404,417
+3127024,#N/A,Surfers Paradise,Moncrieff,161,175
+3127025,#N/A,Surfers Paradise,Moncrieff,221,273
+3127026,#N/A,Surfers Paradise,Moncrieff,273,322
+3127027,#N/A,Surfers Paradise,Moncrieff,282,340
+3127028,#N/A,Surfers Paradise,Moncrieff,226,237
+3127029,#N/A,Surfers Paradise,Moncrieff,300,300
+3127030,#N/A,Surfers Paradise,Moncrieff,361,357
+3127031,#N/A,Surfers Paradise,Moncrieff,316,316
+3127032,#N/A,Surfers Paradise,Moncrieff,312,308
+3127033,#N/A,Surfers Paradise,Moncrieff,233,289
+3127034,#N/A,Surfers Paradise,Moncrieff,285,340
+3127035,#N/A,Surfers Paradise,Moncrieff,403,400
+3127036,#N/A,Surfers Paradise,Moncrieff,476,478
+3127037,#N/A,Surfers Paradise,Moncrieff,238,238
+3127038,#N/A,Surfers Paradise,Moncrieff,183,182
+3127039,#N/A,Surfers Paradise,Moncrieff,215,248
+3127040,#N/A,Surfers Paradise,Moncrieff,336,332
+3127041,#N/A,Surfers Paradise,Moncrieff,215,211
+3127042,#N/A,Surfers Paradise,Moncrieff,311,307
+3127043,#N/A,Surfers Paradise,Moncrieff,327,327
+3127044,#N/A,Surfers Paradise,Moncrieff,401,396
+3127045,#N/A,Surfers Paradise,Moncrieff,228,231
+3127046,#N/A,Surfers Paradise,Moncrieff,214,212
+30901122907,309011229,Miami,Moncrieff,318,341
+30901122916,309011229,Miami,Moncrieff,188,206
+30906124704,309061247,Highland Park,Moncrieff,300,319
+30906124817,309061248,Nerang - Mount Nathan,Moncrieff,44,49
+30906124817,309061248,Nerang - Mount Nathan,Moncrieff,44,49
+30906124838,309061248,Nerang - Mount Nathan,Moncrieff,188,191
+30906124844,309061248,Nerang - Mount Nathan,Moncrieff,9,10
+30906124847,309061248,Nerang - Mount Nathan,Moncrieff,193,193
+30906125003,309061250,Worongary - Tallai,Moncrieff,264,278
+30910126909,309101269,Main Beach,Moncrieff,297,306
 30302105201,303021052,Annerley,Moreton,352,386
 30302105202,303021052,Annerley,Moreton,360,384
 30302105203,303021052,Annerley,Moreton,240,259
@@ -8996,16 +8997,16 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31001127507,310011275,Oxley (Qld),Moreton,153,171
 31001127508,310011275,Oxley (Qld),Moreton,373,420
 31001127517,310011275,Oxley (Qld),Moreton,256,253
-30303106026,303031060,Eight Mile Plains,Moreton,#VALUE!,#VALUE!
-30304107102,303041071,Tarragindi,Moreton,#VALUE!,#VALUE!
-30304107102,303041071,Tarragindi,Moreton,#VALUE!,#VALUE!
-30304107116,303041071,Tarragindi,Moreton,#VALUE!,#VALUE!
-30304107116,303041071,Tarragindi,Moreton,#VALUE!,#VALUE!
-30305107405,303051074,Pallara - Willawong,Moreton,#VALUE!,#VALUE!
-31001127203,310011272,Durack,Moreton,#VALUE!,#VALUE!
-31001127513,310011275,Oxley (Qld),Moreton,#VALUE!,#VALUE!
-31001127515,310011275,Oxley (Qld),Moreton,#VALUE!,#VALUE!
-31001127515,310011275,Oxley (Qld),Moreton,#VALUE!,#VALUE!
+30303106026,303031060,Eight Mile Plains,Moreton,309,329
+30304107102,303041071,Tarragindi,Moreton,114,118
+30304107102,303041071,Tarragindi,Moreton,114,118
+30304107116,303041071,Tarragindi,Moreton,110,127
+30304107116,303041071,Tarragindi,Moreton,110,127
+30305107405,303051074,Pallara - Willawong,Moreton,138,152
+31001127203,310011272,Durack,Moreton,553,584
+31001127513,310011275,Oxley (Qld),Moreton,179,178
+31001127515,310011275,Oxley (Qld),Moreton,244,268
+31001127515,310011275,Oxley (Qld),Moreton,244,268
 30305107401,303051074,Pallara - Willawong,Oxley,3,3
 30305107402,303051074,Pallara - Willawong,Oxley,282,300
 30305107403,303051074,Pallara - Willawong,Oxley,429,472
@@ -9131,66 +9132,66 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31001127215,310011272,Durack,Oxley,340,357
 31001127216,310011272,Durack,Oxley,308,335
 31001127217,310011272,Durack,Oxley,257,258
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,200,214
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,168,181
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,456,492
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,160,176
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,248,269
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,394,448
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,323,364
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,307,342
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,189,204
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,233,250
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,263,278
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,194,211
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,305,323
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,379,409
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,254,267
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,242,253
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,252,280
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,464,540
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,185,203
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,57,65
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,311,332
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,131,148
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,355,399
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,227,245
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,253,275
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,224,238
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,205,220
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,380,397
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,191,210
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,174,186
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,314,337
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,159,178
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,232,264
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,222,252
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,233,262
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,205,227
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,372,374
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,158,171
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,324,326
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,293,299
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,330,388
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,236,238
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,216,247
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,276,308
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,263,283
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,290,331
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,276,299
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,379,451
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,413,482
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,313,346
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,266,288
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,212,233
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,1385,1510
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,195,202
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,313,346
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,264,279
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,248,281
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,163,171
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,159,173
-#N/A,#N/A,Forest Lake - Doolandella,Oxley,173,193
+3127301,#N/A,Forest Lake - Doolandella,Oxley,200,214
+3127302,#N/A,Forest Lake - Doolandella,Oxley,168,181
+3127303,#N/A,Forest Lake - Doolandella,Oxley,456,492
+3127304,#N/A,Forest Lake - Doolandella,Oxley,160,176
+3127305,#N/A,Forest Lake - Doolandella,Oxley,248,269
+3127306,#N/A,Forest Lake - Doolandella,Oxley,394,448
+3127307,#N/A,Forest Lake - Doolandella,Oxley,323,364
+3127308,#N/A,Forest Lake - Doolandella,Oxley,307,342
+3127309,#N/A,Forest Lake - Doolandella,Oxley,189,204
+3127310,#N/A,Forest Lake - Doolandella,Oxley,233,250
+3127311,#N/A,Forest Lake - Doolandella,Oxley,263,278
+3127312,#N/A,Forest Lake - Doolandella,Oxley,194,211
+3127313,#N/A,Forest Lake - Doolandella,Oxley,305,323
+3127314,#N/A,Forest Lake - Doolandella,Oxley,379,409
+3127315,#N/A,Forest Lake - Doolandella,Oxley,254,267
+3127316,#N/A,Forest Lake - Doolandella,Oxley,242,253
+3127317,#N/A,Forest Lake - Doolandella,Oxley,252,280
+3127318,#N/A,Forest Lake - Doolandella,Oxley,464,540
+3127319,#N/A,Forest Lake - Doolandella,Oxley,185,203
+3127320,#N/A,Forest Lake - Doolandella,Oxley,57,65
+3127321,#N/A,Forest Lake - Doolandella,Oxley,311,332
+3127322,#N/A,Forest Lake - Doolandella,Oxley,131,148
+3127323,#N/A,Forest Lake - Doolandella,Oxley,355,399
+3127324,#N/A,Forest Lake - Doolandella,Oxley,227,245
+3127325,#N/A,Forest Lake - Doolandella,Oxley,253,275
+3127326,#N/A,Forest Lake - Doolandella,Oxley,224,238
+3127327,#N/A,Forest Lake - Doolandella,Oxley,205,220
+3127328,#N/A,Forest Lake - Doolandella,Oxley,380,397
+3127329,#N/A,Forest Lake - Doolandella,Oxley,191,210
+3127330,#N/A,Forest Lake - Doolandella,Oxley,174,186
+3127331,#N/A,Forest Lake - Doolandella,Oxley,314,337
+3127332,#N/A,Forest Lake - Doolandella,Oxley,159,178
+3127333,#N/A,Forest Lake - Doolandella,Oxley,232,264
+3127334,#N/A,Forest Lake - Doolandella,Oxley,222,252
+3127335,#N/A,Forest Lake - Doolandella,Oxley,233,262
+3127336,#N/A,Forest Lake - Doolandella,Oxley,205,227
+3127337,#N/A,Forest Lake - Doolandella,Oxley,372,374
+3127338,#N/A,Forest Lake - Doolandella,Oxley,158,171
+3127339,#N/A,Forest Lake - Doolandella,Oxley,324,326
+3127340,#N/A,Forest Lake - Doolandella,Oxley,293,299
+3127341,#N/A,Forest Lake - Doolandella,Oxley,330,388
+3127342,#N/A,Forest Lake - Doolandella,Oxley,236,238
+3127343,#N/A,Forest Lake - Doolandella,Oxley,216,247
+3127344,#N/A,Forest Lake - Doolandella,Oxley,276,308
+3127345,#N/A,Forest Lake - Doolandella,Oxley,263,283
+3127346,#N/A,Forest Lake - Doolandella,Oxley,290,331
+3127347,#N/A,Forest Lake - Doolandella,Oxley,276,299
+3127348,#N/A,Forest Lake - Doolandella,Oxley,379,451
+3127349,#N/A,Forest Lake - Doolandella,Oxley,413,482
+3127350,#N/A,Forest Lake - Doolandella,Oxley,313,346
+3127351,#N/A,Forest Lake - Doolandella,Oxley,266,288
+3127352,#N/A,Forest Lake - Doolandella,Oxley,212,233
+3127353,#N/A,Forest Lake - Doolandella,Oxley,1385,1510
+3127354,#N/A,Forest Lake - Doolandella,Oxley,195,202
+3127355,#N/A,Forest Lake - Doolandella,Oxley,313,346
+3127356,#N/A,Forest Lake - Doolandella,Oxley,264,279
+3127357,#N/A,Forest Lake - Doolandella,Oxley,248,281
+3127358,#N/A,Forest Lake - Doolandella,Oxley,163,171
+3127359,#N/A,Forest Lake - Doolandella,Oxley,159,173
+3127360,#N/A,Forest Lake - Doolandella,Oxley,173,193
 31001127401,310011274,Inala - Richlands,Oxley,417,455
 31001127402,310011274,Inala - Richlands,Oxley,0,0
 31001127403,310011274,Inala - Richlands,Oxley,191,212
@@ -9249,23 +9250,23 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31001127611,310011276,Wacol,Oxley,286,305
 31001127612,310011276,Wacol,Oxley,13,14
 31001127613,310011276,Wacol,Oxley,3,3
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,958,1011
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,633,718
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,871,979
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,430,477
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,243,269
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,217,237
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,311,343
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,377,432
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,238,269
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,285,326
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,328,330
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,236,263
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,277,308
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,284,318
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,342,373
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,226,257
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,657,706
+3129602,#N/A,Bellbird Park - Brookwater,Oxley,958,1011
+3129603,#N/A,Bellbird Park - Brookwater,Oxley,633,718
+3129604,#N/A,Bellbird Park - Brookwater,Oxley,871,979
+3129606,#N/A,Bellbird Park - Brookwater,Oxley,430,477
+3129607,#N/A,Bellbird Park - Brookwater,Oxley,243,269
+3129608,#N/A,Bellbird Park - Brookwater,Oxley,217,237
+3129609,#N/A,Bellbird Park - Brookwater,Oxley,311,343
+3129610,#N/A,Bellbird Park - Brookwater,Oxley,377,432
+3129611,#N/A,Bellbird Park - Brookwater,Oxley,238,269
+3129612,#N/A,Bellbird Park - Brookwater,Oxley,285,326
+3129613,#N/A,Bellbird Park - Brookwater,Oxley,328,330
+3129614,#N/A,Bellbird Park - Brookwater,Oxley,236,263
+3129615,#N/A,Bellbird Park - Brookwater,Oxley,277,308
+3129616,#N/A,Bellbird Park - Brookwater,Oxley,284,318
+3129617,#N/A,Bellbird Park - Brookwater,Oxley,342,373
+3129618,#N/A,Bellbird Park - Brookwater,Oxley,226,257
+3129619,#N/A,Bellbird Park - Brookwater,Oxley,657,706
 31004129701,310041297,Camira - Gailes,Oxley,253,268
 31004129702,310041297,Camira - Gailes,Oxley,244,260
 31004129703,310041297,Camira - Gailes,Oxley,277,307
@@ -9370,17 +9371,17 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31004130419,310041304,Springfield Lakes,Oxley,397,469
 31004130420,310041304,Springfield Lakes,Oxley,633,745
 31004130421,310041304,Springfield Lakes,Oxley,228,254
-30305107405,303051074,Pallara - Willawong,Oxley,#VALUE!,#VALUE!
-31001127203,310011272,Durack,Oxley,#VALUE!,#VALUE!
-31001127513,310011275,Oxley (Qld),Oxley,#VALUE!,#VALUE!
-31001127515,310011275,Oxley (Qld),Oxley,#VALUE!,#VALUE!
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,#VALUE!,#VALUE!
-#N/A,#N/A,Bellbird Park - Brookwater,Oxley,#VALUE!,#VALUE!
-31004129917,310041299,Collingwood Park - Redbank,Oxley,#VALUE!,#VALUE!
-31004129918,310041299,Collingwood Park - Redbank,Oxley,#VALUE!,#VALUE!
-31004129921,310041299,Collingwood Park - Redbank,Oxley,#VALUE!,#VALUE!
-31004130202,310041302,Redbank Plains,Oxley,#VALUE!,#VALUE!
-31004130223,310041302,Redbank Plains,Oxley,#VALUE!,#VALUE!
+30305107405,303051074,Pallara - Willawong,Oxley,138,152
+31001127203,310011272,Durack,Oxley,553,584
+31001127513,310011275,Oxley (Qld),Oxley,179,178
+31001127515,310011275,Oxley (Qld),Oxley,244,268
+3129601,#N/A,Bellbird Park - Brookwater,Oxley,0,0
+3129605,#N/A,Bellbird Park - Brookwater,Oxley,536,600
+31004129917,310041299,Collingwood Park - Redbank,Oxley,1,1
+31004129918,310041299,Collingwood Park - Redbank,Oxley,0,0
+31004129921,310041299,Collingwood Park - Redbank,Oxley,122,129
+31004130202,310041302,Redbank Plains,Oxley,374,374
+31004130223,310041302,Redbank Plains,Oxley,211,232
 30201102201,302011022,Bald Hills,Petrie,2,2
 30201102202,302011022,Bald Hills,Petrie,0,0
 30201102203,302011022,Bald Hills,Petrie,652,756
@@ -9676,44 +9677,44 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31305157530,313051575,Scarborough - Newport,Petrie,430,448
 31402138916,314021389,Murrumba Downs - Griffin,Petrie,276,309
 31402138922,314021389,Murrumba Downs - Griffin,Petrie,324,351
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,638,725
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,0,0
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,217,242
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,239,266
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,176,189
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,2005,2283
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,308,345
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,1621,1858
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,692,692
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,78,89
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,583,656
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,394,440
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,266,287
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,564,636
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,2279,2476
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,424,485
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,1225,1296
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,162,176
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,187,206
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,158,178
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,201,223
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,270,291
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,326,359
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,216,235
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,193,214
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,511,565
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,145,160
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,385,422
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,243,262
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,281,303
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,331,369
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,270,305
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,164,183
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,261,290
-#N/A,#N/A,North Lakes - Mango Hill,Petrie,210,238
-30202102719,302021027,Aspley,Petrie,#VALUE!,#VALUE!
-30204104517,302041045,Taigum - Fitzgibbon,Petrie,#VALUE!,#VALUE!
-31402138921,314021389,Murrumba Downs - Griffin,Petrie,#VALUE!,#VALUE!
+3139001,#N/A,North Lakes - Mango Hill,Petrie,638,725
+3139002,#N/A,North Lakes - Mango Hill,Petrie,0,0
+3139003,#N/A,North Lakes - Mango Hill,Petrie,217,242
+3139004,#N/A,North Lakes - Mango Hill,Petrie,239,266
+3139005,#N/A,North Lakes - Mango Hill,Petrie,176,189
+3139006,#N/A,North Lakes - Mango Hill,Petrie,2005,2283
+3139007,#N/A,North Lakes - Mango Hill,Petrie,308,345
+3139008,#N/A,North Lakes - Mango Hill,Petrie,1621,1858
+3139009,#N/A,North Lakes - Mango Hill,Petrie,692,692
+3139010,#N/A,North Lakes - Mango Hill,Petrie,78,89
+3139011,#N/A,North Lakes - Mango Hill,Petrie,583,656
+3139012,#N/A,North Lakes - Mango Hill,Petrie,394,440
+3139013,#N/A,North Lakes - Mango Hill,Petrie,266,287
+3139014,#N/A,North Lakes - Mango Hill,Petrie,564,636
+3139015,#N/A,North Lakes - Mango Hill,Petrie,2279,2476
+3139016,#N/A,North Lakes - Mango Hill,Petrie,424,485
+3139017,#N/A,North Lakes - Mango Hill,Petrie,1225,1296
+3139018,#N/A,North Lakes - Mango Hill,Petrie,162,176
+3139019,#N/A,North Lakes - Mango Hill,Petrie,187,206
+3139020,#N/A,North Lakes - Mango Hill,Petrie,158,178
+3139021,#N/A,North Lakes - Mango Hill,Petrie,201,223
+3139022,#N/A,North Lakes - Mango Hill,Petrie,270,291
+3139023,#N/A,North Lakes - Mango Hill,Petrie,326,359
+3139024,#N/A,North Lakes - Mango Hill,Petrie,216,235
+3139025,#N/A,North Lakes - Mango Hill,Petrie,193,214
+3139026,#N/A,North Lakes - Mango Hill,Petrie,511,565
+3139027,#N/A,North Lakes - Mango Hill,Petrie,145,160
+3139028,#N/A,North Lakes - Mango Hill,Petrie,385,422
+3139029,#N/A,North Lakes - Mango Hill,Petrie,243,262
+3139030,#N/A,North Lakes - Mango Hill,Petrie,281,303
+3139031,#N/A,North Lakes - Mango Hill,Petrie,331,369
+3139032,#N/A,North Lakes - Mango Hill,Petrie,270,305
+3139033,#N/A,North Lakes - Mango Hill,Petrie,164,183
+3139034,#N/A,North Lakes - Mango Hill,Petrie,261,290
+3139035,#N/A,North Lakes - Mango Hill,Petrie,210,238
+30202102719,302021027,Aspley,Petrie,0,0
+30204104517,302041045,Taigum - Fitzgibbon,Petrie,4,4
+31402138921,314021389,Murrumba Downs - Griffin,Petrie,3134,3277
 30305107201,303051072,Algester,Rankin,352,405
 30305107202,303051072,Algester,Rankin,337,354
 30305107203,303051072,Algester,Rankin,391,438
@@ -9937,32 +9938,32 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31106132915,311061329,Daisy Hill,Rankin,259,257
 31106132916,311061329,Daisy Hill,Rankin,175,193
 31106132917,311061329,Daisy Hill,Rankin,159,157
-#N/A,#N/A,Kingston,Rankin,220,227
-#N/A,#N/A,Kingston,Rankin,189,209
-#N/A,#N/A,Kingston,Rankin,231,260
-#N/A,#N/A,Kingston,Rankin,219,226
-#N/A,#N/A,Kingston,Rankin,280,333
-#N/A,#N/A,Kingston,Rankin,219,243
-#N/A,#N/A,Kingston,Rankin,7,7
-#N/A,#N/A,Kingston,Rankin,266,295
-#N/A,#N/A,Kingston,Rankin,173,183
-#N/A,#N/A,Kingston,Rankin,178,189
-#N/A,#N/A,Kingston,Rankin,235,261
-#N/A,#N/A,Kingston,Rankin,228,242
-#N/A,#N/A,Kingston,Rankin,177,196
-#N/A,#N/A,Kingston,Rankin,323,349
-#N/A,#N/A,Kingston,Rankin,234,268
-#N/A,#N/A,Kingston,Rankin,262,261
-#N/A,#N/A,Kingston,Rankin,163,182
-#N/A,#N/A,Kingston,Rankin,311,350
-#N/A,#N/A,Kingston,Rankin,45,49
-#N/A,#N/A,Kingston,Rankin,276,275
-#N/A,#N/A,Kingston,Rankin,263,299
-#N/A,#N/A,Kingston,Rankin,252,253
-#N/A,#N/A,Kingston,Rankin,258,308
-#N/A,#N/A,Kingston,Rankin,157,172
-#N/A,#N/A,Kingston,Rankin,13,13
-#N/A,#N/A,Kingston,Rankin,256,296
+31106133001,311061330,Kingston (Qld),Rankin,220,227
+31106133002,311061330,Kingston (Qld),Rankin,189,209
+31106133003,311061330,Kingston (Qld),Rankin,231,260
+31106133004,311061330,Kingston (Qld),Rankin,219,226
+31106133005,311061330,Kingston (Qld),Rankin,280,333
+31106133006,311061330,Kingston (Qld),Rankin,219,243
+31106133007,311061330,Kingston (Qld),Rankin,7,7
+31106133008,311061330,Kingston (Qld),Rankin,266,295
+31106133009,311061330,Kingston (Qld),Rankin,173,183
+31106133010,311061330,Kingston (Qld),Rankin,178,189
+31106133011,311061330,Kingston (Qld),Rankin,235,261
+31106133012,311061330,Kingston (Qld),Rankin,228,242
+31106133013,311061330,Kingston (Qld),Rankin,177,196
+31106133014,311061330,Kingston (Qld),Rankin,323,349
+31106133015,311061330,Kingston (Qld),Rankin,234,268
+31106133016,311061330,Kingston (Qld),Rankin,262,261
+31106133017,311061330,Kingston (Qld),Rankin,163,182
+31106133018,311061330,Kingston (Qld),Rankin,311,350
+31106133019,311061330,Kingston (Qld),Rankin,45,49
+31106133020,311061330,Kingston (Qld),Rankin,276,275
+31106133021,311061330,Kingston (Qld),Rankin,263,299
+31106133022,311061330,Kingston (Qld),Rankin,252,253
+31106133023,311061330,Kingston (Qld),Rankin,258,308
+31106133024,311061330,Kingston (Qld),Rankin,157,172
+31106133025,311061330,Kingston (Qld),Rankin,13,13
+31106133026,311061330,Kingston (Qld),Rankin,256,296
 31106133101,311061331,Logan Central,Rankin,141,151
 31106133102,311061331,Logan Central,Rankin,238,268
 31106133103,311061331,Logan Central,Rankin,51,52
@@ -10111,10 +10112,10 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31106133629,311061336,Woodridge,Rankin,246,253
 31106133630,311061336,Woodridge,Rankin,270,314
 31106133631,311061336,Woodridge,Rankin,227,230
-31103131604,311031316,Hillcrest,Rankin,#VALUE!,#VALUE!
-31105132608,311051326,Loganlea,Rankin,#VALUE!,#VALUE!
-31105132610,311051326,Loganlea,Rankin,#VALUE!,#VALUE!
-31105132612,311051326,Loganlea,Rankin,#VALUE!,#VALUE!
+31103131604,311031316,Hillcrest,Rankin,3,3
+31105132608,311051326,Loganlea,Rankin,0,0
+31105132610,311051326,Loganlea,Rankin,5,6
+31105132612,311051326,Loganlea,Rankin,357,370
 30402108601,304021086,Bellbowrie - Moggill,Ryan,321,341
 30402108602,304021086,Bellbowrie - Moggill,Ryan,582,650
 30402108603,304021086,Bellbowrie - Moggill,Ryan,205,222
@@ -10459,20 +10460,20 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30504113724,305041137,Toowong,Ryan,369,393
 30504113725,305041137,Toowong,Ryan,147,151
 31002127901,310021279,Lake Manchester - England Creek,Ryan,3,3
-30404109801,304041098,Enoggera,Ryan,#VALUE!,#VALUE!
-30404109804,304041098,Enoggera,Ryan,#VALUE!,#VALUE!
-30404109804,304041098,Enoggera,Ryan,#VALUE!,#VALUE!
-30404109804,304041098,Enoggera,Ryan,#VALUE!,#VALUE!
-30404109814,304041098,Enoggera,Ryan,#VALUE!,#VALUE!
-30404109814,304041098,Enoggera,Ryan,#VALUE!,#VALUE!
-30404109816,304041098,Enoggera,Ryan,#VALUE!,#VALUE!
-30404110107,304041101,Mitchelton,Ryan,#VALUE!,#VALUE!
-30504113205,305041132,Ashgrove,Ryan,#VALUE!,#VALUE!
-30504113206,305041132,Ashgrove,Ryan,#VALUE!,#VALUE!
-30504113214,305041132,Ashgrove,Ryan,#VALUE!,#VALUE!
-30504113412,305041134,Bardon,Ryan,#VALUE!,#VALUE!
-30504113413,305041134,Bardon,Ryan,#VALUE!,#VALUE!
-30504113523,305041135,Paddington - Milton,Ryan,#VALUE!,#VALUE!
+30404109801,304041098,Enoggera,Ryan,228,233
+30404109804,304041098,Enoggera,Ryan,476,513
+30404109804,304041098,Enoggera,Ryan,476,513
+30404109804,304041098,Enoggera,Ryan,476,513
+30404109814,304041098,Enoggera,Ryan,178,190
+30404109814,304041098,Enoggera,Ryan,178,190
+30404109816,304041098,Enoggera,Ryan,386,422
+30404110107,304041101,Mitchelton,Ryan,345,368
+30504113205,305041132,Ashgrove,Ryan,37,40
+30504113206,305041132,Ashgrove,Ryan,236,247
+30504113214,305041132,Ashgrove,Ryan,192,197
+30504113412,305041134,Bardon,Ryan,145,156
+30504113413,305041134,Bardon,Ryan,53,55
+30504113523,305041135,Paddington - Milton,Ryan,377,395
 31608154901,316081549,Noosa Hinterland,Wide Bay,166,170
 31608154903,316081549,Noosa Hinterland,Wide Bay,309,331
 31608154904,316081549,Noosa Hinterland,Wide Bay,331,338
@@ -10562,17 +10563,17 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31605143522,316051435,Noosaville,Wide Bay,0,0
 31605143523,316051435,Noosaville,Wide Bay,0,0
 31605143524,316051435,Noosaville,Wide Bay,832,888
-#N/A,#N/A,Peregian,Wide Bay,246,270
-#N/A,#N/A,Peregian,Wide Bay,329,365
-#N/A,#N/A,Peregian,Wide Bay,245,259
-#N/A,#N/A,Peregian,Wide Bay,273,295
-#N/A,#N/A,Peregian,Wide Bay,351,388
-#N/A,#N/A,Peregian,Wide Bay,216,230
-#N/A,#N/A,Peregian,Wide Bay,425,452
-#N/A,#N/A,Peregian,Wide Bay,225,238
-#N/A,#N/A,Peregian,Wide Bay,248,258
-#N/A,#N/A,Peregian,Wide Bay,357,380
-#N/A,#N/A,Peregian,Wide Bay,14,15
+3143602,#N/A,Peregian,Wide Bay,246,270
+3143603,#N/A,Peregian,Wide Bay,329,365
+3143605,#N/A,Peregian,Wide Bay,245,259
+3143606,#N/A,Peregian,Wide Bay,273,295
+3143607,#N/A,Peregian,Wide Bay,351,388
+3143608,#N/A,Peregian,Wide Bay,216,230
+3143609,#N/A,Peregian,Wide Bay,425,452
+3143610,#N/A,Peregian,Wide Bay,225,238
+3143611,#N/A,Peregian,Wide Bay,248,258
+3143612,#N/A,Peregian,Wide Bay,357,380
+3143613,#N/A,Peregian,Wide Bay,14,15
 31605143701,316051437,Sunshine Beach,Wide Bay,201,211
 31605143702,316051437,Sunshine Beach,Wide Bay,134,145
 31605143703,316051437,Sunshine Beach,Wide Bay,259,277
@@ -10623,16 +10624,16 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31605143827,316051438,Tewantin,Wide Bay,283,292
 31605143828,316051438,Tewantin,Wide Bay,198,196
 31605143829,316051438,Tewantin,Wide Bay,285,286
-#N/A,#N/A,Kingaroy Region - North,Wide Bay,254,253
-#N/A,#N/A,Kingaroy Region - North,Wide Bay,265,266
-#N/A,#N/A,Kingaroy Region - North,Wide Bay,219,220
-#N/A,#N/A,Kingaroy Region - North,Wide Bay,193,192
-#N/A,#N/A,Kingaroy Region - North,Wide Bay,205,207
-#N/A,#N/A,Kingaroy Region - North,Wide Bay,447,472
-#N/A,#N/A,Kingaroy Region - North,Wide Bay,199,232
-#N/A,#N/A,Kingaroy Region - North,Wide Bay,174,217
-#N/A,#N/A,Kingaroy Region - North,Wide Bay,298,343
-#N/A,#N/A,Kingaroy Region - North,Wide Bay,368,441
+31902150601,319021506,Kingaroy Surrounds - North,Wide Bay,254,253
+31902150605,319021506,Kingaroy Surrounds - North,Wide Bay,265,266
+31902150606,319021506,Kingaroy Surrounds - North,Wide Bay,219,220
+31902150609,319021506,Kingaroy Surrounds - North,Wide Bay,193,192
+31902150610,319021506,Kingaroy Surrounds - North,Wide Bay,205,207
+31902150613,319021506,Kingaroy Surrounds - North,Wide Bay,447,472
+31902150622,319021506,Kingaroy Surrounds - North,Wide Bay,199,232
+31902150623,319021506,Kingaroy Surrounds - North,Wide Bay,174,217
+31902150624,319021506,Kingaroy Surrounds - North,Wide Bay,298,343
+31902150625,319021506,Kingaroy Surrounds - North,Wide Bay,368,441
 31903151101,319031511,Cooloola,Wide Bay,363,381
 31903151102,319031511,Cooloola,Wide Bay,283,290
 31903151103,319031511,Cooloola,Wide Bay,350,363
@@ -10696,59 +10697,59 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31903151311,319031513,Gympie - South,Wide Bay,477,492
 31903151312,319031513,Gympie - South,Wide Bay,246,246
 31903151313,319031513,Gympie - South,Wide Bay,602,642
-#N/A,#N/A,Gympie Region,Wide Bay,286,314
-#N/A,#N/A,Gympie Region,Wide Bay,300,305
-#N/A,#N/A,Gympie Region,Wide Bay,378,380
-#N/A,#N/A,Gympie Region,Wide Bay,308,311
-#N/A,#N/A,Gympie Region,Wide Bay,260,280
-#N/A,#N/A,Gympie Region,Wide Bay,296,305
-#N/A,#N/A,Gympie Region,Wide Bay,0,0
-#N/A,#N/A,Gympie Region,Wide Bay,189,189
-#N/A,#N/A,Gympie Region,Wide Bay,401,438
-#N/A,#N/A,Gympie Region,Wide Bay,181,194
-#N/A,#N/A,Gympie Region,Wide Bay,251,285
-#N/A,#N/A,Gympie Region,Wide Bay,72,72
-#N/A,#N/A,Gympie Region,Wide Bay,231,230
-#N/A,#N/A,Gympie Region,Wide Bay,333,339
-#N/A,#N/A,Gympie Region,Wide Bay,324,340
-#N/A,#N/A,Gympie Region,Wide Bay,235,241
-#N/A,#N/A,Gympie Region,Wide Bay,216,223
-#N/A,#N/A,Gympie Region,Wide Bay,360,397
-#N/A,#N/A,Gympie Region,Wide Bay,0,0
-#N/A,#N/A,Gympie Region,Wide Bay,122,124
-#N/A,#N/A,Gympie Region,Wide Bay,143,156
-#N/A,#N/A,Gympie Region,Wide Bay,307,306
-#N/A,#N/A,Gympie Region,Wide Bay,130,132
-#N/A,#N/A,Gympie Region,Wide Bay,216,228
-#N/A,#N/A,Gympie Region,Wide Bay,110,114
-#N/A,#N/A,Gympie Region,Wide Bay,179,192
-#N/A,#N/A,Gympie Region,Wide Bay,228,262
-#N/A,#N/A,Gympie Region,Wide Bay,337,362
-#N/A,#N/A,Gympie Region,Wide Bay,306,357
-#N/A,#N/A,Gympie Region,Wide Bay,349,408
-#N/A,#N/A,Gympie Region,Wide Bay,344,395
-#N/A,#N/A,Gympie Region,Wide Bay,182,194
-#N/A,#N/A,Gympie Region,Wide Bay,333,354
-#N/A,#N/A,Gympie Region,Wide Bay,235,239
-#N/A,#N/A,Gympie Region,Wide Bay,296,303
-#N/A,#N/A,Gympie Region,Wide Bay,345,364
-#N/A,#N/A,Gympie Region,Wide Bay,232,232
-#N/A,#N/A,Gympie Region,Wide Bay,325,324
-#N/A,#N/A,Gympie Region,Wide Bay,135,134
-#N/A,#N/A,Gympie Region,Wide Bay,344,351
-#N/A,#N/A,Gympie Region,Wide Bay,251,250
-#N/A,#N/A,Gympie Region,Wide Bay,297,321
-#N/A,#N/A,Gympie Region,Wide Bay,218,236
-#N/A,#N/A,Gympie Region,Wide Bay,254,260
-#N/A,#N/A,Gympie Region,Wide Bay,260,277
-#N/A,#N/A,Gympie Region,Wide Bay,328,329
-#N/A,#N/A,Gympie Region,Wide Bay,146,145
-#N/A,#N/A,Gympie Region,Wide Bay,268,281
-#N/A,#N/A,Gympie Region,Wide Bay,137,146
-#N/A,#N/A,Gympie Region,Wide Bay,345,343
-#N/A,#N/A,Gympie Region,Wide Bay,329,328
-#N/A,#N/A,Gympie Region,Wide Bay,173,175
-#N/A,#N/A,Gympie Region,Wide Bay,277,293
+31903151401,319031514,Gympie Surrounds,Wide Bay,286,314
+31903151402,319031514,Gympie Surrounds,Wide Bay,300,305
+31903151403,319031514,Gympie Surrounds,Wide Bay,378,380
+31903151404,319031514,Gympie Surrounds,Wide Bay,308,311
+31903151405,319031514,Gympie Surrounds,Wide Bay,260,280
+31903151406,319031514,Gympie Surrounds,Wide Bay,296,305
+31903151407,319031514,Gympie Surrounds,Wide Bay,0,0
+31903151408,319031514,Gympie Surrounds,Wide Bay,189,189
+31903151409,319031514,Gympie Surrounds,Wide Bay,401,438
+31903151410,319031514,Gympie Surrounds,Wide Bay,181,194
+31903151411,319031514,Gympie Surrounds,Wide Bay,251,285
+31903151412,319031514,Gympie Surrounds,Wide Bay,72,72
+31903151413,319031514,Gympie Surrounds,Wide Bay,231,230
+31903151414,319031514,Gympie Surrounds,Wide Bay,333,339
+31903151415,319031514,Gympie Surrounds,Wide Bay,324,340
+31903151416,319031514,Gympie Surrounds,Wide Bay,235,241
+31903151417,319031514,Gympie Surrounds,Wide Bay,216,223
+31903151418,319031514,Gympie Surrounds,Wide Bay,360,397
+31903151419,319031514,Gympie Surrounds,Wide Bay,0,0
+31903151420,319031514,Gympie Surrounds,Wide Bay,122,124
+31903151421,319031514,Gympie Surrounds,Wide Bay,143,156
+31903151422,319031514,Gympie Surrounds,Wide Bay,307,306
+31903151423,319031514,Gympie Surrounds,Wide Bay,130,132
+31903151424,319031514,Gympie Surrounds,Wide Bay,216,228
+31903151425,319031514,Gympie Surrounds,Wide Bay,110,114
+31903151426,319031514,Gympie Surrounds,Wide Bay,179,192
+31903151427,319031514,Gympie Surrounds,Wide Bay,228,262
+31903151428,319031514,Gympie Surrounds,Wide Bay,337,362
+31903151429,319031514,Gympie Surrounds,Wide Bay,306,357
+31903151430,319031514,Gympie Surrounds,Wide Bay,349,408
+31903151431,319031514,Gympie Surrounds,Wide Bay,344,395
+31903151432,319031514,Gympie Surrounds,Wide Bay,182,194
+31903151433,319031514,Gympie Surrounds,Wide Bay,333,354
+31903151434,319031514,Gympie Surrounds,Wide Bay,235,239
+31903151435,319031514,Gympie Surrounds,Wide Bay,296,303
+31903151436,319031514,Gympie Surrounds,Wide Bay,345,364
+31903151437,319031514,Gympie Surrounds,Wide Bay,232,232
+31903151438,319031514,Gympie Surrounds,Wide Bay,325,324
+31903151439,319031514,Gympie Surrounds,Wide Bay,135,134
+31903151440,319031514,Gympie Surrounds,Wide Bay,344,351
+31903151441,319031514,Gympie Surrounds,Wide Bay,251,250
+31903151442,319031514,Gympie Surrounds,Wide Bay,297,321
+31903151443,319031514,Gympie Surrounds,Wide Bay,218,236
+31903151444,319031514,Gympie Surrounds,Wide Bay,254,260
+31903151445,319031514,Gympie Surrounds,Wide Bay,260,277
+31903151446,319031514,Gympie Surrounds,Wide Bay,328,329
+31903151447,319031514,Gympie Surrounds,Wide Bay,146,145
+31903151448,319031514,Gympie Surrounds,Wide Bay,268,281
+31903151449,319031514,Gympie Surrounds,Wide Bay,137,146
+31903151450,319031514,Gympie Surrounds,Wide Bay,345,343
+31903151451,319031514,Gympie Surrounds,Wide Bay,329,328
+31903151452,319031514,Gympie Surrounds,Wide Bay,173,175
+31903151453,319031514,Gympie Surrounds,Wide Bay,277,293
 31903151501,319031515,Kilkivan,Wide Bay,326,365
 31903151502,319031515,Kilkivan,Wide Bay,194,193
 31903151503,319031515,Kilkivan,Wide Bay,327,360
@@ -10819,28 +10820,28 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31905152449,319051524,Maryborough (Qld),Wide Bay,186,197
 31905152450,319051524,Maryborough (Qld),Wide Bay,176,176
 31905152451,319051524,Maryborough (Qld),Wide Bay,186,189
-#N/A,#N/A,Maryborough Region - South,Wide Bay,468,496
-#N/A,#N/A,Maryborough Region - South,Wide Bay,591,584
-#N/A,#N/A,Maryborough Region - South,Wide Bay,253,251
-#N/A,#N/A,Maryborough Region - South,Wide Bay,187,186
-#N/A,#N/A,Maryborough Region - South,Wide Bay,557,554
-#N/A,#N/A,Maryborough Region - South,Wide Bay,87,87
-#N/A,#N/A,Maryborough Region - South,Wide Bay,229,227
-#N/A,#N/A,Maryborough Region - South,Wide Bay,369,367
-#N/A,#N/A,Maryborough Region - South,Wide Bay,283,282
-#N/A,#N/A,Maryborough Region - South,Wide Bay,226,225
-#N/A,#N/A,Maryborough Region - South,Wide Bay,189,188
-#N/A,#N/A,Maryborough Region - South,Wide Bay,260,258
-#N/A,#N/A,Maryborough Region - South,Wide Bay,231,229
-#N/A,#N/A,Maryborough Region - South,Wide Bay,360,356
-#N/A,#N/A,Maryborough Region - South,Wide Bay,2,2
-#N/A,#N/A,Maryborough Region - South,Wide Bay,169,167
-#N/A,#N/A,Maryborough Region - South,Wide Bay,250,248
-#N/A,#N/A,Maryborough Region - South,Wide Bay,336,334
-#N/A,#N/A,Maryborough Region - South,Wide Bay,205,225
-#N/A,#N/A,Maryborough Region - South,Wide Bay,264,264
-#N/A,#N/A,Maryborough Region - South,Wide Bay,390,477
-#N/A,#N/A,Maryborough Region - South,Wide Bay,310,376
+31905152501,319051525,Maryborough Surrounds - South,Wide Bay,468,496
+31905152502,319051525,Maryborough Surrounds - South,Wide Bay,591,584
+31905152503,319051525,Maryborough Surrounds - South,Wide Bay,253,251
+31905152504,319051525,Maryborough Surrounds - South,Wide Bay,187,186
+31905152505,319051525,Maryborough Surrounds - South,Wide Bay,557,554
+31905152506,319051525,Maryborough Surrounds - South,Wide Bay,87,87
+31905152507,319051525,Maryborough Surrounds - South,Wide Bay,229,227
+31905152508,319051525,Maryborough Surrounds - South,Wide Bay,369,367
+31905152509,319051525,Maryborough Surrounds - South,Wide Bay,283,282
+31905152510,319051525,Maryborough Surrounds - South,Wide Bay,226,225
+31905152511,319051525,Maryborough Surrounds - South,Wide Bay,189,188
+31905152512,319051525,Maryborough Surrounds - South,Wide Bay,260,258
+31905152513,319051525,Maryborough Surrounds - South,Wide Bay,231,229
+31905152514,319051525,Maryborough Surrounds - South,Wide Bay,360,356
+31905152515,319051525,Maryborough Surrounds - South,Wide Bay,2,2
+31905152516,319051525,Maryborough Surrounds - South,Wide Bay,169,167
+31905152517,319051525,Maryborough Surrounds - South,Wide Bay,250,248
+31905152518,319051525,Maryborough Surrounds - South,Wide Bay,336,334
+31905152519,319051525,Maryborough Surrounds - South,Wide Bay,205,225
+31905152520,319051525,Maryborough Surrounds - South,Wide Bay,264,264
+31905152521,319051525,Maryborough Surrounds - South,Wide Bay,390,477
+31905152522,319051525,Maryborough Surrounds - South,Wide Bay,310,376
 31905152601,319051526,Tinana,Wide Bay,405,437
 31905152602,319051526,Tinana,Wide Bay,215,224
 31905152603,319051526,Tinana,Wide Bay,136,146
@@ -10854,11 +10855,11 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31905152611,319051526,Tinana,Wide Bay,255,282
 31905152612,319051526,Tinana,Wide Bay,362,371
 31905152613,319051526,Tinana,Wide Bay,216,238
-31608154956,316081549,Noosa Hinterland,Wide Bay,#VALUE!,#VALUE!
-#N/A,#N/A,Kingaroy Region - North,Wide Bay,#VALUE!,#VALUE!
-#N/A,#N/A,Kingaroy Region - North,Wide Bay,#VALUE!,#VALUE!
-31905152206,319051522,Burrum - Fraser,Wide Bay,#VALUE!,#VALUE!
-31905152217,319051522,Burrum - Fraser,Wide Bay,#VALUE!,#VALUE!
+31608154956,316081549,Noosa Hinterland,Wide Bay,175,195
+31902150608,319021506,Kingaroy Surrounds - North,Wide Bay,67,67
+31902150611,319021506,Kingaroy Surrounds - North,Wide Bay,136,135
+31905152206,319051522,Burrum - Fraser,Wide Bay,5,5
+31905152217,319051522,Burrum - Fraser,Wide Bay,0,0
 30904124101,309041241,Guanaba - Springbrook,Wright,216,220
 30904124102,309041241,Guanaba - Springbrook,Wright,0,0
 30904124103,309041241,Guanaba - Springbrook,Wright,276,285
@@ -11080,79 +11081,79 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 31103131807,311031318,Munruben - Park Ridge South,Wright,309,324
 31103131809,311031318,Munruben - Park Ridge South,Wright,252,269
 31103131814,311031318,Munruben - Park Ridge South,Wright,192,200
-#N/A,#N/A,Greenbank,Wright,182,200
-#N/A,#N/A,Greenbank,Wright,214,234
-#N/A,#N/A,Greenbank,Wright,326,384
-#N/A,#N/A,Greenbank,Wright,999,1137
-#N/A,#N/A,Greenbank,Wright,196,227
-#N/A,#N/A,Greenbank,Wright,189,194
-#N/A,#N/A,Greenbank,Wright,138,148
-#N/A,#N/A,Greenbank,Wright,372,406
-#N/A,#N/A,Greenbank,Wright,275,297
-#N/A,#N/A,Greenbank,Wright,87,95
-#N/A,#N/A,Greenbank,Wright,220,243
-#N/A,#N/A,Greenbank,Wright,373,387
-#N/A,#N/A,Greenbank,Wright,243,241
-#N/A,#N/A,Greenbank,Wright,334,366
-#N/A,#N/A,Greenbank,Wright,168,180
-#N/A,#N/A,Greenbank,Wright,314,350
-#N/A,#N/A,Greenbank,Wright,655,754
-#N/A,#N/A,Greenbank,Wright,288,310
-#N/A,#N/A,Greenbank,Wright,475,560
-#N/A,#N/A,Greenbank,Wright,294,308
-#N/A,#N/A,Greenbank,Wright,204,216
-#N/A,#N/A,Greenbank,Wright,183,193
-#N/A,#N/A,Greenbank,Wright,295,311
-#N/A,#N/A,Greenbank,Wright,0,0
-#N/A,#N/A,Greenbank,Wright,273,301
-#N/A,#N/A,Greenbank,Wright,231,253
-#N/A,#N/A,Greenbank,Wright,225,225
-#N/A,#N/A,Greenbank,Wright,482,530
-#N/A,#N/A,Jimboomba,Wright,263,275
-#N/A,#N/A,Jimboomba,Wright,182,195
-#N/A,#N/A,Jimboomba,Wright,264,281
-#N/A,#N/A,Jimboomba,Wright,236,253
-#N/A,#N/A,Jimboomba,Wright,345,380
-#N/A,#N/A,Jimboomba,Wright,264,305
-#N/A,#N/A,Jimboomba,Wright,380,420
-#N/A,#N/A,Jimboomba,Wright,1985,2012
-#N/A,#N/A,Jimboomba,Wright,121,130
-#N/A,#N/A,Jimboomba,Wright,290,313
-#N/A,#N/A,Jimboomba,Wright,202,221
-#N/A,#N/A,Jimboomba,Wright,399,460
-#N/A,#N/A,Jimboomba,Wright,229,246
-#N/A,#N/A,Jimboomba,Wright,802,915
-#N/A,#N/A,Jimboomba,Wright,211,240
-#N/A,#N/A,Jimboomba,Wright,322,348
-#N/A,#N/A,Jimboomba,Wright,443,467
-#N/A,#N/A,Jimboomba,Wright,775,881
-#N/A,#N/A,Jimboomba,Wright,283,297
-#N/A,#N/A,Jimboomba,Wright,206,223
-#N/A,#N/A,Jimboomba,Wright,553,594
-#N/A,#N/A,Jimboomba,Wright,382,410
-#N/A,#N/A,Jimboomba,Wright,265,293
-#N/A,#N/A,Jimboomba,Wright,186,209
-#N/A,#N/A,Jimboomba,Wright,655,706
-#N/A,#N/A,Jimboomba,Wright,208,234
-#N/A,#N/A,Jimboomba,Wright,405,454
-#N/A,#N/A,Jimboomba,Wright,169,193
-#N/A,#N/A,Jimboomba,Wright,330,330
-#N/A,#N/A,Jimboomba,Wright,261,269
-#N/A,#N/A,Jimboomba,Wright,165,179
-#N/A,#N/A,Jimboomba,Wright,258,269
-#N/A,#N/A,Jimboomba,Wright,279,315
-#N/A,#N/A,Jimboomba,Wright,166,174
-#N/A,#N/A,Jimboomba,Wright,162,180
-#N/A,#N/A,Jimboomba,Wright,322,359
-#N/A,#N/A,Jimboomba,Wright,283,316
-#N/A,#N/A,Jimboomba,Wright,190,203
-#N/A,#N/A,Jimboomba,Wright,218,236
-#N/A,#N/A,Jimboomba,Wright,286,314
-#N/A,#N/A,Jimboomba,Wright,323,373
-#N/A,#N/A,Jimboomba,Wright,271,278
-#N/A,#N/A,Jimboomba,Wright,283,309
-#N/A,#N/A,Jimboomba,Wright,343,357
-#N/A,#N/A,Jimboomba,Wright,395,440
+3132001,#N/A,Greenbank,Wright,182,200
+3132002,#N/A,Greenbank,Wright,214,234
+3132003,#N/A,Greenbank,Wright,326,384
+3132004,#N/A,Greenbank,Wright,999,1137
+3132005,#N/A,Greenbank,Wright,196,227
+3132006,#N/A,Greenbank,Wright,189,194
+3132007,#N/A,Greenbank,Wright,138,148
+3132008,#N/A,Greenbank,Wright,372,406
+3132010,#N/A,Greenbank,Wright,275,297
+3132011,#N/A,Greenbank,Wright,87,95
+3132012,#N/A,Greenbank,Wright,220,243
+3132013,#N/A,Greenbank,Wright,373,387
+3132014,#N/A,Greenbank,Wright,243,241
+3132015,#N/A,Greenbank,Wright,334,366
+3132016,#N/A,Greenbank,Wright,168,180
+3132017,#N/A,Greenbank,Wright,314,350
+3132018,#N/A,Greenbank,Wright,655,754
+3132019,#N/A,Greenbank,Wright,288,310
+3132020,#N/A,Greenbank,Wright,475,560
+3132021,#N/A,Greenbank,Wright,294,308
+3132022,#N/A,Greenbank,Wright,204,216
+3132023,#N/A,Greenbank,Wright,183,193
+3132024,#N/A,Greenbank,Wright,295,311
+3132025,#N/A,Greenbank,Wright,0,0
+3132026,#N/A,Greenbank,Wright,273,301
+3132027,#N/A,Greenbank,Wright,231,253
+3132028,#N/A,Greenbank,Wright,225,225
+3132029,#N/A,Greenbank,Wright,482,530
+3132101,#N/A,Jimboomba,Wright,263,275
+3132102,#N/A,Jimboomba,Wright,182,195
+3132103,#N/A,Jimboomba,Wright,264,281
+3132104,#N/A,Jimboomba,Wright,236,253
+3132105,#N/A,Jimboomba,Wright,345,380
+3132106,#N/A,Jimboomba,Wright,264,305
+3132107,#N/A,Jimboomba,Wright,380,420
+3132108,#N/A,Jimboomba,Wright,1985,2012
+3132109,#N/A,Jimboomba,Wright,121,130
+3132110,#N/A,Jimboomba,Wright,290,313
+3132111,#N/A,Jimboomba,Wright,202,221
+3132112,#N/A,Jimboomba,Wright,399,460
+3132113,#N/A,Jimboomba,Wright,229,246
+3132114,#N/A,Jimboomba,Wright,802,915
+3132115,#N/A,Jimboomba,Wright,211,240
+3132116,#N/A,Jimboomba,Wright,322,348
+3132117,#N/A,Jimboomba,Wright,443,467
+3132118,#N/A,Jimboomba,Wright,775,881
+3132119,#N/A,Jimboomba,Wright,283,297
+3132120,#N/A,Jimboomba,Wright,206,223
+3132121,#N/A,Jimboomba,Wright,553,594
+3132122,#N/A,Jimboomba,Wright,382,410
+3132123,#N/A,Jimboomba,Wright,265,293
+3132124,#N/A,Jimboomba,Wright,186,209
+3132125,#N/A,Jimboomba,Wright,655,706
+3132126,#N/A,Jimboomba,Wright,208,234
+3132127,#N/A,Jimboomba,Wright,405,454
+3132128,#N/A,Jimboomba,Wright,169,193
+3132129,#N/A,Jimboomba,Wright,330,330
+3132130,#N/A,Jimboomba,Wright,261,269
+3132131,#N/A,Jimboomba,Wright,165,179
+3132132,#N/A,Jimboomba,Wright,258,269
+3132133,#N/A,Jimboomba,Wright,279,315
+3132134,#N/A,Jimboomba,Wright,166,174
+3132135,#N/A,Jimboomba,Wright,162,180
+3132136,#N/A,Jimboomba,Wright,322,359
+3132137,#N/A,Jimboomba,Wright,283,316
+3132138,#N/A,Jimboomba,Wright,190,203
+3132139,#N/A,Jimboomba,Wright,218,236
+3132140,#N/A,Jimboomba,Wright,286,314
+3132141,#N/A,Jimboomba,Wright,323,373
+3132142,#N/A,Jimboomba,Wright,271,278
+3132143,#N/A,Jimboomba,Wright,283,309
+3132144,#N/A,Jimboomba,Wright,343,357
+3132145,#N/A,Jimboomba,Wright,395,440
 31104132201,311041322,Logan Village,Wright,158,174
 31104132202,311041322,Logan Village,Wright,258,285
 31104132203,311041322,Logan Village,Wright,273,297
@@ -11234,7 +11235,7 @@ SA1_CODE,SA2_CODE,SA2_NAME,DIVISION,ACTUAL,PROJECTED
 30907125606,309071256,Oxenford - Maudsland,Wright,0,0
 30907125607,309071256,Oxenford - Maudsland,Wright,0,0
 30907125612,309071256,Oxenford - Maudsland,Wright,304,334
-#N/A,#N/A,Upper Coomera - Willow Vale,Wright,106,118
+3125847,#N/A,Upper Coomera - Willow Vale,Wright,106,118
 31002127714,310021277,Boonah,Wright,257,266
 31002128016,310021280,Lockyer Valley - East,Wright,6,7
 31002128038,310021280,Lockyer Valley - East,Wright,153,169
