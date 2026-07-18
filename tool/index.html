@@ -355,7 +355,7 @@ layout: null
     <aside id="sidebar">
         <div id="sidebar-header">
             <h1>Redistribution tool</h1>
-            <p class="tagline">Reassign SA1 areas between divisions and check enrolment against AEC quota tolerances. For simulation and submission-preparation purposes only &mdash; not an official AEC product.</p>
+            <p class="tagline">Reassign SA1 between electoral divisions with autocalculated electoral populations agains the quotas. Uses shape files from ABS and division data from AEC.</p>
         </div>
 
         <div class="sidebar-section">
@@ -383,7 +383,7 @@ layout: null
             </div>
             <div class="quota-row">
                 <span></span>
-                <span class="quota-band" id="quota-actual-band">&plusmn;10% band: &mdash;</span>
+                <span class="quota-band" id="quota-actual-band">&plusmn;10% threshold: &mdash;</span>
             </div>
             <div class="quota-row" style="margin-top:8px;">                
               <span class="quota-label">Projected quota</span>
@@ -391,7 +391,7 @@ layout: null
             </div>
             <div class="quota-row">
                 <span></span>
-                <span class="quota-band" id="quota-projected-band">&plusmn;3.5% band: &mdash;</span>
+                <span class="quota-band" id="quota-projected-band">&plusmn;3.5% threshold: &mdash;</span>
             </div>
 
         </div>
@@ -419,7 +419,7 @@ layout: null
     </div>
 
     <p id="tool-map-description" class="sr-only">
-        Interactive map of ABS statistical areas (SA1). Select a division in the sidebar, then click an SA1 to assign or unassign it. Double-click an SA1 to assign the entire SA2.
+        Interactive map of ABS statistical areas. Select a division in the sidebar, then click an SA1 to assign or unassign it. Double-click an SA1 to assign the entire SA2.
     </p>
 
 </main>
