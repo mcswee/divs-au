@@ -118,14 +118,14 @@
 <script>
 // ── CONSTANTS ────────────────────────────────────────────────────────────────
 const ERA_ORDER = [
-  'lover','fearless','red','speak_now',
-  'folklore','evermore','ttpd',
-  'reputation','acoustic','1989','midnights'
+  'lover','fearless','evermore','red','speak_now','reputation',
+  'folklore','1989','ttpd',
+  'acoustic','midnights'
 ];
 const ERA_LABELS = {
   lover:'Lover', fearless:'Fearless', red:'Red', speak_now:'Speak Now',
-  evermore:'Evermore', folklore:'Folklore', ttpd:'The Tortured Poets Department',
-  reputation:'reputation', acoustic:'Acoustic', '1989':'1989', midnights:'Midnights'
+  evermore:'Evermore', folklore:'Folklore', ttpd:'TTPD',
+  reputation:'Reputation', acoustic:'Acoustic', '1989':'1989', midnights:'Midnights'
 };
 const ERA_COLORS = {
   lover:'#f472b6', fearless:'#c9a83c', red:'#dc3545', speak_now:'#9d4fd1',
@@ -135,7 +135,7 @@ const ERA_COLORS = {
 const SLOT_LABELS = {
   bodysuit:'Bodysuit', jacket:'Jacket', guitar:'Guitar', dress:'Dress',
   tshirt:'T-Shirt', romper:'Romper', coat:'Coat', tshirtdress:'T-Shirt Dress',
-  military_jacket:'Military Jacket', tailcoat:'Tailcoat', twopiece:'Two-Piece',
+  military_jacket:'Jacket', tailcoat:'Tailcoat', twopiece:'Two-Piece',
   gloves:'Gloves', necklace:'Necklace', cloak:'Cloak',
   top:'Top', skirt:'Skirt', boot_right:'Right Boot', boot_left:'Left Boot'
 };
@@ -314,16 +314,16 @@ function renderExtras(show) {
     rows.push(['Special guests', show.guests.map(g=>`<span class="tag">${g}</span>`).join('')]);
 
   if (show.ovation)
-    rows.push(['Champagne Problems', `<em>${show.ovation}</em> standing ovation`]);
+    rows.push(['Champagne Problems ovation', `<em>${show.ovation}</em> minutes`]);
 
   if (show.oh_hi && show.oh_hi !== 'Oh Hi!')
     rows.push(['Oh Hi!', `<em>"${show.oh_hi}"</em>`]);
 
   if (show.like_ever)
-    rows.push(['Like Ever!', `<em>"${show.like_ever}"</em>`]);
+    rows.push(['Kam`s Like Ever!', `<em>"${show.like_ever}"</em>`]);
 
   if (show.guy_on_the)
-    rows.push(['Guy on the', `<em>${show.guy_on_the}</em>`]);
+    rows.push(['Guy on the...', `<em>${show.guy_on_the}</em>`]);
 
   if (!rows.length) return '';
 
