@@ -41,13 +41,13 @@
 
   var DIVISION_COLOURS = [
     "#336699", "#a3203b", "#0b6b3a", "#b3791e",
-    "#6a4c93", "#1f7a8c", "#c2541f", "#5c5c8a"
+    "#6a4c93", "#1f7a8c", "#c2541f", "#9393ba"
   ];
 
   var ALL_COLOURS = [
     "#336699", "#a3203b", "#0b6b3a", "#b3791e",
-    "#6a4c93", "#1f7a8c", "#c2541f", "#5c5c8a",
-    "#d4521f", "#1b5e20", "#4a148c", "#0d47a1"
+    "#6a4c93", "#1f7a8c", "#c2541f", "#9393ba",
+    "#84b366", "#b157bd", "#44857e", "#8a694d"
   ];
 
   // ---- runtime state ----
@@ -87,7 +87,7 @@
   function setupMap() {
     map = L.map("tool-map", { preferCanvas: true });
     L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>|<a href="/copyright/>ABS & AEC</a>',
       maxZoom: 19
     }).addTo(map);
   }
@@ -407,18 +407,18 @@
     if (q.divisor === 0) {
       el.quotaActualValue.textContent = "\u2014";
       el.quotaProjectedValue.textContent = "\u2014";
-      el.quotaActualBand.textContent = "\u00b110% band: \u2014";
-      el.quotaProjectedBand.textContent = "\u00b13.5% band: \u2014";
+      el.quotaActualBand.textContent = "\u00b110% threshold: \u2014";
+      el.quotaProjectedBand.textContent = "\u00b13.5% threshold: \u2014";
       el.quotaDivisor.textContent = "Based on 0 divisions";
       return;
     }
     el.quotaActualValue.textContent = Math.round(q.actualQuota).toLocaleString();
     el.quotaProjectedValue.textContent = Math.round(q.projectedQuota).toLocaleString();
     el.quotaActualBand.textContent =
-      "\u00b110% band: " + Math.round(q.actualQuota * 0.9).toLocaleString() +
+      "\u00b110% threshold: " + Math.round(q.actualQuota * 0.9).toLocaleString() +
       " \u2013 " + Math.round(q.actualQuota * 1.1).toLocaleString();
     el.quotaProjectedBand.textContent =
-      "\u00b13.5% band: " + Math.round(q.projectedQuota * 0.965).toLocaleString() +
+      "\u00b13.5% threshold: " + Math.round(q.projectedQuota * 0.965).toLocaleString() +
       " \u2013 " + Math.round(q.projectedQuota * 1.035).toLocaleString();
     el.quotaDivisor.textContent =
       "Based on " + q.divisor + " division" + (q.divisor === 1 ? "" : "s") +
@@ -453,7 +453,7 @@
         '</div>' +
         statusLine("Actual", t.actual, actualStatus, actualPct) +
         statusLine("Projected", t.projected, projectedStatus, projectedPct) +
-        (t.count === 0 ? '<span class="warning-chip">0 SA1s assigned</span>' : "");
+        (t.count === 0 ? '<span class="warning-chip">No SA1s assigned</span>' : "");
 
       li.addEventListener("click", function (e) {
         if (e.target && e.target.getAttribute("data-action") === "rename") {
