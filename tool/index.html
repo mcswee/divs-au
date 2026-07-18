@@ -374,7 +374,10 @@ layout: null
 
         <div class="sidebar-section">
             <h2>Quota reference</h2>
-            <div class="quota-row">
+            <div class="quota-row" style="margin-top:8px;">
+                <span class="quota-band" id="quota-divisor">Recording &mdash; divisions</span>
+            </div>
+          <div class="quota-row">
                 <span class="quota-label">Actual quota</span>
                 <span id="quota-actual-value">&mdash;</span>
             </div>
@@ -382,10 +385,7 @@ layout: null
                 <span></span>
                 <span class="quota-band" id="quota-actual-band">&plusmn;10% band: &mdash;</span>
             </div>
-            <div class="quota-row" style="margin-top:8px;">
-            <div class="quota-row" style="margin-top:8px;">
-                <span class="quota-band" id="quota-divisor">Allocated &mdash; divisions</span>
-            </div>                
+            <div class="quota-row" style="margin-top:8px;">                
               <span class="quota-label">Projected quota</span>
                 <span id="quota-projected-value">&mdash;</span>
             </div>
