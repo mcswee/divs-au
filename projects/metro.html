@@ -621,6 +621,8 @@ function to_hhmm(mins) {
 }
 
 function platSort(a, b) {
+  if (a === '—') return 1;
+  if (b === '—') return -1;
   const na = parseInt(a), nb = parseInt(b);
   if (!isNaN(na) && !isNaN(nb)) return na - nb;
   return a.localeCompare(b, undefined, { numeric: true });
