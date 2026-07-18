@@ -383,16 +383,17 @@ layout: null
                 <span class="quota-band" id="quota-actual-band">&plusmn;10% band: &mdash;</span>
             </div>
             <div class="quota-row" style="margin-top:8px;">
-                <span class="quota-label">Projected quota</span>
+            <div class="quota-row" style="margin-top:8px;">
+                <span class="quota-band" id="quota-divisor">Allocated &mdash; divisions</span>
+            </div>                
+              <span class="quota-label">Projected quota</span>
                 <span id="quota-projected-value">&mdash;</span>
             </div>
             <div class="quota-row">
                 <span></span>
                 <span class="quota-band" id="quota-projected-band">&plusmn;3.5% band: &mdash;</span>
             </div>
-            <div class="quota-row" style="margin-top:8px;">
-                <span class="quota-band" id="quota-divisor">Based on &mdash; divisions</span>
-            </div>
+
         </div>
 
         <div class="sidebar-section">
@@ -401,7 +402,7 @@ layout: null
                 <span class="div-swatch" id="active-division-swatch"></span>
                 <span id="active-division-name">&mdash;</span>
             </div>
-            <p class="helper-text">Click an SA1 on the map to toggle it into the active division. Double-click an SA1 to assign its whole SA2 area at once.</p>
+            <p class="helper-text">Click on an SA1 on the map to move it into the active division. Double-click an SA1 to assign the whole SA2 to the division at once.</p>
         </div>
 
         <div class="sidebar-section" style="flex-grow:1;">
@@ -418,7 +419,7 @@ layout: null
     </div>
 
     <p id="tool-map-description" class="sr-only">
-        Interactive map of SA1 statistical areas. Select a division in the sidebar, then click an SA1 to assign or unassign it. Double-click an SA1 to assign its entire SA2 area.
+        Interactive map of ABS statistical areas (SA1). Select a division in the sidebar, then click an SA1 to assign or unassign it. Double-click an SA1 to assign the entire SA2.
     </p>
 
 </main>
