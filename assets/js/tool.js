@@ -31,12 +31,13 @@
       center: [-42.0, 146.8],
       zoom: 7
     },
-    qld: {
+        qld: {
       geojson: "/assets/data/qld_sa1.geojson",
       csv: "/assets/data/qld_sa1.csv",
-      center: [-42.0, 146.8],
-      zoom: 7
+      center: [-23.0, 144.5], 
+      zoom: 5                 
     }
+
   };
 
   var DIVISION_COLOURS = [
