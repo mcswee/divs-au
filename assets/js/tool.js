@@ -168,7 +168,7 @@
             '<span class="sa1-sa2">' + escapeHtml(ref.sa2Name) + '</span>' +
             'SA1 ' + code + '<br>' +
             'Actual: ' + ref.actual.toLocaleString() + ' &middot; Projected: ' + ref.projected.toLocaleString() +
-            'Division:' + division ,
+            'Division:' + escapeHtml(currentDivision) ,
             { className: "sa1-tooltip", sticky: true }
           );
         }
