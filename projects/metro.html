@@ -1,7 +1,3 @@
-
-
-
-Metro · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,9 +18,9 @@ Metro · HTML
       --pat-bg:     #f8f8f8;
       --font:       'Inter', system-ui, sans-serif;
     }
- 
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
     body {
       font-family: var(--font);
       background: var(--bg);
@@ -33,13 +29,13 @@ Metro · HTML
       line-height: 1.4;
       -webkit-font-smoothing: antialiased;
     }
- 
+
     #app {
       max-width: 780px;
       margin: 0 auto;
       padding: 0 1.25rem 3rem;
     }
- 
+
     /* ── Header ── */
     header {
       display: flex;
@@ -49,19 +45,19 @@ Metro · HTML
       border-bottom: 2px solid var(--text);
       margin-bottom: 1.75rem;
     }
- 
+
     .header-top {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
     }
- 
+
     .wordmark {
       display: flex;
       flex-direction: column;
       gap: 0.15rem;
     }
- 
+
     .site-tag {
       font-size: 0.65rem;
       font-weight: 600;
@@ -69,26 +65,26 @@ Metro · HTML
       text-transform: uppercase;
       color: var(--dim);
     }
- 
+
     h1 {
       font-size: 1.5rem;
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1;
     }
- 
+
     #clock {
       font-size: 1.5rem;
       font-weight: 700;
       font-variant-numeric: tabular-nums;
       letter-spacing: 0.03em;
     }
- 
+
     /* ── Station selector ── */
     .selector-wrap {
       position: relative;
     }
- 
+
     .selector-wrap::after {
       content: '▾';
       position: absolute;
@@ -99,7 +95,7 @@ Metro · HTML
       pointer-events: none;
       font-size: 0.85rem;
     }
- 
+
     #station-select {
       width: 100%;
       font-family: var(--font);
@@ -115,23 +111,23 @@ Metro · HTML
       cursor: pointer;
       outline: none;
     }
- 
+
     #station-select:focus {
       border-bottom-color: var(--text);
     }
- 
+
     /* ── Status messages ── */
     .msg {
       padding: 2rem 0;
       color: var(--dim);
       font-size: 0.9rem;
     }
- 
+
     /* ── Platform section ── */
     .platform {
       margin-bottom: 1.25rem;
     }
- 
+
     .platform-hdr {
       font-size: 0.68rem;
       font-weight: 600;
@@ -143,7 +139,7 @@ Metro · HTML
       border-bottom: 1px solid var(--border);
       padding: 0.4rem 0.75rem;
     }
- 
+
     /* ── Departure row ── */
     .dep {
       display: grid;
@@ -158,9 +154,9 @@ Metro · HTML
       user-select: none;
       -webkit-user-select: none;
     }
- 
+
     .dep:hover, .dep.open { background: var(--row-hover); }
- 
+
     /* Scheduled time */
     .dep-time {
       font-size: 0.9rem;
@@ -168,7 +164,7 @@ Metro · HTML
       font-variant-numeric: tabular-nums;
       line-height: 1.1;
     }
- 
+
     /* Real-time actual time (shown when delay data available) */
     .dep-time.delayed .sched {
       font-size: 0.7rem;
@@ -177,11 +173,11 @@ Metro · HTML
       text-decoration: line-through;
       display: block;
     }
- 
+
     .dep-time .actual {
       display: block;
     }
- 
+
     /* Countdown */
     .dep-mins {
       font-size: 0.8rem;
@@ -190,14 +186,14 @@ Metro · HTML
       font-variant-numeric: tabular-nums;
       white-space: nowrap;
     }
- 
+
     .dep-mins.soon { color: #c00; font-weight: 600; }
- 
+
     /* Route + destination */
     .dep-info {
       min-width: 0;
     }
- 
+
     .dep-dest {
       font-size: 0.95rem;
       font-weight: 600;
@@ -206,14 +202,14 @@ Metro · HTML
       overflow: hidden;
       text-overflow: ellipsis;
     }
- 
+
     .dep-route {
       font-size: 0.72rem;
       font-weight: 500;
       color: var(--dim);
       margin-top: 0.1rem;
     }
- 
+
     /* Expand caret */
     .dep-caret {
       font-size: 0.6rem;
@@ -221,7 +217,7 @@ Metro · HTML
       padding-left: 0.25rem;
       flex-shrink: 0;
     }
- 
+
     /* ── Stopping pattern ── */
     .pattern {
       background: var(--pat-bg);
@@ -229,7 +225,7 @@ Metro · HTML
       border-left: 4px solid var(--lc, #ccc);
       padding: 0.5rem 0;
     }
- 
+
     .pat-stop {
       display: grid;
       grid-template-columns: 2.75rem 1fr;
@@ -237,32 +233,32 @@ Metro · HTML
       padding: 0.275rem 0.75rem;
       font-size: 0.83rem;
     }
- 
+
     .pat-stop.is-here {
       font-weight: 700;
     }
- 
+
     .pat-stop.is-end {
       font-weight: 600;
     }
- 
+
     .pat-time {
       font-variant-numeric: tabular-nums;
       color: var(--dim);
     }
- 
+
     .pat-stop.is-here .pat-time,
     .pat-stop.is-end .pat-time {
       color: var(--text);
     }
- 
+
     /* loading indicator inside pattern */
     .pat-loading {
       padding: 0.5rem 0.75rem;
       font-size: 0.83rem;
       color: var(--dim);
     }
- 
+
     /* ── Real-time badge ── */
     .rt-badge {
       display: inline-block;
@@ -274,11 +270,11 @@ Metro · HTML
       margin-left: 0.4rem;
       vertical-align: middle;
     }
- 
+
     .rt-ontime  { background: #e6f4ea; color: #1a7f37; }
     .rt-late    { background: #fde8e8; color: #c00; }
     .rt-early   { background: #fff3cd; color: #856404; }
- 
+
     /* ── Footer ── */
     footer {
       margin-top: 2rem;
@@ -287,9 +283,9 @@ Metro · HTML
       font-size: 0.72rem;
       color: var(--dim);
     }
- 
+
     footer a { color: inherit; text-decoration: underline; }
- 
+
     /* ── Responsive ── */
     @media (max-width: 480px) {
       .dep {
@@ -318,11 +314,11 @@ Metro · HTML
       </select>
     </div>
   </header>
- 
+
   <main id="board">
     <p class="msg">Select a station to see upcoming departures.</p>
   </main>
- 
+
   <footer>
     Scheduled times.
     <span id="rt-status"></span>
@@ -330,21 +326,21 @@ Metro · HTML
     Not real-time — use <a href="https://www.ptv.vic.gov.au" target="_blank" rel="noopener">PTV</a> for live information.
   </footer>
 </div>
- 
+
 <script>
 // ── Config ────────────────────────────────────────────────────────────────────
 const DATA  = '/assets/data/trains';  // path to JSON files in repo
 const RT    = null;                   // Cloudflare Worker URL — set when ready
                                       // e.g. 'https://melb-trains.you.workers.dev'
 const POLL  = 30_000;                 // real-time poll interval (ms)
- 
+
 // ── State ─────────────────────────────────────────────────────────────────────
 let stations    = [];
 let stationData = null;
 let openTrip    = null;
 let patCache    = {};   // route → {trip_id: [[name, "HH:MM"]]}
 let rtData      = null; // latest real-time snapshot
- 
+
 // ── Boot ──────────────────────────────────────────────────────────────────────
 (async () => {
   tick();
@@ -364,7 +360,7 @@ let rtData      = null; // latest real-time snapshot
   document.getElementById('station-select')
     .addEventListener('change', e => loadStation(e.target.value));
 })();
- 
+
 // ── Dropdown ──────────────────────────────────────────────────────────────────
 function buildDropdown(list) {
   const sel = document.getElementById('station-select');
@@ -375,7 +371,7 @@ function buildDropdown(list) {
     sel.appendChild(o);
   });
 }
- 
+
 // ── Load station ──────────────────────────────────────────────────────────────
 async function loadStation(id) {
   if (!id) { setBoard('<p class="msg">Select a station to see upcoming departures.</p>'); return; }
@@ -389,7 +385,7 @@ async function loadStation(id) {
     setBoard('<p class="msg">Could not load departures for this station.</p>');
   }
 }
- 
+
 // ── Real-time ─────────────────────────────────────────────────────────────────
 async function pollRT() {
   if (!RT) return;
@@ -403,33 +399,43 @@ async function pollRT() {
     // silent — fall back to scheduled times
   }
 }
- 
+
 function rtDelay(tripId) {
   // Returns delay in seconds, or null if no real-time data
   return rtData?.trips?.[tripId]?.delay ?? null;
 }
- 
+
 // ── Render ────────────────────────────────────────────────────────────────────
 function render() {
   if (!stationData) return;
- 
+
   const nowMin    = nowMins();
   const today     = dayType();
   const todayNum  = todayDate();
- 
+
   // Filter to today's valid services, not yet departed (1 min grace)
-  const upcoming = stationData.departures.filter(d => {
+  const raw = stationData.departures.filter(d => {
     if (!d.days[today]) return false;
     if (d.days.from  && todayNum < d.days.from)  return false;
     if (d.days.until && todayNum > d.days.until) return false;
     const t = hm2min(d.departs);
-    if (t >= 1440) return false; // skip past-midnight services
-    // Account for real-time delay
+    if (t >= 1440) return false;
     const delay  = rtDelay(d.trip_id) ?? 0;
     const actual = t + Math.round(delay / 60);
     return actual >= nowMin - 1;
   });
- 
+
+  // Deduplicate after date filtering: PTV issues multiple service_ids for
+  // the same physical service. Two entries with the same route, platform
+  // and departure time are the same train — keep only the first.
+  const seenKeys = new Set();
+  const upcoming = raw.filter(d => {
+    const key = `${d.plat}|${d.departs}|${d.route}`;
+    if (seenKeys.has(key)) return false;
+    seenKeys.add(key);
+    return true;
+  });
+
   // Group by platform, cap at 3 per platform
   const byPlat = {};
   upcoming.forEach(d => {
@@ -437,21 +443,21 @@ function render() {
     if (!byPlat[p]) byPlat[p] = [];
     if (byPlat[p].length < 3) byPlat[p].push(d);
   });
- 
+
   const plats = Object.keys(byPlat).sort(platSort);
   if (!plats.length) {
     setBoard('<p class="msg">No upcoming services for today.</p>');
     return;
   }
- 
+
   const frag = document.createDocumentFragment();
   plats.forEach(p => frag.appendChild(buildPlatform(p, byPlat[p])));
- 
+
   const board = document.getElementById('board');
   board.innerHTML = '';
   board.appendChild(frag);
 }
- 
+
 // ── Platform ──────────────────────────────────────────────────────────────────
 function buildPlatform(plat, services) {
   const sec = el('section', 'platform');
@@ -464,21 +470,21 @@ function buildPlatform(plat, services) {
   });
   return sec;
 }
- 
+
 // ── Departure row ─────────────────────────────────────────────────────────────
 function buildDep(dep) {
   const row = el('div', 'dep' + (openTrip === dep.trip_id ? ' open' : ''));
   row.style.setProperty('--lc', dep.colour);
   row.setAttribute('role', 'button');
   row.setAttribute('tabindex', '0');
- 
+
   const nowMin  = nowMins();
   const schedMin = hm2min(dep.departs);
   const delay   = rtDelay(dep.trip_id);  // seconds or null
   const delaySec = delay ?? 0;
   const actualMin = schedMin + Math.round(delaySec / 60);
   const minsAway  = actualMin - nowMin;
- 
+
   // Time cell
   const timeEl = el('span', 'dep-time');
   if (delay !== null && delaySec !== 0) {
@@ -493,17 +499,17 @@ function buildDep(dep) {
     actual.textContent = dep.departs;
     timeEl.appendChild(actual);
   }
- 
+
   // Mins countdown
   const minsEl = el('span', 'dep-mins' + (minsAway <= 2 ? ' soon' : ''));
   minsEl.textContent = minsAway <= 0 ? 'Now'
                      : minsAway === 1 ? '1 min'
                      : `${minsAway} min`;
- 
+
   // Destination + route line
   const info = el('div', 'dep-info');
   const dest = el('div', 'dep-dest');
- 
+
   // Real-time badge
   let badge = '';
   if (delay !== null) {
@@ -512,17 +518,17 @@ function buildDep(dep) {
     else                      badge = '<span class="rt-badge rt-early">Early</span>';
   }
   dest.innerHTML = escHtml(dep.dest) + badge;
- 
+
   const route = el('div', 'dep-route');
   route.textContent = dep.route;
   info.append(dest, route);
- 
+
   // Caret
   const caret = el('span', 'dep-caret');
   caret.textContent = openTrip === dep.trip_id ? '▲' : '▼';
- 
+
   row.append(timeEl, minsEl, info, caret);
- 
+
   const toggle = async () => {
     if (openTrip === dep.trip_id) { openTrip = null; render(); return; }
     openTrip = dep.trip_id;
@@ -534,10 +540,10 @@ function buildDep(dep) {
   row.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
   });
- 
+
   return row;
 }
- 
+
 // ── Stopping pattern ──────────────────────────────────────────────────────────
 async function ensurePattern(route) {
   if (patCache[route]) return;
@@ -548,24 +554,24 @@ async function ensurePattern(route) {
     patCache[route] = {};
   }
 }
- 
+
 function buildPattern(dep) {
   const wrap = el('div', 'pattern');
   wrap.style.setProperty('--lc', dep.colour);
- 
+
   const trips = patCache[dep.route];
   const full  = trips && trips[dep.trip_id];
- 
+
   if (!full) {
     const loading = el('div', 'pat-loading');
     loading.textContent = 'Loading stops…';
     wrap.appendChild(loading);
     return wrap;
   }
- 
+
   const stops = full.slice(dep.pat_idx);
   const last  = stops.length - 1;
- 
+
   stops.forEach(([name, time], i) => {
     const row = el('div', 'pat-stop' +
       (i === 0    ? ' is-here' : '') +
@@ -577,10 +583,10 @@ function buildPattern(dep) {
     row.append(t, n);
     wrap.appendChild(row);
   });
- 
+
   return wrap;
 }
- 
+
 // ── Clock ─────────────────────────────────────────────────────────────────────
 function tick() {
   const now = new Date();
@@ -588,38 +594,38 @@ function tick() {
     pad(now.getHours()) + ':' + pad(now.getMinutes());
   if (stationData) render();
 }
- 
+
 // ── Utilities ─────────────────────────────────────────────────────────────────
 function nowMins() {
   const n = new Date(); return n.getHours() * 60 + n.getMinutes();
 }
- 
+
 function dayType() {
   const d = new Date().getDay();
   return d === 0 ? 'sunday' : d === 6 ? 'saturday' : 'weekday';
 }
- 
+
 function todayDate() {
   const n = new Date();
   return n.getFullYear() * 10000 + (n.getMonth() + 1) * 100 + n.getDate();
 }
- 
+
 function hm2min(hhmm) {
   const [h, m] = hhmm.split(':').map(Number);
   return h * 60 + m;
 }
- 
+
 function to_hhmm(mins) {
   const [h, m] = [Math.floor(mins / 60), mins % 60];
   return `${pad(h)}:${pad(m)}`;
 }
- 
+
 function platSort(a, b) {
   const na = parseInt(a), nb = parseInt(b);
   if (!isNaN(na) && !isNaN(nb)) return na - nb;
   return a.localeCompare(b, undefined, { numeric: true });
 }
- 
+
 function safeFn(s) { return s.replace(/[^A-Za-z0-9_\-]/g, '_'); }
 function pad(n)    { return String(n).padStart(2, '0'); }
 function el(t, c)  { const e = document.createElement(t); if (c) e.className = c; return e; }
@@ -630,5 +636,3 @@ function escHtml(s) {
 </script>
 </body>
 </html>
- 
-
