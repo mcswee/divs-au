@@ -711,7 +711,16 @@ function buildPattern(dep) {
     return wrap;
   }
 
-  const stops = full.slice(dep.pat_idx);
+  // dep.pat_idx counts only real stops (not __EXP__ entries).
+  // Find the position of that stop in the annotated pattern.
+  let realIdx = 0;
+  let stopCount = 0;
+  for (let i = 0; i < full.length; i++) {
+    if (full[i][0] === '__EXP__') continue;
+    if (stopCount === dep.pat_idx) { realIdx = i; break; }
+    stopCount++;
+  }
+  const stops = full.slice(realIdx);
   const last  = stops.reduce((acc, [n], i) => n !== '__EXP__' ? i : acc, 0);
 
   stops.forEach(([name, time], i) => {
