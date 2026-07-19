@@ -490,17 +490,26 @@ function render() {
   });
 
   const plats = Object.keys(byPlat).sort(platSort);
-  if (!plats.length) {
-    setBoard('<p class="msg">No upcoming services for today.</p>');
-    return;
-  }
 
   const frag = document.createDocumentFragment();
 
-  // Alerts for this station (prepended above platforms)
+  // Alerts always shown first, even if no train services running
   const stationAlerts = alertsForStation();
   if (stationAlerts.length) frag.appendChild(buildAlerts(stationAlerts));
 
+  if (!plats.length) {
+    const msg = el('p', 'msg');
+    msg.textContent = stationAlerts.length
+      ? 'No train services currently running — see alert above.'
+      : 'No upcoming services for today.';
+    frag.appendChild(msg);
+    const board = document.getElementById('board');
+    board.innerHTML = '';
+    board.appendChild(frag);
+    return;
+  }
+
+  // Alerts for this station (prepended above platforms)
   plats.forEach(p => frag.appendChild(buildPlatform(p, byPlat[p])));
 
   const board = document.getElementById('board');
