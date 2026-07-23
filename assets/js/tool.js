@@ -72,7 +72,8 @@
     activeDivisionSwatch: document.getElementById("active-division-swatch"),
     activeDivisionName: document.getElementById("active-division-name"),
     divisionList: document.getElementById("division-list"),
-    createDivisionBtn: document.getElementById("create-division-btn")
+    createDivisionBtn: document.getElementById("create-division-btn"),
+    exportBtn: document.getElementById("export-btn")
   };
 
   init();
@@ -80,6 +81,7 @@
   function init() {
     setupMap();
     el.createDivisionBtn.addEventListener("click", onCreateDivision);
+    el.exportBtn.addEventListener("click", onExport);
     el.stateSelect.addEventListener("change", function () {
       loadState(el.stateSelect.value);
     });
@@ -488,6 +490,52 @@
   function pctDeviation(value, quota) {
     if (!quota) return 0;
     return ((value - quota) / quota) * 100;
+  }
+
+  // ---- export ----
+
+  function onExport() {
+    var rows = [];
+    rows.push(["SA1_CODE", "SA2_CODE", "SA2_NAME", "ACTUAL", "PROJECTED", "DIVISION"]);
+
+    var sa1Codes = Object.keys(sa1Reference).sort();
+    sa1Codes.forEach(function (code) {
+      var ref = sa1Reference[code];
+      var div = assignment[code] || "";
+      rows.push([
+        code,
+        ref.sa2Code,
+        ref.sa2Name,
+        ref.actual,
+        ref.projected,
+        div
+      ]);
+    });
+
+    var csv = rows.map(function (row) {
+      return row.map(function (cell) {
+        if (typeof cell === "string" && (cell.includes(",") || cell.includes('"') || cell.includes("\n"))) {
+          return '"' + cell.replace(/"/g, '""') + '"';
+        }
+        return cell;
+      }).join(",");
+    }).join("\n");
+
+    var stateKey = el.stateSelect.value;
+    var today = new Date();
+    var dateStr = today.getFullYear() + "-" + 
+                  String(today.getMonth() + 1).padStart(2, "0") + "-" + 
+                  String(today.getDate()).padStart(2, "0");
+    var filename = "redistribution_" + stateKey + "_" + dateStr + ".csv";
+
+    var blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    var link = document.createElement("a");
+    link.setAttribute("href", URL.createObjectURL(blob));
+    link.setAttribute("download", filename);
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   // ---- utils ----
