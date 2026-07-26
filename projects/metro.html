@@ -540,24 +540,26 @@ const ROUTE_CODES = {
   'Flemington Racecourse': 'FGS',
 };
 
-// Only show alerts with meaningful service impacts — skip OTHER_EFFECT (car parks etc.)
+// Only show alerts with meaningful service impacts.
+// OTHER_EFFECT is included but filtered to exclude car park / infrastructure notices
+// which always start with "Planned work:" in PTV's feed.
 const SHOW_EFFECTS = new Set([
-  'NO_SERVICE', 'REDUCED_SERVICE', 'SIGNIFICANT_DELAYS', 'MODIFIED_SERVICE'
+  'NO_SERVICE', 'REDUCED_SERVICE', 'SIGNIFICANT_DELAYS', 'MODIFIED_SERVICE', 'OTHER_EFFECT'
 ]);
 
 function alertsForStation() {
   if (!rtData?.alerts?.length || !stationData) return [];
 
-  // Build set of route codes serving this station
   const codes = new Set(
     stationData.departures
       .map(d => ROUTE_CODES[d.route])
       .filter(Boolean)
   );
 
-  // Filter alerts to those affecting this station's routes and worth showing
   return rtData.alerts.filter(a => {
     if (!SHOW_EFFECTS.has(a.effect)) return false;
+    // Filter out car park / minor infrastructure notices
+    if (a.effect === 'OTHER_EFFECT' && a.header.startsWith('Planned work')) return false;
     return a.routes.some(r => [...codes].some(c => r.includes(`-${c}`)));
   });
 }
@@ -595,6 +597,7 @@ function effectClass(effect) {
   if (effect === 'REDUCED_SERVICE')      return 'critical';
   if (effect === 'SIGNIFICANT_DELAYS')   return 'warning';
   if (effect === 'MODIFIED_SERVICE')     return 'info';
+  if (effect === 'OTHER_EFFECT')         return 'warning';
   return 'info';
 }
 
