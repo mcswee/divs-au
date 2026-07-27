@@ -213,7 +213,7 @@
       .htmlElement(d => {
         const el = document.createElement('div');
         el.className = 'weather-badge';
-        el.innerHTML = `<strong>${d.name}</strong>${d.temp}°C`;
+        el.innerHTML = `${d.name} <strong>${d.temp}°</strong>`;
         return el;
       });
 
