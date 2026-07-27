@@ -24,8 +24,7 @@
 
     /* Style for the floating city badges */
     .weather-badge {
-      background: rgba(10, 20, 30, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.4);
       color: #fff;
       padding: 5px 10px;
       border-radius: 6px;
@@ -34,10 +33,12 @@
       white-space: nowrap;
       transform: translate(-50%, -100%);
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
     }
 
     .weather-badge strong {
       color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
     }
   </style>
 </head>
@@ -46,6 +47,60 @@
   <div id="globe-container"></div>
 
   <script>
+    // --- COLOR SCALE LOGIC ---
+
+    // 1. Define your scale points
+    // Temperatures are in Celsius. Colors are RGB arrays [Red, Green, Blue].
+    const colorScale = [
+      { temp: -30, color: [25, 0, 50] },   // Black Purple
+      { temp: -20, color: [128, 0, 128] }, // Purple
+      { temp: -10, color: [0, 0, 255] },   // Blue
+      { temp: 0,   color: [0, 255, 255] }, // Cyan
+      { temp: 10,  color: [0, 128, 0] },   // Green
+      { temp: 20,  color: [255, 255, 0] }, // Yellow
+      { temp: 30,  color: [255, 165, 0] }, // Orange
+      { temp: 40,  color: [255, 0, 0] },   // Red
+      { temp: 50,  color: [255, 105, 180] }// Pinky Red (Hot Pink)
+    ];
+
+    // 2. Linear Interpolation Function (Helper)
+    // Calculates a value between 'start' and 'end' based on the percentage 't' (0 to 1)
+    function interpolate(start, end, t) {
+      return start + (end - start) * t;
+    }
+
+    // 3. The main color calculator
+    function getTemperatureColor(temp) {
+      // Handle temperatures outside the defined range
+      if (temp <= colorScale[0].temp) return `rgb(${colorScale[0].color.join(',')})`;
+      if (temp >= colorScale[colorScale.length - 1].temp) return `rgb(${colorScale[colorScale.length - 1].color.join(',')})`;
+
+      // Find the two scale points the current temp falls between
+      let lower, upper;
+      for (let i = 0; i < colorScale.length - 1; i++) {
+        if (temp >= colorScale[i].temp && temp <= colorScale[i + 1].temp) {
+          lower = colorScale[i];
+          upper = colorScale[i + 1];
+          break;
+        }
+      }
+
+      // Calculate how far (percentage) the temp is between the lower and upper points
+      const range = upper.temp - lower.temp;
+      const adjustedTemp = temp - lower.temp;
+      const t = adjustedTemp / range; // This is a number between 0.0 and 1.0
+
+      // Interpolate the Red, Green, and Blue values separately
+      const r = Math.round(interpolate(lower.color[0], upper.color[0], t));
+      const g = Math.round(interpolate(lower.color[1], upper.color[1], t));
+      const b = Math.round(interpolate(lower.color[2], upper.color[2], t));
+
+      // Return the final color string, slightly transparent (0.9 alpha)
+      return `rgba(${r}, ${g}, ${b}, 0.9)`;
+    }
+
+    // --- END COLOR SCALE LOGIC ---
+    
     const STOPS = [
   {
     region: "Australia",
@@ -213,6 +268,7 @@
       .htmlElement(d => {
         const el = document.createElement('div');
         el.className = 'weather-badge';
+        el.style.backgroundColor = getTemperatureColor(d.temp);
         el.innerHTML = `${d.name} <strong>${d.temp}°</strong>`;
         return el;
       });
