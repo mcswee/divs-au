@@ -23,24 +23,35 @@
     }
 
     /* Style for the floating city badges */
-    .weather-badge {
-      background-color rgba (0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 6px;
-      font-size: 13px;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: translate(-50%, -100%);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
-    }
+.weather-badge {
+  background: rgba(10, 20, 30, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 4px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+  pointer-events: none;
+  white-space: nowrap;
+  transform: translate(-50%, -100%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
-    .weather-badge strong {
-       display: block;
-        color: #fff;
-    }
+.weather-badge strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* The colored box specifically for the temperature */
+.temp-box {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
   </style>
 </head>
 <body>
@@ -269,9 +280,12 @@
       .htmlElement(d => {
         const el = document.createElement('div');
         el.className = 'weather-badge';
-        el.style.backgroundColor = getTemperatureColor(d.temp);
-        el.innerHTML = `<strong>${d.name}</strong> ${d.temp}°`;
-        return el;
+        const bgColor = getTemperatureColor(d.temp);
+        el.innerHTML = `
+          <strong>${d.name}</strong>
+          <span class="temp-box" style="background-color: ${bgColor}">${d.temp}°C</span>
+        `;
+    return el;
       });
 
     async function getWeatherForCities(cities) {
