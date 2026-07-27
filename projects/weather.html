@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Weather Tour</title>
+  
+  <!-- Load Globe.gl library from CDN -->
+  <script src="//unpkg.com/globe.gl"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    #globe-container {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Style for the floating city badges */
+    .weather-badge {
+      background: rgba(10, 20, 30, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: translate(-50%, -100%);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .weather-badge strong {
+      display: block;
+      color: #64b5f6;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="globe-container"></div>
+
+  <script>
+    const STOPS = [
+      {
+        region: "North America",
+        lookAt: { lat: 39.8, lng: -98.5, altitude: 1.8 },
+        cities: [
+          { name: "New York", lat: 40.71, lng: -74.00 },
+          { name: "Chicago", lat: 41.87, lng: -87.62 },
+          { name: "Los Angeles", lat: 34.05, lng: -118.24 },
+          { name: "Miami", lat: 25.76, lng: -80.19 },
+          { name: "Toronto", lat: 43.65, lng: -79.38 },
+          { name: "Dallas", lat: 32.77, lng: -96.79 },
+          { name: "Seattle", lat: 47.60, lng: -122.33 }
+        ]
+      },
+      {
+        region: "Europe",
+        lookAt: { lat: 48.8, lng: 12.5, altitude: 1.6 },
+        cities: [
+          { name: "London", lat: 51.50, lng: -0.12 },
+          { name: "Paris", lat: 48.85, lng: 2.35 },
+          { name: "Berlin", lat: 52.52, lng: 13.40 },
+          { name: "Rome", lat: 41.90, lng: 12.49 },
+          { name: "Madrid", lat: 40.41, lng: -3.70 },
+          { name: "Amsterdam", lat: 52.36, lng: 4.90 },
+          { name: "Vienna", lat: 48.20, lng: 16.37 }
+        ]
+      }
+    ];
+
+    // Initialize Globe
+    const world = Globe()(document.getElementById('globe-container'))
+      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+      .htmlElementsData([])
+      .htmlElement(d => {
+        const el = document.createElement('div');
+        el.className = 'weather-badge';
+        el.innerHTML = `<strong>${d.name}</strong>${d.temp}°C`;
+        return el;
+      });
+
+    async function getWeatherForCities(cities) {
+      const lats = cities.map(c => c.lat).join(',');
+      const lngs = cities.map(c => c.lng).join(',');
+
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lats}&longitude=${lngs}&current_weather=true`;
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        const results = Array.isArray(data) ? data : [data];
+
+        return cities.map((city, idx) => ({
+          ...city,
+          temp: Math.round(results[idx].current_weather.temperature)
+        }));
+      } catch (err) {
+        console.error("Failed to fetch weather data", err);
+        return [];
+      }
+    }
+
+    let currentStopIndex = 0;
+    const FLY_DURATION = 3500;
+    const PAUSE_DURATION = 6000;
+
+    async function runWeatherTour() {
+      const stop = STOPS[currentStopIndex];
+
+      // Remove previous markers while rotating
+      world.htmlElementsData([]);
+
+      // Move camera
+      world.pointOfView(stop.lookAt, FLY_DURATION);
+
+      // Fetch new data while rotating
+      const weatherData = await getWeatherForCities(stop.cities);
+
+      // Render weather badges once arrived
+      setTimeout(() => {
+        world.htmlElementsData(weatherData);
+      }, FLY_DURATION);
+
+      // Loop to next region
+      setTimeout(() => {
+        currentStopIndex = (currentStopIndex + 1) % STOPS.length;
+        runWeatherTour();
+      }, FLY_DURATION + PAUSE_DURATION);
+    }
+
+    // Start tour
+    runWeatherTour();
+  </script>
+</body>
+</html>
