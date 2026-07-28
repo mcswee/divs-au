@@ -139,13 +139,14 @@ const STOPS = [
   },
   {
     region: "SE Asia",
-    lookAt: { lat: 6.060, lng: 112.2, altitude: 1.0 },
+    lookAt: { lat: 6.060, lng: 115.2, altitude: 1.0 },
     cities: [
       { name: "Singapore", lat: 1.35, lng: 103.81 },
       { name: "Bangkok", lat: 13.75, lng: 100.50 },
       { name: "Jakarta", lat: -6.20, lng: 106.84 },
       { name: "Kuala Lumpur", lat: 3.13, lng: 101.68 },
       { name: "Ho Chi Minh City", lat: 10.82, lng: 106.62 },
+      { name: "Manila", lat: 14.59, lng: 120.98 },
       { name: "Bandar Seri Begawan", lat: 4.88, lng: 114.94 }, 
       { name: "Denpasar", lat: -8.65, lng: 115.21 },
       { name: "Port Moresby", lat: -9.44, lng: 147.18 },
@@ -165,23 +166,20 @@ const STOPS = [
       { name: "Osaka", lat: 34.69, lng: 135.50 },
       { name: "Ulaanbaatar", lat: 47.92, lng: 106.92 },
       { name: "Seoul", lat: 37.56, lng: 126.97 },
-      { name: "Manila", lat: 14.59, lng: 120.98 },
-      { name: "Xian", lat: 34.26, lng: 108.94 },
+      { name: "Xi'an", lat: 34.26, lng: 108.94 },
       { name: "Vladivostok", lat: 43.12, lng: 131.89 }
     ]
   },
   {
     region: "Indian Subcontinent",
-    lookAt: { lat: 26.0, lng: 55.0, altitude: 1.0 },
+    lookAt: { lat: 26.0, lng: 55.0, altitude: 0.9 },
     cities: [
       { name: "New Delhi", lat: 28.61, lng: 77.20 },
       { name: "Mumbai", lat: 19.07, lng: 72.87 },
-      { name: "Bengaluru", lat: 12.97, lng: 77.59 },
+      { name: "Dhaka", lat: 23.81, lng: 90.41 },
       { name: "Karachi", lat: 24.86, lng: 67.00 },
-      { name: "Kolkata", lat: 22.57, lng: 88.36 },
       { name: "Colombo", lat: 6.92, lng: 79.86 },
       { name: "Dubai", lat: 25.20, lng: 55.27 },
-      { name: "Tashkent", lat: 41.29, lng: 69.24 },
       { name: "Riyadh", lat: 24.71, lng: 46.67 },
       { name: "Almaty", lat: 43.23, lng: 76.88 },
       { name: "Damascus", lat: 33.51, lng: 36.29 },
@@ -194,13 +192,15 @@ const STOPS = [
     cities: [
       { name: "Kathmandu", lat: 27.71, lng: 85.32 },
       { name: "Tehran", lat: 35.68, lng: 51.38 },
-      { name: "Dhaka", lat: 23.81, lng: 90.41 },
       { name: "Tel Aviv", lat: 32.08, lng: 34.78 },
       { name: "Lahore", lat: 31.526, lng: 74.35 },
       { name: "Ankara", lat: 39.93, lng: 32.85 },
+      { name: "Kolkata", lat: 22.57, lng: 88.36 },
       { name: "Tashkent", lat: 41.29, lng: 69.24 },
       { name: "Jeddah", lat: 21.54, lng: 39.17 },
+      { name: "Muscat", lat: 23.59, lng: 58.41 },
       { name: "Ashgabad", lat: 43.23, lng: 76.88 },
+      { name: "Bengaluru", lat: 12.97, lng: 77.59 },
       { name: "Doha", lat: 25.28, lng: 51.53 },
       { name: "Baghdad", lat: 33.31, lng: 44.36 }
     ]
@@ -215,6 +215,7 @@ const STOPS = [
       { name: "Cairo", lat: 30.04, lng: 31.23 },
       { name: "Cape Town", lat: -33.92, lng: 18.42 },
       { name: "Kinshasa", lat: -4.44, lng: 15.26 },
+      { name: "Timbuktu", lat: 16.77, lng: -3.01 },
       { name: "Addis Ababa", lat: 9.03, lng: 38.74 },
       { name: "Nairobi", lat: -1.29, lng: 36.82 },
       { name: "Dakar", lat: 14.71, lng: -17.46 },
@@ -280,6 +281,7 @@ const STOPS = [
       { name: "Kansas City", lat: 39.09, lng: -94.57 },
       { name: "Boston", lat: 42.36, lng: -71.05 },
       { name: "Calgary", lat: 51.04, lng: -114.07 },
+      { name: "Miami", lat: 25.76, lng: -80.19 },
       { name: "Anchorage", lat: 61.21, lng: -149.90 },
       { name: "San Francisco", lat: 37.77, lng: -122.41 }
     ]
@@ -288,7 +290,6 @@ const STOPS = [
     region: "Central America",
     lookAt: { lat: 18.0, lng: -80.0, altitude: 1.5 },
     cities: [
-      { name: "Miami", lat: 25.76, lng: -80.19 },
       { name: "Havana", lat: 23.11, lng: -82.36 },
       { name: "Cancún", lat: 21.16, lng: -86.85 },
       { name: "San Juan", lat: 18.46, lng: -66.10 },
