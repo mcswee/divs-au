@@ -1,385 +1,446 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Global Weather Tour</title>
-  
-  <!-- Load Globe.gl library from CDN -->
-  <script src="//unpkg.com/globe.gl"></script>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Global Weather Tour</title> 
+   
+  <!-- Load Globe.gl library from CDN --> 
+  <script src="//unpkg.com/globe.gl"></script> 
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      overflow: hidden;
-      font-family: sans-serif;
-    }
+  <style> 
+    body { 
+      margin: 0; 
+      padding: 0; 
+      background-color: #000; 
+      overflow: hidden; 
+      font-family: sans-serif; 
+    } 
 
-    #globe-container {
-      width: 100vw;
-      height: 100vh;
-    }
+    #globe-container { 
+      width: 100vw; 
+      height: 100vh; 
+    } 
 
-    /* Style for the floating city badges */
-.weather-badge {
-  background: rgba(10, 20, 30, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-  padding: 4px 6px;
-  border-radius: 6px;
-  font-size: 12px;
-  pointer-events: none;
-  white-space: nowrap;
-  transform: translate(-50%, -100%);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+    /* Style for the floating city badges */ 
+    .weather-badge { 
+      background: rgba(10, 20, 30, 0.9); 
+      border: 1px solid rgba(255, 255, 255, 0.2); 
+      color: #fff; 
+      padding: 4px 6px; 
+      border-radius: 6px; 
+      font-size: 12px; 
+      pointer-events: none; 
+      white-space: nowrap; 
+      transform: translate(-50%, -100%); 
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
+      display: flex; 
+      align-items: center; 
+      gap: 6px; 
+    } 
 
-.weather-badge strong {
-  color: #fff;
-  font-weight: 600;
-}
+    .weather-badge strong { 
+      color: #fff; 
+      font-weight: 600; 
+    } 
 
-/* The colored box specifically for the temperature */
-.temp-box {
-  padding: 2px 6px;
-  border-radius: 2px;
-  font-weight: bold;
-  color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
-}
-  </style>
-</head>
-<body>
+    /* The colored box specifically for the temperature */ 
+    .temp-box { 
+      padding: 2px 6px; 
+      border-radius: 2px; 
+      font-weight: bold; 
+      color: #fff; 
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8); 
+    } 
+  </style> 
+</head> 
+<body> 
 
-  <div id="globe-container"></div>
+  <div id="globe-container"></div> 
 
-  <script>
-    // --- COLOR SCALE LOGIC ---
+  <script> 
+    // --- COLOR SCALE LOGIC --- 
 
-    // 1. Define your scale points
-    // Temperatures are in Celsius. Colors are RGB arrays [Red, Green, Blue].
-    const colorScale = [
-      { temp: -30, color: [241, 223, 245] },   // White Purple
-      { temp: -20, color: [175, 100, 190] }, // Purple
-      { temp: -10, color: [100, 109, 190] },   // Blue
-      { temp: 0,   color: [142, 189, 208] }, // Cyan
-      { temp: 10,  color: [100, 190, 109] },   // Green
-      { temp: 20,  color: [230, 206, 120] }, // Yellow
-      { temp: 30,  color: [220, 166, 130] }, // Orange
-      { temp: 40,  color: [220, 130, 130] },  // Red
-      { temp: 50,  color: [206, 184, 184] }// Pinky Red
-    ];
+    const colorScale = [ 
+      { temp: -30, color: [241, 223, 245] }, // White Purple 
+      { temp: -20, color: [175, 100, 190] }, // Purple 
+      { temp: -10, color: [100, 109, 190] }, // Blue 
+      { temp: 0,   color: [142, 189, 208] }, // Cyan 
+      { temp: 10,  color: [100, 190, 109] }, // Green 
+      { temp: 20,  color: [230, 206, 120] }, // Yellow 
+      { temp: 30,  color: [220, 166, 130] }, // Orange 
+      { temp: 40,  color: [220, 130, 130] }, // Red 
+      { temp: 50,  color: [206, 184, 184] }  // Pinky Red 
+    ]; 
 
-    // 2. Linear Interpolation Function (Helper)
-    // Calculates a value between 'start' and 'end' based on the percentage 't' (0 to 1)
-    function interpolate(start, end, t) {
-      return start + (end - start) * t;
-    }
+    function interpolate(start, end, t) { 
+      return start + (end - start) * t; 
+    } 
 
-    // 3. The main color calculator
-    function getTemperatureColor(temp) {
-      // Handle temperatures outside the defined range
-      if (temp <= colorScale[0].temp) return `rgb(${colorScale[0].color.join(',')})`;
-      if (temp >= colorScale[colorScale.length - 1].temp) return `rgb(${colorScale[colorScale.length - 1].color.join(',')})`;
+    function getTemperatureColor(temp) { 
+      if (typeof temp !== 'number' || isNaN(temp)) return 'rgba(100, 100, 100, 0.9)'; // Neutral grey for fallback
 
-      // Find the two scale points the current temp falls between
-      let lower, upper;
-      for (let i = 0; i < colorScale.length - 1; i++) {
-        if (temp >= colorScale[i].temp && temp <= colorScale[i + 1].temp) {
-          lower = colorScale[i];
-          upper = colorScale[i + 1];
-          break;
-        }
-      }
+      if (temp <= colorScale[0].temp) return `rgb(${colorScale[0].color.join(',')})`; 
+      if (temp >= colorScale[colorScale.length - 1].temp) return `rgb(${colorScale[colorScale.length - 1].color.join(',')})`; 
 
-      // Calculate how far (percentage) the temp is between the lower and upper points
-      const range = upper.temp - lower.temp;
-      const adjustedTemp = temp - lower.temp;
-      const t = adjustedTemp / range; // This is a number between 0.0 and 1.0
+      let lower, upper; 
+      for (let i = 0; i < colorScale.length - 1; i++) { 
+        if (temp >= colorScale[i].temp && temp <= colorScale[i + 1].temp) { 
+          lower = colorScale[i]; 
+          upper = colorScale[i + 1]; 
+          break; 
+        } 
+      } 
 
-      // Interpolate the Red, Green, and Blue values separately
-      const r = Math.round(interpolate(lower.color[0], upper.color[0], t));
-      const g = Math.round(interpolate(lower.color[1], upper.color[1], t));
-      const b = Math.round(interpolate(lower.color[2], upper.color[2], t));
+      const range = upper.temp - lower.temp; 
+      const adjustedTemp = temp - lower.temp; 
+      const t = adjustedTemp / range; 
 
-      // Return the final color string, slightly transparent (0.9 alpha)
-      return `rgba(${r}, ${g}, ${b}, 0.9)`;
-    }
+      const r = Math.round(interpolate(lower.color[0], upper.color[0], t)); 
+      const g = Math.round(interpolate(lower.color[1], upper.color[1], t)); 
+      const b = Math.round(interpolate(lower.color[2], upper.color[2], t)); 
 
-    // --- END COLOR SCALE LOGIC ---
+      return `rgba(${r}, ${g}, ${b}, 0.9)`; 
+    } 
+
+    // --- END COLOR SCALE LOGIC --- 
     
-    const STOPS = [
-  {
-    region: "Australia",
-    lookAt: { lat: -25.27, lng: 133.77, altitude: 1.3 },
-    cities: [
-      { name: "Sydney", lat: -33.86, lng: 151.20 },
-      { name: "Melbourne", lat: -37.81, lng: 144.96 },
-      { name: "Brisbane", lat: -27.47, lng: 153.02 },
-      { name: "Adelaide", lat: -34.92, lng: 138.60 },
-      { name: "Perth", lat: -31.95, lng: 115.86 },
-      { name: "Darwin", lat: -12.46, lng: 130.84 },
-      { name: "Hobart", lat: -42.88, lng: 147.32 },
-      { name: "Broome", lat: -17.96, lng: 122.23 },
-      { name: "Alice Springs", lat: -23.70, lng: 133.87 },
-      { name: "Townsville", lat: -19.25, lng: 146.81 }
-    ]
-  },
-  {
-    region: "Pacific", 
-    lookAt: { lat: -22.1, lng: -175.9, altitude: 1.1 },
-    cities: [
-      { name: "Auckland", lat: -36.84, lng: 174.76 },
-      { name: "Wellington", lat: -41.28, lng: 174.77 },
-      { name: "Christchurch", lat: -43.53, lng: 172.63 },
-      { name: "Suva", lat: -18.14, lng: 178.44 },
-      { name: "Nouméa", lat: -22.27, lng: 166.45 },
-      { name: "Papeete", lat: -17.53, lng: -149.56 },
-      { name: "Saipan", lat: 15.18, lng: 145.75 },
-      { name: "Apia", lat: -13.83, lng: -171.76 },
-      { name: "Honolulu", lat: 21.30, lng: -157.85 }
-    ]
-  },
-  {
-    region: "SE Asia",
-    lookAt: { lat: 6.060, lng: 109.2, altitude: 1.0 },
-    cities: [
-      { name: "Singapore", lat: 1.35, lng: 103.81 },
-      { name: "Bangkok", lat: 13.75, lng: 100.50 },
-      { name: "Jakarta", lat: -6.20, lng: 106.84 },
-      { name: "Kuala Lumpur", lat: 3.13, lng: 101.68 },
-      { name: "Ho Chi Minh City", lat: 10.82, lng: 106.62 },
-      { name: "Bandar Seri Begawan", lat: 4.88, lng: 114.94 }, 
-      { name: "Denpasar", lat: -8.65, lng: 115.21 },
-      { name: "Port Moresby", lat: -9.44, lng: 147.18 },
-      { name: "Hanoi", lat: 21.02, lng: 105.83 },
-      { name: "Dili", lat: -8.55, lng: 125.57 }
-    ]
-  },
-  {
-    region: "East Asia",
-    lookAt: { lat: 35.0, lng: 126.0, altitude: 1.0 },
-    cities: [
-      { name: "Tokyo", lat: 35.67, lng: 139.65 },
-      { name: "Beijing", lat: 39.90, lng: 116.40 },
-      { name: "Shanghai", lat: 31.23, lng: 121.47 },
-      { name: "Hong Kong", lat: 22.31, lng: 114.16 },
-      { name: "Taipei", lat: 25.03, lng: 121.56 },
-      { name: "Osaka", lat: 34.69, lng: 135.50 },
-      { name: "Ulaanbaatar", lat: 47.92, lng: 106.92 },
-      { name: "Seoul", lat: 37.56, lng: 126.97 },
-      { name: "Manila", lat: 14.59, lng: 120.98 },
-      { name: "Vladivostok", lat: 43.12, lng: 131.89 }
-    ]
-  },
-  {
-    region: "India & Central Asia",
-    lookAt: { lat: 26.0, lng: 68.0, altitude: 1.0 },
-    cities: [
-      { name: "New Delhi", lat: 28.61, lng: 77.20 },
-      { name: "Mumbai", lat: 19.07, lng: 72.87 },
-      { name: "Bengaluru", lat: 12.97, lng: 77.59 },
-      { name: "Dhaka", lat: 23.81, lng: 90.41 },
-      { name: "Kathmandu", lat: 27.71, lng: 85.32 },
-      { name: "Tehran", lat: 35.68, lng: 51.38 },
-      { name: "Karachi", lat: 24.86, lng: 67.00 },
-      { name: "Colombo", lat: 6.92, lng: 79.86 },
-      { name: "Dubai", lat: 25.20, lng: 55.27 },
-      { name: "Tashkent", lat: 41.29, lng: 69.24 },
-      { name: "Riyadh", lat: 24.71, lng: 46.67 },
-      { name: "Jeddah", lat: 21.54, lng: 39.17 },
-      { name: "Almaty", lat: 43.23, lng: 76.88 },
-      { name: "Damascus", lat: 33.51, lng: 36.29 },
-      { name: "Doha", lat: 25.28, lng: 51.53 },
-      { name: "Baku", lat: 40.40, lng: 49.86 }
-    ]
-  },
-  {
-    region: "Africa",
-    lookAt: { lat: 2.0, lng: 16.0, altitude: 1.6 },
-    cities: [
-      { name: "Casablanca", lat: 33.57, lng: -7.58 },
-      { name: "Lagos", lat: 6.52, lng: 3.37 },
-      { name: "Johannesburg", lat: -26.20, lng: 28.04 },
-      { name: "Cairo", lat: 30.04, lng: 31.23 },
-      { name: "Cape Town", lat: -33.92, lng: 18.42 },
-      { name: "Kinshasa", lat: -4.44, lng: 15.26 },
-      { name: "Addis Ababa", lat: 9.03, lng: 38.74 },
-      { name: "Nairobi", lat: -1.29, lng: 36.82 },
-      { name: "Dakar", lat: 14.71, lng: -17.46 },
-      { name: "Tenerife", lat: 28.46, lng: -16.25 },
-      { name: "Algiers", lat: 36.75, lng: 3.05 }
-    ]
-  },
-  {
-    region: "Northern Europe",
-    lookAt: { lat: 52.0, lng: 10.0, altitude: 1.1 },
-    cities: [
-      { name: "London", lat: 51.50, lng: -0.12 },
-      { name: "Paris", lat: 48.85, lng: 2.35 },
-      { name: "Berlin", lat: 52.52, lng: 13.40 },
-      { name: "Edinburgh", lat: 55.95, lng: 3.19 },
-      { name: "St. Petersburg", lat: 59.93, lng: 30.33 },
-      { name: "Stockholm", lat: 59.32, lng: 18.06 },
-      { name: "Kyiv", lat: 50.45, lng: 30.52 },
-      { name: "Barcelona", lat: 41.38, lng: 2.17 },
-      { name: "Reykjavik", lat: 64.13, lng: -21.83 },
-      { name: "Lisbon", lat: 38.73, lng: -9.14 },
-      { name: "Vienna", lat: 48.21, lng: 16.37 },  
-      { name: "Dubrokvnik", lat: 42.64, lng:18.09 },
-      { name: "Istanbul", lat: 41.00, lng: 28.97 },
-      { name: "Milan", lat: 45.46, lng: 9.19 },
-      { name: "Bucharest", lat: 44.43, lng: 26.10 }
-    ]
-  },  
-  {
-    region: "Southern Europe",
-    lookAt: { lat: 47.50, lng: 14.0, altitude: 1.2 },
-    cities: [
-      { name: "Madrid", lat: 40.41, lng: -3.70 },
-      { name: "Rome", lat: 41.90, lng: 12.49 },
-      { name: "Amsterdam", lat: 52.36, lng: 4.90 },
-      { name: "Warsaw", lat: 52.22, lng: 21.01 },
-      { name: "Moscow", lat: 55.75, lng: 37.61 },
-      { name: "Zurich", lat: 47.37, lng: 8.54 },
-      { name: "Oslo", lat: 59.91, lng: 10.75 },
-      { name: "Athens", lat: 37.98, lng: 23.72 },
-      { name: "Copenhagen", lat: 55.67, lng: 12.56 },
-      { name: "Budapest", lat: 47.49, lng: 19.04 },  
-      { name: "Helskinki", lat: 60.17, lng: 24.93 },
-      { name: "Dublin", lat: 53.34, lng: -6.26 },  
-      { name: "Nice", lat: 43.70, lng: 7.27 },
-      { name: "Prague", lat: 50.07, lng: 14.43 },
-      { name: "Tel Aviv", lat: 32.08, lng: 34.78 },
-      { name: "Sofia", lat: 42.69, lng: 23.32 }
-    ]
-  },    
-  {
-    region: "North America",
-    lookAt: { lat: 39.8, lng: -98.5, altitude: 1.5 },
-    cities: [
-      { name: "Vancouver", lat: 49.28, lng: -123.12 },
-      { name: "Toronto", lat: 43.65, lng: -79.38 },
-      { name: "Los Angeles", lat: 34.05, lng: -118.24 },
-      { name: "New York", lat: 40.71, lng: -74.00 },
-      { name: "Chicago", lat: 41.87, lng: -87.62 },
-      { name: "Washington D.C.", lat: 38.90, lng: -77.03 },
-      { name: "Denver", lat: 39.73, lng: -104.99 },
-      { name: "Houston", lat: 29.76, lng: -95.36 },
-      { name: "Miami", lat: 25.76, lng: -80.19 },
-      { name: "Mexico City", lat: 19.43, lng: -99.13 },
-      { name: "Kansas City", lat: 39.09, lng: -94.57 },
-      { name: "Boston", lat: 42.36, lng: -71.05 },
-      { name: "Calgary", lat: 51.04, lng: -114.07 },
-      { name: "Anchorage", lat: 61.21, lng: -149.90 },
-      { name: "San Francisco", lat: 37.77, lng: -122.41 }
-    ]
-  },
-  {
-    region: "Central America & Caribbean",
-    lookAt: { lat: 18.0, lng: -80.0, altitude: 1.5 },
-    cities: [
-      { name: "Havana", lat: 23.11, lng: -82.36 },
-      { name: "Cancún", lat: 21.16, lng: -86.85 },
-      { name: "San Juan", lat: 18.46, lng: -66.10 },
-      { name: "Panama City", lat: 8.98, lng: -79.51 },
-      { name: "Bridgetown", lat: 13.10, lng: -59.61 },
-      { name: "Monterrey", lat: 25.68, lng: -100.31 },
-      { name: "Kingston", lat: 17.97, lng: -76.79 },
-      { name: "San José", lat: 9.93, lng: -84.08 },
-      { name: "Guatemala City", lat: 14.63, lng: -90.50 },
-      { name: "Santo Domingo", lat: 18.48, lng: -69.93 }
-    ]
-  },
-  {
-    region: "South America",
-    lookAt: { lat: -20.0, lng: -60.0, altitude: 1.7 },
-    cities: [
-      { name: "Bogotá", lat: 4.71, lng: -74.07 },
-      { name: "Buenos Aires", lat: -34.60, lng: -58.38 },
-      { name: "Rio de Janeiro", lat: -22.90, lng: -43.17 },
-      { name: "São Paulo", lat: -23.55, lng: -46.63 },
-      { name: "Lima", lat: -12.04, lng: -77.04 },
-      { name: "Santiago", lat: -33.44, lng: -70.66 },
-      { name: "Belém", lat: -1.45, lng: -48.50 },
-      { name: "Montevideo", lat: -34.90, lng: -56.16 },
-      { name: "La Paz", lat: -16.50, lng: -68.11 },
-      { name: "Cayenne", lat: 4.92, lng: -52.33 }
-    ]
-  }
-];
+    const STOPS = [ 
+      { 
+        region: "Australia", 
+        lookAt: { lat: -25.27, lng: 133.77, altitude: 1.6 }, 
+        cities: [ 
+          { name: "Sydney", lat: -33.86, lng: 151.20 }, 
+          { name: "Melbourne", lat: -37.81, lng: 144.96 }, 
+          { name: "Brisbane", lat: -27.47, lng: 153.02 }, 
+          { name: "Adelaide", lat: -34.92, lng: 138.60 }, 
+          { name: "Perth", lat: -31.95, lng: 115.86 }, 
+          { name: "Darwin", lat: -12.46, lng: 130.84 }, 
+          { name: "Hobart", lat: -42.88, lng: 147.32 }, 
+          { name: "Broome", lat: -17.96, lng: 122.23 }, 
+          { name: "Alice Springs", lat: -23.70, lng: 133.87 }, 
+          { name: "Townsville", lat: -19.25, lng: 146.81 } 
+        ] 
+      }, 
+      { 
+        region: "Pacific", 
+        lookAt: { lat: -15.0, lng: -175.0, altitude: 1.6 }, 
+        cities: [ 
+          { name: "Auckland", lat: -36.84, lng: 174.76 }, 
+          { name: "Wellington", lat: -41.28, lng: 174.77 }, 
+          { name: "Christchurch", lat: -43.53, lng: 172.63 }, 
+          { name: "Suva", lat: -18.14, lng: 178.44 }, 
+          { name: "Nouméa", lat: -22.27, lng: 166.45 }, 
+          { name: "Papeete", lat: -17.53, lng: -149.56 }, 
+          { name: "Apia", lat: -13.83, lng: -171.76 }, 
+          { name: "Honolulu", lat: 21.30, lng: -157.85 } 
+        ] 
+      }, 
+      { 
+        region: "SE Asia", 
+        lookAt: { lat: 7.0, lng: 110.0, altitude: 1.6 }, 
+        cities: [ 
+          { name: "Singapore", lat: 1.35, lng: 103.81 }, 
+          { name: "Bangkok", lat: 13.75, lng: 100.50 }, 
+          { name: "Jakarta", lat: -6.20, lng: 106.84 }, 
+          { name: "Kuala Lumpur", lat: 3.13, lng: 101.68 }, 
+          { name: "Ho Chi Minh City", lat: 10.82, lng: 106.62 }, 
+          { name: "Hanoi", lat: 21.02, lng: 105.83 }, 
+          { name: "Manila", lat: 14.59, lng: 120.98 }, 
+          { name: "Denpasar", lat: -8.65, lng: 115.21 }, 
+          { name: "Port Moresby", lat: -9.44, lng: 147.18 }, 
+          { name: "Dili", lat: -8.55, lng: 125.57 } 
+        ] 
+      }, 
+      { 
+        region: "East Asia", 
+        lookAt: { lat: 35.0, lng: 118.0, altitude: 1.7 }, 
+        cities: [ 
+          { name: "Tokyo", lat: 35.67, lng: 139.65 }, 
+          { name: "Beijing", lat: 39.90, lng: 116.40 }, 
+          { name: "Shanghai", lat: 31.23, lng: 121.47 }, 
+          { name: "Hong Kong", lat: 22.31, lng: 114.16 }, 
+          { name: "Taipei", lat: 25.03, lng: 121.56 }, 
+          { name: "Osaka", lat: 34.69, lng: 135.50 }, 
+          { name: "Ulaanbaatar", lat: 47.92, lng: 106.92 }, 
+          { name: "Seoul", lat: 37.56, lng: 126.97 }, 
+          { name: "Vladivostok", lat: 43.12, lng: 131.89 } 
+        ] 
+      }, 
+      { 
+        region: "India & Central Asia", 
+        lookAt: { lat: 26.0, lng: 68.0, altitude: 1.7 }, 
+        cities: [ 
+          { name: "New Delhi", lat: 28.61, lng: 77.20 }, 
+          { name: "Mumbai", lat: 19.07, lng: 72.87 }, 
+          { name: "Bengaluru", lat: 12.97, lng: 77.59 }, 
+          { name: "Dhaka", lat: 23.81, lng: 90.41 }, 
+          { name: "Kathmandu", lat: 27.71, lng: 85.32 }, 
+          { name: "Tashkent", lat: 41.29, lng: 69.24 }, 
+          { name: "Tehran", lat: 35.68, lng: 51.38 }, 
+          { name: "Karachi", lat: 24.86, lng: 67.00 }, 
+          { name: "Colombo", lat: 6.92, lng: 79.86 }, 
+          { name: "Almaty", lat: 43.23, lng: 76.88 } 
+        ] 
+      }, 
+      {  
+        region: "Middle East", 
+        lookAt: { lat: 28.0, lng: 42.0, altitude: 1.6 }, 
+        cities: [ 
+          { name: "Dubai", lat: 25.20, lng: 55.27 }, 
+          { name: "Riyadh", lat: 24.71, lng: 46.67 }, 
+          { name: "Jeddah", lat: 21.54, lng: 39.17 }, 
+          { name: "Tel Aviv", lat: 32.08, lng: 34.78 }, 
+          { name: "Doha", lat: 25.28, lng: 51.53 }, 
+          { name: "Cairo", lat: 30.04, lng: 31.23 }, 
+          { name: "Damascus", lat: 33.51, lng: 36.29 }, 
+          { name: "Istanbul", lat: 41.00, lng: 28.97 }, 
+          { name: "Baku", lat: 40.40, lng: 49.86 } 
+        ] 
+      }, 
+      { 
+        region: "Africa", 
+        lookAt: { lat: 2.0, lng: 16.0, altitude: 2.1 }, 
+        cities: [ 
+          { name: "Casablanca", lat: 33.57, lng: -7.58 }, 
+          { name: "Lagos", lat: 6.52, lng: 3.37 }, 
+          { name: "Johannesburg", lat: -26.20, lng: 28.04 }, 
+          { name: "Cape Town", lat: -33.92, lng: 18.42 }, 
+          { name: "Kinshasa", lat: -4.44, lng: 15.26 }, 
+          { name: "Addis Ababa", lat: 9.03, lng: 38.74 }, 
+          { name: "Nairobi", lat: -1.29, lng: 36.82 }, 
+          { name: "Dakar", lat: 14.71, lng: -17.46 }, 
+          { name: "Tenerife", lat: 28.46, lng: -16.25 }, 
+          { name: "Algiers", lat: 36.75, lng: 3.05 }, 
+          { name: "Tunis", lat: 36.80, lng: 10.18 } 
+        ] 
+      }, 
+      { 
+        region: "Europe", 
+        lookAt: { lat: 52.0, lng: 14.0, altitude: 1.6 }, 
+        cities: [ 
+          { name: "London", lat: 51.50, lng: -0.12 }, 
+          { name: "Paris", lat: 48.85, lng: 2.35 }, 
+          { name: "Madrid", lat: 40.41, lng: -3.70 }, 
+          { name: "Rome", lat: 41.90, lng: 12.49 }, 
+          { name: "Berlin", lat: 52.52, lng: 13.40 }, 
+          { name: "Amsterdam", lat: 52.36, lng: 4.90 }, 
+          { name: "Zurich", lat: 47.37, lng: 8.54 }, 
+          { name: "Warsaw", lat: 52.22, lng: 21.01 }, 
+          { name: "Moscow", lat: 55.75, lng: 37.61 }, 
+          { name: "Stockholm", lat: 59.32, lng: 18.06 }, 
+          { name: "Copenhagen", lat: 55.67, lng: 12.56 }, 
+          { name: "Oslo", lat: 59.91, lng: 10.75 }, 
+          { name: "Athens", lat: 37.98, lng: 23.72 }, 
+          { name: "Kyiv", lat: 50.45, lng: 30.52 }, 
+          { name: "St. Petersburg", lat: 59.93, lng: 30.33 }, 
+          { name: "Barcelona", lat: 41.38, lng: 2.17 }, 
+          { name: "Dublin", lat: 53.34, lng: -6.26 }, 
+          { name: "Bucharest", lat: 44.43, lng: 26.10 } 
+        ] 
+      },   
+      { 
+        region: "Europe", 
+        lookAt: { lat: 47.50, lng: 14.0, altitude: 1.6 }, 
+        cities: [ 
+          { name: "London", lat: 51.50, lng: -0.12 }, 
+          { name: "Paris", lat: 48.85, lng: 2.35 }, 
+          { name: "Madrid", lat: 40.41, lng: -3.70 }, 
+          { name: "Rome", lat: 41.90, lng: 12.49 }, 
+          { name: "Berlin", lat: 52.52, lng: 13.40 }, 
+          { name: "Amsterdam", lat: 52.36, lng: 4.90 }, 
+          { name: "Zurich", lat: 47.37, lng: 8.54 }, 
+          { name: "Warsaw", lat: 52.22, lng: 21.01 }, 
+          { name: "Moscow", lat: 55.75, lng: 37.61 }, 
+          { name: "Stockholm", lat: 59.32, lng: 18.06 }, 
+          { name: "Copenhagen", lat: 55.67, lng: 12.56 }, 
+          { name: "Oslo", lat: 59.91, lng: 10.75 }, 
+          { name: "Athens", lat: 37.98, lng: 23.72 }, 
+          { name: "Kyiv", lat: 50.45, lng: 30.52 }, 
+          { name: "St. Petersburg", lat: 59.93, lng: 30.33 }, 
+          { name: "Barcelona", lat: 41.38, lng: 2.17 }, 
+          { name: "Dublin", lat: 53.34, lng: -6.26 },       
+          { name: "Prague", lat: 50.07, lng: 14.43 }, 
+          { name: "Budapest", lat: 47.49, lng: 19.04 },     
+          { name: "Sofia", lat: 42.69, lng: 23.32 }, 
+          { name: "Bucharest", lat: 44.43, lng: 26.10 } 
+        ] 
+      },    
+      { 
+        region: "North America", 
+        lookAt: { lat: 39.8, lng: -98.5, altitude: 1.8 }, 
+        cities: [ 
+          { name: "Vancouver", lat: 49.28, lng: -123.12 }, 
+          { name: "Toronto", lat: 43.65, lng: -79.38 }, 
+          { name: "Los Angeles", lat: 34.05, lng: -118.24 }, 
+          { name: "New York", lat: 40.71, lng: -74.00 }, 
+          { name: "Chicago", lat: 41.87, lng: -87.62 }, 
+          { name: "Washington D.C.", lat: 38.90, lng: -77.03 }, 
+          { name: "Denver", lat: 39.73, lng: -104.99 }, 
+          { name: "Houston", lat: 29.76, lng: -95.36 }, 
+          { name: "Miami", lat: 25.76, lng: -80.19 }, 
+          { name: "Mexico City", lat: 19.43, lng: -99.13 }, 
+          { name: "Kansas City", lat: 39.09, lng: -94.57 }, 
+          { name: "Boston", lat: 42.36, lng: -71.05 }, 
+          { name: "Calgary", lat: 51.04, lng: -114.07 }, 
+          { name: "Anchorage", lat: 61.21, lng: -149.90 }, 
+          { name: "San Francisco", lat: 37.77, lng: -122.41 } 
+        ] 
+      }, 
+      { 
+        region: "Central America & Caribbean", 
+        lookAt: { lat: 18.0, lng: -80.0, altitude: 1.5 }, 
+        cities: [ 
+          { name: "Havana", lat: 23.11, lng: -82.36 }, 
+          { name: "Cancún", lat: 21.16, lng: -86.85 }, 
+          { name: "San Juan", lat: 18.46, lng: -66.10 }, 
+          { name: "Panama City", lat: 8.98, lng: -79.51 }, 
+          { name: "Bridgetown", lat: 13.10, lng: -59.61 }, 
+          { name: "Monterrey", lat: 25.68, lng: -100.31 }, 
+          { name: "Kingston", lat: 17.97, lng: -76.79 }, 
+          { name: "San José", lat: 9.93, lng: -84.08 }, 
+          { name: "Guatemala City", lat: 14.63, lng: -90.50 }, 
+          { name: "Santo Domingo", lat: 18.48, lng: -69.93 } 
+        ] 
+      }, 
+      { 
+        region: "South America", 
+        lookAt: { lat: -20.0, lng: -60.0, altitude: 2.0 }, 
+        cities: [ 
+          { name: "Bogotá", lat: 4.71, lng: -74.07 }, 
+          { name: "Buenos Aires", lat: -34.60, lng: -58.38 }, 
+          { name: "Rio de Janeiro", lat: -22.90, lng: -43.17 }, 
+          { name: "São Paulo", lat: -23.55, lng: -46.63 }, 
+          { name: "Lima", lat: -12.04, lng: -77.04 }, 
+          { name: "Santiago", lat: -33.44, lng: -70.66 }, 
+          { name: "Belém", lat: -1.45, lng: -48.50 }, 
+          { name: "Montevideo", lat: -34.90, lng: -56.16 }, 
+          { name: "La Paz", lat: -16.50, lng: -68.11 }, 
+          { name: "Cayenne", lat: 4.92, lng: -52.33 } 
+        ] 
+      } 
+    ]; 
 
+    // Initialize Globe 
+    const world = Globe()(document.getElementById('globe-container')) 
+      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-day.jpg') 
+      .htmlElementsData([]) 
+      .htmlElement(d => { 
+        const el = document.createElement('div'); 
+        el.className = 'weather-badge'; 
+        const bgColor = getTemperatureColor(d.temp); 
+        const displayTemp = typeof d.temp === 'number' ? `${d.temp}°` : '--';
+        el.innerHTML = ` 
+          <strong>${d.name}</strong> 
+          <span class="temp-box" style="background-color: ${bgColor}">${displayTemp}</span> 
+        `; 
+        return el; 
+      }); 
 
-    // Initialize Globe
-    const world = Globe()(document.getElementById('globe-container'))
-      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-day.jpg')
-      .htmlElementsData([])
-      .htmlElement(d => {
-        const el = document.createElement('div');
-        el.className = 'weather-badge';
-        const bgColor = getTemperatureColor(d.temp);
-        el.innerHTML = `
-          <strong>${d.name}</strong>
-          <span class="temp-box" style="background-color: ${bgColor}">${d.temp}°</span>
-        `;
-    return el;
+    async function getWeatherForCities(cities) { 
+      const CACHE_TTL = 15 * 60 * 1000; // 15 minutes
+      const now = Date.now();
+
+      const cachedRaw = sessionStorage.getItem('weather_cache');
+      const cache = cachedRaw ? JSON.parse(cachedRaw) : {};
+
+      const missingCities = [];
+      const resultsMap = {};
+
+      // Check cache first
+      cities.forEach(city => {
+        const key = `${city.lat}_${city.lng}`;
+        if (cache[key] && (now - cache[key].timestamp < CACHE_TTL)) {
+          resultsMap[key] = cache[key].temp;
+        } else {
+          missingCities.push(city);
+        }
       });
 
-    async function getWeatherForCities(cities) {
-      const lats = cities.map(c => c.lat).join(',');
-      const lngs = cities.map(c => c.lng).join(',');
-
-      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lats}&longitude=${lngs}&current_weather=true`;
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        const results = Array.isArray(data) ? data : [data];
-
-        return cities.map((city, idx) => ({
+      // If all cities are already cached, return immediately
+      if (missingCities.length === 0) {
+        return cities.map(city => ({
           ...city,
-          temp: Math.round(results[idx].current_weather.temperature)
+          temp: resultsMap[`${city.lat}_${city.lng}`]
         }));
-      } catch (err) {
-        console.error("Failed to fetch weather data", err);
-        return [];
       }
-    }
 
-    let currentStopIndex = 0;
-    const FLY_DURATION = 3500;
-    const PAUSE_DURATION = 12000;
+      // Fetch missing cities
+      try { 
+        const lats = missingCities.map(c => c.lat).join(','); 
+        const lngs = missingCities.map(c => c.lng).join(','); 
 
-    async function runWeatherTour() {
-      const stop = STOPS[currentStopIndex];
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lats}&longitude=${lngs}&current_weather=true`; 
+        const res = await fetch(url); 
+        
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-      // Remove previous markers while rotating
-      world.htmlElementsData([]);
+        const data = await res.json(); 
+        
+        missingCities.forEach((city, idx) => {
+          let rawTemp;
+          if (Array.isArray(data)) {
+            rawTemp = data[idx]?.current_weather?.temperature;
+          } else if (Array.isArray(data.current_weather)) {
+            rawTemp = data.current_weather[idx]?.temperature;
+          } else {
+            rawTemp = data.current_weather?.temperature;
+          }
 
-      // Move camera
-      world.pointOfView(stop.lookAt, FLY_DURATION);
+          const parsedTemp = (rawTemp !== undefined && rawTemp !== null) ? Math.round(rawTemp) : '--';
+          const key = `${city.lat}_${city.lng}`;
 
-      // Fetch new data while rotating
-      const weatherData = await getWeatherForCities(stop.cities);
+          cache[key] = { temp: parsedTemp, timestamp: now };
+          resultsMap[key] = parsedTemp;
+        });
 
-      // Render weather badges once arrived
-      setTimeout(() => {
-        world.htmlElementsData(weatherData);
-      }, FLY_DURATION);
+        sessionStorage.setItem('weather_cache', JSON.stringify(cache));
 
-      // Loop to next region
-      setTimeout(() => {
-        currentStopIndex = (currentStopIndex + 1) % STOPS.length;
-        runWeatherTour();
-      }, FLY_DURATION + PAUSE_DURATION);
-    }
+      } catch (err) { 
+        console.error("Weather fetch failed (Rate limit or network error). Using fallback.", err); 
+        
+        // Fallback: populate un-cached cities with '--' so they still display on the globe
+        missingCities.forEach(city => {
+          resultsMap[`${city.lat}_${city.lng}`] = '--';
+        });
+      } 
 
-    // Start tour
-    runWeatherTour();
-  </script>
-</body>
+      return cities.map(city => ({
+        ...city,
+        temp: resultsMap[`${city.lat}_${city.lng}`]
+      }));
+    } 
+
+    let currentStopIndex = 0; 
+    const FLY_DURATION = 3500; 
+    const PAUSE_DURATION = 6000; 
+
+    async function runWeatherTour() { 
+      const stop = STOPS[currentStopIndex]; 
+
+      // Remove previous markers while rotating 
+      world.htmlElementsData([]); 
+
+      // Move camera 
+      world.pointOfView(stop.lookAt, FLY_DURATION); 
+
+      // Fetch new data while rotating 
+      const weatherData = await getWeatherForCities(stop.cities); 
+
+      // Render weather badges once arrived 
+      setTimeout(() => { 
+        world.htmlElementsData(weatherData); 
+      }, FLY_DURATION); 
+
+      // Loop to next region 
+      setTimeout(() => { 
+        currentStopIndex = (currentStopIndex + 1) % STOPS.length; 
+        runWeatherTour(); 
+      }, FLY_DURATION + PAUSE_DURATION); 
+    } 
+
+    // Start tour 
+    runWeatherTour(); 
+  </script> 
+</body> 
 </html>
