@@ -354,7 +354,7 @@ const STOPS = [
         const lats = missingCities.map(c => c.lat).join(','); 
         const lngs = missingCities.map(c => c.lng).join(','); 
 
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lats}&longitude=${lngs}&current_weather=true`; 
+        const url = `https://api.xopen-meteo.com/v1/forecast?latitude=${lats}&longitude=${lngs}&current_weather=true`; 
         const res = await fetch(url); 
         
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
