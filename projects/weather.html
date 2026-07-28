@@ -47,7 +47,7 @@
 /* The colored box specifically for the temperature */
 .temp-box {
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 2px;
   font-weight: bold;
   color: #fff;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
@@ -64,15 +64,15 @@
     // 1. Define your scale points
     // Temperatures are in Celsius. Colors are RGB arrays [Red, Green, Blue].
     const colorScale = [
-      { temp: -30, color: [25, 0, 50] },   // Black Purple
-      { temp: -20, color: [128, 0, 128] }, // Purple
-      { temp: -10, color: [0, 0, 255] },   // Blue
-      { temp: 0,   color: [0, 255, 255] }, // Cyan
-      { temp: 10,  color: [0, 128, 0] },   // Green
-      { temp: 20,  color: [255, 255, 0] }, // Yellow
-      { temp: 30,  color: [255, 165, 0] }, // Orange
-      { temp: 40,  color: [255, 0, 0] },   // Red
-      { temp: 50,  color: [255, 105, 180] }// Pinky Red (Hot Pink)
+      { temp: -30, color: [241, 223, 245] },   // Black Purple
+      { temp: -20, color: [175, 100, 190] }, // Purple
+      { temp: -10, color: [100, 109, 190] },   // Blue
+      { temp: 0,   color: [142, 189, 208] }, // Cyan
+      { temp: 10,  color: [100, 190, 109] },   // Green
+      { temp: 20,  color: [230, 206, 120] }, // Yellow
+      { temp: 30,  color: [220, 166, 130] }, // Orange
+      { temp: 40,  color: [220, 130, 130] },   // Red
+      { temp: 50,  color: [206, 184, 184] }// Pinky Red (Hot Pink)
     ];
 
     // 2. Linear Interpolation Function (Helper)
@@ -116,7 +116,7 @@
     const STOPS = [
   {
     region: "Australia",
-    lookAt: { lat: -25.27, lng: 133.77, altitude: 1.8 },
+    lookAt: { lat: -25.27, lng: 133.77, altitude: 1.6 },
     cities: [
       { name: "Sydney", lat: -33.86, lng: 151.20 },
       { name: "Melbourne", lat: -37.81, lng: 144.96 },
@@ -124,12 +124,15 @@
       { name: "Perth", lat: -31.95, lng: 115.86 },
       { name: "Adelaide", lat: -34.92, lng: 138.60 },
       { name: "Darwin", lat: -12.46, lng: 130.84 },
-      { name: "Hobart", lat: -42.88, lng: 147.32 }
+      { name: "Hobart", lat: -42.88, lng: 147.32 },
+      { name: "Broome", lat: , lng: },
+      { name: "Alice Springs", lat:, lng: },
+      { name: "Townsville", lat: , lng: }
     ]
   },
   {
     region: "South Pacific",
-    lookAt: { lat: -22.0, lng: 175.0, altitude: 2.0 },
+    lookAt: { lat: -22.0, lng: 175.0, altitude: 1.8 },
     cities: [
       { name: "Auckland", lat: -36.84, lng: 174.76 },
       { name: "Wellington", lat: -41.28, lng: 174.77 },
@@ -138,6 +141,7 @@
       { name: "Nouméa", lat: -22.27, lng: 166.45 },
       { name: "Papeete", lat: -17.53, lng: -149.56 },
       { name: "Port Moresby", lat: -9.44, lng: 147.18 }
+      { name: "
     ]
   },
   {
@@ -167,7 +171,7 @@
     ]
   },
   {
-    region: "Indian Subcontinent / Central Asia",
+    region: "Indian Subcontinent",
     lookAt: { lat: 28.0, lng: 75.0, altitude: 1.9 },
     cities: [
       { name: "New Delhi", lat: 28.61, lng: 77.20 },
@@ -180,16 +184,23 @@
     ]
   },
   {
-    region: "Middle East / North Africa",
+    region: "Middle East",
     lookAt: { lat: 26.0, lng: 38.0, altitude: 1.8 },
     cities: [
       { name: "Dubai", lat: 25.20, lng: 55.27 },
       { name: "Riyadh", lat: 24.71, lng: 46.67 },
-      { name: "Cairo", lat: 30.04, lng: 31.23 },
-      { name: "Casablanca", lat: 33.57, lng: -7.58 },
+
       { name: "Istanbul", lat: 41.00, lng: 28.97 },
       { name: "Tel Aviv", lat: 32.08, lng: 34.78 },
       { name: "Doha", lat: 25.28, lng: 51.53 }
+    ]
+  },
+  {
+    region: "Northern Africa",
+    lookAt: { lat: -5.0, lng: 25.0, altitude: 2.1 },
+    cities: [
+      { name: "Cairo", lat: 30.04, lng: 31.23 },
+      { name: "Casablanca", lat: 33.57, lng: -7.58 },
     ]
   },
   {
@@ -283,7 +294,7 @@
         const bgColor = getTemperatureColor(d.temp);
         el.innerHTML = `
           <strong>${d.name}</strong>
-          <span class="temp-box" style="background-color: ${bgColor}">${d.temp}°C</span>
+          <span class="temp-box" style="background-color: ${bgColor}">${d.temp}°</span>
         `;
     return el;
       });
