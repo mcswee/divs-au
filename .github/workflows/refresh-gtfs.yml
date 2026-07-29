@@ -1,0 +1,57 @@
+name: Refresh PTV GTFS Data
+
+on:
+  schedule:
+    # Every Sunday at 15:00 UTC = Monday ~1am AEDT / midnight AEST
+    - cron: '0 15 * * 0'
+  workflow_dispatch:
+    # Manual trigger available from the Actions tab any time
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Download PTV GTFS
+        run: |
+          echo "Downloading PTV GTFS..."
+          wget -q -O gtfs_outer.zip "http://data.ptv.vic.gov.au/downloads/gtfs.zip"
+          echo "Extracting..."
+          unzip -q gtfs_outer.zip -d gtfs_outer
+
+      - name: Process GTFS
+        run: |
+          mkdir -p out
+          python scripts/ptv_gtfs_stations.py \
+            "gtfs_outer/2/google_transit.zip" \
+            "gtfs_outer/1/google_transit.zip"
+
+      - name: Deploy to data directory
+        run: |
+          mkdir -p assets/data/trains
+          cp -r out/. assets/data/trains/
+          echo "Copied $(ls out | wc -l) files"
+
+      - name: Clean up downloads
+        run: rm -rf gtfs_outer gtfs_outer.zip out
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/data/trains/
+          if git diff --staged --quiet; then
+            echo "No changes — GTFS unchanged since last run"
+          else
+            git commit -m "Refresh PTV GTFS data [automated $(date -u '+%Y-%m-%d')]"
+            git push
+          fi
