@@ -126,8 +126,8 @@ const STOPS = [
     lookAt: { lat: -21.1, lng: -170.9, altitude: 1.2 },
     cities: [
       { name: "Auckland", lat: -36.84, lng: 174.76 },
-      { name: "Wellington", lat: -41.28, lng: 174.77 },
-      { name: "Christchurch", lat: -43.53, lng: 172.63 },
+      { name: "Wellington", lat: -41.28, lng: 174.77, offsetY:9 },
+      { name: "Christchurch", lat: -43.53, lng: 172.63, offset: -18},
       { name: "Suva", lat: -18.14, lng: 178.44 },
       { name: "Nouméa", lat: -22.27, lng: 166.45 },
       { name: "Papeete", lat: -17.53, lng: -149.56 },
@@ -195,8 +195,8 @@ const STOPS = [
     lookAt: { lat: 24.0, lng: 52.0, altitude: 0.95 },
     cities: [
       { name: "Kathmandu", lat: 27.71, lng: 85.32 },
-      { name: "Tel Aviv", lat: 32.08, lng: 34.78 },
-      { name: "Beirut", lat: 33.89, lng: 35.51 },
+      { name: "Tel Aviv", lat: 32.08, lng: 34.78, offsetY: -18 },
+      { name: "Beirut", lat: 33.89, lng: 35.51, offsetY: 18 },
       { name: "Ankara", lat: 39.93, lng: 32.85 },
       { name: "Kolkata", lat: 22.57, lng: 88.36 },
       { name: "Lahore", lat: 31.526, lng: 74.35 },
@@ -242,7 +242,6 @@ const STOPS = [
       { name: "Barcelona", lat: 41.38, lng: 2.17 },
       { name: "Reykjavik", lat: 64.13, lng: -21.83 },
       { name: "Lisbon", lat: 38.73, lng: -9.14 },
-      { name: "Nizhny Novgorod", lat: 56.33, lng:44.0},
       { name: "Vienna", lat: 48.21, lng: 16.37 },  
       { name: "Dubrovnik", lat: 42.64, lng:18.09 },
       { name: "Istanbul", lat: 41.00, lng: 28.97 },
@@ -277,17 +276,18 @@ const STOPS = [
     cities: [
       { name: "Vancouver", lat: 49.28, lng: -123.12 },
       { name: "Toronto", lat: 43.65, lng: -79.38 },
-      { name: "Los Angeles", lat: 34.05, lng: -118.24 },
+      { name: "Los Angeles", lat: 34.05, lng: -118.24, offsetY: 18},
       { name: "New York", lat: 40.71, lng: -74.00 },
       { name: "Chicago", lat: 41.87, lng: -87.62 },
       { name: "Washington D.C.", lat: 38.90, lng: -77.03 },
       { name: "Denver", lat: 39.73, lng: -104.99 },
       { name: "Houston", lat: 29.76, lng: -95.36 },
+      { name: "Minneapolis", lat: 44.98, lng: -93.27 },
       { name: "Mexico City", lat: 19.43, lng: -99.13 },
       { name: "Kansas City", lat: 39.09, lng: -94.57 },
       { name: "Montreal", lat: 45.51, lng: -73.55 },
       { name: "Atlanta", lat: 33.76, lng: -84.42 },
-      { name: "Phoenix", lat: 33.57, lng: -112.09 },
+      { name: "Phoenix", lat: 33.57, lng: -112.09, offsetY: -18 },
       { name: "Calgary", lat: 51.04, lng: -114.07 },
       { name: "Miami", lat: 25.76, lng: -80.19 },
       { name: "Anchorage", lat: 61.21, lng: -149.90 },
@@ -300,8 +300,9 @@ const STOPS = [
     cities: [
       { name: "Havana", lat: 23.11, lng: -82.36 },
       { name: "Cancún", lat: 21.16, lng: -86.85 },
-      { name: "San Juan", lat: 18.46, lng: -66.10 },
-      { name: "Panama City", lat: 8.98, lng: -79.51 },
+      { name: "Santo Domingo", lat: 18.48, lng: -69.93, offsetY: -18 },
+      { name: "San Juan", lat: 18.46, lng: -66.10, offsetY: 18 },
+      { name: "Panama City", lat: 8.98, lng: -79.51, offfsetY:-18 },
       { name: "Bridgetown", lat: 13.10, lng: -59.61 },
       { name: "Nassau", lat: 24.08, lng: -77.34 },
       { name: "Puebla", lat: 19.05, lng: -98.2 },
@@ -310,7 +311,7 @@ const STOPS = [
       { name: "Ciudad Juárez", lat: 31.75, lng: -106.49 },
       { name: "Tijuana", lat: 32.53, lng: -117.03 },
       { name: "Kingston", lat: 17.97, lng: -76.79 },
-      { name: "San José", lat: 9.93, lng: -84.08 },
+      { name: "San José", lat: 9.93, lng: -84.08, offsetY: 18},
       { name: "Guatemala City", lat: 14.63, lng: -90.50 },
       { name: "Port of Spain", lat: 10.67, lng: -61.52 }
     ]
@@ -321,16 +322,17 @@ const STOPS = [
     cities: [
       { name: "Bogotá", lat: 4.71, lng: -74.07 },
       { name: "Buenos Aires", lat: -34.60, lng: -58.38 },
-      { name: "Rio de Janeiro", lat: -22.90, lng: -43.17 },
+      { name: "Rio de Janeiro", lat: -22.90, lng: -43.17, offsetY: 18 },
+      { name: "São Paulo", lat: -23.53, lng: -46.63, offsetY: 18 },
       { name: "Caracas", lat: 10.51, lng: -66.91 },
-      { name: "Manaus", lat: 3.11, lng: -60.02 },
+      { name: "Manaus", lat: 3.11, lng: -60.02, offsetY: -18 },
       { name: "Lima", lat: -12.04, lng: -77.04 },
       { name: "Santiago", lat: -33.44, lng: -70.66 },
       { name: "Brasília", lat: -15.80, lng: -47.88 },
       { name: "Guayaquil", lat: -2.19, lng: -79.89 },
       { name: "Belém", lat: -1.45, lng: -48.50 },
       { name: "Santa Cruz", lat: -17.8, lng: -63.18 },
-      { name: "Paramaribo", lat: 5.85, lng: -55.2 }
+      { name: "Paramaribo", lat: 5.85, lng: -55.2, offsetY: 18 }
     ]
   }
 ];
@@ -344,11 +346,16 @@ const STOPS = [
         el.className = 'weather-badge'; 
         const bgColor = getTemperatureColor(d.temp); 
         const displayTemp = typeof d.temp === 'number' ? `${d.temp}°` : '--';
+        
+        // Custom offset logic to prevent overlapping badges
+        const offsetY = d.offsetY || 0;
+        el.style.transform = `translate(-50%, calc(-100% + ${offsetY}px))`;
+      
         el.innerHTML = ` 
           <strong>${d.name}</strong> 
           <span class="temp-box" style="background-color: ${bgColor}">${displayTemp}</span> 
         `; 
-        return el; 
+        return el;
       }); 
 
     async function getWeatherForCities(cities) { 
