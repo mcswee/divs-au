@@ -429,6 +429,12 @@ function stableKey(tripId) {
   return null;
 }
 
+function stableKey(tripId) {
+  const p = tripId.split('-');
+  if (p.length >= 6) return `${p[1]}|${p[5]}`;
+  return null;
+}
+
 function buildRtLookup() {
   rtLookup = {};
   if (!rtData?.trips) return;
