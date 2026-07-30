@@ -78,9 +78,6 @@
       font-weight: 700;
       font-variant-numeric: tabular-nums;
       letter-spacing: 0.03em;
-      background-color: var(--text);
-      color: var(--bg);
-      padding: 0.2rem;
     }
 
     /* ── Station selector ── */
@@ -354,9 +351,10 @@
   </main>
 
   <footer>
+    Scheduled times with live delay data.
     <span id="rt-status"></span>
     Data: <a href="https://www.ptv.vic.gov.au/footer/data-and-reporting/datasets/gtfs/" target="_blank" rel="noopener">PTV GTFS</a> &amp; <a href="https://opendata.transport.vic.gov.au/dataset/gtfs-realtime" target="_blank" rel="noopener">GTFS-R</a>.
-    For official times and departures,see <a href="https://www.ptv.vic.gov.au" target="_blank" rel="noopener">Transport Victoria</a>.
+    For disruptions see <a href="https://www.ptv.vic.gov.au" target="_blank" rel="noopener">PTV</a>.
   </footer>
 </div>
 
@@ -372,7 +370,8 @@ let stationData = null;
 let openTrip    = null;
 let patCache    = {};
 let rtData      = null;
-let rtLookup    = {};   // stable key → delay seconds
+let rtLookup    = {};   // "ROUTE|tripnum" → delay seconds
+let rtNumLookup = {};   // "tripnum" → delay seconds (fallback for cross-route short workings)
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 (async () => {
@@ -418,26 +417,55 @@ async function loadStation(id) {
 }
 
 // ── Real-time ─────────────────────────────────────────────────────────────────
+// PTV rolls the period number in trip IDs regularly without changing trip numbers.
+// e.g. "02-FKN--1-T5-4564" becomes "02-FKN--56-T5-4564" after an update.
+// We build a lookup keyed on stable parts only: route + service type + trip number.
+
 function stableKey(tripId) {
-  const p = tripId.split('-');
-  if (p.length >= 6) return `${p[1]}|${p[5]}`;
+  // Standard format: "02-FKN--56-T5-4564" → "FKN|4564"
+  if (tripId.startsWith('0')) {
+    const p = tripId.split('-');
+    if (p.length >= 6) return `${p[1]}|${p[5]}`;
+    return null;
+  }
+  // Non-standard format: "vic:02BEG:_:H:vpt._Belgrave_3445_20260730" → "BEG|3445"
+  const m = tripId.match(/vic:0[12]([A-Z]+):.*?_(\d+)_\d{8}/);
+  if (m) return `${m[1]}|${m[2]}`;
   return null;
+}
+
+function tripNum(tripId) {
+  if (tripId.startsWith('0')) {
+    const p = tripId.split('-');
+    return p.length >= 6 ? p[5] : null;
+  }
+  const m = tripId.match(/_(\d+)_\d{8}/);
+  return m ? m[1] : null;
 }
 
 function buildRtLookup() {
   rtLookup = {};
+  rtNumLookup = {};
   if (!rtData?.trips) return;
   for (const [id, data] of Object.entries(rtData.trips)) {
     const key = stableKey(id);
     if (key !== null) rtLookup[key] = data.delay;
+    const num = tripNum(id);
+    if (num !== null) rtNumLookup[num] = data.delay;
   }
 }
 
 function rtDelay(tripId) {
+  // 1. Exact match
   const exact = rtData?.trips?.[tripId];
   if (exact !== undefined) return exact.delay;
+  // 2. Route + trip number (ignores period and service type)
   const key = stableKey(tripId);
   if (key !== null && key in rtLookup) return rtLookup[key];
+  // 3. Trip number only — catches cross-route short workings
+  //    e.g. static has LIL|3445, RT publishes as BEG|3445
+  const num = tripNum(tripId);
+  if (num !== null && num in rtNumLookup) return rtNumLookup[num];
   return null;
 }
 
@@ -473,13 +501,15 @@ function render() {
     return actual >= nowMin - 1;
   });
 
+  // Deduplicate: multiple calendar variants of the same trip exist in static data.
+  // Keep the variant that has an RT match if possible; otherwise keep the first.
   const bestVariant = {};
   raw.forEach(d => {
     const key = `${d.plat}|${d.departs}|${d.route}`;
     if (!bestVariant[key]) {
       bestVariant[key] = d;
     } else if (rtDelay(d.trip_id) !== null && rtDelay(bestVariant[key].trip_id) === null) {
-      bestVariant[key] = d;
+      bestVariant[key] = d;  // upgrade to the RT-matched variant
     }
   });
   const upcoming = Object.values(bestVariant)
@@ -549,10 +579,11 @@ function alertsForStation() {
     return a.routes.some(r => [...codes].some(c => r.includes(`-${c}`)));
   });
 
+  // Deduplicate: same ID appearing twice, or same description (different route entries)
   const seenIds   = new Set();
   const seenDescs = new Set();
   return matched.filter(a => {
-    if (seenIds.has(a.id))            return false;
+    if (seenIds.has(a.id))           return false;
     if (seenDescs.has(a.description)) return false;
     seenIds.add(a.id);
     seenDescs.add(a.description);
@@ -618,6 +649,7 @@ function buildDep(dep) {
   const actualMin = schedMin + Math.round(delaySec / 60);
   const minsAway  = actualMin - nowMin;
 
+  // Time cell
   const timeEl = el('span', 'dep-time');
   if (delay !== null && delaySec !== 0) {
     timeEl.classList.add('delayed');
@@ -632,17 +664,19 @@ function buildDep(dep) {
     timeEl.appendChild(actual);
   }
 
+  // Countdown
   const minsEl = el('span', 'dep-mins' + (minsAway <= 2 ? ' soon' : ''));
   minsEl.textContent = minsAway <= 0 ? 'Now'
                      : minsAway === 1 ? '1 min'
                      : `${minsAway} min`;
 
+  // Destination + route
   const info = el('div', 'dep-info');
   const dest = el('div', 'dep-dest');
 
   let badge = '';
   if (delay !== null) {
-    if (delaySec <= 60)      badge = '<span class="rt-badge rt-ontime">On time</span>';
+    if (delaySec <= 60)     badge = '<span class="rt-badge rt-ontime">On time</span>';
     else if (delaySec > 60) badge = `<span class="rt-badge rt-late">${Math.round(delaySec/60)} min late</span>`;
     else                    badge = '<span class="rt-badge rt-early">Early</span>';
   }
@@ -652,6 +686,7 @@ function buildDep(dep) {
   route.textContent = dep.stype ? `${dep.route} · ${dep.stype}` : dep.route;
   info.append(dest, route);
 
+  // Caret
   const caret = el('span', 'dep-caret');
   caret.textContent = openTrip === dep.trip_id ? '▲' : '▼';
 
@@ -697,6 +732,8 @@ function buildPattern(dep) {
     return wrap;
   }
 
+  // dep.pat_idx counts only real stops (not __EXP__ entries).
+  // Find that stop's position in the annotated pattern.
   let realIdx = 0, stopCount = 0;
   for (let i = 0; i < full.length; i++) {
     if (full[i][0] === '__EXP__') continue;
