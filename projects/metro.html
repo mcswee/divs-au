@@ -423,7 +423,9 @@ async function loadStation(id) {
 function stableKey(tripId) {
   const p = tripId.split('-');
   // Format: [feed, route, '', period, service, tripnum]
-  if (p.length >= 6) return `${p[1]}|${p[4]}|${p[5]}`;
+  // Drop service type — PTV uses T5/T5_WD0E/T6 variants for the same physical trip
+  // Match on route + trip number only, which is stable across calendar variants
+  if (p.length >= 6) return `${p[1]}|${p[5]}`;
   return null;
 }
 
@@ -478,13 +480,19 @@ function render() {
     return actual >= nowMin - 1;
   });
 
-  const seenKeys = new Set();
-  const upcoming = raw.filter(d => {
+  // Deduplicate: multiple calendar variants of the same trip exist in static data.
+  // Keep the variant that has an RT match if possible; otherwise keep the first.
+  const bestVariant = {};
+  raw.forEach(d => {
     const key = `${d.plat}|${d.departs}|${d.route}`;
-    if (seenKeys.has(key)) return false;
-    seenKeys.add(key);
-    return true;
+    if (!bestVariant[key]) {
+      bestVariant[key] = d;
+    } else if (rtDelay(d.trip_id) !== null && rtDelay(bestVariant[key].trip_id) === null) {
+      bestVariant[key] = d;  // upgrade to the RT-matched variant
+    }
   });
+  const upcoming = Object.values(bestVariant)
+    .sort((a, b) => hm2min(a.departs) - hm2min(b.departs));
 
   const byPlat = {};
   upcoming.forEach(d => {
