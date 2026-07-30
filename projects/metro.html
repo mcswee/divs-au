@@ -772,6 +772,21 @@ function pad(n)      { return String(n).padStart(2, '0'); }
 function el(t, c)    { const e = document.createElement(t); if (c) e.className = c; return e; }
 function setBoard(h) { document.getElementById('board').innerHTML = h; }
 function escHtml(s)  { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function rtDelay(tripId) {
+  // Exact match first
+  const exact = rtData?.trips?.[tripId];
+  if (exact !== undefined) return exact.delay;
+
+  // Stable key match
+  const key = stableKey(tripId);
+  if (key !== null && key in rtLookup) return rtLookup[key];
+
+  // DEBUG: Log what failed to match
+  console.warn("Unmatched static trip_id:", tripId, "-> Stable key:", key);
+
+  return null;
+}
 </script>
 </body>
 </html>
