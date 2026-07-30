@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithmic Math Art Sandbox</title>
+    <style>
+        :root {
+            --bg: #0f1115;
+            --panel: #181c24;
+            --accent: #3b82f6;
+            --text: #e2e8f0;
+            --text-dim: #94a3b8;
+            --border: #334155;
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            margin: 0 0 15px 0;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.025em;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 320px 600px;
+            gap: 20px;
+            background: var(--panel);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        @media (max-width: 960px) {
+            .container { grid-template-columns: 1fr; }
+        }
+        canvas {
+            background: #000;
+            border-radius: 8px;
+            display: block;
+            width: 600px;
+            height: 600px;
+        }
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        button {
+            background: var(--border);
+            color: var(--text);
+            border: none;
+            padding: 10px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        button:hover {
+            background: #475569;
+        }
+        button.active {
+            background: var(--accent);
+            color: #fff;
+        }
+        .action-btn {
+            background: #10b981;
+            color: #fff;
+            text-align: center;
+            margin-top: 5px;
+        }
+        .action-btn:hover {
+            background: #059669;
+        }
+        .param-panel {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+        .param-panel h3 {
+            margin: 0 0 8px 0;
+            color: var(--text);
+            font-size: 0.9rem;
+            font-family: system-ui, sans-serif;
+        }
+        .param-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        .param-val {
+            color: var(--text);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Algorithmic Math Art Sandbox</h1>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="btn-group">
+                <label style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 2px;">SELECT ENGINE</label>
+                <button id="btn-clifford" class="active" onclick="switchEngine('clifford')">1. Clifford Attractor</button>
+                <button id="btn-packing" onclick="switchEngine('packing')">2. Recursive Circle Packing</button>
+                <button id="btn-superformula" onclick="switchEngine('superformula')">3. Superformula Parametric</button>
+            </div>
+
+            <button class="action-btn" onclick="generateNew()">Regenerate / New Seed</button>
+
+            <div class="param-panel">
+                <h3>Active Parameters</h3>
+                <div id="param-display">Loading...</div>
+            </div>
+        </div>
+
+        <div>
+            <canvas id="artCanvas" width="600" height="600"></canvas>
+        </div>
+    </div>
+
+<script>
+const canvas = document.getElementById('artCanvas');
+const ctx = canvas.getContext('2d');
+let currentEngine = 'clifford';
+let animId = null;
+
+// Parameter states
+let params = {};
+
+function switchEngine(engine) {
+    currentEngine = engine;
+    document.querySelectorAll('.btn-group button').forEach(b => b.classList.remove('active'));
+    document.getElementById(`btn-${engine}`).classList.add('active');
+    generateNew();
+}
+
+function generateNew() {
+    if (animId) cancelAnimationFrame(animId);
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    if (currentEngine === 'clifford') {
+        params = {
+            a: (Math.random() * 4 - 2).toFixed(3),
+            b: (Math.random() * 4 - 2).toFixed(3),
+            c: (Math.random() * 4 - 2).toFixed(3),
+            d: (Math.random() * 4 - 2).toFixed(3),
+            iterations: 300000
+        };
+        updateDisplay();
+        renderClifford();
+    } else if (currentEngine === 'packing') {
+        params = {
+            seed: Math.floor(Math.random() * 10000),
+            circlesDrawn: 0,
+            maxDepth: 450
+        };
+        updateDisplay();
+        renderPacking();
+    } else if (currentEngine === 'superformula') {
+        params = {
+            m: Math.floor(Math.random() * 12) + 1,
+            n1: (Math.random() * 5 + 0.2).toFixed(2),
+            n2: (Math.random() * 10 + 0.1).toFixed(2),
+            n3: (Math.random() * 10 + 0.1).toFixed(2),
+            a: 1,
+            b: 1
+        };
+        updateDisplay();
+        renderSuperformula();
+    }
+}
+
+function updateDisplay() {
+    const display = document.getElementById('param-display');
+    let html = '';
+    for (const [key, val] of Object.entries(params)) {
+        html += `<div class="param-row"><span>${key}:</span> <span class="param-val">${val}</span></div>`;
+    }
+    display.innerHTML = html;
+}
+
+// 1. Clifford Attractor Renderer
+function renderClifford() {
+    let a = parseFloat(params.a), b = parseFloat(params.b), c = parseFloat(params.c), d = parseFloat(params.d);
+    let x = 0.1, y = 0.1;
+    let imgData = ctx.createImageData(canvas.width, canvas.height);
+    let data = imgData.data;
+    
+    let maxHits = 1;
+    let hits = new Uint32Array(canvas.width * canvas.height);
+
+    for (let i = 0; i < params.iterations; i++) {
+        let xn = Math.sin(a * y) + c * Math.cos(a * x);
+        let yn = Math.sin(b * x) + d * Math.cos(b * y);
+        x = xn;
+        y = yn;
+
+        let px = Math.floor((x + 2.5) * (canvas.width / 5));
+        let py = Math.floor((y + 2.5) * (canvas.height / 5));
+
+        if (px >= 0 && px < canvas.width && py >= 0 && py < canvas.height) {
+            let idx = py * canvas.width + px;
+            hits[idx]++;
+            if (hits[idx] > maxHits) maxHits = hits[idx];
+        }
+    }
+
+    for (let i = 0; i < hits.length; i++) {
+        let h = hits[i];
+        if (h > 0) {
+            let logVal = Math.log(h) / Math.log(maxHits);
+            let cIdx = i * 4;
+            // Cool cyber-blue/purple color map based on point density
+            data[cIdx]     = Math.floor(logVal * 59);   // R
+            data[cIdx + 1] = Math.floor(logVal * 130);  // G
+            data[cIdx + 2] = Math.floor(logVal * 246);  // B
+            data[cIdx + 3] = 255;                       // Alpha
+        }
+    }
+    ctx.putImageData(imgData, 0, 0);
+}
+
+// 2. Circle Packing / Apollonian Style Renderer
+function renderPacking() {
+    let circles = [];
+    let attempts = 0;
+    
+    // Seed random generator offset if needed
+    Math.seed = params.seed;
+
+    while (circles.length < params.maxDepth && attempts < 15000) {
+        attempts++;
+        let r = Math.random() * 35 + 4;
+        let x = Math.random() * (canvas.width - 2 * r) + r;
+        let y = Math.random() * (canvas.height - 2 * r) + r;
+
+        let valid = true;
+        for (let c of circles) {
+            let dx = c.x - x;
+            let dy = c.y - y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < c.r + r + 2) {
+                valid = false;
+                break;
+            }
+        }
+
+        if (valid) {
+            circles.push({x, y, r});
+        }
+    }
+
+    params.circlesDrawn = circles.length;
+    updateDisplay();
+
+    ctx.fillStyle = '#0f1115';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    for (let c of circles) {
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+        let hue = (c.x + c.y) % 360;
+        ctx.strokeStyle = `hsl(${hue}, 70%, 60%)`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+    }
+}
+
+// 3. Superformula Parametric Renderer
+function renderSuperformula() {
+    let m = params.m, n1 = parseFloat(params.n1), n2 = parseFloat(params.n2), n3 = parseFloat(params.n3);
+    let a = params.a, b = params.b;
+
+    ctx.save();
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+    ctx.strokeStyle = '#10b981';
+    ctx.lineWidth = 1.5;
+
+    function evaluateSuperformula(phi) {
+        let t1 = Math.abs((1 / a) * Math.cos(m * phi / 4));
+        t1 = Math.pow(t1, n2);
+        let t2 = Math.abs((1 / b) * Math.sin(m * phi / 4));
+        t2 = Math.pow(t2, n3);
+        let r = Math.pow(t1 + t2, -1 / n1);
+        return r;
+    }
+
+    // Draw multiple nested/rotated layers
+    let layers = 15;
+    for (let l = 0; l < layers; l++) {
+        let scaleFactor = 220 * (1 - (l / layers) * 0.6);
+        let hue = (l * 20 + 150) % 360;
+        ctx.strokeStyle = `hsl(${hue}, 80%, 55%)`;
+        
+        ctx.beginPath();
+        let steps = 500;
+        for (let i = 0; i <= steps; i++) {
+            let phi = (i / steps) * Math.PI * 2;
+            let r = evaluateSuperformula(phi);
+            if (isNaN(r)) r = 0;
+            let x = r * Math.cos(phi) * scaleFactor;
+            let y = r * Math.sin(phi) * scaleFactor;
+            
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.stroke();
+    }
+    ctx.restore();
+}
+
+// Initial load
+generateNew();
+</script>
+
+</body>
+</html>
