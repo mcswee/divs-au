@@ -416,19 +416,6 @@ async function loadStation(id) {
 }
 
 // ── Real-time ─────────────────────────────────────────────────────────────────
-// PTV rolls the period number in trip IDs regularly without changing trip numbers.
-// e.g. "02-FKN--1-T5-4564" becomes "02-FKN--56-T5-4564" after an update.
-// We build a lookup keyed on stable parts only: route + service type + trip number.
-
-function stableKey(tripId) {
-  const p = tripId.split('-');
-  // Format: [feed, route, '', period, service, tripnum]
-  // Drop service type — PTV uses T5/T5_WD0E/T6 variants for the same physical trip
-  // Match on route + trip number only, which is stable across calendar variants
-  if (p.length >= 6) return `${p[1]}|${p[5]}`;
-  return null;
-}
-
 function stableKey(tripId) {
   const p = tripId.split('-');
   if (p.length >= 6) return `${p[1]}|${p[5]}`;
@@ -445,10 +432,8 @@ function buildRtLookup() {
 }
 
 function rtDelay(tripId) {
-  // Exact match first (same period)
   const exact = rtData?.trips?.[tripId];
   if (exact !== undefined) return exact.delay;
-  // Stable key match (ignores period number)
   const key = stableKey(tripId);
   if (key !== null && key in rtLookup) return rtLookup[key];
   return null;
@@ -486,15 +471,13 @@ function render() {
     return actual >= nowMin - 1;
   });
 
-  // Deduplicate: multiple calendar variants of the same trip exist in static data.
-  // Keep the variant that has an RT match if possible; otherwise keep the first.
   const bestVariant = {};
   raw.forEach(d => {
     const key = `${d.plat}|${d.departs}|${d.route}`;
     if (!bestVariant[key]) {
       bestVariant[key] = d;
     } else if (rtDelay(d.trip_id) !== null && rtDelay(bestVariant[key].trip_id) === null) {
-      bestVariant[key] = d;  // upgrade to the RT-matched variant
+      bestVariant[key] = d;
     }
   });
   const upcoming = Object.values(bestVariant)
@@ -564,11 +547,10 @@ function alertsForStation() {
     return a.routes.some(r => [...codes].some(c => r.includes(`-${c}`)));
   });
 
-  // Deduplicate: same ID appearing twice, or same description (different route entries)
   const seenIds   = new Set();
   const seenDescs = new Set();
   return matched.filter(a => {
-    if (seenIds.has(a.id))           return false;
+    if (seenIds.has(a.id))            return false;
     if (seenDescs.has(a.description)) return false;
     seenIds.add(a.id);
     seenDescs.add(a.description);
@@ -634,7 +616,6 @@ function buildDep(dep) {
   const actualMin = schedMin + Math.round(delaySec / 60);
   const minsAway  = actualMin - nowMin;
 
-  // Time cell
   const timeEl = el('span', 'dep-time');
   if (delay !== null && delaySec !== 0) {
     timeEl.classList.add('delayed');
@@ -649,19 +630,17 @@ function buildDep(dep) {
     timeEl.appendChild(actual);
   }
 
-  // Countdown
   const minsEl = el('span', 'dep-mins' + (minsAway <= 2 ? ' soon' : ''));
   minsEl.textContent = minsAway <= 0 ? 'Now'
                      : minsAway === 1 ? '1 min'
                      : `${minsAway} min`;
 
-  // Destination + route
   const info = el('div', 'dep-info');
   const dest = el('div', 'dep-dest');
 
   let badge = '';
   if (delay !== null) {
-    if (delaySec <= 60)     badge = '<span class="rt-badge rt-ontime">On time</span>';
+    if (delaySec <= 60)      badge = '<span class="rt-badge rt-ontime">On time</span>';
     else if (delaySec > 60) badge = `<span class="rt-badge rt-late">${Math.round(delaySec/60)} min late</span>`;
     else                    badge = '<span class="rt-badge rt-early">Early</span>';
   }
@@ -671,7 +650,6 @@ function buildDep(dep) {
   route.textContent = dep.stype ? `${dep.route} · ${dep.stype}` : dep.route;
   info.append(dest, route);
 
-  // Caret
   const caret = el('span', 'dep-caret');
   caret.textContent = openTrip === dep.trip_id ? '▲' : '▼';
 
@@ -717,8 +695,6 @@ function buildPattern(dep) {
     return wrap;
   }
 
-  // dep.pat_idx counts only real stops (not __EXP__ entries).
-  // Find that stop's position in the annotated pattern.
   let realIdx = 0, stopCount = 0;
   for (let i = 0; i < full.length; i++) {
     if (full[i][0] === '__EXP__') continue;
