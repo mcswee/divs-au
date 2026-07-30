@@ -543,10 +543,22 @@ function alertsForStation() {
   const codes = new Set(
     stationData.departures.map(d => ROUTE_CODES[d.route]).filter(Boolean)
   );
-  return rtData.alerts.filter(a => {
+
+  const matched = rtData.alerts.filter(a => {
     if (!SHOW_EFFECTS.has(a.effect)) return false;
     if (a.effect === 'OTHER_EFFECT' && a.header.startsWith('Planned work')) return false;
     return a.routes.some(r => [...codes].some(c => r.includes(`-${c}`)));
+  });
+
+  // Deduplicate: same ID appearing twice, or same description (different route entries)
+  const seenIds   = new Set();
+  const seenDescs = new Set();
+  return matched.filter(a => {
+    if (seenIds.has(a.id))           return false;
+    if (seenDescs.has(a.description)) return false;
+    seenIds.add(a.id);
+    seenDescs.add(a.description);
+    return true;
   });
 }
 
