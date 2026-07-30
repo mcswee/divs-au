@@ -78,6 +78,7 @@
       font-weight: 700;
       font-variant-numeric: tabular-nums;
       letter-spacing: 0.03em;
+      line-height: 1;
     }
 
     /* ── Station selector ── */
@@ -126,42 +127,48 @@
 
     .alert {
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: auto 1fr auto;
       align-items: start;
-      gap: 0.5rem;
-      padding: 0.65rem 0.75rem;
-      border-left: 4px solid;
-      border-bottom: 1px solid var(--border);
-      background: #fafafa;
+      gap: 0.6rem;
+      padding: 0.7rem 0.875rem;
+      border: 2px solid #e67e00;
+      border-left-width: 4px;
+      border-radius: 2px;
+      background: #1a1a1a;
+      color: #ffffff;
       cursor: pointer;
       user-select: none;
+      margin-bottom: 3px;
     }
 
-    .alert + .alert { margin-top: 2px; }
-    .alert--critical { border-color: #c00; }
-    .alert--warning  { border-color: #d97706; }
-    .alert--info     { border-color: #2563eb; }
+    .alert-icon {
+      font-size: 0.85rem;
+      line-height: 1.3;
+      flex-shrink: 0;
+    }
 
     .alert-hdr {
       font-size: 0.82rem;
       font-weight: 600;
       line-height: 1.3;
+      color: #ffffff;
     }
 
     .alert-desc {
       font-size: 0.78rem;
-      color: var(--dim);
+      color: #cccccc;
       line-height: 1.4;
       margin-top: 0.25rem;
       display: none;
+      grid-column: 2;
     }
 
     .alert.expanded .alert-desc { display: block; }
 
     .alert-caret {
       font-size: 0.6rem;
-      color: var(--dim);
-      padding-top: 0.15rem;
+      color: #aaaaaa;
+      padding-top: 0.2rem;
     }
 
     /* ── Platform section ── */
@@ -214,14 +221,19 @@
     .dep-time .actual { display: block; }
 
     .dep-mins {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--dim);
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
       font-variant-numeric: tabular-nums;
       white-space: nowrap;
+      background: #111111;
+      color: #ffffff;
+      padding: 0.15rem 0.4rem;
+      border-radius: 2px;
+      letter-spacing: 0.02em;
     }
 
-    .dep-mins.soon { color: #c00; font-weight: 600; }
+    .dep-mins.soon { color: #e67e00; }
 
     .dep-info { min-width: 0; }
 
@@ -248,20 +260,31 @@
     }
 
     /* ── Real-time badges ── */
-    .rt-badge {
-      display: inline-block;
+    .rt-ontime {
       font-size: 0.62rem;
       font-weight: 600;
-      letter-spacing: 0.04em;
-      padding: 0.1rem 0.35rem;
-      border-radius: 2px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .rt-late {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #e67e00;
       margin-left: 0.4rem;
       vertical-align: middle;
     }
 
-    .rt-ontime { background: #e6f4ea; color: #1a7f37; }
-    .rt-late   { background: #fde8e8; color: #c00; }
-    .rt-early  { background: #fff3cd; color: #856404; }
+    .rt-early {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--dim);
+      margin-left: 0.4rem;
+      vertical-align: middle;
+    }
 
     /* ── Stopping pattern ── */
     .pattern {
@@ -313,9 +336,25 @@
       border-top: 1px solid var(--border);
       font-size: 0.72rem;
       color: var(--dim);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
     }
 
     footer a { color: inherit; text-decoration: underline; }
+
+    .live-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ccc;
+      flex-shrink: 0;
+      transition: background 0.3s;
+    }
+
+    .live-dot.connected { background: #22c55e; }
 
     /* ── Responsive ── */
     @media (max-width: 480px) {
@@ -351,10 +390,13 @@
   </main>
 
   <footer>
-    Scheduled times with live delay data.
-    <span id="rt-status"></span>
-    Data: <a href="https://www.ptv.vic.gov.au/footer/data-and-reporting/datasets/gtfs/" target="_blank" rel="noopener">PTV GTFS</a> &amp; <a href="https://opendata.transport.vic.gov.au/dataset/gtfs-realtime" target="_blank" rel="noopener">GTFS-R</a>.
-    For disruptions see <a href="https://www.ptv.vic.gov.au" target="_blank" rel="noopener">PTV</a>.
+    <span>
+      Data: <a href="https://opendata.transport.vic.gov.au/dataset/gtfs-schedule" target="_blank" rel="noopener">GTFS Schedule</a> &amp; <a href="https://opendata.transport.vic.gov.au/dataset/gtfs-realtime" target="_blank" rel="noopener">GTFS Realtime</a>.
+      For official times and disruptions see <a href="https://www.transportvic.com.au" target="_blank" rel="noopener">Transport Victoria</a>.
+    </span>
+    <span id="live-indicator" title="Live data status">
+      <span class="live-dot" id="live-dot"></span>
+    </span>
   </footer>
 </div>
 
@@ -474,11 +516,12 @@ async function pollRT() {
     const r = await fetch(RT);
     rtData = await r.json();
     buildRtLookup();
-    const el = document.getElementById('rt-status');
-    if (el) el.textContent = 'Live data active.';
+    const dot = document.getElementById('live-dot');
+    if (dot) dot.classList.add('connected');
     if (stationData) render();
   } catch {
-    // silent — fall back to scheduled times
+    const dot = document.getElementById('live-dot');
+    if (dot) dot.classList.remove('connected');
   }
 }
 
@@ -542,11 +585,6 @@ function render() {
 
   plats.forEach(p => frag.appendChild(buildPlatform(p, byPlat[p])));
 
-  const notice = el('p', 'msg');
-  notice.style.cssText = 'padding:0.75rem 0;font-size:0.72rem;';
-  notice.textContent = 'Scheduled times with live delay data where available.';
-  frag.appendChild(notice);
-
   const board = document.getElementById('board');
   board.innerHTML = '';
   board.appendChild(frag);
@@ -594,7 +632,9 @@ function alertsForStation() {
 function buildAlerts(alerts) {
   const container = el('div', 'alerts');
   alerts.forEach(a => {
-    const item  = el('div', `alert alert--${effectClass(a.effect)}`);
+    const item  = el('div', 'alert');
+    const icon  = el('span', 'alert-icon');
+    icon.textContent = '⚠';
     const main  = el('div', 'alert-main');
     const hdr   = el('div', 'alert-hdr');
     hdr.textContent = a.header;
@@ -603,7 +643,7 @@ function buildAlerts(alerts) {
     main.append(hdr, desc);
     const caret = el('span', 'alert-caret');
     caret.textContent = '▼';
-    item.append(main, caret);
+    item.append(icon, main, caret);
     item.addEventListener('click', () => {
       item.classList.toggle('expanded');
       caret.textContent = item.classList.contains('expanded') ? '▲' : '▼';
@@ -649,18 +689,22 @@ function buildDep(dep) {
   const actualMin = schedMin + Math.round(delaySec / 60);
   const minsAway  = actualMin - nowMin;
 
-  // Time cell
+  // Time cell — only show strikethrough if displayed minute actually changes
   const timeEl = el('span', 'dep-time');
-  if (delay !== null && delaySec !== 0) {
+  const schedDisplay = dep.departs;
+  const actualDisplay = toHHMM(actualMin);
+  const minuteChanged = schedDisplay !== actualDisplay;
+
+  if (delay !== null && delaySec !== 0 && minuteChanged) {
     timeEl.classList.add('delayed');
     const sched = el('span', 'sched');
-    sched.textContent = dep.departs;
+    sched.textContent = schedDisplay;
     const actual = el('span', 'actual');
-    actual.textContent = toHHMM(actualMin);
+    actual.textContent = actualDisplay;
     timeEl.append(sched, actual);
   } else {
     const actual = el('span', 'actual');
-    actual.textContent = dep.departs;
+    actual.textContent = schedDisplay;
     timeEl.appendChild(actual);
   }
 
@@ -676,9 +720,12 @@ function buildDep(dep) {
 
   let badge = '';
   if (delay !== null) {
-    if (delaySec <= 60)     badge = '<span class="rt-badge rt-ontime">On time</span>';
-    else if (delaySec > 60) badge = `<span class="rt-badge rt-late">${Math.round(delaySec/60)} min late</span>`;
-    else                    badge = '<span class="rt-badge rt-early">Early</span>';
+    if (!minuteChanged)
+      badge = '<span class="rt-ontime">ON TIME</span>';
+    else if (delaySec > 60)
+      badge = `<span class="rt-late">${Math.round(delaySec/60)} min late</span>`;
+    else
+      badge = '<span class="rt-early">Early</span>';
   }
   dest.innerHTML = escHtml(dep.dest) + badge;
 
