@@ -190,7 +190,7 @@
     /* ── Departure row ── */
     .dep {
       display: grid;
-      grid-template-columns: 2.75rem 3.8rem 1fr auto;
+      grid-template-columns: 2.75rem 4.2rem 1fr auto;
       align-items: center;
       gap: 0.875rem;
       padding: 0.8rem 0.75rem;
@@ -209,6 +209,7 @@
       font-weight: 600;
       font-variant-numeric: tabular-nums;
       line-height: 1.1;
+      text-align: center;
     }
 
     .dep-time.delayed .sched {
@@ -233,6 +234,7 @@
       margin: 0rem 0.2rem;
       border-radius: 2px;
       letter-spacing: 0.02em;
+      text-align: center;
     }
 
     .dep-mins.soon { color: #e67e00; }
@@ -303,7 +305,11 @@
       font-size: 0.83rem;
     }
 
-    .pat-stop.is-here { font-weight: 700; }
+    .pat-stop.is-here { 
+      font-weight: 700;
+      background-color:var(--lc, #ccc);
+      color: #ffffff;
+    }
     .pat-stop.is-end  { font-weight: 600; }
 
     .pat-time {
