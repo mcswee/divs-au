@@ -189,7 +189,7 @@
     /* ── Departure row ── */
     .dep {
       display: grid;
-      grid-template-columns: 2.75rem 4.2rem 1fr auto;
+      grid-template-columns: 2.75rem 3.2rem 1fr auto;
       align-items: center;
       gap: 0.875rem;
       padding: 0.8rem 0.75rem;
@@ -636,7 +636,7 @@ function buildAlerts(alerts) {
   alerts.forEach(a => {
     const item  = el('div', 'alert');
     const icon  = el('span', 'alert-icon');
-    icon.textContent = '⚠';
+    icon.textContent = '⚠️';
     const main  = el('div', 'alert-main');
     const hdr   = el('div', 'alert-hdr');
     hdr.textContent = a.header;
@@ -714,7 +714,8 @@ function buildDep(dep) {
   const minsEl = el('span', 'dep-mins' + (minsAway <= 2 ? ' soon' : ''));
   minsEl.textContent = minsAway <= 0 ? 'Now'
                      : minsAway === 1 ? '1 min'
-                     : `${minsAway} min`;
+                     : minsAway >= 60 ? '1 hr +'
+                     : `${minsAway} min'
 
   // Destination + route
   const info = el('div', 'dep-info');
