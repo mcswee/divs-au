@@ -156,7 +156,7 @@
 
     .alert-desc {
       font-size: 0.78rem;
-      color: #cccccc;
+      color: #eeeeee;
       line-height: 1.4;
       margin-top: 0.25rem;
       display: none;
@@ -229,6 +229,7 @@
       background: #111111;
       color: #ffffff;
       padding: 0.15rem 0.4rem;
+      margin: 0rem 0.2rem;
       border-radius: 2px;
       letter-spacing: 0.02em;
     }
@@ -262,7 +263,6 @@
     /* ── Real-time badges ── */
     .rt-ontime {
       font-size: 0.62rem;
-      font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--dim);
@@ -721,9 +721,9 @@ function buildDep(dep) {
   let badge = '';
   if (delay !== null) {
     if (!minuteChanged)
-      badge = '<span class="rt-ontime">ON TIME</span>';
-    else if (delaySec > 60)
-      badge = `<span class="rt-late">${Math.round(delaySec/60)} min late</span>`;
+      badge = '<span class="rt-ontime">on time</span>';
+    else if (delaySec >= 0)
+      badge = `<span class="rt-late">${Math.max(1, Math.round(delaySec/60))} min late</span>`;
     else
       badge = '<span class="rt-early">Early</span>';
   }
@@ -794,7 +794,7 @@ function buildPattern(dep) {
   stops.forEach(([name, time], i) => {
     if (name === '__EXP__') {
       const row = el('div', 'pat-express');
-      row.textContent = `Express — skips ${time}`;
+      row.textContent = `Express: ${time}`;
       wrap.appendChild(row);
       return;
     }
