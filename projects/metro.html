@@ -360,6 +360,17 @@
 
     footer a { color: inherit; text-decoration: underline; }
 
+    .live-status-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+    
     .live-dot {
       display: inline-block;
       width: 7px;
@@ -371,7 +382,7 @@
     }
 
     .live-dot.connected { background: #22c55e; }
-
+ 
     /* ── Responsive ── */
     @media (max-width: 480px) {
       .dep {
@@ -405,13 +416,14 @@
     <p class="msg">Select a station to see upcoming departures.</p>
   </main>
 
-  <footer>
+  <footer class="footer">
     <span>
       Data: <a href="https://opendata.transport.vic.gov.au/dataset/gtfs-schedule" target="_blank" rel="noopener">GTFS Schedule</a> &amp; <a href="https://opendata.transport.vic.gov.au/dataset/gtfs-realtime" target="_blank" rel="noopener">GTFS Realtime</a>.
       For official times and disruptions see <a href="https://www.transportvic.com.au" target="_blank" rel="noopener">Transport Victoria</a>.
     </span>
-    <span id="live-indicator" title="Live data status">
+    <span id="live-indicator" title="Live data status" class="live-status-wrap">
       <span class="live-dot" id="live-dot"></span>
+      <span id="live-text">Connecting…</span>
     </span>
   </footer>
 </div>
@@ -532,14 +544,21 @@ async function pollRT() {
     const r = await fetch(RT);
     rtData = await r.json();
     buildRtLookup();
+    
     const dot = document.getElementById('live-dot');
+    const text = document.getElementById('live-text');
     if (dot) dot.classList.add('connected');
+    if (text) text.textContent = 'LIVE';
+    
     if (stationData) render();
   } catch {
     const dot = document.getElementById('live-dot');
+    const text = document.getElementById('live-text');
     if (dot) dot.classList.remove('connected');
+    if (text) text.textContent = 'OFFLINE';
   }
 }
+
 
 // ── Render ────────────────────────────────────────────────────────────────────
 function render() {
