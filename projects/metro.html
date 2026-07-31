@@ -252,11 +252,18 @@
     .dep-route {
       font-size: 0.72rem;
       font-weight: 500;
-      background-color: var(--lc);
-      color: #ffffff;
-      padding: 0.1rem 0.25rem;
+      color: var(--dim);
       margin-top: 0.1rem;
-      
+    }
+
+    .route-badge {
+      display: inline-block;
+      color: #ffffff;
+      background-color: var(--lc, #ccc);
+      padding: 0.1rem 0.35rem;
+      border-radius: 2px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
     .dep-caret {
@@ -736,7 +743,15 @@ function buildDep(dep) {
   dest.innerHTML = escHtml(dep.dest) + badge;
 
   const route = el('div', 'dep-route');
-  route.textContent = dep.stype ? `${dep.route} · ${dep.stype}` : dep.route;
+  const routeBadge = el('span', 'route-badge');
+  routeBadge.style.backgroundColor = dep.colour || '#ccc';
+  routeBadge.textContent = dep.route;
+
+  if (dep.stype) {
+    route.append(routeBadge, document.createTextNode(` · ${dep.stype}`));
+  } else {
+    route.appendChild(routeBadge);
+  }
   info.append(dest, route);
 
   // Caret
