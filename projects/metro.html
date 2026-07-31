@@ -715,7 +715,7 @@ function buildDep(dep) {
   minsEl.textContent = minsAway <= 0 ? 'Now'
                      : minsAway === 1 ? '1 min'
                      : minsAway >= 60 ? '1 hr +'
-                     : `${minsAway} min'
+                     : `${minsAway} min`;
 
   // Destination + route
   const info = el('div', 'dep-info');
