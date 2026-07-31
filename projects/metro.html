@@ -132,7 +132,15 @@
       gap: 0.6rem;
       padding: 0.7rem 0.875rem;
       border: 2px solid #e67e00;
-      border-left-width: 10px;
+      border-left-width: 12px; /* Make it slightly wider to show the pattern clearly */
+      border-left-style: solid;
+      border-image: repeating-linear-gradient(
+        45deg,
+        #111111,
+        #111111 10px,
+        #e67e00 10px,
+        #e67e00 20px
+      ) 1 100%;
       border-radius: 2px;
       background: #1a1a1a;
       color: #ffffff;
@@ -140,7 +148,7 @@
       user-select: none;
       margin-bottom: 3px;
     }
-
+    
     .alert-icon {
       font-size: 0.85rem;
       line-height: 1.3;
