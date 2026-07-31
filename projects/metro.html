@@ -49,9 +49,17 @@
     .header-top {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: flex-start; /* Changed from baseline to flex-start */
     }
 
+    #clock {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.03em;
+      line-height: 1;
+      margin-top: 0.85rem; /* Pushes it down to line up with the h1 heading */
+    }
     .wordmark {
       display: flex;
       flex-direction: column;
@@ -70,14 +78,6 @@
       font-size: 1.5rem;
       font-weight: 700;
       letter-spacing: -0.03em;
-      line-height: 1;
-    }
-
-    #clock {
-      font-size: 1.5rem;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0.03em;
       line-height: 1;
     }
 
@@ -388,7 +388,7 @@
         <span class="site-tag"><a href="/projects/">divs.au</a></span>
         <h1>Melbourne Trains</h1>
       </div>
-      <div id="clock"></div>
+      <span id="clock"></span>
     </div>
     <div class="selector-wrap">
       <select id="station-select" aria-label="Select station">
