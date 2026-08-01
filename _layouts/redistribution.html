@@ -11,6 +11,41 @@ category: reports
     {% if page.status == "active" %}
     <section class="page-element">
         <h2>Proposed electoral divisions</h2>
+---
+layout: default
+category: reports
+---
+ 
+    <header class="page-element">
+        <h1>{{ page.state }} {{ page.year }} redistribution</h1>
+        {{ content }}
+    </header>
+
+    {% if page.status == "active" %}
+
+    {% if page.division_names %}
+    <section class="page-element">
+        <h2>Division names in {{ page.state }}</h2>
+        {{ page.division_names | markdownify }}
+    </section>
+    {% endif %}
+
+    {% if page.divisions_renamed %}
+    <section class="page-element">
+        <h2>Divisions proposed to be abolished or renamed</h2>
+        {{ page.divisions_renamed | markdownify }}
+    </section>
+    {% endif %}
+
+    {% if page.suggested_divisions %}
+    <section class="page-element">
+        <h2>Suggested divisions</h2>
+        {{ page.suggested_divisions | markdownify }}
+    </section>
+    {% endif %}
+    
+    <section class="page-element">
+        <h2>Proposed electoral divisions</h2>
             <p>My suggestion ensures all electoral divisions in {{ page.state }} meet the numerical thresholds for actual and projected enrolment, while adhering to community of interests criteria as outlined in the <em>Commonwealth Electoral Act 1918</em>.</p>
             <p>The numerical thresholds for this redistribution are:</p>
             <dl>
@@ -114,6 +149,75 @@ category: reports
                 AEC {% if page.status == "archived" %}final determination for {{ page.state }}{% else %}{{ page.state }} redistribution page{% endif %}
             </a>
             <a href="https://www.aec.gov.au/redistributions/" class="link-item">AEC redistributions homepage</a>                
+        </div>
+    </section>    
+
+    {% if page.map %}
+     <script src="/assets/js/state-map.js"></script>
+    {% endif %}
+
+            <p>My suggestion ensures all electoral divisions in {{ page.state }} meet the numerical thresholds for actual and projected enrolment, while adhering to community of interests criteria as outlined in the <em>Commonwealth Electoral Act 1918</em>.</p>
+            <p>The numerical thresholds for this redistribution are:</p>
+            <dl>
+                <dt>Redistribution quota</dt>
+                  <dd>Total electors: {{ page.quota_total }}, divided by the number of divisions: {{ page.division_count }} = {{ page.quota_result }}</dd>
+                <dt>Threshold for electors within each division (±10%)</dt>
+                  <dd>Between {{ page.threshold_low }} and {{ page.threshold_high }} actual electors</dd>
+                <dt>Projected electoral quota</dt>
+                  <dd>Total projected electors: {{ page.projected_total }}, divided by the number of divisions: {{ page.division_count }} = {{ page.projected_quota }}</dd>
+                <dt>Threshold for projected electors within each division (±3.5)</dt>
+                  <dd>Between {{ page.projected_low }} and {{ page.projected_high }} projected electors</dd>
+            </dl>
+
+<div class="table-wrapper">
+    <table class="state-table">
+        <caption>Elector numbers for my proposed electoral divisions for {{ page.state }} {{ page.year }}</caption>
+        <thead>
+            <tr>
+                <th scope="col">Division name</th>
+                <th scope="col">Current projected</th>
+                <th scope="col">Current deviation %</th>
+                <th scope="col">Proposed actual</th>
+                <th scope="col">Proposed projected</th>
+                <th scope="col">Proposed deviation %</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for div in page.divisions %}
+            <tr>
+                <th scope="row">{{ div.name }}</th>
+                <td class="num">{{ div.proj }}</td>
+                <td class="num">{{ div.dev }}</td>
+                <td class="num">{{ div.p_act }}</td>
+                <td class="num">{{ div.p_proj }}</td>
+                <td class="num">{{ div.p_dev }}</td>   
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    </section>
+
+    <section class="page-element">
+        <h2>Summary of proposed changes</h2>
+        <dl>
+            {% for div in page.divisions %}
+            <dt>{{ div.name }}</dt>
+            <dd>{{ div.change }}</dd>
+            {% endfor %}
+        </dl>
+    </section>
+
+    <section class="page-element">
+        <h2>Map of proposed divisions</h2>
+        <div id="map-status" class="sr-only" aria-live="polite"></div>
+
+        <div id="state-map" 
+            class="{{ page.state_id }}"
+            role="img"
+            aria-label="Map of proposed electoral divisions for {{ page.state }}" 
+            aria-describedby="map-description"
+//www.aec.gov.au/redistributions/" class="link-item">AEC redistributions homepage</a>                
         </div>
     </section>    
 
