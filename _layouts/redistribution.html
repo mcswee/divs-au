@@ -13,21 +13,21 @@ category: reports
         {% if page.division_names %}
         <section class="page-element">
             <h2>Division names in {{ page.state }}</h2>
-            {{ page.division_names | markdownify }}
+            {{ page.division_names }}
         </section>
         {% endif %}
 
         {% if page.divisions_renamed %}
         <section class="page-element">
             <h2>Divisions proposed to be abolished or renamed</h2>
-            {{ page.divisions_renamed | markdownify }}
+            {{ page.divisions_renamed }}
         </section>
         {% endif %}
 
         {% if page.suggested_divisions %}
         <section class="page-element">
             <h2>Suggested divisions</h2>
-            {{ page.suggested_divisions | markdownify }}
+            {{ page.suggested_divisions }}
         </section>
         {% endif %}
         
