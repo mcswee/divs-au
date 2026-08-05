@@ -188,7 +188,10 @@
   }
 
   /* ── Letter groups ── */
-  .letter-group { margin-bottom: 2.5rem; }
+  .letter-group {
+    margin-bottom: 2.5rem;
+    scroll-margin-top: var(--scroll-offset, 120px);
+  }
 
   .letter-heading {
     font-family: 'Libre Baskerville', serif;
@@ -488,7 +491,6 @@
   <div class="legend-panel" id="legend-panel" role="region" aria-label="Phoneme legend"></div>
 
   <div id="results"></div>
-  <p class="no-speech" id="no-speech">Audio not available in this browser.</p>
 </main>
 
 <footer>
@@ -1316,7 +1318,6 @@ function buildLegend() {
 
 const AUDIO_PATH = '/assets/audio/suburbs/';
 const hasSpeech = 'speechSynthesis' in window;
-if (!hasSpeech) document.getElementById('no-speech').style.display = 'block';
 
 let currentBtn = null;
 let currentAudio = null;
@@ -1374,8 +1375,7 @@ function renderCard(sub, highlight) {
     </div>
     <div class="pronunciation-row">
       <span class="pronunciation">${pronHtml}</span>
-      ${hasSpeech ? `<button class="play-btn" aria-label="Listen to ${escHtml(sub.name)}" data-name="${escHtml(sub.name)}">${playIcon()}</button>` : ''}
-    </div>
+      <button class="play-btn" aria-label="Listen to ${escHtml(sub.name)}" data-name="${escHtml(sub.name)}">${playIcon()}</button>    </div>
   </div>`;
 }
 
@@ -1494,8 +1494,10 @@ document.getElementById('lga-filter').addEventListener('change', e => {
   const header = document.querySelector('header');
   const bar = document.getElementById('alpha-bar');
   function offset() {
-    bar.style.top = header.offsetHeight + 'px';
-  }
+  const total = header.offsetHeight + bar.offsetHeight;
+  bar.style.top = header.offsetHeight + 'px';
+  document.documentElement.style.setProperty('--scroll-offset', (total + 8) + 'px');
+}
   offset();
   new ResizeObserver(offset).observe(header);
 })();
