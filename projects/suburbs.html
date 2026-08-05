@@ -188,7 +188,10 @@
   }
 
   /* ── Letter groups ── */
-  .letter-group { margin-bottom: 2.5rem; }
+  .letter-group {
+    margin-bottom: 2.5rem;
+    scroll-margin-top: var(--scroll-offset, 120px);
+  }
 
   .letter-heading {
     font-family: 'Libre Baskerville', serif;
@@ -1491,8 +1494,10 @@ document.getElementById('lga-filter').addEventListener('change', e => {
   const header = document.querySelector('header');
   const bar = document.getElementById('alpha-bar');
   function offset() {
-    bar.style.top = header.offsetHeight + 'px';
-  }
+  const total = header.offsetHeight + bar.offsetHeight;
+  bar.style.top = header.offsetHeight + 'px';
+  document.documentElement.style.setProperty('--scroll-offset', (total + 8) + 'px');
+}
   offset();
   new ResizeObserver(offset).observe(header);
 })();
