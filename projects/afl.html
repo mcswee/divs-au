@@ -748,6 +748,48 @@
     margin-top: 4px;
   }
 
+
+  /* ── Delta breakdown in popup ── */
+  .delta-breakdown {
+    margin-top: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+
+  .delta-breakdown-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 8px;
+  }
+
+  .delta-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 3px 0;
+    color: var(--dim);
+  }
+
+  .delta-row .d-label { color: var(--dim); }
+  .delta-row .d-val { color: var(--text); }
+  .delta-row .d-val.pos { color: var(--accent); }
+  .delta-row .d-val.neg { color: var(--warn); }
+
+  .delta-row.total {
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+    padding-top: 6px;
+    font-weight: 500;
+  }
+
+  .delta-row.total .d-label { color: var(--text); }
+  .delta-row.total .d-val.pos { color: var(--accent); font-weight: 500; }
+  .delta-row.total .d-val.neg { color: var(--warn); font-weight: 500; }
+
   .about-prose {
     max-width: 680px;
     line-height: 1.75;
@@ -1310,13 +1352,39 @@ function openTeamPopup(team, rank, rating) {
       <span class="popup-stat-value">${result} vs ${opponent} &nbsp;${score}</span>
     </div>`;
     statsHtml += `<div class="popup-stat">
-      <span class="popup-stat-label">Last Δ</span>
-      <span class="popup-stat-value ${deltaCls}">${deltaStr}</span>
-    </div>`;
-    statsHtml += `<div class="popup-stat">
       <span class="popup-stat-label">Round</span>
       <span class="popup-stat-value">${lastGame.roundname}</span>
     </div>`;
+
+    // Delta breakdown
+    const isH = isHome;
+    const om  = isH ? lastGame.h_outcome_multiple : lastGame.a_outcome_multiple;
+    const mc  = isH ? lastGame.h_margin_component : lastGame.a_margin_component;
+    const cb  = isH ? lastGame.h_century          : lastGame.a_century;
+    const tb  = isH ? lastGame.h_travel           : lastGame.a_travel;
+    const sf  = isH ? lastGame.h_sf               : lastGame.a_sf;
+
+    function dv(v) {
+      if (v === undefined || v === null) return '<span class="d-val">—</span>';
+      const cls = v > 0 ? 'pos' : v < 0 ? 'neg' : '';
+      return `<span class="d-val ${cls}">${v >= 0 ? '+' : ''}${v.toFixed(4)}</span>`;
+    }
+
+    if (om !== undefined) {
+      statsHtml += `<div class="delta-breakdown">
+        <div class="delta-breakdown-label">Δ breakdown</div>
+        <div class="delta-row"><span class="d-label">SF (${sf?.toFixed(4) ?? '—'}) × outcome</span>${dv(om)}</div>
+        <div class="delta-row"><span class="d-label">Margin / 60</span>${dv(mc)}</div>
+        <div class="delta-row"><span class="d-label">Century bonus</span>${dv(cb)}</div>
+        <div class="delta-row"><span class="d-label">Travel bonus</span>${dv(tb)}</div>
+        <div class="delta-row total"><span class="d-label">Total Δ</span>${dv(delta)}</div>
+      </div>`;
+    } else {
+      statsHtml += `<div class="popup-stat">
+        <span class="popup-stat-label">Last Δ</span>
+        <span class="popup-stat-value ${deltaCls}">${deltaStr}</span>
+      </div>`;
+    }
   }
 
   document.getElementById('popup-team').textContent = team;

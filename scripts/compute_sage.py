@@ -172,12 +172,20 @@ def surprise_factor(team_output: float, opp_output: float) -> float:
 
 
 def compute_delta(sf: float, outcome: int, margin: int,
-                  scored: int, team: str, venue: str) -> float:
+                  scored: int, team: str, venue: str) -> dict:
+    """Returns delta components as a dict."""
     outcome_multiple = sf * outcome
     margin_component = margin / 60
     century = 0.2 if scored >= 100 else 0.0
     travel = travel_bonus(team, venue)
-    return outcome_multiple + margin_component + century + travel
+    total = outcome_multiple + margin_component + century + travel
+    return {
+        "outcome_multiple": round(outcome_multiple, 4),
+        "margin_component": round(margin_component, 4),
+        "century":          century,
+        "travel":           travel,
+        "total":            round(total, 4),
+    }
 
 
 def process_completed_game(game: dict, ratings: dict, history: list, prior_ratings: dict = None) -> dict:
@@ -238,31 +246,38 @@ def process_completed_game(game: dict, ratings: dict, history: list, prior_ratin
     a_pred = 1 - (a_sf / 2)
 
     # Delta
-    h_delta = compute_delta(h_sf, h_outcome, h_margin, hscore, hteam, venue)
-    a_delta = compute_delta(a_sf, a_outcome, a_margin, ascore, ateam, venue)
+    h_d = compute_delta(h_sf, h_outcome, h_margin, hscore, hteam, venue)
+    a_d = compute_delta(a_sf, a_outcome, a_margin, ascore, ateam, venue)
 
     # New ratings
-    new_h = ratings.get(hteam, 0) + h_delta
-    new_a = ratings.get(ateam, 0) + a_delta
-
-    ratings[hteam] = round(new_h, 4)
-    ratings[ateam] = round(new_a, 4)
+    ratings[hteam] = round(ratings.get(hteam, 0) + h_d["total"], 4)
+    ratings[ateam] = round(ratings.get(ateam, 0) + a_d["total"], 4)
 
     return {
-        "game_id": game["id"],
-        "year": game["year"],
-        "round": game["round"],
-        "roundname": game.get("roundname", f"Round {game['round']}"),
-        "date": game.get("date"),
-        "venue": venue,
-        "hteam": hteam,
-        "ateam": ateam,
-        "hscore": hscore,
-        "ascore": ascore,
-        "h_pred": round(h_pred * 100, 1),
-        "a_pred": round(a_pred * 100, 1),
-        "h_delta": round(h_delta, 4),
-        "a_delta": round(a_delta, 4),
+        "game_id":    game["id"],
+        "year":       game["year"],
+        "round":      game["round"],
+        "roundname":  game.get("roundname", f"Round {game['round']}"),
+        "date":       game.get("date"),
+        "venue":      venue,
+        "hteam":      hteam,
+        "ateam":      ateam,
+        "hscore":     hscore,
+        "ascore":     ascore,
+        "h_pred":     round(h_pred * 100, 1),
+        "a_pred":     round(a_pred * 100, 1),
+        "h_sf":       round(h_sf, 4),
+        "a_sf":       round(a_sf, 4),
+        "h_delta":    h_d["total"],
+        "a_delta":    a_d["total"],
+        "h_outcome_multiple": h_d["outcome_multiple"],
+        "a_outcome_multiple": a_d["outcome_multiple"],
+        "h_margin_component": h_d["margin_component"],
+        "a_margin_component": a_d["margin_component"],
+        "h_century":  h_d["century"],
+        "a_century":  a_d["century"],
+        "h_travel":   h_d["travel"],
+        "a_travel":   a_d["travel"],
         "h_rating_after": ratings[hteam],
         "a_rating_after": ratings[ateam],
     }
