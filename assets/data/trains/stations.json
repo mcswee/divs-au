@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-02T16:05:33.519587",
+  "generated": "2026-08-09T15:38:08.345184",
   "groups": {
     "frankston": "Frankston / Stony Point",
     "burnley": "Burnley",
@@ -759,13 +759,6 @@
       ]
     },
     {
-      "id": "vic:rail:RCE",
-      "name": "Flemington Racecourse",
-      "groups": [
-        "showgrounds"
-      ]
-    },
-    {
       "id": "vic:rail:FSS",
       "name": "Flinders Street",
       "groups": [
@@ -774,7 +767,6 @@
         "clifton_hill",
         "frankston",
         "northern",
-        "showgrounds",
         "vline"
       ]
     },
@@ -1483,7 +1475,6 @@
       "groups": [
         "bayside",
         "northern",
-        "showgrounds",
         "vline"
       ]
     },
@@ -1849,7 +1840,6 @@
         "clifton_hill",
         "frankston",
         "northern",
-        "showgrounds",
         "vline"
       ]
     },
