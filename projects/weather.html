@@ -360,11 +360,11 @@
     // Runs once per stop, after badges have settled at their projected
     // screen positions. Camera is stationary during the pause, so a single
     // measure-and-resolve pass is enough — no need to re-run per frame.
-    function resolveBadgeCollisions() {
+    function resolveBadgeCollisions(attempt = 0) {
       const badges = Array.from(document.querySelectorAll('.weather-badge'));
       if (badges.length < 2) return;
 
-      const GAP = 4; // breathing room between stacked badges, in px
+      const GAP = 10; // breathing room between stacked badges, in px
 
       const items = badges.map(el => {
         const rect = el.getBoundingClientRect();
@@ -373,9 +373,22 @@
           top: rect.top,
           bottom: rect.bottom,
           left: rect.left,
-          right: rect.right
+          right: rect.right,
+          width: rect.width,
+          height: rect.height
         };
       });
+
+      // If globe.gl hasn't finished placing the badges yet, rects come
+      // back as zero-size at the origin. Retry a few times on later
+      // frames instead of silently doing nothing.
+      const notLaidOutYet = items.some(i => i.width === 0 && i.height === 0);
+      if (notLaidOutYet && attempt < 10) {
+        requestAnimationFrame(() => resolveBadgeCollisions(attempt + 1));
+        return;
+      }
+
+      console.debug(`[collision] resolving ${items.length} badges on attempt ${attempt}`);
 
       // Process top-to-bottom so higher badges settle first and lower
       // ones stack beneath anything they'd otherwise overlap.
@@ -401,6 +414,8 @@
 
         if (shiftDown > 0) {
           item.el.style.transform = `translate(-50%, calc(-100% + ${shiftDown}px))`;
+          const label = item.el.querySelector('strong')?.textContent;
+          console.debug(`[collision] pushed ${label} down ${Math.round(shiftDown)}px`);
         }
 
         placed.push({
