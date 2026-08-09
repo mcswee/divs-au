@@ -248,24 +248,33 @@ def process_completed_game(game: dict, ratings: dict, history: list, prior_ratin
     ratings[hteam] = round(new_h, 4)
     ratings[ateam] = round(new_a, 4)
 
-    return {
-        "game_id": game["id"],
-        "year": game["year"],
-        "round": game["round"],
-        "roundname": game.get("roundname", f"Round {game['round']}"),
-        "date": game.get("date"),
-        "venue": venue,
-        "hteam": hteam,
-        "ateam": ateam,
-        "hscore": hscore,
-        "ascore": ascore,
-        "h_pred": round(h_pred * 100, 1),
-        "a_pred": round(a_pred * 100, 1),
-        "h_delta": round(h_delta, 4),
-        "a_delta": round(a_delta, 4),
-        "h_rating_after": ratings[hteam],
-        "a_rating_after": ratings[ateam],
-    }
+return {
+    "game_id": game["id"],
+    "year": game["year"],
+    "round": game["round"],
+    "roundname": game.get("roundname", f"Round {game['round']}"),
+    "date": game.get("date"),
+    "venue": venue,
+    "hteam": hteam,
+    "ateam": ateam,
+    "hscore": hscore,
+    "ascore": ascore,
+    "h_pred": round(h_pred * 100, 1),
+    "a_pred": round(a_pred * 100, 1),
+    "h_delta": round(h_delta, 4),
+    "a_delta": round(a_delta, 4),
+    "h_rating_after": ratings[hteam],
+    "a_rating_after": ratings[ateam],
+    # ── breakdown components ──
+    "h_sf_component": round(h_sf * h_outcome, 4),
+    "a_sf_component": round(a_sf * a_outcome, 4),
+    "h_margin_component": round(h_margin / 60, 4),
+    "a_margin_component": round(a_margin / 60, 4),
+    "h_century": 0.2 if hscore >= 100 else 0.0,
+    "a_century": 0.2 if ascore >= 100 else 0.0,
+    "h_travel": round(travel_bonus(hteam, venue), 1),
+    "a_travel": round(travel_bonus(ateam, venue), 1),
+}
 
 
 def predict_game(game: dict, ratings: dict, history: list) -> dict:
