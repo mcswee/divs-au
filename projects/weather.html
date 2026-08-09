@@ -298,9 +298,9 @@
         region: "Central America",
         lookAt: { lat: 18.0, lng: -80.0, altitude: 0.9 },
         cities: [
+          { name: "Santo Domingo", lat: 18.48, lng: -69.93 },
           { name: "Havana", lat: 23.11, lng: -82.36 },
           { name: "Cancún", lat: 21.16, lng: -86.85 },
-          { name: "Santo Domingo", lat: 18.48, lng: -69.93 },
           { name: "San Juan", lat: 18.46, lng: -66.10 },
           { name: "Panama City", lat: 8.98, lng: -79.51 },
           { name: "Bridgetown", lat: 13.10, lng: -59.61 },
@@ -524,7 +524,7 @@
         // Wait two frames so the browser has actually laid out the new
         // badges before we measure them for collisions.
         requestAnimationFrame(() => {
-          requestAnimationFrame(resolveBadgeCollisions);
+          requestAnimationFrame(() => resolveBadgeCollisions());
         });
       }, FLY_DURATION); 
 
