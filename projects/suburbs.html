@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/assets/images/star.svg">
 <style>
   :root {
     --paper: #f5f0e8;
@@ -464,8 +465,9 @@
 
 <header>
   <div class="header-inner">
-    <h1 class="site-title">How to Say It — <em>Melbourne</em> Suburbs</h1>
-    <p class="site-subtitle">A pronunciation reference · 678 suburbs · Australian English phonology</p>
+    <p class="site-subtitle"><a href="/projects/">DIVS.AU</a></p>
+    <h1 class="site-title">How to pronounce <em>Melbourne</em> Suburbs</h1>
+    <p class="site-subtitle">A pronunciation reference · 674 suburbs · Australian English phonology</p>
     <div class="controls">
       <div class="search-wrap">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -500,8 +502,8 @@
 <script>
 // ── DATA ────────────────────────────────────────────────────────────────────
 
-// Phoneme legend — paste your full YAML-converted data here.
-// Format: { symbol, ipa, example } — example is the first word from your EXAMPLE field.
+// Phoneme legend
+// Format: { symbol, ipa, example } 
 const PHONEMES = [
   { sym: "æ",   ipa: "æ",   seg: "vowel",     ex: "CAT" },
   { sym: "eh",  ipa: "e",   seg: "vowel",     ex: "MET" },
@@ -551,8 +553,8 @@ const PHONEMES = [
   { sym: "y",   ipa: "j",   seg: "consonant", ex: "YES" },
 ];
 
-// Suburb data — paste your full converted YAML here.
-// Format matches your YAML: { name, postcode, lga, pronunciation, phonemes }
+// Suburb data
+// Format matches YAML: { name, postcode, lga, pronunciation, phonemes }
 const SUBURBS = [
   { name: "Abbotsford", postcode: "3067", lga: "City of Yarra", pronunciation: "æb·@ts·f@d" },
   { name: "Aberfeldie", postcode: "3040", lga: "City of Moonee Valley", pronunciation: "æb·@·fehl·dee" },
