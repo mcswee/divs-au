@@ -298,9 +298,9 @@
         region: "Central America",
         lookAt: { lat: 18.0, lng: -80.0, altitude: 0.9 },
         cities: [
-          { name: "Santo Domingo", lat: 18.48, lng: -69.93 },
           { name: "Havana", lat: 23.11, lng: -82.36 },
           { name: "Cancún", lat: 21.16, lng: -86.85 },
+          { name: "Santo Domingo", lat: 18.48, lng: -69.93 },
           { name: "San Juan", lat: 18.46, lng: -66.10 },
           { name: "Panama City", lat: 8.98, lng: -79.51 },
           { name: "Bridgetown", lat: 13.10, lng: -59.61 },
@@ -413,9 +413,18 @@
         }
 
         if (shiftDown > 0) {
-          item.el.style.transform = `translate(-50%, calc(-100% + ${shiftDown}px))`;
+          const newTransform = `translate(-50%, calc(-100% + ${shiftDown}px))`;
+          item.el.style.transform = newTransform;
           const label = item.el.querySelector('strong')?.textContent;
-          console.debug(`[collision] pushed ${label} down ${Math.round(shiftDown)}px`);
+          console.debug(`[collision] pushed ${label} down ${Math.round(shiftDown)}px, connected=${item.el.isConnected}`);
+
+          // Sanity check: does something else overwrite this transform
+          // before the next paint?
+          requestAnimationFrame(() => {
+            if (item.el.style.transform !== newTransform) {
+              console.warn(`[collision] ${label} transform was overwritten next frame! set "${newTransform}" but now "${item.el.style.transform}"`);
+            }
+          });
         }
 
         placed.push({
