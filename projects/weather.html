@@ -22,6 +22,32 @@
       height: 100vh;
     }
 
+    #pause-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(10, 20, 30, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 13px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.55;
+      transition: opacity 0.2s ease, background 0.2s ease;
+      z-index: 10;
+    }
+
+    #pause-toggle:hover {
+      opacity: 1;
+      background: rgba(10, 20, 30, 0.9);
+    }
+
     /* Style for the floating city badges */
     .weather-badge {
       background: rgba(10, 20, 30, 0.9);
@@ -56,6 +82,8 @@
 <body>
 
   <div id="globe-container"></div>
+
+  <button id="pause-toggle" aria-label="Pause tour">❙❙</button>
 
   <script>
     // --- COLOR SCALE LOGIC ---
@@ -433,34 +461,86 @@
 
     let currentStopIndex = 0; 
     const FLY_DURATION = 3500; 
+    const SHORT_FLY_DURATION = 800; // used when consecutive stops share roughly the same view
     const PAUSE_DURATION = 6000; 
+    const CAMERA_SIMILARITY_THRESHOLD = 8; // degrees lat/lng combined — below this, treat as the same general view
+
+    function cameraDistance(a, b) {
+      const dLat = a.lat - b.lat;
+      const dLng = a.lng - b.lng;
+      return Math.sqrt(dLat * dLat + dLng * dLng);
+    }
+
+    // --- PAUSE / PLAY ---
+    let paused = false;
+
+    // Waits `ms` of *active* time — time spent paused doesn't count, so
+    // pressing pause genuinely freezes the countdown rather than just
+    // pushing everything back by the length of the pause.
+    function wait(ms) {
+      return new Promise(resolve => {
+        let remaining = ms;
+        let lastTick = null;
+
+        function tick(now) {
+          if (lastTick === null) lastTick = now;
+          const delta = now - lastTick;
+          lastTick = now;
+
+          if (!paused) remaining -= delta;
+
+          if (remaining <= 0) {
+            resolve();
+          } else {
+            requestAnimationFrame(tick);
+          }
+        }
+
+        requestAnimationFrame(tick);
+      });
+    }
 
     async function runWeatherTour() { 
-      const stop = STOPS[currentStopIndex]; 
+      while (true) {
+        const stop = STOPS[currentStopIndex]; 
+        const prevStop = STOPS[(currentStopIndex - 1 + STOPS.length) % STOPS.length];
 
-      // Remove previous markers while rotating 
-      world.htmlElementsData([]); 
+        // If this stop's camera view is close to the previous one, skip
+        // most of the flight time rather than doing a full slow pan.
+        const isShortHop = cameraDistance(stop.lookAt, prevStop.lookAt) < CAMERA_SIMILARITY_THRESHOLD;
+        const flyDuration = isShortHop ? SHORT_FLY_DURATION : FLY_DURATION;
 
-      // Move camera 
-      world.pointOfView(stop.lookAt, FLY_DURATION); 
+        // Remove previous markers while rotating 
+        world.htmlElementsData([]); 
 
-      // Fetch new data while rotating 
-      const weatherData = await getWeatherForCities(stop.cities); 
+        // Move camera 
+        world.pointOfView(stop.lookAt, flyDuration); 
 
-      // Render weather badges once arrived 
-      setTimeout(() => { 
+        // Fetch new data while the camera moves 
+        const weatherDataPromise = getWeatherForCities(stop.cities); 
+
+        await wait(flyDuration);
+        const weatherData = await weatherDataPromise;
+
+        // Render weather badges once arrived 
         world.htmlElementsData(weatherData); 
-      }, FLY_DURATION); 
 
-      // Loop to next region 
-      setTimeout(() => { 
+        await wait(PAUSE_DURATION);
+
         currentStopIndex = (currentStopIndex + 1) % STOPS.length; 
-        runWeatherTour(); 
-      }, FLY_DURATION + PAUSE_DURATION); 
+      }
     } 
 
     // Start tour 
     runWeatherTour(); 
+
+    // Pause / play toggle 
+    const pauseToggle = document.getElementById('pause-toggle'); 
+    pauseToggle.addEventListener('click', () => { 
+      paused = !paused; 
+      pauseToggle.textContent = paused ? '▶' : '❙❙'; 
+      pauseToggle.setAttribute('aria-label', paused ? 'Resume tour' : 'Pause tour'); 
+    }); 
   </script>
 </body>
 </html>
