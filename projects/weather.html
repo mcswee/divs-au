@@ -408,46 +408,42 @@
 
       console.debug(`[collision] resolving ${items.length} badges on attempt ${attempt}`);
 
-      // Process top-to-bottom so higher badges settle first and lower
-      // ones stack beneath anything they'd otherwise overlap.
-      items.sort((a, b) => a.top - b.top);
+      // Process the badges closest to their own anchor points first
+      // (largest screen-bottom = lowest on screen = least disturbed),
+      // and push anything colliding with them further UP and away from
+      // the globe. Never push down — that drags a badge toward, and in
+      // dense cascades straight through, its own anchor point, landing
+      // it somewhere unrelated below the city it's meant to label.
+      items.sort((a, b) => b.bottom - a.bottom);
 
       const placed = [];
 
       items.forEach(item => {
-        let shiftDown = 0;
+        let lift = 0;
 
         for (const other of placed) {
           const horizontalOverlap = item.left < other.right && item.right > other.left;
           if (!horizontalOverlap) continue;
 
-          const currentTop = item.top + shiftDown;
-          const currentBottom = item.bottom + shiftDown;
+          const currentTop = item.top - lift;
+          const currentBottom = item.bottom - lift;
           const verticalOverlap = currentTop < other.bottom + GAP && currentBottom > other.top - GAP;
 
           if (verticalOverlap) {
-            shiftDown += (other.bottom + GAP) - currentTop;
+            lift += currentBottom - (other.top - GAP);
           }
         }
 
-        if (shiftDown > 0) {
-          const newTransform = `translate(-50%, calc(-100% + ${shiftDown}px))`;
+        if (lift > 0) {
+          const newTransform = `translate(-50%, calc(-100% - ${lift}px))`;
           item.el.style.transform = newTransform;
           const label = item.el.querySelector('strong')?.textContent;
-          console.debug(`[collision] pushed ${label} down ${Math.round(shiftDown)}px, connected=${item.el.isConnected}`);
-
-          // Sanity check: does something else overwrite this transform
-          // before the next paint?
-          requestAnimationFrame(() => {
-            if (item.el.style.transform !== newTransform) {
-              console.warn(`[collision] ${label} transform was overwritten next frame! set "${newTransform}" but now "${item.el.style.transform}"`);
-            }
-          });
+          console.debug(`[collision] lifted ${label} up ${Math.round(lift)}px`);
         }
 
         placed.push({
-          top: item.top + shiftDown,
-          bottom: item.bottom + shiftDown,
+          top: item.top - lift,
+          bottom: item.bottom - lift,
           left: item.left,
           right: item.right
         });
