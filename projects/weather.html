@@ -126,8 +126,8 @@
         lookAt: { lat: -21.1, lng: -170.9, altitude: 1.2 },
         cities: [
           { name: "Auckland", lat: -36.84, lng: 174.76 },
-          { name: "Wellington", lat: -41.28, lng: 174.77 },
-          { name: "Christchurch", lat: -43.53, lng: 172.63 },
+          { name: "Wellington", lat: -41.28, lng: 174.77, offsetY: 9 },
+          { name: "Christchurch", lat: -43.53, lng: 172.63, offsetY: -18 },
           { name: "Suva", lat: -18.14, lng: 178.44 },
           { name: "Nouméa", lat: -22.27, lng: 166.45 },
           { name: "Papeete", lat: -17.53, lng: -149.56 },
@@ -195,8 +195,8 @@
         lookAt: { lat: 24.0, lng: 52.0, altitude: 0.95 },
         cities: [
           { name: "Kathmandu", lat: 27.71, lng: 85.32 },
-          { name: "Tel Aviv", lat: 32.08, lng: 34.78 },
-          { name: "Beirut", lat: 33.89, lng: 35.51 },
+          { name: "Tel Aviv", lat: 32.08, lng: 34.78, offsetY: -18 },
+          { name: "Beirut", lat: 33.89, lng: 35.51, offsetY: 18 },
           { name: "Ankara", lat: 39.93, lng: 32.85 },
           { name: "Kolkata", lat: 22.57, lng: 88.36 },
           { name: "Lahore", lat: 31.526, lng: 74.35 },
@@ -276,7 +276,7 @@
         cities: [
           { name: "Vancouver", lat: 49.28, lng: -123.12 },
           { name: "Toronto", lat: 43.65, lng: -79.38 },
-          { name: "Los Angeles", lat: 34.05, lng: -118.24 },
+          { name: "Los Angeles", lat: 34.05, lng: -118.24, offsetY: 18 },
           { name: "New York", lat: 40.71, lng: -74.00 },
           { name: "Chicago", lat: 41.87, lng: -87.62 },
           { name: "Washington D.C.", lat: 38.90, lng: -77.03 },
@@ -287,7 +287,7 @@
           { name: "Kansas City", lat: 39.09, lng: -94.57 },
           { name: "Montreal", lat: 45.51, lng: -73.55 },
           { name: "Atlanta", lat: 33.76, lng: -84.42 },
-          { name: "Phoenix", lat: 33.57, lng: -112.09 },
+          { name: "Phoenix", lat: 33.57, lng: -112.09, offsetY: -18 },
           { name: "Calgary", lat: 51.04, lng: -114.07 },
           { name: "Miami", lat: 25.76, lng: -80.19 },
           { name: "Anchorage", lat: 61.21, lng: -149.90 },
@@ -300,9 +300,9 @@
         cities: [
           { name: "Havana", lat: 23.11, lng: -82.36 },
           { name: "Cancún", lat: 21.16, lng: -86.85 },
-          { name: "Santo Domingo", lat: 18.48, lng: -69.93 },
-          { name: "San Juan", lat: 18.46, lng: -66.10 },
-          { name: "Panama City", lat: 8.98, lng: -79.51 },
+          { name: "Santo Domingo", lat: 18.48, lng: -69.93, offsetY: -18 },
+          { name: "San Juan", lat: 18.46, lng: -66.10, offsetY: 18 },
+          { name: "Panama City", lat: 8.98, lng: -79.51, offsetY: -18 },
           { name: "Bridgetown", lat: 13.10, lng: -59.61 },
           { name: "Nassau", lat: 24.08, lng: -77.34 },
           { name: "Puebla", lat: 19.05, lng: -98.2 },
@@ -311,7 +311,7 @@
           { name: "Ciudad Juárez", lat: 31.75, lng: -106.49 },
           { name: "Tijuana", lat: 32.53, lng: -117.03 },
           { name: "Kingston", lat: 17.97, lng: -76.79 },
-          { name: "San José", lat: 9.93, lng: -84.08 },
+          { name: "San José", lat: 9.93, lng: -84.08, offsetY: 18 },
           { name: "Guatemala City", lat: 14.63, lng: -90.50 },
           { name: "Port of Spain", lat: 10.67, lng: -61.52 }
         ]
@@ -322,17 +322,17 @@
         cities: [
           { name: "Bogotá", lat: 4.71, lng: -74.07 },
           { name: "Buenos Aires", lat: -34.60, lng: -58.38 },
-          { name: "Rio de Janeiro", lat: -22.90, lng: -43.17 },
-          { name: "São Paulo", lat: -23.53, lng: -46.63 },
+          { name: "Rio de Janeiro", lat: -22.90, lng: -43.17, offsetY: 18 },
+          { name: "São Paulo", lat: -23.53, lng: -46.63, offsetY: 18 },
           { name: "Caracas", lat: 10.51, lng: -66.91 },
-          { name: "Manaus", lat: 3.11, lng: -60.02 },
+          { name: "Manaus", lat: 3.11, lng: -60.02, offsetY: -18 },
           { name: "Lima", lat: -12.04, lng: -77.04 },
           { name: "Santiago", lat: -33.44, lng: -70.66 },
           { name: "Brasília", lat: -15.80, lng: -47.88 },
           { name: "Guayaquil", lat: -2.19, lng: -79.89 },
           { name: "Belém", lat: -1.45, lng: -48.50 },
           { name: "Santa Cruz", lat: -17.8, lng: -63.18 },
-          { name: "Paramaribo", lat: 5.85, lng: -55.2 }
+          { name: "Paramaribo", lat: 5.85, lng: -55.2, offsetY: 18 }
         ]
       }
     ];
@@ -341,132 +341,21 @@
     const world = Globe()(document.getElementById('globe-container')) 
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-day.jpg') 
       .htmlElementsData([]) 
-      .htmlElement(d => {
-        // globe.gl's CSS2DRenderer overwrites style.transform on whatever
-        // element we return here, every single frame, with its own
-        // translate(-50%,-50%) translate(x,y) positioning. This wrapper
-        // stays zero-size so that centering is a no-op (-50% of 0 is 0) —
-        // its corner then sits exactly on the projected screen point.
-        const wrapper = document.createElement('div');
-        wrapper.style.position = 'relative';
-        wrapper.style.width = '0px';
-        wrapper.style.height = '0px';
-
-        // The actual visible badge is absolutely positioned from that
-        // corner. This element is never touched by the renderer, so
-        // collision detection is free to mutate its transform.
-        const el = document.createElement('div');
-        el.className = 'weather-badge';
-        const bgColor = getTemperatureColor(d.temp);
+      .htmlElement(d => { 
+        const el = document.createElement('div'); 
+        el.className = 'weather-badge'; 
+        const bgColor = getTemperatureColor(d.temp); 
         const displayTemp = typeof d.temp === 'number' ? `${d.temp}°` : '--';
 
-        el.style.position = 'absolute';
-        el.style.left = '0';
-        el.style.top = '0';
-        el.style.transform = 'translate(-50%, -100%)';
-
+        const offsetY = d.offsetY || 0;
+        el.style.transform = `translate(-50%, calc(-100% + ${offsetY}px))`;
+      
         el.innerHTML = ` 
           <strong>${d.name}</strong> 
           <span class="temp-box" style="background-color: ${bgColor}">${displayTemp}</span> 
         `; 
-
-        wrapper.appendChild(el);
-        return wrapper;
+        return el;
       }); 
-
-    // --- COLLISION DETECTION ---
-    // Runs once per stop, after badges have settled at their projected
-    // screen positions. Camera is stationary during the pause, so a single
-    // measure-and-resolve pass is enough — no need to re-run per frame.
-    function resolveBadgeCollisions(attempt = 0) {
-      const badges = Array.from(document.querySelectorAll('.weather-badge'));
-      if (badges.length < 2) return;
-
-      const GAP = 10; // breathing room between stacked badges, in px
-
-      const items = badges.map(el => {
-        const rect = el.getBoundingClientRect();
-        return {
-          el,
-          top: rect.top,
-          bottom: rect.bottom,
-          left: rect.left,
-          right: rect.right,
-          width: rect.width,
-          height: rect.height
-        };
-      });
-
-      // If globe.gl hasn't finished placing the badges yet, rects come
-      // back as zero-size at the origin. Retry a few times on later
-      // frames instead of silently doing nothing.
-      const notLaidOutYet = items.some(i => i.width === 0 && i.height === 0);
-      if (notLaidOutYet && attempt < 10) {
-        requestAnimationFrame(() => resolveBadgeCollisions(attempt + 1));
-        return;
-      }
-
-      console.debug(`[collision] resolving ${items.length} badges on attempt ${attempt}`);
-
-      // Iterative relaxation: repeatedly scan every pair, and when two
-      // badges overlap, lift only the one sitting higher on screen just
-      // enough to clear the one below it. Badges that were never in
-      // conflict are never touched, so resolving one pair doesn't drag
-      // an unrelated neighbour along with it. Runs to convergence rather
-      // than a single fixed-order sweep, which was summing clearance
-      // requirements from multiple neighbours instead of taking the
-      // largest one needed — that over-lifted badges far past where
-      // they needed to be.
-      const MAX_ITERATIONS = 40;
-      items.forEach(item => { item.lift = 0; });
-
-      for (let iter = 0; iter < MAX_ITERATIONS; iter++) {
-        let movedAny = false;
-
-        for (let i = 0; i < items.length; i++) {
-          for (let j = i + 1; j < items.length; j++) {
-            const a = items[i];
-            const b = items[j];
-
-            const horizontalOverlap = a.left < b.right && a.right > b.left;
-            if (!horizontalOverlap) continue;
-
-            const aTop = a.top - a.lift;
-            const aBottom = a.bottom - a.lift;
-            const bTop = b.top - b.lift;
-            const bBottom = b.bottom - b.lift;
-
-            const verticalOverlap = aTop < bBottom + GAP && aBottom > bTop - GAP;
-            if (!verticalOverlap) continue;
-
-            // Whichever badge is currently higher on screen gets lifted
-            // further away; the one closer to the ground holds position.
-            const upper = aTop <= bTop ? a : b;
-            const lower = upper === a ? b : a;
-
-            const upperBottom = upper.bottom - upper.lift;
-            const lowerTop = lower.top - lower.lift;
-            const needed = (upperBottom + GAP) - lowerTop;
-
-            if (needed > 0.5) {
-              upper.lift += needed;
-              movedAny = true;
-            }
-          }
-        }
-
-        if (!movedAny) break;
-      }
-
-      items.forEach(item => {
-        if (item.lift > 0.5) {
-          const rounded = Math.round(item.lift);
-          item.el.style.transform = `translate(-50%, calc(-100% - ${rounded}px))`;
-          const label = item.el.querySelector('strong')?.textContent;
-          console.debug(`[collision] lifted ${label} up ${rounded}px`);
-        }
-      });
-    }
 
     async function getWeatherForCities(cities) { 
       const CACHE_TTL = 60 * 60 * 1000; // 60 minutes
@@ -561,12 +450,6 @@
       // Render weather badges once arrived 
       setTimeout(() => { 
         world.htmlElementsData(weatherData); 
-
-        // Wait two frames so the browser has actually laid out the new
-        // badges before we measure them for collisions.
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => resolveBadgeCollisions());
-        });
       }, FLY_DURATION); 
 
       // Loop to next region 
