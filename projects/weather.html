@@ -341,19 +341,29 @@
     const world = Globe()(document.getElementById('globe-container')) 
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-day.jpg') 
       .htmlElementsData([]) 
-      .htmlElement(d => { 
-        const el = document.createElement('div'); 
-        el.className = 'weather-badge'; 
-        const bgColor = getTemperatureColor(d.temp); 
+      .htmlElement(d => {
+        // globe.gl's CSS2DRenderer overwrites style.transform on whatever
+        // element we return here, every single frame, with its own
+        // translate(-50%,-50%) translate(x,y) positioning. So this outer
+        // wrapper must be left alone — we never touch its transform.
+        const wrapper = document.createElement('div');
+
+        // The actual visible badge lives inside, untouched by the renderer.
+        // This is the element collision detection is allowed to mutate.
+        const el = document.createElement('div');
+        el.className = 'weather-badge';
+        const bgColor = getTemperatureColor(d.temp);
         const displayTemp = typeof d.temp === 'number' ? `${d.temp}°` : '--';
 
         el.style.transform = 'translate(-50%, -100%)';
-      
+
         el.innerHTML = ` 
           <strong>${d.name}</strong> 
           <span class="temp-box" style="background-color: ${bgColor}">${displayTemp}</span> 
         `; 
-        return el;
+
+        wrapper.appendChild(el);
+        return wrapper;
       }); 
 
     // --- COLLISION DETECTION ---
