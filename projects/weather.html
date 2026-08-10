@@ -408,45 +408,63 @@
 
       console.debug(`[collision] resolving ${items.length} badges on attempt ${attempt}`);
 
-      // Process the badges closest to their own anchor points first
-      // (largest screen-bottom = lowest on screen = least disturbed),
-      // and push anything colliding with them further UP and away from
-      // the globe. Never push down — that drags a badge toward, and in
-      // dense cascades straight through, its own anchor point, landing
-      // it somewhere unrelated below the city it's meant to label.
-      items.sort((a, b) => b.bottom - a.bottom);
+      // Iterative relaxation: repeatedly scan every pair, and when two
+      // badges overlap, lift only the one sitting higher on screen just
+      // enough to clear the one below it. Badges that were never in
+      // conflict are never touched, so resolving one pair doesn't drag
+      // an unrelated neighbour along with it. Runs to convergence rather
+      // than a single fixed-order sweep, which was summing clearance
+      // requirements from multiple neighbours instead of taking the
+      // largest one needed — that over-lifted badges far past where
+      // they needed to be.
+      const MAX_ITERATIONS = 40;
+      items.forEach(item => { item.lift = 0; });
 
-      const placed = [];
+      for (let iter = 0; iter < MAX_ITERATIONS; iter++) {
+        let movedAny = false;
 
-      items.forEach(item => {
-        let lift = 0;
+        for (let i = 0; i < items.length; i++) {
+          for (let j = i + 1; j < items.length; j++) {
+            const a = items[i];
+            const b = items[j];
 
-        for (const other of placed) {
-          const horizontalOverlap = item.left < other.right && item.right > other.left;
-          if (!horizontalOverlap) continue;
+            const horizontalOverlap = a.left < b.right && a.right > b.left;
+            if (!horizontalOverlap) continue;
 
-          const currentTop = item.top - lift;
-          const currentBottom = item.bottom - lift;
-          const verticalOverlap = currentTop < other.bottom + GAP && currentBottom > other.top - GAP;
+            const aTop = a.top - a.lift;
+            const aBottom = a.bottom - a.lift;
+            const bTop = b.top - b.lift;
+            const bBottom = b.bottom - b.lift;
 
-          if (verticalOverlap) {
-            lift += currentBottom - (other.top - GAP);
+            const verticalOverlap = aTop < bBottom + GAP && aBottom > bTop - GAP;
+            if (!verticalOverlap) continue;
+
+            // Whichever badge is currently higher on screen gets lifted
+            // further away; the one closer to the ground holds position.
+            const upper = aTop <= bTop ? a : b;
+            const lower = upper === a ? b : a;
+
+            const upperBottom = upper.bottom - upper.lift;
+            const lowerTop = lower.top - lower.lift;
+            const needed = (upperBottom + GAP) - lowerTop;
+
+            if (needed > 0.5) {
+              upper.lift += needed;
+              movedAny = true;
+            }
           }
         }
 
-        if (lift > 0) {
-          const newTransform = `translate(-50%, calc(-100% - ${lift}px))`;
-          item.el.style.transform = newTransform;
-          const label = item.el.querySelector('strong')?.textContent;
-          console.debug(`[collision] lifted ${label} up ${Math.round(lift)}px`);
-        }
+        if (!movedAny) break;
+      }
 
-        placed.push({
-          top: item.top - lift,
-          bottom: item.bottom - lift,
-          left: item.left,
-          right: item.right
-        });
+      items.forEach(item => {
+        if (item.lift > 0.5) {
+          const rounded = Math.round(item.lift);
+          item.el.style.transform = `translate(-50%, calc(-100% - ${rounded}px))`;
+          const label = item.el.querySelector('strong')?.textContent;
+          console.debug(`[collision] lifted ${label} up ${rounded}px`);
+        }
       });
     }
 
