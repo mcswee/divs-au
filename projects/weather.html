@@ -344,17 +344,25 @@
       .htmlElement(d => {
         // globe.gl's CSS2DRenderer overwrites style.transform on whatever
         // element we return here, every single frame, with its own
-        // translate(-50%,-50%) translate(x,y) positioning. So this outer
-        // wrapper must be left alone — we never touch its transform.
+        // translate(-50%,-50%) translate(x,y) positioning. This wrapper
+        // stays zero-size so that centering is a no-op (-50% of 0 is 0) —
+        // its corner then sits exactly on the projected screen point.
         const wrapper = document.createElement('div');
+        wrapper.style.position = 'relative';
+        wrapper.style.width = '0px';
+        wrapper.style.height = '0px';
 
-        // The actual visible badge lives inside, untouched by the renderer.
-        // This is the element collision detection is allowed to mutate.
+        // The actual visible badge is absolutely positioned from that
+        // corner. This element is never touched by the renderer, so
+        // collision detection is free to mutate its transform.
         const el = document.createElement('div');
         el.className = 'weather-badge';
         const bgColor = getTemperatureColor(d.temp);
         const displayTemp = typeof d.temp === 'number' ? `${d.temp}°` : '--';
 
+        el.style.position = 'absolute';
+        el.style.left = '0';
+        el.style.top = '0';
         el.style.transform = 'translate(-50%, -100%)';
 
         el.innerHTML = ` 
