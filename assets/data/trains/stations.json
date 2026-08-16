@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-09T15:38:08.345184",
+  "generated": "2026-08-16T15:27:21.915601",
   "groups": {
     "frankston": "Frankston / Stony Point",
     "burnley": "Burnley",
@@ -767,6 +767,7 @@
         "clifton_hill",
         "frankston",
         "northern",
+        "showgrounds",
         "vline"
       ]
     },
@@ -1475,6 +1476,7 @@
       "groups": [
         "bayside",
         "northern",
+        "showgrounds",
         "vline"
       ]
     },
@@ -1795,6 +1797,13 @@
       ]
     },
     {
+      "id": "vic:rail:SGS",
+      "name": "Showgrounds",
+      "groups": [
+        "showgrounds"
+      ]
+    },
+    {
       "id": "vic:rail:SVE",
       "name": "Somerville",
       "groups": [
@@ -1840,6 +1849,7 @@
         "clifton_hill",
         "frankston",
         "northern",
+        "showgrounds",
         "vline"
       ]
     },
