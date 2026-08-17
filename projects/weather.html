@@ -175,14 +175,15 @@
         region: "SE Asia",
         lookAt: { lat: 6.48, lng: 114.13, altitude: 1.0 },
         cities: [
-          { name: "Singapore", lat: 1.35, lng: 103.81 , offsetY: 12 },
+          { name: "Singapore", lat: 1.35, lng: 103.81 , offsetY: 6 },
           { name: "Bangkok", lat: 13.75, lng: 100.50 },
           { name: "Jakarta", lat: -6.20, lng: 106.84 },
-          { name: "Kuala Lumpur", lat: 3.13, lng: 101.68, offsetY: 6 },
+          { name: "Kuala Lumpur", lat: 3.13, lng: 101.68, offsetY: -6 },
           { name: "Ho Chi Minh City", lat: 10.82, lng: 106.62 },
           { name: "Manila", lat: 14.59, lng: 120.98 },
           { name: "Bandar Seri Begawan", lat: 4.88, lng: 114.94 }, 
           { name: "Denpasar", lat: -8.65, lng: 115.21 },
+          { name: "Dhaka", lat: 23.81, lng: 90.41 },          
           { name: "Hanoi", lat: 21.02, lng: 105.83 },
           { name: "Dili", lat: -8.55, lng: 125.57 }
         ]
@@ -201,6 +202,7 @@
           { name: "Ulaanbaatar", lat: 47.92, lng: 106.92 },
           { name: "Seoul", lat: 37.56, lng: 126.97 },
           { name: "Xi'an", lat: 34.26, lng: 108.94 },
+          { name: "Kathmandu", lat: 27.71, lng: 85.32 },          
           { name: "Vladivostok", lat: 43.12, lng: 131.89 }
         ]
       },
@@ -210,36 +212,32 @@
         cities: [
           { name: "New Delhi", lat: 28.61, lng: 77.20 },
           { name: "Mumbai", lat: 19.07, lng: 72.87 },
-          { name: "Dhaka", lat: 23.81, lng: 90.41 },
           { name: "Tehran", lat: 35.68, lng: 51.38 },
           { name: "Karachi", lat: 24.86, lng: 67.00 },
           { name: "Kabul", lat: 34.526, lng: 69.18 },
           { name: "Colombo", lat: 6.92, lng: 79.86 },
-          { name: "Dubai", lat: 25.20, lng: 55.27 },
-          { name: "Baku", lat: 40.40, lng: 49.86 },
-          { name: "Riyadh", lat: 24.71, lng: 46.67 },
-          { name: "Almaty", lat: 43.23, lng: 76.88 },
-          { name: "Baghdad", lat: 33.31, lng: 44.36 },
-          { name: "Damascus", lat: 33.51, lng: 36.29 }
+          { name: "Kolkata", lat: 22.57, lng: 88.36 },
+          { name: "Lahore", lat: 31.526, lng: 74.35 },
+          { name: "Bengaluru", lat: 12.97, lng: 77.59 }
         ]
       },
       {
         region: "Middle East",
         lookAt: { lat: 24.0, lng: 52.0, altitude: 0.95 },
         cities: [
-          { name: "Kathmandu", lat: 27.71, lng: 85.32 },
-          { name: "Tel Aviv", lat: 32.08, lng: 34.78, offsetY: 12 },
+          { name: "Tel Aviv", lat: 32.08, lng: 34.78, offsetY: 6 },
           { name: "Beirut", lat: 33.89, lng: 35.51, offsetY: -6 },
           { name: "Ankara", lat: 39.93, lng: 32.85 },
-          { name: "Kolkata", lat: 22.57, lng: 88.36 },
-          { name: "Lahore", lat: 31.526, lng: 74.35 },
           { name: "Tashkent", lat: 41.29, lng: 69.24 },
           { name: "Jeddah", lat: 21.54, lng: 39.17 },
-          { name: "Muscat", lat: 23.59, lng: 58.41 },
           { name: "Ashgabad", lat: 37.95, lng: 58.38 },
           { name: "Astana", lat: 51.17, lng: 71.43 },
-          { name: "Bengaluru", lat: 12.97, lng: 77.59 },
-          { name: "Doha", lat: 25.28, lng: 51.53 },
+          { name: "Doha", lat: 25.28, lng: 51.53, offsetY: -6 },
+          { name: "Dubai", lat: 25.20, lng: 55.27, offsetY: 12 },
+          { name: "Baku", lat: 40.40, lng: 49.86 },
+          { name: "Riyadh", lat: 24.71, lng: 46.67, offsetY: 6 },
+          { name: "Almaty", lat: 43.23, lng: 76.88 },
+          { name: "Baghdad", lat: 33.31, lng: 44.36 },
           { name: "Kuwait City", lat: 29.38, lng: 47.97 }
         ]
       },
@@ -316,12 +314,11 @@
           { name: "Denver", lat: 39.73, lng: -104.99 },
           { name: "Houston", lat: 29.76, lng: -95.36 },
           { name: "Minneapolis", lat: 44.98, lng: -93.27 },
-         
           { name: "Kansas City", lat: 39.09, lng: -94.57 },
           { name: "Montreal", lat: 45.51, lng: -73.55 },
           { name: "Atlanta", lat: 33.76, lng: -84.42 },
-          { name: "Phoenix", lat: 33.57, lng: -112.09, offsetY: 12},
-          { name: "Calgary", lat: 51.04, lng: -114.07, offsetY: 12},
+          { name: "Phoenix", lat: 33.57, lng: -112.09, offsetY: 12 },
+          { name: "Calgary", lat: 51.04, lng: -114.07, offsetY: 12 },
           { name: "Miami", lat: 25.76, lng: -80.19 },
           { name: "Anchorage", lat: 61.21, lng: -149.90 },
           { name: "San Francisco", lat: 37.77, lng: -122.41 }
@@ -356,17 +353,17 @@
         cities: [
           { name: "Bogotá", lat: 4.71, lng: -74.07 },
           { name: "Buenos Aires", lat: -34.60, lng: -58.38 },
-          { name: "Rio de Janeiro", lat: -22.90, lng: -43.17, offsetY: -6 },
+          { name: "Rio de Janeiro", lat: -22.90, lng: -43.17, offsetY: -12 },
           { name: "São Paulo", lat: -23.53, lng: -46.63, offsetY: 12 },
           { name: "Caracas", lat: 10.51, lng: -66.91 },
-          { name: "Manaus", lat: 3.11, lng: -60.02, offsetY: 6 },
+          { name: "Manaus", lat: 3.11, lng: -60.02, offsetY: 12 },
           { name: "Lima", lat: -12.04, lng: -77.04 },
           { name: "Santiago", lat: -33.44, lng: -70.66 },
           { name: "Brasília", lat: -15.80, lng: -47.88 },
           { name: "Guayaquil", lat: -2.19, lng: -79.89 },
           { name: "Belém", lat: -1.45, lng: -48.50 },
           { name: "Santa Cruz", lat: -17.8, lng: -63.18 },
-          { name: "Paramaribo", lat: 5.85, lng: -55.2, offsetY: 18 }
+          { name: "Paramaribo", lat: 5.85, lng: -55.2, offsetY: -6 }
         ]
       }
     ];
