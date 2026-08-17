@@ -305,7 +305,7 @@
         region: "North America",
         lookAt: { lat: 42.33, lng: -93.96, altitude: 0.9 },
         cities: [
-          { name: "Vancouver", lat: 49.28, lng: -123.12 },
+          { name: "Vancouver", lat: 49.28, lng: -123.12, offsetY: 6 },
           { name: "Toronto", lat: 43.65, lng: -79.38 },
           { name: "Los Angeles", lat: 34.05, lng: -118.24 },
           { name: "New York", lat: 40.71, lng: -74.00 },
@@ -318,8 +318,10 @@
           { name: "Montreal", lat: 45.51, lng: -73.55 },
           { name: "Atlanta", lat: 33.76, lng: -84.42 },
           { name: "Phoenix", lat: 33.57, lng: -112.09, offsetY: 12 },
-          { name: "Calgary", lat: 51.04, lng: -114.07 },
+          { name: "Calgary", lat: 51.04, lng: -114.07, offsetY: -6 },
           { name: "Miami", lat: 25.76, lng: -80.19 },
+          { name: "St. John's", lat: 47.56, lng: -52.71 },
+          { name: "Ciudad Juárez", lat: 31.75, lng: -106.49 },        
           { name: "Anchorage", lat: 61.21, lng: -149.90 },
           { name: "San Francisco", lat: 37.77, lng: -122.41 }
         ]
@@ -328,21 +330,19 @@
         region: "Central America",
         lookAt: { lat: 18.0, lng: -80.0, altitude: 0.9 },
         cities: [
-          { name: "Havana", lat: 23.11, lng: -82.36 },
-          { name: "Cancún", lat: 21.16, lng: -86.85 },
-          { name: "Santo Domingo", lat: 18.48, lng: -69.93 },
-          { name: "San Juan", lat: 18.46, lng: -66.10 },
+          { name: "Havana", lat: 23.11, lng: -82.36, offsetY: 3 },
+          { name: "Cancún", lat: 21.16, lng: -86.85, offsetY: 6 },
+          { name: "Santo Domingo", lat: 18.48, lng: -69.93, offsetY: -12 },
+          { name: "San Juan", lat: 18.46, lng: -66.10, offsetY: 12},
           { name: "Panama City", lat: 8.98, lng: -79.51 },
           { name: "Bridgetown", lat: 13.10, lng: -59.61 },
-          { name: "Nassau", lat: 24.08, lng: -77.34 },
-          { name: "Puebla", lat: 19.05, lng: -98.2 },
+          { name: "Nassau", lat: 24.08, lng: -77.34, offsetY: -6 },
           { name: "Monterrey", lat: 25.68, lng: -100.31 },
           { name: "Guadalajara", lat: 20.67, lng: -103.39 },
-          { name: "Ciudad Juárez", lat: 31.75, lng: -106.49 },
           { name: "Tijuana", lat: 32.53, lng: -117.03 },
           { name: "Kingston", lat: 17.97, lng: -76.79 },
           { name: "Mexico City", lat: 19.43, lng: -99.13 },
-          { name: "San José", lat: 9.93, lng: -84.08 },
+          { name: "San José", lat: 9.93, lng: -84.08, offsetY: -12},
           { name: "Guatemala City", lat: 14.63, lng: -90.50 },
           { name: "Port of Spain", lat: 10.67, lng: -61.52 }
         ]
@@ -353,17 +353,17 @@
         cities: [
           { name: "Bogotá", lat: 4.71, lng: -74.07 },
           { name: "Buenos Aires", lat: -34.60, lng: -58.38 },
-          { name: "Rio de Janeiro", lat: -22.90, lng: -43.17, offsetY: -15 },
+          { name: "Rio de Janeiro", lat: -22.90, lng: -43.17, offsetY: -18 },
           { name: "São Paulo", lat: -23.53, lng: -46.63, offsetY: 18 },
           { name: "Caracas", lat: 10.51, lng: -66.91 },
-          { name: "Manaus", lat: 3.11, lng: -60.02, offsetY: 12 },
+          { name: "Manaus", lat: -3.11, lng: -60.02 },
           { name: "Lima", lat: -12.04, lng: -77.04 },
           { name: "Santiago", lat: -33.44, lng: -70.66 },
           { name: "Brasília", lat: -15.80, lng: -47.88 },
           { name: "Guayaquil", lat: -2.19, lng: -79.89 },
           { name: "Belém", lat: -1.45, lng: -48.50 },
           { name: "Santa Cruz", lat: -17.8, lng: -63.18 },
-          { name: "Paramaribo", lat: 5.85, lng: -55.2, offsetY: -6 }
+          { name: "Paramaribo", lat: 5.85, lng: -55.2 }
         ]
       }
     ];
