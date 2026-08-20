@@ -54,9 +54,8 @@
     /* Style for the floating city badges */
     .weather-badge {
       background: rgba(250, 250, 250, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.2);
       color: #fff;
-      border-radius: 6px;
+      border-radius: 4px;
       font-size: 13px;
       pointer-events: none;
       white-space: nowrap;
@@ -79,7 +78,7 @@
       padding: 6px 6px;
       font-weight: bold;
       color: #fff;
-      border-radius: 0 6px 6px 0;
+      border-radius: 0 4px 4px 0;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
     }
   </style>
@@ -246,7 +245,7 @@
         lookAt: { lat: 2.0, lng: 16.0, altitude: 1.2},
         cities: [
           { name: "Casablanca", lat: 33.57, lng: -7.58, offsetY: 6 },
-          { name: "Lagos", lat: 6.45, lng: 3.39 },
+          { name: "Lagos", lat: 6.45, lng: 3.39, offsetY: -12 },
           { name: "Johannesburg", lat: -26.20, lng: 28.04 },
           { name: "Cairo", lat: 30.04, lng: 31.23 },
           { name: "Cape Town", lat: -33.92, lng: 18.42 },
@@ -323,6 +322,7 @@
           { name: "Phoenix", lat: 33.57, lng: -112.09, offsetY: 12 },
           { name: "Edmonton", lat: 53.53, lng: -113.49 },
           { name: "Miami", lat: 25.76, lng: -80.19 },
+          { name: "Mexico City", lat: 19.43, lng: -99.13 },          
           { name: "Winnipeg", lat: 49.90, lng: -97.14 },
           { name: "St. John's", lat: 47.56, lng: -52.71 },        
           { name: "Anchorage", lat: 61.21, lng: -149.90 },
@@ -334,18 +334,18 @@
         region: "Central America",
         lookAt: { lat: 18.0, lng: -80.0, altitude: 0.9 },
         cities: [
-          { name: "Havana", lat: 23.11, lng: -82.36, offsetY: 3 },
-          { name: "Cancún", lat: 21.16, lng: -86.85, offsetY: 6 },
-          { name: "Santo Domingo", lat: 18.48, lng: -69.93, offsetY: -12 },
-          { name: "San Juan", lat: 18.46, lng: -66.10, offsetY: 12 },
+          { name: "Havana", lat: 23.11, lng: -82.36 },
+          { name: "Cancún", lat: 21.16, lng: -86.85 },
+          { name: "Santo Domingo", lat: 18.48, lng: -69.93, offsetY: 12 },
+          { name: "San Juan", lat: 18.46, lng: -66.10, offsetY: -18 },
           { name: "Panama City", lat: 8.98, lng: -79.51, offsetY: 12 },
           { name: "Bridgetown", lat: 13.10, lng: -59.61 },
-          { name: "Nassau", lat: 24.08, lng: -77.34, offsetY: -12 },
-          { name: "Guadalajara", lat: 20.67, lng: -103.39, offsetY: -6 },
+          { name: "Nassau", lat: 24.08, lng: -77.34, offsetY: -15 },
+          { name: "Guadalajara", lat: 20.67, lng: -103.39, offsetY: -12 },
           { name: "Tijuana", lat: 32.53, lng: -117.03 },
-          { name: "Kingston", lat: 17.97, lng: -76.79, offsetY: 6 },
-          { name: "Mexico City", lat: 19.43, lng: -99.13 },
-          { name: "San José", lat: 9.93, lng: -84.08, offsetY: 12},
+          { name: "Ciudad Juárez", lat: 31.75, -106.49, offsetY: 12 },
+          { name: "Kingston", lat: 17.97, lng: -76.79 },
+          { name: "San José", lat: 9.93, lng: -84.08, offsetY: -12},
           { name: "Guatemala City", lat: 14.63, lng: -90.50 },
           { name: "Port of Spain", lat: 10.67, lng: -61.52 }
         ]
