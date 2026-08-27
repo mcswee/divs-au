@@ -11,20 +11,32 @@
       --text: #e0e0e0;
       --accent: #3b82f6;
       --correct: #22c55e;
+      --almost: #eab308;
       --incorrect: #ef4444;
     }
+
+    * { box-sizing: border-box; }
 
     body {
       font-family: system-ui, -apple-system, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
       min-height: 100vh;
       margin: 0;
       padding: 20px;
     }
+
+    .home-link {
+      font-size: 0.85rem;
+      color: #777;
+      text-decoration: none;
+      margin-bottom: 14px;
+      align-self: center;
+    }
+    .home-link:hover { color: var(--accent); }
 
     .quiz-card {
       background: var(--card-bg);
@@ -34,6 +46,52 @@
       width: 100%;
       max-width: 450px;
       text-align: center;
+    }
+
+    h1 { font-size: 1.3rem; margin: 0 0 0.3rem; }
+    h2 { font-size: 1.1rem; margin: 0 0 0.3rem; }
+    .subtitle { color: #999; font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+    .option-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 0.5rem;
+    }
+
+    .opt-btn {
+      padding: 14px;
+      border: 2px solid #333;
+      border-radius: 8px;
+      background: #2a2a2a;
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      text-align: left;
+    }
+    .opt-btn .meta {
+      display: block;
+      color: #888;
+      font-weight: 400;
+      font-size: 0.8rem;
+      margin-top: 2px;
+    }
+    .opt-btn:hover { border-color: var(--accent); }
+    .opt-btn.easy { border-left: 4px solid var(--correct); }
+    .opt-btn.medium { border-left: 4px solid var(--almost); }
+    .opt-btn.hard { border-left: 4px solid var(--incorrect); }
+    .opt-btn.all { border-left: 4px solid var(--accent); }
+
+    .back-link {
+      margin-top: 1rem;
+      background: none;
+      border: none;
+      color: #777;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: underline;
     }
 
     .stats {
@@ -58,22 +116,15 @@
       background: #2a2a2a;
       color: #fff;
       font-size: 1rem;
-      box-sizing: border-box;
       outline: none;
       transition: border-color 0.2s;
     }
 
-    input[type="text"]:focus {
-      border-color: var(--accent);
-    }
+    input[type="text"]:focus { border-color: var(--accent); }
 
-    .button-group {
-      display: flex;
-      gap: 10px;
-      margin-top: 1rem;
-    }
+    .button-group { display: flex; gap: 10px; margin-top: 1rem; }
 
-    button {
+    button.action {
       flex: 1;
       padding: 12px;
       border: none;
@@ -88,251 +139,323 @@
     .btn-skip { background: #333; color: #aaa; }
     button:hover { opacity: 0.9; }
 
-    .feedback {
-      margin-top: 1.2rem;
-      font-weight: 600;
-      min-height: 1.5em;
-    }
+    .feedback { margin-top: 1.2rem; font-weight: 600; min-height: 1.5em; }
     .feedback.correct { color: var(--correct); }
+    .feedback.almost { color: var(--almost); }
     .feedback.incorrect { color: var(--incorrect); }
+
+    .change-diff {
+      margin-top: 1.2rem;
+      background: none;
+      border: none;
+      color: #777;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .result-score { font-size: 2.6rem; font-weight: 700; margin: 0.5rem 0; }
+    .result-sub { color: #999; font-size: 0.95rem; margin-bottom: 1.2rem; }
+    .best-badge {
+      display: inline-block;
+      background: rgba(34,197,94,0.15);
+      color: var(--correct);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .missed-list {
+      text-align: left;
+      background: #161616;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 1rem 0;
+      max-height: 180px;
+      overflow-y: auto;
+      font-size: 0.85rem;
+    }
+    .missed-list div { padding: 4px 0; border-bottom: 1px solid #2a2a2a; color: #ccc; }
+    .missed-list div:last-child { border-bottom: none; }
+    .missed-list .cap { color: #888; }
+
+    .hidden { display: none; }
   </style>
 </head>
 <body>
 
+<a class="home-link" href="/">&larr; divs.au</a>
+
 <div class="quiz-card">
-  <div class="stats">
-    <span>Score: <strong id="score">0</strong></span>
-    <span>Streak: <strong id="streak">0</strong></span>
+
+  <div id="start-screen">
+    <h1>World Capitals Quiz</h1>
+    <div class="subtitle">Pick a difficulty to begin</div>
+    <div class="option-list" id="diff-options"></div>
   </div>
 
-  <div class="country-display" id="country-name">Loading...</div>
+  <div id="mode-screen" class="hidden">
+    <h2 id="mode-heading">Choose a mode</h2>
+    <div class="subtitle">How do you want to play?</div>
+    <div class="option-list" id="mode-options"></div>
+    <button class="back-link" id="back-to-diff-btn">&larr; Change difficulty</button>
+  </div>
 
-  <form id="quiz-form" autocomplete="off">
-    <input type="text" id="user-input" placeholder="Type the capital..." autofocus>
-    <div class="button-group">
-      <button type="submit" class="btn-submit">Submit</button>
-      <button type="button" class="btn-skip" id="skip-btn">Skip</button>
+  <div id="quiz-screen" class="hidden">
+    <div class="stats">
+      <span id="stat-left">Score: <strong id="score">0</strong></span>
+      <span>Streak: <strong id="streak">0</strong></span>
     </div>
-  </form>
 
-  <div class="feedback" id="feedback"></div>
+    <div class="country-display" id="country-name">Loading...</div>
+
+    <form id="quiz-form" autocomplete="off">
+      <input type="text" id="user-input" placeholder="Type the capital..." autofocus>
+      <div class="button-group">
+        <button type="submit" class="action btn-submit">Submit</button>
+        <button type="button" class="action btn-skip" id="skip-btn">Skip</button>
+      </div>
+    </form>
+
+    <div class="feedback" id="feedback"></div>
+    <button class="change-diff" id="change-diff-btn">Change settings</button>
+  </div>
+
+  <div id="results-screen" class="hidden">
+    <h2>Session complete</h2>
+    <div id="best-badge-slot"></div>
+    <div class="result-score" id="result-score">0</div>
+    <div class="result-sub" id="result-sub"></div>
+    <div id="missed-wrap" class="hidden">
+      <div class="subtitle" style="margin-bottom:0.4rem;">Missed this round</div>
+      <div class="missed-list" id="missed-list"></div>
+    </div>
+    <div class="button-group">
+      <button class="action btn-submit" id="play-again-btn">Play again</button>
+      <button class="action btn-skip" id="change-settings-btn">Change settings</button>
+    </div>
+  </div>
+
 </div>
-<script>
-  // Dataset supporting multiple acceptable answer variants
-  const capitalsData = [
-    { country: "South Africa", capital: ["Pretoria", "Cape Town", "Bloemfontein"], emoji: "🇿🇦" },
-    { country: "Bolivia", capital: ["Sucre", "La Paz"], emoji: "🇧🇴" },
-    { country: "Netherlands", capital: ["Amsterdam", "The Hague", "Den Haag"], emoji: "🇳🇱" },
-    { country: "Ivory Coast", capital: ["Yamoussoukro", "Abidjan"], emoji: "🇨🇮" },
-    { country: "Sri Lanka", capital: ["Sri Jayawardenepura Kotte", "Kotte", "Colombo"], emoji: "🇱🇰" },
-    { country: "United States", capital: ["Washington, D.C.", "Washington DC", "Washington"], emoji: "🇺🇸" },
-    { country: "Eswatini", capital: ["Mbabane", "Lobamba"], emoji: "🇸🇿" },
-    { country: "Malaysia", capital: ["Kuala Lumpur", "Putrajaya"], emoji: "🇲🇾" },
-    { country: "Palestine", capital: ["Ramallah", "Jerusalem", "East Jerusalem"], emoji: "🇵🇸" },
-    { country: "Tanzania", capital: ["Dodoma", "Dar es Salaam"], emoji: "🇹🇿" },
-    { country: "Chile", capital: ["Santiago", "Valparaiso"], emoji: "🇨🇱" },
-    { country: "Benin", capital: ["Porto-Novo", "Cotonou"], emoji: "🇧🇯" },
-    { country: "Burundi", capital: ["Gitega", "Bujumbura"], emoji: "🇧🇮" },
-    
-    // Standard single-capital entries
-    { country: "Afghanistan", capital: ["Kabul"], emoji: "🇦🇫" },
-    { country: "Albania", capital: ["Tirana"], emoji: "🇦🇱" },
-    { country: "Algeria", capital: ["Algiers"], emoji: "🇩🇿" },
-    { country: "Andorra", capital: ["Andorra la Vella"], emoji: "🇦🇩" },
-    { country: "Angola", capital: ["Luanda"], emoji: "🇦🇴" },
-    { country: "Antigua and Barbuda", capital: ["Saint John's", "St John's"], emoji: "🇦🇬" },
-    { country: "Argentina", capital: ["Buenos Aires"], emoji: "🇦🇷" },
-    { country: "Armenia", capital: ["Yerevan"], emoji: "🇦🇲" },
-    { country: "Australia", capital: ["Canberra"], emoji: "🇦🇺" },
-    { country: "Austria", capital: ["Vienna"], emoji: "🇦🇹" },
-    { country: "Azerbaijan", capital: ["Baku"], emoji: "🇦🇿" },
-    { country: "Bahamas", capital: ["Nassau"], emoji: "🇧🇸" },
-    { country: "Bahrain", capital: ["Manama"], emoji: "🇧🇭" },
-    { country: "Bangladesh", capital: ["Dhaka"], emoji: "🇧🇩" },
-    { country: "Barbados", capital: ["Bridgetown"], emoji: "🇧🇧" },
-    { country: "Belarus", capital: ["Minsk"], emoji: "🇧🇾" },
-    { country: "Belgium", capital: ["Brussels"], emoji: "🇧🇪" },
-    { country: "Belize", capital: ["Belmopan"], emoji: "🇧🇿" },
-    { country: "Bhutan", capital: ["Thimphu"], emoji: "🇧🇹" },
-    { country: "Bosnia and Herzegovina", capital: ["Sarajevo"], emoji: "🇧🇦" },
-    { country: "Botswana", capital: ["Gaborone"], emoji: "🇧🇼" },
-    { country: "Brazil", capital: ["Brasilia"], emoji: "🇧🇷" },
-    { country: "Brunei", capital: ["Bandar Seri Begawan"], emoji: "🇧🇳" },
-    { country: "Bulgaria", capital: ["Sofia"], emoji: "🇧🇬" },
-    { country: "Burkina Faso", capital: ["Ouagadougou"], emoji: "🇧🇫" },
-    { country: "Cabo Verde", capital: ["Praia"], emoji: "🇨🇻" },
-    { country: "Cambodia", capital: ["Phnom Penh"], emoji: "🇰🇭" },
-    { country: "Cameroon", capital: ["Yaounde"], emoji: "🇨🇲" },
-    { country: "Canada", capital: ["Ottawa"], emoji: "🇨🇦" },
-    { country: "Central African Republic", capital: ["Bangui"], emoji: "🇨🇫" },
-    { country: "Chad", capital: ["N'Djamena", "NDjamena"], emoji: "🇹🇩" },
-    { country: "China", capital: ["Beijing"], emoji: "🇨🇳" },
-    { country: "Colombia", capital: ["Bogota"], emoji: "🇨🇴" },
-    { country: "Comoros", capital: ["Moroni"], emoji: "🇰🇲" },
-    { country: "Congo (Congo-Brazzaville)", capital: ["Brazzaville"], emoji: "🇨🇬" },
-    { country: "Costa Rica", capital: ["San Jose"], emoji: "🇨🇷" },
-    { country: "Croatia", capital: ["Zagreb"], emoji: "🇭🇷" },
-    { country: "Cuba", capital: ["Havana"], emoji: "🇨🇺" },
-    { country: "Cyprus", capital: ["Nicosia"], emoji: "🇨🇾" },
-    { country: "Czech Republic", capital: ["Prague"], emoji: "🇨🇿" },
-    { country: "Democratic Republic of the Congo", capital: ["Kinshasa"], emoji: "🇨🇩" },
-    { country: "Denmark", capital: ["Copenhagen"], emoji: "🇩🇰" },
-    { country: "Djibouti", capital: ["Djibouti"], emoji: "🇩🇯" },
-    { country: "Dominica", capital: ["Roseau"], emoji: "🇩🇲" },
-    { country: "Dominican Republic", capital: ["Santo Domingo"], emoji: "🇩🇴" },
-    { country: "East Timor (Timor-Leste)", capital: ["Dili"], emoji: "🇹🇱" },
-    { country: "Ecuador", capital: ["Quito"], emoji: "🇪🇨" },
-    { country: "Egypt", capital: ["Cairo"], emoji: "🇪🇬" },
-    { country: "El Salvador", capital: ["San Salvador"], emoji: "🇸🇻" },
-    { country: "Equatorial Guinea", capital: ["Malabo"], emoji: "🇬🇶" },
-    { country: "Eritrea", capital: ["Asmara"], emoji: "🇪🇷" },
-    { country: "Estonia", capital: ["Tallinn"], emoji: "🇪🇪" },
-    { country: "Ethiopia", capital: ["Addis Ababa"], emoji: "🇪🇹" },
-    { country: "Fiji", capital: ["Suva"], emoji: "🇫🇯" },
-    { country: "Finland", capital: ["Helsinki"], emoji: "🇫🇮" },
-    { country: "France", capital: ["Paris"], emoji: "🇫🇷" },
-    { country: "Gabon", capital: ["Libreville"], emoji: "🇬🇦" },
-    { country: "Gambia", capital: ["Banjul"], emoji: "🇬🇲" },
-    { country: "Georgia", capital: ["Tbilisi", "Kutaisi"], emoji: "🇬🇪" },
-    { country: "Germany", capital: ["Berlin"], emoji: "🇩🇪" },
-    { country: "Ghana", capital: ["Accra"], emoji: "🇬🇭" },
-    { country: "Greece", capital: ["Athens"], emoji: "🇬🇷" },
-    { country: "Grenada", capital: ["Saint George's", "St George's"], emoji: "🇬🇩" },
-    { country: "Guatemala", capital: ["Guatemala City"], emoji: "🇬🇹" },
-    { country: "Guinea", capital: ["Conakry"], emoji: "🇬🇳" },
-    { country: "Guinea-Bissau", capital: ["Bissau"], emoji: "🇬🇼" },
-    { country: "Guyana", capital: ["Georgetown"], emoji: "🇬🇾" },
-    { country: "Haiti", capital: ["Port-au-Prince", "Port au Prince"], emoji: "🇭🇹" },
-    { country: "Honduras", capital: ["Tegucigalpa"], emoji: "🇭🇳" },
-    { country: "Hungary", capital: ["Budapest"], emoji: "🇭🇺" },
-    { country: "Iceland", capital: ["Reykjavik"], emoji: "🇮🇸" },
-    { country: "India", capital: ["New Delhi", "Delhi"], emoji: "🇮🇳" },
-    { country: "Indonesia", capital: ["Nusantara", "Jakarta"], emoji: "🇮🇩" },
-    { country: "Iran", capital: ["Tehran"], emoji: "🇮🇷" },
-    { country: "Iraq", capital: ["Baghdad"], emoji: "🇮🇶" },
-    { country: "Ireland", capital: ["Dublin"], emoji: "🇮🇪" },
-    { country: "Israel", capital: ["Jerusalem", "Tel Aviv"], emoji: "🇮🇱" },
-    { country: "Italy", capital: ["Rome"], emoji: "🇮🇹" },
-    { country: "Jamaica", capital: ["Kingston"], emoji: "🇯🇲" },
-    { country: "Japan", capital: ["Tokyo"], emoji: "🇯🇵" },
-    { country: "Jordan", capital: ["Amman"], emoji: "🇯🇴" },
-    { country: "Kazakhstan", capital: ["Astana"], emoji: "🇰🇿" },
-    { country: "Kenya", capital: ["Nairobi"], emoji: "🇰🇪" },
-    { country: "Kiribati", capital: ["Tarawa", "South Tarawa"], emoji: "🇰🇮" },
-    { country: "Kosovo", capital: ["Pristina", "Prishtina"], emoji: "🇽🇰" },
-    { country: "Kuwait", capital: ["Kuwait City"], emoji: "🇰🇼" },
-    { country: "Kyrgyzstan", capital: ["Bishkek"], emoji: "🇰🇬" },
-    { country: "Laos", capital: ["Vientiane"], emoji: "🇱🇦" },
-    { country: "Latvia", capital: ["Riga"], emoji: "🇱🇻" },
-    { country: "Lebanon", capital: ["Beirut"], emoji: "🇱🇧" },
-    { country: "Lesotho", capital: ["Maseru"], emoji: "🇱🇸" },
-    { country: "Liberia", capital: ["Monrovia"], emoji: "🇱🇷" },
-    { country: "Libya", capital: ["Tripoli"], emoji: "🇱🇾" },
-    { country: "Liechtenstein", capital: ["Vaduz"], emoji: "🇱🇮" },
-    { country: "Lithuania", capital: ["Vilnius"], emoji: "🇱🇹" },
-    { country: "Luxembourg", capital: ["Luxembourg"], emoji: "🇱🇺" },
-    { country: "Madagascar", capital: ["Antananarivo"], emoji: "🇲🇬" },
-    { country: "Malawi", capital: ["Lilongwe"], emoji: "🇲🇼" },
-    { country: "Maldives", capital: ["Male"], emoji: "🇲🇻" },
-    { country: "Mali", capital: ["Bamako"], emoji: "🇲🇱" },
-    { country: "Malta", capital: ["Valletta"], emoji: "🇲🇹" },
-    { country: "Marshall Islands", capital: ["Majuro"], emoji: "🇲🇭" },
-    { country: "Mauritania", capital: ["Nouakchott"], emoji: "🇲🇷" },
-    { country: "Mauritius", capital: ["Port Louis"], emoji: "🇲🇺" },
-    { country: "Mexico", capital: ["Mexico City"], emoji: "🇲🇽" },
-    { country: "Micronesia", capital: ["Palikir"], emoji: "🇫🇲" },
-    { country: "Moldova", capital: ["Chisinau"], emoji: "🇲🇩" },
-    { country: "Monaco", capital: ["Monaco"], emoji: "🇲🇨" },
-    { country: "Mongolia", capital: ["Ulaanbaatar"], emoji: "🇲🇳" },
-    { country: "Montenegro", capital: ["Podgorica"], emoji: "🇲🇪" },
-    { country: "Morocco", capital: ["Rabat"], emoji: "🇲🇦" },
-    { country: "Mozambique", capital: ["Maputo"], emoji: "🇲🇿" },
-    { country: "Myanmar", capital: ["Naypyidaw"], emoji: "🇲🇲" },
-    { country: "Namibia", capital: ["Windhoek"], emoji: "🇳🇦" },
-    { country: "Nauru", capital: ["Yaren"], emoji: "🇳🇷" },
-    { country: "Nepal", capital: ["Kathmandu"], emoji: "🇳🇵" },
-    { country: "New Zealand", capital: ["Wellington"], emoji: "🇳🇿" },
-    { country: "Nicaragua", capital: ["Managua"], emoji: "🇳🇮" },
-    { country: "Niger", capital: ["Niamey"], emoji: "🇳🇪" },
-    { country: "Nigeria", capital: ["Abuja"], emoji: "🇳🇬" },
-    { country: "North Korea", capital: ["Pyongyang"], emoji: "🇰🇵" },
-    { country: "North Macedonia", capital: ["Skopje"], emoji: "🇲🇰" },
-    { country: "Norway", capital: ["Oslo"], emoji: "🇳🇴" },
-    { country: "Oman", capital: ["Muscat"], emoji: "🇴🇲" },
-    { country: "Pakistan", capital: ["Islamabad"], emoji: "🇵🇰" },
-    { country: "Palau", capital: ["Ngerulmud"], emoji: "🇵🇼" },
-    { country: "Panama", capital: ["Panama City"], emoji: "🇵🇦" },
-    { country: "Papua New Guinea", capital: ["Port Moresby"], emoji: "🇵🇬" },
-    { country: "Paraguay", capital: ["Asuncion"], emoji: "🇵🇾" },
-    { country: "Peru", capital: ["Lima"], emoji: "🇵🇪" },
-    { country: "Philippines", capital: ["Manila"], emoji: "🇵🇭" },
-    { country: "Poland", capital: ["Warsaw"], emoji: "🇵🇱" },
-    { country: "Portugal", capital: ["Lisbon"], emoji: "🇵🇹" },
-    { country: "Qatar", capital: ["Doha"], emoji: "🇶🇦" },
-    { country: "Romania", capital: ["Bucharest"], emoji: "🇷🇴" },
-    { country: "Russia", capital: ["Moscow"], emoji: "🇷🇺" },
-    { country: "Rwanda", capital: ["Kigali"], emoji: "🇷🇼" },
-    { country: "Saint Kitts and Nevis", capital: ["Basseterre"], emoji: "🇰🇳" },
-    { country: "Saint Lucia", capital: ["Castries"], emoji: "🇱🇨" },
-    { country: "Saint Vincent and the Grenadines", capital: ["Kingstown"], emoji: "🇻🇨" },
-    { country: "Samoa", capital: ["Apia"], emoji: "🇼🇸" },
-    { country: "San Marino", capital: ["San Marino"], emoji: "🇸🇲" },
-    { country: "Sao Tome and Principe", capital: ["Sao Tome"], emoji: "🇸🇹" },
-    { country: "Saudi Arabia", capital: ["Riyadh"], emoji: "🇸🇦" },
-    { country: "Senegal", capital: ["Dakar"], emoji: "🇸🇳" },
-    { country: "Serbia", capital: ["Belgrade"], emoji: "🇷🇸" },
-    { country: "Seychelles", capital: ["Victoria"], emoji: "🇸🇨" },
-    { country: "Sierra Leone", capital: ["Freetown"], emoji: "🇸🇱" },
-    { country: "Singapore", capital: ["Singapore"], emoji: "🇸🇬" },
-    { country: "Slovakia", capital: ["Bratislava"], emoji: "🇸🇰" },
-    { country: "Slovenia", capital: ["Ljubljana"], emoji: "🇸🇮" },
-    { country: "Solomon Islands", capital: ["Honiara"], emoji: "🇸🇧" },
-    { country: "Somalia", capital: ["Mogadishu"], emoji: "🇸🇴" },
-    { country: "South Korea", capital: ["Seoul"], emoji: "🇰🇷" },
-    { country: "South Sudan", capital: ["Juba"], emoji: "🇸🇸" },
-    { country: "Spain", capital: ["Madrid"], emoji: "🇪🇸" },
-    { country: "Sudan", capital: ["Khartoum"], emoji: "🇸🇩" },
-    { country: "Suriname", capital: ["Paramaribo"], emoji: "🇸🇷" },
-    { country: "Sweden", capital: ["Stockholm"], emoji: "🇸🇪" },
-    { country: "Switzerland", capital: ["Bern"], emoji: "🇨🇭" },
-    { country: "Syria", capital: ["Damascus"], emoji: "🇸🇾" },
-    { country: "Taiwan", capital: ["Taipei"], emoji: "🇹🇼" },
-    { country: "Tajikistan", capital: ["Dushanbe"], emoji: "🇹🇯" },
-    { country: "Thailand", capital: ["Bangkok"], emoji: "🇹🇭" },
-    { country: "Togo", capital: ["Lome"], emoji: "🇹🇬" },
-    { country: "Tonga", capital: ["Nuku'alofa", "Nukualofa"], emoji: "🇹🇴" },
-    { country: "Trinidad and Tobago", capital: ["Port of Spain"], emoji: "🇹🇹" },
-    { country: "Tunisia", capital: ["Tunis"], emoji: "🇹🇳" },
-    { country: "Turkey", capital: ["Ankara"], emoji: "🇹🇷" },
-    { country: "Turkmenistan", capital: ["Ashgabat"], emoji: "🇹🇲" },
-    { country: "Tuvalu", capital: ["Funafuti"], emoji: "🇹🇻" },
-    { country: "Uganda", capital: ["Kampala"], emoji: "🇺🇬" },
-    { country: "Ukraine", capital: ["Kyiv", "Kiev"], emoji: "🇺🇦" },
-    { country: "United Arab Emirates", capital: ["Abu Dhabi"], emoji: "🇦🇪" },
-    { country: "United Kingdom", capital: ["London"], emoji: "🇬🇧" },
-    { country: "Uruguay", capital: ["Montevideo"], emoji: "🇺🇾" },
-    { country: "Uzbekistan", capital: ["Tashkent"], emoji: "🇺🇿" },
-    { country: "Vanuatu", capital: ["Port Vila"], emoji: "🇻🇺" },
-    { country: "Vatican City", capital: ["Vatican City"], emoji: "🇻🇦" },
-    { country: "Venezuela", capital: ["Caracas"], emoji: "🇻🇪" },
-    { country: "Vietnam", capital: ["Hanoi"], emoji: "🇻🇳" },
-    { country: "Yemen", capital: ["Sanaa"], emoji: "🇾🇪" },
-    { country: "Zambia", capital: ["Lusaka"], emoji: "🇿🇲" },
-    { country: "Zimbabwe", capital: ["Harare"], emoji: "🇿🇼" }
-  ];
 
-  let currentPair = {};
+<script>
+  const STORAGE_MISS_KEY = "capitalsQuiz.missCounts";
+  const STORAGE_BEST_KEY = "capitalsQuiz.bestScores";
+  const TIMED_DURATION = 60;
+  const ROUND_LENGTH = 20;
+
+  let capitalsData = [];
+  let pool = [];
+  let currentPair = null;
+  let lastCountry = null;
+  let missCounts = {};
+  let bestScores = {};
+
+  let selectedDifficulty = null;
+  let selectedMode = null; // "timed" | "round" | "endless"
+
   let score = 0;
   let streak = 0;
+  let bestStreak = 0;
+  let totalAnswered = 0;
+  let missedThisSession = [];
   let isWaitingForNext = false;
+  let timerInterval = null;
+  let timeLeft = TIMED_DURATION;
+
+  const startScreen = document.getElementById("start-screen");
+  const modeScreen = document.getElementById("mode-screen");
+  const quizScreen = document.getElementById("quiz-screen");
+  const resultsScreen = document.getElementById("results-screen");
+
+  const diffOptionsEl = document.getElementById("diff-options");
+  const modeOptionsEl = document.getElementById("mode-options");
+  const modeHeading = document.getElementById("mode-heading");
+  const backToDiffBtn = document.getElementById("back-to-diff-btn");
 
   const countryEl = document.getElementById("country-name");
   const inputEl = document.getElementById("user-input");
   const feedbackEl = document.getElementById("feedback");
-  const scoreEl = document.getElementById("score");
   const streakEl = document.getElementById("streak");
+  const statLeftEl = document.getElementById("stat-left");
   const formEl = document.getElementById("quiz-form");
   const skipBtn = document.getElementById("skip-btn");
+  const changeDiffBtn = document.getElementById("change-diff-btn");
+
+  const resultScoreEl = document.getElementById("result-score");
+  const resultSubEl = document.getElementById("result-sub");
+  const bestBadgeSlot = document.getElementById("best-badge-slot");
+  const missedWrap = document.getElementById("missed-wrap");
+  const missedListEl = document.getElementById("missed-list");
+  const playAgainBtn = document.getElementById("play-again-btn");
+  const changeSettingsBtn = document.getElementById("change-settings-btn");
+
+  // ---------- Storage helpers ----------
+  // NOTE: miss counts and best scores are stored in the browser's localStorage
+  // only (nothing leaves the device). Worth reflecting in the site's privacy
+  // policy since it's a new category of stored data, even though it's local-only.
+  function loadStorage() {
+    try { missCounts = JSON.parse(localStorage.getItem(STORAGE_MISS_KEY)) || {}; }
+    catch (e) { missCounts = {}; }
+    try { bestScores = JSON.parse(localStorage.getItem(STORAGE_BEST_KEY)) || {}; }
+    catch (e) { bestScores = {}; }
+  }
+
+  function saveMissCounts() {
+    try { localStorage.setItem(STORAGE_MISS_KEY, JSON.stringify(missCounts)); }
+    catch (e) { /* storage unavailable, fail silently */ }
+  }
+
+  function saveBestScores() {
+    try { localStorage.setItem(STORAGE_BEST_KEY, JSON.stringify(bestScores)); }
+    catch (e) { /* storage unavailable, fail silently */ }
+  }
+
+  function bestKey() {
+    return `${selectedDifficulty}:${selectedMode}`;
+  }
+
+  // ---------- Data load ----------
+  fetch("/assets/data/capitals.json")
+    .then(res => res.json())
+    .then(data => {
+      capitalsData = data;
+      loadStorage();
+      buildDifficultyButtons();
+    })
+    .catch(err => {
+      startScreen.innerHTML = "<p>Couldn't load capitals data.</p>";
+      console.error(err);
+    });
+
+  function buildDifficultyButtons() {
+    const counts = { easy: 0, medium: 0, hard: 0 };
+    capitalsData.forEach(c => counts[c.difficulty]++);
+
+    const options = [
+      { key: "easy", label: "Easy", count: counts.easy },
+      { key: "medium", label: "Medium", count: counts.medium },
+      { key: "hard", label: "Hard", count: counts.hard },
+      { key: "all", label: "All", count: capitalsData.length }
+    ];
+
+    diffOptionsEl.innerHTML = "";
+    options.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.className = `opt-btn ${opt.key}`;
+      btn.innerHTML = `${opt.label}<span class="meta">${opt.count} countries</span>`;
+      btn.addEventListener("click", () => {
+        selectedDifficulty = opt.key;
+        showModeScreen();
+      });
+      diffOptionsEl.appendChild(btn);
+    });
+  }
+
+  function showModeScreen() {
+    startScreen.classList.add("hidden");
+    modeScreen.classList.remove("hidden");
+    modeHeading.textContent = `Mode (${capitalize(selectedDifficulty)})`;
+
+    const modes = [
+      { key: "round", label: `Round of ${ROUND_LENGTH}`, meta: "Fixed number of questions" },
+      { key: "timed", label: `Timed (${TIMED_DURATION}s)`, meta: "As many as you can in 60 seconds" },
+      { key: "endless", label: "Endless", meta: "No end, just practice" }
+    ];
+
+    modeOptionsEl.innerHTML = "";
+    modes.forEach(m => {
+      const btn = document.createElement("button");
+      btn.className = "opt-btn all";
+      const best = bestScores[`${selectedDifficulty}:${m.key}`];
+      const bestText = best !== undefined ? ` &middot; best ${best}` : "";
+      btn.innerHTML = `${m.label}<span class="meta">${m.meta}${bestText}</span>`;
+      btn.addEventListener("click", () => {
+        selectedMode = m.key;
+        startQuiz();
+      });
+      modeOptionsEl.appendChild(btn);
+    });
+  }
+
+  function capitalize(s) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  backToDiffBtn.addEventListener("click", () => {
+    modeScreen.classList.add("hidden");
+    startScreen.classList.remove("hidden");
+  });
+
+  // ---------- Quiz flow ----------
+  function startQuiz() {
+    pool = selectedDifficulty === "all"
+      ? capitalsData.slice()
+      : capitalsData.filter(c => c.difficulty === selectedDifficulty);
+
+    score = 0;
+    streak = 0;
+    bestStreak = 0;
+    totalAnswered = 0;
+    missedThisSession = [];
+    lastCountry = null;
+    timeLeft = TIMED_DURATION;
+
+    streakEl.textContent = streak;
+
+    modeScreen.classList.add("hidden");
+    resultsScreen.classList.add("hidden");
+    quizScreen.classList.remove("hidden");
+
+    if (selectedMode === "timed") {
+      statLeftEl.innerHTML = `Time: <strong id="score">${timeLeft}s</strong>`;
+      startTimer();
+    } else if (selectedMode === "round") {
+      statLeftEl.innerHTML = `Question: <strong id="score">1</strong>/${ROUND_LENGTH}`;
+    } else {
+      statLeftEl.innerHTML = `Score: <strong id="score">0</strong>`;
+    }
+
+    nextQuestion();
+  }
+
+  function startTimer() {
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      const scoreDisplay = document.getElementById("score");
+      if (scoreDisplay) scoreDisplay.textContent = `${Math.max(timeLeft, 0)}s`;
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        endSession();
+      }
+    }, 1000);
+  }
+
+  function updateStatDisplay() {
+    const scoreDisplay = document.getElementById("score");
+    if (!scoreDisplay) return;
+    if (selectedMode === "round") {
+      scoreDisplay.textContent = `${Math.min(totalAnswered + 1, ROUND_LENGTH)}`;
+    } else if (selectedMode === "endless") {
+      scoreDisplay.textContent = score;
+    }
+    // timed mode's number is driven by the interval, not here
+  }
+
+  // Weighted pick: countries missed more often (persisted across sessions)
+  // come up more frequently. Weight decays back down as you get them right.
+  function pickWeighted(choices) {
+    const weights = choices.map(c => 1 + (missCounts[c.country] || 0) * 2);
+    const total = weights.reduce((a, b) => a + b, 0);
+    let r = Math.random() * total;
+    for (let i = 0; i < choices.length; i++) {
+      r -= weights[i];
+      if (r <= 0) return choices[i];
+    }
+    return choices[choices.length - 1];
+  }
 
   function nextQuestion() {
     isWaitingForNext = false;
@@ -340,71 +463,196 @@
     inputEl.disabled = false;
     feedbackEl.textContent = "";
     feedbackEl.className = "feedback";
-    
-    const randomIndex = Math.floor(Math.random() * capitalsData.length);
-    currentPair = capitalsData[randomIndex];
-    
+
+    let choices = pool;
+    if (pool.length > 1 && lastCountry) {
+      choices = pool.filter(c => c.country !== lastCountry);
+    }
+    currentPair = pickWeighted(choices);
+    lastCountry = currentPair.country;
+
     countryEl.textContent = `${currentPair.emoji} ${currentPair.country}`;
+    updateStatDisplay();
     inputEl.focus();
   }
 
-  // Strips accents, spaces, and punctuation for flexible input matching
+  // ---------- Matching ----------
   function sanitize(str) {
     return str
       .trim()
       .toLowerCase()
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "") // Strips accents
-      .replace(/[^a-z0-9]/g, "");     // Strips spaces, hyphens, periods, commas, apostrophes
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]/g, "");
   }
 
-  formEl.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (isWaitingForNext) {
-      nextQuestion();
-      return;
+  function editDistance(a, b) {
+    const m = a.length, n = b.length;
+    if (m === 0) return n;
+    if (n === 0) return m;
+    const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+    for (let i = 0; i <= m; i++) dp[i][0] = i;
+    for (let j = 0; j <= n; j++) dp[0][j] = j;
+    for (let i = 1; i <= m; i++) {
+      for (let j = 1; j <= n; j++) {
+        if (a[i - 1] === b[j - 1]) {
+          dp[i][j] = dp[i - 1][j - 1];
+        } else {
+          dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+        }
+      }
     }
+    return dp[m][n];
+  }
 
-    const userGuess = sanitize(inputEl.value);
-    if (userGuess === "") return;
+  function toleranceFor(len) {
+    if (len <= 4) return 0;
+    if (len <= 7) return 1;
+    return 2;
+  }
 
-    // Checks if input matches ANY accepted capital variant
-    const isCorrect = currentPair.capital.some(
-      variant => sanitize(variant) === userGuess
-    );
+  function matchQuality(guess, variants) {
+    let bestDist = Infinity;
+    for (const variant of variants) {
+      const clean = sanitize(variant);
+      if (guess === clean) return "exact";
+      const dist = editDistance(guess, clean);
+      const tolerance = toleranceFor(clean.length);
+      if (dist <= tolerance && dist < bestDist) bestDist = dist;
+    }
+    return bestDist <= toleranceFor(10) ? "close" : null;
+  }
 
-    isWaitingForNext = true;
-    inputEl.disabled = true;
+  function recordMiss(country) {
+    missCounts[country] = (missCounts[country] || 0) + 1;
+    saveMissCounts();
+  }
 
-    if (isCorrect) {
+  function recordHit(country) {
+    if (missCounts[country]) {
+      missCounts[country] = Math.max(0, missCounts[country] - 1);
+      saveMissCounts();
+    }
+  }
+
+  function handleAnswer(result) {
+    totalAnswered++;
+    const country = currentPair.country;
+
+    if (result === "exact" || result === "close") {
       score++;
       streak++;
-      feedbackEl.textContent = "Correct!";
-      feedbackEl.classList.add("correct");
+      bestStreak = Math.max(bestStreak, streak);
+      recordHit(country);
+      if (result === "exact") {
+        feedbackEl.textContent = "Correct!";
+        feedbackEl.classList.add("correct");
+      } else {
+        feedbackEl.textContent = `Almost! (${currentPair.capital[0]})`;
+        feedbackEl.classList.add("almost");
+      }
     } else {
       streak = 0;
+      missedThisSession.push({ country, capital: currentPair.capital[0] });
+      recordMiss(country);
       feedbackEl.textContent = `Incorrect. Capital: ${currentPair.capital.join(" / ")}`;
       feedbackEl.classList.add("incorrect");
     }
 
-    scoreEl.textContent = score;
     streakEl.textContent = streak;
+    if (selectedMode === "endless") updateStatDisplay();
 
-    setTimeout(nextQuestion, 1600);
+    if (selectedMode === "round" && totalAnswered >= ROUND_LENGTH) {
+      setTimeout(endSession, 1400);
+      return;
+    }
+
+    isWaitingForNext = true;
+    setTimeout(nextQuestion, 1400);
+  }
+
+  formEl.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (isWaitingForNext) return;
+
+    const userGuess = sanitize(inputEl.value);
+    if (userGuess === "") return;
+
+    inputEl.disabled = true;
+    const result = matchQuality(userGuess, currentPair.capital);
+    handleAnswer(result);
   });
 
   skipBtn.addEventListener("click", () => {
     if (isWaitingForNext) return;
+    inputEl.disabled = true;
+    const country = currentPair.country;
     streak = 0;
-    streakEl.textContent = streak;
+    missedThisSession.push({ country, capital: currentPair.capital[0] });
+    recordMiss(country);
+    totalAnswered++;
     feedbackEl.textContent = `Skipped. Capital: ${currentPair.capital.join(" / ")}`;
     feedbackEl.classList.add("incorrect");
+    streakEl.textContent = streak;
+    if (selectedMode === "endless") updateStatDisplay();
+
+    if (selectedMode === "round" && totalAnswered >= ROUND_LENGTH) {
+      setTimeout(endSession, 1400);
+      return;
+    }
     isWaitingForNext = true;
-    inputEl.disabled = true;
-    setTimeout(nextQuestion, 1600);
+    setTimeout(nextQuestion, 1400);
   });
 
-  nextQuestion();
+  changeDiffBtn.addEventListener("click", () => {
+    clearInterval(timerInterval);
+    quizScreen.classList.add("hidden");
+    startScreen.classList.remove("hidden");
+  });
+
+  // ---------- Results ----------
+  function endSession() {
+    clearInterval(timerInterval);
+    quizScreen.classList.add("hidden");
+    resultsScreen.classList.remove("hidden");
+
+    resultScoreEl.textContent = score;
+    const accuracy = totalAnswered > 0 ? Math.round((score / totalAnswered) * 100) : 0;
+    resultSubEl.textContent = `${totalAnswered} answered · ${accuracy}% accuracy · best streak ${bestStreak}`;
+
+    const key = bestKey();
+    const prevBest = bestScores[key];
+    bestBadgeSlot.innerHTML = "";
+    if (prevBest === undefined || score > prevBest) {
+      bestScores[key] = score;
+      saveBestScores();
+      if (prevBest !== undefined) {
+        const badge = document.createElement("div");
+        badge.className = "best-badge";
+        badge.textContent = "New best!";
+        bestBadgeSlot.appendChild(badge);
+      }
+    }
+
+    if (missedThisSession.length > 0) {
+      missedWrap.classList.remove("hidden");
+      missedListEl.innerHTML = missedThisSession
+        .map(m => `<div>${m.country} <span class="cap">— ${m.capital}</span></div>`)
+        .join("");
+    } else {
+      missedWrap.classList.add("hidden");
+    }
+  }
+
+  playAgainBtn.addEventListener("click", () => {
+    resultsScreen.classList.add("hidden");
+    startQuiz();
+  });
+
+  changeSettingsBtn.addEventListener("click", () => {
+    resultsScreen.classList.add("hidden");
+    startScreen.classList.remove("hidden");
+  });
 </script>
 
 </body>

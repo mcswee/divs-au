@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-16T15:27:21.915601",
+  "generated": "2026-08-23T15:28:20.452741",
   "groups": {
     "frankston": "Frankston / Stony Point",
     "burnley": "Burnley",
@@ -2183,6 +2183,13 @@
       "name": "West Richmond",
       "groups": [
         "clifton_hill"
+      ]
+    },
+    {
+      "id": "vic:rail:WET",
+      "name": "West Tarneit",
+      "groups": [
+        "vline"
       ]
     },
     {
