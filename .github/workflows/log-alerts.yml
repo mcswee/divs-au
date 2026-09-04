@@ -1,0 +1,98 @@
+name: Log PTV Service Alerts
+
+on:
+  schedule:
+    # Every 30 minutes between 18:00–23:59 UTC and 00:00–14:00 UTC
+    # = roughly 5am–midnight Melbourne time across AEST/AEDT
+    - cron: '0,30 18-23 * * *'
+    - cron: '0,30 0-14 * * *'
+  workflow_dispatch:
+
+jobs:
+  log-alerts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch and log alerts
+        env:
+          WORKER_URL: https://melb-trains-rt.dj-mcsw-ee.workers.dev/
+        run: |
+          python - << 'EOF'
+          import json, urllib.request, os, sys
+          from datetime import datetime, timezone
+
+          LOG_PATH = "assets/data/trains/alert-log.json"
+          WORKER   = os.environ["WORKER_URL"]
+
+          # Fetch current alerts from Worker
+          try:
+              with urllib.request.urlopen(WORKER, timeout=15) as r:
+                  data = json.load(r)
+          except Exception as e:
+              print(f"Failed to fetch Worker: {e}")
+              sys.exit(0)  # Don't fail the workflow — just skip this run
+
+          alerts = data.get("alerts", [])
+          if not alerts:
+              print("No alerts in feed.")
+              sys.exit(0)
+
+          # Load existing log
+          if os.path.exists(LOG_PATH):
+              with open(LOG_PATH) as f:
+                  log = json.load(f)
+          else:
+              log = []
+
+          existing_ids = {entry["id"] for entry in log}
+          now = datetime.now(timezone.utc).isoformat()
+          added = 0
+
+          for alert in alerts:
+              if alert.get("id") in existing_ids:
+                  continue  # already logged
+              log.append({
+                  "id":          alert.get("id"),
+                  "first_seen":  now,
+                  "header":      alert.get("header",""),
+                  "description": alert.get("description",""),
+                  "effect":      alert.get("effect",""),
+                  "routes":      alert.get("routes", []),
+                  "source":      alert.get("source",""),
+              })
+              existing_ids.add(alert["id"])
+              added += 1
+
+          if added == 0:
+              print("No new alerts to log.")
+              sys.exit(0)
+
+          # Sort by first_seen descending (newest first)
+          log.sort(key=lambda x: x["first_seen"], reverse=True)
+
+          os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
+          with open(LOG_PATH, "w") as f:
+              json.dump(log, f, indent=2)
+
+          print(f"Added {added} new alert(s). Total in log: {len(log)}")
+          EOF
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ ! -f "assets/data/trains/alert-log.json" ]; then
+            echo "Log file not created — no alerts to commit"
+            exit 0
+          fi
+          git add assets/data/trains/alert-log.json
+          if git diff --staged --quiet; then
+            echo "No new alerts — nothing to commit"
+          else
+            git commit -m "Log PTV alerts [automated $(date -u '+%Y-%m-%dT%H:%M')]"
+            git push
+          fi
