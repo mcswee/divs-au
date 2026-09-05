@@ -164,7 +164,11 @@
           onSa1DoubleClick(code);
         });
         lyr.on("mouseover", function () { lyr.setStyle({ weight: 2 }); });
-        lyr.on("mouseout", function () { lyr.setStyle(styleForFeature(feature)); });
+        lyr.on("mouseout", function () { 
+          var division = assignment[code];
+          var colour = division ? (divisionColours[division] || "#999") : "#999";
+          lyr.setStyle({ color: "#ffffff", weight: 0.6, fillColor: colour, fillOpacity: 0.65 });
+        });
 
         var ref = sa1Reference[code];
         if (ref) {
