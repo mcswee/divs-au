@@ -53,8 +53,8 @@
   ];
 
   // ---- runtime state ----
-  var sa1Reference = {};      // sa1Code -> { sa2Code, sa2Name, actual, projected }
-  var assignment = {};        // sa1Code -> division name
+  var sa1Reference = {};      // sa1Code -> { sa2Code, sa2Name, actual, projected, originalDivision }
+  var assignment = {};        // sa1Code -> division name (current assignment, mutable)
   var divisionColours = {};   // division name -> hex
   var sa1Layers = {};         // sa1Code -> [leaflet layer, ...] (usually 1, occasionally split fragments)
   var activeDivision = null;
@@ -90,11 +90,11 @@
 
   function setupMap() {
     map = L.map("tool-map", { preferCanvas: true });
-     L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
-        attribution: 'Tiles &copy; <a href="https://www.esri.com">Esri</a>|Data <a href="/copyright/">ABS</a>',
-        maxZoom: 19,
-        maxNativeZoom: 16
-     }).addTo(map);
+    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+      attribution: 'Tiles &copy; <a href="https://www.esri.com">Esri</a>|Data <a href="/copyright/">ABS</a>',
+      maxZoom: 19,
+      maxNativeZoom: 16
+    }).addTo(map);
   }
 
   function loadState(stateKey) {
@@ -122,7 +122,8 @@
             sa2Code: row.SA2_CODE,
             sa2Name: row.SA2_NAME,
             actual: parseInt(row.ACTUAL, 10) || 0,
-            projected: parseInt(row.PROJECTED, 10) || 0
+            projected: parseInt(row.PROJECTED, 10) || 0,
+            originalDivision: row.DIVISION
           };
           assignment[row.SA1_CODE_DIV] = row.DIVISION;
         });
@@ -173,9 +174,15 @@
         var ref = sa1Reference[code];
         if (ref) {
           var displayCode = code.split("-")[0];
+          var currentDiv = assignment[code];
+          var divisionText = currentDiv;
+          if (currentDiv !== ref.originalDivision) {
+            divisionText = '<span style="opacity:0.5; font-style:italic;">' + escapeHtml(ref.originalDivision) + '</span> → ' + escapeHtml(currentDiv);
+          }
           lyr.bindTooltip(
             '<span class="sa1-sa2">' + escapeHtml(ref.sa2Name) + '</span>' +
             'SA1 ' + displayCode + '<br>' +
+            'Division: ' + divisionText + '<br>' +
             'Actual: ' + ref.actual.toLocaleString() + ' &middot; Projected: ' + ref.projected.toLocaleString(),
             { className: "sa1-tooltip", sticky: true }
           );
@@ -342,7 +349,37 @@
     document.addEventListener("click", closeHandler);
   }
 
-  // ---- quota + status calculations ----
+  function computeQuotaStatus() {
+    var q = computeQuota();
+    var totals = divisionTotals();
+    var actualStatus = "ok";  // default green
+    var projectedStatus = "ok";
+
+    if (q.divisor === 0) {
+      return { actualStatus: "empty", projectedStatus: "empty" };
+    }
+
+    Object.keys(totals).forEach(function (name) {
+      var t = totals[name];
+      if (t.count === 0) return;
+
+      // Check actual quota
+      var actualStat = statusFor(t.actual, q.actualQuota, 0.10);
+      if (actualStat === "under" || actualStatus === "under") actualStatus = "under";
+      if (actualStat === "over" || actualStatus === "over") actualStatus = "over";
+      if (actualStat === "under" && actualStatus === "over") actualStatus = "both";
+      if (actualStat === "over" && actualStatus === "under") actualStatus = "both";
+
+      // Check projected quota
+      var projStat = statusFor(t.projected, q.projectedQuota, 0.035);
+      if (projStat === "under" || projectedStatus === "under") projectedStatus = "under";
+      if (projStat === "over" || projectedStatus === "over") projectedStatus = "over";
+      if (projStat === "under" && projectedStatus === "over") projectedStatus = "both";
+      if (projStat === "over" && projectedStatus === "under") projectedStatus = "both";
+    });
+
+    return { actualStatus: actualStatus, projectedStatus: projectedStatus, quota: q };
+  }
 
   function divisionTotals() {
     var totals = {}; // name -> { count, actual, projected }
@@ -414,25 +451,52 @@
 
   function refreshQuotaPanel() {
     var q = computeQuota();
+    var status = computeQuotaStatus();
+
     if (q.divisor === 0) {
-      el.quotaActualValue.textContent = "\u2014";
-      el.quotaProjectedValue.textContent = "\u2014";
-      el.quotaActualBand.textContent = "\u00b110% threshold: \u2014";
-      el.quotaProjectedBand.textContent = "\u00b13.5% threshold: \u2014";
-      el.quotaDivisor.textContent = "Based on 0 divisions";
+      el.quotaDivisor.innerHTML = "Based on 0 divisions";
+      el.quotaActualValue.innerHTML = "—";
+      el.quotaActualBand.innerHTML = "—";
+      el.quotaProjectedValue.innerHTML = "—";
+      el.quotaProjectedBand.innerHTML = "—";
       return;
     }
-    el.quotaActualValue.textContent = Math.round(q.actualQuota).toLocaleString();
-    el.quotaProjectedValue.textContent = Math.round(q.projectedQuota).toLocaleString();
-    el.quotaActualBand.textContent =
-      "\u00b110% threshold: " + Math.round(q.actualQuota * 0.9).toLocaleString() +
-      " \u2013 " + Math.round(q.actualQuota * 1.1).toLocaleString();
-    el.quotaProjectedBand.textContent =
-      "\u00b13.5% threshold: " + Math.round(q.projectedQuota * 0.965).toLocaleString() +
-      " \u2013 " + Math.round(q.projectedQuota * 1.035).toLocaleString();
-    el.quotaDivisor.textContent =
-      "Based on " + q.divisor + " division" + (q.divisor === 1 ? "" : "s") +
-      " with at least one SA1 assigned";
+
+    var thresholdStyle = function (isLow, stat) {
+      var bgColor = "#f5f5f5";
+      var textColor = "#666";
+      if (isLow && stat === "under") {
+        bgColor = "#fff4d9";
+        textColor = "#8a6200";
+      } else if (isLow && stat === "ok") {
+        bgColor = "#e6f4ec";
+        textColor = "#0b6b3a";
+      } else if (!isLow && stat === "over") {
+        bgColor = "#fde8ea";
+        textColor = "#a3203b";
+      } else if (!isLow && stat === "ok") {
+        bgColor = "#e6f4ec";
+        textColor = "#0b6b3a";
+      }
+      return "background:" + bgColor + "; color:" + textColor + ";";
+    };
+
+    el.quotaDivisor.innerHTML = 
+      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; background:#f0f0f0; color:#666;">[ ' + q.divisor + ' divisions ]</span>';
+
+    el.quotaActualValue.innerHTML = 
+      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; background:#f0f0f0; color:#666;">' + Math.round(q.actualQuota).toLocaleString() + '</span>';
+
+    el.quotaActualBand.innerHTML = 
+      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(true, status.actualStatus) + '">[ ' + Math.round(q.actualQuota * 0.9).toLocaleString() + ' ]</span> ' +
+      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(false, status.actualStatus) + '">[ ' + Math.round(q.actualQuota * 1.1).toLocaleString() + ' ]</span>';
+
+    el.quotaProjectedValue.innerHTML = 
+      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; background:#f0f0f0; color:#666;">' + Math.round(q.projectedQuota).toLocaleString() + '</span>';
+
+    el.quotaProjectedBand.innerHTML = 
+      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(true, status.projectedStatus) + '">[ ' + Math.round(q.projectedQuota * 0.965).toLocaleString() + ' ]</span> ' +
+      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(false, status.projectedStatus) + '">[ ' + Math.round(q.projectedQuota * 1.035).toLocaleString() + ' ]</span>';
   }
 
   function refreshDivisionList() {
