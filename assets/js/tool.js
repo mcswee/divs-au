@@ -91,7 +91,7 @@
   function setupMap() {
     map = L.map("tool-map", { preferCanvas: true });
      L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
-        attribution: 'Tiles &copy; <a href="https://www.esri.com">Esri</a>|<a href="/copyright/">ABS & AEC</a>',
+        attribution: 'Tiles &copy; <a href="https://www.esri.com">Esri</a>|Data <a href="/copyright/">ABS</a>',
         maxZoom: 19,
         maxNativeZoom: 16
      }).addTo(map);
@@ -117,14 +117,14 @@
       skipEmptyLines: true,
       complete: function (results) {
         results.data.forEach(function (row) {
-          if (!row.SA1_CODE) return;
-          sa1Reference[row.SA1_CODE] = {
+          if (!row.SA1_CODE_DIV) return;
+          sa1Reference[row.SA1_CODE_DIV] = {
             sa2Code: row.SA2_CODE,
             sa2Name: row.SA2_NAME,
             actual: parseInt(row.ACTUAL, 10) || 0,
             projected: parseInt(row.PROJECTED, 10) || 0
           };
-          assignment[row.SA1_CODE] = row.DIVISION;
+          assignment[row.SA1_CODE_DIV] = row.DIVISION;
         });
 
         // seed colours for every division present in the data
@@ -154,7 +154,7 @@
     var layer = L.geoJSON(geo, {
       style: styleForFeature,
       onEachFeature: function (feature, lyr) {
-        var code = feature.properties.SA1_CODE21;
+        var code = feature.properties.SA1_CODE_DIV;
         if (!sa1Layers[code]) sa1Layers[code] = [];
         sa1Layers[code].push(lyr);
 
@@ -168,10 +168,11 @@
 
         var ref = sa1Reference[code];
         if (ref) {
+          var displayCode = code.split("-")[0];
           lyr.bindTooltip(
             '<span class="sa1-sa2">' + escapeHtml(ref.sa2Name) + '</span>' +
-            'SA1 ' + code + '<br>' +
-            'Actual: ' + ref.actual.toLocaleString() + ' &middot; Projected: ' + ref.projected.toLocaleString() ,
+            'SA1 ' + displayCode + '<br>' +
+            'Actual: ' + ref.actual.toLocaleString() + ' &middot; Projected: ' + ref.projected.toLocaleString(),
             { className: "sa1-tooltip", sticky: true }
           );
         }
@@ -497,19 +498,21 @@
 
   function onExport() {
     var rows = [];
-    rows.push(["SA1_CODE", "SA2_CODE", "SA2_NAME", "ACTUAL", "PROJECTED", "DIVISION"]);
+    rows.push(["SA1_CODE", "SA2_CODE", "SA2_NAME", "ACTUAL", "PROJECTED", "DIVISION", "SA1_CODE_DIV"]);
 
-    var sa1Codes = Object.keys(sa1Reference).sort();
-    sa1Codes.forEach(function (code) {
-      var ref = sa1Reference[code];
-      var div = assignment[code] || "";
+    var sa1CodeDivs = Object.keys(sa1Reference).sort();
+    sa1CodeDivs.forEach(function (codeDivComposite) {
+      var ref = sa1Reference[codeDivComposite];
+      var div = assignment[codeDivComposite] || "";
+      var displayCode = codeDivComposite.split("-")[0];
       rows.push([
-        code,
+        displayCode,
         ref.sa2Code,
         ref.sa2Name,
         ref.actual,
         ref.projected,
-        div
+        div,
+        codeDivComposite
       ]);
     });
 
