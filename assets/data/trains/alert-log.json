@@ -1,0 +1,245 @@
+[
+  {
+    "id": "e0001933-8c16-54a5-9b4e-cf509f36deb6",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Berwick Station car space closure",
+    "description": "7am Friday 4 September to 5pm Monday 7 September  Up to 10 spaces in the Berwick Station carpark are closed, due to maintenance works. For your safety, please observe any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "7526f535-30e3-5fda-8a54-152a146836de",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Cancellation",
+    "description": "The 8:42am Arden to Cranbourne service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-pay:"
+    ]
+  },
+  {
+    "id": "3bb1819b-48af-57b8-b06c-15fbae49257c",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Cancellation",
+    "description": "The 8:53am Anzac to Watergardens service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "6113d212-2e77-5b6b-9cc8-c2eacaf8cdbf",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Cancellation",
+    "description": "The 8:56am Anzac to Watergardens service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "3f959611-fd3a-5ab4-8708-e9b7604cf104",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Other Information",
+    "description": "The 9:05am Arden to East Pakenham service has been reinstated and will now run.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "2a8c6e94-7b2e-5388-9a78-0c23700c517b",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Cancellation",
+    "description": "The 9:08am Watergardens to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "c2dd828f-a0b8-5e8a-8987-6c6125886be8",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Cancellation",
+    "description": "The 9:11am Arden to East Pakenham service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "48628e4f-65e7-569d-b6a9-fec127acf015",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Cancellation",
+    "description": "The 9:32am Arden to Dandenong service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "0ba48aa8-547d-5e8f-8aad-45259f63a6da",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Buses replace trains between Footscray and Sunshine",
+    "description": "8pm to last service each night, Sunday 6 September to Wednesday 9 September",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "f31947c9-bd19-5ee1-ac34-a38f821b65fc",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Night works between Footscray and West Footscray",
+    "description": "9pm to 4am each night, Sunday 6 September to Thursday 10 September  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Sunbury Line. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "65770393-bb03-52f0-952c-8c61cf3b6532",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Night works between Richmond and Caulfield",
+    "description": "9pm to 4am each night, Sunday 6 September to Thursday 10 September  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Frankston Line. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "199eebeb-dc79-51ab-b52d-1f51a5406eed",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Williams Landing car space closures",
+    "description": "Thursday 5 February to early-September 2026 Approximately 12 car spaces will be temporarily closed in the Wallace Avenue commuter car park for project works to install a new lift and secure bike storage facilities. For your safety, please follow signage and instructions in place during this time. The timing of these works may change depending on weather or unavoidable circumstances. Find out more about the Williams Landing Station improvements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "442677c4-66fc-5514-a0a2-c6ea5c31d174",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Dandenong Station car space closures",
+    "description": "Friday 21 August to Tuesday 22 September  Up to 60 spaces in Hammond Road car park are closed due to project works. Alternative parking is available in the car park off Carroll Lane. For your safety, please follow signage in place during this time.  Monday 24 August to Tuesday 22 September  Up to 14 spaces in the Dandenong Station car park are closed due to project works. The gravel car park off station street is closed. Alternative parking is available in the Carroll Lane car park. For your safety, please follow signage in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-CBE-R:",
+      "aus:vic:vic-02-CBE:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "1a8e0925-f433-53ef-b2f7-087670babdc4",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Mordialloc Station opening",
+    "description": "First service Thursday 21 May From Thursday 21 May, your new station facilities include:  Lift and stair access to the new platforms, with entrances at each end of the station. A passenger waiting room, seating and toilets. A new ticketing office and myki machines. A section of car parking, including two accessible car spaces.  Finishing works will continue until late 2026.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "05eae436-acce-5b92-bd32-bb31881810b6",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Sunshine Station car space closure",
+    "description": "Monday 11 May to September 2026 To complete underground service relocation works as part of Melbourne Airport Rail Stage 1: West Footscray to Albion Rail Upgrade, 65 car spaces will be closed in the Sun Crescent car park from Monday 11 May to September 2026. Alternative parking is available near Tottenham Station, enter via Rupert Street. Accessible car spaces remain available.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "2b1874e2-e2b7-5046-beab-fb84f1ccce5b",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Epping Station car space closures",
+    "description": "Sunday 30 August to late September 2026 All car spaces in the Cooper Street commuter car park opposite Epping Station are temporarily closed for essential water supply improvement works by Yarra Valley Water. All other commuter and accessible parking remains open. Alternative parking is available at South Morang Station. For your safety, please follow signage and instructions in place during this time. The timing of these works may change due to weather or unavoidable circumstances.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
+    "id": "75b61990-4c45-5f57-8789-876f38879188",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Trains are back at Boronia Station",
+    "description": "First service Tuesday 4 August Trains are back at Boronia Station from Tuesday, 4 August Station entrance is via Erica Avenue. Passengers can access the platforms by using the lift or stairs. A new waiting room and myki facilities are also available at the station. Works will continue in the coming months. The Boronia Station upgrade will be complete in Spring 2026.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-BEG-R:"
+    ]
+  },
+  {
+    "id": "69ff16e1-9492-5ab2-bea5-8bff628b84c6",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Albion Station car park",
+    "description": "Monday 2 February to late 2026 A new Albion Station will be built as part of Stage 1 of Melbourne Airport Rail and the Sunshine Superhub project. In order to complete major underground service relocation works, Albion Station car park will be closed. Alternative parking will be available at Tottenham Station on Rupert Street. Albion Station, access to platforms and drop off and pick up zones remain open during this time. Accessible car spaces Eight accessible car spaces at Albion Station will remain open. Shared use path closure A section of the shared use path will be closed at the southern end of the car park. Pedestrian and cyclist detours will be in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "bc0059c3-ec55-59dc-8104-b6b300ce1ad8",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Glen Waverley Station car space closures",
+    "description": "Friday 29 May to late 2026 Up to 55 car spaces will be temporarily closed in the Coleman Parade commuter car park due to Suburban Rail Loop project works. Alternative parking is available in the new Myrtle Street car park. For your safety, please follow signage and instructions in place during this time. Find out more about the Suburban Rail Loop.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
+    "id": "ed65b5f6-7460-5fef-9af2-7aca8ffd9e1a",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Macleod Station car space closures",
+    "description": "Wednesday 10 June until early March 2027 Up to 80 car spaces in the station car park are intermittently closed, due to project works. Alternative on-street parking is available on Somers Avenue. For your safety, please follow signage in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "d6390eb9-f508-541f-bd20-45979474e36d",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Mernda Station car space closures",
+    "description": "6am Monday 7 September to June 2027 21 car spaces in the Schotters Road car park will temporarily close to allow for project works. Additional parking is available on Station Road. Accessible parking will not be impacted and remain available at Mernda Station.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
+    "id": "2061fe23-a74f-50f9-a3e2-aeede854081b",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Tottenham Station car park",
+    "description": "From Wednesday 1 July 2026 As part of Melbourne Airport Rail Stage 1, we\u2019re delivering six kilometres of major rail upgrades from West Footscray to Albion. In order to complete site investigation works, approximately 120 car spaces will be closed in the Tottenham Station temporary carpark. Alternative and accessible car spaces will remain open.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "10955b17-724e-5d66-b5f6-0c116e59f89a",
+    "first_seen": "2026-09-06T23:32:11.666459+00:00",
+    "header": "Planned work: Watsonia Station car park changes",
+    "description": "From April 2024 to 2028 The Watsonia Station car park has been closed since April 2024. From October 2025, there will be changes for pedestrians, cars, and buses accessing Watsonia Station as part of ongoing works for M80 Ring Road Completion.  new DDA-compliant paths and upgraded crossings to improve safety and accessibility for pedestrians. one-way entrance from Greensborough Highway northbound and a new signalised intersection for exiting vehicles. relocated bus stop and streamlined loop to support service reliability and reduce congestion.  These changes will be in place until a new Watsonia Station car park is built later in the project. We\u2019re planning our work in the station precinct to minimise disruptions.  no changes to the pedestrian overpass or station platform access. maintaining accessible parking and drop-off and pick-up areas near the station entrance. providing more than 500 parking spaces at the nearby Watsonia Station commuter car park.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE:"
+    ]
+  }
+]
