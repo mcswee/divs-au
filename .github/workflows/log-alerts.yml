@@ -2,8 +2,6 @@ name: Log PTV Service Alerts
 
 on:
   schedule:
-    # Every 30 minutes between 18:00–23:59 UTC and 00:00–14:00 UTC
-    # = roughly 5am–midnight Melbourne time across AEST/AEDT
     - cron: '0,30 18-23 * * *'
     - cron: '0,30 0-14 * * *'
   workflow_dispatch:
@@ -17,76 +15,163 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install requests
+        run: pip install requests --quiet
+
       - name: Fetch and log alerts
         env:
-          WORKER_URL: https://melb-trains-rt.dj-mcsw-ee.workers.dev/
+          PTV_API_KEY: ${{ secrets.PTV_API_KEY }}
         run: |
-          python - << 'EOF'
-          import json, urllib.request, os, sys
+          python3 - << 'PYEOF'
+          import json, os, sys
           from datetime import datetime, timezone
+          import requests
 
           LOG_PATH = "assets/data/trains/alert-log.json"
-          WORKER   = os.environ["WORKER_URL"]
+          API_URL  = "https://api.opendata.transport.vic.gov.au/opendata/public-transport/gtfs/realtime/v1/metro/service-alerts"
+          API_KEY  = os.environ.get("PTV_API_KEY", "")
 
-          # Fetch current alerts from Worker
-          try:
-              with urllib.request.urlopen(WORKER, timeout=15) as r:
-                  data = json.load(r)
-          except Exception as e:
-              print(f"Failed to fetch Worker: {e}")
-              sys.exit(0)  # Don't fail the workflow — just skip this run
-
-          alerts = data.get("alerts", [])
-          if not alerts:
-              print("No alerts in feed.")
+          if not API_KEY:
+              print("PTV_API_KEY secret not set")
               sys.exit(0)
 
-          # Load existing log
+          try:
+              resp = requests.get(API_URL, headers={"KeyID": API_KEY}, timeout=15)
+              resp.raise_for_status()
+              raw = resp.content
+          except Exception as e:
+              print(f"Failed to fetch PTV alerts: {e}")
+              sys.exit(0)
+
+          # Minimal protobuf decoder
+          class PbReader:
+              def __init__(self, data):
+                  self.data = data; self.pos = 0
+              def eof(self): return self.pos >= len(self.data)
+              def varint(self):
+                  r, s = 0, 0
+                  while True:
+                      b = self.data[self.pos]; self.pos += 1
+                      r |= (b & 0x7F) << s; s += 7
+                      if not (b & 0x80): return r
+              def tag(self): v = self.varint(); return v >> 3, v & 7
+              def sub(self):
+                  n = self.varint()
+                  r = PbReader(self.data[self.pos:self.pos+n]); self.pos += n; return r
+              def string(self):
+                  n = self.varint()
+                  s = self.data[self.pos:self.pos+n].decode("utf-8","replace"); self.pos += n; return s
+              def skip(self, wire):
+                  if   wire == 0: self.varint()
+                  elif wire == 1: self.pos += 8
+                  elif wire == 2: n = self.varint(); self.pos += n
+                  elif wire == 5: self.pos += 4
+
+          EFFECTS = {1:'NO_SERVICE',2:'REDUCED_SERVICE',3:'SIGNIFICANT_DELAYS',
+                     4:'DETOUR',5:'ADDITIONAL_SERVICE',6:'MODIFIED_SERVICE',
+                     7:'OTHER_EFFECT',8:'UNKNOWN_EFFECT',9:'STOP_MOVED'}
+
+          def translated(r):
+              text = ""
+              while not r.eof():
+                  f, w = r.tag()
+                  if f == 1 and w == 2:
+                      tr = r.sub(); t = lang = ""
+                      while not tr.eof():
+                          tf, tw = tr.tag()
+                          if   tf == 1 and tw == 2: t    = tr.string()
+                          elif tf == 2 and tw == 2: lang = tr.string()
+                          else: tr.skip(tw)
+                      if not text or lang == "en": text = t
+                  else: r.skip(w)
+              return text
+
+          def decode(raw_bytes):
+              alerts = []
+              feed = PbReader(raw_bytes)
+              now_sec = datetime.now(timezone.utc).timestamp()
+              while not feed.eof():
+                  f, w = feed.tag()
+                  if f == 2 and w == 2:
+                      entity = feed.sub()
+                      aid = hdr = desc = ""; effect = 0; routes = []; periods = []
+                      while not entity.eof():
+                          ef, ew = entity.tag()
+                          if ef == 1 and ew == 2: aid = entity.string()
+                          elif ef == 5 and ew == 2:
+                              alert = entity.sub()
+                              while not alert.eof():
+                                  af, aw = alert.tag()
+                                  if af == 1 and aw == 2:
+                                      tp = alert.sub(); s = e = 0
+                                      while not tp.eof():
+                                          tf, tw = tp.tag()
+                                          if   tf == 1 and tw == 0: s = tp.varint()
+                                          elif tf == 2 and tw == 0: e = tp.varint()
+                                          else: tp.skip(tw)
+                                      periods.append((s, e))
+                                  elif af == 5 and aw == 2:
+                                      ie = alert.sub(); rid = None
+                                      while not ie.eof():
+                                          ief, iew = ie.tag()
+                                          if ief == 2 and iew == 2: rid = ie.string()
+                                          elif ief == 4 and iew == 2:
+                                              td = ie.sub()
+                                              while not td.eof():
+                                                  tf, tw = td.tag()
+                                                  if tf == 5 and tw == 2 and not rid: rid = td.string()
+                                                  else: td.skip(tw)
+                                          else: ie.skip(iew)
+                                      if rid: routes.append(rid)
+                                  elif af == 7 and aw == 0: effect = alert.varint()
+                                  elif af == 10 and aw == 2: hdr  = translated(alert.sub())
+                                  elif af == 11 and aw == 2: desc = translated(alert.sub())
+                                  else: alert.skip(aw)
+                          else: entity.skip(ew)
+                      active = not periods or any(
+                          (not s or s <= now_sec) and (not e or e >= now_sec)
+                          for s, e in periods)
+                      if active and aid:
+                          alerts.append({"id":aid,"header":hdr,"description":desc,
+                                         "effect":EFFECTS.get(effect,"OTHER_EFFECT"),
+                                         "routes":list(set(routes))})
+                  else: feed.skip(w)
+              return alerts
+
+          alerts = decode(raw)
+          print(f"Fetched {len(alerts)} active alerts from PTV")
+
           if os.path.exists(LOG_PATH):
-              with open(LOG_PATH) as f:
-                  log = json.load(f)
+              with open(LOG_PATH) as f: log = json.load(f)
           else:
               log = []
 
-          existing_ids = {entry["id"] for entry in log}
+          existing = {e["id"] for e in log}
           now = datetime.now(timezone.utc).isoformat()
           added = 0
 
-          for alert in alerts:
-              if alert.get("id") in existing_ids:
-                  continue  # already logged
-              log.append({
-                  "id":          alert.get("id"),
-                  "first_seen":  now,
-                  "header":      alert.get("header",""),
-                  "description": alert.get("description",""),
-                  "effect":      alert.get("effect",""),
-                  "routes":      alert.get("routes", []),
-                  "source":      alert.get("source",""),
-              })
-              existing_ids.add(alert["id"])
-              added += 1
+          for a in alerts:
+              if a["id"] in existing: continue
+              log.append({"id":a["id"],"first_seen":now,"header":a["header"],
+                          "description":a["description"],"effect":a["effect"],
+                          "routes":a["routes"]})
+              existing.add(a["id"]); added += 1
 
           if added == 0:
-              print("No new alerts to log.")
-              sys.exit(0)
+              print("No new alerts."); sys.exit(0)
 
-          # Sort by first_seen descending (newest first)
           log.sort(key=lambda x: x["first_seen"], reverse=True)
-
           os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
-          with open(LOG_PATH, "w") as f:
-              json.dump(log, f, indent=2)
-
+          with open(LOG_PATH, "w") as f: json.dump(log, f, indent=2)
           print(f"Added {added} new alert(s). Total in log: {len(log)}")
-          EOF
+          PYEOF
 
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if [ ! -f "assets/data/trains/alert-log.json" ]; then
-            echo "Log file not created — no alerts to commit"
+            echo "Log file not created — nothing to commit"
             exit 0
           fi
           git add assets/data/trains/alert-log.json
