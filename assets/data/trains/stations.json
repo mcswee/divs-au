@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-30T18:32:14.108709",
+  "generated": "2026-09-06T17:34:48.428781",
   "groups": {
     "frankston": "Frankston / Stony Point",
     "burnley": "Burnley",
@@ -645,6 +645,7 @@
       "id": "vic:rail:EPH",
       "name": "East Pakenham",
       "groups": [
+        "vline",
         "yarra"
       ]
     },
