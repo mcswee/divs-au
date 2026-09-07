@@ -16,6 +16,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
 <link rel="icon" type="image/svg+xml" href="/assets/images/star.svg">
+  
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <style>
 
@@ -919,6 +922,67 @@
 
   .no-speech { display: none; font-size: 0.72rem; color: var(--ink-faint); }
 
+
+  /* Split Layout for Cards + Map */
+.page-container {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem 4rem;
+}
+
+.list-pane {
+  flex: 1;
+  min-width: 320px;
+  max-width: 550px;
+}
+
+.map-pane {
+  flex: 1.2;
+  position: sticky;
+  top: calc(var(--scroll-offset, 120px) + 1rem);
+  height: calc(100vh - var(--scroll-offset, 120px) - 3rem);
+  border: 1px solid var(--rule);
+  background: var(--phoneme-bg);
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Card Active/Selected State */
+.suburb-card {
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.suburb-card.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Adjust main layout constraint */
+main {
+  max-width: none;
+  padding: 0;
+}
+
+@media (max-width: 850px) {
+  .page-container {
+    flex-direction: column-reverse;
+  }
+  .map-pane {
+    position: relative;
+    top: 0;
+    height: 350px;
+  }
+  .list-pane {
+    max-width: 100%;
+  }
+}
+
 </style>
 
 </head>
@@ -972,21 +1036,21 @@
  
 
 <main>
+  <div class="page-container">
+    <div class="list-pane">
+      <button class="legend-toggle" id="legend-toggle" aria-expanded="false">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Phoneme key
+      </button>
+      <div class="legend-panel" id="legend-panel" role="region" aria-label="Phoneme legend"></div>
+      
+      <div id="results"></div>
+    </div>
 
-  <button class="legend-toggle" id="legend-toggle" aria-expanded="false">
-
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-
-    Phoneme key
-
-  </button>
-
-  <div class="legend-panel" id="legend-panel" role="region" aria-label="Phoneme legend"></div>
-
- 
-
-  <div id="results"></div>
-
+    <div class="map-pane">
+      <div id="map"></div>
+    </div>
+  </div>
 </main>
 
  
@@ -2463,552 +2527,398 @@ const SUBURBS = [
 
 ];
 
- 
+// ── LEAFLET MAP STATE ────────────────────────────────────────────────────────
 
- 
+let map;
+let geojsonLayer;
+const geojsonMap = new Map(); // Key: lowercase suburb name -> Value: Leaflet polygon layer
+
+function initMap() {
+  const mapElement = document.getElementById('map');
+  if (!mapElement) return;
+
+  // Initialize map centered over Melbourne Metropolitan area
+  map = L.map('map').setView([-37.8136, 144.9631], 10);
+
+  // Load a clean light tile basemap
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+  attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+  maxZoom: 16
+}).addTo(map);
+
+  // Fetch exported GeoJSON file from project directory
+  fetch('/assets/data/suburbs.geojson')
+    .then(res => res.json())
+    .then(data => {
+      geojsonLayer = L.geoJSON(data, {
+        style: defaultStyle,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+
+      // Perform initial map synchronization based on loaded suburbs
+      syncMapWithFilteredSuburbs(SUBURBS);
+    })
+    .catch(err => console.error("Could not load suburbs.geojson:", err));
+}
+
+function defaultStyle() {
+  return {
+    fillColor: '#c0392b',
+    fillOpacity: 0.05,
+    weight: 1,
+    color: '#a89f94',
+    opacity: 0.8
+  };
+}
+
+function highlightStyle() {
+  return {
+    fillColor: '#c0392b',
+    fillOpacity: 0.3,
+    weight: 2,
+    color: '#c0392b',
+    opacity: 1
+  };
+}
+
+function onEachFeature(feature, layer) {
+  // Extract property containing suburb name from QGIS export
+  const rawName =  feature.properties.name || "";
+  const cleanName = rawName.toLowerCase().trim();
+
+  if (cleanName) {
+    geojsonMap.set(cleanName, layer);
+  }
+
+  layer.on({
+    click: () => {
+      selectSuburbByName(cleanName, true);
+    }
+  });
+}
+
+function selectSuburbByName(suburbName, scrollToList = false) {
+  const clean = suburbName.toLowerCase().trim();
+
+  // Reset previously selected styling on map layers and cards
+  geojsonMap.forEach(layer => geojsonLayer.resetStyle(layer));
+  document.querySelectorAll('.suburb-card').forEach(card => card.classList.remove('selected'));
+
+  const layer = geojsonMap.get(clean);
+  if (layer && map) {
+    layer.setStyle(highlightStyle());
+    layer.bringToFront();
+    map.fitBounds(layer.getBounds(), { padding: [30, 30], maxZoom: 14 });
+  }
+
+  // Highlight card element in DOM
+  const targetCard = document.querySelector(`.suburb-card[data-suburb="${clean}"]`);
+  if (targetCard) {
+    targetCard.classList.add('selected');
+    if (scrollToList) {
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+}
+
+function syncMapWithFilteredSuburbs(filteredList) {
+  if (!geojsonLayer || !map) return;
+
+  const activeNames = new Set(filteredList.map(s => s.name.toLowerCase().trim()));
+
+  geojsonMap.forEach((layer, name) => {
+    if (activeNames.has(name)) {
+      if (!map.hasLayer(layer)) layer.addTo(map);
+    } else {
+      if (map.hasLayer(layer)) map.removeLayer(layer);
+    }
+  });
+}
 
 // ── PHONEME TOKENISER ────────────────────────────────────────────────────────
 
- 
-
-// Build a sorted list of symbols, longest-first so greedy match works correctly.
-
-// Multi-char symbols like "eh@", "ee@", "ow@", "iy@" must match before "ɛ", "ee" etc.
-
 const SORTED_SYMS = [...PHONEMES].sort((a, b) => b.sym.length - a.sym.length);
-
 const SYM_MAP = Object.fromEntries(PHONEMES.map(p => [p.sym, p]));
 
- 
-
 function buildTooltip(p) {
-
   return `/${p.ipa}/ · ${p.ex}`;
-
 }
-
- 
-
-/**
-
- * Tokenise a pronunciation string into an array of
-
- * { type: 'phoneme'|'punct', text } objects.
-
- */
 
 function tokenise(str) {
-
   const tokens = [];
-
   let i = 0;
-
   while (i < str.length) {
-
-    // Try each symbol longest-first
-
     let matched = false;
-
     for (const p of SORTED_SYMS) {
-
       if (str.startsWith(p.sym, i)) {
-
         tokens.push({ type: 'phoneme', sym: p.sym, text: p.sym });
-
         i += p.sym.length;
-
         matched = true;
-
         break;
-
       }
-
     }
-
     if (!matched) {
-
-      // Punctuation / syllable dividers / parens
-
       tokens.push({ type: 'punct', text: str[i] });
-
       i++;
-
     }
-
   }
-
   return tokens;
-
 }
-
- 
 
 function renderPronunciation(str) {
-
   const tokens = tokenise(str);
-
   return tokens.map(t => {
-
     if (t.type === 'phoneme') {
-
       const p = SYM_MAP[t.sym];
-
       const tip = buildTooltip(p);
-
       return `<span class="ph" data-tip="${tip}">${escHtml(t.text)}</span>`;
-
     }
-
     return escHtml(t.text);
-
   }).join('');
-
 }
-
- 
 
 function escHtml(s) {
-
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-
 }
-
- 
 
 // ── LEGEND ───────────────────────────────────────────────────────────────────
 
- 
-
 function buildLegend() {
-
   const panel = document.getElementById('legend-panel');
+  if (!panel) return;
 
   const vowels = PHONEMES.filter(p => p.seg === 'vowel');
-
   const cons   = PHONEMES.filter(p => p.seg === 'consonant');
 
- 
-
   function rows(arr) {
-
     return `<div class="legend-grid">${arr.map(p =>
-
       `<div class="legend-item">
-
         <span class="legend-sym">${escHtml(p.sym)}</span>
-
         <span class="legend-ipa">${escHtml(p.ipa)}</span>
-
         <span class="legend-example">${escHtml(p.ex)}</span>
-
       </div>`
-
     ).join('')}</div>`;
-
   }
 
- 
-
   panel.innerHTML = `
-
     <p class="legend-title">Phoneme key</p>
-
     <p class="legend-section-label">Vowels</p>${rows(vowels)}
-
     <p class="legend-section-label">Consonants</p>${rows(cons)}
-
   `;
 
- 
-
   document.getElementById('legend-toggle').addEventListener('click', () => {
-
     const open = panel.classList.toggle('open');
-
     document.getElementById('legend-toggle').setAttribute('aria-expanded', open);
-
   });
-
 }
-
- 
 
 // ── SPEECH ───────────────────────────────────────────────────────────────────
 
- 
-
 const AUDIO_PATH = '/assets/audio/suburbs/';
-
 const hasSpeech = 'speechSynthesis' in window;
 
- 
-
 let currentBtn = null;
-
 let currentAudio = null;
 
- 
-
 function speak(name, btn) {
-
   if (currentAudio) { currentAudio.pause(); currentAudio = null; }
-
   window.speechSynthesis.cancel();
-
   if (currentBtn && currentBtn !== btn) currentBtn.classList.remove('speaking');
 
- 
-
   btn.classList.add('speaking');
-
   currentBtn = btn;
 
- 
-
   const fallback = () => {
-
     currentAudio = null;
-
     if (!hasSpeech) { btn.classList.remove('speaking'); return; }
-
     const utt = new SpeechSynthesisUtterance(name);
-
     utt.lang = 'en-AU';
-
     utt.rate = 0.85;
-
     utt.onend = () => btn.classList.remove('speaking');
-
     utt.onerror = () => btn.classList.remove('speaking');
-
     window.speechSynthesis.speak(utt);
-
   };
 
- 
-
   const audio = new Audio(`${AUDIO_PATH}${encodeURIComponent(name)}.mp3`);
-
   currentAudio = audio;
-
   audio.onended = () => { btn.classList.remove('speaking'); currentAudio = null; };
-
   audio.onerror = fallback;
-
   audio.play().catch(fallback);
-
 }
-
- 
 
 // ── CARD RENDERING ───────────────────────────────────────────────────────────
 
- 
-
 function playIcon() {
-
   return `<svg width="8" height="10" viewBox="0 0 8 10" fill="currentColor"><path d="M0 0l8 5-8 5z"/></svg>`;
-
 }
-
- 
-
-function stopIcon() {
-
-  return `<svg width="8" height="10" viewBox="0 0 8 10" fill="currentColor"><rect width="3" height="10"/><rect x="5" width="3" height="10"/></svg>`;
-
-}
-
- 
 
 function renderCard(sub, highlight) {
-
   const hl = s => {
-
     if (!highlight) return escHtml(s);
-
     const re = new RegExp(`(${highlight.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
-
     return escHtml(s).replace(re, '<mark>$1</mark>');
-
   };
 
- 
-
   const pronHtml = renderPronunciation(sub.pronunciation);
+  const cleanName = sub.name.toLowerCase().trim();
 
- 
-
-  return `<div class="suburb-card">
-
+  return `<div class="suburb-card" data-suburb="${escHtml(cleanName)}">
     <div class="suburb-name">${hl(sub.name)}</div>
-
     <div class="suburb-meta">
-
       <span class="suburb-postcode">${hl(sub.postcode)}</span>
-
       <span class="suburb-lga">${hl(sub.lga)}</span>
-
     </div>
-
     <div class="pronunciation-row">
-
       <span class="pronunciation">${pronHtml}</span>
-
-      <button class="play-btn" aria-label="Listen to ${escHtml(sub.name)}" data-name="${escHtml(sub.name)}">${playIcon()}</button>    </div>
-
+      <button class="play-btn" aria-label="Listen to ${escHtml(sub.name)}" data-name="${escHtml(sub.name)}">${playIcon()}</button>
+    </div>
   </div>`;
-
 }
-
- 
 
 // ── ALPHA INDEX ──────────────────────────────────────────────────────────────
 
- 
-
 function buildAlphaBar(available) {
-
   const inner = document.getElementById('alpha-inner');
+  if (!inner) return;
 
   const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-
   inner.innerHTML = letters.map(l => {
-
     const has = available.has(l);
-
     return `<a class="alpha-link${has ? '' : ' disabled'}" href="#letter-${l}" id="alpha-${l}">${l}</a>`;
-
   }).join('');
-
 }
-
- 
 
 // ── MAIN RENDER ──────────────────────────────────────────────────────────────
 
- 
-
 function groupByLetter(arr) {
-
   const map = {};
-
   for (const s of arr) {
-
     const l = s.name[0].toUpperCase();
-
     if (!map[l]) map[l] = [];
-
     map[l].push(s);
-
   }
-
   return map;
-
 }
 
- 
-
 function render(filtered, highlight) {
-
   const results = document.getElementById('results');
-
   const count   = document.getElementById('count');
 
- 
-
   if (!filtered.length) {
-
     results.innerHTML = '<p class="empty">No suburbs found.</p>';
-
     count.textContent = '0 results';
-
     buildAlphaBar(new Set());
-
     return;
-
   }
-
- 
 
   count.textContent = `${filtered.length} suburb${filtered.length !== 1 ? 's' : ''}`;
 
- 
-
   const groups = groupByLetter(filtered);
-
   const letters = Object.keys(groups).sort();
-
   const available = new Set(letters);
-
   buildAlphaBar(available);
 
- 
-
   results.innerHTML = letters.map(l => `
-
     <div class="letter-group" id="letter-${l}">
-
       <h2 class="letter-heading">${l}</h2>
-
       <div class="suburb-grid">
-
         ${groups[l].map(s => renderCard(s, highlight)).join('')}
-
       </div>
-
     </div>
-
   `).join('');
 
- 
-
-  // Attach play buttons
-
+  // Event handler for playing audio
   results.querySelectorAll('.play-btn').forEach(btn => {
-
-    btn.addEventListener('click', () => {
-
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevents card select handler from firing
       const name = btn.dataset.name;
-
       if (btn.classList.contains('speaking')) {
-
         if (currentAudio) { currentAudio.pause(); currentAudio = null; }
-
         window.speechSynthesis.cancel();
-
         btn.classList.remove('speaking');
-
       } else {
-
         speak(name, btn);
-
       }
-
     });
-
   });
 
+  // Event handler for clicking a suburb card to trigger the map focus
+  results.querySelectorAll('.suburb-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.play-btn') || e.target.closest('.ph')) return;
+      const suburbName = card.dataset.suburb;
+      selectSuburbByName(suburbName, false);
+    });
+  });
 }
-
- 
 
 // ── FILTERS ──────────────────────────────────────────────────────────────────
 
- 
-
 function populateLGA() {
-
   const sel = document.getElementById('lga-filter');
+  if (!sel) return;
 
   const lgas = [...new Set(SUBURBS.map(s => s.lga))].sort();
-
   lgas.forEach(l => {
-
     const o = document.createElement('option');
-
     o.value = l;
-
     o.textContent = l;
-
     sel.appendChild(o);
-
   });
-
 }
 
- 
-
 let searchVal = '';
-
 let lgaVal    = '';
 
- 
-
 function filter() {
-
   const q = searchVal.trim().toLowerCase();
-
   let out = SUBURBS;
 
   if (lgaVal) out = out.filter(s => s.lga === lgaVal);
-
   if (q) out = out.filter(s =>
-
     s.name.toLowerCase().includes(q) ||
-
     s.postcode.includes(q) ||
-
     s.lga.toLowerCase().includes(q)
-
   );
 
   out = [...out].sort((a, b) => a.name.localeCompare(b.name));
-
   render(out, q.length >= 2 ? q : '');
 
+  // Synchronize map shapes with search/filter results
+  syncMapWithFilteredSuburbs(out);
 }
-
- 
 
 // ── INIT ─────────────────────────────────────────────────────────────────────
 
- 
-
 buildLegend();
-
 populateLGA();
-
-filter(); // initial render with all suburbs
-
- 
+filter();
+initMap();
 
 document.getElementById('search').addEventListener('input', e => {
-
   searchVal = e.target.value;
-
   filter();
-
 });
-
- 
 
 document.getElementById('lga-filter').addEventListener('change', e => {
-
   lgaVal = e.target.value;
-
   filter();
-
 });
 
- 
-
-// Sticky header offset for alpha bar
-
+// Sticky header offset calculation
 (function () {
-
   const header = document.querySelector('header');
-
   const bar = document.getElementById('alpha-bar');
+  if (!header || !bar) return;
 
   function offset() {
-
-  const total = header.offsetHeight + bar.offsetHeight;
-
-  bar.style.top = header.offsetHeight + 'px';
-
-  document.documentElement.style.setProperty('--scroll-offset', (total + 8) + 'px');
-
-}
-
+    const total = header.offsetHeight + bar.offsetHeight;
+    bar.style.top = header.offsetHeight + 'px';
+    document.documentElement.style.setProperty('--scroll-offset', (total + 8) + 'px');
+  }
   offset();
-
   new ResizeObserver(offset).observe(header);
-
 })();
-
- 
-
 </script>
 
 </body>
