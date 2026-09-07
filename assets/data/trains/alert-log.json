@@ -1,5 +1,88 @@
 [
   {
+    "id": "7c2ccd9c-3d6c-59ce-95d1-e52bf1cc3075",
+    "first_seen": "2026-09-07T05:43:35.592867+00:00",
+    "header": "Cancellation",
+    "description": "The 3:54pm West Footscray to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "6b2bcd0b-9950-5d43-9396-f069c1e781a5",
+    "first_seen": "2026-09-07T05:43:35.592867+00:00",
+    "header": "Cancellation",
+    "description": "The 3:56pm Cranbourne to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "b1c071f0-3095-5e51-9de3-6fa1e56fd9f8",
+    "first_seen": "2026-09-07T05:43:35.592867+00:00",
+    "header": "Cancellation",
+    "description": "The 4:03pm Arden to East Pakenham service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "fcff8ea7-5eb9-5cbf-9d6a-483415b32d84",
+    "first_seen": "2026-09-07T05:43:35.592867+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 40 minutes after an earlier ill passenger requiring medical assistance at Clayton. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CBE:",
+      "aus:vic:vic-02-CBE-R:"
+    ]
+  },
+  {
+    "id": "10c31f74-9b82-5536-a420-5d557d803040",
+    "first_seen": "2026-09-07T05:43:35.592867+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 40 minutes after an earlier ill passenger requiring medical assistance at Clayton. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
+    "id": "8a860224-cb30-58b3-bf67-d4ed7e65ffa6",
+    "first_seen": "2026-09-07T05:43:35.592867+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 40 minutes after an earlier ill passenger requiring medical assistance at Clayton. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SUY-R:",
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "078fd4cc-1348-58e8-85d7-b839aad9837b",
+    "first_seen": "2026-09-07T05:43:35.592867+00:00",
+    "header": "Cancellation",
+    "description": "The 3:55pm Dandenong to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "803c241d-05bb-52a4-8be5-a5da9c3a3daa",
+    "first_seen": "2026-09-07T05:43:35.592867+00:00",
+    "header": "Cancellation",
+    "description": "The 4:06pm Anzac to Watergardens service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
     "id": "36f6a083-6f49-5940-924e-c8b045e55efa",
     "first_seen": "2026-09-07T04:03:35.277812+00:00",
     "header": "Minor Delay",
