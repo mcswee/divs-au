@@ -1,5 +1,111 @@
 [
   {
+    "id": "210e096a-74c8-5fdd-a634-7ba8520d3802",
+    "first_seen": "2026-09-07T11:02:48.125957+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after an earlier disruptive passenger at Footscray. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
+    "id": "1dd8a298-d0e2-52f8-a23d-22d945bd938f",
+    "first_seen": "2026-09-07T11:02:48.125957+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after an earlier disruptive passenger at Footscray. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:",
+      "aus:vic:vic-02-CBE-R:"
+    ]
+  },
+  {
+    "id": "67de0001-e85a-5a33-aca8-263912e9fb37",
+    "first_seen": "2026-09-07T11:02:48.125957+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after an earlier disruptive passenger at Footscray. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "fc6ba40b-9475-51d5-8c74-05dad49e07f3",
+    "first_seen": "2026-09-07T11:02:48.125957+00:00",
+    "header": "Planned work: Werribee, Craigieburn and Upfield services start and end at Southern Cross",
+    "description": "9pm to last service each night, Monday 7 September to Wednesday 9 September\u00a0 From City Take a train from Platforms 1, 2, 3 or 4 at Flinders Street and change at Southern Cross From City Loop Take a City Circle train from Platform 1 and change at Southern Cross To City Change at Southern Cross and take a City Circle train from Platform 9 to Flinders Street To City Loop Change at Southern Cross and take a train from Platforms 9 and 10",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB-R:",
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-UFD:",
+      "aus:vic:vic-02-CGB:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "6839c90d-4f76-57e3-8032-1c2df348d750",
+    "first_seen": "2026-09-07T11:02:48.125957+00:00",
+    "header": "Planned work: Buses replace trains between Parliament and Elsternwick",
+    "description": "8.45pm to last service each night, Monday 7 September to Wednesday 9 September",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SHM:",
+      "aus:vic:vic-02-SHM-R:"
+    ]
+  },
+  {
+    "id": "cf57c4c4-660e-539a-88b3-60756bcb4d53",
+    "first_seen": "2026-09-07T11:02:48.125957+00:00",
+    "header": "Planned work: Night works between South Yarra and Caulfield",
+    "description": "9pm to 4am each night, Monday 7 September to Thursday 10 September  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Frankston Line. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "6ac0b1c7-133b-5d99-8856-43736b9c57a0",
+    "first_seen": "2026-09-07T11:02:48.125957+00:00",
+    "header": "Planned work: Night works between North Melbourne and Kensington",
+    "description": "9pm to 4am each night, Monday 7 September to Thursday 10 September  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Craigieburn Line. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB-R:",
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "bb25c5d0-a1b1-5bb4-9a4b-5acf4e0edb60",
+    "first_seen": "2026-09-07T11:02:48.125957+00:00",
+    "header": "Planned work: Night works between South Yarra and Elsternwick",
+    "description": "9pm to 4am each night, Monday 7 September to Thursday 10 September  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Sandringham Line. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SHM:",
+      "aus:vic:vic-02-SHM-R:"
+    ]
+  },
+  {
+    "id": "737506ad-786f-5d1a-bdef-364b3b813df9",
+    "first_seen": "2026-09-07T11:02:48.125957+00:00",
+    "header": "Planned work: Buses replace trains between city and Caulfield",
+    "description": "8.30pm to last service each night, Monday 7 September to Wednesday 9 September",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:",
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-CBE-R:",
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
     "id": "9a295e77-20c9-507b-8013-a1f362b9f9e6",
     "first_seen": "2026-09-07T09:37:13.704684+00:00",
     "header": "Planned Works",
