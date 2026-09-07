@@ -1,5 +1,125 @@
 [
   {
+    "id": "87fa7d8c-cb13-55eb-a954-f804418e0334",
+    "first_seen": "2026-09-07T21:19:56.288618+00:00",
+    "header": "Cancellation",
+    "description": "The 6:13am Arden to Cranbourne service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "3aab6cb2-8508-5e59-963c-bd3e5ef7f2e0",
+    "first_seen": "2026-09-07T21:19:56.288618+00:00",
+    "header": "Cancellation",
+    "description": "The 6:30am East Pakenham to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-EC2:"
+    ]
+  },
+  {
+    "id": "4500018f-82b9-5286-97f8-b835d33d51ab",
+    "first_seen": "2026-09-07T21:19:56.288618+00:00",
+    "header": "Cancellation",
+    "description": "The 6:36am Cranbourne to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-V25:"
+    ]
+  },
+  {
+    "id": "616d64a5-8b11-5910-96ec-11c92ff415d8",
+    "first_seen": "2026-09-07T21:19:56.288618+00:00",
+    "header": "Cancellation",
+    "description": "The 6:44am East Pakenham to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-ECH:"
+    ]
+  },
+  {
+    "id": "37880081-cd73-5462-9510-c75b3c903e50",
+    "first_seen": "2026-09-07T21:19:56.288618+00:00",
+    "header": "Cancellation",
+    "description": "The 6:56am Cranbourne to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-V25:"
+    ]
+  },
+  {
+    "id": "4f403896-9f96-5d3e-8be1-9103a6332988",
+    "first_seen": "2026-09-07T21:19:56.288618+00:00",
+    "header": "Cancellation",
+    "description": "The 6:55am Sunbury to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "5ee345d8-159f-5627-bf16-e8b82462fb82",
+    "first_seen": "2026-09-07T21:19:56.288618+00:00",
+    "header": "Cancellation",
+    "description": "The 7:04am East Pakenham to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-V39:"
+    ]
+  },
+  {
+    "id": "678d9ee6-412b-570a-801c-8bdda8052cc3",
+    "first_seen": "2026-09-07T21:19:56.288618+00:00",
+    "header": "Cancellation",
+    "description": "The 7:26am Anzac to West Footscray service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "f3c8ef2e-ff32-5c01-9139-cf38220f2d4c",
+    "first_seen": "2026-09-07T21:19:56.288618+00:00",
+    "header": "Cancellation",
+    "description": "The 7:29am Cranbourne to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "8819ef7f-c930-5c0b-9edd-5b5f0fa57926",
+    "first_seen": "2026-09-07T21:19:56.288618+00:00",
+    "header": "Cancellation",
+    "description": "The 7:35am Arden to Westall service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "b9e020a7-1deb-5718-9d7c-fb24d6e14d31",
+    "first_seen": "2026-09-07T21:19:56.288618+00:00",
+    "header": "Cancellation",
+    "description": "The 7:36am Anzac to Watergardens service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "e81d5b14-4e91-54d3-8071-26657663e65c",
+    "first_seen": "2026-09-07T21:19:56.288618+00:00",
+    "header": "Cancellation",
+    "description": "The 7:47am Anzac to Watergardens service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
     "id": "eb593bf9-a83f-5def-9118-f727ec68c47a",
     "first_seen": "2026-09-07T15:42:00.168385+00:00",
     "header": "Planned Works",
