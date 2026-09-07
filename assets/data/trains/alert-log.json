@@ -1,5 +1,197 @@
 [
   {
+    "id": "fdf08938-2103-5831-90de-175be7e7f358",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 4:26pm Sunbury to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "acd60941-0391-557b-896a-b0b2a86f35ce",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 4:33pm Arden to Cranbourne service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-V15:"
+    ]
+  },
+  {
+    "id": "13f8d60e-b2a2-52d6-be50-d466df336241",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 4:35pm East Pakenham to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-BAT:"
+    ]
+  },
+  {
+    "id": "bc7df4c5-b9a1-53e2-a7c0-05ef7c41189f",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 4:32pm Watergardens to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "7704b230-90f9-5c20-bff4-bda1e8ebba87",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 4:35pm Anzac to Watergardens service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "c37c5a77-3f05-5692-87bb-c95a7c7689c6",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 4:50pm Westall to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "73811302-8eaf-5790-9314-b0de058ec934",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 4:47pm Arden to East Pakenham service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "f92af1d6-75f7-5e3b-a90b-51bd97d43271",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 4:51pm Anzac to West Footscray service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "69ee0820-b4b4-5113-99d3-44c50585b96e",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 5:02pm West Footscray to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "86436bef-ca79-55e1-acfc-f3e6dffb2a18",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 5:07pm Westall to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "9691c4c6-3822-5131-8b9a-442cf2ebe915",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 5:01pm Arden to Cranbourne service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-V09:"
+    ]
+  },
+  {
+    "id": "b54d0d3a-2820-5aa0-b5fe-4a9bc05b80fd",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier ill passenger requiring medical assistance at Clayton. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE-R:",
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "a903e8c8-6f75-5131-93ec-dd1638c54af6",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier ill passenger requiring medical assistance at Clayton. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "b5055480-0e6b-5a48-92a8-875aa72a97ce",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 5:11pm Arden to Cranbourne service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-V09:"
+    ]
+  },
+  {
+    "id": "06693613-534d-53aa-9b0f-3f67ba9f91e4",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 5:16pm Anzac to Sunbury service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "d896d464-324c-5dba-94f3-22d0677e9551",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 5:07pm Arden to East Pakenham service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "9f8f53c0-960e-5b57-ba33-aa83b3d79acb",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 5:22pm West Footscray to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "b8af24e6-49e7-5095-bcac-be1fecb027a5",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 5:31pm Arden to Cranbourne service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "d6085e79-c8a5-5055-bf11-5a1f316f3845",
+    "first_seen": "2026-09-07T07:12:16.825689+00:00",
+    "header": "Cancellation",
+    "description": "The 5:33pm Anzac to West Footscray service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
     "id": "7c2ccd9c-3d6c-59ce-95d1-e52bf1cc3075",
     "first_seen": "2026-09-07T05:43:35.592867+00:00",
     "header": "Cancellation",
