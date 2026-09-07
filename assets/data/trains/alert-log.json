@@ -1,5 +1,26 @@
 [
   {
+    "id": "36f6a083-6f49-5940-924e-c8b045e55efa",
+    "first_seen": "2026-09-07T04:03:35.277812+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a disruptive passenger at South Yarra. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SHM:",
+      "aus:vic:vic-02-SHM-R:"
+    ]
+  },
+  {
+    "id": "36c65f7b-ce7e-5cf4-98d6-745530a8612b",
+    "first_seen": "2026-09-07T04:03:35.277812+00:00",
+    "header": "Other Information",
+    "description": "The 1:50pm Laverton to Flinders Street service will originate from Newport at 2:07pm due to an earlier train fault.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
     "id": "e0001933-8c16-54a5-9b4e-cf509f36deb6",
     "first_seen": "2026-09-06T23:32:11.666459+00:00",
     "header": "Planned work: Berwick Station car space closure",
