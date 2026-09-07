@@ -352,8 +352,10 @@
   function computeQuotaStatus() {
     var q = computeQuota();
     var totals = divisionTotals();
-    var actualStatus = "ok";  // default green
-    var projectedStatus = "ok";
+    var hasActualUnder = false;
+    var hasActualOver = false;
+    var hasProjectedUnder = false;
+    var hasProjectedOver = false;
 
     if (q.divisor === 0) {
       return { actualStatus: "empty", projectedStatus: "empty" };
@@ -363,20 +365,17 @@
       var t = totals[name];
       if (t.count === 0) return;
 
-      // Check actual quota
       var actualStat = statusFor(t.actual, q.actualQuota, 0.10);
-      if (actualStat === "under" || actualStatus === "under") actualStatus = "under";
-      if (actualStat === "over" || actualStatus === "over") actualStatus = "over";
-      if (actualStat === "under" && actualStatus === "over") actualStatus = "both";
-      if (actualStat === "over" && actualStatus === "under") actualStatus = "both";
+      if (actualStat === "under") hasActualUnder = true;
+      if (actualStat === "over") hasActualOver = true;
 
-      // Check projected quota
       var projStat = statusFor(t.projected, q.projectedQuota, 0.035);
-      if (projStat === "under" || projectedStatus === "under") projectedStatus = "under";
-      if (projStat === "over" || projectedStatus === "over") projectedStatus = "over";
-      if (projStat === "under" && projectedStatus === "over") projectedStatus = "both";
-      if (projStat === "over" && projectedStatus === "under") projectedStatus = "both";
+      if (projStat === "under") hasProjectedUnder = true;
+      if (projStat === "over") hasProjectedOver = true;
     });
+
+    var actualStatus = hasActualUnder && hasActualOver ? "both" : (hasActualUnder ? "under" : (hasActualOver ? "over" : "ok"));
+    var projectedStatus = hasProjectedUnder && hasProjectedOver ? "both" : (hasProjectedUnder ? "under" : (hasProjectedOver ? "over" : "ok"));
 
     return { actualStatus: actualStatus, projectedStatus: projectedStatus, quota: q };
   }
@@ -463,40 +462,37 @@
     }
 
     var thresholdStyle = function (isLow, stat) {
-      var bgColor = "#f5f5f5";
-      var textColor = "#666";
-      if (isLow && stat === "under") {
-        bgColor = "#fff4d9";
-        textColor = "#8a6200";
-      } else if (isLow && stat === "ok") {
-        bgColor = "#e6f4ec";
-        textColor = "#0b6b3a";
-      } else if (!isLow && stat === "over") {
-        bgColor = "#fde8ea";
-        textColor = "#a3203b";
-      } else if (!isLow && stat === "ok") {
-        bgColor = "#e6f4ec";
-        textColor = "#0b6b3a";
+      // low threshold badge: yellow if any division is under, green if all ok
+      // high threshold badge: red if any division is over, green if all ok
+      if (isLow) {
+        if (stat === "under" || stat === "both") {
+          return "background:#fff4d9; color:#8a6200;";
+        }
+        return "background:#e6f4ec; color:#0b6b3a;";
+      } else {
+        if (stat === "over" || stat === "both") {
+          return "background:#fde8ea; color:#a3203b;";
+        }
+        return "background:#e6f4ec; color:#0b6b3a;";
       }
-      return "background:" + bgColor + "; color:" + textColor + ";";
     };
 
     el.quotaDivisor.innerHTML = 
-      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; background:#f0f0f0; color:#666;">[ ' + q.divisor + ' divisions ]</span>';
+      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; background:#f0f0f0; color:#666;">' + q.divisor + ' divisions</span>';
 
     el.quotaActualValue.innerHTML = 
       '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; background:#f0f0f0; color:#666;">' + Math.round(q.actualQuota).toLocaleString() + '</span>';
 
     el.quotaActualBand.innerHTML = 
-      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(true, status.actualStatus) + '">[ ' + Math.round(q.actualQuota * 0.9).toLocaleString() + ' ]</span> ' +
-      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(false, status.actualStatus) + '">[ ' + Math.round(q.actualQuota * 1.1).toLocaleString() + ' ]</span>';
+      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(true, status.actualStatus) + '">' + Math.round(q.actualQuota * 0.9).toLocaleString() + '</span> ' +
+      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(false, status.actualStatus) + '">' + Math.round(q.actualQuota * 1.1).toLocaleString() + '</span>';
 
     el.quotaProjectedValue.innerHTML = 
       '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; background:#f0f0f0; color:#666;">' + Math.round(q.projectedQuota).toLocaleString() + '</span>';
 
     el.quotaProjectedBand.innerHTML = 
-      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(true, status.projectedStatus) + '">[ ' + Math.round(q.projectedQuota * 0.965).toLocaleString() + ' ]</span> ' +
-      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(false, status.projectedStatus) + '">[ ' + Math.round(q.projectedQuota * 1.035).toLocaleString() + ' ]</span>';
+      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(true, status.projectedStatus) + '">' + Math.round(q.projectedQuota * 0.965).toLocaleString() + '</span> ' +
+      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(false, status.projectedStatus) + '">' + Math.round(q.projectedQuota * 1.035).toLocaleString() + '</span>';
   }
 
   function refreshDivisionList() {
