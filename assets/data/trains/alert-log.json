@@ -1,5 +1,125 @@
 [
   {
+    "id": "9a295e77-20c9-507b-8013-a1f362b9f9e6",
+    "first_seen": "2026-09-07T09:37:13.704684+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Footscray and Sunshine from 8pm to last service each night, Sunday 6 September to Wednesday 9 September, while maintenance and renewal works take place. Note: \u2022 Passengers are advised no trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY-R:",
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "a26d01e9-8eee-57d0-9458-eebab3f8d3fa",
+    "first_seen": "2026-09-07T09:37:13.704684+00:00",
+    "header": "Other Information",
+    "description": "Buses replace trains between the City and Caulfield from 8.30pm to last service each night, Monday 7 September to Wednesday 9 September, while maintenance and renewal works take place. \u2022 Passengers travelling beyond Caulfield are advised to board a Belgrave, Lilydale or Glen Waverley train to Burnley, and change for an express replacement bus service to Caulfield. \u2022 Passengers travelling between the City and Caulfield are advised to board a replacement bus from Parliament for a stopping all stations service to Caulfield. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "8c16c50b-f7b0-59c7-b396-a647a2990e44",
+    "first_seen": "2026-09-07T09:37:13.704684+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between the City and Caulfield from 8.30pm to last service each night, Monday 7 September to Wednesday 9 September, while maintenance and renewal works take place. Note: \u2022 Passengers are advised no trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. \u2022 Passengers travelling beyond Caulfield are advised to board a Belgrave, Lilydale or Glen Waverley train to Burnley, and change for an express replacement bus service to Caulfield. \u2022 Passengers travelling between the City and Caulfield are advised to board a replacement bus from Parliament for a stopping all stations service to Caulfield. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:",
+      "aus:vic:vic-02-CBE-R:"
+    ]
+  },
+  {
+    "id": "fc11654d-2b6e-5bf9-9f77-7810310e6d76",
+    "first_seen": "2026-09-07T09:37:13.704684+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between the City and Caulfield from 8.30pm to last service each night, Monday 7 September to Wednesday 9 September, while maintenance and renewal works take place. Note: \u2022 Passengers are advised no trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. \u2022 Passengers travelling beyond Caulfield are advised to board a Belgrave, Lilydale or Glen Waverley train to Burnley, and change for an express replacement bus service to Caulfield. \u2022 Passengers travelling between the City and Caulfield are advised to board a replacement bus from Parliament for a stopping all stations service to Caulfield. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "81cb3327-a9ef-56c4-8649-560bee313f5d",
+    "first_seen": "2026-09-07T09:37:13.704684+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes after an ill passenger required assistance at Parkville. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "94e3cb49-1241-5cc1-94fc-cfb3d14f3c75",
+    "first_seen": "2026-09-07T09:37:13.704684+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes after an ill passenger required assistance at Parkville. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:",
+      "aus:vic:vic-02-CBE-R:"
+    ]
+  },
+  {
+    "id": "8742770a-d458-5a4d-aad5-f9bcfe50dea8",
+    "first_seen": "2026-09-07T09:37:13.704684+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Elsternwick from 8.45pm to last service each night, Monday 7 September to Wednesday 9 September, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SHM:",
+      "aus:vic:vic-02-SHM-R:"
+    ]
+  },
+  {
+    "id": "770c9579-9a59-52a0-8cab-e062aea72608",
+    "first_seen": "2026-09-07T09:37:13.704684+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier fire brigade request in the Altona area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "ef61ae4d-5d8d-5a8e-b007-cc1a3b4b190a",
+    "first_seen": "2026-09-07T09:37:13.704684+00:00",
+    "header": "Planned Works",
+    "description": "All trains will start and end at Southern Cross from 9pm to last service each night, Monday 7 September to Wednesday 9 September, while maintenance and renewal works take place. From City  Take a train from Platforms 1, 2 or 3 or 4 at Flinders Street and change at Southern Cross. From City Loop  Take a City Circle train from Platform 1 and change at Southern Cross. To City  Change at Southern Cross and take a City Circle train from Platform 9 to Flinders Street. To City Loop  Change at Southern Cross and take a train from Platforms 9 and 10.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB-R:",
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "c00d7927-6e5c-5ec0-a00b-9df454c3a3cd",
+    "first_seen": "2026-09-07T09:37:13.704684+00:00",
+    "header": "Planned Works",
+    "description": "All trains will start and end at Southern Cross from 9pm to last service each night, Monday 7 September to Wednesday 9 September, while maintenance and renewal works take place. From City  Take a train from Platforms 1, 2 or 3 or 4 at Flinders Street and change at Southern Cross. From City Loop  Take a City Circle train from Platform 1 and change at Southern Cross. To City  Change at Southern Cross and take a City Circle train from Platform 9 to Flinders Street. To City Loop  Change at Southern Cross and take a train from Platforms 9 and 10.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
+    "id": "f6ce02f1-263c-5f64-8135-f26eebb5be09",
+    "first_seen": "2026-09-07T09:37:13.704684+00:00",
+    "header": "Planned Works",
+    "description": "All trains will start and end at Southern Cross from 9pm to last service each night, Monday 7 September to Wednesday 9 September, while maintenance and renewal works take place. From City  Take a train from Platforms 1, 2 or 3 or 4 at Flinders Street and change at Southern Cross. From City Loop  Take a City Circle train from Platform 1 and change at Southern Cross. To City  Change at Southern Cross and take a City Circle train from Platform 9 to Flinders Street. To City Loop  Change at Southern Cross and take a train from Platforms 9 and 10.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
     "id": "fdf08938-2103-5831-90de-175be7e7f358",
     "first_seen": "2026-09-07T07:12:16.825689+00:00",
     "header": "Cancellation",
