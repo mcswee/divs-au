@@ -1,5 +1,70 @@
 [
   {
+    "id": "aa2d6bc3-f84a-5c66-a5b4-d50660ecccf4",
+    "first_seen": "2026-09-08T09:00:27.693474+00:00",
+    "header": "Cancellation",
+    "description": "The 6:11pm Arden to Cranbourne service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "58f580b9-f362-5c09-baf2-2c7becb79183",
+    "first_seen": "2026-09-08T09:00:27.693474+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Footscray and Sunshine from 8pm to last service each night, Sunday 6 September to Wednesday 9 September, while maintenance and renewal works take place. Note: \u2022 Passengers are advised no trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "d37296b3-b659-5800-ad4b-77acc046f759",
+    "first_seen": "2026-09-08T09:00:27.693474+00:00",
+    "header": "Other Information",
+    "description": "Buses replace trains between the City and Caulfield from 8.30pm to last service each night, Monday 7 September to Wednesday 9 September, while maintenance and renewal works take place. \u2022 Passengers travelling beyond Caulfield are advised to board a Belgrave, Lilydale or Glen Waverley train to Burnley, and change for an express replacement bus service to Caulfield. \u2022 Passengers travelling between the City and Caulfield are advised to board a replacement bus from Parliament for a stopping all stations service to Caulfield. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
+    "id": "c47d2112-d59d-59a0-b787-2ad7d43edaa5",
+    "first_seen": "2026-09-08T09:00:27.693474+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between the City and Caulfield from 8.30pm to last service each night, Monday 7 September to Wednesday 9 September, while maintenance and renewal works take place. Note: \u2022 Passengers are advised no trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. \u2022 Passengers travelling beyond Caulfield are advised to board a Belgrave, Lilydale or Glen Waverley train to Burnley, and change for an express replacement bus service to Caulfield. \u2022 Passengers travelling between the City and Caulfield are advised to board a replacement bus from Parliament for a stopping all stations service to Caulfield. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE-R:",
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "d9e75ad8-d63c-5251-ab15-8b356e74114d",
+    "first_seen": "2026-09-08T09:00:27.693474+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between the City and Caulfield from 8.30pm to last service each night, Monday 7 September to Wednesday 9 September, while maintenance and renewal works take place. Note: \u2022 Passengers are advised no trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. \u2022 Passengers travelling beyond Caulfield are advised to board a Belgrave, Lilydale or Glen Waverley train to Burnley, and change for an express replacement bus service to Caulfield. \u2022 Passengers travelling between the City and Caulfield are advised to board a replacement bus from Parliament for a stopping all stations service to Caulfield. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
+    "id": "8ae32935-9dd4-50f5-a74a-16b706c81bc4",
+    "first_seen": "2026-09-08T09:00:27.693474+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Elsternwick from 8.45pm to last service each night, Monday 7 September to Wednesday 9 September, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SHM:",
+      "aus:vic:vic-02-SHM-R:"
+    ]
+  },
+  {
     "id": "30740b86-4524-530b-9be5-169562289ee4",
     "first_seen": "2026-09-08T05:41:10.022478+00:00",
     "header": "Cancellation",
