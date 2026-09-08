@@ -1,5 +1,15 @@
 [
   {
+    "id": "fa6846b7-4ff1-5a56-b80a-87fe7ea008d2",
+    "first_seen": "2026-09-07T23:41:14.943197+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes due to an earlier police request in the Bell area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
     "id": "87fa7d8c-cb13-55eb-a954-f804418e0334",
     "first_seen": "2026-09-07T21:19:56.288618+00:00",
     "header": "Cancellation",
