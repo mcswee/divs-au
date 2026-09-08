@@ -1,5 +1,67 @@
 [
   {
+    "id": "30740b86-4524-530b-9be5-169562289ee4",
+    "first_seen": "2026-09-08T05:41:10.022478+00:00",
+    "header": "Cancellation",
+    "description": "The 2:43pm Cranbourne to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "4d5bee16-18c1-5401-9647-c75bef0a9ef8",
+    "first_seen": "2026-09-08T05:41:10.022478+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes now clearing after a police request in the Sunshine area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CBE-R:",
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "fbb9f9a8-8bd1-5a8b-bab9-3d4f127e2792",
+    "first_seen": "2026-09-08T05:41:10.022478+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes now clearing after a police request in the Sunshine area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
+    "id": "718b3c2c-300d-5b4b-b471-261b19b9ad1d",
+    "first_seen": "2026-09-08T05:41:10.022478+00:00",
+    "header": "Cancellation",
+    "description": "The 3:36pm Anzac to Sunbury service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "558f651a-b8ac-577d-a954-04a9bbbd8a9a",
+    "first_seen": "2026-09-08T05:41:10.022478+00:00",
+    "header": "Cancellation",
+    "description": "The 3:54pm West Footscray to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "6eb56b77-512f-578c-9824-e8b786bfaaac",
+    "first_seen": "2026-09-08T05:41:10.022478+00:00",
+    "header": "Cancellation",
+    "description": "The 3:56pm Cranbourne to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
     "id": "fa6846b7-4ff1-5a56-b80a-87fe7ea008d2",
     "first_seen": "2026-09-07T23:41:14.943197+00:00",
     "header": "Major Delay",
