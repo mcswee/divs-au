@@ -1,5 +1,85 @@
 [
   {
+    "id": "5912750f-14a7-54df-8dca-0457d3c39610",
+    "first_seen": "2026-09-08T20:54:51.638670+00:00",
+    "header": "Cancellation",
+    "description": "The 6:01am Town Hall to Cranbourne service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-V25:"
+    ]
+  },
+  {
+    "id": "a5583bc1-951a-5e12-afc5-51dc0e277a55",
+    "first_seen": "2026-09-08T20:54:51.638670+00:00",
+    "header": "Cancellation",
+    "description": "The 6:13am Arden to Cranbourne service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "fafb847d-631c-59e8-867d-5f7ad247a607",
+    "first_seen": "2026-09-08T20:54:51.638670+00:00",
+    "header": "Cancellation",
+    "description": "The 6:30am East Pakenham to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-EC2:"
+    ]
+  },
+  {
+    "id": "908a37c7-38f7-562d-958f-12e157aa6108",
+    "first_seen": "2026-09-08T20:54:51.638670+00:00",
+    "header": "Cancellation",
+    "description": "The 6:36am Cranbourne to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-V25:"
+    ]
+  },
+  {
+    "id": "a50a2e83-684f-58ec-a8d3-f79b6b17e45b",
+    "first_seen": "2026-09-08T20:54:51.638670+00:00",
+    "header": "Cancellation",
+    "description": "The 6:56am Cranbourne to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-V25:"
+    ]
+  },
+  {
+    "id": "cf556c91-c6bc-582d-b89c-b023d1d6a0f2",
+    "first_seen": "2026-09-08T20:54:51.638670+00:00",
+    "header": "Cancellation",
+    "description": "The 6:55am Sunbury to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "f18f3443-cf8a-57a9-9995-d94bc6d4b096",
+    "first_seen": "2026-09-08T20:54:51.638670+00:00",
+    "header": "Cancellation",
+    "description": "The 7:04am East Pakenham to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-V39:"
+    ]
+  },
+  {
+    "id": "5e1dc99a-8414-5fec-b4d9-06903bd73da3",
+    "first_seen": "2026-09-08T20:54:51.638670+00:00",
+    "header": "Cancellation",
+    "description": "The 7:13am Cranbourne to Town Hall service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-pay:"
+    ]
+  },
+  {
     "id": "e2a34d53-0358-53cd-be99-0dde822c2a1f",
     "first_seen": "2026-09-08T13:47:59.646272+00:00",
     "header": "Planned Works",
