@@ -1,5 +1,169 @@
 [
   {
+    "id": "8e42647e-e7c7-5973-9dd3-5c10b755c439",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Cancellation",
+    "description": "The 8:23am Dandenong to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "0b339d54-acb5-53c7-a917-fb2c1646919d",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Cancellation",
+    "description": "The 8:53am Anzac to Watergardens service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "56e63bd8-88ce-53d3-9a64-874d07468553",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Cancellation",
+    "description": "The 8:56am Anzac to Watergardens service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "c8300e7c-77ca-5349-91d1-1426aa3f3a34",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier train fault in the West Footscray area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "41e44ed4-e06f-58a9-a80a-847dad8602be",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Cancellation",
+    "description": "The 9:03am Anzac to West Footscray service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "5d396789-4f32-5e73-8932-56f007fe22ca",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier ill passenger at Footscray. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "74c38503-5651-5d18-8867-0a4907a2b709",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier ill passenger at Footscray. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WIL-R:",
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
+    "id": "53d60ff4-b3d5-5255-a4ad-89672bd0a7c2",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Cancellation",
+    "description": "The 8:49am Flinders Street to Carrum service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "8a5ec3bd-9f58-5f41-97b0-ccf4aeaa8e30",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Cancellation",
+    "description": "The 8:54am Flinders Street to Frankston service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "d44f3ae4-5b2e-5d08-996f-9ed29a709b73",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Cancellation",
+    "description": "The 8:58am Flinders Street to Carrum service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "23317bef-8c43-50f1-88e1-f596be092780",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Cancellation",
+    "description": "The 9:30am Flinders Street to Carrum service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "7c690da3-6312-51b5-b03b-9f00ee12da4c",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Cancellation",
+    "description": "The 9:24am Flinders Street to Frankston service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "3effa924-43fc-5c95-a973-24c74510754a",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Cancellation",
+    "description": "The 9:03am Flinders Street to Frankston service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "ac23f581-a71a-500a-ab85-38c33ad28c1c",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Cancellation",
+    "description": "The 9:14am Flinders Street to Frankston service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "528a9883-a67f-5bcc-95e8-4e9c73efd36d",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Cancellation",
+    "description": "The 9:09am Flinders Street to Carrum service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "47dafb07-ce18-587d-8560-718e38072d55",
+    "first_seen": "2026-09-08T23:11:23.357081+00:00",
+    "header": "Suspended",
+    "description": "Buses replace trains between Caulfield and South Yarra due to an equipment fault.  Passengers travelling between the City and Caulfield are advised to take a Cranbourne/Pakenham line train. Passengers travelling to/from Malvern, Toorak, Armadale, Hawksburn and South Yarra are advised to take a replacement bus between Caulfield and South Yarra. Buses have been ordered, will take up to 60 minutes to arrive. Passengers are advised to consider local alternative transport. A train service will operate between Frankston and Caulfield, with delays to the service. Allow extra travel time.  Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
     "id": "5912750f-14a7-54df-8dca-0457d3c39610",
     "first_seen": "2026-09-08T20:54:51.638670+00:00",
     "header": "Cancellation",
