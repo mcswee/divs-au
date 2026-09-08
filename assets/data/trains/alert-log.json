@@ -1,5 +1,48 @@
 [
   {
+    "id": "e2a34d53-0358-53cd-be99-0dde822c2a1f",
+    "first_seen": "2026-09-08T13:47:59.646272+00:00",
+    "header": "Planned Works",
+    "description": "All trains will start and end at Southern Cross from 9pm to last service each night, Monday 7 September to Wednesday 9 September, while maintenance and renewal works take place. From City  Take a train from Platforms 1, 2 or 3 or 4 at Flinders Street and change at Southern Cross. From City Loop  Take a City Circle train from Platform 1 and change at Southern Cross. To City  Change at Southern Cross and take a City Circle train from Platform 9 to Flinders Street. To City Loop  Change at Southern Cross and take a train from Platforms 9 and 10.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB:",
+      "aus:vic:vic-02-CGB-R:"
+    ]
+  },
+  {
+    "id": "93b4b6d6-e332-5928-acb6-24d2f2440b4d",
+    "first_seen": "2026-09-08T13:47:59.646272+00:00",
+    "header": "Planned Works",
+    "description": "All trains will start and end at Southern Cross from 9pm to last service each night, Monday 7 September to Wednesday 9 September, while maintenance and renewal works take place. From City  Take a train from Platforms 1, 2 or 3 or 4 at Flinders Street and change at Southern Cross. From City Loop  Take a City Circle train from Platform 1 and change at Southern Cross. To City  Change at Southern Cross and take a City Circle train from Platform 9 to Flinders Street. To City Loop  Change at Southern Cross and take a train from Platforms 9 and 10.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
+    "id": "944912c5-e7e7-5fd2-b80a-b4489032e236",
+    "first_seen": "2026-09-08T13:47:59.646272+00:00",
+    "header": "Planned Works",
+    "description": "All trains will start and end at Southern Cross from 9pm to last service each night, Monday 7 September to Wednesday 9 September, while maintenance and renewal works take place. From City  Take a train from Platforms 1, 2 or 3 or 4 at Flinders Street and change at Southern Cross. From City Loop  Take a City Circle train from Platform 1 and change at Southern Cross. To City  Change at Southern Cross and take a City Circle train from Platform 9 to Flinders Street. To City Loop  Change at Southern Cross and take a train from Platforms 9 and 10.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "e5a2c3b1-dea8-5153-836b-e71d1e69dbec",
+    "first_seen": "2026-09-08T13:47:59.646272+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Newport and Werribee from 11.50pm to last service each night, Monday 7 September to Wednesday 9 September, while project works take place. Note: Buses operate in one direction from Newport to Werribee during this time.  Allow extra travel time. Replacement buses are subject to local traffic conditions Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
     "id": "aa2d6bc3-f84a-5c66-a5b4-d50660ecccf4",
     "first_seen": "2026-09-08T09:00:27.693474+00:00",
     "header": "Cancellation",
