@@ -57553,7 +57553,7 @@
         "given": "Kevin",
         "family": "HOGAN",
         "start": "2019-05-18",
-        "end": "2022-05-21",
+        "end": "2025-05-03",
         "parties": [
           {
             "party": "NAT",
@@ -57563,6 +57563,20 @@
         ],
         "notes": []
       },
+      {
+        "given": "Kevin",
+        "family": "HOGAN",
+        "start": "2025-05-03",
+        "end": "1900-01-01",
+        "parties": [
+          {
+            "party": "NAT",
+            "start": "2013-09-07",
+            "end": "2026-08-21"
+          }
+        ],
+        "notes": []
+      }
       {
         "given": "Kevin",
         "family": "HOGAN",
