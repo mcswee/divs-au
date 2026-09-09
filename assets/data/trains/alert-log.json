@@ -1,5 +1,85 @@
 [
   {
+    "id": "0574ff67-cfd8-5d26-85ef-b9b3f8bad71d",
+    "first_seen": "2026-09-09T20:42:50.783659+00:00",
+    "header": "Cancellation",
+    "description": "The 5:51am East Pakenham to Town Hall service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-V35:"
+    ]
+  },
+  {
+    "id": "68dd6b88-c9e4-5868-82a5-57d18f96a172",
+    "first_seen": "2026-09-09T20:42:50.783659+00:00",
+    "header": "Cancellation",
+    "description": "The 5:54am Sunbury to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "ad9a1585-b9db-5c84-a94c-56808baa541c",
+    "first_seen": "2026-09-09T20:42:50.783659+00:00",
+    "header": "Cancellation",
+    "description": "The 5:53am Arden to Cranbourne service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-V25:"
+    ]
+  },
+  {
+    "id": "f0a667a2-72c9-5923-b871-4b47ec6f0016",
+    "first_seen": "2026-09-09T20:42:50.783659+00:00",
+    "header": "Cancellation",
+    "description": "The 6:34am Arden to Cranbourne service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "144031b3-b7b8-5f66-9f81-dac54678e8cf",
+    "first_seen": "2026-09-09T20:42:50.783659+00:00",
+    "header": "Cancellation",
+    "description": "The 6:44am East Pakenham to Town Hall service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-ECH:"
+    ]
+  },
+  {
+    "id": "701e817e-cf1f-5156-8ebb-bffa7dc54d68",
+    "first_seen": "2026-09-09T20:42:50.783659+00:00",
+    "header": "Other Information",
+    "description": "The 6:05am Flinders Street to Frankston service is currently running up to 10 minutes late due to an earlier disruptive passenger.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "d4f58797-2557-55b6-9049-615f63945ccb",
+    "first_seen": "2026-09-09T20:42:50.783659+00:00",
+    "header": "Cancellation",
+    "description": "The 7:04am Town Hall to Sunbury service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "5d4a222a-80e2-52c1-af00-c21c14ddd994",
+    "first_seen": "2026-09-09T20:42:50.783659+00:00",
+    "header": "Cancellation",
+    "description": "The 7:03am Watergardens to Town Hall service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
     "id": "bee88a76-e987-5039-9b8f-74fc8cbe4cee",
     "first_seen": "2026-09-09T13:51:26.733892+00:00",
     "header": "Planned Works",
