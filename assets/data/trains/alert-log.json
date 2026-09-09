@@ -1,5 +1,15 @@
 [
   {
+    "id": "5ced97b0-da8b-50d3-95ee-1ee630e8d2c3",
+    "first_seen": "2026-09-09T04:13:02.442999+00:00",
+    "header": "Cancellation",
+    "description": "The 1:17pm Frankston to Flinders Street service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
     "id": "61136113-8f60-52e6-a1be-688c27a8411a",
     "first_seen": "2026-09-09T01:24:37.391746+00:00",
     "header": "Minor Delay",
