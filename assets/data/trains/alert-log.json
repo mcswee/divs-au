@@ -1,5 +1,27 @@
 [
   {
+    "id": "61136113-8f60-52e6-a1be-688c27a8411a",
+    "first_seen": "2026-09-09T01:24:37.391746+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the Toorak area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
+    "id": "7c7c6349-eb14-5ad2-9b83-950176211aaf",
+    "first_seen": "2026-09-09T01:24:37.391746+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the Toorak area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:",
+      "aus:vic:vic-02-CBE-R:"
+    ]
+  },
+  {
     "id": "8e42647e-e7c7-5973-9dd3-5c10b755c439",
     "first_seen": "2026-09-08T23:11:23.357081+00:00",
     "header": "Cancellation",
