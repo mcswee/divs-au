@@ -1,5 +1,115 @@
 [
   {
+    "id": "86caabb7-f606-54d8-bc00-97f948956697",
+    "first_seen": "2026-09-09T23:03:57.227419+00:00",
+    "header": "Cancellation",
+    "description": "The 8:02am Cranbourne to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "95c07da1-7988-5cae-97d3-cd24956f3f2c",
+    "first_seen": "2026-09-09T23:03:57.227419+00:00",
+    "header": "Cancellation",
+    "description": "The 8:04am East Pakenham to Arden service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "b453aaca-3808-5450-bf26-2b197c2e271d",
+    "first_seen": "2026-09-09T23:03:57.227419+00:00",
+    "header": "Cancellation",
+    "description": "The 8:23am Dandenong to Town Hall service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "b9902c59-5e22-5655-a2ef-8697cdb4032a",
+    "first_seen": "2026-09-09T23:03:57.227419+00:00",
+    "header": "Cancellation",
+    "description": "The 8:23am Dandenong to Town Hall service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "b009004e-f63a-5b5c-8d17-53ed18948b04",
+    "first_seen": "2026-09-09T23:03:57.227419+00:00",
+    "header": "Cancellation",
+    "description": "The 8:37am Town Hall to East Pakenham service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "7cb390c4-e6d0-53ab-ad07-119262ce36b9",
+    "first_seen": "2026-09-09T23:03:57.227419+00:00",
+    "header": "Cancellation",
+    "description": "The 8:46am Anzac to West Footscray service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "6875b136-acd6-5243-9465-85daf904ee15",
+    "first_seen": "2026-09-09T23:03:57.227419+00:00",
+    "header": "Cancellation",
+    "description": "The 8:56am Anzac to Watergardens service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "1c3b7d40-da3b-570e-86aa-51ba32fd072f",
+    "first_seen": "2026-09-09T23:03:57.227419+00:00",
+    "header": "Cancellation",
+    "description": "The 9:06am Town Hall to West Footscray service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "1dcb0ed7-222f-557e-9a43-66f72ed5a308",
+    "first_seen": "2026-09-09T23:03:57.227419+00:00",
+    "header": "Cancellation",
+    "description": "The 9:14am Anzac to West Footscray service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "2dece37b-d66d-5151-bdf2-4821842bd283",
+    "first_seen": "2026-09-09T23:03:57.227419+00:00",
+    "header": "Cancellation",
+    "description": "The 9:23am West Footscray to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "b9e47c5a-7af2-55e3-a21c-8ba5b76768ac",
+    "first_seen": "2026-09-09T23:03:57.227419+00:00",
+    "header": "Cancellation",
+    "description": "The 9:32am Arden to Dandenong service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
     "id": "0574ff67-cfd8-5d26-85ef-b9b3f8bad71d",
     "first_seen": "2026-09-09T20:42:50.783659+00:00",
     "header": "Cancellation",
