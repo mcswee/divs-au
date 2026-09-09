@@ -1,5 +1,106 @@
 [
   {
+    "id": "6929df20-d635-5530-a5c0-d524bc6c7e6b",
+    "first_seen": "2026-09-09T06:20:15.254242+00:00",
+    "header": "Cancellation",
+    "description": "The 4:03pm Arden to East Pakenham service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "c11961bb-0939-5b60-96b7-51a03bc4e45d",
+    "first_seen": "2026-09-09T06:20:15.254242+00:00",
+    "header": "Cancellation",
+    "description": "The 4:01pm Sunbury to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "1c512169-3ea7-5f17-ad69-99a96446be53",
+    "first_seen": "2026-09-09T06:20:15.254242+00:00",
+    "header": "Other Information",
+    "description": "The 3:11pm East Pakenham to Arden service is currently running up to 10 minutes behind schedule.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "cc3b6d08-cebb-5436-bc5b-385614d57c3e",
+    "first_seen": "2026-09-09T06:20:15.254242+00:00",
+    "header": "Cancellation",
+    "description": "The 4:18pm Watergardens to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "8a5fcd75-da7b-5db9-bfdd-23b4c1ff8d6d",
+    "first_seen": "2026-09-09T06:20:15.254242+00:00",
+    "header": "Cancellation",
+    "description": "The 4:36pm Sunbury to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "4ea7099a-5188-5087-8135-fda2c54c3c00",
+    "first_seen": "2026-09-09T06:20:15.254242+00:00",
+    "header": "Cancellation",
+    "description": "The 4:24pm West Footscray to Anzac service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "e35e6706-abfd-5117-bf5c-5fdce3ec4d7a",
+    "first_seen": "2026-09-09T06:20:15.254242+00:00",
+    "header": "Cancellation",
+    "description": "The 4:36pm Arden to East Pakenham service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "ba414130-e264-5f7a-99a8-eefbfa61edc8",
+    "first_seen": "2026-09-09T06:20:15.254242+00:00",
+    "header": "Cancellation",
+    "description": "The 4:43pm Arden to Cranbourne service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-05-V15:"
+    ]
+  },
+  {
+    "id": "7ccf2298-6d5b-5dc3-a8ca-92afdcf32eab",
+    "first_seen": "2026-09-09T06:20:15.254242+00:00",
+    "header": "Cancellation",
+    "description": "The 4:47pm Arden to East Pakenham service has been cancelled.",
+    "effect": "NO_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "46854a55-2ba8-5445-8287-e1da2d9847d2",
+    "first_seen": "2026-09-09T06:20:15.254242+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a disruptive passenger at Caulfield. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
     "id": "5ced97b0-da8b-50d3-95ee-1ee630e8d2c3",
     "first_seen": "2026-09-09T04:13:02.442999+00:00",
     "header": "Cancellation",
