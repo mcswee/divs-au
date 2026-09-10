@@ -1,5 +1,15 @@
 [
   {
+    "id": "39661507-5a25-5ba5-af26-50297704acd6",
+    "first_seen": "2026-09-10T04:10:04.421038+00:00",
+    "header": "Planned work: Greensborough Station car park closure",
+    "description": "Monday 6 July to early October Due to project works, approximately 15 car spaces at Greensborough Station on Poulter Avenue will be closed. For your safety, please follow any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
     "id": "86caabb7-f606-54d8-bc00-97f948956697",
     "first_seen": "2026-09-09T23:03:57.227419+00:00",
     "header": "Cancellation",
