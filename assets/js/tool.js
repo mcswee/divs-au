@@ -168,23 +168,25 @@
         lyr.on("mouseout", function () { 
           var division = assignment[code];
           var colour = division ? (divisionColours[division] || "#999") : "#999";
-          lyr.setStyle({ color: "#ffffff", weight: 0.6, fillColor: colour, fillOpacity: 0.65 });
+          lyr.setStyle({ color: "#ffffff", weight: 0.6, fillColor: colour, fillOpacity: 0.45 });
         });
 
         var ref = sa1Reference[code];
         if (ref) {
           var displayCode = code.split("-")[0];
           var currentDiv = assignment[code];
-          var divisionText = currentDiv;
+          var divisionText;
           if (currentDiv !== ref.originalDivision) {
-            divisionText = '<span style="opacity:0.5; font-style:italic;">' + escapeHtml(ref.originalDivision) + '</span> → ' + escapeHtml(currentDiv);
+            divisionText = '<span style="opacity:0.5; font-style:italic;">' + escapeHtml(ref.originalDivision) + '</span> &rarr; ' + escapeHtml(currentDiv);
+          } else {
+            divisionText = escapeHtml(currentDiv);
           }
           lyr.bindTooltip(
             '<span class="sa1-sa2">' + escapeHtml(ref.sa2Name) + '</span>' +
             'SA1 ' + displayCode + '<br>' +
-            'Division: ' + divisionText + '<br>' +
+            'Original: ' + divisionText + '<br>' +
             'Actual: ' + ref.actual.toLocaleString() + ' &middot; Projected: ' + ref.projected.toLocaleString(),
-            { className: "sa1-tooltip", sticky: true }
+            { className: "sa1-tooltip", sticky: false, opacity: 0.85 }
           );
         }
       }
@@ -194,14 +196,14 @@
   }
 
   function styleForFeature(feature) {
-    var code = feature.properties.SA1_CODE21;
+    var code = feature.properties.SA1_CODE_DIV;
     var division = assignment[code];
     var colour = division ? (divisionColours[division] || "#999") : "#999";
     return {
       color: "#ffffff",
       weight: 0.6,
       fillColor: colour,
-      fillOpacity: 0.65
+      fillOpacity: 0.45
     };
   }
 
@@ -211,7 +213,7 @@
     var division = assignment[code];
     var colour = division ? (divisionColours[division] || "#999") : "#999";
     layers.forEach(function (lyr) {
-      lyr.setStyle({ fillColor: colour, fillOpacity: 0.65 });
+      lyr.setStyle({ fillColor: colour, fillOpacity: 0.45 });
     });
   }
 
