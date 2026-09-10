@@ -69,6 +69,7 @@ layout: null
     }
 
     #sidebar-header h1 {
+        font-family: 'Vollkorn', serif;
         font-size: 1.3rem;
         color: var(--brand-main);
         margin-bottom: 4px;
@@ -322,11 +323,15 @@ layout: null
     /* SA1 hover/select label on map */
     .sa1-tooltip {
         font-family: "Atkinson Hyperlegible Mono", monospace;
-        font-size: 0.74rem;
+        font-size: 0.66rem;
+        padding: 4px 7px;
+        line-height: 1.4;
+        pointer-events: none;
     }
     .sa1-tooltip .sa1-sa2 {
         font-family: 'Inter', sans-serif;
         font-weight: 600;
+        font-size: 0.72rem;
         display: block;
         margin-bottom: 2px;
     }
@@ -426,8 +431,7 @@ layout: null
         Interactive map of ABS statistical areas. Select a division in the sidebar, then click an SA1 to assign or unassign it. Double-click an SA1 to assign the entire SA2.
     </p>
 
-</main>
-
+</main
 <footer>
 {% include acknowledge.html %} 
 <div class="site-footer">
@@ -440,7 +444,7 @@ layout: null
     </ul>
 </div>
 </footer>
-
+  
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="/assets/js/nav.js"></script>
 <script src="/assets/js/tool.js"></script>
