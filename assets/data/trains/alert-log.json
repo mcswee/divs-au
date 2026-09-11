@@ -1,5 +1,16 @@
 [
   {
+    "id": "a27bf82c-7a58-5631-a14e-a9352f0612de",
+    "first_seen": "2026-09-11T17:41:24.409814+00:00",
+    "header": "Planned work: Sunshine Station car park closures",
+    "description": "Saturday 12 September to Tuesday 15 September Due to project works approximately 40 car spaces will be closed in the Station Place car park. For your safety, please follow signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY-R:",
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
     "id": "c6bd3f0b-1576-585a-9622-6b648e165f30",
     "first_seen": "2026-09-11T09:03:47.540521+00:00",
     "header": "Major Delay",
