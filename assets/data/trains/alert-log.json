@@ -1,5 +1,27 @@
 [
   {
+    "id": "c6bd3f0b-1576-585a-9622-6b648e165f30",
+    "first_seen": "2026-09-11T09:03:47.540521+00:00",
+    "header": "Major Delay",
+    "description": "Delays over 60\u00a0 minutes due to an ongoing equipment fault in the Footscray area. Maintenance staff are on-site and continue to fault find / repair the issue. Select trains may terminate/originate from intermediate stations. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WIL:",
+      "aus:vic:vic-02-WIL-R:"
+    ]
+  },
+  {
+    "id": "96f44da3-23b9-596d-951c-ac5cb4607762",
+    "first_seen": "2026-09-11T09:03:47.540521+00:00",
+    "header": "Major Delay",
+    "description": "Delays over 60\u00a0 minutes due to an ongoing equipment fault in the Footscray area. Maintenance staff are on-site and continue to fault find / repair the issue. Select trains may terminate/originate from intermediate stations. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
     "id": "39661507-5a25-5ba5-af26-50297704acd6",
     "first_seen": "2026-09-10T04:10:04.421038+00:00",
     "header": "Planned work: Greensborough Station car park closure",
