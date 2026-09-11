@@ -1,5 +1,16 @@
 [
   {
+    "id": "d4caf76b-5fde-591e-8149-3451d88c234e",
+    "first_seen": "2026-09-11T20:43:13.248600+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a police request in the Lilydale area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
     "id": "a27bf82c-7a58-5631-a14e-a9352f0612de",
     "first_seen": "2026-09-11T17:41:24.409814+00:00",
     "header": "Planned work: Sunshine Station car park closures",
