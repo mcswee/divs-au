@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-06T17:34:48.428781",
+  "generated": "2026-09-13T18:02:12.101570",
   "groups": {
     "frankston": "Frankston / Stony Point",
     "burnley": "Burnley",
@@ -1801,6 +1801,13 @@
       "name": "Sherwood Park",
       "groups": [
         "vline"
+      ]
+    },
+    {
+      "id": "vic:rail:SGS",
+      "name": "Showgrounds",
+      "groups": [
+        "showgrounds"
       ]
     },
     {
