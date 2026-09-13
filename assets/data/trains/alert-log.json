@@ -1,5 +1,75 @@
 [
   {
+    "id": "3393d302-22a0-5b66-9551-8b2b8b44b837",
+    "first_seen": "2026-09-13T14:12:51.603294+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a police request in the Clayton area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "71c64077-512b-5a9f-be39-2ba9616279ba",
+    "first_seen": "2026-09-13T14:12:51.603294+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a police request in the Clayton area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE-R:",
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "24ef2694-69ab-5955-bd6b-6d3b15953c69",
+    "first_seen": "2026-09-13T14:12:51.603294+00:00",
+    "header": "Planned work: Buses replace trains between North Melbourne, Newport and Williamstown",
+    "description": "8.30pm to last service each night, Sunday 13 September to Wednesday 16 September",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WIL:",
+      "aus:vic:vic-02-WIL-R:",
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "5f83df70-d966-59bf-8827-86e311e58b19",
+    "first_seen": "2026-09-13T14:12:51.603294+00:00",
+    "header": "Planned work: Night works between North Melbourne and Newport",
+    "description": "9pm to 4am each night, Sunday 13 September to Thursday 17 September  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Werribee and Williamstown lines. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WIL-R:",
+      "aus:vic:vic-02-WIL:",
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "db9c0a77-0e71-59de-8592-ae58afc0cf40",
+    "first_seen": "2026-09-13T14:12:51.603294+00:00",
+    "header": "Planned work: Night works between North Melbourne and Kensington",
+    "description": "9pm to 4am each night, Sunday 13 September to Thursday 17 September  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Craigieburn Line. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:",
+      "aus:vic:vic-02-CGB-R:"
+    ]
+  },
+  {
+    "id": "eea88548-bf3a-5568-bc56-c5b9128a985a",
+    "first_seen": "2026-09-13T14:12:51.603294+00:00",
+    "header": "Planned work: Trains run direct to and from Flinders Street, not via the City Loop",
+    "description": "9pm to last service each night, Sunday 13 September to Wednesday 16 September\u00a0 \u00a0 From Southern Cross Take a City Circle train from Platform 9 and change at Flinders Street or alternatively take a train from Platform 10 and change at Richmond To Southern Cross Change at Flinders Street and take a train from platforms 1, 2 or 3 To City Loop Change at Flinders Street and take a train from platforms 1, 2 or 3 From City Loop Take a City Circle train from Platform 1 and change at Flinders Street or alternatively take a train from Platform 4 and change at Richmond",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
     "id": "1e1c71e1-5623-584f-b9e2-5a61beb02132",
     "first_seen": "2026-09-13T09:41:06.822497+00:00",
     "header": "Planned Works",
