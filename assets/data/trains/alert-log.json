@@ -1,5 +1,16 @@
 [
   {
+    "id": "c99a4f7e-f71c-551d-b94c-0c774bcd7361",
+    "first_seen": "2026-09-13T00:13:09.622746+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier trespasser in the Dandenong area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
     "id": "d4caf76b-5fde-591e-8149-3451d88c234e",
     "first_seen": "2026-09-11T20:43:13.248600+00:00",
     "header": "Minor Delay",
