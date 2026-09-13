@@ -1,5 +1,38 @@
 [
   {
+    "id": "1e1c71e1-5623-584f-b9e2-5a61beb02132",
+    "first_seen": "2026-09-13T09:41:06.822497+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between North Melbourne, Newport and Williamstown from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "b3342bee-90fd-597d-a960-0ef0eb28f254",
+    "first_seen": "2026-09-13T09:41:06.822497+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between North Melbourne, Newport and Williamstown from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WIL-R:",
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
+    "id": "b094e033-83c5-5ee7-a76e-d759f6b01d02",
+    "first_seen": "2026-09-13T09:41:06.822497+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 9pm to last service tonight, while maintenance and renewal works take place. From Southern Cross Take a City Circle train from Platform 9 and change at Flinders Street. To Southern Cross Change at Flinders Street and take a train from Platforms 1, 2 or 3. To City Loop Change at Flinders Street and take a train from Platforms 1, 2 or 3. From City Loop Take a City Circle train from Platform 1 and change at Flinders Street.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
     "id": "c99a4f7e-f71c-551d-b94c-0c774bcd7361",
     "first_seen": "2026-09-13T00:13:09.622746+00:00",
     "header": "Minor Delay",
