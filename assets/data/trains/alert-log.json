@@ -1,5 +1,16 @@
 [
   {
+    "id": "cca09ee5-46b8-5718-aa7f-28139adac222",
+    "first_seen": "2026-09-14T04:27:27.831525+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes after an earlier track fault in the Burnley area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-GWY-R:",
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
     "id": "3393d302-22a0-5b66-9551-8b2b8b44b837",
     "first_seen": "2026-09-13T14:12:51.603294+00:00",
     "header": "Minor Delay",
