@@ -1,5 +1,25 @@
 [
   {
+    "id": "d17d9d02-2c20-5ace-837b-b12050aeea68",
+    "first_seen": "2026-09-14T16:29:36.511350+00:00",
+    "header": "Planned work: Upper Ferntree Gully Station night works",
+    "description": "10pm Monday 14 September to 4am Thursday 1 October There are night and weekend works occurring at Upper Ferntree Gully Station to install tactile ground surface indicators (TGSIs) on platforms 1 and 2. This will make the station safer and improve accessibility for everyone. What to expect:  medium to high levels of noise may be experienced at the station and around the Railway Avenue level crossing at times temporary fencing around work zones pedestrian detours in place in the station precinct as required limited access to Upper Ferntree Gully Station during this time work crews will use the Railway Avenue level crossing to access the rail corridor and to drive machinery safely onto track, before moving them down to Upper Ferntree Gully Station some materials and equipment will be stored on the corner of Railway Avenue and Quarry Road, before being removed from site at a later date.  At times these works will coincide with trains not running on the Belgrave Line to reduce disruptions to passengers. Buses will replace trains during this time. The timing of these works may change depending on weather or unavoidable circumstances.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "fbda02bc-9e77-53df-bdce-35182110470b",
+    "first_seen": "2026-09-14T16:29:36.511350+00:00",
+    "header": "Planned work: Ferntree Gully Station night works",
+    "description": "10pm Monday 14 September to 4am Thursday 1 October There are night and weekend works occurring at Ferntree Gully Station to install tactile ground surface indicators (TGSIs) on platforms 1 and 2. This will make the station safer and improve accessibility for everyone. What to expect:  medium to high levels of noise may be experienced at times temporary fencing around work zones pedestrian detours in place in the station precinct as required limited access to Ferntree Gully Station during this time.  At times these works will coincide with trains not running on the Belgrave Line to reduce disruptions to passengers. Buses will replace trains during this time. The timing of these works may change depending on weather or unavoidable circumstances.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
     "id": "47c89cdf-f2d7-5e6d-9e5f-f2446ec76012",
     "first_seen": "2026-09-14T10:05:28.047395+00:00",
     "header": "Planned Works",
