@@ -1,5 +1,91 @@
 [
   {
+    "id": "47c89cdf-f2d7-5e6d-9e5f-f2446ec76012",
+    "first_seen": "2026-09-14T10:05:28.047395+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Flagstaff, Newport and Williamstown from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WIL:",
+      "aus:vic:vic-02-WIL-R:"
+    ]
+  },
+  {
+    "id": "d86075ce-32a8-5a47-9cbd-f6ba85c9de2d",
+    "first_seen": "2026-09-14T10:05:28.047395+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Flagstaff, Newport and Williamstown from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "b12d623a-4a09-5461-bf0b-2700046eff41",
+    "first_seen": "2026-09-14T10:05:28.047395+00:00",
+    "header": "Planned Works",
+    "description": "Trains will operate as a shuttle service between Southern Cross and Upfield/Craigieburn from 8:30pm to last train tonight, while maintenance and renewal works take place. From City Take a train from Platform 1, 2 or 3 at Flinders Street and change at Southern Cross. From City Loop Take a City Circle train from Platform 1 and change at Southern Cross. To City Change at Southern Cross and take a City Circle train from Platform 9 to Flinders Street. To City Loop Change at Southern Cross and take a train from Platform 9 or 10. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
+    "id": "d744b414-d84e-5657-ae5b-14e47bd9e581",
+    "first_seen": "2026-09-14T10:05:28.047395+00:00",
+    "header": "Planned Works",
+    "description": "Trains will operate as a shuttle service between Southern Cross and Upfield/Craigieburn from 8:30pm to last train tonight, while maintenance and renewal works take place. From City Take a train from Platform 1, 2 or 3 at Flinders Street and change at Southern Cross. From City Loop Take a City Circle train from Platform 1 and change at Southern Cross. To City Change at Southern Cross and take a City Circle train from Platform 9 to Flinders Street. To City Loop Change at Southern Cross and take a train from Platform 9 or 10. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "58b287d7-8d6c-5666-9311-b54504ab71e0",
+    "first_seen": "2026-09-14T10:05:28.047395+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From Southern Cross Take a City Circle train from Platform 9 and change at Flinders Street or alternatively take a train from Platform 10 and change at Richmond To Southern Cross Change at Flinders Street and take a train from platforms 1, 2 or 3 To City Loop Change at Flinders Street and take a train from platforms 1, 2 or 3 From City Loop Take a City Circle train from Platform 1 and change at Flinders Street or alternatively take a train from Platform 4 and change at Richmond Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "128548eb-40a0-5dff-91ed-f195722b34ec",
+    "first_seen": "2026-09-14T10:05:28.047395+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after a police request in the Oakleigh area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
+    "id": "a0db9872-c38d-5a9d-b830-ffce5d383ddc",
+    "first_seen": "2026-09-14T10:05:28.047395+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after a police request in the Oakleigh area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:",
+      "aus:vic:vic-02-CBE-R:"
+    ]
+  },
+  {
+    "id": "78aedb6e-84bf-57d7-8167-ccc10d43d4e9",
+    "first_seen": "2026-09-14T10:05:28.047395+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after a police request in the Oakleigh area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY-R:",
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
     "id": "cca09ee5-46b8-5718-aa7f-28139adac222",
     "first_seen": "2026-09-14T04:27:27.831525+00:00",
     "header": "Minor Delay",
