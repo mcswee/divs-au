@@ -1,5 +1,38 @@
 [
   {
+    "id": "d9767e4c-2b39-5c1b-8a9f-828a14f1c426",
+    "first_seen": "2026-09-14T21:39:49.674360+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the Boronia area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-BEG-R:"
+    ]
+  },
+  {
+    "id": "cfca16ca-de03-5f4e-812e-adf445be3216",
+    "first_seen": "2026-09-14T21:39:49.674360+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes after an operational incident in the Westona area.  Trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "d0fed8a0-3db6-5406-8b96-1607643a7ce6",
+    "first_seen": "2026-09-14T21:39:49.674360+00:00",
+    "header": "Planned work: Craigieburn Station car space closure",
+    "description": "6am Tuesday 15 September to 6pm Wednesday 23 September Up to 85 spaces in the Craigieburn Station carpark are closed, due to maintenance works. For your safety, please observe any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB-R:",
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
     "id": "d17d9d02-2c20-5ace-837b-b12050aeea68",
     "first_seen": "2026-09-14T16:29:36.511350+00:00",
     "header": "Planned work: Upper Ferntree Gully Station night works",
