@@ -1,5 +1,38 @@
 [
   {
+    "id": "dcf058c4-96ed-556d-9f25-272c7db08f6c",
+    "first_seen": "2026-09-15T04:27:57.821485+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier trespasser in the Oakleigh area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE-R:",
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "ca2fb92a-6feb-5b30-848b-f036b342c015",
+    "first_seen": "2026-09-15T04:27:57.821485+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier trespasser in the Oakleigh area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
+    "id": "341dd519-c242-5d14-8257-b53fc0934751",
+    "first_seen": "2026-09-15T04:27:57.821485+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier trespasser in the Oakleigh area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
     "id": "d9767e4c-2b39-5c1b-8a9f-828a14f1c426",
     "first_seen": "2026-09-14T21:39:49.674360+00:00",
     "header": "Minor Delay",
