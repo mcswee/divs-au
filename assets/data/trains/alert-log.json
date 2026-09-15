@@ -1,5 +1,60 @@
 [
   {
+    "id": "dc456dde-883a-5f35-b3a9-34b8124b9a42",
+    "first_seen": "2026-09-15T09:34:12.798309+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between North Melbourne, Newport and Williamstown from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WIL-R:",
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
+    "id": "9f6caf6a-2961-5b52-a5c6-b9b522ced2a3",
+    "first_seen": "2026-09-15T09:34:12.798309+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between North Melbourne, Newport and Williamstown from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "0b022933-47b6-5d07-bb85-ee8eccd0d1ac",
+    "first_seen": "2026-09-15T09:34:12.798309+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to extreme weather. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "1d211244-b755-53ed-aa68-a7b87a25f668",
+    "first_seen": "2026-09-15T09:34:12.798309+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to extreme weather. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-BEG-R:"
+    ]
+  },
+  {
+    "id": "732c612f-276d-5f86-95b0-98795eb2406a",
+    "first_seen": "2026-09-15T09:34:12.798309+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From Southern Cross Take a City Circle train from Platform 9 and change at Flinders Street or alternatively take a train from Platform 10 and change at Richmond To Southern Cross Change at Flinders Street and take a train from platforms 1, 2 or 3 To City Loop Change at Flinders Street and take a train from platforms 1, 2 or 3 From City Loop Take a City Circle train from Platform 1 and change at Flinders Street or alternatively take a train from Platform 4 and change at Richmond Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
     "id": "dcf058c4-96ed-556d-9f25-272c7db08f6c",
     "first_seen": "2026-09-15T04:27:57.821485+00:00",
     "header": "Minor Delay",
