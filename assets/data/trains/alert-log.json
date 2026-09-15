@@ -1,5 +1,15 @@
 [
   {
+    "id": "88892585-a55a-5818-b165-bae20f0f48e2",
+    "first_seen": "2026-09-15T23:36:45.076482+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a train fault in the Craigieburn area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
     "id": "dc456dde-883a-5f35-b3a9-34b8124b9a42",
     "first_seen": "2026-09-15T09:34:12.798309+00:00",
     "header": "Planned Works",
