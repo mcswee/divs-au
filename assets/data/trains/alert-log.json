@@ -1,5 +1,25 @@
 [
   {
+    "id": "de2dcfc1-e31f-523b-a7b4-38cac4e3b6a9",
+    "first_seen": "2026-09-16T21:05:15.583340+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 25 minutes due to earlier Vandalism in the Ascot Vale area. Police have attended to the issue. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "65706c9b-82dd-5971-9a91-0aed6c3d35bc",
+    "first_seen": "2026-09-16T21:05:15.583340+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to earlier vandalism in the Alphington area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
     "id": "6e4ba530-c0c8-5675-9408-b7f28f0de36a",
     "first_seen": "2026-09-16T09:28:12.066312+00:00",
     "header": "Planned Works",
