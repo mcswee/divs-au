@@ -1,5 +1,185 @@
 [
   {
+    "id": "6e4ba530-c0c8-5675-9408-b7f28f0de36a",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Flagstaff, Newport and Williamstown from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "c4ce5817-9b05-5914-b691-231c3e801ae7",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Flagstaff, Newport and Williamstown from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WIL:",
+      "aus:vic:vic-02-WIL-R:"
+    ]
+  },
+  {
+    "id": "2c581dc0-b226-5d54-8036-63122173f561",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From Southern Cross Take a City Circle train from Platform 9 and change at Flinders Street or alternatively take a train from Platform 10 and change at Richmond To Southern Cross Change at Flinders Street and take a train from platforms 1, 2 or 3 To City Loop Change at Flinders Street and take a train from platforms 1, 2 or 3 From City Loop Take a City Circle train from Platform 1 and change at Flinders Street or alternatively take a train from Platform 4 and change at Richmond Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "2a87b629-883d-5bc3-a8df-3b582e06faa7",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Planned Works",
+    "description": "Trains will operate as a shuttle service between Southern Cross and Craigieburn/Upfield from 9:00pm to last train tonight, while maintenance and renewal works take place. From City  Take a train from Platform 1, 2 or 3 at Flinders Street and change at Southern Cross. From City Loop  Take a City Circle train from Platform 1 and change at Southern Cross. To City  Change at Southern Cross and take a City Circle train from Platform 9 to Flinders Street. To City Loop  Change at Southern Cross and take a train from Platform 9 or 10.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "68e00931-ee8e-5a6e-94b3-13e655ed6824",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Planned Works",
+    "description": "Trains will operate as a shuttle service between Southern Cross and Craigieburn/Upfield from 9:00pm to last train tonight, while maintenance and renewal works take place. From City  Take a train from Platform 1, 2 or 3 at Flinders Street and change at Southern Cross. From City Loop  Take a City Circle train from Platform 1 and change at Southern Cross. To City  Change at Southern Cross and take a City Circle train from Platform 9 to Flinders Street. To City Loop  Change at Southern Cross and take a train from Platform 9 or 10.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
+    "id": "9e39879c-12f0-50f9-b560-7f000ed1e2d1",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after police attended to a trespasser in the Flinders Street area.  Select trains may terminate/originate at intermediate locations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "8acd206b-f835-5bad-ae11-62858d995e37",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after police attended to a trespasser in the Flinders Street area.  Select trains may terminate/originate at intermediate locations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "ca317ce3-b9d1-581a-a482-5f9112c29fef",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after police attended to a trespasser in the Flinders Street area.  Select trains may terminate/originate at intermediate locations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-ALM:"
+    ]
+  },
+  {
+    "id": "8093db28-1574-5d3b-b96d-9f0346b48515",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after police attended to a trespasser in the Flinders Street area.  Select trains may terminate/originate at intermediate locations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-GWY:",
+      "aus:vic:vic-02-GWY-R:"
+    ]
+  },
+  {
+    "id": "4deb2d57-baa4-51ed-9b7c-14c2b0180eb0",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after police attended to a trespasser in the Flinders Street area.  Select trains may terminate/originate at intermediate locations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "e2564eb0-9016-5d85-9f61-197594bd1f1b",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after police attended to a trespasser in the Flinders Street area.  Select trains may terminate/originate at intermediate locations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "73a01bc0-bd3d-54a9-bd10-17da5f7aaa09",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after police attended to a trespasser in the Flinders Street area.  Select trains may terminate/originate at intermediate locations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
+    "id": "222943e0-f130-5c5f-b938-2877f689e81c",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after police attended to a trespasser in the Flinders Street area.  Select trains may terminate/originate at intermediate locations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
+    "id": "e9fa4e62-c485-5553-b756-e3b028d5e23b",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after police attended to a trespasser in the Flinders Street area.  Select trains may terminate/originate at intermediate locations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "cc625d2c-6845-5804-be13-1a0893560cba",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after police attended to a trespasser in the Flinders Street area.  Select trains may terminate/originate at intermediate locations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WIL:",
+      "aus:vic:vic-02-WIL-R:"
+    ]
+  },
+  {
+    "id": "60de66f7-59f2-562b-aa5f-9d4ca1a84b9e",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after police attended to a trespasser in the Flinders Street area.  Select trains may terminate/originate at intermediate locations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SHM:",
+      "aus:vic:vic-02-SHM-R:"
+    ]
+  },
+  {
+    "id": "e6073258-1e1e-5008-8e46-681dd544c6cc",
+    "first_seen": "2026-09-16T09:28:12.066312+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after police attended to a trespasser in the Flinders Street area.  Select trains may terminate/originate at intermediate locations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
     "id": "88892585-a55a-5818-b165-bae20f0f48e2",
     "first_seen": "2026-09-15T23:36:45.076482+00:00",
     "header": "Minor Delay",
