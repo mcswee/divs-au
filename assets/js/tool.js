@@ -90,11 +90,11 @@
 
   function setupMap() {
     map = L.map("tool-map", { preferCanvas: true });
-    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
-      attribution: 'Tiles &copy; <a href="https://www.esri.com">Esri</a>|Data <a href="/copyright/">ABS</a>',
-      maxZoom: 19,
-      maxNativeZoom: 16
-    }).addTo(map);
+ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_3li0_1_3bd3e03fbf5a91dbb6cb9f61', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a> | Data <a href="/copyright">&copy; AEC & ABS</a>',
+    subdomains: 'abcd',
+    maxZoom: 20
+}).addTo(map);
   }
 
   function loadState(stateKey) {
