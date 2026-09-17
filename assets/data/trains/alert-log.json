@@ -1,5 +1,16 @@
 [
   {
+    "id": "10595974-aefa-5031-a054-247da4472b38",
+    "first_seen": "2026-09-17T21:07:22.191183+00:00",
+    "header": "Planned work: Ringwood East Station car space closure",
+    "description": "3am Friday 18 September to 5pm Monday 21 September Up to 50 spaces in the Ringwood East Station carpark are closed, due to maintenance works. For your safety, please observe any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
     "id": "50018d9a-ba1c-5675-a07c-9b342e06985b",
     "first_seen": "2026-09-17T14:49:30.424610+00:00",
     "header": "Planned Works",
