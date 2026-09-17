@@ -1,5 +1,36 @@
 [
   {
+    "id": "50018d9a-ba1c-5675-a07c-9b342e06985b",
+    "first_seen": "2026-09-17T14:49:30.424610+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Newport and Werribee from 11:45pm to last train tonight, while project works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "3e4a1e39-12d2-5164-b45e-220d9b43b210",
+    "first_seen": "2026-09-17T14:49:30.424610+00:00",
+    "header": "Planned work: Ferntree Gully Station car space closures",
+    "description": "11pm Thursday 17 September to 6pm Monday 21 September 40 car spaces in the Station Street and Underwood Road commuter car parks will be temporarily closed for project works to install tactile ground surface indicators (TGSIs) on platforms 1 and 2 at Ferntree Gully Station. The closed car spaces will allow work crews to safely access the rail corridor and store materials at this location. Accessible parking spaces will be temporarily relocated within the Underwood Road commuter car park. For your safety, please follow signage and instructions in place during this time. The timing of these works may change due to weather or unavoidable circumstances.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "ee15a07f-f96f-54e3-871c-9fe6bcf9d8f1",
+    "first_seen": "2026-09-17T14:49:30.424610+00:00",
+    "header": "Planned work: Upper Ferntree Gully Station car space closures",
+    "description": "11pm Thursday 17 September to 6pm Monday 21 September 30 car spaces in the Burwood Highway commuter car park will be temporarily closed for project works to install tactile ground surface indicators (TGSIs) on platforms 1 and 2 at Ferntree Gully Station. The closed car spaces will allow work crews to safely access the rail corridor and store materials at this location. For your safety, please follow signage and instructions in place during this time. The timing of these works may change due to weather or unavoidable circumstances.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
     "id": "de2dcfc1-e31f-523b-a7b4-38cac4e3b6a9",
     "first_seen": "2026-09-16T21:05:15.583340+00:00",
     "header": "Minor Delay",
