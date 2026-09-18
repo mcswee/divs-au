@@ -1,5 +1,71 @@
 [
   {
+    "id": "baeb7f9d-e0d2-504d-a97c-055f50707840",
+    "first_seen": "2026-09-18T09:09:09.452487+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains on sections of the Belgrave and Lilydale lines from 8:30pm Friday 18 September to last train Sunday 20 September, while maintenance and renewal works take place. From 8:30pm Friday 18 September to 3am Sunday 20 September: Buses replace trains between Blackburn, Belgrave and Lilydale. From 3am to last train Sunday 20 September: Buses replace trains between Box Hill, Belgrave and Lilydale. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-BEG-R:"
+    ]
+  },
+  {
+    "id": "e38f8cde-d566-59f7-9db5-e702f304e1a2",
+    "first_seen": "2026-09-18T09:09:09.452487+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains on sections of the Belgrave and Lilydale lines from 8:30pm Friday 18 September to last train Sunday 20 September, while maintenance and renewal works take place. From 8:30pm Friday 18 September to 3am Sunday 20 September: Buses replace trains between Blackburn, Belgrave and Lilydale. From 3am to last train Sunday 20 September: Buses replace trains between Box Hill, Belgrave and Lilydale. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "101f9a81-0fd7-5674-8059-284dd8254d9f",
+    "first_seen": "2026-09-18T09:09:09.452487+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes after an earlier operational incident in the Tottenham area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
+    "id": "2717375f-7dd5-54c3-a65a-935fc86c42b8",
+    "first_seen": "2026-09-18T09:09:09.452487+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes after an earlier operational incident in the Tottenham area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:",
+      "aus:vic:vic-02-CBE-R:"
+    ]
+  },
+  {
+    "id": "e91eb40b-a506-5609-85c5-57be2842833f",
+    "first_seen": "2026-09-18T09:09:09.452487+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes after an earlier operational incident in the Tottenham area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "0f0f25ab-0386-5fc5-a536-a7890b9c6ea2",
+    "first_seen": "2026-09-18T09:09:09.452487+00:00",
+    "header": "Planned work: Boronia Station access changes",
+    "description": "Monday 7 September until Monday 21 September While we put the finishing touches on the Boronia Station precinct, there will be some changes to how you access the station. The station entrance at Erica Avenue will temporarily close from Monday 7 September until Monday 21 September. During this time, access to the station will be via Lupton Way. Station access will change as we complete the works.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-BEG-R:"
+    ]
+  },
+  {
     "id": "10595974-aefa-5031-a054-247da4472b38",
     "first_seen": "2026-09-17T21:07:22.191183+00:00",
     "header": "Planned work: Ringwood East Station car space closure",
