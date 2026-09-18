@@ -1,5 +1,27 @@
 [
   {
+    "id": "157122d3-b3e8-53bc-b1ed-406b19ff8e8c",
+    "first_seen": "2026-09-18T13:46:05.466070+00:00",
+    "header": "Planned work: Buses replace trains between Blackburn, Belgrave and Lilydale",
+    "description": "8.30pm Friday 18 September to 3am Sunday 20 September",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
+    "id": "38231a0e-409f-5979-a364-16897281f549",
+    "first_seen": "2026-09-18T13:46:05.466070+00:00",
+    "header": "Planned work: Weekend works between Box Hill, Belgrave and Lilydale",
+    "description": "9pm Friday 18 September to 4am Monday 21 September  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Belgrave and Lilydale lines. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
     "id": "baeb7f9d-e0d2-504d-a97c-055f50707840",
     "first_seen": "2026-09-18T09:09:09.452487+00:00",
     "header": "Planned Works",
