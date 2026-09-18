@@ -1,5 +1,47 @@
 [
   {
+    "id": "ab315eae-25c0-57e7-a877-306c974ca764",
+    "first_seen": "2026-09-18T20:39:44.748599+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes now clearing after an earlier police request in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "8f3d3e3f-2c6d-5ffb-b6f2-249f09d5a998",
+    "first_seen": "2026-09-18T20:39:44.748599+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes now clearing after an earlier police request in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "be462cf2-5ba2-57da-8777-0a2eb9694019",
+    "first_seen": "2026-09-18T20:39:44.748599+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes now clearing after an earlier police request in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WIL:",
+      "aus:vic:vic-02-WIL-R:"
+    ]
+  },
+  {
+    "id": "25eab051-0e03-57c0-b06d-7683c5c49169",
+    "first_seen": "2026-09-18T20:39:44.748599+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes now clearing after an earlier police request in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
     "id": "157122d3-b3e8-53bc-b1ed-406b19ff8e8c",
     "first_seen": "2026-09-18T13:46:05.466070+00:00",
     "header": "Planned work: Buses replace trains between Blackburn, Belgrave and Lilydale",
