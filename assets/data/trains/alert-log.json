@@ -1,5 +1,16 @@
 [
   {
+    "id": "dd34f73f-80a1-5c52-a736-016e17fc1508",
+    "first_seen": "2026-09-19T13:02:32.644875+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes after an earlier police request in the Laverton area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
     "id": "ab315eae-25c0-57e7-a877-306c974ca764",
     "first_seen": "2026-09-18T20:39:44.748599+00:00",
     "header": "Major Delay",
