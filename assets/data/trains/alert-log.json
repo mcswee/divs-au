@@ -1,5 +1,38 @@
 [
   {
+    "id": "2621bdd5-43d3-54e2-9711-b3a66eb55dbe",
+    "first_seen": "2026-09-19T20:18:22.078318+00:00",
+    "header": "Planned work: Buses replace trains between Box Hill, Belgrave and Lilydale",
+    "description": "3am until last service Sunday 20 September",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
+    "id": "107b70a4-ba81-5dee-a153-2bbba9195a72",
+    "first_seen": "2026-09-19T20:18:22.078318+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains on sections of the Belgrave and Lilydale lines from 8:30pm Friday 18 September to last train Sunday 20 September, while maintenance and renewal works take place. From 3am to last train Sunday 20 September: Buses replace trains between Box Hill, Belgrave and Lilydale. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "38f758b2-a002-507f-be31-da379e67172d",
+    "first_seen": "2026-09-19T20:18:22.078318+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains on sections of the Belgrave and Lilydale lines from 8:30pm Friday 18 September to last train Sunday 20 September, while maintenance and renewal works take place. From 3am to last train Sunday 20 September: Buses replace trains between Box Hill, Belgrave and Lilydale. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
     "id": "dd34f73f-80a1-5c52-a736-016e17fc1508",
     "first_seen": "2026-09-19T13:02:32.644875+00:00",
     "header": "Minor Delay",
