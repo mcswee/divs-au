@@ -1,5 +1,27 @@
 [
   {
+    "id": "b87f7349-f2ee-5396-95ad-4c3260b20713",
+    "first_seen": "2026-09-20T04:29:48.870466+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after a train fault in the Noble Park area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:",
+      "aus:vic:vic-02-CBE-R:"
+    ]
+  },
+  {
+    "id": "19558a0e-1142-5e3e-910e-b6133064bdc4",
+    "first_seen": "2026-09-20T04:29:48.870466+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after a train fault in the Noble Park area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
     "id": "adc6e731-b8a0-5e09-9804-32eecf23c942",
     "first_seen": "2026-09-19T22:26:19.146513+00:00",
     "header": "Major Delay",
