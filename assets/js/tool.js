@@ -73,7 +73,8 @@
     activeDivisionName: document.getElementById("active-division-name"),
     divisionList: document.getElementById("division-list"),
     createDivisionBtn: document.getElementById("create-division-btn"),
-    exportBtn: document.getElementById("export-btn")
+    exportBtn: document.getElementById("export-btn"),
+    importInput: document.getElementById("import-input")
   };
 
   init();
@@ -82,6 +83,7 @@
     setupMap();
     el.createDivisionBtn.addEventListener("click", onCreateDivision);
     el.exportBtn.addEventListener("click", onExport);
+    el.importInput.addEventListener("change", onImport);
     el.stateSelect.addEventListener("change", function () {
       loadState(el.stateSelect.value);
     });
@@ -90,11 +92,11 @@
 
   function setupMap() {
     map = L.map("tool-map", { preferCanvas: true });
- L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_3li0_1_3bd3e03fbf5a91dbb6cb9f61', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a> | Data <a href="/copyright">&copy; AEC & ABS</a>',
-    subdomains: 'abcd',
-    maxZoom: 20
-}).addTo(map);
+    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+      attribution: 'Tiles &copy; <a href="https://www.esri.com">Esri</a>|Data <a href="/copyright/">ABS</a>',
+      maxZoom: 19,
+      maxNativeZoom: 16
+    }).addTo(map);
   }
 
   function loadState(stateKey) {
@@ -558,6 +560,42 @@
   function pctDeviation(value, quota) {
     if (!quota) return 0;
     return ((value - quota) / quota) * 100;
+  }
+
+  function onImport(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+
+    var reader = new FileReader();
+    reader.onload = function (ev) {
+      var results = Papa.parse(ev.target.result, {
+        header: true,
+        skipEmptyLines: true
+      });
+
+      var imported = 0;
+      var skipped = 0;
+
+      results.data.forEach(function (row) {
+        var key = row.SA1_CODE_DIV;
+        var div = row.DIVISION;
+        if (!key || !div) { skipped++; return; }
+        if (!sa1Reference[key]) { skipped++; return; }
+
+        // assign to imported division, creating colour if new
+        if (!divisionColours[div]) assignColourTo(div);
+        assignment[key] = div;
+        imported++;
+      });
+
+      // reset file input so same file can be re-imported
+      el.importInput.value = "";
+
+      refreshAll();
+      window.alert("Imported " + imported + " SA1 assignments" + (skipped > 0 ? " (" + skipped + " skipped — not in current state)" : "") + ".");
+    };
+
+    reader.readAsText(file);
   }
 
   // ---- export ----
