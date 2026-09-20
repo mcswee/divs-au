@@ -1,5 +1,37 @@
 [
   {
+    "id": "81507949-f493-5968-8018-7341fc140120",
+    "first_seen": "2026-09-20T23:05:27.445425+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after earlier debris across rail lines in the Camberwell area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-BEG-R:"
+    ]
+  },
+  {
+    "id": "b89e1831-e6a9-5268-b744-1922c0272de4",
+    "first_seen": "2026-09-20T23:05:27.445425+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after earlier debris across rail lines in the Camberwell area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "02d3017a-8500-5e7c-ad5c-ce8adea3e18c",
+    "first_seen": "2026-09-20T23:05:27.445425+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after earlier debris across rail lines in the Camberwell area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-ALM:"
+    ]
+  },
+  {
     "id": "675c94ae-1114-5882-9a6f-d382cbff1896",
     "first_seen": "2026-09-20T17:22:26.007246+00:00",
     "header": "Planned work: Boronia Station access changes",
