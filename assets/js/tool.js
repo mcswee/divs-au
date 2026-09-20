@@ -96,6 +96,7 @@ L.tileLayer("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png
   attribution: 'Tiles &copy; <a href="https://carto.com/attributions">CARTO</a> | SA1 data <a href="/copyright/">ABS</a>',
   maxZoom: 19
 }).addTo(map);
+  }
 
   function loadState(stateKey) {
     var cfg = STATE_FILES[stateKey];
