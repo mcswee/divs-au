@@ -92,12 +92,10 @@
 
   function setupMap() {
     map = L.map("tool-map", { preferCanvas: true });
-L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?api_key=cb1_3li0_1_3bd3e03fbf5a91dbb6cb9f61" , {
-      attribution: 'Tiles &copy; <a href="https://carto.com/attributions">CARTO</a> | SA1 data <a href="/copyright/">ABS</a>',
-      maxZoom: 19,
-      subdomains: "abcd"
-    }).addTo(map);
-  }
+L.tileLayer("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png?key=cb1_3li0_1_3bd3e03fbf5a91dbb6cb9f61", {
+  attribution: 'Tiles &copy; <a href="https://carto.com/attributions">CARTO</a> | SA1 data <a href="/copyright/">ABS</a>',
+  maxZoom: 19
+}).addTo(map);
 
   function loadState(stateKey) {
     var cfg = STATE_FILES[stateKey];
