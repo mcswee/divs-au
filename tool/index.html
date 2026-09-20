@@ -403,6 +403,10 @@ layout: null
         <div class="sidebar-section">
             <h2>Export</h2>
             <button id="export-btn" type="button" style="width: 100%; padding: 9px; font-family: inherit; font-size: 0.82rem; font-weight: 600; border: 2px solid var(--brand-main); border-radius: 6px; background: none; color: var(--brand-main); cursor: pointer; transition: border-color 0.12s ease, color 0.12s ease, background-color 0.12s ease;">Download CSV</button>
+            <label id="import-label" style="display:block; width:100%; margin-top:8px;">
+                <span style="display:block; width:100%; padding:9px; font-family:inherit; font-size:0.82rem; font-weight:600; border:2px dashed var(--text-accent); border-radius:6px; background:none; color:var(--text-highlight); cursor:pointer; text-align:center; box-sizing:border-box; transition:border-color 0.12s ease, color 0.12s ease;">Import saved CSV</span>
+                <input id="import-input" type="file" accept=".csv" style="display:none;">
+            </label>
         </div>
 
         <div class="sidebar-section">
@@ -431,20 +435,8 @@ layout: null
         Interactive map of ABS statistical areas. Select a division in the sidebar, then click an SA1 to assign or unassign it. Double-click an SA1 to assign the entire SA2.
     </p>
 
-</main
-<footer>
-{% include acknowledge.html %} 
-<div class="site-footer">
-    <ul class="footer-links">
-        <li><a href="/about">About</a></li>
-        <li><a href="/disclosure">Disclosure</a></li>
-        <li><a href="/privacy">Privacy</a></li>
-        <li><a href="/terms">Terms</a></li>
-        <li><a href="/copyright/">&copy; 2026<span> Darren McSweeney</span></a></li>
-    </ul>
-</div>
-</footer>
-  
+</main>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="/assets/js/nav.js"></script>
 <script src="/assets/js/tool.js"></script>
