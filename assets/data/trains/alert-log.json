@@ -1,5 +1,16 @@
 [
   {
+    "id": "089eab45-7ae9-5108-bec3-e3cf529b003b",
+    "first_seen": "2026-09-21T01:26:20.248392+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the Glen Iris area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-GWY-R:",
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
     "id": "81507949-f493-5968-8018-7341fc140120",
     "first_seen": "2026-09-20T23:05:27.445425+00:00",
     "header": "Minor Delay",
