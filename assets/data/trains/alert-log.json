@@ -1,5 +1,60 @@
 [
   {
+    "id": "acc5f7a2-bbb1-5c4b-8330-b180ffc5effa",
+    "first_seen": "2026-09-21T16:35:37.820377+00:00",
+    "header": "Planned work: Lilydale and Belgrave services start and end at Burnley",
+    "description": "9pm to last service each night, Monday 21 September to Wednesday 23 September\u00a0 \u00a0 From City  Take a Glen Waverley train and change at Burnley All Lilydale and Belgrave services will start from Burnley To City  All Lilydale and Belgrave services will end at Burnley Take a Glen Waverley train to the City From Southern Cross  Take a train from platforms 12 or 13 to Flinders Street for a Glen Waverley train and change at Burnley To Southern Cross  All Lilydale and Belgrave services will end at Burnley Take a Glen Waverley train to Richmond and take a train from Platform 3",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "74c2ccd0-e34b-5a81-a0bd-129b78b2d93e",
+    "first_seen": "2026-09-21T16:35:37.820377+00:00",
+    "header": "Planned work: Trains run direct to and from Flinders Street, not via the City Loop",
+    "description": "9pm to last service each night, Monday 21 September to Wednesday 23 September\u00a0 \u00a0 From City Loop  Take a train from Platform 2 and change at either Southern Cross or Flinders Street To City Loop  Change at Flinders Street and take a City Circle bus",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-UFD:",
+      "aus:vic:vic-02-CGB-R:",
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "fc9b7695-afa3-51d7-8cb0-50ca94e12d7e",
+    "first_seen": "2026-09-21T16:35:37.820377+00:00",
+    "header": "Planned work: Trains run direct to and from Flinders Street, not via the City Loop",
+    "description": "9pm to last service each night, Monday 21 September to Wednesday 23 September\u00a0 \u00a0 To Southern Cross  Change at Flinders Street and take a train from Platform 9 To City Loop  Change at Flinders Street and take a City Circle Bus From Southern Cross  Take a train from platforms 12 or 13 and change at Flinders Street From City Loop  Take a train from Platform 2 and change at Flinders Street",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "e4a847d8-d670-59ed-98f1-03851c6e16ab",
+    "first_seen": "2026-09-21T16:35:37.820377+00:00",
+    "header": "Planned work: Trains run direct to and from Flinders Street, not via the City Loop",
+    "description": "9pm to last service each night, Monday 21 September to Wednesday 23 September\u00a0 \u00a0 From City Loop  Take a train from Platform 2 to Flinders Street for a Glen Waverley train and change at Burnley To City Loop  Take a Glen Waverley line train to Richmond and take a train from Platform 3 From Southern Cross  Take a train from platforms 12 or 13 to Flinders Street for a Glen Waverley train and change at Burnley To Southern Cross  Take a Glen Waverley line train to Richmond and take a train from Platform 3",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
+    "id": "aa3a081b-0dc5-5753-8398-65304748dc98",
+    "first_seen": "2026-09-21T16:35:37.820377+00:00",
+    "header": "Planned work: Buses replace trains from Newport to Werribee",
+    "description": "11.50pm to last service each night, Monday 21 September to Wednesday 23 September",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
     "id": "22540198-e71c-557f-9786-7d117360daa6",
     "first_seen": "2026-09-21T10:10:37.335886+00:00",
     "header": "Planned Works",
