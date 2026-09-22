@@ -1,5 +1,38 @@
 [
   {
+    "id": "9109a732-4aa6-5656-b1e0-1ae9e6fa172c",
+    "first_seen": "2026-09-22T23:44:02.316645+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier train fault in the Footscray area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "0475fd8b-9c00-52a9-989f-d25347c7469e",
+    "first_seen": "2026-09-22T23:44:02.316645+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier train fault in the Footscray area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WIL:",
+      "aus:vic:vic-02-WIL-R:"
+    ]
+  },
+  {
+    "id": "5907978d-7991-5013-8123-881c6ffc1d53",
+    "first_seen": "2026-09-22T23:44:02.316645+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an ill passenger at Parliament.  All trains will operate direct to/from Flinders St (not via City Loop) until further notice. Passengers may interchange at Richmond for City Loop services.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
     "id": "5ef478aa-e839-54b6-96b6-769b3aabaa89",
     "first_seen": "2026-09-22T14:08:44.687740+00:00",
     "header": "Planned Works",
