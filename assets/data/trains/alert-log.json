@@ -1,5 +1,89 @@
 [
   {
+    "id": "5ef478aa-e839-54b6-96b6-769b3aabaa89",
+    "first_seen": "2026-09-22T14:08:44.687740+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Newport and Werribee from 11.50pm to last service each night, Monday 21 September to Wednesday 23 September, while project works take place. Note: Buses operate in one direction from Newport to Werribee during this time.  Allow extra travel time. Replacement buses are subject to local traffic conditions Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "246cccd3-0b8a-53d5-8400-9182e117ef41",
+    "first_seen": "2026-09-22T14:08:44.687740+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes due to a police request in the Southern Cross area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "3cfb480c-d4a9-5fbc-92ec-84de0574beba",
+    "first_seen": "2026-09-22T14:08:44.687740+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes due to a police request in the Southern Cross area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "b06ca524-ee25-5639-9852-f37b458e4e2d",
+    "first_seen": "2026-09-22T14:08:44.687740+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes due to a police request in the Southern Cross area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
+    "id": "dd2feb3f-fee7-567f-975a-f488ba7e7904",
+    "first_seen": "2026-09-22T14:08:44.687740+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes due to a police request in the Southern Cross area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "df4cfced-d87c-58d5-b930-3825ce3758cc",
+    "first_seen": "2026-09-22T14:08:44.687740+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes due to a police request in the Southern Cross area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
+    "id": "a887f6db-489f-578c-94ea-2154dbe3335e",
+    "first_seen": "2026-09-22T14:08:44.687740+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes due to a police request in the Southern Cross area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "b92f9715-058b-50b8-987b-0829080e948f",
+    "first_seen": "2026-09-22T14:08:44.687740+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes due to a police request in the Southern Cross area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WIL-R:",
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
     "id": "dd60de24-c17d-5f40-82b0-df8e28fdf0be",
     "first_seen": "2026-09-22T09:26:49.093023+00:00",
     "header": "Minor Delay",
