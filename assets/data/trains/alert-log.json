@@ -1,5 +1,16 @@
 [
   {
+    "id": "13a00b13-e797-56dd-8259-f3f402176032",
+    "first_seen": "2026-09-22T04:23:32.636254+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 35 minutes now clearing after an earlier fire brigade request in the Southland area.  Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
     "id": "8f6300e6-203c-59df-a9ae-9034b8c0a3ec",
     "first_seen": "2026-09-21T21:50:22.647948+00:00",
     "header": "Major Delay",
