@@ -627,23 +627,76 @@ const SHOW_EFFECTS = new Set([
   'NO_SERVICE', 'REDUCED_SERVICE', 'SIGNIFICANT_DELAYS', 'MODIFIED_SERVICE', 'OTHER_EFFECT'
 ]);
 
+// PTV boilerplate that pads out nearly every alert description; stripped so
+// the alert box shows only the actual disruption info.
+const ALERT_BOILERPLATE = [
+  'Check information displays and listen for announcements as services may be altered at short notice.',
+  'Plan your journey at transport.vic.gov.au or call 1800 800 007.',
+  'Visit our Planned Works page for more information.',
+  'Allow extra travel time.',
+  'Replacement buses are subject to local traffic conditions.',
+  'These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.',
+  'Every effort will be made to carry out these works with respect for our valued neighbours.',
+  'Works may be subject to change due to weather conditions and operational requirements.',
+];
+
+function cleanAlertText(desc) {
+  let out = desc || '';
+  ALERT_BOILERPLATE.forEach(s => { out = out.split(s).join(''); });
+  return out
+    .replace(/\s*•\s*/g, ' • ')
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\s+([.,])/g, '$1')
+    .replace(/^•\s*/, '')
+    .trim();
+}
+
+// Consistent category per alert, used to pick an icon and to key deduplication.
+const ALERT_CATEGORY = {
+  'Cancellation':      'cancellation',
+  'Major Delay':       'delay_major',
+  'Minor Delay':       'delay_minor',
+  'Suspended':         'suspended',
+  'Planned Works':     'planned_works',
+  'Other Information': 'info_other',
+};
+const CATEGORY_ICON = {
+  cancellation:  '⛔',
+  delay_major:   '⏱️',
+  delay_minor:   '⏱️',
+  suspended:     '⛔',
+  planned_works: '🔧',
+  info_other:    'ℹ️',
+  other:         '⚠️',
+};
+function categoriseAlert(header) {
+  if (header.startsWith('Planned work:')) return 'planned_works';
+  return ALERT_CATEGORY[header] || 'other';
+}
+
 function alertsForStation() {
   if (!rtData?.alerts?.length || !stationData) return [];
   const codes = new Set(
     stationData.departures.map(d => ROUTE_CODES[d.route]).filter(Boolean)
   );
-  const matched = rtData.alerts.filter(a => {
-    if (!SHOW_EFFECTS.has(a.effect)) return false;
-    if (a.effect === 'OTHER_EFFECT' && a.header.startsWith('Planned work')) return false;
-    return a.routes.some(r => [...codes].some(c => r.includes(`-${c}`)));
-  });
-  const seenIds   = new Set();
-  const seenDescs = new Set();
+  const matched = rtData.alerts
+    .filter(a => {
+      if (!SHOW_EFFECTS.has(a.effect)) return false;
+      // Station car-park/car-space/night-works notices: real but don't affect
+      // train running, so keep them out of the live board.
+      if (a.effect === 'OTHER_EFFECT' && a.header.startsWith('Planned work')) return false;
+      return a.routes.some(r => [...codes].some(c => r.includes(`-${c}`)));
+    })
+    .map(a => ({ ...a, description: cleanAlertText(a.description), category: categoriseAlert(a.header) }));
+
+  // Route-split alerts (the same disruption logged once per affected route)
+  // carry identical header+description text, so dedupe on that rather than
+  // on `id` — the id can differ per route for what's really one alert.
+  const seen = new Set();
   return matched.filter(a => {
-    if (seenIds.has(a.id))            return false;
-    if (seenDescs.has(a.description)) return false;
-    seenIds.add(a.id);
-    seenDescs.add(a.description);
+    const key = `${a.header}|${a.description}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
     return true;
   });
 }
@@ -653,7 +706,7 @@ function buildAlerts(alerts) {
   alerts.forEach(a => {
     const item  = el('div', 'alert');
     const icon  = el('span', 'alert-icon');
-    icon.textContent = '⚠️';
+    icon.textContent = CATEGORY_ICON[a.category] || CATEGORY_ICON.other;
     const main  = el('div', 'alert-main');
     const hdr   = el('div', 'alert-hdr');
     hdr.textContent = a.header;
