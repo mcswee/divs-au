@@ -268,9 +268,7 @@
       text-align: center;
     }
 
-    .dep-mins.soon {
-       background-color: #e67e00;
-    }
+    .dep-mins.soon { background-color: #e67e00; }
 
     .dep-info { min-width: 0; }
 
@@ -609,7 +607,20 @@ function render() {
     .sort((a, b) => hm2min(a.departs) - hm2min(b.departs));
 
   const byPlat = {};
+  const vlineGroups = {};
   upcoming.forEach(d => {
+    if (d.group === 'vline') {
+      // V/Line has no platform data, so group by line + direction instead.
+      // Southern Cross is the only V/Line city terminus, so this alone
+      // handles country termini (only "up" ever has entries) and
+      // multi-line hubs like Southern Cross (splits per line) with no
+      // station-specific special-casing.
+      const dir = d.dest === 'Southern Cross' ? 'up' : 'down';
+      const key = `${d.route}|${dir}`;
+      if (!vlineGroups[key]) vlineGroups[key] = { route: d.route, dir, deps: [] };
+      if (vlineGroups[key].deps.length < 3) vlineGroups[key].deps.push(d);
+      return;
+    }
     const p = d.plat || '—';
     if (!byPlat[p]) byPlat[p] = [];
     const cap = p === '—' ? 6 : 3;
@@ -617,12 +628,17 @@ function render() {
   });
 
   const plats = Object.keys(byPlat).sort(platSort);
+  const vlineKeys = Object.keys(vlineGroups).sort((a, b) => {
+    const A = vlineGroups[a], B = vlineGroups[b];
+    if (A.dir !== B.dir) return A.dir === 'up' ? -1 : 1;
+    return A.route.localeCompare(B.route);
+  });
   const frag  = document.createDocumentFragment();
 
   const stationAlerts = alertsForStation();
   if (stationAlerts.length) frag.appendChild(buildAlerts(stationAlerts));
 
-  if (!plats.length) {
+  if (!plats.length && !vlineKeys.length) {
     const msg = el('p', 'msg');
     msg.textContent = stationAlerts.length
       ? 'No train services currently running — see alert above.'
@@ -635,6 +651,13 @@ function render() {
   }
 
   plats.forEach(p => frag.appendChild(buildPlatform(p, byPlat[p])));
+  vlineKeys.forEach(k => {
+    const g = vlineGroups[k];
+    const label = g.dir === 'up'
+      ? `V/Line: ${g.route} — to Southern Cross`
+      : `V/Line: ${g.route} — Outbound`;
+    frag.appendChild(buildPlatform(label, g.deps, true));
+  });
 
   const board = document.getElementById('board');
   board.innerHTML = '';
@@ -770,10 +793,10 @@ function buildAlerts(alerts) {
 }
 
 // ── Platform ──────────────────────────────────────────────────────────────────
-function buildPlatform(plat, services) {
+function buildPlatform(plat, services, rawLabel) {
   const sec = el('section', 'platform');
   const hdr = el('div', 'platform-hdr');
-  hdr.textContent = plat === '—' ? 'No platform data' : `Platform ${plat}`;
+  hdr.textContent = rawLabel ? plat : (plat === '—' ? 'No platform data' : `Platform ${plat}`);
   sec.appendChild(hdr);
   services.forEach(dep => {
     sec.appendChild(buildDep(dep));
