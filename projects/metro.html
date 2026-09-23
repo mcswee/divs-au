@@ -131,25 +131,52 @@
     .alerts { margin-bottom: 1.25rem; }
 
     .alert {
+      position: relative;
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: start;
       gap: 0.6rem;
-      padding: 0.7rem 0.875rem;
+      padding: 0.7rem 0.875rem 0.7rem 1.35rem;
       border: 2px solid #e67e00;
-      border-left-width: 10px;
+      border-left: none;
       border-radius: 2px;
       background: #1a1a1a;
       color: #ffffff;
       cursor: pointer;
       user-select: none;
       margin-bottom: 3px;
+      overflow: hidden;
+    }
+
+    /* Hazard-stripe strip standing in for the old solid left border */
+    .alert::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 12px;
+      background: repeating-linear-gradient(
+        135deg,
+        #e67e00 0 8px,
+        #1a1a1a 8px 16px
+      );
     }
 
     .alert-icon {
-      font-size: 0.85rem;
-      line-height: 1.3;
+      display: flex;
+      align-items: center;
+      width: 18px;
+      height: 18px;
+      color: #e67e00;
       flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .alert-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     .alert-hdr {
@@ -660,14 +687,29 @@ const ALERT_CATEGORY = {
   'Planned Works':     'planned_works',
   'Other Information': 'info_other',
 };
-const CATEGORY_ICON = {
-  cancellation:  '⛔',
-  delay_major:   '⏱️',
-  delay_minor:   '⏱️',
-  suspended:     '⛔',
-  planned_works: '🔧',
-  info_other:    'ℹ️',
-  other:         '⚠️',
+const ALERT_ICON_SVG = {
+  cancellation: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/><line x1="5.5" y1="18.5" x2="18.5" y2="5.5"/>
+  </svg>`,
+  delay_major: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>
+  </svg>`,
+  delay_minor: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>
+  </svg>`,
+  suspended: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="8 2 16 2 22 8 22 16 16 22 8 22 2 16 2 8"/>
+    <line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16.5" x2="12" y2="16.5"/>
+  </svg>`,
+  planned_works: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/>
+  </svg>`,
+  info_other: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><line x1="12" y1="7.5" x2="12" y2="7.5"/>
+  </svg>`,
+  other: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3.5 21.5 20h-19z"/><line x1="12" y1="9.5" x2="12" y2="14"/><line x1="12" y1="17" x2="12" y2="17"/>
+  </svg>`,
 };
 function categoriseAlert(header) {
   if (header.startsWith('Planned work:')) return 'planned_works';
@@ -706,7 +748,7 @@ function buildAlerts(alerts) {
   alerts.forEach(a => {
     const item  = el('div', 'alert');
     const icon  = el('span', 'alert-icon');
-    icon.textContent = CATEGORY_ICON[a.category] || CATEGORY_ICON.other;
+    icon.innerHTML = ALERT_ICON_SVG[a.category] || ALERT_ICON_SVG.other;
     const main  = el('div', 'alert-main');
     const hdr   = el('div', 'alert-hdr');
     hdr.textContent = a.header;
