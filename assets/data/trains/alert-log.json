@@ -1,5 +1,89 @@
 [
   {
+    "id": "7a525193-4e57-57b6-a5fc-2726c1edae1f",
+    "first_seen": "2026-09-23T09:28:51.310208+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes after an earlier police request in the Cheltenham area.  Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
+    "id": "30162451-6185-5d01-b370-5e0cd6cea804",
+    "first_seen": "2026-09-23T09:28:51.310208+00:00",
+    "header": "Planned Works",
+    "description": "Lilydale and Belgrave services start and end at Burnley from 9pm to last service each night, Monday 21 September to Wednesday 23 September, while maintenance and renewal works take place. From City Take a Glen Waverley train and change at Burnley All Lilydale and Belgrave services will start from Burnley To City All Lilydale and Belgrave services will end at Burnley Take a Glen Waverley train to the City From Southern Cross Take a train from platforms 12 or 13 to Flinders Street for a Glen Waverley train and change at Burnley To Southern Cross All Lilydale and Belgrave services will end at Burnley Take a Glen Waverley train to Richmond and take a train from Platform 3 Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "65f8ca92-a6bf-5b82-9d26-5fe404ce2c79",
+    "first_seen": "2026-09-23T09:28:51.310208+00:00",
+    "header": "Planned Works",
+    "description": "Lilydale and Belgrave services start and end at Burnley from 9pm to last service each night, Monday 21 September to Wednesday 23 September, while maintenance and renewal works take place. From City Take a Glen Waverley train and change at Burnley All Lilydale and Belgrave services will start from Burnley To City All Lilydale and Belgrave services will end at Burnley Take a Glen Waverley train to the City From Southern Cross Take a train from platforms 12 or 13 to Flinders Street for a Glen Waverley train and change at Burnley To Southern Cross All Lilydale and Belgrave services will end at Burnley Take a Glen Waverley train to Richmond and take a train from Platform 3 Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "f021ea6f-00e0-5993-a084-2176caf7fd93",
+    "first_seen": "2026-09-23T09:28:51.310208+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders St, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From City Loop Take a train from Platform 2 to Flinders Street for a Glen Waverley train and change at Burnley  To City Loop Take a Glen Waverley line train to Richmond and take a train from Platform 3  From Southern Cross Take a train from platforms 12 or 13 to Flinders Street for a Glen Waverley train and change at Burnley  To Southern Cross Take a Glen Waverley line train to Richmond and take a train from Platform 3 Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-GWY:",
+      "aus:vic:vic-02-GWY-R:"
+    ]
+  },
+  {
+    "id": "867c1a82-d2df-5958-8eb4-b000ab899490",
+    "first_seen": "2026-09-23T09:28:51.310208+00:00",
+    "header": "Planned Works",
+    "description": "Trains run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From City Loop Take a train from Platform 2 and change at either Southern Cross or Flinders Street. To City Loop Change at Flinders Street and take a City Circle bus. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
+    "id": "946c5425-6dcd-5bad-ac09-aca2777df71b",
+    "first_seen": "2026-09-23T09:28:51.310208+00:00",
+    "header": "Planned Works",
+    "description": "Trains run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From City Loop Take a train from Platform 2 and change at either Southern Cross or Flinders Street. To City Loop Change at Flinders Street and take a City Circle bus. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "8a20bec4-0b2a-5b82-84ed-2ec892826259",
+    "first_seen": "2026-09-23T09:28:51.310208+00:00",
+    "header": "Planned Works",
+    "description": "Trains run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. To Southern Cross Change at Flinders Street and take a train from Platforms 9. . To City Loop Change at Flinders Street and take a City Circle Bus. From Southern Cross Take a train from Platforms 12 or 13 and change at Flinders Street. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "fbbfdc82-0ac4-5400-9762-0f27199fd43a",
+    "first_seen": "2026-09-23T09:28:51.310208+00:00",
+    "header": "Planned Works",
+    "description": "Trains run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. To Southern Cross Change at Flinders Street and take a train from Platforms 9. . To City Loop Change at Flinders Street and take a City Circle Bus. From Southern Cross Take a train from Platforms 12 or 13 and change at Flinders Street. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
     "id": "9109a732-4aa6-5656-b1e0-1ae9e6fa172c",
     "first_seen": "2026-09-22T23:44:02.316645+00:00",
     "header": "Minor Delay",
