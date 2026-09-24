@@ -157,7 +157,7 @@
       bottom: 0;
       width: 12px;
       background: repeating-linear-gradient(
-        45deg,
+        135deg,
         #e67e00 0 8px,
         #1a1a1a 8px 16px
       );
@@ -268,7 +268,7 @@
       text-align: center;
     }
 
-    .dep-mins.soon { background-color: #e67e00; }
+    .dep-mins.soon { color: #e67e00; }
 
     .dep-info { min-width: 0; }
 
@@ -611,11 +611,10 @@ function render() {
   upcoming.forEach(d => {
     if (d.group === 'vline') {
       // V/Line has no platform data, so group by line + direction instead.
-      // Southern Cross is the only V/Line city terminus, so this alone
-      // handles country termini (only "up" ever has entries) and
-      // multi-line hubs like Southern Cross (splits per line) with no
-      // station-specific special-casing.
-      const dir = d.dest === 'Southern Cross' ? 'up' : 'down';
+      // vlineDirection() (defined below) handles country termini (only "up"
+      // ever has entries) and multi-line hubs like Southern Cross (splits
+      // per line) with no station-specific special-casing.
+      const dir = vlineDirection(d.route, d.dest);
       const key = `${d.route}|${dir}`;
       if (!vlineGroups[key]) vlineGroups[key] = { route: d.route, dir, deps: [] };
       if (vlineGroups[key].deps.length < 3) vlineGroups[key].deps.push(d);
@@ -678,6 +677,17 @@ const ROUTE_CODES = {
 const SHOW_EFFECTS = new Set([
   'NO_SERVICE', 'REDUCED_SERVICE', 'SIGNIFICANT_DELAYS', 'MODIFIED_SERVICE', 'OTHER_EFFECT'
 ]);
+
+// City-bound terminus check: anything ending at Southern Cross or Flinders
+// Street is "up"; everything else is "down". A V/Line train that runs in
+// the country but terminates in the suburbs would be mislabeled by this,
+// but that's rare enough that a service alert will almost always be up
+// alongside it anyway.
+const VLINE_UP_TERMINI = new Set(['Southern Cross', 'Flinders Street']);
+
+function vlineDirection(route, dest) {
+  return VLINE_UP_TERMINI.has(dest) ? 'up' : 'down';
+}
 
 // PTV boilerplate that pads out nearly every alert description; stripped so
 // the alert box shows only the actual disruption info.
