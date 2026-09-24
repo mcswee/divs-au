@@ -1,5 +1,59 @@
 [
   {
+    "id": "6387cabc-9010-5152-b71d-e5c050bdbfce",
+    "first_seen": "2026-09-24T09:27:45.175151+00:00",
+    "header": "Minor Delay",
+    "description": "Trains are resuming between Darling and Glen Waverley after an earlier track fault. First trains to resume will be:  The 6:14pm Flinders Street to Glen Waverley. The 6:40pm Glen Waverley to Flinders Street.  Replacement buses may supplement train services as we restore the regular frequency. We anticipate delays as we recover. Check information displays and listen for announcements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-GWY:",
+      "aus:vic:vic-02-GWY-R:"
+    ]
+  },
+  {
+    "id": "bfd6c07c-41de-5a13-a54c-f6c13d2d2ea5",
+    "first_seen": "2026-09-24T09:27:45.175151+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier trespasser in the Newport area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "31c9c0ed-1ecd-52ef-a834-0617a99c70e4",
+    "first_seen": "2026-09-24T09:27:45.175151+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier trespasser in the Hawthorn area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "641842e9-47b1-562c-818c-79c499b77b09",
+    "first_seen": "2026-09-24T09:27:45.175151+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier trespasser in the Hawthorn area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "bb4eac1b-4ae1-5bdf-8b11-1ccb820c1317",
+    "first_seen": "2026-09-24T09:27:45.175151+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier trespasser in the Hawthorn area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-ALM:"
+    ]
+  },
+  {
     "id": "7a525193-4e57-57b6-a5fc-2726c1edae1f",
     "first_seen": "2026-09-23T09:28:51.310208+00:00",
     "header": "Major Delay",
