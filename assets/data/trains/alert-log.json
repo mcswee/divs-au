@@ -1,5 +1,16 @@
 [
   {
+    "id": "ba5d51b1-7915-5b6a-9e4d-e52b8d293570",
+    "first_seen": "2026-09-25T09:46:15.425314+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to an earlier operational incident in the Lilydale area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
     "id": "7358fc97-dce9-5833-84af-5f7393f88a5e",
     "first_seen": "2026-09-25T04:28:46.832898+00:00",
     "header": "Major Delay",
