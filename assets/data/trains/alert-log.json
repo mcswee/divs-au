@@ -1,5 +1,56 @@
 [
   {
+    "id": "f3ab71a8-d472-569e-9508-9d1b61a4e99c",
+    "first_seen": "2026-09-25T15:06:27.750036+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier trespasser in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
+    "id": "2365ebbb-185b-5cb2-bd6d-ce57d084b600",
+    "first_seen": "2026-09-25T15:06:27.750036+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier trespasser in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "47675cc5-8716-523a-a206-77d1b1ce0d99",
+    "first_seen": "2026-09-25T15:06:27.750036+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier trespasser in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "59f3e287-9289-59f6-b206-8e8061b700e6",
+    "first_seen": "2026-09-25T15:06:27.750036+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier trespasser in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
+    "id": "e5bc5c0d-e898-5fb1-bc3e-488952581da1",
+    "first_seen": "2026-09-25T15:06:27.750036+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier trespasser in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SHM:"
+    ]
+  },
+  {
     "id": "ba5d51b1-7915-5b6a-9e4d-e52b8d293570",
     "first_seen": "2026-09-25T09:46:15.425314+00:00",
     "header": "Minor Delay",
