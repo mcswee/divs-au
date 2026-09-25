@@ -1,5 +1,37 @@
 [
   {
+    "id": "7358fc97-dce9-5833-84af-5f7393f88a5e",
+    "first_seen": "2026-09-25T04:28:46.832898+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 60 minutes after a passenger required urgent medical assistance at Toorak. Trains may be altered / cancelled as we work to restore the timetable. Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
+    "id": "ed51a9ac-5058-5c1f-a63c-1e3e7f762c77",
+    "first_seen": "2026-09-25T04:28:46.832898+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to earlier network congestion in the Flinders Street area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
+    "id": "432f2fd0-b1b5-53e9-829d-5831f6e4de15",
+    "first_seen": "2026-09-25T04:28:46.832898+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to earlier network congestion in the Flinders Street area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-HBE-R:"
+    ]
+  },
+  {
     "id": "6387cabc-9010-5152-b71d-e5c050bdbfce",
     "first_seen": "2026-09-24T09:27:45.175151+00:00",
     "header": "Minor Delay",
