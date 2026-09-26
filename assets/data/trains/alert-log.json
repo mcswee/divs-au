@@ -1,5 +1,16 @@
 [
   {
+    "id": "196e78b0-7fca-5a15-a517-76fd6b31a1a6",
+    "first_seen": "2026-09-26T00:02:45.690641+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier trespasser in the Berwick area.  Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
     "id": "f3ab71a8-d472-569e-9508-9d1b61a4e99c",
     "first_seen": "2026-09-25T15:06:27.750036+00:00",
     "header": "Minor Delay",
