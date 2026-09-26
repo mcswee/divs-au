@@ -1,5 +1,15 @@
 [
   {
+    "id": "26d74035-901d-500d-854e-650b512d8a96",
+    "first_seen": "2026-09-26T04:33:12.866325+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes now clearing after an earlier equipment fault in the Pascoe Vale area.  Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
     "id": "196e78b0-7fca-5a15-a517-76fd6b31a1a6",
     "first_seen": "2026-09-26T00:02:45.690641+00:00",
     "header": "Minor Delay",
