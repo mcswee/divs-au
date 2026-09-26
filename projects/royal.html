@@ -163,7 +163,7 @@ function render(data){
     if(!p||!c) return;
     const x1=p.px+CW/2, y1=p.py+CH;
     const x2=c.px+CW/2, y2=c.py;
-    const my=y1+CH+(GG-CH)*0.5;
+    const my=y2-(GG-CH)*0.5;
     const col=(p.colours&&p.colours.border)||'#666';
     eg.append('path')
       .attr('class',e.type==='primary'?'ep':'es')
