@@ -1,5 +1,40 @@
 [
   {
+    "id": "2133d2b8-48f5-50be-ba43-a95761fb73a4",
+    "first_seen": "2026-09-27T15:16:10.560281+00:00",
+    "header": "Planned work: Buses replace trains between Parliament and Camberwell",
+    "description": "8.30pm to last service each night, Sunday 27 September to Wednesday 30 September",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
+    "id": "80de9a08-5a1c-5749-af6d-204771979d76",
+    "first_seen": "2026-09-27T15:16:10.560281+00:00",
+    "header": "Planned work: Night works between Richmond and Glen Waverley",
+    "description": "9pm to 4am each night, Sunday 27 September to Wednesday 30 September  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Glen Waverley Line. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
+    "id": "1ea016a2-4311-5059-9a7f-f2a1383a1b68",
+    "first_seen": "2026-09-27T15:16:10.560281+00:00",
+    "header": "Planned work: Night works between Flinders Street and Camberwell",
+    "description": "9pm to 4am each night, Sunday 27 September to Wednesday 30 September  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Lilydale, Belgrave and Alamein lines. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
     "id": "b9e76e10-84b7-563b-8dbc-f947a0ab7a84",
     "first_seen": "2026-09-27T10:28:30.024859+00:00",
     "header": "Minor Delay",
