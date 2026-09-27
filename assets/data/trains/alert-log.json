@@ -1,5 +1,80 @@
 [
   {
+    "id": "b9e76e10-84b7-563b-8dbc-f947a0ab7a84",
+    "first_seen": "2026-09-27T10:28:30.024859+00:00",
+    "header": "Minor Delay",
+    "description": "Trains are resuming between Oakleigh and Dandenong after an earlier police request near Springvale. First trains to resume will be:  The 7:45 pm Arden to East Pakenham. The 7:37 pm Cranbourne to Arden.  Replacement buses may supplement train services as we restore the regular frequency. Check information displays and listen for announcements as some trains may be altered or delayed during recovery.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "fd572a72-d299-5647-bcf6-fb210591855f",
+    "first_seen": "2026-09-27T10:28:30.024859+00:00",
+    "header": "Minor Delay",
+    "description": "Trains are resuming between Oakleigh and Dandenong after an earlier police request near Springvale. First trains to resume will be:  The 7:45 pm Arden to East Pakenham. The 7:37 pm Cranbourne to Arden.  Replacement buses may supplement train services as we restore the regular frequency. Check information displays and listen for announcements as some trains may be altered or delayed during recovery.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
+    "id": "ad76fe89-8591-5e0a-a14b-0db5f843a5dd",
+    "first_seen": "2026-09-27T10:28:30.024859+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Richmond and Glen Waverley from 8.15pm to last service each night, Sunday 27 September to Wednesday 30 September, while maintenance &amp; renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-GWY:",
+      "aus:vic:vic-02-GWY-R:"
+    ]
+  },
+  {
+    "id": "7f08b2e1-c150-5d3b-81e3-c247b775f4c0",
+    "first_seen": "2026-09-27T10:28:30.024859+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Camberwell from 8.30pm to last service each night, Sunday 27 September to Wednesday 30 September, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-ALM:"
+    ]
+  },
+  {
+    "id": "33936d02-ffbe-5d81-9618-fed2ac9dcda6",
+    "first_seen": "2026-09-27T10:28:30.024859+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Camberwell from 8.30pm to last service each night, Sunday 27 September to Wednesday 30 September, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "7100a293-5736-589a-9936-0a348e00db1c",
+    "first_seen": "2026-09-27T10:28:30.024859+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Camberwell from 8.30pm to last service each night, Sunday 27 September to Wednesday 30 September, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
+    "id": "e86e6875-b6d1-5602-a2fc-690965c195b1",
+    "first_seen": "2026-09-27T10:28:30.024859+00:00",
+    "header": "Planned work: Buses replace trains between Richmond and Glen Waverley",
+    "description": "8.15pm to last service each night, Sunday 27 September to Wednesday 30 September",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-GWY:",
+      "aus:vic:vic-02-GWY-R:"
+    ]
+  },
+  {
     "id": "7dc7c3ae-e8db-5a4e-b32b-2ed21ca1f9c6",
     "first_seen": "2026-09-27T01:41:16.492951+00:00",
     "header": "Major Delay",
