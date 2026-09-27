@@ -1,5 +1,37 @@
 [
   {
+    "id": "7dc7c3ae-e8db-5a4e-b32b-2ed21ca1f9c6",
+    "first_seen": "2026-09-27T01:41:16.492951+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes now clearing after an earlier trespasser in the Seaholme area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "f59fc01d-1668-5741-a6e2-71be06e5b754",
+    "first_seen": "2026-09-27T01:41:16.492951+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes for citybound services now clearing after an earlier train fault in the Clayton area.  Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "223aaf40-f40e-5b42-ae83-18219b654f42",
+    "first_seen": "2026-09-27T01:41:16.492951+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes for citybound services now clearing after an earlier train fault in the Clayton area.  Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
     "id": "26d74035-901d-500d-854e-650b512d8a96",
     "first_seen": "2026-09-26T04:33:12.866325+00:00",
     "header": "Major Delay",
