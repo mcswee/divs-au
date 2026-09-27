@@ -1,5 +1,58 @@
 [
   {
+    "id": "9f1e5978-296b-5a9f-92ed-76eb2457254f",
+    "first_seen": "2026-09-27T23:53:50.416306+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an earlier train fault in the Clayton area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "2f6a08be-1eb7-5093-942f-64f897d5ba01",
+    "first_seen": "2026-09-27T23:53:50.416306+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to network congestion. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-ALM:"
+    ]
+  },
+  {
+    "id": "9c68f3dd-8c26-5591-acd5-df44a89e6f5c",
+    "first_seen": "2026-09-27T23:53:50.416306+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to network congestion. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-BEG-R:"
+    ]
+  },
+  {
+    "id": "d82e0b59-78f1-5c0f-83c5-cf4af45a14d3",
+    "first_seen": "2026-09-27T23:53:50.416306+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to network congestion. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-GWY-R:",
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
+    "id": "422f4d78-9125-5f49-a6e9-fce242c50253",
+    "first_seen": "2026-09-27T23:53:50.416306+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to network congestion. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
     "id": "2133d2b8-48f5-50be-ba43-a95761fb73a4",
     "first_seen": "2026-09-27T15:16:10.560281+00:00",
     "header": "Planned work: Buses replace trains between Parliament and Camberwell",
