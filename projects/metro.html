@@ -608,14 +608,17 @@ function render() {
 
   const byPlat = {};
   const vlineGroups = {};
+  const isSouthernCross = stationData.name === 'Southern Cross';
   upcoming.forEach(d => {
     if (d.group === 'vline') {
-      // V/Line has no platform data, so group by line + direction instead.
-      // vlineDirection() (defined below) handles country termini (only "up"
-      // ever has entries) and multi-line hubs like Southern Cross (splits
-      // per line) with no station-specific special-casing.
+      // V/Line has no platform data. At Southern Cross every departure is
+      // "down" (nothing terminates there), so grouping by direction alone
+      // would merge every line into one bucket and bury less-frequent
+      // services — group by route instead. Everywhere else, combine all
+      // routes together into a single "next 3 up" / "next 3 down" so e.g.
+      // Footscray isn't showing six separate near-empty V/Line sections.
       const dir = vlineDirection(d.route, d.dest);
-      const key = `${d.route}|${dir}`;
+      const key = isSouthernCross ? d.route : dir;
       if (!vlineGroups[key]) vlineGroups[key] = { route: d.route, dir, deps: [] };
       if (vlineGroups[key].deps.length < 3) vlineGroups[key].deps.push(d);
       return;
@@ -629,8 +632,9 @@ function render() {
   const plats = Object.keys(byPlat).sort(platSort);
   const vlineKeys = Object.keys(vlineGroups).sort((a, b) => {
     const A = vlineGroups[a], B = vlineGroups[b];
+    if (isSouthernCross) return A.route.localeCompare(B.route);
     if (A.dir !== B.dir) return A.dir === 'up' ? -1 : 1;
-    return A.route.localeCompare(B.route);
+    return 0;
   });
   const frag  = document.createDocumentFragment();
 
@@ -652,9 +656,9 @@ function render() {
   plats.forEach(p => frag.appendChild(buildPlatform(p, byPlat[p])));
   vlineKeys.forEach(k => {
     const g = vlineGroups[k];
-    const label = g.dir === 'up'
-      ? `V/Line: ${g.route} — to Southern Cross`
-      : `V/Line: ${g.route} — Outbound`;
+    const label = isSouthernCross
+      ? `V/Line: ${g.route}`
+      : (g.dir === 'up' ? 'V/Line — to Southern Cross' : 'V/Line — Outbound');
     frag.appendChild(buildPlatform(label, g.deps, true));
   });
 
