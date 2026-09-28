@@ -1,5 +1,27 @@
 [
   {
+    "id": "ddcdfe52-0d9d-5d5e-b18c-3cdc4109258c",
+    "first_seen": "2026-09-28T19:31:36.745026+00:00",
+    "header": "Planned work: East Malvern Station car space closures",
+    "description": "Tuesday 29 September to Wednesday 30 September Up to 80 spaces in the commuter car park are temporarily closed for United Energy planned powerline works. Accessible parking spaces remain available. For your safety, please follow signage and instructions in place during this time. The timing of these works may change due to weather or unavoidable circumstances.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-GWY-R:",
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
+    "id": "f8869125-e0be-58e7-a0e9-aecbd4239603",
+    "first_seen": "2026-09-28T19:31:36.745026+00:00",
+    "header": "Planned work: Buses replace trains from Newport to Werribee",
+    "description": "11.50pm to last service each night, Monday 28 September to Thursday 1 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
     "id": "5d483a6a-23ce-555b-aa75-1e61fca83b53",
     "first_seen": "2026-09-28T11:36:05.745324+00:00",
     "header": "Planned Works",
