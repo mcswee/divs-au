@@ -1,5 +1,48 @@
 [
   {
+    "id": "5d483a6a-23ce-555b-aa75-1e61fca83b53",
+    "first_seen": "2026-09-28T11:36:05.745324+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Richmond and Glen Waverley from 8:15pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-GWY:",
+      "aus:vic:vic-02-GWY-R:"
+    ]
+  },
+  {
+    "id": "573c44bc-bb9f-53c3-b528-72ee0b9eb6bb",
+    "first_seen": "2026-09-28T11:36:05.745324+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Camberwell from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "4714e138-dc0e-5969-b1f9-9aea98accb4c",
+    "first_seen": "2026-09-28T11:36:05.745324+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Camberwell from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-ALM:"
+    ]
+  },
+  {
+    "id": "615d4707-7702-53dc-85aa-4a2fe6855747",
+    "first_seen": "2026-09-28T11:36:05.745324+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Camberwell from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
     "id": "9913c418-8043-529a-bd82-f0e9e2c2d06b",
     "first_seen": "2026-09-28T04:53:36.397179+00:00",
     "header": "Major Delay",
