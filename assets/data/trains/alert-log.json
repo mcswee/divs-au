@@ -1,5 +1,15 @@
 [
   {
+    "id": "9913c418-8043-529a-bd82-f0e9e2c2d06b",
+    "first_seen": "2026-09-28T04:53:36.397179+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes due to a train fault.  Trains may remain stationary for extended periods at stations or in between stations. Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
     "id": "9f1e5978-296b-5a9f-92ed-76eb2457254f",
     "first_seen": "2026-09-27T23:53:50.416306+00:00",
     "header": "Minor Delay",
