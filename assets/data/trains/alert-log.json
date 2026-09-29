@@ -1,5 +1,70 @@
 [
   {
+    "id": "5b2afa8d-3d87-581a-a216-9297fea091cd",
+    "first_seen": "2026-09-29T11:30:48.994123+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Richmond and Glen Waverley from 8:15pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-GWY:",
+      "aus:vic:vic-02-GWY-R:"
+    ]
+  },
+  {
+    "id": "e470002c-d47f-5411-8cc3-58557774a8e2",
+    "first_seen": "2026-09-29T11:30:48.994123+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Camberwell from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-ALM:"
+    ]
+  },
+  {
+    "id": "47d98120-5f89-53a9-a040-1a6ddb39ff4e",
+    "first_seen": "2026-09-29T11:30:48.994123+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Camberwell from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "c97784d1-1870-5ca0-a9e9-4948b7efc38f",
+    "first_seen": "2026-09-29T11:30:48.994123+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Camberwell from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
+    "id": "38b7cc47-abbf-5464-9129-0afdce181781",
+    "first_seen": "2026-09-29T11:30:48.994123+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a debris across rail lines in the Regent area. Trains may remain stationary at or in-between stations for extended period of time. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
+    "id": "2383edbf-2b65-58a8-a384-d67b5c497002",
+    "first_seen": "2026-09-29T11:30:48.994123+00:00",
+    "header": "Planned work: Emergency works at Victoria Park",
+    "description": "9pm to 5am, Tuesday 29 September  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, emergency safety works will be undertaken along the Mernda and Hurstbridge lines. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
     "id": "91f375c6-ef66-50b8-b1cb-45485653faae",
     "first_seen": "2026-09-29T05:18:53.671400+00:00",
     "header": "Minor Delay",
