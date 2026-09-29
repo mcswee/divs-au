@@ -1,5 +1,15 @@
 [
   {
+    "id": "91f375c6-ef66-50b8-b1cb-45485653faae",
+    "first_seen": "2026-09-29T05:18:53.671400+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to vandalism in the Oak Park area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
     "id": "33b12b33-a982-5f91-8165-342396dc3d5a",
     "first_seen": "2026-09-29T02:40:50.040777+00:00",
     "header": "Minor Delay",
