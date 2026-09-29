@@ -1,5 +1,26 @@
 [
   {
+    "id": "33b12b33-a982-5f91-8165-342396dc3d5a",
+    "first_seen": "2026-09-29T02:40:50.040777+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a disruptive passenger at Springvale.  Trains may remain stationary for extended periods at stations or in between stations. Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "2f95c04f-8c56-591a-a374-0544d47d0a7a",
+    "first_seen": "2026-09-29T02:40:50.040777+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a disruptive passenger at Springvale.  Trains may remain stationary for extended periods at stations or in between stations. Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
     "id": "b2d9662d-e960-5890-860b-5b125f61f909",
     "first_seen": "2026-09-28T23:04:36.484412+00:00",
     "header": "Minor Delay",
