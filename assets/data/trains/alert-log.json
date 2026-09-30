@@ -1,5 +1,15 @@
 [
   {
+    "id": "e9572b82-5ec0-5f7d-9e12-798c4375cf2b",
+    "first_seen": "2026-09-30T01:26:55.641429+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes due to an earlier external loss of power in the Coburg area.  Trains may run at a reduces speed through the Coburg area.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
     "id": "5b2afa8d-3d87-581a-a216-9297fea091cd",
     "first_seen": "2026-09-29T11:30:48.994123+00:00",
     "header": "Planned Works",
