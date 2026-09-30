@@ -1,5 +1,16 @@
 [
   {
+    "id": "297bd823-db54-5962-ba59-86d71ac80577",
+    "first_seen": "2026-09-30T22:01:51.268908+00:00",
+    "header": "Planned work: Rosanna Station car space closure",
+    "description": "5am Thursday 1 October to 4am Monday 5 October Up to 10 spaces in the Rosanna Station carpark are closed, due to maintenance works. For your safety, please observe any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-HBE-R:"
+    ]
+  },
+  {
     "id": "7c532da9-47ee-5b3b-a693-8f4d34df163b",
     "first_seen": "2026-09-30T11:19:25.100924+00:00",
     "header": "Planned Works",
