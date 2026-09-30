@@ -1,5 +1,101 @@
 [
   {
+    "id": "7c532da9-47ee-5b3b-a693-8f4d34df163b",
+    "first_seen": "2026-09-30T11:19:25.100924+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Richmond and Glen Waverley from 8:15pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-GWY-R:",
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
+    "id": "8cd37ee7-48c7-50fa-841e-29ea3df2ef92",
+    "first_seen": "2026-09-30T11:19:25.100924+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Camberwell from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-ALM:"
+    ]
+  },
+  {
+    "id": "fc405cce-5cb0-51f0-9bfd-8086ee66e88c",
+    "first_seen": "2026-09-30T11:19:25.100924+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Camberwell from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-BEG-R:"
+    ]
+  },
+  {
+    "id": "ec7f2097-d6d7-5955-94bb-59c16e2a50a7",
+    "first_seen": "2026-09-30T11:19:25.100924+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Camberwell from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
+    "id": "aba6c3db-0f6a-5d80-8662-5fcc06ceb6da",
+    "first_seen": "2026-09-30T11:19:25.100924+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after an earlier ill passenger at Springvale. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "15da2d52-6ece-5a43-8874-4bdc4e6633f6",
+    "first_seen": "2026-09-30T11:19:25.100924+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after an earlier ill passenger at Springvale. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "1312fda3-392d-59e4-8765-cfdfbc9c1eb2",
+    "first_seen": "2026-09-30T11:19:25.100924+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after an earlier ill passenger at Springvale. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SUY-R:",
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "98b9d0c9-b864-5bf7-99d6-199537b578ac",
+    "first_seen": "2026-09-30T11:19:25.100924+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a police request in the Southern Cross area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
+    "id": "55aa56ef-2e75-5460-941b-4144ab6030ee",
+    "first_seen": "2026-09-30T11:19:25.100924+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a police request in the Southern Cross area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
     "id": "e9572b82-5ec0-5f7d-9e12-798c4375cf2b",
     "first_seen": "2026-09-30T01:26:55.641429+00:00",
     "header": "Major Delay",
