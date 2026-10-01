@@ -120,10 +120,17 @@ function findHolderInfoForYear(division, year) {
     if (inWindow.length === 0) return null;
 
     inWindow.sort((a, b) => a.start.localeCompare(b.start));
-    const electedHolder = inWindow[0]; // whoever actually won this election -- always the headline, even if a later by-election changed hands
-    const notes = inWindow.flatMap(h => h.notes || []); // full story of the term: deaths, by-elections, defections, in order
 
-    return { electedHolder, notes };
+    // multi-member seats (e.g. South Australia and Tasmania's single state-wide
+    // electorate at Federation) can return several people simultaneously --
+    // anyone sharing the earliest start date in this window was a co-equal
+    // winner, not a single headline winner followed by colleagues
+    const earliestStart = inWindow[0].start;
+    const electedHolders = inWindow.filter(h => h.start === earliestStart);
+
+    const notes = inWindow.flatMap(h => h.notes || []); // full story of the term, in order
+
+    return { electedHolders, notes };
 }
 
 function loadYear(year) {
@@ -181,10 +188,10 @@ function renderGeoJson(geoData, year) {
             if (!division) return;
 
             const info = findHolderInfoForYear(division, year);
-            const holder = info ? info.electedHolder : null;
+            const holders = info ? info.electedHolders : [];
             const windowNotes = info ? info.notes : [];
             const sStyle = getStateStyle(division.state);
-
+            
             let badgeCount = 0;
             let badgesList = '';
             if (division.isfed === "TRUE") { badgesList += '<span class="badge fed">FEDERATION</span>'; badgeCount++; }
@@ -204,18 +211,22 @@ function renderGeoJson(geoData, year) {
                 offset: [0, 5]
             });
 
-            // party shown is the one the member was elected under at the START of this term
-            const electedParty = holder && holder.parties.length ? holder.parties[0].party : null;
-            const pColor = (electedParty && partyColours[electedParty]) ? `#${partyColours[electedParty]}` : '#333';
+            // accent colour uses the first-listed winner's party -- purely decorative,
+            // doesn't need to represent every co-elected member when there's more than one
+            const primaryParty = (holders.length && holders[0].parties.length) ? holders[0].parties[0].party : null;
+            const pColor = (primaryParty && partyColours[primaryParty]) ? `#${partyColours[primaryParty]}` : '#333';
 
-            const memberRow = holder
-                ? `<div class="member-row">
-                       <strong>${holder.given || ''} ${(holder.family || '').toUpperCase()}</strong>
-                       <span class="party-pill">${(electedParty || 'IND')}</span>
-                   </div>
-                   ${windowNotes.length ? `<small class="status-notice">${windowNotes.join('<br>')}</small>` : ''}`
-                : `<div class="member-row"><em>No member on record for this election.</em></div>`;
+            const memberRows = holders.length
+               ? holders.map(h => {
+                    const party = h.parties.length ? h.parties[0].party : 'IND';
+                    return `<div class="member-row">
+                        <strong>${h.given || ''} ${(h.family || '').toUpperCase()}</strong>
+                        <span class="party-pill">${party}</span>
+                     </div>`;
+            }).join('')
+            : `<div class="member-row"><em>No member on record for this election.</em></div>`;
 
+            const memberRow = memberRows + (windowNotes.length ? `<small class="status-notice">${windowNotes.join('<br>')}</small>` : '');
             const popupContent = `
                 <div class="map-popup" style="--party-color: ${pColor}">
                     <header>
