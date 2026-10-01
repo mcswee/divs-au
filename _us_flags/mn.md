@@ -4,6 +4,8 @@ state: "Minnesota"
 state_id: mn
 change_type: Evolution
 compare: true
+critique: |
+  Yes! Minnesota got rid of a seal on a bedsheet and gave us an awesome flag. I love the design, what it represents, and everything about the fact that they actually managed to change it.
 description: |
- Yes! Minnesota got rid of a seal on a bedsheet, and gave us an awesome flag. I love the design, what it represents and everything about the fact they managed to actually change it. However, I'd have preferred the B2 design from the contest better. It had the triband, and the green, white and sky blue just appealed more to me.
+  I'd have preferred another design from the contest. I feel like entry B2 was better overall. It had the triband, and the green, white, and sky blue just appealed to me more.
 ---
