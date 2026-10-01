@@ -5,5 +5,5 @@ state_id: ak
 change_type: No Change
 compare: false
 description: |
- The Big Dipper and the North Star prove that simplicity wins. It captures the scale of the wilderness and the state’s northern position without needing a single word. It’s a masterclass in using empty space to create a sense of place.
+ The Big Dipper and the North Star prove that simplicity wins. It captures the scale of Alaska's wilderness and its northern position without needing a single word. It's a masterclass in using empty space to create a sense of place.
 ---
