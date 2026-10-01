@@ -5,5 +5,5 @@ state_id: dc
 change_type: No Change
 compare: false
 description: |
- The existing banner of arms of George Washington are iconic, geometric and work perfectly.
+  The existing banner of arms of George Washington is iconic, geometric, and works perfectly as a flag.
 ---
