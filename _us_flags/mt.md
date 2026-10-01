@@ -4,6 +4,18 @@ state: "Montana"
 state_id: mt
 change_type: Redesign
 compare: true
+critique: |
+  Montana's current flag is so boring a seal-on-a-bedsheet design that they decided they needed to plaster a huge name tag across the top.
 description: |
- Montana’s original flag plasters a large name tag across a cluttered seal. I’ve discarded that look to evoke the spirit of "Big Sky Country" through a palette of blue, gold, and white. Gold mountains ground the design, while white sections above them represent the snow. A central bitterroot adds a unique and distinctive element that ensures the design remains unmistakable.The blue field captures the vastness of the Montana sky. This transition moves away from a generic label and toward a powerful visual identity.
+  My redesign uses a blue, gold, and white palette. Gold mountains sit along the bottom of the flag, with white sections above them representing snow. A central pink bitterroot flower is placed on the blue field.
+symbolism:
+  - title: "Big Sky Country"
+    text: |
+      The blue field captures the vastness of the Montana sky, evoking the state's nickname, Big Sky Country.
+  - title: "The landscape"
+    text: |
+      The gold mountains represent Montana's mountainous landscape, while the white above represent snow.
+  - title: "The bitterroot"
+    text: |
+      The central bitterroot, Montana's state flower, adds a distinctive element that gives the flag a clear connection to the state.
 ---
