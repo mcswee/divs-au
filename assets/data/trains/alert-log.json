@@ -1,5 +1,48 @@
 [
   {
+    "id": "0b2e8919-678a-563f-84ec-aaf131939f21",
+    "first_seen": "2026-10-01T05:21:31.441515+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier trespasser in the Blackburn area.  Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-BEG-R:"
+    ]
+  },
+  {
+    "id": "85b88fc8-f1df-5203-b35c-9d68164c5a83",
+    "first_seen": "2026-10-01T05:21:31.441515+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier trespasser in the Blackburn area.  Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "d6d8d056-60f1-52e5-87be-7147a1aa2b3e",
+    "first_seen": "2026-10-01T05:21:31.441515+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to an equipment fault in the Glenbervie area.  Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "d3483eb7-0d3e-524c-b10c-dd02161d7db5",
+    "first_seen": "2026-10-01T05:21:31.441515+00:00",
+    "header": "Planned work: Parkiteer closed at Mordialloc Station",
+    "description": "Until early October 2026 The Parkiteer is temporarily closed at Mordialloc Station. Bicycle hoops are available at the station entrance and alternative secure bicycle parking is available at Parkdale Station.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
     "id": "297bd823-db54-5962-ba59-86d71ac80577",
     "first_seen": "2026-09-30T22:01:51.268908+00:00",
     "header": "Planned work: Rosanna Station car space closure",
