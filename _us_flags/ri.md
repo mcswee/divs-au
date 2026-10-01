@@ -4,6 +4,8 @@ state: "Rhode Island"
 state_id: ri
 change_type: Evolution
 compare: true
+critique: |
+  Rhode Island's existing flag has a simple, recognizable design, but the gold anchor and stars lack contrast against the white field, making them difficult to distinguish from a distance. The "Hope" banner adds further clutter.
 description: |
- More of a simple tweak than anything. The gold anchor and stars on white are difficult to see, especially from a distance. I turned the anchor blue, and outlined the stars also in blue for contrast.Because it's really unnecesary, I also removed the "Hope" banner. While the sentiment is nice, it's just additional clutter. The anchor and stars do a well-enough job of identifying Rhode Island as one of the original thirteen states.
+  My redesign turns the gold anchor blue and outlines the stars in blue to improve contrast against the white field. I also remove the "Hope" banner, leaving the anchor and thirteen stars to stand on their own.
 ---
