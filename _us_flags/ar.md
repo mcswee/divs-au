@@ -5,17 +5,17 @@ state_id: ar
 change_type: Evolution
 compare: true
 critique: |
-  There is a half-decent flag hidden here, but the big ol' name tag, thinly veiled, and outright Confederate references, and the generic red, white, and blue palette turn it into a big mess. 
+  There is a half-decent flag hidden here, but the big ol' name tag, thinly veiled and outright Confederate references, and generic red, white, and blue palette turn it into a big mess.
 description: |
- My redesign strips the design back to a green and white scheme to reflect the natural landscape while stepping further away from Confederate references. Removing the name badge allows for better spacing around the four central stars.
+  My redesign strips the design back to a green and white scheme to reflect Arkansas's natural landscape while stepping further away from Confederate references. Removing the name badge gives the four central stars more space and allows the design to breathe.
 symbolism:
   - title: "The Diamond State"
     text: |
-      Keeping the diamond shape maintains the representation with the state's nickname, the Diamond State.
+      Keeping the diamond shape maintains the connection to Arkansas's nickname, the Diamond State.
   - title: "Natural landscape"
     text: |
-      Replacing the background with a field of green represents Arkansas's natural environment and national parks and moves away from the boring, generic "Red, White and Blue".
+      Replacing the background with green represents Arkansas's natural environment while moving away from the generic red, white and blue palette.
   - title: "Four stars"
     text: |
-      We keep the four stars, however, slightly changing how they represent four nations that have ruled the land: Spain, France, the USA, and the First Nations.
+      The four stars are retained, representing Spain, France, the United States, and the Indigenous peoples of the region. The Indigenous star replaces the Confederate star on the current flag.
 ---
