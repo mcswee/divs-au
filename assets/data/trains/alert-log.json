@@ -1,5 +1,70 @@
 [
   {
+    "id": "01d3a7d5-754c-5250-b40f-5ca0ca481d02",
+    "first_seen": "2026-10-02T11:16:47.351593+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 40 minutes due to an equipment fault in the South Yarra area.  Select services may terminate/originate at intermediate stations. Allow extra travel time.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SHM:"
+    ]
+  },
+  {
+    "id": "4eeb137b-f2c4-5b45-b301-51ab31db3295",
+    "first_seen": "2026-10-02T11:16:47.351593+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Heidelberg and Hurstbridge from 8:30pm Friday 2 October to last train Sunday 4 October, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "4eaa788a-568d-50c0-8d0b-be957f3fe810",
+    "first_seen": "2026-10-02T11:16:47.351593+00:00",
+    "header": "Planned work: Wattle Glen Station car space closure",
+    "description": "6pm Friday 2 October to 11pm Sunday 4 October Up to 75 car spaces in the Wattle Glen Station carpark are closed, due to maintenance works. For your safety, please observe any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "cefeaede-48ed-5155-910a-be1eb3c64f8f",
+    "first_seen": "2026-10-02T11:16:47.351593+00:00",
+    "header": "Planned work: Diamond Creek Station car space closure",
+    "description": "6pm Friday 2 October to 11pm Sunday 4 October Up to 150 car spaces in the Diamond Creek Station carpark are closed, due to maintenance works. For your safety, please observe any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "ebc10290-9bc0-52b4-b0f7-3ce498caa706",
+    "first_seen": "2026-10-02T11:16:47.351593+00:00",
+    "header": "Planned work: Buses replace trains between Heidelberg and Hurstbridge",
+    "description": "8.30pm Friday 2 October to last service Sunday 4 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "54bf2a6a-7d2b-5c21-8f85-4c4b5d8aeffb",
+    "first_seen": "2026-10-02T11:16:47.351593+00:00",
+    "header": "Planned work: Weekend works between Heidelberg and Hurstbridge",
+    "description": "9pm Friday 2 October to 4am Monday 5 October  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Hurstbridge Line. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  On behalf of the Ruthven Street, Macleod level crossing removal project, Metro Trains will be trimming overhanging branches along the rail corridor and in the station precinct and will remove one tree in decline in Rosanna Parklands. This will enable construction of the new rail bridge and new rail infrastructure. More information can be found\u00a0here.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
     "id": "fae7060e-9ffd-5c17-acbd-2c3377b219b4",
     "first_seen": "2026-10-02T01:47:58.969157+00:00",
     "header": "Minor Delay",
