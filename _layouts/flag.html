@@ -58,7 +58,7 @@ category: projects
     {% if page.symbolism %}
     <div class="symbolism-grid">
         {% for item in page.symbolism %}
-        <div class="symbol-item {{ page.state_id }}">
+         <div class="symbol-item{% if page.collection != 'us_flags' %} {{ page.state_id }}{% endif %}">
             <h3>{{ item.title }}</h3>
             <p>{{ item.text }}</p>
         </div>
