@@ -1,5 +1,26 @@
 [
   {
+    "id": "fae7060e-9ffd-5c17-acbd-2c3377b219b4",
+    "first_seen": "2026-10-02T01:47:58.969157+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to an equipment fault in the South Yarra area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "7b01f1ee-995c-5000-8787-85587e710735",
+    "first_seen": "2026-10-02T01:47:58.969157+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to an equipment fault in the South Yarra area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SHM:"
+    ]
+  },
+  {
     "id": "0b2e8919-678a-563f-84ec-aaf131939f21",
     "first_seen": "2026-10-01T05:21:31.441515+00:00",
     "header": "Minor Delay",
