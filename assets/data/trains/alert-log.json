@@ -1,5 +1,27 @@
 [
   {
+    "id": "7ad2a922-52ac-5ae2-82fa-279d9171fe46",
+    "first_seen": "2026-10-03T04:51:53.077356+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes after an earlier serious incident requiring emergency services in the Narre Warren area.  Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "03dfe3b7-95b2-5c3d-816f-a749edac234e",
+    "first_seen": "2026-10-03T04:51:53.077356+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes after an earlier serious incident. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
     "id": "c8b5fedc-0531-54ec-88f0-bdca55909a3a",
     "first_seen": "2026-10-03T01:05:25.429530+00:00",
     "header": "Suspended",
