@@ -1,5 +1,58 @@
 [
   {
+    "id": "a5579e74-27af-5eda-ba14-26f24c2d1288",
+    "first_seen": "2026-10-03T10:18:35.061337+00:00",
+    "header": "Other Information",
+    "description": "Due to an external loss of power there is no station or platform lighting at Berwick.  Passengers are advised to take care when boarding or alighting the train.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
+    "id": "01773d01-88d0-563d-afa6-7e7fcc160a1e",
+    "first_seen": "2026-10-03T10:18:35.061337+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes after a police request in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-UFD:",
+      "aus:vic:vic-02-UFD-R:"
+    ]
+  },
+  {
+    "id": "f0b8a60c-c6e5-5633-8d35-eeb32bf620a5",
+    "first_seen": "2026-10-03T10:18:35.061337+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes after a police request in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "1917f0d6-90e7-5858-92e7-345256b0d911",
+    "first_seen": "2026-10-03T10:18:35.061337+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes after a police request in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "619ae19e-866f-5d61-846f-62bed5ed253d",
+    "first_seen": "2026-10-03T10:18:35.061337+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes after a police request in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
     "id": "7ad2a922-52ac-5ae2-82fa-279d9171fe46",
     "first_seen": "2026-10-03T04:51:53.077356+00:00",
     "header": "Major Delay",
