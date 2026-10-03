@@ -1,5 +1,16 @@
 [
   {
+    "id": "c8b5fedc-0531-54ec-88f0-bdca55909a3a",
+    "first_seen": "2026-10-03T01:05:25.429530+00:00",
+    "header": "Suspended",
+    "description": "Buses replace trains between Dandenong and Berwick due to emergency services attending to a serious incident.  Replacement buses are in operation. Allow an extra 30 minutes for your journey. A train service will operate between Flinders Street and Dandenong, with delays to the service  Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
     "id": "64ef8836-0100-534d-8681-2457a9dda295",
     "first_seen": "2026-10-02T16:47:40.346418+00:00",
     "header": "Minor Delay",
