@@ -1,5 +1,17 @@
 [
   {
+    "id": "8df27bd9-2afb-5378-8c5a-37a4c0ff7e64",
+    "first_seen": "2026-10-03T14:49:20.308387+00:00",
+    "header": "Planned work: Westall Station car space closures",
+    "description": "11pm Saturday 3 October to 7am Tuesday 6 October Due to maintenance works, up to 16 car spaces will be temporarily closed in the Rayhur Street carpark at Westall Station. For your safety, please observe any signage and instructions in place during this team.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:",
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
     "id": "a5579e74-27af-5eda-ba14-26f24c2d1288",
     "first_seen": "2026-10-03T10:18:35.061337+00:00",
     "header": "Other Information",
