@@ -1,5 +1,16 @@
 [
   {
+    "id": "9683365f-e5f4-5752-9764-1f21ee9fa191",
+    "first_seen": "2026-10-03T23:37:16.419515+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes due to a train fault in the West Footscray area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
     "id": "8df27bd9-2afb-5378-8c5a-37a4c0ff7e64",
     "first_seen": "2026-10-03T14:49:20.308387+00:00",
     "header": "Planned work: Westall Station car space closures",
