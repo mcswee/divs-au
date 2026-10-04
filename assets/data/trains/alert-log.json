@@ -1,5 +1,27 @@
 [
   {
+    "id": "82f04429-1747-5512-9bb0-fdd71416d941",
+    "first_seen": "2026-10-04T21:03:44.760404+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier equipment fault in the Newport area.  Select services may terminate/originate at intermediate locations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "a8514f8d-f9e9-550e-8982-f4fc238dff60",
+    "first_seen": "2026-10-04T21:03:44.760404+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier operational incident in the Moorabbin area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
     "id": "0d67f97b-0039-5579-8185-498b73572caa",
     "first_seen": "2026-10-04T11:15:05.576099+00:00",
     "header": "Planned Works",
