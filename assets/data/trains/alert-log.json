@@ -1,5 +1,50 @@
 [
   {
+    "id": "0d67f97b-0039-5579-8185-498b73572caa",
+    "first_seen": "2026-10-04T11:15:05.576099+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Oakleigh and Westall from 9pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "4c4f5663-15bb-52ce-8d3b-e7cd52cbaf5d",
+    "first_seen": "2026-10-04T11:15:05.576099+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Oakleigh and Westall from 9pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
+    "id": "a56f3a44-4e36-5228-85d6-580e5403e383",
+    "first_seen": "2026-10-04T11:15:05.576099+00:00",
+    "header": "Planned work: Buses replace trains between Oakleigh and Westall",
+    "description": "9pm to last service each night, Sunday 4 October to Monday 5 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "41ab14a5-a76a-5d06-a661-28e55fe8925e",
+    "first_seen": "2026-10-04T11:15:05.576099+00:00",
+    "header": "Planned work: Night works between Huntingdale and Westall",
+    "description": "9pm to 4am each night, Sunday 4 October to Tuesday 6 October  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Cranbourne and Pakenham lines. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
     "id": "9683365f-e5f4-5752-9764-1f21ee9fa191",
     "first_seen": "2026-10-03T23:37:16.419515+00:00",
     "header": "Major Delay",
