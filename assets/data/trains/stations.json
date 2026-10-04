@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-27T18:57:31.349093",
+  "generated": "2026-10-04T18:35:22.699237",
   "groups": {
     "frankston": "Frankston / Stony Point",
     "burnley": "Burnley",
@@ -1645,8 +1645,7 @@
         "bayside",
         "burnley",
         "frankston",
-        "vline",
-        "yarra"
+        "vline"
       ]
     },
     {
