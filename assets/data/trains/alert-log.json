@@ -1,5 +1,196 @@
 [
   {
+    "id": "80fc0f09-84b1-5682-b4c8-9c7549adddb7",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Burnley from 8.30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-ALM:"
+    ]
+  },
+  {
+    "id": "935d976c-d442-59f1-b3e7-8e4b5a462e87",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Richmond and Glen Waverley from 8.30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-GWY-R:",
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
+    "id": "1aff56b9-f8ef-502a-a54b-42089649b1fd",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Burnley from 8.30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "7230b8b6-ea37-5c41-8761-b550760eb352",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Burnley from 8.30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "bf036130-9e8e-50bb-8224-b8c44e11fc66",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Caulfield and Moorabbin from 8.30pm to last train tonight, while project works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
+    "id": "a361b9e1-7755-501e-be89-2b0d4d1c561e",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Oakleigh and Westall from 9pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "4bb6585b-9ed5-5c54-b8ea-cc34a9ec4722",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned Works",
+    "description": "Trains will run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From City Loop Take a City Circle train from Platform 1 and change at either Southern Cross or Flinders Street. To City Loop Change at Southern Cross and take a City Circle train from Platform 9. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-UFD-R:",
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
+    "id": "8c2bdcad-5038-5834-8ba7-82864bf4ef37",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned Works",
+    "description": "Trains will run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From City Loop Take a City Circle train from Platform 1 and change at either Southern Cross or Flinders Street. To City Loop Change at Southern Cross and take a City Circle train from Platform 9. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "c2bb7b60-83a5-55c9-9f21-c0d81940b31f",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned Works",
+    "description": "Trains will run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From Southern Cross Take a train from Platform 13 and change at Flinders Street. To Southern Cross Change at Flinders Street and take a train from Platforms 1, 9 or 10. To City Loop Change at Flinders Street and take a train from Platform 1. From City Loop Take a City Circle train from Platform 1 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
+    "id": "6fc915c9-660c-5a47-82fd-003d55b0ae8c",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Oakleigh and Westall from 9pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
+    "id": "ca29159f-9e50-54cb-b0cf-a845c7eb1da1",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Newport and Werribee from 11.50pm to last train tonight, while project works take place. Note: Buses operate in one direction from Newport to Werribee during this time. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "fa036cbe-8b81-55d5-b6be-59f440d1aec1",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned work: Buses replace trains between Caulfield and Moorabbin",
+    "description": "8.30pm to last service each night, Monday 5 October and Tuesday 6 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
+    "id": "16ef0bf4-409d-54c2-8cbb-ecad20ca80f4",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned work: Trains run direct to and from Flinders Street, not via the City Loop",
+    "description": "9pm to last service each night, Monday 5 October to Wednesday 7 October \u00a0 From City Loop  Take a City Circle train from Platform 1 and change at either Southern Cross or Flinders Street. To City Loop  Change at Southern Cross and take a City Circle train from Platform 9.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB:",
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
+    "id": "9c7a25fe-0c0e-5cd1-a0b9-79381b8432d4",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned work: Trains run direct to and from Flinders Street, not via the City Loop",
+    "description": "9pm to last service each night, Monday 5 October to Wednesday 7 October\u00a0 \u00a0 From Southern Cross  Take a train from Platform 13 and change at Flinders Street. To Southern Cross  Change at Flinders Street and take a train from platforms 1, 9 or 10. To City Loop  Change at Flinders Street and take a train from Platform 1. From City Loop  Take a City Circle train from Platform 1 and change at Flinders Street.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
+    "id": "45a2d166-f104-5bf1-865a-0effe0845708",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned work: Night works between Flinders Street and Burnley",
+    "description": "9pm to 4am each night, Monday 5 October to Thursday 8 October  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Belgrave, Lilydale, Alamein and Glen Waverley lines. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-GWY:",
+      "aus:vic:vic-02-GWY-R:",
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-BEG-R:"
+    ]
+  },
+  {
+    "id": "ee413d59-b7e0-589a-b718-e2384589c7c3",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned work: Buses replace trains between Richmond and Glen Waverley",
+    "description": "8.30pm to last service each night, Monday 5 October to Wednesday 7 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-GWY-R:",
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
+    "id": "785a31db-c93d-5e82-bc5a-d5793019ffaf",
+    "first_seen": "2026-10-05T12:32:43.316105+00:00",
+    "header": "Planned work: Buses replace trains between Parliament and Burnley",
+    "description": "8.30pm to last service each night, Monday 5 October to Wednesday 7 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-BEG-R:"
+    ]
+  },
+  {
     "id": "82f04429-1747-5512-9bb0-fdd71416d941",
     "first_seen": "2026-10-04T21:03:44.760404+00:00",
     "header": "Minor Delay",
