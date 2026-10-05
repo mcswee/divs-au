@@ -1,5 +1,27 @@
 [
   {
+    "id": "c7a4e859-cd69-5790-8cc7-babaef29d399",
+    "first_seen": "2026-10-05T23:53:41.378911+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the Flinders Street area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "b4ac3720-3217-5703-a41c-9764c6582475",
+    "first_seen": "2026-10-05T23:53:41.378911+00:00",
+    "header": "Planned work: Buses replace trains from Newport to Werribee",
+    "description": "11.50pm to last service each night, Monday 5 October to Thursday 8 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
     "id": "80fc0f09-84b1-5682-b4c8-9c7549adddb7",
     "first_seen": "2026-10-05T12:32:43.316105+00:00",
     "header": "Planned Works",
