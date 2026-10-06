@@ -209,7 +209,7 @@
           { name: "Nouméa", lat: -22.27, lng: 166.45 },
           { name: "Port Moresby", lat: -9.44, lng: 147.18, offsetY: 6 },
           { name: "Papeete", lat: -17.53, lng: -149.56 },
-          { name: "Port Vila", lat: -17.73, lng: 168.32 },
+          { name: "Port Vila", lat: -17.73, lng: 168.32, forecastShiftX: -20 },
           { name: "Saipan", lat: 15.18, lng: 145.75 },
           { name: "Apia", lat: -13.83, lng: -171.76 },
           { name: "Honiara", lat: -9.45, lng: 159.97, offsetY: -12 },
@@ -224,7 +224,7 @@
           { name: "Sydney", lat: -33.86, lng: 151.20, offsetY: -12 },
           { name: "Melbourne", lat: -37.81, lng: 144.96, offsetY: 6 },
           { name: "Brisbane", lat: -27.47, lng: 153.02 },
-          { name: "Adelaide", lat: -34.92, lng: 138.60 },
+          { name: "Adelaide", lat: -34.92, lng: 138.60, forecastShiftX: -20 },
           { name: "Perth", lat: -31.95, lng: 115.86 },
           { name: "Darwin", lat: -12.46, lng: 130.84 },
           { name: "Hobart", lat: -42.88, lng: 147.32 },
@@ -242,7 +242,7 @@
           { name: "Singapore", lat: 1.35, lng: 103.81 , offsetY: 6 },
           { name: "Bangkok", lat: 13.75, lng: 100.50 },
           { name: "Jakarta", lat: -6.20, lng: 106.84 },
-          { name: "Kuala Lumpur", lat: 3.13, lng: 101.68, offsetY: -6 },
+          { name: "Kuala Lumpur", lat: 3.13, lng: 101.68, offsetY: -6, forecastShiftX: -20 },
           { name: "Ho Chi Minh City", lat: 10.82, lng: 106.62 },
           { name: "Manila", lat: 14.59, lng: 120.98 },
           { name: "Bandar Seri Begawan", lat: 4.88, lng: 114.94 }, 
@@ -303,7 +303,7 @@
           { name: "Dubai", lat: 25.20, lng: 55.27, offsetY: 18 },
           { name: "Baku", lat: 40.40, lng: 49.86 },
           { name: "Aden", lat: 12.8, lng: 45.03 },
-          { name: "Riyadh", lat: 24.71, lng: 46.67 },
+          { name: "Riyadh", lat: 24.71, lng: 46.67, offsetY: 6 },
           { name: "Baghdad", lat: 33.31, lng: 44.36 },
           { name: "Kuwait City", lat: 29.38, lng: 47.97 }
         ]
@@ -314,7 +314,7 @@
         cities: [
           { name: "Casablanca", lat: 33.57, lng: -7.58, offsetY: 6 },
           { name: "Lagos", lat: 6.45, lng: 3.39, offsetY: -3},
-          { name: "Johannesburg", lat: -26.20, lng: 28.04 },
+          { name: "Johannesburg", lat: -26.20, lng: 28.04, offsetY: 6 },
           { name: "Cairo", lat: 30.04, lng: 31.23 },
           { name: "Cape Town", lat: -33.92, lng: 18.42 },
           { name: "Kinshasa", lat: -4.44, lng: 15.26 },
@@ -346,7 +346,7 @@
           { name: "Reykjavik", lat: 64.13, lng: -21.83 },
           { name: "Lisbon", lat: 38.73, lng: -9.14 },
           { name: "Vienna", lat: 48.21, lng: 16.37 },  
-          { name: "Dubrovnik", lat: 42.64, lng: 18.09 },
+          { name: "Dubrovnik", lat: 42.64, lng: 18.09, forecastShiftX: -20},
           { name: "Tbilisi", lat: 41.72, lng: 44.83 },
           { name: "Istanbul", lat: 41.00, lng: 28.97 },
           { name: "Milan", lat: 45.46, lng: 9.19 },
@@ -362,7 +362,7 @@
           { name: "Amsterdam", lat: 52.36, lng: 4.90 },
           { name: "Warsaw", lat: 52.22, lng: 21.01 },
           { name: "Moscow", lat: 55.75, lng: 37.61 },
-          { name: "Zurich", lat: 47.37, lng: 8.54 },
+          { name: "Zurich", lat: 47.37, lng: 8.54, forecastShiftX: -20 },
           { name: "Oslo", lat: 59.91, lng: 10.75 },
           { name: "Athens", lat: 37.98, lng: 23.72 },
           { name: "Copenhagen", lat: 55.67, lng: 12.56 },
@@ -384,10 +384,10 @@
           { name: "New York", lat: 40.71, lng: -74.00 },
           { name: "Chicago", lat: 41.87, lng: -87.62 },
           { name: "Washington D.C.", lat: 38.90, lng: -77.03 },
-          { name: "Denver", lat: 39.73, lng: -104.99 },
+          { name: "Denver", lat: 39.73, lng: -104.99, forecastShiftX: -20  },
           { name: "Houston", lat: 29.76, lng: -95.36 },
           { name: "Minneapolis", lat: 44.98, lng: -93.27 },
-          { name: "Kansas City", lat: 39.09, lng: -94.57 },
+          { name: "Kansas City", lat: 39.09, lng: -94.57, offsetY: 12 },
           { name: "Montreal", lat: 45.51, lng: -73.55 },
           { name: "Atlanta", lat: 33.76, lng: -84.42 },
           { name: "Phoenix", lat: 33.57, lng: -112.09, offsetY: 12 },
@@ -432,8 +432,8 @@
           { name: "Caracas", lat: 10.51, lng: -66.91 },
           { name: "Manaus", lat: -3.11, lng: -60.02 },
           { name: "Lima", lat: -12.04, lng: -77.04 },
-          { name: "Asunción", lat: -25.26, lng: -57.56 },
-          { name: "Santiago", lat: -33.44, lng: -70.66 },
+          { name: "Asunción", lat: -25.26, lng: -57.56, forecastShiftX: -20 },
+          { name: "Santiago", lat: -33.44, lng: -70.66, forecastShiftX: -20 },
           { name: "Brasília", lat: -15.80, lng: -47.88 },
           { name: "Guayaquil", lat: -2.19, lng: -79.89 },
           { name: "Belém", lat: -1.45, lng: -48.50 },
@@ -465,11 +465,13 @@
         el.className = 'weather-badge';
 
         const offsetY = d.offsetY || 0;
+        const forecastShiftX = displayMode === 'forecast' ? (d.forecastShiftX ?? 0) : 0;
+
         el.style.position = 'absolute';
         el.style.left = '0';
         el.style.top = '0';
-        el.style.transform = `translate(-50%, calc(-100% + ${offsetY}px))`;
-
+        el.style.transform = `translate(calc(-50% + ${forecastShiftX}px), calc(-100% + ${offsetY}px))`;
+        
         el.innerHTML = ` 
           <strong>${d.name}</strong> 
           ${renderTempHtml(d)} 
