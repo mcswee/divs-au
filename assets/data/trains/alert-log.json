@@ -1,5 +1,37 @@
 [
   {
+    "id": "ad09d0a4-23e5-5462-8977-b183b5d5ae27",
+    "first_seen": "2026-10-06T22:31:27.400516+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier trespasser incident. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "240277a1-d4b9-59be-ac1a-c21d959a3f67",
+    "first_seen": "2026-10-06T22:31:27.400516+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier trespasser incident. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "7cd5fd8a-5e33-5d69-b658-579a938dc872",
+    "first_seen": "2026-10-06T22:31:27.400516+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier trespasser incident. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
     "id": "fef87c89-4c3e-57bf-af8b-3d8ac81cb389",
     "first_seen": "2026-10-06T13:09:31.158342+00:00",
     "header": "Planned Works",
