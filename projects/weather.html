@@ -76,7 +76,7 @@
       opacity: 0.85;
     }
 
-    /* Style for the floating city badges */
+    /* Desktop floating city badges */
     .weather-badge {
       background: rgba(250, 250, 250, 0.9);
       color: #fff;
@@ -95,25 +95,154 @@
       text-transform: uppercase;
       font-weight: 600;
       margin: 0 6px;
-
     }
 
-    /* The colored box specifically for the temperature */
-.temp-box {
-  padding: 6px 6px;
-  font-weight: bold;
-  color: #fff;
-  border-radius: 0;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
-}
+    /* Desktop temperature boxes */
+    .temp-box {
+      padding: 6px 6px;
+      font-weight: bold;
+      color: #fff;
+      border-radius: 0;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    }
 
-.temp-box:only-child {
-  border-radius: 0 4px 4px 0;
-}
+    .temp-box:only-child {
+      border-radius: 0 4px 4px 0;
+    }
 
-.temp-box:last-child {
-  border-radius: 0 4px 4px 0;
-}
+    .temp-box:last-child {
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* Mobile weather panel */
+    #mobile-weather-panel {
+      display: none;
+    }
+
+    /* Mobile geographic placemarks */
+    .mobile-city-marker {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .mobile-city-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(20, 30, 40, 0.8);
+      box-sizing: border-box;
+      flex: 0 0 auto;
+    }
+
+    .mobile-city-label {
+      background: rgba(20, 30, 40, 0.62);
+      color: rgba(255, 255, 255, 0.92);
+      border-radius: 3px;
+      padding: 2px 4px;
+      font-size: 10px;
+      line-height: 1.2;
+      font-weight: 500;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Mobile layout */
+    @media (max-width: 600px) {
+      #mobile-weather-panel {
+        position: fixed;
+        display: block;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        max-height: 36vh;
+        background: rgba(10, 20, 30, 0.86);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 7px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+        color: #fff;
+        overflow-y: auto;
+        z-index: 9;
+        opacity: 0;
+        transform: translateY(12px);
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease;
+        scrollbar-width: thin;
+      }
+
+      #mobile-weather-panel.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .mobile-weather-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .mobile-weather-row {
+        min-width: 0;
+        min-height: 31px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 6px;
+        padding: 4px 7px 4px 9px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .mobile-weather-row:nth-child(odd) {
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .mobile-city-name {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 11px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      .mobile-temperature {
+        display: flex;
+        flex: 0 0 auto;
+        align-items: stretch;
+        font-size: 11px;
+        font-weight: 700;
+        border-radius: 3px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+      }
+
+      .mobile-temp-box {
+        min-width: 25px;
+        padding: 3px 4px;
+        text-align: center;
+        color: #fff;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+      }
+
+      #pause-toggle {
+        bottom: 18px;
+        right: 18px;
+        width: 38px;
+        height: 38px;
+        z-index: 11;
+      }
+
+      #mode-caption {
+        top: 14px;
+        left: 14px;
+        font-size: 16px;
+        letter-spacing: 3px;
+        padding: 5px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -124,19 +253,23 @@
 
   <div id="mode-caption" role="button" aria-label="Toggle between current and forecast">NOW</div>
 
+  <div id="mobile-weather-panel" aria-live="polite">
+    <div class="mobile-weather-grid" id="mobile-weather-grid"></div>
+  </div>
+
   <script>
     // --- COLOR SCALE LOGIC ---
 
     const colorScale = [
-      { temp: -30, color: [241, 223, 245] }, // White Purple
-      { temp: -20, color: [175, 100, 190] }, // Purple
-      { temp: -10, color: [100, 109, 190] }, // Blue
-      { temp: 0,   color: [142, 189, 208] }, // Cyan
-      { temp: 10,  color: [100, 190, 109] }, // Green
-      { temp: 20,  color: [230, 206, 120] }, // Yellow
-      { temp: 30,  color: [220, 166, 130] }, // Orange
-      { temp: 40,  color: [220, 130, 130] }, // Red
-      { temp: 50,  color: [206, 184, 184] }  // Pinky Red
+      { temp: -30, color: [241, 223, 245] },
+      { temp: -20, color: [175, 100, 190] },
+      { temp: -10, color: [100, 109, 190] },
+      { temp: 0,   color: [142, 189, 208] },
+      { temp: 10,  color: [100, 190, 109] },
+      { temp: 20,  color: [230, 206, 120] },
+      { temp: 30,  color: [220, 166, 130] },
+      { temp: 40,  color: [220, 130, 130] },
+      { temp: 50,  color: [206, 184, 184] }
     ];
 
     function interpolate(start, end, t) {
@@ -144,12 +277,20 @@
     }
 
     function getTemperatureColor(temp) {
-      if (typeof temp !== 'number' || isNaN(temp)) return 'rgba(100, 100, 100, 0.9)'; // Neutral grey for fallback
+      if (typeof temp !== 'number' || isNaN(temp)) {
+        return 'rgba(100, 100, 100, 0.9)';
+      }
 
-      if (temp <= colorScale[0].temp) return `rgb(${colorScale[0].color.join(',')})`;
-      if (temp >= colorScale[colorScale.length - 1].temp) return `rgb(${colorScale[colorScale.length - 1].color.join(',')})`;
+      if (temp <= colorScale[0].temp) {
+        return `rgb(${colorScale[0].color.join(',')})`;
+      }
+
+      if (temp >= colorScale[colorScale.length - 1].temp) {
+        return `rgb(${colorScale[colorScale.length - 1].color.join(',')})`;
+      }
 
       let lower, upper;
+
       for (let i = 0; i < colorScale.length - 1; i++) {
         if (temp >= colorScale[i].temp && temp <= colorScale[i + 1].temp) {
           lower = colorScale[i];
@@ -171,10 +312,6 @@
 
     // --- END COLOR SCALE LOGIC ---
 
-    // 'current' shows live temperature, 'forecast' shows today's high/low.
-    // The htmlElement accessor below reads this closure variable fresh on
-    // every call, so re-rendering existing data with htmlElementsData()
-    // picks up a mode change immediately without a new fetch.
     let displayMode = 'current';
     let latestWeatherData = [];
 
@@ -182,10 +319,18 @@
       if (displayMode === 'forecast') {
         const hi = typeof d.high === 'number' ? d.high : null;
         const lo = typeof d.low === 'number' ? d.low : null;
-        const hiColor = hi !== null ? getTemperatureColor(hi) : 'rgba(100, 100, 100, 0.9)';
-        const loColor = lo !== null ? getTemperatureColor(lo) : 'rgba(100, 100, 100, 0.9)';
+
+        const hiColor = hi !== null
+          ? getTemperatureColor(hi)
+          : 'rgba(100, 100, 100, 0.9)';
+
+        const loColor = lo !== null
+          ? getTemperatureColor(lo)
+          : 'rgba(100, 100, 100, 0.9)';
+
         const hiText = hi !== null ? `${hi}°` : '--';
         const loText = lo !== null ? `${lo}°` : '--';
+
         return `
           <span class="temp-box" style="background-color: ${loColor}">${loText}</span>
           <span class="temp-box" style="background-color: ${hiColor}">${hiText}</span>
@@ -194,8 +339,15 @@
 
       const bgColor = getTemperatureColor(d.temp);
       const displayTemp = typeof d.temp === 'number' ? `${d.temp}°` : '--';
-      return `<span class="temp-box" style="background-color: ${bgColor}">${displayTemp}</span>`;
+
+      return `
+        <span class="temp-box" style="background-color: ${bgColor}">
+          ${displayTemp}
+        </span>
+      `;
     }
+
+    // --- STOPS ---
 
     const STOPS = [
       {       
@@ -218,7 +370,7 @@
         ]
       },
       {
-        region: "Australia",
+        region: "Australia", 
         lookAt: { lat: -25.27, lng: 133.77, altitude: 0.9 },
         cities: [
           { name: "Sydney", lat: -33.86, lng: 151.20, offsetY: -12 },
@@ -236,10 +388,10 @@
         ]
       },
       {
-        region: "SE Asia",
+        region: "SE Asia", 
         lookAt: { lat: 6.48, lng: 114.13, altitude: 1.0 },
         cities: [
-          { name: "Singapore", lat: 1.35, lng: 103.81 , offsetY: 6 },
+          { name: "Singapore", lat: 1.35, lng: 103.81, offsetY: 6 },
           { name: "Bangkok", lat: 13.75, lng: 100.50 },
           { name: "Jakarta", lat: -6.20, lng: 106.84 },
           { name: "Kuala Lumpur", lat: 3.13, lng: 101.68, offsetY: -6, forecastShiftX: -18 },
@@ -253,7 +405,7 @@
         ]
       },
       {
-        region: "East Asia",
+        region: "East Asia", 
         lookAt: { lat: 38.38, lng: 112.07, altitude: 0.95 },
         cities: [
           { name: "Tokyo", lat: 35.67, lng: 139.65 },
@@ -274,7 +426,7 @@
         ]
       },
       {
-        region: "Indian Subcontinent",
+        region: "Indian Subcontinent", 
         lookAt: { lat: 24.22, lng: 73.47, altitude: 0.8 },
         cities: [
           { name: "New Delhi", lat: 28.61, lng: 77.20 },
@@ -291,7 +443,7 @@
         ]
       },
       {
-        region: "Middle East",
+        region: "Middle East", 
         lookAt: { lat: 30.04, lng: 49.69, altitude: 0.65 },
         cities: [
           { name: "Tel Aviv", lat: 32.08, lng: 34.78 },
@@ -309,7 +461,7 @@
         ]
       },
       {
-        region: "Africa",
+        region: "Africa", 
         lookAt: { lat: 2.0, lng: 16.0, altitude: 1.2},
         cities: [
           { name: "Casablanca", lat: 33.57, lng: -7.58, offsetY: 6 },
@@ -332,7 +484,7 @@
         ]
       },
       {
-        region: "Northern Europe",
+        region: "Northern Europe", 
         lookAt: { lat: 47.5, lng: 10.0, altitude: 0.8 },
         cities: [
           { name: "London", lat: 51.50, lng: -0.12 },
@@ -354,7 +506,7 @@
         ]
       },  
       {
-        region: "Southern Europe",
+        region: "Southern Europe", 
         lookAt: { lat: 47.50, lng: 10.0, altitude: 0.8 },
         cities: [
           { name: "Madrid", lat: 40.41, lng: -3.70 },
@@ -375,7 +527,7 @@
         ]
       },    
       {
-        region: "North America",
+        region: "North America", 
         lookAt: { lat: 42.33, lng: -93.96, altitude: 0.9 },
         cities: [
           { name: "Vancouver", lat: 49.28, lng: -123.12 },
@@ -401,7 +553,7 @@
         ]
       },
       {
-        region: "Central America",
+        region: "Central America", 
         lookAt: { lat: 18.0, lng: -80.0, altitude: 0.7 },
         cities: [
           { name: "Havana", lat: 23.11, lng: -82.36, offsetY: 6 },
@@ -412,17 +564,17 @@
           { name: "Bridgetown", lat: 13.10, lng: -59.61 },
           { name: "Nassau", lat: 24.08, lng: -77.34, offsetY: -12 },
           { name: "Guadalajara", lat: 20.67, lng: -103.39 },
-          { name: "Tijuana", lat: 32.53, lng: -117.03, offsetY: - 6 },
+          { name: "Tijuana", lat: 32.53, lng: -117.03, offsetY: -6 },
           { name: "Ciudad Juárez", lat: 31.75, lng: -106.49, offsetY: 18 },
           { name: "Kingston", lat: 17.97, lng: -76.79, offsetY: 6 },
           { name: "Monterrey", lat: 25.68, lng: -100.31 },
-          { name: "San José", lat: 9.93, lng: -84.08, offsetY: -12},
+          { name: "San José", lat: 9.93, lng: -84.08, offsetY: -12 },
           { name: "Guatemala City", lat: 14.63, lng: -90.50 },
           { name: "Port of Spain", lat: 10.67, lng: -61.52 }
         ]
       },
       {
-        region: "South America",
+        region: "South America", 
         lookAt: { lat: -20.0, lng: -60.0, altitude: 1.2 },
         cities: [
           { name: "Bogotá", lat: 4.71, lng: -74.07 },
@@ -443,35 +595,69 @@
       }
     ];
 
-    // Initialize Globe 
+    // --- MOBILE DETECTION ---
+
+    const mobileQuery = window.matchMedia('(max-width: 600px)');
+
+    function isMobile() {
+      return mobileQuery.matches;
+    }
+
+    // --- GLOBE ---
+
     const world = Globe()(document.getElementById('globe-container')) 
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-day.jpg') 
       .htmlElementsData([]) 
       .htmlElement(d => {
-        // globe.gl's CSS2DRenderer unconditionally overwrites style.transform
-        // on whatever element we return here, every single frame, with its
-        // own translate(-50%,-50%) translate(x,y) positioning — regardless
-        // of when or how we set our own transform. Baking an offset in at
-        // creation time does NOT survive this. The only way to apply a
-        // custom anchor or offset is to give the renderer a throwaway
-        // zero-size wrapper (so its centering is a no-op) and do the real
-        // positioning one level down, on an element it never touches.
+
+        /*
+          Desktop:
+          Return the existing weather badge with its existing offsets.
+
+          Mobile:
+          Return a small geographic placemark. The city's actual latitude
+          and longitude are therefore the only positioning information used.
+          offsetY and forecastShiftX are deliberately ignored.
+        */
+
         const wrapper = document.createElement('div');
+
         wrapper.style.position = 'relative';
         wrapper.style.width = '0px';
         wrapper.style.height = '0px';
+
+        if (isMobile()) {
+          const marker = document.createElement('div');
+          marker.className = 'mobile-city-marker';
+
+          const dot = document.createElement('span');
+          dot.className = 'mobile-city-dot';
+
+          const label = document.createElement('span');
+          label.className = 'mobile-city-label';
+          label.textContent = d.name;
+
+          marker.appendChild(dot);
+          marker.appendChild(label);
+          wrapper.appendChild(marker);
+
+          return wrapper;
+        }
 
         const el = document.createElement('div');
         el.className = 'weather-badge';
 
         const offsetY = d.offsetY || 0;
-        const forecastShiftX = displayMode === 'forecast' ? (d.forecastShiftX ?? 0) : 0;
+        const forecastShiftX = displayMode === 'forecast'
+          ? (d.forecastShiftX ?? 0)
+          : 0;
 
         el.style.position = 'absolute';
         el.style.left = '0';
         el.style.top = '0';
-        el.style.transform = `translate(calc(-50% + ${forecastShiftX}px), calc(-100% + ${offsetY}px))`;
-        
+        el.style.transform =
+          `translate(calc(-50% + ${forecastShiftX}px), calc(-100% + ${offsetY}px))`;
+
         el.innerHTML = ` 
           <strong>${d.name}</strong> 
           ${renderTempHtml(d)} 
@@ -481,8 +667,10 @@
         return wrapper;
       }); 
 
+    // --- WEATHER DATA ---
+
     async function getWeatherForCities(cities) { 
-      const CACHE_TTL = 60 * 60 * 1000; // 60 minutes
+      const CACHE_TTL = 60 * 60 * 1000;
       const now = Date.now();
 
       const cachedRaw = sessionStorage.getItem('weather_cache_v2');
@@ -491,9 +679,9 @@
       const missingCities = [];
       const resultsMap = {};
 
-      // Check cache first
       cities.forEach(city => {
         const key = `${city.lat}_${city.lng}`;
+
         if (cache[key] && (now - cache[key].timestamp < CACHE_TTL)) {
           resultsMap[key] = cache[key];
         } else {
@@ -501,7 +689,6 @@
         }
       });
 
-      // If all cities are already cached, return immediately
       if (missingCities.length === 0) {
         return cities.map(city => ({
           ...city,
@@ -509,16 +696,18 @@
         }));
       }
 
-      // Fetch missing cities
       try { 
         const lats = missingCities.map(c => c.lat).join(','); 
         const lngs = missingCities.map(c => c.lng).join(','); 
 
-        // timezone=auto resolves each city's own local timezone individually,
-        // so "today's" high/low is today in that city, not UTC or the
-        // viewer's timezone. daily is required to be paired with a timezone
-        // param — auto is exactly what we want here anyway.
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lats}&longitude=${lngs}&current_weather=true&daily=temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=1`; 
+        const url =
+          `https://api.open-meteo.com/v1/forecast?latitude=${lats}` +
+          `&longitude=${lngs}` +
+          `&current_weather=true` +
+          `&daily=temperature_2m_max,temperature_2m_min` +
+          `&timezone=auto` +
+          `&forecast_days=1`; 
+
         const res = await fetch(url); 
         
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -532,12 +721,29 @@
           const rawHigh = entry?.daily?.temperature_2m_max?.[0];
           const rawLow = entry?.daily?.temperature_2m_min?.[0];
 
-          const parsedTemp = (rawTemp !== undefined && rawTemp !== null) ? Math.round(rawTemp) : '--';
-          const parsedHigh = (rawHigh !== undefined && rawHigh !== null) ? Math.round(rawHigh) : '--';
-          const parsedLow = (rawLow !== undefined && rawLow !== null) ? Math.round(rawLow) : '--';
+          const parsedTemp =
+            (rawTemp !== undefined && rawTemp !== null)
+              ? Math.round(rawTemp)
+              : '--';
+
+          const parsedHigh =
+            (rawHigh !== undefined && rawHigh !== null)
+              ? Math.round(rawHigh)
+              : '--';
+
+          const parsedLow =
+            (rawLow !== undefined && rawLow !== null)
+              ? Math.round(rawLow)
+              : '--';
 
           const key = `${city.lat}_${city.lng}`;
-          const record = { temp: parsedTemp, high: parsedHigh, low: parsedLow, timestamp: now };
+
+          const record = {
+            temp: parsedTemp,
+            high: parsedHigh,
+            low: parsedLow,
+            timestamp: now
+          };
 
           cache[key] = record;
           resultsMap[key] = record;
@@ -546,11 +752,18 @@
         sessionStorage.setItem('weather_cache_v2', JSON.stringify(cache));
 
       } catch (err) { 
-        console.error("Weather fetch failed (Rate limit or network error). Using fallback.", err); 
+        console.error(
+          "Weather fetch failed (Rate limit or network error). Using fallback.",
+          err
+        ); 
         
-        // Fallback: populate un-cached cities with '--' so they still display on the globe
         missingCities.forEach(city => {
-          resultsMap[`${city.lat}_${city.lng}`] = { temp: '--', high: '--', low: '--', timestamp: now };
+          resultsMap[`${city.lat}_${city.lng}`] = {
+            temp: '--',
+            high: '--',
+            low: '--',
+            timestamp: now
+          };
         });
       } 
 
@@ -560,24 +773,103 @@
       }));
     } 
 
-    let currentStopIndex = 0; 
-    const FLY_DURATION = 3500; 
-    const SHORT_FLY_DURATION = 800; // used when consecutive stops share roughly the same view
-    const PAUSE_DURATION = 6000; 
-    const CAMERA_SIMILARITY_THRESHOLD = 8; // degrees lat/lng combined — below this, treat as the same general view
+    // --- MOBILE WEATHER PANEL ---
+
+    function renderMobileWeatherPanel(weatherData) {
+      const grid = document.getElementById('mobile-weather-grid');
+
+      if (!grid) return;
+
+      grid.innerHTML = weatherData.map(d => {
+
+        if (displayMode === 'forecast') {
+          const lo = typeof d.low === 'number' ? d.low : null;
+          const hi = typeof d.high === 'number' ? d.high : null;
+
+          const loColor = lo !== null
+            ? getTemperatureColor(lo)
+            : 'rgba(100, 100, 100, 0.9)';
+
+          const hiColor = hi !== null
+            ? getTemperatureColor(hi)
+            : 'rgba(100, 100, 100, 0.9)';
+
+          const loText = lo !== null ? `${lo}°` : '--';
+          const hiText = hi !== null ? `${hi}°` : '--';
+
+          return `
+            <div class="mobile-weather-row">
+              <span class="mobile-city-name">${d.name}</span>
+              <span class="mobile-temperature">
+                <span class="mobile-temp-box" style="background-color: ${loColor}">
+                  ${loText}
+                </span>
+                <span class="mobile-temp-box" style="background-color: ${hiColor}">
+                  ${hiText}
+                </span>
+              </span>
+            </div>
+          `;
+        }
+
+        const temp = typeof d.temp === 'number' ? d.temp : null;
+
+        const tempColor = temp !== null
+          ? getTemperatureColor(temp)
+          : 'rgba(100, 100, 100, 0.9)';
+
+        const tempText = temp !== null ? `${temp}°` : '--';
+
+        return `
+          <div class="mobile-weather-row">
+            <span class="mobile-city-name">${d.name}</span>
+            <span class="mobile-temperature">
+              <span class="mobile-temp-box" style="background-color: ${tempColor}">
+                ${tempText}
+              </span>
+            </span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function showMobileWeatherPanel(weatherData) {
+      if (!isMobile()) return;
+
+      renderMobileWeatherPanel(weatherData);
+
+      const panel = document.getElementById('mobile-weather-panel');
+      panel.classList.add('visible');
+    }
+
+    function hideMobileWeatherPanel() {
+      const panel = document.getElementById('mobile-weather-panel');
+
+      if (panel) {
+        panel.classList.remove('visible');
+      }
+    }
+
+    // --- TOUR ---
+
+    let currentStopIndex = 0;
+
+    const FLY_DURATION = 3500;
+    const SHORT_FLY_DURATION = 800;
+    const PAUSE_DURATION = 6000;
+    const CAMERA_SIMILARITY_THRESHOLD = 8;
 
     function cameraDistance(a, b) {
       const dLat = a.lat - b.lat;
       const dLng = a.lng - b.lng;
+
       return Math.sqrt(dLat * dLat + dLng * dLng);
     }
 
     // --- PAUSE / PLAY ---
+
     let paused = false;
 
-    // Waits `ms` of *active* time — time spent paused doesn't count, so
-    // pressing pause genuinely freezes the countdown rather than just
-    // pushing everything back by the length of the pause.
     function wait(ms) {
       return new Promise(resolve => {
         let remaining = ms;
@@ -585,6 +877,7 @@
 
         function tick(now) {
           if (lastTick === null) lastTick = now;
+
           const delta = now - lastTick;
           lastTick = now;
 
@@ -604,57 +897,109 @@
     async function runWeatherTour() { 
       while (true) {
         const stop = STOPS[currentStopIndex]; 
-        const prevStop = STOPS[(currentStopIndex - 1 + STOPS.length) % STOPS.length];
+        const prevStop =
+          STOPS[(currentStopIndex - 1 + STOPS.length) % STOPS.length];
 
-        // If this stop's camera view is close to the previous one, skip
-        // most of the flight time rather than doing a full slow pan.
-        const isShortHop = cameraDistance(stop.lookAt, prevStop.lookAt) < CAMERA_SIMILARITY_THRESHOLD;
-        const flyDuration = isShortHop ? SHORT_FLY_DURATION : FLY_DURATION;
+        const isShortHop =
+          cameraDistance(stop.lookAt, prevStop.lookAt) <
+          CAMERA_SIMILARITY_THRESHOLD;
 
-        // Remove previous markers while rotating 
-        world.htmlElementsData([]); 
+        const flyDuration =
+          isShortHop ? SHORT_FLY_DURATION : FLY_DURATION;
 
-        // Move camera 
+        // Hide everything while the camera is travelling.
+        world.htmlElementsData([]);
+        hideMobileWeatherPanel();
+
+        // Move camera.
         world.pointOfView(stop.lookAt, flyDuration); 
 
-        // Fetch new data while the camera moves 
+        // Fetch new data while the camera moves.
         const weatherDataPromise = getWeatherForCities(stop.cities); 
 
         await wait(flyDuration);
+
         const weatherData = await weatherDataPromise;
 
-        // Render weather badges once arrived 
         latestWeatherData = weatherData;
-        world.htmlElementsData(weatherData); 
+
+        // Desktop: weather badges.
+        // Mobile: geographic city placemarks.
+        world.htmlElementsData(weatherData);
+
+        // Mobile: weather information panel.
+        showMobileWeatherPanel(weatherData);
 
         await wait(PAUSE_DURATION);
 
-        currentStopIndex = (currentStopIndex + 1) % STOPS.length; 
+        currentStopIndex =
+          (currentStopIndex + 1) % STOPS.length; 
       }
     } 
 
-    // Start tour 
+    // Start tour.
     runWeatherTour(); 
 
-    // Pause / play toggle 
+    // --- PAUSE / PLAY ---
+
     const pauseToggle = document.getElementById('pause-toggle'); 
+
     pauseToggle.addEventListener('click', () => { 
       paused = !paused; 
-      pauseToggle.textContent = paused ? '▶' : '❙❙'; 
-      pauseToggle.setAttribute('aria-label', paused ? 'Resume tour' : 'Pause tour'); 
+
+      pauseToggle.textContent =
+        paused ? '▶' : '❙❙'; 
+
+      pauseToggle.setAttribute(
+        'aria-label',
+        paused ? 'Resume tour' : 'Pause tour'
+      ); 
     }); 
 
-    // Now / Forecast toggle — re-renders whatever's currently on screen
-    // from already-fetched data, no new network request needed.
-    const modeCaption = document.getElementById('mode-caption');
-    modeCaption.addEventListener('click', () => {
-      displayMode = displayMode === 'current' ? 'forecast' : 'current';
-      modeCaption.textContent = displayMode === 'forecast' ? 'FORECAST' : 'NOW';
+    // --- NOW / FORECAST TOGGLE ---
 
-      // Force a full clear + re-set so the accessor re-runs for every
-      // badge with the new mode, rather than being skipped as unchanged.
+    const modeCaption = document.getElementById('mode-caption');
+
+    modeCaption.addEventListener('click', () => {
+      displayMode =
+        displayMode === 'current'
+          ? 'forecast'
+          : 'current';
+
+      modeCaption.textContent =
+        displayMode === 'forecast'
+          ? 'FORECAST'
+          : 'NOW';
+
+      // Desktop badges need to be recreated so their forecast
+      // offsets and temperature boxes are recalculated.
+      //
+      // Mobile placemarks do not change, but recreating the data
+      // keeps the rendering state consistent.
       world.htmlElementsData([]);
       world.htmlElementsData(latestWeatherData);
+
+      // Update the mobile weather panel without fetching again.
+      if (isMobile() && latestWeatherData.length) {
+        renderMobileWeatherPanel(latestWeatherData);
+      }
+    });
+
+    // --- RESPONSIVE SWITCHING ---
+
+    mobileQuery.addEventListener('change', () => {
+      if (!latestWeatherData.length) return;
+
+      // Re-render the globe so switching between desktop and
+      // mobile changes the marker type.
+      world.htmlElementsData([]);
+      world.htmlElementsData(latestWeatherData);
+
+      if (isMobile()) {
+        showMobileWeatherPanel(latestWeatherData);
+      } else {
+        hideMobileWeatherPanel();
+      }
     });
   </script>
 </body>
