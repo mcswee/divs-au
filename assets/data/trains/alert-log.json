@@ -1,5 +1,15 @@
 [
   {
+    "id": "fedc6dc8-8f2e-51d7-8a06-e340d66e82e3",
+    "first_seen": "2026-10-06T05:54:12.022697+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes due to a level crossing fault in the Kensington area.  Trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
     "id": "c7a4e859-cd69-5790-8cc7-babaef29d399",
     "first_seen": "2026-10-05T23:53:41.378911+00:00",
     "header": "Minor Delay",
