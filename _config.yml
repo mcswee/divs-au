@@ -24,4 +24,5 @@ collections:
     permalink: /us-flags/:path/
     values:
       collection: "us_flags"
-      
+  plugins:
+    - jekyll-redirect-from     
