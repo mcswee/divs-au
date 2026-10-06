@@ -54,9 +54,10 @@ function wcagBadges(ratio) {
   return badges;
 }
 
-// ── Perceived text colour (for swatch labels) ─────────────────────────────────
-function textColour(yiq) {
-  return parseInt(yiq) >= 128 ? '#1a1714' : '#f5f2ec';
+// Pass/fail is shown as a symbol and spoken text, not only as a colour
+function badgeHtml(b) {
+  const word = b.pass ? 'pass' : 'fail';
+  return `<span class="wcag-badge ${b.pass ? 'wcag-pass' : 'wcag-fail'}">${b.label} <span aria-hidden="true">${b.pass ? '✓' : '✗'}</span><span class="sr-only">${word}</span></span>`;
 }
 
 // ── App state ─────────────────────────────────────────────────────────────────
@@ -64,30 +65,33 @@ let colours = [];
 let activeFamily = 'all';
 let searchQuery = '';
 let sortKey = 'name';
+let lastFocus = null;   // element to return focus to when the dialog closes
 
 // ── Render family buttons ─────────────────────────────────────────────────────
+function setFamily(code) {
+  activeFamily = code;
+  document.querySelectorAll('.family-btn, .family-all').forEach(b => {
+    const on = b.dataset.family === code;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  render();
+}
+
 function renderFamilyButtons() {
   const container = document.getElementById('familyFilters');
   Object.entries(FAMILIES).forEach(([code, { name, rep }]) => {
     const btn = document.createElement('button');
+    btn.type = 'button';
     btn.className = 'family-btn';
     btn.dataset.family = code;
-    btn.innerHTML = `<span class="swatch-dot" style="background:${rep}"></span>${name}`;
-    btn.addEventListener('click', () => {
-      activeFamily = code;
-      document.querySelectorAll('.family-btn, .family-all').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      render();
-    });
+    btn.setAttribute('aria-pressed', 'false');
+    btn.innerHTML = `<span class="swatch-dot" style="background:${rep}" aria-hidden="true"></span>${name}`;
+    btn.addEventListener('click', () => setFamily(code));
     container.appendChild(btn);
   });
 
-  document.querySelector('.family-all').addEventListener('click', () => {
-    activeFamily = 'all';
-    document.querySelectorAll('.family-btn, .family-all').forEach(b => b.classList.remove('active'));
-    document.querySelector('.family-all').classList.add('active');
-    render();
-  });
+  document.querySelector('.family-all').addEventListener('click', () => setFamily('all'));
 }
 
 // ── Filter + sort ─────────────────────────────────────────────────────────────
@@ -136,19 +140,20 @@ function render() {
   empty.style.display = 'none';
 
   list.forEach((c, i) => {
-    const tc = textColour(c.yiq);
-    const card = document.createElement('div');
+    const card = document.createElement('button');
+    card.type = 'button';
     card.className = 'swatch-card';
+    card.setAttribute('aria-haspopup', 'dialog');
     card.style.animationDelay = `${Math.min(i * 20, 400)}ms`;
     card.innerHTML = `
-      <div class="swatch-color" style="background:${c.hex}">
-        <span class="swatch-copy-hint" style="background:rgba(0,0,0,0.25);color:${tc}">${c.hex}</span>
-      </div>
-      <div class="swatch-info">
-        <div class="swatch-name">${c.name}</div>
-        <div class="swatch-hex">${c.hex.toUpperCase()}</div>
-        <div class="swatch-year-mini">${c.year === 'imm.' ? 'Since antiquity' : c.year}</div>
-      </div>`;
+      <span class="swatch-color" style="background:${c.hex}">
+        <span class="swatch-copy-hint" aria-hidden="true">${c.hex}</span>
+      </span>
+      <span class="swatch-info">
+        <span class="swatch-name">${c.name}</span>
+        <span class="swatch-hex">${c.hex.toUpperCase()}</span>
+        <span class="swatch-year-mini">${c.year === 'imm.' ? 'Since antiquity' : c.year}</span>
+      </span>`;
     card.addEventListener('click', () => openModal(c));
     grid.appendChild(card);
   });
@@ -156,7 +161,6 @@ function render() {
 
 // ── Modal ─────────────────────────────────────────────────────────────────────
 function openModal(c) {
-  const tc = textColour(c.yiq);
   const overlay = document.getElementById('modalOverlay');
   const swatch  = document.getElementById('modalSwatch');
   const hexBadge= document.getElementById('modalHexBadge');
@@ -170,8 +174,6 @@ function openModal(c) {
 
   swatch.style.background = c.hex;
   hexBadge.textContent = c.hex.toUpperCase();
-  hexBadge.style.background = `rgba(${c.r},${c.g},${c.b},0.25)`;
-  hexBadge.style.color = tc;
   name.textContent = c.name;
   famTag.textContent = FAMILIES[c.family]?.name ?? c.family;
   year.textContent = formatYear(c.year);
@@ -185,14 +187,14 @@ function openModal(c) {
       <span class="chip-label">on white</span>
       <span class="chip-ratio">${parseFloat(c.wcag_w).toFixed(2)}:1</span>
       <div class="chip-badges">
-        ${wBadges.map(b => `<span class="wcag-badge ${b.pass ? 'wcag-pass' : 'wcag-fail'}">${b.label}</span>`).join('')}
+        ${wBadges.map(badgeHtml).join('')}
       </div>
     </div>
     <div class="contrast-chip" style="background:#000000;color:#f5f2ec">
       <span class="chip-label">on black</span>
       <span class="chip-ratio">${parseFloat(c.wcag_k).toFixed(2)}:1</span>
       <div class="chip-badges">
-        ${kBadges.map(b => `<span class="wcag-badge ${b.pass ? 'wcag-pass' : 'wcag-fail'}">${b.label}</span>`).join('')}
+        ${kBadges.map(badgeHtml).join('')}
       </div>
     </div>`;
 
@@ -232,19 +234,37 @@ function openModal(c) {
   });
   document.getElementById('filterFamilyBtn').addEventListener('click', () => {
     closeModal();
-    activeFamily = c.family;
-    document.querySelectorAll('.family-btn, .family-all').forEach(b => b.classList.remove('active'));
-    document.querySelector(`.family-btn[data-family="${c.family}"]`)?.classList.add('active');
-    render();
+    setFamily(c.family);
+    document.querySelector(`.family-btn[data-family="${c.family}"]`)?.focus();
   });
 
+  lastFocus = document.activeElement;
   overlay.classList.add('open');
   document.querySelector('main').style.overflow = 'hidden';
+  setBackgroundInert(true);
+  document.getElementById('modalClose').focus();
 }
 
 function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
+  const overlay = document.getElementById('modalOverlay');
+  if (!overlay.classList.contains('open')) return;
+  overlay.classList.remove('open');
   document.querySelector('main').style.overflow = '';
+  setBackgroundInert(false);
+  if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
+  lastFocus = null;
+}
+
+// While the dialog is open, everything outside it is inert: keyboard focus
+// and screen readers stay inside the dialog (the toast stays live).
+function setBackgroundInert(on) {
+  let node = document.getElementById('modalOverlay');
+  while (node && node !== document.body) {
+    [...node.parentElement.children].forEach(sib => {
+      if (sib !== node && sib.tagName !== 'SCRIPT' && sib.id !== 'toast') sib.toggleAttribute('inert', on);
+    });
+    node = node.parentElement;
+  }
 }
 
 // ── Copy helper ───────────────────────────────────────────────────────────────
@@ -297,7 +317,7 @@ fetch('/assets/data/colours.csv')
   })
   .then(text => {
     colours = parseCSV(text);
-    document.getElementById('totalCount').textContent = `${colours.length} colours`;
+    document.getElementById('totalCount').textContent = `${colours.length} colours in the reference.`;
     renderFamilyButtons();
     render();
   })
