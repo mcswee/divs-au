@@ -920,6 +920,435 @@ input::-webkit-search-results-decoration {
     margin-bottom: 1rem;
 }
 
+/* Colours chart: projects/colours.html (script: assets/js/colours.js) */
+.colours-page { width: 100%; }
+
+.colours-page .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.colours-page .controls-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+.colours-page .search-wrap { flex: 1 1 260px; max-width: 360px; }
+
+.colours-page input,
+.colours-page select {
+    padding: 9px 12px;
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    background: var(--highlight);
+    border: 1px solid var(--text-accent);
+    border-radius: 6px;
+}
+
+.colours-page input { width: 100%; }
+
+.colours-page input:focus,
+.colours-page select:focus {
+    outline: 2px solid var(--brand-accent);
+    outline-offset: 1px;
+    border-color: var(--brand-main);
+}
+
+.colours-page .sort-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.colours-page .sort-label,
+.colours-page .family-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-highlight);
+}
+
+.colours-page .family-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.colours-page .family-btn,
+.colours-page .family-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 12px 6px 8px;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-main);
+    background: var(--highlight);
+    border: 1px solid var(--text-accent);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+    user-select: none;
+}
+
+.colours-page .family-all { padding-left: 14px; }
+
+.colours-page .family-btn:hover,
+.colours-page .family-all:hover { border-color: var(--brand-main); }
+
+.colours-page .family-btn.active,
+.colours-page .family-all.active {
+    background: var(--brand-main);
+    border-color: var(--brand-main);
+    color: var(--highlight);
+}
+
+.colours-page .swatch-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.colours-page .family-btn.active .swatch-dot { border-color: rgba(255, 255, 255, 0.5); }
+
+.colours-page .results-bar {
+    margin-bottom: 12px;
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-highlight);
+}
+
+.colours-page .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+.colours-page .swatch-card {
+    background: var(--highlight);
+    border: 1px solid var(--text-accent);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: var(--shadow-main);
+    transition: all 0.2s ease;
+}
+
+.colours-page .swatch-card:hover {
+    border-color: var(--brand-main);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-deep);
+}
+
+.colours-page .swatch-color {
+    position: relative;
+    width: 100%;
+    height: 110px;
+}
+
+.colours-page .swatch-copy-hint {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    padding: 3px 7px;
+    border-radius: 3px;
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 0.65rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+.colours-page .swatch-card:hover .swatch-copy-hint { opacity: 1; }
+
+.colours-page .swatch-info {
+    padding: 10px 12px 12px;
+    border-top: 1px solid var(--accent);
+}
+
+.colours-page .swatch-name {
+    margin-bottom: 3px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--brand-main);
+}
+
+.colours-page .swatch-hex,
+.colours-page .swatch-year-mini {
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-highlight);
+}
+
+.colours-page .swatch-year-mini { margin-top: 4px; font-size: 0.65rem; }
+
+.colours-page .empty-state {
+    display: none;
+    padding: 60px 20px;
+    text-align: center;
+    font-style: italic;
+    color: var(--text-highlight);
+}
+
+/* Colours chart: detail modal (above the fixed site header) */
+.colours-page .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(3px);
+}
+
+.colours-page .modal-overlay.open { display: flex; }
+
+.colours-page .modal {
+    width: 100%;
+    max-width: 520px;
+    max-height: calc(100dvh - 48px);
+    overflow-y: auto;
+    background: var(--highlight);
+    border-radius: 8px;
+    box-shadow: var(--shadow-deep);
+    animation: colours-modal-in 0.2s ease;
+}
+
+@keyframes colours-modal-in {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.colours-page .modal-swatch {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 160px;
+    padding: 16px;
+}
+
+.colours-page .modal-hex-badge {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 0.8rem;
+    backdrop-filter: blur(8px);
+}
+
+.colours-page .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.25);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.colours-page .modal-close:hover { background: rgba(0, 0, 0, 0.45); }
+
+.colours-page .modal-body { padding: 24px; }
+
+.colours-page .modal-name {
+    margin-bottom: 6px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--brand-main);
+}
+
+.colours-page .modal-family-tag {
+    margin-bottom: 14px;
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-highlight);
+}
+
+.colours-page .modal-year {
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--text-highlight);
+}
+
+.colours-page .modal-divider {
+    height: 1px;
+    margin: 18px 0;
+    background: var(--text-accent);
+}
+
+.colours-page .modal-data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px 8px;
+    margin-bottom: 20px;
+}
+
+.colours-page .data-cell .label {
+    margin-bottom: 3px;
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-highlight);
+}
+
+.colours-page .data-cell .value {
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 0.85rem;
+}
+
+.colours-page .contrast-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.colours-page .contrast-chip {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
+    border: 1px solid var(--text-accent);
+    border-radius: 6px;
+}
+
+.colours-page .chip-label {
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.7;
+}
+
+.colours-page .chip-ratio {
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 1rem;
+}
+
+.colours-page .chip-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 2px;
+}
+
+.colours-page .wcag-badge {
+    padding: 2px 5px;
+    border-radius: 2px;
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 0.6rem;
+}
+
+.colours-page .wcag-pass { background: #2d6a3f; color: #fff; }
+.colours-page .wcag-fail { background: #8a2e2e; color: #fff; }
+
+.colours-page .legibility-preview {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.colours-page .preview-block {
+    flex: 1;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.colours-page .modal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.colours-page .btn {
+    padding: 9px 16px;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--brand-main);
+    background: var(--accent);
+    border: 1px solid var(--text-accent);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.colours-page .btn:hover {
+    background: var(--brand-accent);
+    border-color: var(--brand-accent);
+    color: var(--highlight);
+}
+
+.colours-page .btn-primary {
+    background: var(--brand-main);
+    border-color: var(--brand-main);
+    color: var(--highlight);
+}
+
+.colours-page .btn.copied,
+.colours-page .btn.copied:hover {
+    background: #2d6a3f;
+    border-color: #2d6a3f;
+    color: #fff;
+}
+
+.colours-page .toast {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    z-index: 3100;
+    padding: 10px 20px;
+    border-radius: 6px;
+    background: var(--text-main);
+    color: var(--highlight);
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-50%) translateY(16px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+}
+
+.colours-page .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 600px) {
+    .colours-page .search-wrap { flex-basis: 100%; max-width: none; }
+    .colours-page .grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+    .colours-page .modal-data-grid { grid-template-columns: 1fr 1fr; }
+}
+
 /* 12. RESPONSIVENESS */
 @media (max-width: 600px) {
     .brand span { display: none; }
