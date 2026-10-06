@@ -2,18 +2,15 @@
 layout: default
 title: "Colours"
 category: projects
-description: "A historical reference of colour names, with their origins, values and contrast ratios."
-permalink: /colours/
-redirect_from:
-  - /projects/colours.html
-  - /colors/
+description: "A curated list of established colour names with their hex, RGB and HSL values, contrast ratios, and how long each name has been in use."
 ---
 <div class="colours-page">
 
     <header class="page-element">
-        <h1>List of unique defined colours</h1>
-        <p>A historical reference of colour names, with their origins and values.</p>
-        <p><span id="totalCount"></span> in the reference.</p>
+        <h1>A list of named unique colours</h1>
+        <p>A curated list of colours with established names. Each one shows its values, its contrast ratios on white and black, and how long name has been used to describe the colour.</p>
+        <p id="totalCount"></p>
+        <noscript><p>This chart needs JavaScript to load the list of colours.</p></noscript>
     </header>
 
     <section class="page-element controls" aria-label="Search and filter colours">
@@ -36,9 +33,9 @@ redirect_from:
             </div>
         </div>
 
-        <div class="family-filters" id="familyFilters">
-            <span class="family-label">Family</span>
-            <button type="button" class="family-all active" data-family="all">All</button>
+        <div class="family-filters" id="familyFilters" role="group" aria-labelledby="familyLabel">
+            <span class="family-label" id="familyLabel">Family</span>
+            <button type="button" class="family-all active" data-family="all" aria-pressed="true">All</button>
         </div>
     </section>
 
