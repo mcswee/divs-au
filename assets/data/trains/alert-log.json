@@ -1,5 +1,15 @@
 [
   {
+    "id": "c6d45ae6-017b-5f6b-a9e0-de6846cfd639",
+    "first_seen": "2026-10-07T05:27:26.297206+00:00",
+    "header": "Suspended",
+    "description": "Buses replace trains between Frankston and Stony Point due to a train fault.  Replacement buses have been ordered, however will take over 60 minutes to arrive Allow extra travel time  Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-STY:"
+    ]
+  },
+  {
     "id": "0e79c3ca-0a6d-5f3f-b1c0-e41f109ec9c6",
     "first_seen": "2026-10-07T02:10:51.674265+00:00",
     "header": "Major Delay",
