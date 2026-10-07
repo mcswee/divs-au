@@ -1,5 +1,101 @@
 [
   {
+    "id": "ab15dbe8-b0e4-5043-93b2-4b50f1fb5879",
+    "first_seen": "2026-10-07T11:57:49.990690+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Richmond and Glen Waverley from 8.30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-GWY:",
+      "aus:vic:vic-02-GWY-R:"
+    ]
+  },
+  {
+    "id": "587378b1-df3f-57e7-87ac-09fe5f34cc5e",
+    "first_seen": "2026-10-07T11:57:49.990690+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Burnley from 8.30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-ALM:"
+    ]
+  },
+  {
+    "id": "70f94bea-8ace-5f1c-8693-08a910b827d5",
+    "first_seen": "2026-10-07T11:57:49.990690+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Burnley from 8.30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
+    "id": "0200b7bd-b39a-50e4-b3f1-6eeb8e02f0f0",
+    "first_seen": "2026-10-07T11:57:49.990690+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Burnley from 8.30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "b99b1119-d0ab-5e4b-94bb-b8cca67bfb9e",
+    "first_seen": "2026-10-07T11:57:49.990690+00:00",
+    "header": "Planned Works",
+    "description": "Trains will run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From City Loop Take a City Circle train from Platform 1 and change at either Southern Cross or Flinders Street. To City Loop Change at Southern Cross and take a City Circle train from Platform 9. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "51888c08-c18d-5f03-a31e-115c24086f5e",
+    "first_seen": "2026-10-07T11:57:49.990690+00:00",
+    "header": "Planned Works",
+    "description": "Trains will run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From Southern Cross Take a train from Platform 13 and change at Flinders Street. To Southern Cross Change at Flinders Street and take a train from Platforms 1, 9 or 10. To City Loop Change at Flinders Street and take a train from Platform 1. From City Loop Take a City Circle train from Platform 1 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
+    "id": "e2d9eba0-abb3-528f-8517-6588073f2b9f",
+    "first_seen": "2026-10-07T11:57:49.990690+00:00",
+    "header": "Planned Works",
+    "description": "Trains will run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From City Loop Take a City Circle train from Platform 1 and change at either Southern Cross or Flinders Street. To City Loop Change at Southern Cross and take a City Circle train from Platform 9. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-UFD-R:",
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
+    "id": "db4c284f-0054-53c4-b19f-a702581377bd",
+    "first_seen": "2026-10-07T11:57:49.990690+00:00",
+    "header": "Minor Delay",
+    "description": "Trains are resuming between Carrum and Frankston after emergency services attending to s a serious incident. First trains to resume will be:  The 10:25 pm Flinders Street to Frankston. A replacement bus will run from Frankston to Flinders Street.  Replacement buses may supplement train services as we restore the regular frequency. Check information displays and listen for announcements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
+    "id": "a0db8e51-a2d4-5f4d-b84b-217998eecbb7",
+    "first_seen": "2026-10-07T11:57:49.990690+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Newport and Werribee from 11.50pm to last train tonight, while project works take place. Note: Buses operate in one direction from Newport to Werribee during this time. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
     "id": "c6d45ae6-017b-5f6b-a9e0-de6846cfd639",
     "first_seen": "2026-10-07T05:27:26.297206+00:00",
     "header": "Suspended",
