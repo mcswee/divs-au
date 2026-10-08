@@ -1,5 +1,37 @@
 [
   {
+    "id": "e9c2177c-5bdc-5bfe-9101-2cbf2fd7bd33",
+    "first_seen": "2026-10-08T23:06:47.819164+00:00",
+    "header": "Suspended",
+    "description": "Buses will replace trains between Westall &amp; Caulfield and between Sunshine &amp; Footscray from 9:50am due to an equipment fault. Trains will not run via the Metro Tunnel during this time. A bus shuttle service will run between North Melbourne, Arden and Parkville. Passengers can use Frankston services to/from Caulfield and Werribee services to/from Footscray. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "07b152c5-ef7a-5cbb-9191-028b4b1cb0ff",
+    "first_seen": "2026-10-08T23:06:47.819164+00:00",
+    "header": "Suspended",
+    "description": "Buses will replace trains between Westall &amp; Caulfield and between Sunshine &amp; Footscray from 9:50am due to an equipment fault. Trains will not run via the Metro Tunnel during this time. A bus shuttle service will run between North Melbourne, Arden and Parkville. Passengers can use Frankston services to/from Caulfield and Werribee services to/from Footscray. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "c6159b05-9d12-5b3c-b4ea-f31075399b90",
+    "first_seen": "2026-10-08T23:06:47.819164+00:00",
+    "header": "Suspended",
+    "description": "Buses will replace trains between Westall &amp; Caulfield and between Sunshine &amp; Footscray from 9:50am due to an equipment fault. Trains will not run via the Metro Tunnel during this time. A bus shuttle service will run between North Melbourne, Arden and Parkville. Passengers can use Frankston services to/from Caulfield and Werribee services to/from Footscray. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
     "id": "2cbd4f04-c1f1-515e-a7c3-f90fc38b042d",
     "first_seen": "2026-10-08T13:11:52.318456+00:00",
     "header": "Planned Works",
