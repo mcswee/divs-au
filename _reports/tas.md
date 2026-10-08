@@ -4,7 +4,6 @@ title: "Tasmania suggested redistribution"
 state: "Tasmania"
 state_id: tas
 archive_summary: "My submission for the 2024 redistribution covered arguments for the abolition of Franklin and the creation of a new division in the Glenorchy and Clarence area named West."
-description: "The 2024 Tasmsnin redistribution has been completed and was determined on 8 October 2026. The Committee decided to not change the name of the division of Franklin, but made substantial changes to the make up of Clark, Franklin and Lyons."
 status: archived 
 category: reports 
 map: true
@@ -75,4 +74,4 @@ divisions:
     change: "New division. Gains Clarence from Franklin, Glenorchy from Clark, and small part of Hobart, east of the Brooker Hwy."
 ---
 
-The redistribution of Tasmania commenced on 12 August 2025. Public suggestions were sought from 8 October 2025 until 7 November 2025. Here you can find details of my suggestion to the Redistribution Committee.
+The 2024 Tasmsnin redistribution has been completed and was determined on 8 October 2026. The Committee decided to not change the name of the division of Franklin, but made substantial changes to the make up of Clark, Franklin and Lyons.
