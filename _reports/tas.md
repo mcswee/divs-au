@@ -3,8 +3,9 @@ layout: redistribution
 title: "Tasmania suggested redistribution"
 state: "Tasmania"
 state_id: tas
+archive_summary: "My submission for the 2024 redistribution covered arguments for the abolition of Franklin and the creation of a new division in the Glenorchy and Clarence area named West."
 description: "My public suggestion to the Australia Electoral Commission for the redistribution of Tasmania."
-status: active
+status: archived 
 category: reports 
 map: true
 year: "2024"
