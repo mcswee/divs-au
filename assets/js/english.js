@@ -81,7 +81,7 @@
     Object.keys(lists).forEach(seg => {
       lists[seg].innerHTML = html[seg];
       document.getElementById(seg + '-count').textContent = '(' + counts[seg] + ')';
-      document.getElementById(seg + '-jump').textContent = '(' + counts[seg] + ')';
+      document.getElementById(seg + '-jump').textContent = counts[seg];
     });
   }
 
