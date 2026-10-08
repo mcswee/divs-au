@@ -3,8 +3,8 @@ layout: redistribution
 title: "South Australia suggested redistribution"
 state: "South Australia"
 state_id: sa
-description: "My public suggestion to the Australia Electoral Commission for the redistribution of South Australia."
-status: active
+archive_summary: "My submission for the 2025 redistribution argued for minimal change, with the main changes being Salisbury into Makin and a Aldinga into Kingston."
+status: archived
 category: reports 
 map: true
 year: "2025"
@@ -102,4 +102,4 @@ divisions:
     change: "Adds some of Vale Park."
 ---
 
-The redistribution of South Australia commenced on 12 August 2025. Public suggestions were sought from 8 October 2025 until 7 November 2025. Here you can find details of my suggestion to the Redistribution Committee.
+The 2025 South Australian redistribution has been completed and was determined on 8 October 2026. The Committee made few changes beyond necessary,  it significantly retired the name Grey in favour of a division named O'Donoghue.
