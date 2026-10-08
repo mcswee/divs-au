@@ -1770,9 +1770,45 @@ input::-webkit-search-results-decoration {
 .english-page .jump-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 24px;
-    margin: 0;
+    gap: 12px;
+    margin: 16px 0 0;
+}
+
+.english-page .jump-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border: 1px solid var(--ctl-border);
+    border-radius: 6px;
+    background: var(--highlight);
+    box-shadow: var(--shadow-main);
     font-weight: 600;
+    text-decoration: none;
+    color: var(--brand-main);
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.english-page .jump-links a:hover {
+    background: var(--brand-main);
+    border-color: var(--brand-main);
+    color: var(--highlight);
+}
+
+.english-page .jump-count {
+    min-width: 1.8em;
+    padding: 0 8px;
+    border-radius: 999px;
+    background: var(--accent);
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.english-page .jump-links a:hover .jump-count {
+    background: rgba(255, 255, 255, 0.22);
+    color: var(--highlight);
 }
 
 .english-page .sound-count {
@@ -1830,7 +1866,6 @@ input::-webkit-search-results-decoration {
 }
 
 .english-page .sound-symbol {
-    font-family: 'Atkinson Hyperlegible Mono', monospace;
     font-size: 2.2rem;
     font-weight: 700;
     line-height: 1;
@@ -1855,7 +1890,6 @@ input::-webkit-search-results-decoration {
     padding: 2px 6px;
     border-radius: 4px;
     background: var(--accent);
-    font-family: 'Atkinson Hyperlegible Mono', monospace;
     font-size: 0.75rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
