@@ -1,5 +1,26 @@
 [
   {
+    "id": "972bbd9b-b5a1-5771-aa6f-798dc8f94108",
+    "first_seen": "2026-10-08T02:36:30.336663+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a trespasser in the Strathmore area.  Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "d5a5c2ae-24d8-5cb7-a9e6-af0bf84c0011",
+    "first_seen": "2026-10-08T02:36:30.336663+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 35 minutes now clearing after an earlier operational incident.  Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
     "id": "ab15dbe8-b0e4-5043-93b2-4b50f1fb5879",
     "first_seen": "2026-10-07T11:57:49.990690+00:00",
     "header": "Planned Works",
