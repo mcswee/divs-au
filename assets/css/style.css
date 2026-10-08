@@ -1381,7 +1381,9 @@ input::-webkit-search-results-decoration {
 
 .colours-page button:focus-visible,
 .suburbs-page button:focus-visible,
-.suburbs-page a:focus-visible {
+.suburbs-page a:focus-visible,
+.english-page button:focus-visible,
+.english-page a:focus-visible {
     outline: 3px solid var(--brand-accent);
     outline-offset: 2px;
 }
@@ -1404,7 +1406,10 @@ input::-webkit-search-results-decoration {
     .colours-page *::after,
     .suburbs-page *,
     .suburbs-page *::before,
-    .suburbs-page *::after {
+    .suburbs-page *::after,
+    .english-page *,
+    .english-page *::before,
+    .english-page *::after {
         animation: none !important;
         transition: none !important;
     }
@@ -1755,6 +1760,156 @@ input::-webkit-search-results-decoration {
     .suburbs-page .result-count { margin-left: 0; }
     .suburbs-page .select-wrap { flex-basis: 100%; }
 }
+
+/* Australian English phonology: projects/english.html (script: assets/js/english.js; data: assets/data/sounds.json) */
+.english-page {
+    --ctl-border: #767676;
+    width: 100%;
+}
+
+.english-page .jump-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.english-page .sound-count {
+    font-size: 0.8em;
+    font-weight: 400;
+    color: var(--text-highlight);
+}
+
+.english-page .sound-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+    gap: 15px;
+    margin: 0 0 8px;
+    padding: 0;
+    list-style: none;
+}
+
+.english-page .sound-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 16px;
+    background: var(--highlight);
+    border: 1px solid var(--text-accent);
+    border-radius: 8px;
+    box-shadow: var(--shadow-main);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.english-page .sound-card:hover { border-color: var(--brand-main); }
+
+.english-page .sound-card.playing {
+    background: var(--brand-highlight);
+    border-color: var(--brand-main);
+    box-shadow: 0 0 0 1px var(--brand-main);
+}
+
+.english-page .sound-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.english-page .sound-title {
+    display: flex;
+    align-items: baseline;
+    flex-shrink: 0;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.english-page .sound-symbol {
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--brand-main);
+}
+
+.english-page .sound-ipa {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--text-highlight);
+}
+
+.english-page .sound-examples {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 4px;
+    margin: 0;
+}
+
+.english-page .example-word {
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--accent);
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-main);
+}
+
+.english-page .sound-sentence {
+    margin: 0;
+    font-size: 0.9rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text-highlight);
+}
+
+.english-page .sound-transcript {
+    margin: 0;
+    padding: 8px 10px;
+    background: var(--accent);
+    border-left: 3px solid var(--brand-main);
+    border-radius: 0 4px 4px 0;
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.english-page .play-btn {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1px solid var(--ctl-border);
+    border-radius: 6px;
+    background: var(--highlight);
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--brand-main);
+    cursor: pointer;
+    transition: background 0.1s, color 0.1s;
+}
+
+.english-page .play-btn:hover,
+.english-page .play-btn[aria-pressed="true"] {
+    background: var(--brand-main);
+    border-color: var(--brand-main);
+    color: var(--highlight);
+}
+
+.english-page.no-speech .play-btn { display: none; }
+.english-page.no-speech .sound-card { cursor: default; }
+
+.english-page .empty { font-style: italic; color: var(--text-highlight); }
 
 /* 12. RESPONSIVENESS */
 @media (max-width: 600px) {
