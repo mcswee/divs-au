@@ -1,5 +1,48 @@
 [
   {
+    "id": "2cbd4f04-c1f1-515e-a7c3-f90fc38b042d",
+    "first_seen": "2026-10-08T13:11:52.318456+00:00",
+    "header": "Planned Works",
+    "description": "Pakenham and Cranbourne line services will originate from and terminate at South Yarra, from 8:30pm to last train tonight, while maintenance and renewal works take place. Note:  Passengers are advised no trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. Shuttle buses will operate North Melbourne to Parkville and Arden.  To City All Pakenham and Cranbourne line trains will end at South Yarra. Take a Frankston or Sandringham line train to the City. From City All Pakenham and Cranbourne line trains will start from South Yarra. Take a Frankston or Sandringham line train and change at South Yarra. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "90f432e8-dda6-507e-a2ee-2891cb21e7d3",
+    "first_seen": "2026-10-08T13:11:52.318456+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between North Melbourne and Sunshine from 8:30pm to last train tonight, while projects works take place. Note: \u2022 Passengers are advised no trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. \u2022 Shuttle buses will operate North Melbourne to Parkville and Arden and stopping all stations to Sunshine. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "2ea7f511-6e6c-5921-bea8-f75f5e35ae54",
+    "first_seen": "2026-10-08T13:11:52.318456+00:00",
+    "header": "Planned Works",
+    "description": "Pakenham and Cranbourne line services will originate from and terminate at South Yarra, from 8:30pm to last train tonight, while maintenance and renewal works take place. Note:  Passengers are advised no trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. Shuttle buses will operate North Melbourne to Parkville and Arden.  To City All Pakenham and Cranbourne line trains will end at South Yarra. Take a Frankston or Sandringham line train to the City. From City All Pakenham and Cranbourne line trains will start from South Yarra. Take a Frankston or Sandringham line train and change at South Yarra. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "d3ba630c-c786-5a5c-835c-f0c6e74a3548",
+    "first_seen": "2026-10-08T13:11:52.318456+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Newport and Werribee from 11.50pm to last train tonight, while project works take place. Note: Buses operate in one direction from Newport to Werribee during this time. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
     "id": "972bbd9b-b5a1-5771-aa6f-798dc8f94108",
     "first_seen": "2026-10-08T02:36:30.336663+00:00",
     "header": "Minor Delay",
