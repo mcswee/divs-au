@@ -3,8 +3,9 @@ layout: redistribution
 title: "Australian Capital Territory suggested redistribution"
 state: "Australian Capital Territory"
 state_id: act
-description: "My public suggestion to the Australia Electoral Commission for the redistribution of the Australian Capital Territory."
-status: active
+archive_summary: "My submission for the 2025 redistribution proposed moving all of Woden into Bean, all of Molonglo Valley and Jerrabomberra into Canberra."
+description: "The 2025 Australian Capital Territory redistribution has been completed and was determined on 8 October 2026. The Committee decided to move Woden into Bean, and Molonglo Valley and Jerrabomberra into Canberra almost matching my suggestion identically."
+status: archived 
 map: true
 category: reports
 year: "2025"
