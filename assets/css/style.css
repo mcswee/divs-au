@@ -1383,7 +1383,10 @@ input::-webkit-search-results-decoration {
 .suburbs-page button:focus-visible,
 .suburbs-page a:focus-visible,
 .english-page button:focus-visible,
-.english-page a:focus-visible {
+.english-page a:focus-visible,
+.tool-page button:focus-visible,
+.tool-page select:focus-visible,
+.tool-page a:focus-visible {
     outline: 3px solid var(--brand-accent);
     outline-offset: 2px;
 }
@@ -1409,7 +1412,10 @@ input::-webkit-search-results-decoration {
     .suburbs-page *::after,
     .english-page *,
     .english-page *::before,
-    .english-page *::after {
+    .english-page *::after,
+    .tool-page *,
+    .tool-page *::before,
+    .tool-page *::after {
         animation: none !important;
         transition: none !important;
     }
@@ -1944,6 +1950,395 @@ input::-webkit-search-results-decoration {
 .english-page.no-speech .sound-card { cursor: default; }
 
 .english-page .empty { font-style: italic; color: var(--text-highlight); }
+
+/* Redistribution tool: tool/index.html (script: assets/js/tool.js) */
+.tool-page { --ctl-border: #767676; }
+
+/* the tool fills the space between header and footer; the acknowledgement stays visible below it */
+main:has(.tool-page) { overflow: hidden; }
+
+/* quota chips (declared before the status colours so those can override them) */
+.tool-page .quota-chip {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #f0f0f0;
+    color: #666;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.tool-page {
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    position: relative;
+}
+
+.tool-page #tool-map {
+    flex: 1 1 auto;
+    position: relative;
+    height: 100%;
+}
+
+.tool-page #sidebar {
+    flex: 0 0 340px;
+    width: 340px;
+    height: 100%;
+    overflow-y: auto;
+    background: var(--highlight);
+    border-right: 1px solid var(--text-accent);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.tool-page #sidebar-header {
+    padding: 16px 18px 14px;
+    border-bottom: 1px solid var(--text-accent);
+}
+
+.tool-page #sidebar-header h1 {
+    font-family: "Vollkorn", serif;
+    font-size: 1.3rem;
+    color: var(--brand-main);
+    margin-bottom: 4px;
+}
+
+.tool-page #sidebar-header p.tagline {
+    font-size: 0.78rem;
+    color: var(--text-highlight);
+    line-height: 1.35;
+}
+
+.tool-page .sidebar-section {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--text-accent);
+}
+
+.tool-page .sidebar-section h2 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-highlight);
+    margin: 0 0 10px;
+    border: none;
+    padding: 0;
+}
+
+.tool-page #state-select {
+    width: 100%;
+    padding: 9px 10px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    border: 2px solid var(--brand-main);
+    border-radius: 6px;
+    background: var(--highlight);
+    color: var(--text-main);
+}
+
+.tool-page #state-select:disabled,
+.tool-page #state-select option:disabled {
+    color: var(--text-accent);
+}
+
+.tool-page .quota-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: "Atkinson Hyperlegible Mono", monospace;
+    font-size: 0.78rem;
+    margin-bottom: 6px;
+}
+
+.tool-page .quota-row .quota-label {
+    font-family: "Inter", sans-serif;
+    font-size: 0.75rem;
+    color: var(--text-main);
+}
+
+.tool-page .quota-row .quota-band {
+    color: var(--text-highlight);
+    font-size: 0.75rem;
+}
+
+.tool-page #active-division-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.tool-page .div-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+}
+
+.tool-page #active-division-name {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--brand-main);
+}
+
+.tool-page .helper-text {
+    font-size: 0.75rem;
+    color: var(--text-highlight);
+    line-height: 1.4;
+    margin-top: 6px;
+}
+
+.tool-page #division-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tool-page .division-row {
+    border: 2px solid var(--text-accent);
+    border-radius: 6px;
+    padding: 8px 10px;
+    cursor: pointer;
+    background: var(--highlight);
+    transition: border-color 0.12s ease;
+}
+
+.tool-page .division-row:hover {
+    border-color: var(--brand-accent);
+}
+
+.tool-page .division-row.is-active {
+    border-color: var(--brand-main);
+    box-shadow: var(--shadow-main);
+}
+
+.tool-page .division-row-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.tool-page .division-row-top .div-name {
+    font-weight: 700;
+    font-size: 0.88rem;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tool-page .division-row-top .div-sa1-count {
+    font-family: "Atkinson Hyperlegible Mono", monospace;
+    font-size: 0.75rem;
+    color: var(--text-highlight);
+}
+
+.tool-page .division-row-top button.div-action {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text-highlight);
+    padding: 0 2px;
+    line-height: 1;
+}
+
+.tool-page .division-row-top button.div-action:hover {
+    color: var(--brand-main);
+}
+
+.tool-page .status-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    font-family: "Atkinson Hyperlegible Mono", monospace;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-bottom: 3px;
+}
+
+.tool-page .status-line .status-tag {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.tool-page .status-ok {
+    background: #e6f4ec;
+    color: #0b6b3a;
+}
+
+.tool-page .status-under {
+    background: #fff4d9;
+    color: #8a6200;
+}
+
+.tool-page .status-over {
+    background: #fde8ea;
+    color: #a3203b;
+}
+
+.tool-page .status-empty {
+    background: var(--accent);
+    color: var(--text-highlight);
+}
+
+.tool-page .warning-chip {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.75rem;
+    background: #fde8ea;
+    color: #a3203b;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.tool-page .division-row-top .div-swatch {
+    cursor: pointer;
+}
+
+.tool-page .colour-picker {
+    position: absolute;
+    background: var(--highlight);
+    border: 1px solid var(--text-accent);
+    border-radius: 6px;
+    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    z-index: 100;
+    box-shadow: var(--shadow-main);
+    margin-top: 4px;
+}
+
+.tool-page .colour-option {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid rgba(0,0,0,0.1);
+    transition: transform 0.1s ease, border-color 0.1s ease;
+}
+
+.tool-page .colour-option:hover {
+    transform: scale(1.1);
+    border-color: var(--brand-main);
+}
+
+.tool-page .colour-option.current {
+    border-color: var(--brand-main);
+    box-shadow: 0 0 0 1px var(--brand-main);
+}
+
+.tool-page .sa1-tooltip {
+    font-family: "Atkinson Hyperlegible Mono", monospace;
+    font-size: 0.75rem;
+    padding: 4px 7px;
+    line-height: 1.4;
+    pointer-events: none;
+}
+
+.tool-page .sa1-tooltip .sa1-sa2 {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    display: block;
+    margin-bottom: 2px;
+}
+
+@media (max-width: 760px) {
+    .tool-page {
+        flex-direction: column;
+    }
+    .tool-page #sidebar {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 45%;
+        border-right: none;
+        border-bottom: 1px solid var(--text-accent);
+    }
+    .tool-page #tool-map {
+        height: 55%;
+    }
+}
+
+
+/* buttons, file picker and spacing (these used to be inline styles) */
+.tool-page .quota-row-gap { margin-top: 8px; }
+.tool-page .quota-band-label { margin-right: 4px; font-size: 0.75rem; color: var(--text-highlight); }
+.tool-page .sidebar-section-grow { flex-grow: 1; }
+.tool-page .sa1-was { font-style: italic; opacity: 0.75; }
+
+.tool-page .tool-btn {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 9px;
+    border-radius: 6px;
+    background: none;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.12s ease, color 0.12s ease, background-color 0.12s ease;
+}
+
+.tool-page .tool-btn-solid { border: 2px solid var(--brand-main); color: var(--brand-main); }
+.tool-page .tool-btn-solid:hover { background: var(--brand-main); color: var(--highlight); }
+.tool-page .tool-btn-dashed { border: 2px dashed var(--ctl-border); color: var(--text-highlight); }
+.tool-page .tool-btn-dashed:hover { border-color: var(--brand-main); color: var(--brand-main); }
+.tool-page .tool-file { margin-top: 8px; }
+.tool-page .tool-file input:focus-visible + label { outline: 3px solid var(--brand-accent); outline-offset: 2px; }
+.tool-page #create-division-btn { margin-top: 10px; }
+
+/* division rows: every control is a real button */
+.tool-page .division-row-top { position: relative; }
+
+.tool-page .div-swatch-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    background: none;
+    cursor: pointer;
+}
+
+.tool-page .division-row-top .div-name {
+    min-width: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: inherit;
+    color: var(--text-main);
+    text-align: left;
+    cursor: pointer;
+}
+
+.tool-page .division-row-top button.div-action {
+    min-width: 24px;
+    min-height: 24px;
+    padding: 2px 4px;
+}
+
+.tool-page .colour-picker { top: 100%; left: 0; }
+.tool-page .colour-option { padding: 0; appearance: none; }
 
 /* 12. RESPONSIVENESS */
 @media (max-width: 600px) {
