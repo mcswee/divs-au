@@ -1,370 +1,21 @@
 ---
-layout: null
+layout: default
+title: "Redistribution tool"
+category: tool
+description: "Interactive federal electoral redistribution simulator. Reassign SA1 areas between divisions and check enrolment against AEC quota tolerances."
+extra_head: '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">'
 ---
-<!DOCTYPE html>
-<html lang="en-AU">
-<head>
+<div class="tool-page">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Interactive federal electoral redistribution simulator. Reassign SA1 areas between divisions and check enrolment against AEC quota tolerances.">
-  <meta name="keywords" content="Australia, election, electorate, electoral division, redistribution, redistricting, SA1, quota, AEC, simulator">
-  <meta name="author" content="Darren McSweeney">
-  <title>Redistribution tool | divs.au</title>
-
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://divs.au/tool/">
-  <meta property="og:title" content="Redistribution tool | divs.au">
-  <meta property="og:description" content="Interactive federal electoral redistribution simulator. Reassign SA1 areas between divisions and check enrolment against AEC quota tolerances.">
-  <meta property="og:image" content="https://divs.au/assets/images/og-map.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://divs.au/tool/">
-  <meta name="twitter:title" content="Redistribution tool | divs.au">
-  <meta name="twitter:description" content="Interactive federal electoral redistribution simulator. Reassign SA1 areas between divisions and check enrolment against AEC quota tolerances.">
-  <meta name="twitter:image" content="https://divs.au/assets/images/og-map.png">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="icon" type="image/svg+xml" href="/assets/images/star.svg">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-
-  <style>
-    /* ---- Tool-specific layout. Sidebar + map, full viewport. ---- */
-
-    #tool-viewport {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: row;
-        overflow: hidden;
-        position: relative;
-    }
-
-    #tool-map {
-        flex: 1 1 auto;
-        position: relative;
-        height: 100%;
-    }
-
-    #sidebar {
-        flex: 0 0 340px;
-        width: 340px;
-        height: 100%;
-        overflow-y: auto;
-        background: var(--highlight);
-        border-right: 1px solid var(--text-accent);
-        display: flex;
-        flex-direction: column;
-        z-index: 10;
-    }
-
-    #sidebar-header {
-        padding: 16px 18px 14px;
-        border-bottom: 1px solid var(--text-accent);
-    }
-
-    #sidebar-header h1 {
-        font-family: 'Vollkorn', serif;
-        font-size: 1.3rem;
-        color: var(--brand-main);
-        margin-bottom: 4px;
-    }
-
-    #sidebar-header p.tagline {
-        font-size: 0.78rem;
-        color: var(--text-highlight);
-        line-height: 1.35;
-    }
-
-    .sidebar-section {
-        padding: 14px 18px;
-        border-bottom: 1px solid var(--text-accent);
-    }
-
-    .sidebar-section h2 {
-        font-size: 0.68rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        color: var(--text-highlight);
-        margin: 0 0 10px;
-        border: none;
-        padding: 0;
-    }
-
-    /* State selector */
-    #state-select {
-        width: 100%;
-        padding: 9px 10px;
-        font-family: inherit;
-        font-size: 0.9rem;
-        border: 2px solid var(--brand-main);
-        border-radius: 6px;
-        background: var(--highlight);
-        color: var(--text-main);
-    }
-
-    #state-select:disabled,
-    #state-select option:disabled {
-        color: var(--text-accent);
-    }
-
-    /* Quota reference */
-    .quota-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        font-family: "Atkinson Hyperlegible Mono", monospace;
-        font-size: 0.78rem;
-        margin-bottom: 6px;
-    }
-
-    .quota-row .quota-label {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.74rem;
-        color: var(--text-main);
-    }
-
-    .quota-row .quota-band {
-        color: var(--text-highlight);
-        font-size: 0.72rem;
-    }
-
-    /* Active division selector */
-    #active-division-wrap {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 4px;
-    }
-
-    .div-swatch {
-        width: 14px;
-        height: 14px;
-        border-radius: 3px;
-        flex-shrink: 0;
-        border: 1px solid rgba(0,0,0,0.15);
-    }
-
-    #active-division-name {
-        font-weight: 700;
-        font-size: 0.92rem;
-        color: var(--brand-main);
-    }
-
-    .helper-text {
-        font-size: 0.72rem;
-        color: var(--text-highlight);
-        line-height: 1.4;
-        margin-top: 6px;
-    }
-
-    /* Division list */
-    #division-list {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-    }
-
-    .division-row {
-        border: 2px solid var(--text-accent);
-        border-radius: 6px;
-        padding: 8px 10px;
-        cursor: pointer;
-        background: var(--highlight);
-        transition: border-color 0.12s ease;
-    }
-
-    .division-row:hover {
-        border-color: var(--brand-accent);
-    }
-
-    .division-row.is-active {
-        border-color: var(--brand-main);
-        box-shadow: var(--shadow-main);
-    }
-
-    .division-row-top {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 6px;
-    }
-
-    .division-row-top .div-name {
-        font-weight: 700;
-        font-size: 0.88rem;
-        flex-grow: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .division-row-top .div-sa1-count {
-        font-family: "Atkinson Hyperlegible Mono", monospace;
-        font-size: 0.7rem;
-        color: var(--text-highlight);
-    }
-
-    .division-row-top button.div-action {
-        border: none;
-        background: none;
-        cursor: pointer;
-        font-size: 0.85rem;
-        color: var(--text-highlight);
-        padding: 0 2px;
-        line-height: 1;
-    }
-
-    .division-row-top button.div-action:hover {
-        color: var(--brand-main);
-    }
-
-    .status-line {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 0.72rem;
-        font-family: "Atkinson Hyperlegible Mono", monospace;
-        padding: 2px 6px;
-        border-radius: 4px;
-        margin-bottom: 3px;
-    }
-
-    .status-line .status-tag {
-        font-family: 'Inter', sans-serif;
-        font-weight: 600;
-        font-size: 0.64rem;
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
-    }
-
-    .status-ok { background: #e6f4ec; color: #0b6b3a; }
-    .status-under { background: #fff4d9; color: #8a6200; }
-    .status-over { background: #fde8ea; color: #a3203b; }
-    .status-empty { background: var(--accent); color: var(--text-highlight); }
-
-    .warning-chip {
-        display: inline-block;
-        margin-top: 4px;
-        font-size: 0.68rem;
-        background: #fde8ea;
-        color: #a3203b;
-        padding: 2px 7px;
-        border-radius: 10px;
-        font-weight: 600;
-    }
-
-    /* Create division button */
-    #create-division-btn {
-        width: 100%;
-        padding: 9px;
-        margin-top: 10px;
-        font-family: inherit;
-        font-size: 0.82rem;
-        font-weight: 600;
-        border: 2px dashed var(--text-accent);
-        border-radius: 6px;
-        background: none;
-        color: var(--text-highlight);
-        cursor: pointer;
-        transition: border-color 0.12s ease, color 0.12s ease;
-    }
-
-    #create-division-btn:hover {
-        border-color: var(--brand-main);
-        color: var(--brand-main);
-    }
-
-    /* Colour picker */
-    .division-row-top .div-swatch {
-        cursor: pointer;
-    }
-
-    .colour-picker {
-        position: absolute;
-        background: var(--highlight);
-        border: 1px solid var(--text-accent);
-        border-radius: 6px;
-        padding: 8px;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 6px;
-        z-index: 100;
-        box-shadow: var(--shadow-main);
-        margin-top: 4px;
-    }
-
-    .colour-option {
-        width: 28px;
-        height: 28px;
-        border-radius: 4px;
-        cursor: pointer;
-        border: 2px solid rgba(0,0,0,0.1);
-        transition: transform 0.1s ease, border-color 0.1s ease;
-    }
-
-    .colour-option:hover {
-        transform: scale(1.1);
-        border-color: var(--brand-main);
-    }
-
-    .colour-option.current {
-        border-color: var(--brand-main);
-        box-shadow: 0 0 0 1px var(--brand-main);
-    }
-
-    /* SA1 hover/select label on map */
-    .sa1-tooltip {
-        font-family: "Atkinson Hyperlegible Mono", monospace;
-        font-size: 0.66rem;
-        padding: 4px 7px;
-        line-height: 1.4;
-        pointer-events: none;
-    }
-    .sa1-tooltip .sa1-sa2 {
-        font-family: 'Inter', sans-serif;
-        font-weight: 600;
-        font-size: 0.72rem;
-        display: block;
-        margin-bottom: 2px;
-    }
-
-    @media (max-width: 760px) {
-        #tool-viewport { flex-direction: column; }
-        #sidebar {
-            flex: 0 0 auto;
-            width: 100%;
-            height: 45%;
-            border-right: none;
-            border-bottom: 1px solid var(--text-accent);
-        }
-        #tool-map { height: 55%; }
-    }
-  </style>
-
-</head>
-
-<body>
-{% include header.html %}
-
-<main id="tool-viewport">
-
-    <aside id="sidebar">
+    <div id="sidebar" role="region" aria-label="Redistribution tool controls">
         <div id="sidebar-header">
             <h1>Redistribution tool</h1>
-            <p class="tagline">Reassign SA1 between electoral divisions with autocalculated electoral populations agains the quotas. Uses shape files from ABS and division data from AEC.</p>
+            <p class="tagline">Reassign SA1 areas between electoral divisions, with electoral populations calculated automatically against the quotas. Uses shape files from the ABS and division data from the AEC.</p>
         </div>
 
-        <div class="sidebar-section">
-            <h2>State</h2>
-            <select id="state-select">
+        <section class="sidebar-section" aria-labelledby="state-heading">
+            <h2 id="state-heading">State</h2>
+            <select id="state-select" aria-labelledby="state-heading">
                 <option value="qld" selected>Queensland</option>
                 <option value="act">Australian Capital Territory</option>
                 <option value="sa">South Australia</option>
@@ -374,56 +25,55 @@ layout: null
                 <option value="wa" disabled>Western Australia &mdash; coming soon</option>
                 <option value="nt" disabled>Northern Territory &mdash; coming soon</option>
             </select>
-        </div>
+        </section>
 
-        <div class="sidebar-section">
-            <h2>Quota reference</h2>
-            <div class="quota-row" style="margin-top:8px;">
-                <span class="quota-band" id="quota-divisor">Recording &mdash; divisions</span>
+        <section class="sidebar-section" aria-labelledby="quota-heading">
+            <h2 id="quota-heading">Quota reference</h2>
+            <div class="quota-row quota-row-gap">
+                <span class="quota-band" id="quota-divisor">Loading&hellip;</span>
             </div>
-          <div class="quota-row">
+            <div class="quota-row">
                 <span class="quota-label">Actual quota</span>
                 <span id="quota-actual-value">&mdash;</span>
             </div>
             <div class="quota-row">
                 <span></span>
-                <span class="quota-band" id="quota-actual-band">&plusmn;10% threshold: &mdash;</span>
+                <span class="quota-band" id="quota-actual-band">&mdash;</span>
             </div>
-            <div class="quota-row" style="margin-top:8px;">                
-              <span class="quota-label">Projected quota</span>
+            <div class="quota-row quota-row-gap">
+                <span class="quota-label">Projected quota</span>
                 <span id="quota-projected-value">&mdash;</span>
             </div>
             <div class="quota-row">
                 <span></span>
-                <span class="quota-band" id="quota-projected-band">&plusmn;3.5% threshold: &mdash;</span>
+                <span class="quota-band" id="quota-projected-band">&mdash;</span>
             </div>
+        </section>
 
-        </div>
+        <section class="sidebar-section" aria-labelledby="export-heading">
+            <h2 id="export-heading">Export</h2>
+            <button id="export-btn" type="button" class="tool-btn tool-btn-solid">Download CSV</button>
+            <div class="tool-file">
+                <input id="import-input" class="sr-only" type="file" accept=".csv">
+                <label for="import-input" class="tool-btn tool-btn-dashed">Import saved CSV</label>
+            </div>
+        </section>
 
-        <div class="sidebar-section">
-            <h2>Export</h2>
-            <button id="export-btn" type="button" style="width: 100%; padding: 9px; font-family: inherit; font-size: 0.82rem; font-weight: 600; border: 2px solid var(--brand-main); border-radius: 6px; background: none; color: var(--brand-main); cursor: pointer; transition: border-color 0.12s ease, color 0.12s ease, background-color 0.12s ease;">Download CSV</button>
-            <label id="import-label" style="display:block; width:100%; margin-top:8px;">
-                <span style="display:block; width:100%; padding:9px; font-family:inherit; font-size:0.82rem; font-weight:600; border:2px dashed var(--text-accent); border-radius:6px; background:none; color:var(--text-highlight); cursor:pointer; text-align:center; box-sizing:border-box; transition:border-color 0.12s ease, color 0.12s ease;">Import saved CSV</span>
-                <input id="import-input" type="file" accept=".csv" style="display:none;">
-            </label>
-        </div>
-
-        <div class="sidebar-section">
-            <h2>Active division</h2>
+        <section class="sidebar-section" aria-labelledby="active-heading">
+            <h2 id="active-heading">Active division</h2>
             <div id="active-division-wrap">
-                <span class="div-swatch" id="active-division-swatch"></span>
+                <span class="div-swatch" id="active-division-swatch" aria-hidden="true"></span>
                 <span id="active-division-name">&mdash;</span>
             </div>
-            <p class="helper-text">Click on an SA1 on the map to move it into the active division. Double-click an SA1 to assign the whole SA2 to the division at once.</p>
-        </div>
+            <p class="helper-text">Click on an SA1 on the map to move it into the active division. Double-click an SA1 to assign the whole SA2 to the division at once. Assigning areas on the map needs a mouse or touch screen.</p>
+        </section>
 
-        <div class="sidebar-section" style="flex-grow:1;">
-            <h2>Divisions</h2>
+        <section class="sidebar-section sidebar-section-grow" aria-labelledby="divisions-heading">
+            <h2 id="divisions-heading">Divisions</h2>
             <ul id="division-list"></ul>
-            <button id="create-division-btn" type="button">+ New division</button>
-        </div>
-    </aside>
+            <button id="create-division-btn" type="button" class="tool-btn tool-btn-dashed">+ New division</button>
+        </section>
+    </div>
 
     <div id="tool-map"
          role="region"
@@ -432,25 +82,13 @@ layout: null
     </div>
 
     <p id="tool-map-description" class="sr-only">
-        Interactive map of ABS statistical areas. Select a division in the sidebar, then click an SA1 to assign or unassign it. Double-click an SA1 to assign the entire SA2.
+        Interactive map of ABS statistical areas. Select a division in the sidebar, then click an SA1 to assign or unassign it. Double-click an SA1 to assign the entire SA2. Assigning areas on the map needs a mouse or touch screen.
     </p>
 
-</main>
-  <footer>
-    {% include acknowledge.html %} 
-    <div class="site-footer">
-        <ul class="footer-links">
-            <li><a href="/about">About</a></li>
-            <li><a href="/disclosure">Disclosure</a></li>
-            <li><a href="/privacy">Privacy</a></li>
-            <li><a href="/terms">Terms</a></li>
-            <li><a href="/copyright/">&copy; 2026<span> Darren McSweeney</span></a></li>
-        </ul>
-    </div>
-  </footer>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="/assets/js/nav.js"></script>
-<script src="/assets/js/tool.js"></script>
+    <div id="tool-status" class="sr-only" role="status" aria-live="polite"></div>
 
-</body>
-</html>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/assets/js/tool.js"></script>
