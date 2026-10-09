@@ -611,7 +611,7 @@ input::-webkit-search-results-decoration {
 }
 
 .control-group label {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: var(--text-main);
     font-weight: 500;
 }
@@ -621,7 +621,7 @@ input::-webkit-search-results-decoration {
     padding: 8px;
     font-family: 'Inter', sans-serif;
     font-size: 0.85rem;
-    border: 1px solid var(--text-accent);
+    border: 1px solid #767676;
     border-radius: 4px;
     background: var(--bg-main);
     color: var(--text-main);
@@ -698,11 +698,13 @@ input::-webkit-search-results-decoration {
     background: white;
     padding: 1px 8px;
     border-radius: 10px;
-    font-size: 10px;
+    font-size: 0.75rem;
     font-weight: 800;
-    color: var(--party-color);
-    border: 2px solid var(--party-color);
+    color: var(--text-main);
+    border: 2px solid var(--party-color, #666666);
 }
+
+.map-popup .member-row + .member-row { margin-top: 6px; }
 
 .map-popup footer small {
     display: block;
@@ -718,38 +720,40 @@ input::-webkit-search-results-decoration {
 .badge {
     padding: 2px 6px;
     border-radius: 4px;
-    font-size: 10px;
+    font-size: 0.75rem;
     font-weight: bold;
     color: white;
     text-transform: uppercase;
 }
 
-.badge.fed { background: #389b6f; }
-.badge.pm { background: #d48806; }
+.badge.fed { background: #30855f; }
+.badge.pm { background: #a56a05; }
 .badge.fem { background: #7209b7; }
-.badge.ind { background: #e85d04; }
+.badge.ind { background: #c75003; }
 .badge.geo { background: #7f5539; }
 .badge.old { background: #6c757d; }
 .badge.nonaus { background: #b62631; }
-.badge.linked { background: #2ca8b7; }
+.badge.linked { background: #22828e; }
 .badge.drifted { background: #3457d5; }
 
 /* Legend Container */
 .info.legend {
     padding: 10px;
-    font: 12px/1.5 'Inter', sans-serif;
+    font: 0.8rem/1.5 'Inter', sans-serif;
     background: rgba(255, 255, 255, 0.9); 
     box-shadow: var(--shadow-main, 0 0 15px rgba(0,0,0,0.2));
     border-radius: 5px;
     color: var(--text-main, #333);
-    max-width: 150px; 
+    max-width: 190px;
+    max-height: 45vh;
+    overflow-y: auto;
 }
 
 .legend-title {
     display: block;
     font-weight: bold;
     margin-bottom: 8px;
-    font-size: 13px;
+    font-size: 0.85rem;
 }
 
 /* Legend Row Structure */
@@ -770,7 +774,7 @@ input::-webkit-search-results-decoration {
 }
 
 .modern-tooltip {
-    background-color: rgba(255,255,255,0.4);
+    background-color: rgba(255,255,255,0.85);
     backdrop-filter: blur(4px);
     border: 1px solid var(--text-accent);
     padding: 4px 8px;
@@ -823,6 +827,87 @@ input::-webkit-search-results-decoration {
 .leaflet-interactive:focus-visible,
 #map:focus-visible {
     outline: 2px solid var(--brand-main);
+    outline-offset: 2px;
+}
+
+/* Main map: sits in the site frame; outline-colour toggle, skip link, search hint */
+.map-page {
+    position: relative;
+    flex: 1 1 0;
+    min-height: 0;
+}
+
+main:has(.map-page) { overflow: hidden; }
+
+.map-page .skip-link {
+    position: absolute;
+    top: 12px;
+    left: -9999px;
+    z-index: 1100;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background: var(--brand-main);
+    color: var(--highlight);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.map-page .skip-link:focus { left: 310px; }
+
+.search-hint { margin: 0; font-size: 0.75rem; color: #a3203b; }
+.search-hint:empty { display: none; }
+#division-search.no-match { border-color: #a3203b; background: #fde8ea; }
+
+.outline-toggle { min-width: 0; margin: 0; padding: 0; border: 0; }
+
+.outline-toggle legend {
+    padding: 0;
+    margin-bottom: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.outline-toggle .segments { display: flex; }
+
+.control-group.outline-toggle label {
+    position: relative;
+    flex: 1;
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.outline-toggle input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.outline-toggle span {
+    display: block;
+    padding: 7px 14px;
+    border: 1px solid #767676;
+    background: var(--bg-main);
+    text-align: center;
+}
+
+.outline-toggle label:first-child span { border-radius: 4px 0 0 4px; }
+.outline-toggle label:last-child span { border-left: 0; border-radius: 0 4px 4px 0; }
+
+.outline-toggle input:checked + span {
+    background: var(--brand-main);
+    border-color: var(--brand-main);
+    color: var(--highlight);
+}
+
+.outline-toggle input:focus-visible + span {
+    outline: 3px solid var(--brand-accent);
     outline-offset: 2px;
 }
 
@@ -1386,7 +1471,8 @@ input::-webkit-search-results-decoration {
 .english-page a:focus-visible,
 .tool-page button:focus-visible,
 .tool-page select:focus-visible,
-.tool-page a:focus-visible {
+.tool-page a:focus-visible,
+.map-page a:focus-visible {
     outline: 3px solid var(--brand-accent);
     outline-offset: 2px;
 }
@@ -1415,7 +1501,10 @@ input::-webkit-search-results-decoration {
     .english-page *::after,
     .tool-page *,
     .tool-page *::before,
-    .tool-page *::after {
+    .tool-page *::after,
+    .map-page *,
+    .map-page *::before,
+    .map-page *::after {
         animation: none !important;
         transition: none !important;
     }
@@ -2356,9 +2445,22 @@ main:has(.tool-page) { overflow: hidden; }
         gap: 8px;
      }
      #map-controls h1 { display: none; }
-     .control-group { flex: 1; margin: 0; }
-     .control-group:first-of-type { flex: 0 0 85px; }
-     .control-group label { display: none; }
+     .control-group { flex: 1; min-width: 0; margin: 0; }
+     .control-group-year { flex: 0 0 85px; }
+     .control-group-toggle { flex: 0 0 auto; }
+     .control-group:not(.outline-toggle) label,
+     .outline-toggle legend {
+         position: absolute;
+         width: 1px;
+         height: 1px;
+         margin: -1px;
+         padding: 0;
+         overflow: hidden;
+         clip: rect(0, 0, 0, 0);
+         white-space: nowrap;
+         border: 0;
+     }
+     .map-page .skip-link:focus { top: 80px; left: 10px; }
      .leaflet-top.leaflet-left { top: 75px; }
 
 .footer-ack {
