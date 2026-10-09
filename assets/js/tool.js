@@ -40,16 +40,14 @@
 
   };
 
-  var DIVISION_COLOURS = [
-    "#336699", "#a3203b", "#0b6b3a", "#b3791e",
-    "#6a4c93", "#1f7a8c", "#c2541f", "#5f9ad9",
-   "#84b366", "#b157bd", "#e3c06d", "#8a694d"
-  ];
-
-  var ALL_COLOURS = [
-    "#336699", "#a3203b", "#0b6b3a", "#b3791e",
-    "#6a4c93", "#1f7a8c", "#c2541f", "#5f9ad9",
-    "#84b366", "#b157bd", "#e3c06d", "#8a694d"
+  // Division colours: the first twelve are used in order, then they repeat.
+  var COLOURS = [
+    { hex: "#336699", name: "Blue" },       { hex: "#a3203b", name: "Crimson" },
+    { hex: "#0b6b3a", name: "Green" },      { hex: "#b3791e", name: "Amber" },
+    { hex: "#6a4c93", name: "Purple" },     { hex: "#1f7a8c", name: "Teal" },
+    { hex: "#c2541f", name: "Orange" },     { hex: "#5f9ad9", name: "Sky blue" },
+    { hex: "#84b366", name: "Light green" }, { hex: "#b157bd", name: "Magenta" },
+    { hex: "#e3c06d", name: "Sand" },       { hex: "#8a694d", name: "Brown" }
   ];
 
   // ---- runtime state ----
@@ -60,6 +58,8 @@
   var activeDivision = null;
   var map = null;
   var colourCursor = 0;
+  var pendingFocus = null;    // control to focus after the division list is rebuilt
+  var openPicker = null;      // the open colour picker, if any
 
   // ---- DOM refs ----
   var el = {
@@ -82,6 +82,7 @@
   function init() {
     setupMap();
     el.createDivisionBtn.addEventListener("click", onCreateDivision);
+    el.divisionList.addEventListener("click", onDivisionListClick);
     el.exportBtn.addEventListener("click", onExport);
     el.importInput.addEventListener("change", onImport);
     el.stateSelect.addEventListener("change", function () {
@@ -137,8 +138,9 @@ L.tileLayer("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png
           .then(function (r) { return r.json(); })
           .then(function (geo) {
             renderGeoJSON(geo);
-            setActiveDivision(seenDivisions[0] || null);
+            setActiveDivision(seenDivisions[0] || null, false);
             refreshAll();
+            announce("Loaded " + el.stateSelect.options[el.stateSelect.selectedIndex].text + ": " + Object.keys(sa1Reference).length.toLocaleString() + " SA1 areas in " + seenDivisions.length + " divisions.");
           });
       }
     });
@@ -172,28 +174,27 @@ L.tileLayer("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png
           lyr.setStyle({ color: "#ffffff", weight: 0.6, fillColor: colour, fillOpacity: 0.45 });
         });
 
-        var ref = sa1Reference[code];
-        if (ref) {
-          var displayCode = code.split("-")[0];
-          var currentDiv = assignment[code];
-          var divisionText;
-          if (currentDiv !== ref.originalDivision) {
-            divisionText = '<span style="opacity:0.5; font-style:italic;">' + escapeHtml(ref.originalDivision) + '</span> &rarr; ' + escapeHtml(currentDiv);
-          } else {
-            divisionText = escapeHtml(currentDiv);
-          }
-          lyr.bindTooltip(
-            '<span class="sa1-sa2">' + escapeHtml(ref.sa2Name) + '</span>' +
-            'SA1 ' + displayCode + '<br>' +
-            'Original: ' + divisionText + '<br>' +
-            'Actual: ' + ref.actual.toLocaleString() + ' &middot; Projected: ' + ref.projected.toLocaleString(),
-            { className: "sa1-tooltip", sticky: false, opacity: 0.85 }
-          );
+        if (sa1Reference[code]) {
+          lyr.bindTooltip(function () { return sa1TooltipHtml(code); },
+            { className: "sa1-tooltip", sticky: false, opacity: 0.85 });
         }
       }
     }).addTo(map);
 
     map.fitBounds(layer.getBounds(), { padding: [10, 10] });
+  }
+
+  function sa1TooltipHtml(code) {
+    var ref = sa1Reference[code];
+    if (!ref) return "";
+    var currentDiv = assignment[code];
+    var divisionText = currentDiv !== ref.originalDivision
+      ? '<span class="sa1-was">' + escapeHtml(ref.originalDivision) + '</span> &rarr; ' + escapeHtml(currentDiv)
+      : escapeHtml(currentDiv);
+    return '<span class="sa1-sa2">' + escapeHtml(ref.sa2Name) + '</span>' +
+      'SA1 ' + code.split("-")[0] + '<br>' +
+      'Original: ' + divisionText + '<br>' +
+      'Actual: ' + ref.actual.toLocaleString() + ' &middot; Projected: ' + ref.projected.toLocaleString();
   }
 
   function styleForFeature(feature) {
@@ -229,6 +230,7 @@ L.tileLayer("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png
     assignment[code] = activeDivision;
     restyleSa1(code);
     refreshDivisionList();
+    announce("Moved SA1 " + code.split("-")[0] + " to " + activeDivision + ".");
   }
 
   function onSa1DoubleClick(code) {
@@ -250,13 +252,23 @@ L.tileLayer("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png
       restyleSa1(c);
     });
     refreshDivisionList();
+    announce("Assigned " + siblingCodes.length + " SA1 areas in " + sa2Name + " to " + activeDivision + ".");
   }
 
-  function setActiveDivision(name) {
+  function setActiveDivision(name, announceIt) {
     activeDivision = name;
     el.activeDivisionName.textContent = name || "None selected";
     el.activeDivisionSwatch.style.background = name ? divisionColours[name] : "transparent";
     refreshDivisionList();
+    if (announceIt && name) announce("Active division: " + name + ".");
+  }
+
+  // Short messages for screen readers (the visible interface is map-based)
+  function announce(message) {
+    var region = document.getElementById("tool-status");
+    if (!region) return;
+    region.textContent = "";
+    window.setTimeout(function () { region.textContent = message; }, 30);
   }
 
   // ---- division management ----
@@ -269,7 +281,7 @@ L.tileLayer("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png
 
   function assignColourTo(name) {
     if (divisionColours[name]) return;
-    divisionColours[name] = DIVISION_COLOURS[colourCursor % DIVISION_COLOURS.length];
+    divisionColours[name] = COLOURS[colourCursor % COLOURS.length].hex;
     colourCursor++;
   }
 
@@ -284,8 +296,9 @@ L.tileLayer("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png
       return;
     }
     assignColourTo(name);
-    setActiveDivision(name);
-    refreshDivisionList();
+    pendingFocus = { division: name, role: "select" };
+    setActiveDivision(name, false);
+    announce("Created division " + name + ". It is now the active division.");
   }
 
   function nextDefaultName() {
@@ -314,42 +327,74 @@ L.tileLayer("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png
 
     if (activeDivision === oldName) activeDivision = newName;
 
-    setActiveDivision(activeDivision);
+    pendingFocus = { division: newName, role: "rename" };
+    setActiveDivision(activeDivision, false);
     refreshAll();
+    announce("Renamed " + oldName + " to " + newName + ".");
   }
 
-  function showColourPicker(swatchEl, divisionName) {
-    // close any existing picker
-    var existing = document.querySelector(".colour-picker");
-    if (existing) existing.remove();
+  function showColourPicker(btn, divisionName) {
+    // pressing the same swatch again closes the picker
+    if (openPicker && openPicker.btn === btn) { closeColourPicker(true); return; }
+    closeColourPicker(false);
 
     var picker = document.createElement("div");
     picker.className = "colour-picker";
+    picker.setAttribute("role", "group");
+    picker.setAttribute("aria-label", "Choose a colour for " + divisionName);
     var currentColour = divisionColours[divisionName];
 
-    ALL_COLOURS.forEach(function (colour) {
-      var option = document.createElement("div");
-      option.className = "colour-option" + (colour === currentColour ? " current" : "");
-      option.style.background = colour;
+    COLOURS.forEach(function (c) {
+      var option = document.createElement("button");
+      option.type = "button";
+      option.className = "colour-option" + (c.hex === currentColour ? " current" : "");
+      option.style.background = c.hex;
+      option.setAttribute("aria-label", c.name);
+      option.setAttribute("aria-pressed", c.hex === currentColour ? "true" : "false");
       option.addEventListener("click", function (e) {
         e.stopPropagation();
-        divisionColours[divisionName] = colour;
+        closeColourPicker(false);
+        divisionColours[divisionName] = c.hex;
+        pendingFocus = { division: divisionName, role: "colour" };
+        if (activeDivision === divisionName) el.activeDivisionSwatch.style.background = c.hex;
         refreshAll();
+        announce(divisionName + " is now " + c.name + ".");
       });
       picker.appendChild(option);
     });
 
-    swatchEl.parentElement.style.position = "relative";
-    swatchEl.parentElement.appendChild(picker);
+    btn.parentElement.appendChild(picker);
+    btn.setAttribute("aria-expanded", "true");
 
-    // close on outside click
-    var closeHandler = function (e) {
-      if (!picker.contains(e.target) && e.target !== swatchEl) {
-        picker.remove();
-        document.removeEventListener("click", closeHandler);
-      }
+    var state = { picker: picker, btn: btn };
+    state.onDocClick = function (e) {
+      if (!picker.contains(e.target) && !btn.contains(e.target)) closeColourPicker(false);
     };
-    document.addEventListener("click", closeHandler);
+    state.onKey = function (e) {
+      if (e.key === "Escape") closeColourPicker(true);
+    };
+    document.addEventListener("click", state.onDocClick);
+    document.addEventListener("keydown", state.onKey);
+    openPicker = state;
+
+    var first = picker.querySelector(".colour-option.current") || picker.firstChild;
+    first.focus();
+  }
+
+  function closeColourPicker(returnFocus) {
+    if (!openPicker) return;
+    var p = openPicker;
+    openPicker = null;
+    document.removeEventListener("click", p.onDocClick);
+    document.removeEventListener("keydown", p.onKey);
+    if (p.picker.parentNode) p.picker.parentNode.removeChild(p.picker);
+    p.btn.setAttribute("aria-expanded", "false");
+    if (returnFocus && document.body.contains(p.btn)) p.btn.focus();
+  }
+
+  function colourNameFor(hex) {
+    for (var i = 0; i < COLOURS.length; i++) if (COLOURS[i].hex === hex) return COLOURS[i].name;
+    return "custom";
   }
 
   function computeQuotaStatus() {
@@ -451,58 +496,59 @@ L.tileLayer("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png
     Object.keys(sa1Layers).forEach(restyleSa1);
   }
 
+  function quotaChip(text) {
+    return '<span class="quota-chip">' + text + '</span>';
+  }
+
+  // limit chip: red/yellow when a division breaks that limit, with a symbol and
+  // spoken text so the state is not shown by colour alone
+  function limitChip(value, isLow, stat) {
+    var bad = isLow ? (stat === "under" || stat === "both") : (stat === "over" || stat === "both");
+    return '<span class="quota-chip ' + (bad ? (isLow ? "status-under" : "status-over") : "status-ok") + '">' +
+      '<span class="sr-only">' + (isLow ? "Lowest allowed: " : "Highest allowed: ") + '</span>' +
+      Math.round(value).toLocaleString() +
+      (bad ? '<span aria-hidden="true"> &#9888;</span><span class="sr-only">, a division is ' + (isLow ? "under" : "over") + ' this limit</span>' : "") +
+    '</span>';
+  }
+
+  function limitsHtml(label, low, high, stat) {
+    return '<span class="quota-band-label">' + label + '</span> ' + limitChip(low, true, stat) + ' ' + limitChip(high, false, stat);
+  }
+
   function refreshQuotaPanel() {
     var q = computeQuota();
     var status = computeQuotaStatus();
 
     if (q.divisor === 0) {
-      el.quotaDivisor.innerHTML = "Based on 0 divisions";
-      el.quotaActualValue.innerHTML = "—";
-      el.quotaActualBand.innerHTML = "—";
-      el.quotaProjectedValue.innerHTML = "—";
-      el.quotaProjectedBand.innerHTML = "—";
+      el.quotaDivisor.textContent = "Based on 0 divisions";
+      el.quotaActualValue.textContent = "\u2014";
+      el.quotaActualBand.textContent = "\u2014";
+      el.quotaProjectedValue.textContent = "\u2014";
+      el.quotaProjectedBand.textContent = "\u2014";
       return;
     }
 
-    var thresholdStyle = function (isLow, stat) {
-      // low threshold badge: yellow if any division is under, green if all ok
-      // high threshold badge: red if any division is over, green if all ok
-      if (isLow) {
-        if (stat === "under" || stat === "both") {
-          return "background:#fff4d9; color:#8a6200;";
-        }
-        return "background:#e6f4ec; color:#0b6b3a;";
-      } else {
-        if (stat === "over" || stat === "both") {
-          return "background:#fde8ea; color:#a3203b;";
-        }
-        return "background:#e6f4ec; color:#0b6b3a;";
-      }
-    };
-
-    el.quotaDivisor.innerHTML = 
-      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; background:#f0f0f0; color:#666;">' + q.divisor + ' divisions</span>';
-
-    el.quotaActualValue.innerHTML = 
-      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; background:#f0f0f0; color:#666;">' + Math.round(q.actualQuota).toLocaleString() + '</span>';
-
-    el.quotaActualBand.innerHTML = 
-      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(true, status.actualStatus) + '">' + Math.round(q.actualQuota * 0.9).toLocaleString() + '</span> ' +
-      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(false, status.actualStatus) + '">' + Math.round(q.actualQuota * 1.1).toLocaleString() + '</span>';
-
-    el.quotaProjectedValue.innerHTML = 
-      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; background:#f0f0f0; color:#666;">' + Math.round(q.projectedQuota).toLocaleString() + '</span>';
-
-    el.quotaProjectedBand.innerHTML = 
-      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(true, status.projectedStatus) + '">' + Math.round(q.projectedQuota * 0.965).toLocaleString() + '</span> ' +
-      '<span style="display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:600; ' + thresholdStyle(false, status.projectedStatus) + '">' + Math.round(q.projectedQuota * 1.035).toLocaleString() + '</span>';
+    el.quotaDivisor.innerHTML = quotaChip(q.divisor + " divisions");
+    el.quotaActualValue.innerHTML = quotaChip(Math.round(q.actualQuota).toLocaleString());
+    el.quotaActualBand.innerHTML = limitsHtml("&plusmn;10% range", q.actualQuota * 0.9, q.actualQuota * 1.1, status.actualStatus);
+    el.quotaProjectedValue.innerHTML = quotaChip(Math.round(q.projectedQuota).toLocaleString());
+    el.quotaProjectedBand.innerHTML = limitsHtml("&plusmn;3.5% range", q.projectedQuota * 0.965, q.projectedQuota * 1.035, status.projectedStatus);
   }
 
   function refreshDivisionList() {
+    closeColourPicker(false);
     refreshQuotaPanel();
     var q = computeQuota();
     var totals = divisionTotals();
     var names = Object.keys(divisionColours).sort();
+
+    // the list is rebuilt on every change, so remember which control had focus
+    var focusKey = pendingFocus;
+    pendingFocus = null;
+    var ae = document.activeElement;
+    if (!focusKey && ae && el.divisionList.contains(ae) && ae.getAttribute("data-role")) {
+      focusKey = { division: ae.getAttribute("data-division"), role: ae.getAttribute("data-role") };
+    }
 
     el.divisionList.innerHTML = "";
 
@@ -510,40 +556,57 @@ L.tileLayer("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png
       var t = totals[name] || { count: 0, actual: 0, projected: 0 };
       var actualStatus = t.count === 0 ? "empty" : statusFor(t.actual, q.actualQuota, 0.10);
       var projectedStatus = t.count === 0 ? "empty" : statusFor(t.projected, q.projectedQuota, 0.035);
+      var isActive = name === activeDivision;
+      var safe = escapeHtml(name);
 
       var li = document.createElement("li");
-      li.className = "division-row" + (name === activeDivision ? " is-active" : "");
+      li.className = "division-row" + (isActive ? " is-active" : "");
+      li.setAttribute("data-division", name);
 
       var actualPct = (q.actualQuota && t.count > 0) ? pctDeviation(t.actual, q.actualQuota) : null;
       var projectedPct = (q.projectedQuota && t.count > 0) ? pctDeviation(t.projected, q.projectedQuota) : null;
 
       li.innerHTML =
         '<div class="division-row-top">' +
-          '<span class="div-swatch" style="background:' + divisionColours[name] + '" data-division="' + escapeHtml(name) + '"></span>' +
-          '<span class="div-name">' + escapeHtml(name) + '</span>' +
+          '<button type="button" class="div-swatch-btn" data-role="colour" data-division="' + safe + '" aria-haspopup="true" aria-expanded="false" aria-label="Change colour for ' + safe + ', currently ' + colourNameFor(divisionColours[name]) + '">' +
+            '<span class="div-swatch" style="background:' + divisionColours[name] + '"></span>' +
+          '</button>' +
+          '<button type="button" class="div-name" data-role="select" data-division="' + safe + '" aria-pressed="' + isActive + '">' + safe + '</button>' +
           '<span class="div-sa1-count">' + t.count + ' SA1' + (t.count === 1 ? "" : "s") + '</span>' +
-          '<button type="button" class="div-action" data-action="rename" title="Rename">&#9998;</button>' +
+          '<button type="button" class="div-action" data-role="rename" data-division="' + safe + '" aria-label="Rename ' + safe + '"><span aria-hidden="true">&#9998;</span></button>' +
         '</div>' +
         statusLine("Actual", t.actual, actualStatus, actualPct) +
         statusLine("Projected", t.projected, projectedStatus, projectedPct) +
         (t.count === 0 ? '<span class="warning-chip">No SA1s assigned</span>' : "");
 
-      li.addEventListener("click", function (e) {
-        if (e.target && e.target.getAttribute("data-action") === "rename") {
-          e.stopPropagation();
-          renameDivision(name);
-          return;
-        }
-        if (e.target && e.target.classList.contains("div-swatch")) {
-          e.stopPropagation();
-          showColourPicker(e.target, name);
-          return;
-        }
-        setActiveDivision(name);
-      });
-
       el.divisionList.appendChild(li);
     });
+
+    if (focusKey) {
+      var controls = el.divisionList.querySelectorAll("[data-role]");
+      for (var i = 0; i < controls.length; i++) {
+        if (controls[i].getAttribute("data-division") === focusKey.division &&
+            controls[i].getAttribute("data-role") === focusKey.role) {
+          controls[i].focus();
+          break;
+        }
+      }
+    }
+  }
+
+  function onDivisionListClick(e) {
+    var row = e.target.closest(".division-row");
+    if (!row) return;
+    var name = row.getAttribute("data-division");
+    var btn = e.target.closest("button[data-role]");
+    var role = btn ? btn.getAttribute("data-role") : "select";
+
+    if (role === "rename") { renameDivision(name); return; }
+    if (role === "colour") { e.stopPropagation(); showColourPicker(btn, name); return; }
+    if (name !== activeDivision) {
+      pendingFocus = btn ? { division: name, role: "select" } : null;
+      setActiveDivision(name, true);
+    }
   }
 
   function statusLine(label, value, status, pct) {
@@ -643,6 +706,7 @@ L.tileLayer("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    announce("Downloaded " + sa1CodeDivs.length.toLocaleString() + " SA1 assignments as " + filename + ".");
   }
 
   // ---- utils ----
@@ -650,7 +714,7 @@ L.tileLayer("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png
   function escapeHtml(str) {
     var d = document.createElement("div");
     d.textContent = str == null ? "" : str;
-    return d.innerHTML;
+    return d.innerHTML.replace(/"/g, "&quot;");
   }
 
 })();
