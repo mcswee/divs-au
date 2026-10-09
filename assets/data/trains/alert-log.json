@@ -1,5 +1,16 @@
 [
   {
+    "id": "de4fa32a-638e-576e-91cf-37af2ca4fba6",
+    "first_seen": "2026-10-09T05:40:08.755806+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a level crossing fault in the Regent area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD-R:",
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
     "id": "e9c2177c-5bdc-5bfe-9101-2cbf2fd7bd33",
     "first_seen": "2026-10-08T23:06:47.819164+00:00",
     "header": "Suspended",
