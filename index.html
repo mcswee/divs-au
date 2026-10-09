@@ -1,59 +1,24 @@
 ---
-layout: null
+layout: default
+title: "Australian historical electoral division data"
+description: "A historical archive of Australian federal electoral divisions, with interactive maps and information about electoral redistributions."
+extra_head: '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">'
 ---
-<!DOCTYPE html>
-<html lang="en-AU">
-<head>
-  
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="historical archive of Australian federal electoral divisions with interactive maps and information about electoral redistributions.">
-  <meta name="keywords" content="Australia, election, electorate, electoral division, division, electoral district, district, redistribution, redistricting">
-  <meta name="author" content="Darren McSweeney">
-  <title>divs.au | Australian historical electoral division data</title>
-
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://divs.au/">
-  <meta property="og:title" content="divs.au | Australian historical electoral division data">
-  <meta property="og:description" content="Explore historical archive of Australian federal electoral divisions with interactive maps and information about electoral redistributions.">
-  <meta property="og:image" content="https://divs.au/assets/images/og-map.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://divs.au/">
-  <meta name="twitter:title" content="divs.au | Australian historical electoral division data">
-  <meta name="twitter:description" content="Explore historical archive of Australian federal electoral divisions with interactive maps and information about electoral redistributions.">
-  <meta name="twitter:image" content="https://divs.au/assets/images/og-map.png">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Finlandica:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="icon" type="image/svg+xml" href="/assets/images/star.svg">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-  
-</head>
-    
-<body>
-{% include header.html %}
-
-<main id="app-viewport">
-    <div id="state-ref" style="display: none;" aria-hidden="true">
+<div class="map-page">
+    <div id="state-ref" hidden aria-hidden="true">
         <div class="nsw"></div><div class="vic"></div><div class="qld"></div>
         <div class="wa"></div><div class="sa"></div><div class="tas"></div>
         <div class="act"></div><div class="nt"></div>
     </div>
 
-    <section id="map-controls">
+    <section id="map-controls" aria-label="Map controls">
         <h1>Map of federal electoral divisions</h1>
-        
-        <div id="map-status" class="sr-only" aria-live="polite"></div>
 
-        <div class="control-group">
+        <div id="map-status" class="sr-only" role="status" aria-live="polite"></div>
+
+        <div class="control-group control-group-year">
             <label for="year-select">Election year</label>
-                <select id="year-select">
+            <select id="year-select">
                 <option value="2025" selected>2025</option>
                 <option value="2022">2022</option>
                 <option value="2019">2019</option>
@@ -102,41 +67,37 @@ layout: null
                 <option value="1906">1906</option>
                 <option value="1903">1903</option>
                 <option value="1901">1901</option>
-                </select>
+            </select>
         </div>
 
-        <div class="control-group">
+        <div class="control-group control-group-search">
             <label for="division-search">Find a division</label>
-            <input type="text" id="division-search" placeholder="Type a division name&hellip;">
+            <input type="text" id="division-search" placeholder="Type a division name&hellip;" autocomplete="off" aria-describedby="search-hint">
+            <p id="search-hint" class="search-hint"></p>
         </div>
+
+        <fieldset class="control-group control-group-toggle outline-toggle">
+            <legend>Outline colour</legend>
+            <div class="segments">
+                <label><input type="radio" name="outline-mode" value="state" checked><span>State</span></label>
+                <label><input type="radio" name="outline-mode" value="party"><span>Party</span></label>
+            </div>
+        </fieldset>
     </section>
-    
-    <div id="map" 
-         role="region" 
+
+    <a class="skip-link" href="#after-map">Skip past the map</a>
+
+    <div id="map"
+         role="region"
          aria-label="Interactive map of Australian electoral divisions"
          aria-describedby="map-description">
     </div>
 
     <p id="map-description" class="sr-only">
-        Interactive map showing federal boundaries. Use the year selector and search box to update the view. Detailed data for each division is available via the Reports page.
+        Interactive map showing federal boundaries. Use the year selector, the search box and the outline colour option to change the view. Press Enter in the search box to open a division's details. With the keyboard you can also tab to each division and press Enter to open its details; use the skip link to bypass them. Detailed data for each division is available via the Reports page.
     </p>
-</main>
-  
-  <footer>
-    {% include acknowledge.html %} 
-    <div class="site-footer">
-        <ul class="footer-links">
-            <li><a href="/about">About</a></li>
-            <li><a href="/disclosure">Disclosure</a></li>
-            <li><a href="/privacy">Privacy</a></li>
-            <li><a href="/terms">Terms</a></li>
-            <li><a href="/copyright/">&copy; 2026<span> Darren McSweeney</span></a></li>
-        </ul>
-    </div>
-  </footer>
-  
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="/assets/js/map.js"></script>
-  <script src="/assets/js/nav.js"></script>
-</body>
-</html>
+</div>
+<div id="after-map" tabindex="-1"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/assets/js/map.js"></script>
