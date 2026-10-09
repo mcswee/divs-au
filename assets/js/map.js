@@ -38,16 +38,14 @@ function getStateStyle(stateName) {
     return { color, short: id.toUpperCase() };
 }
 
-function disableMapTabOrder() {
-    const mapEl = document.getElementById('map');
-    if (!mapEl) return;
-    mapEl.querySelectorAll('a, button').forEach(el => el.setAttribute('tabindex', '-1'));
-}
-
 // --- 2. MAP INITIALIZATION ---
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 var map = L.map('map', {
     zoomControl: true,
     minZoom: minZoom,
+    zoomAnimation: !reduceMotion,
+    fadeAnimation: !reduceMotion
 }).setView(initialCenter, initialZoom);
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_3li0_1_3bd3e03fbf5a91dbb6cb9f61', {
@@ -62,6 +60,10 @@ let boundaryIndex = {};   // boundary_index.json -- { year: { state: filename } 
 let electionDates = {};   // election_dates.json -- { year: ISO polling date }
 let geoJsonLayer = null;
 let currentOpenPopup = null;
+let lastKeyboardLayer = null;   // division whose popup was opened from the keyboard
+let outlineMode = 'state';      // 'state' or 'party'
+let currentYear = null;
+const outlineCache = new Map();
 
 // --- KEYBOARD ACCESSIBILITY: Close popup with Escape ---
 document.addEventListener('keydown', function(e) {
@@ -70,6 +72,40 @@ document.addEventListener('keydown', function(e) {
         currentOpenPopup = null;
     }
 });
+
+// --- KEYBOARD: popups are dialogs; focus goes in on open and back to the division on close ---
+map.on('popupopen', (e) => {
+    const container = e.popup.getElement();
+    if (!container) return;
+    container.setAttribute('role', 'dialog');
+    const heading = container.querySelector('h2');
+    if (heading) {
+        heading.id = 'popup-title';
+        container.setAttribute('aria-labelledby', 'popup-title');
+    }
+    const body = container.querySelector('.map-popup');
+    if (lastKeyboardLayer && body) {
+        body.setAttribute('tabindex', '-1');
+        body.focus();
+    }
+});
+
+map.on('popupclose', () => {
+    if (!lastKeyboardLayer) return;
+    const layer = lastKeyboardLayer;
+    lastKeyboardLayer = null;
+    const active = document.activeElement;
+    if (!active || active === document.body) {
+        const path = layer.getElement();
+        if (path) path.focus({ preventScroll: true });
+    }
+});
+
+function openPopupFor(layer, byKeyboard) {
+    lastKeyboardLayer = byKeyboard ? layer : null;
+    layer.openPopup();
+    currentOpenPopup = layer;
+}
 
 // --- 3. DATA LOADING ---
 Promise.all([
@@ -90,6 +126,10 @@ Promise.all([
     yearSelector.addEventListener('change', (e) => {
         loadYear(e.target.value);
     });
+}).catch(err => {
+    console.error('Could not load the map data:', err);
+    const status = document.getElementById('map-status');
+    if (status) status.textContent = 'The map data could not be loaded.';
 });
 
 // Build a chronologically sorted list of [year, isoDate] once the data loads,
@@ -162,25 +202,93 @@ function loadYear(year) {
 
         const status = document.getElementById('map-status');
         if (status) status.textContent = `Map data for ${year} loaded.`;
+    }).catch(err => {
+        console.error(`Could not load the boundaries for ${year}:`, err);
+        const status = document.getElementById('map-status');
+        if (status) status.textContent = `The boundaries for ${year} could not be loaded.`;
     });
 }
 
-// --- 4. GEOJSON & INTERACTIVITY ---
-function renderGeoJson(geoData, year) {
-    geoJsonLayer = L.geoJSON(geoData, {
-        style: (feature) => {
-            const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
-            const division = divisionsData[seatIndex];
-            const stateColor = getStateStyle(division?.state).color;
+// --- 4. OUTLINE COLOURS (by state or by party) ---
+const NEUTRAL_GREY = '#b0b0b0';   // no member on record, or no colour known for the party
+const MULTI_GREY = '#666666';     // more than one member elected to the division
 
-            return {
-                fillColor: '#fafafa',
-                weight: 1.5,
-                color: stateColor,
-                fillOpacity: 0.1,
-                className: 'division-boundary'
-            };
-        },
+// Both colours for a division in the selected year, worked out once and kept
+function getOutline(feature) {
+    const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
+    const key = seatIndex + '|' + currentYear;
+    if (outlineCache.has(key)) return outlineCache.get(key);
+
+    const division = divisionsData[seatIndex];
+    const outline = { state: getStateStyle(division?.state).color, party: NEUTRAL_GREY, partyCode: 'NONE' };
+
+    const info = division ? findHolderInfoForYear(division, currentYear) : null;
+    const holders = info ? info.electedHolders : [];
+    if (holders.length > 1) {
+        outline.party = MULTI_GREY;
+        outline.partyCode = 'MULTI';
+    } else if (holders.length === 1) {
+        const code = holders[0].parties.length ? holders[0].parties[0].party : 'IND';
+        outline.partyCode = code;
+        outline.party = partyColours[code] ? `#${partyColours[code]}` : NEUTRAL_GREY;
+    }
+
+    outlineCache.set(key, outline);
+    return outline;
+}
+
+function outlineColour(feature) {
+    return getOutline(feature)[outlineMode];
+}
+
+function styleForFeature(feature) {
+    return {
+        fillColor: '#fafafa',
+        weight: 1.5,
+        color: outlineColour(feature),
+        fillOpacity: 0.1,
+        className: 'division-boundary'
+    };
+}
+
+function highlightLayer(layer, fillOpacity) {
+    const colour = outlineColour(layer.feature);
+    layer.setStyle({ fillColor: colour, fillOpacity, weight: 4, color: colour });
+}
+
+function setOutlineMode(mode) {
+    outlineMode = mode;
+    if (!geoJsonLayer) return;
+    geoJsonLayer.eachLayer(layer => geoJsonLayer.resetStyle(layer));
+    applySearch(false);
+    updateLegend();
+
+    const status = document.getElementById('map-status');
+    if (status) {
+        status.textContent = mode === 'party'
+            ? 'Outlines are now coloured by party. Divisions with more than one member are dark grey.'
+            : 'Outlines are now coloured by state.';
+    }
+}
+
+function initOutlineToggle() {
+    // the browser can restore the chosen option when the page is reloaded
+    const checked = document.querySelector('input[name="outline-mode"]:checked');
+    outlineMode = checked ? checked.value : 'state';
+    document.querySelectorAll('input[name="outline-mode"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            if (e.target.checked) setOutlineMode(e.target.value);
+        });
+    });
+}
+
+// --- 5. GEOJSON & INTERACTIVITY ---
+function renderGeoJson(geoData, year) {
+    currentYear = year;
+    outlineCache.clear();
+
+    geoJsonLayer = L.geoJSON(geoData, {
+        style: styleForFeature,
 
         onEachFeature: (feature, layer) => {
             const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
@@ -191,7 +299,7 @@ function renderGeoJson(geoData, year) {
             const holders = info ? info.electedHolders : [];
             const windowNotes = info ? info.notes : [];
             const sStyle = getStateStyle(division.state);
-            
+
             let badgeCount = 0;
             let badgesList = '';
             if (division.isfed === "TRUE") { badgesList += '<span class="badge fed">FEDERATION</span>'; badgeCount++; }
@@ -211,24 +319,22 @@ function renderGeoJson(geoData, year) {
                 offset: [0, 5]
             });
 
-            // accent colour uses the first-listed winner's party -- purely decorative,
-            // doesn't need to represent every co-elected member when there's more than one
-            const primaryParty = (holders.length && holders[0].parties.length) ? holders[0].parties[0].party : null;
-            const pColor = (primaryParty && partyColours[primaryParty]) ? `#${partyColours[primaryParty]}` : '#333';
-
+            // each member's party pill carries that member's own party colour,
+            // so divisions with several members at once show every party correctly
             const memberRows = holders.length
-               ? holders.map(h => {
+                ? holders.map(h => {
                     const party = h.parties.length ? h.parties[0].party : 'IND';
+                    const colour = partyColours[party] ? `#${partyColours[party]}` : NEUTRAL_GREY;
                     return `<div class="member-row">
                         <strong>${h.given || ''} ${(h.family || '').toUpperCase()}</strong>
-                        <span class="party-pill">${party}</span>
+                        <span class="party-pill" style="--party-color: ${colour}">${party}</span>
                      </div>`;
-            }).join('')
-            : `<div class="member-row"><em>No member on record for this election.</em></div>`;
+                }).join('')
+                : `<div class="member-row"><em>No member on record for this election.</em></div>`;
 
             const memberRow = memberRows + (windowNotes.length ? `<small class="status-notice">${windowNotes.join('<br>')}</small>` : '');
             const popupContent = `
-                <div class="map-popup" style="--party-color: ${pColor}">
+                <div class="map-popup">
                     <header>
                         <h2>${division.name}</h2>
                         <span>${division.state}</span>
@@ -248,53 +354,13 @@ function renderGeoJson(geoData, year) {
                     </section>
 
                     <footer>
-                        <h3>Elected member</h3>
+                        <h3>${holders.length > 1 ? 'Elected members' : 'Elected member'}</h3>
                         ${memberRow}
                     </footer>
                 </div>`;
 
             layer.bindPopup(popupContent);
-
-            // --- KEYBOARD ACCESSIBILITY ENHANCEMENTS ---
-
-            const pathElement = layer.getElement();
-            if (pathElement) {
-                pathElement.setAttribute('tabindex', '0');
-                pathElement.setAttribute('role', 'button');
-                pathElement.setAttribute('aria-label', `${division.name}, ${division.state}`);
-
-                pathElement.addEventListener('focus', function() {
-                    if (currentOpenPopup && currentOpenPopup !== layer) {
-                        map.closePopup();
-                    }
-                    const activeColor = getStateStyle(division.state).color;
-                    layer.setStyle({
-                        fillColor: activeColor,
-                        fillOpacity: 0.25,
-                        weight: 4,
-                        color: activeColor
-                    });
-                    layer.bringToFront();
-                    map.fitBounds(layer.getBounds(), {
-                        padding: [50, 50],
-                        maxZoom: 10
-                    });
-                });
-
-                pathElement.addEventListener('blur', function() {
-                    if (!geoJsonLayer.searchActive || !layer.isSearchMatch) {
-                        geoJsonLayer.resetStyle(layer);
-                    }
-                });
-
-                pathElement.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        layer.openPopup();
-                        currentOpenPopup = layer;
-                    }
-                });
-            }
+            layer.divisionLabel = `${division.name}, ${division.state}`;
 
             layer.on('popupopen', function() {
                 currentOpenPopup = layer;
@@ -310,13 +376,7 @@ function renderGeoJson(geoData, year) {
                 mouseover: (e) => {
                     const l = e.target;
                     if (geoJsonLayer.searchActive && !l.isSearchMatch) return;
-                    const activeColor = getStateStyle(division.state).color;
-                    l.setStyle({
-                        fillColor: activeColor,
-                        fillOpacity: 0.25,
-                        weight: 4,
-                        color: activeColor
-                    });
+                    highlightLayer(l, 0.25);
                     l.bringToFront();
                 },
                 mouseout: (e) => {
@@ -327,102 +387,167 @@ function renderGeoJson(geoData, year) {
                         geoJsonLayer.resetStyle(l);
                     }
                 },
-                click: (e) => {
+                click: () => {
                     currentOpenPopup = layer;
+                    lastKeyboardLayer = null;
                 }
             });
         }
     }).addTo(map);
 
-    setupSearch(geoJsonLayer);
+    makePathsKeyboardAccessible();
+    applySearch(false);
     updateLegend();
-    disableMapTabOrder();
 }
 
-// --- 5. SEARCH ---
-function setupSearch(layerGroup) {
-    const searchInput = document.getElementById('division-search');
-    const status = document.getElementById('map-status');
-    if (!searchInput) return;
+// Divisions can be reached from the keyboard. This has to run after the layer is
+// on the map: a division's SVG path does not exist before then.
+function makePathsKeyboardAccessible() {
+    geoJsonLayer.eachLayer(layer => {
+        const path = layer.getElement && layer.getElement();
+        if (!path || !layer.divisionLabel) return;
 
-    searchInput.addEventListener('input', (e) => {
-        const value = e.target.value.toLowerCase().trim();
-        layerGroup.searchActive = (value !== "");
+        path.setAttribute('tabindex', '0');
+        path.setAttribute('role', 'button');
+        path.setAttribute('aria-label', layer.divisionLabel);
+        path.setAttribute('aria-haspopup', 'dialog');
 
-        let matchCount = 0;
-        let lastMatch = null;
+        path.addEventListener('focus', function() {
+            if (currentOpenPopup && currentOpenPopup !== layer) {
+                map.closePopup();
+            }
+            highlightLayer(layer, 0.25);
+            map.fitBounds(layer.getBounds(), { padding: [50, 50], maxZoom: 10 });
+        });
 
-        layerGroup.eachLayer((layer) => {
-            const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
-            const division = divisionsData[seatIndex];
-            const divName = division ? division.name.toLowerCase() : "";
-
-            if (value === "") {
-                layer.isSearchMatch = false;
-                layerGroup.resetStyle(layer);
-            } else if (divName.includes(value)) {
-                layer.isSearchMatch = true;
-                matchCount++;
-                lastMatch = layer;
-
-                const activeColor = getStateStyle(division.state).color;
-                layer.setStyle({
-                    fillColor: activeColor,
-                    fillOpacity: 0.4,
-                    weight: 4,
-                    color: activeColor
-                });
-            } else {
-                layer.isSearchMatch = false;
-                layer.setStyle({ fillOpacity: 0.05, weight: 0 });
+        path.addEventListener('blur', function() {
+            if (!geoJsonLayer.searchActive || !layer.isSearchMatch) {
+                geoJsonLayer.resetStyle(layer);
             }
         });
 
-        if (status) {
-            if (value === "") {
-                status.textContent = "";
-            } else {
-                status.textContent = `${matchCount} ${matchCount === 1 ? 'result' : 'results'} found for ${value}.`;
+        path.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openPopupFor(layer, true);
             }
-        }
+        });
+    });
+}
 
-        if (layerGroup.searchActive && matchCount === 0) {
-            searchInput.style.backgroundColor = '#ffeeee';
-            searchInput.style.borderColor = '#ff0000';
+// --- 6. SEARCH ---
+function applySearch(fromInput) {
+    const searchInput = document.getElementById('division-search');
+    const status = document.getElementById('map-status');
+    const hint = document.getElementById('search-hint');
+    if (!searchInput || !geoJsonLayer) return;
+
+    const value = searchInput.value.toLowerCase().trim();
+    geoJsonLayer.searchActive = (value !== "");
+
+    let matchCount = 0;
+    let lastMatch = null;
+
+    geoJsonLayer.eachLayer((layer) => {
+        const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
+        const division = divisionsData[seatIndex];
+        const divName = division ? division.name.toLowerCase() : "";
+
+        if (value === "") {
+            layer.isSearchMatch = false;
+            geoJsonLayer.resetStyle(layer);
+        } else if (divName.includes(value)) {
+            layer.isSearchMatch = true;
+            matchCount++;
+            lastMatch = layer;
+            highlightLayer(layer, 0.4);
         } else {
-            searchInput.style.backgroundColor = '';
-            searchInput.style.borderColor = '';
-        }
-
-        if (matchCount === 1 && lastMatch) {
-            map.fitBounds(lastMatch.getBounds(), { padding: [50, 50], maxZoom: 10 });
+            layer.isSearchMatch = false;
+            layer.setStyle({ fillOpacity: 0.05, weight: 0 });
         }
     });
 
+    const noMatch = geoJsonLayer.searchActive && matchCount === 0;
+    searchInput.classList.toggle('no-match', noMatch);
+    if (hint) hint.textContent = noMatch ? `No divisions match "${searchInput.value.trim()}".` : '';
+
+    if (!fromInput) return;
+
+    if (status) {
+        status.textContent = value === ""
+            ? ""
+            : `${matchCount} ${matchCount === 1 ? 'result' : 'results'} found for ${value}.`;
+    }
+
+    if (matchCount === 1 && lastMatch) {
+        map.fitBounds(lastMatch.getBounds(), { padding: [50, 50], maxZoom: 10 });
+    }
+}
+
+function initSearch() {
+    const searchInput = document.getElementById('division-search');
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', () => applySearch(true));
+
+    // Enter opens the first match: the keyboard route to any division's details
     searchInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            const value = e.target.value.toLowerCase().trim();
-            if (value === "") return;
+        if (e.key !== 'Enter' || !geoJsonLayer) return;
+        const value = e.target.value.toLowerCase().trim();
+        if (value === "") return;
 
-            let firstMatch = null;
-            layerGroup.eachLayer((layer) => {
-                const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
-                const division = divisionsData[seatIndex];
-                const divName = division ? division.name.toLowerCase() : "";
-                if (!firstMatch && divName.includes(value)) firstMatch = layer;
-            });
+        let firstMatch = null;
+        geoJsonLayer.eachLayer((layer) => {
+            const seatIndex = String(layer.feature.properties.index || layer.feature.properties.Index).trim();
+            const division = divisionsData[seatIndex];
+            const divName = division ? division.name.toLowerCase() : "";
+            if (!firstMatch && divName.includes(value)) firstMatch = layer;
+        });
 
-            if (firstMatch) {
-                map.fitBounds(firstMatch.getBounds(), { padding: [50, 50], maxZoom: 10 });
-                firstMatch.openPopup();
-                currentOpenPopup = firstMatch;
-            }
+        if (firstMatch) {
+            map.fitBounds(firstMatch.getBounds(), { padding: [50, 50], maxZoom: 10 });
+            openPopupFor(firstMatch, true);
         }
     });
 }
 
-// --- 6. LEGEND ---
+// --- 7. LEGEND ---
 let legendControl;
+
+function legendItem(colour, label) {
+    return `
+        <div class="legend-item">
+            <i class="legend-color" style="border-color: ${colour};" aria-hidden="true"></i>
+            <span>${label}</span>
+        </div>`;
+}
+
+function stateLegendHtml() {
+    return '<span class="legend-title">States</span>' +
+        Object.keys(nameToId).sort().map(stateName => {
+            const cfg = getStateStyle(stateName);
+            return legendItem(cfg.color, cfg.short);
+        }).join('');
+}
+
+// Only the parties that appear in the selected year, most divisions first
+function partyLegendHtml() {
+    const found = {};
+    geoJsonLayer.eachLayer(layer => {
+        const o = getOutline(layer.feature);
+        if (!found[o.partyCode]) found[o.partyCode] = { colour: o.party, count: 0 };
+        found[o.partyCode].count++;
+    });
+
+    const codes = Object.keys(found)
+        .filter(c => c !== 'MULTI' && c !== 'NONE')
+        .sort((a, b) => found[b].count - found[a].count || a.localeCompare(b));
+
+    let html = '<span class="legend-title">Parties</span>' + codes.map(c => legendItem(found[c].colour, c)).join('');
+    if (found.MULTI) html += legendItem(MULTI_GREY, 'Multiple members');
+    if (found.NONE) html += legendItem(NEUTRAL_GREY, 'None on record');
+    return html;
+}
 
 function updateLegend() {
     if (legendControl) map.removeControl(legendControl);
@@ -430,18 +555,14 @@ function updateLegend() {
     legendControl = L.control({ position: 'bottomright' });
     legendControl.onAdd = function () {
         const div = L.DomUtil.create('div', 'info legend');
-        div.innerHTML = '<span class="legend-title">States</span>';
-
-        Object.keys(nameToId).sort().forEach(stateName => {
-            const cfg = getStateStyle(stateName);
-            div.innerHTML += `
-                <div class="legend-item">
-                    <i class="legend-color" style="border-color: ${cfg.color};"></i>
-                    <span>${cfg.short}</span>
-                </div>`;
-        });
-
+        div.setAttribute('role', 'group');
+        div.setAttribute('aria-label', outlineMode === 'party' ? 'Map key: outline colour by party' : 'Map key: outline colour by state');
+        div.innerHTML = outlineMode === 'party' ? partyLegendHtml() : stateLegendHtml();
         return div;
     };
     legendControl.addTo(map);
 }
+
+// --- 8. SET UP THE CONTROLS ---
+initOutlineToggle();
+initSearch();
