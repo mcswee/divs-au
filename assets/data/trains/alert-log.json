@@ -1,5 +1,16 @@
 [
   {
+    "id": "489c957d-951c-50bf-9d04-be93b5623485",
+    "first_seen": "2026-10-10T11:20:01.855199+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes due to a police request in the Mount Waverley area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-GWY-R:",
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
     "id": "de4fa32a-638e-576e-91cf-37af2ca4fba6",
     "first_seen": "2026-10-09T05:40:08.755806+00:00",
     "header": "Minor Delay",
