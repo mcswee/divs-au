@@ -1,5 +1,160 @@
 [
   {
+    "id": "51e6dbd0-1dc8-5788-910e-087374173d63",
+    "first_seen": "2026-10-11T11:32:59.306416+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between North Melbourne and Upfield from 8.15pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-UFD:",
+      "aus:vic:vic-02-UFD-R:"
+    ]
+  },
+  {
+    "id": "f26e951b-892e-5bb7-b21d-8b3a4d2fe14d",
+    "first_seen": "2026-10-11T11:32:59.306416+00:00",
+    "header": "Planned Works",
+    "description": "Trains will run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From City Loop Take a train from Platform 2 and change at either Southern Cross or Flinders Street. To City Loop Change at Flinders Street and take a City Circle Bus. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "bf02effc-2089-511a-aaba-3409390aed27",
+    "first_seen": "2026-10-11T11:32:59.306416+00:00",
+    "header": "Planned Works",
+    "description": "Trains will run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. To Southern Cross Change at Flinders Street and take a train from Platforms 9 &amp; 10. To City Loop Change at Flinders Street and take a City Circle Bus. From Southern Cross Take a train from Platforms 12 or 13 and change at Flinders Street. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-MDD-R:"
+    ]
+  },
+  {
+    "id": "11a8a7cf-54c8-5f69-a116-9529d48733d2",
+    "first_seen": "2026-10-11T11:32:59.306416+00:00",
+    "header": "Planned Works",
+    "description": "Trains will run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. To Southern Cross Change at Flinders Street and take a train from Platforms 9 &amp; 10. To City Loop Change at Flinders Street and take a City Circle Bus. From Southern Cross Take a train from Platforms 12 or 13 and change at Flinders Street. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-HBE-R:"
+    ]
+  },
+  {
+    "id": "34d985bf-7968-5cba-ba2a-7db999297a63",
+    "first_seen": "2026-10-11T11:32:59.306416+00:00",
+    "header": "Planned Works",
+    "description": "Trains will run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. To Southern Cross Change at Flinders Street and take a train from Platforms 9 &amp; 10. To City Loop Change at Richmond and take a train from Platform 3. From Southern Cross Take a train from Platforms 12 or 13 and change at Flinders Street. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-GWY:",
+      "aus:vic:vic-02-GWY-R:"
+    ]
+  },
+  {
+    "id": "8eadc5e6-d524-5437-b019-1cc0766dc124",
+    "first_seen": "2026-10-11T11:32:59.306416+00:00",
+    "header": "Planned Works",
+    "description": "Trains will run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. To Southern Cross Change at Flinders Street and take a train from Platforms 9 &amp; 10. To City Loop Change at Richmond and take a train from Platform 3. From Southern Cross Take a train from Platforms 12 or 13 and change at Flinders Street. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "04290716-1b43-5992-a492-ade82a2b61ff",
+    "first_seen": "2026-10-11T11:32:59.306416+00:00",
+    "header": "Planned Works",
+    "description": "Trains will run direct to and from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. To Southern Cross Change at Flinders Street and take a train from Platforms 9 &amp; 10. To City Loop Change at Richmond and take a train from Platform 3. From Southern Cross Take a train from Platforms 12 or 13 and change at Flinders Street. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "234343e1-ce8c-58d2-ad57-6353ed637ea8",
+    "first_seen": "2026-10-11T11:32:59.306416+00:00",
+    "header": "Planned work: Trains run direct to and from Flinders Street, not via the City Loop",
+    "description": "9pm to last service each night, Sunday 11 October to Wednesday 14 October \u00a0 From Southern Cross  Take a train from either platforms 12 &amp; 13 and change at Flinders Street. To Southern Cross  Change at Flinders Street and take a train from platforms 9 &amp; 10. To City Loop  Change at Flinders Street and take a City Circle Bus. From City Loop  Take a train from Platform 2 and change at Flinders Street.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-HBE-R:"
+    ]
+  },
+  {
+    "id": "59bbe68a-fe78-5314-bea1-1f3465917e89",
+    "first_seen": "2026-10-11T11:32:59.306416+00:00",
+    "header": "Planned work: Trains run direct to and from Flinders Street, not via the City Loop",
+    "description": "9pm to last service each night, Sunday 11 October to Wednesday 14 October \u00a0 From Southern Cross  Take a train from either platforms 12 &amp; 13 and change at Flinders Street. To Southern Cross  Change at Flinders Street and take a train from platforms 9 &amp; 10. To City Loop  Change at Richmond and take a train from Platform 3. From City Loop  Take a train from Platform 2 and change at Flinders Street.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-GWY:",
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-GWY-R:"
+    ]
+  },
+  {
+    "id": "78dfe794-4763-5239-9ef5-628341fb88db",
+    "first_seen": "2026-10-11T11:32:59.306416+00:00",
+    "header": "Planned work: Trains run direct to and from Flinders Street, not via the City Loop",
+    "description": "9pm to last service each night, Sunday 11 October to Wednesday 14 October \u00a0 To City Loop  Change at Flinders Street and take a City Circle Bus. From City Loop  Take a train from Platform 2 and change at either Southern Cross, or Flinders Street.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "fe27109b-f146-5bfe-8037-d74a5e5ff112",
+    "first_seen": "2026-10-11T11:32:59.306416+00:00",
+    "header": "Planned work: Buses replace trains between North Melbourne and Upfield",
+    "description": "8.15pm to last service each night, Sunday 11 October to Wednesday 14 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-UFD:",
+      "aus:vic:vic-02-UFD-R:"
+    ]
+  },
+  {
+    "id": "49875f8e-5bfa-588b-a9b9-07ab057810e8",
+    "first_seen": "2026-10-11T11:32:59.306416+00:00",
+    "header": "Planned work: Night works between Richmond and Caulfield",
+    "description": "9pm to 4am each night, Sunday 11 October to Thursday 15 October  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Frankston Line. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
+    "id": "d53d720b-0ce3-51f4-8f10-1702dd118746",
+    "first_seen": "2026-10-11T11:32:59.306416+00:00",
+    "header": "Planned work: Night works between North Melbourne, Kensington and Upfield",
+    "description": "9pm to 4am each night, Sunday 11 October to Thursday 15 October  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Craigieburn and Upfield lines. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:",
+      "aus:vic:vic-02-UFD:",
+      "aus:vic:vic-02-UFD-R:"
+    ]
+  },
+  {
+    "id": "489316d8-a350-529a-8a61-d0fad986e67d",
+    "first_seen": "2026-10-11T11:32:59.306416+00:00",
+    "header": "Planned work: Essendon Station night works",
+    "description": "Sunday 11 October to Thursday 22 October We\u2019ll be doing track and overhead works at Essendon Station in October to improve safety and accessibility at the station. Medium to high levels of noise are expected around Essendon Station, Grice Crescent and Park Street in Essendon. Night works will take place at the following times:  From 10pm to 4am each night, Sunday 11 October to Thursday 15 October From 9pm Friday 16 October to 4am Monday 19 October From 10pm to 4pm each night, Monday 19 October to Thursday 22 October",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
     "id": "489c957d-951c-50bf-9d04-be93b5623485",
     "first_seen": "2026-10-10T11:20:01.855199+00:00",
     "header": "Major Delay",
