@@ -241,19 +241,27 @@ function outlineColour(feature) {
     return getOutline(feature)[outlineMode];
 }
 
+// In party mode each division also gets a light wash of its colour, so
+// neighbouring divisions with the same party can be told apart
+const PARTY_FILL_OPACITY = 0.22;
+
 function styleForFeature(feature) {
+    const colour = outlineColour(feature);
+    const byParty = outlineMode === 'party';
     return {
-        fillColor: '#fafafa',
+        fillColor: byParty ? colour : '#fafafa',
         weight: 1.5,
-        color: outlineColour(feature),
-        fillOpacity: 0.1,
+        color: colour,
+        fillOpacity: byParty ? PARTY_FILL_OPACITY : 0.1,
         className: 'division-boundary'
     };
 }
 
 function highlightLayer(layer, fillOpacity) {
     const colour = outlineColour(layer.feature);
-    layer.setStyle({ fillColor: colour, fillOpacity, weight: 4, color: colour });
+    // in party mode the resting fill is already visible, so a highlight needs to be stronger
+    const opacity = outlineMode === 'party' ? Math.max(fillOpacity, 0.4) : fillOpacity;
+    layer.setStyle({ fillColor: colour, fillOpacity: opacity, weight: 4, color: colour });
 }
 
 function setOutlineMode(mode) {
@@ -514,10 +522,12 @@ function initSearch() {
 // --- 7. LEGEND ---
 let legendControl;
 
-function legendItem(colour, label) {
+function legendItem(colour, label, filled) {
+    // the party key swatches show the same light wash as the map
+    const fill = filled ? ` background: color-mix(in srgb, ${colour} ${PARTY_FILL_OPACITY * 100}%, white);` : '';
     return `
         <div class="legend-item">
-            <i class="legend-color" style="border-color: ${colour};" aria-hidden="true"></i>
+            <i class="legend-color" style="border-color: ${colour};${fill}" aria-hidden="true"></i>
             <span>${label}</span>
         </div>`;
 }
@@ -543,9 +553,9 @@ function partyLegendHtml() {
         .filter(c => c !== 'MULTI' && c !== 'NONE')
         .sort((a, b) => found[b].count - found[a].count || a.localeCompare(b));
 
-    let html = '<span class="legend-title">Parties</span>' + codes.map(c => legendItem(found[c].colour, c)).join('');
-    if (found.MULTI) html += legendItem(MULTI_GREY, 'Multiple members');
-    if (found.NONE) html += legendItem(NEUTRAL_GREY, 'None on record');
+    let html = '<span class="legend-title">Parties</span>' + codes.map(c => legendItem(found[c].colour, c, true)).join('');
+    if (found.MULTI) html += legendItem(MULTI_GREY, 'Multiple members', true);
+    if (found.NONE) html += legendItem(NEUTRAL_GREY, 'None on record', true);
     return html;
 }
 
