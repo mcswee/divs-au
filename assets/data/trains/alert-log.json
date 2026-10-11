@@ -1,5 +1,26 @@
 [
   {
+    "id": "ce2d2b42-15fd-550c-942d-fd6f3cbc5ba7",
+    "first_seen": "2026-10-11T17:36:04.029700+00:00",
+    "header": "Suspended",
+    "description": "Buses replace trains between Oakleigh and Dandenong due to equipment fault.  Replacement buses have been ordered, however will take over 60 minutes to arrive A train service will operate between Flinders Street and Oakleigh, with delays to the service Allow extra travel time  Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "7500dce0-1e42-5c92-80a5-21e236444746",
+    "first_seen": "2026-10-11T17:36:04.029700+00:00",
+    "header": "Suspended",
+    "description": "Buses replace trains between Oakleigh and Dandenong due to equipment fault.  Replacement buses have been ordered, however will take over 60 minutes to arrive A train service will operate between Flinders Street and Oakleigh, with delays to the service Allow extra travel time  Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
     "id": "51e6dbd0-1dc8-5788-910e-087374173d63",
     "first_seen": "2026-10-11T11:32:59.306416+00:00",
     "header": "Planned Works",
