@@ -3,657 +3,740 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#121212">
   <title>World Capitals Quiz</title>
   <style>
     :root {
+      color-scheme: dark;
       --bg: #121212;
       --card-bg: #1e1e1e;
-      --text: #e0e0e0;
-      --accent: #3b82f6;
-      --correct: #22c55e;
-      --almost: #eab308;
-      --incorrect: #ef4444;
+      --panel-bg: #171717;
+      --text: #e5e5e5;
+      --muted: #969696;
+      --border: #353535;
+      --accent: #60a5fa;
+      --correct: #4ade80;
+      --incorrect: #f87171;
     }
 
     * { box-sizing: border-box; }
 
     body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 20px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
+
+    button, input { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
 
     .home-link {
-      font-size: 0.85rem;
-      color: #777;
+      margin: 0 0 16px;
+      color: #888;
+      font-size: .85rem;
       text-decoration: none;
-      margin-bottom: 14px;
-      align-self: center;
     }
-    .home-link:hover { color: var(--accent); }
+    .home-link:hover, .home-link:focus-visible { color: var(--accent); }
 
     .quiz-card {
-      background: var(--card-bg);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
       width: 100%;
-      max-width: 450px;
-      text-align: center;
+      max-width: 500px;
+      padding: clamp(20px, 5vw, 32px);
+      background: var(--card-bg);
+      border: 1px solid #292929;
+      border-radius: 16px;
+      box-shadow: 0 12px 36px #0005;
     }
 
-    h1 { font-size: 1.3rem; margin: 0 0 0.3rem; }
-    h2 { font-size: 1.1rem; margin: 0 0 0.3rem; }
-    .subtitle { color: #999; font-size: 0.9rem; margin-bottom: 1.5rem; }
-
-    .option-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 0.5rem;
+    h1, h2 { margin: 0; line-height: 1.25; }
+    h1 { font-size: 1.45rem; }
+    h2 { font-size: 1.2rem; }
+    .subtitle {
+      margin: 8px 0 24px;
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.5;
     }
 
-    .opt-btn {
-      padding: 14px;
-      border: 2px solid #333;
+    .primary-button, .secondary-button, .quiet-button {
+      min-height: 46px;
+      border: 0;
       border-radius: 8px;
-      background: #2a2a2a;
-      color: var(--text);
-      font-size: 1rem;
-      font-weight: 600;
+      padding: 11px 15px;
+      font-weight: 650;
       cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      text-align: left;
+      transition: background .15s, border-color .15s, opacity .15s;
     }
-    .opt-btn .meta {
-      display: block;
-      color: #888;
-      font-weight: 400;
-      font-size: 0.8rem;
-      margin-top: 2px;
+    .primary-button {
+      color: #fff;
+      background: #2563eb;
     }
-    .opt-btn:hover { border-color: var(--accent); }
-    .opt-btn.easy { border-left: 4px solid var(--correct); }
-    .opt-btn.medium { border-left: 4px solid var(--almost); }
-    .opt-btn.hard { border-left: 4px solid var(--incorrect); }
-    .opt-btn.all { border-left: 4px solid var(--accent); }
+    .primary-button:hover { background: #1d4ed8; }
+    .secondary-button {
+      color: #ddd;
+      background: #303030;
+      border: 1px solid #404040;
+    }
+    .secondary-button:hover { background: #393939; }
+    .quiet-button {
+      min-height: 36px;
+      padding: 7px 10px;
+      color: var(--muted);
+      background: transparent;
+      font-size: .85rem;
+    }
+    .quiet-button:hover { color: var(--text); background: #ffffff0a; }
+    button:focus-visible, input:focus-visible, a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    button:disabled { cursor: default; opacity: .55; }
+    .full-width { width: 100%; }
 
-    .back-link {
-      margin-top: 1rem;
-      background: none;
-      border: none;
-      color: #777;
-      font-size: 0.8rem;
-      cursor: pointer;
-      text-decoration: underline;
+    .start-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 24px;
+    }
+    .fact {
+      padding: 6px 9px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: #bbb;
+      background: var(--panel-bg);
+      font-size: .78rem;
     }
 
+    .quiz-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: -8px -8px 22px;
+    }
     .stats {
       display: flex;
-      justify-content: space-between;
-      font-size: 0.9rem;
-      color: #a0a0a0;
-      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      color: var(--muted);
+      font-size: .86rem;
     }
+    .stats strong { color: var(--text); font-weight: 650; }
+    .finish-button { flex: 0 0 auto; }
 
+    .question-label {
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 650;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
     .country-display {
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
+      min-height: 2.5em;
+      margin: 0 0 26px;
+      font-size: clamp(1.65rem, 6vw, 2.15rem);
+      font-weight: 700;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
     }
 
-    input[type="text"] {
+    #user-input {
       width: 100%;
-      padding: 12px;
-      border: 2px solid #333;
-      border-radius: 6px;
-      background: #2a2a2a;
-      color: #fff;
-      font-size: 1rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    input[type="text"]:focus { border-color: var(--accent); }
-
-    .button-group { display: flex; gap: 10px; margin-top: 1rem; }
-
-    button.action {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.2s;
-    }
-
-    .btn-submit { background: var(--accent); color: white; }
-    .btn-skip { background: #333; color: #aaa; }
-    button:hover { opacity: 0.9; }
-
-    .feedback { margin-top: 1.2rem; font-weight: 600; min-height: 1.5em; }
-    .feedback.correct { color: var(--correct); }
-    .feedback.almost { color: var(--almost); }
-    .feedback.incorrect { color: var(--incorrect); }
-
-    .change-diff {
-      margin-top: 1.2rem;
-      background: none;
-      border: none;
-      color: #777;
-      font-size: 0.8rem;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-
-    .result-score { font-size: 2.6rem; font-weight: 700; margin: 0.5rem 0; }
-    .result-sub { color: #999; font-size: 0.95rem; margin-bottom: 1.2rem; }
-    .best-badge {
-      display: inline-block;
-      background: rgba(34,197,94,0.15);
-      color: var(--correct);
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 20px;
-      margin-bottom: 1rem;
-    }
-    .missed-list {
-      text-align: left;
-      background: #161616;
+      min-height: 52px;
+      padding: 13px 14px;
+      border: 2px solid #414141;
       border-radius: 8px;
-      padding: 12px 16px;
-      margin: 1rem 0;
-      max-height: 180px;
-      overflow-y: auto;
-      font-size: 0.85rem;
+      outline: none;
+      background: #151515;
+      color: #fff;
+      font-size: 1.05rem;
+      transition: border-color .15s;
     }
-    .missed-list div { padding: 4px 0; border-bottom: 1px solid #2a2a2a; color: #ccc; }
-    .missed-list div:last-child { border-bottom: none; }
-    .missed-list .cap { color: #888; }
+    #user-input::placeholder { color: #777; }
+    #user-input:focus { border-color: var(--accent); }
 
-    .hidden { display: none; }
+    .button-group { display: flex; gap: 10px; margin-top: 12px; }
+    .button-group button { flex: 1; }
+
+    .feedback {
+      min-height: 54px;
+      margin-top: 18px;
+      padding: 10px 12px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+    .feedback.correct {
+      color: var(--correct);
+      border-color: #4ade8030;
+      background: #4ade800c;
+    }
+    .feedback.incorrect {
+      color: var(--incorrect);
+      border-color: #f8717130;
+      background: #f871710c;
+    }
+    .feedback .answer-detail { display: block; margin-top: 3px; color: #ccc; }
+
+    .result-score { margin: 18px 0 4px; font-size: 3rem; font-weight: 750; line-height: 1; }
+    .result-sub { margin: 0 0 20px; color: var(--muted); font-size: .92rem; line-height: 1.6; }
+    .result-panel {
+      margin: 20px 0;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--panel-bg);
+    }
+    .result-panel h3 { margin: 0 0 10px; font-size: .95rem; }
+    .missed-list { max-height: 240px; overflow-y: auto; }
+    .missed-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid #2b2b2b;
+      font-size: .86rem;
+    }
+    .missed-item:last-child { border-bottom: 0; }
+    .missed-country { color: #ddd; }
+    .missed-capital { color: var(--muted); text-align: right; }
+    .empty-review { color: var(--correct); font-size: .9rem; }
+    .error-message { color: var(--incorrect); line-height: 1.5; }
+    .hidden { display: none !important; }
+
+    @media (max-width: 380px) {
+      body { padding: 16px 10px; }
+      .quiz-card { padding: 19px 16px; }
+      .quiz-topline { align-items: flex-start; }
+      .stats { gap: 5px 10px; }
+      .finish-button { padding-inline: 8px; }
+    }
   </style>
 </head>
 <body>
+  <a class="home-link" href="/">&larr; divs.au</a>
 
-<a class="home-link" href="/">&larr; divs.au</a>
-
-<div class="quiz-card">
-
-  <div id="start-screen">
-    <h1>World Capitals Quiz</h1>
-    <div class="subtitle">Pick a difficulty to begin</div>
-    <div class="option-list" id="diff-options"></div>
-  </div>
-
-  <div id="mode-screen" class="hidden">
-    <h2 id="mode-heading">Choose a mode</h2>
-    <div class="subtitle">How do you want to play?</div>
-    <div class="option-list" id="mode-options"></div>
-    <button class="back-link" id="back-to-diff-btn">&larr; Change difficulty</button>
-  </div>
-
-  <div id="quiz-screen" class="hidden">
-    <div class="stats">
-      <span id="stat-left">Score: <strong id="score">0</strong></span>
-      <span>Streak: <strong id="streak">0</strong></span>
-    </div>
-
-    <div class="country-display" id="country-name">Loading...</div>
-
-    <form id="quiz-form" autocomplete="off">
-      <input type="text" id="user-input" placeholder="Type the capital..." autofocus>
-      <div class="button-group">
-        <button type="submit" class="action btn-submit">Submit</button>
-        <button type="button" class="action btn-skip" id="skip-btn">Skip</button>
+  <main class="quiz-card">
+    <section id="start-screen">
+      <h1>World Capitals Quiz</h1>
+      <p class="subtitle">Free-response practice using the full country list. Missed capitals come back during the session and receive extra attention in future sessions.</p>
+      <div class="start-facts" aria-label="Quiz features">
+        <span class="fact">Untimed</span>
+        <span class="fact">All countries</span>
+        <span class="fact">Spelling-tolerant</span>
+        <span class="fact">Progress saved on this device</span>
       </div>
-    </form>
+      <button id="start-btn" class="primary-button full-width" disabled>Loading capitals…</button>
+      <p id="load-error" class="error-message hidden" role="alert"></p>
+    </section>
 
-    <div class="feedback" id="feedback"></div>
-    <button class="change-diff" id="change-diff-btn">Change settings</button>
-  </div>
+    <section id="quiz-screen" class="hidden" aria-labelledby="country-name">
+      <div class="quiz-topline">
+        <div class="stats" aria-live="polite">
+          <span>Answered <strong id="answered-count">0</strong></span>
+          <span>Correct <strong id="correct-count">0</strong></span>
+          <span>Streak <strong id="streak-count">0</strong></span>
+        </div>
+        <button id="finish-btn" class="quiet-button finish-button" type="button">Finish</button>
+      </div>
 
-  <div id="results-screen" class="hidden">
-    <h2>Session complete</h2>
-    <div id="best-badge-slot"></div>
-    <div class="result-score" id="result-score">0</div>
-    <div class="result-sub" id="result-sub"></div>
-    <div id="missed-wrap" class="hidden">
-      <div class="subtitle" style="margin-bottom:0.4rem;">Missed this round</div>
-      <div class="missed-list" id="missed-list"></div>
-    </div>
-    <div class="button-group">
-      <button class="action btn-submit" id="play-again-btn">Play again</button>
-      <button class="action btn-skip" id="change-settings-btn">Change settings</button>
-    </div>
-  </div>
+      <div class="question-label">What is the capital of…</div>
+      <div class="country-display" id="country-name">Loading…</div>
 
-</div>
+      <form id="quiz-form" autocomplete="off">
+        <label class="hidden" for="user-input">Capital city</label>
+        <input type="text" id="user-input" name="answer" placeholder="Type the capital…" autocomplete="off" autocapitalize="words" spellcheck="false" required>
+        <div class="button-group">
+          <button type="submit" class="primary-button">Submit answer</button>
+          <button type="button" class="secondary-button" id="skip-btn">Skip</button>
+        </div>
+      </form>
+
+      <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+    </section>
+
+    <section id="results-screen" class="hidden">
+      <h2>Session summary</h2>
+      <div class="result-score" id="result-score">0/0</div>
+      <p class="result-sub" id="result-sub"></p>
+
+      <div class="result-panel" id="missed-panel">
+        <h3>Capitals to revisit</h3>
+        <div class="missed-list" id="missed-list"></div>
+      </div>
+      <p id="all-correct-message" class="empty-review hidden">No missed answers this session.</p>
+      <div class="button-group">
+        <button class="primary-button" id="play-again-btn" type="button">Keep practising</button>
+        <button class="secondary-button" id="home-btn" type="button">Back to start</button>
+      </div>
+    </section>
+  </main>
 
 <script>
-  const STORAGE_MISS_KEY = "capitalsQuiz.missCounts";
-  const STORAGE_BEST_KEY = "capitalsQuiz.bestScores";
-  const TIMED_DURATION = 60;
-  const ROUND_LENGTH = 20;
+  const STORAGE_MISS_KEY = "capitalsQuiz.missCounts"; // Imported from the previous version.
+  const STORAGE_REVIEW_KEY = "capitalsQuiz.reviewData.v1";
+  const REVIEW_DELAY_QUESTIONS = 4;
+  const REVIEW_DELAY_MS = 6 * 60 * 60 * 1000;
+  const RECENT_COUNTRY_LIMIT = 8;
+  const FEEDBACK_DELAY_MS = 1250;
 
   let capitalsData = [];
-  let pool = [];
   let currentPair = null;
-  let lastCountry = null;
-  let missCounts = {};
-  let bestScores = {};
-
-  let selectedDifficulty = null;
-  let selectedMode = null; // "timed" | "round" | "endless"
+  let reviewData = {};
+  let oldMissCounts = {};
+  let sessionReviewQueue = {};
+  let recentCountries = [];
+  let missedThisSession = new Map();
+  let sessionTimeout = null;
+  let isWaitingForNext = false;
 
   let score = 0;
+  let totalAnswered = 0;
   let streak = 0;
   let bestStreak = 0;
-  let totalAnswered = 0;
-  let missedThisSession = [];
-  let isWaitingForNext = false;
-  let timerInterval = null;
-  let timeLeft = TIMED_DURATION;
+  let spellingAccepted = 0;
 
   const startScreen = document.getElementById("start-screen");
-  const modeScreen = document.getElementById("mode-screen");
   const quizScreen = document.getElementById("quiz-screen");
   const resultsScreen = document.getElementById("results-screen");
-
-  const diffOptionsEl = document.getElementById("diff-options");
-  const modeOptionsEl = document.getElementById("mode-options");
-  const modeHeading = document.getElementById("mode-heading");
-  const backToDiffBtn = document.getElementById("back-to-diff-btn");
-
+  const startBtn = document.getElementById("start-btn");
+  const loadErrorEl = document.getElementById("load-error");
   const countryEl = document.getElementById("country-name");
   const inputEl = document.getElementById("user-input");
-  const feedbackEl = document.getElementById("feedback");
-  const streakEl = document.getElementById("streak");
-  const statLeftEl = document.getElementById("stat-left");
   const formEl = document.getElementById("quiz-form");
+  const feedbackEl = document.getElementById("feedback");
   const skipBtn = document.getElementById("skip-btn");
-  const changeDiffBtn = document.getElementById("change-diff-btn");
-
+  const finishBtn = document.getElementById("finish-btn");
+  const answeredCountEl = document.getElementById("answered-count");
+  const correctCountEl = document.getElementById("correct-count");
+  const streakCountEl = document.getElementById("streak-count");
   const resultScoreEl = document.getElementById("result-score");
   const resultSubEl = document.getElementById("result-sub");
-  const bestBadgeSlot = document.getElementById("best-badge-slot");
-  const missedWrap = document.getElementById("missed-wrap");
+  const missedPanel = document.getElementById("missed-panel");
   const missedListEl = document.getElementById("missed-list");
+  const allCorrectMessage = document.getElementById("all-correct-message");
   const playAgainBtn = document.getElementById("play-again-btn");
-  const changeSettingsBtn = document.getElementById("change-settings-btn");
+  const homeBtn = document.getElementById("home-btn");
 
-  // ---------- Storage helpers ----------
-  // NOTE: miss counts and best scores are stored in the browser's localStorage
-  // only (nothing leaves the device). Worth reflecting in the site's privacy
-  // policy since it's a new category of stored data, even though it's local-only.
+  // ---------- Storage ----------
   function loadStorage() {
-    try { missCounts = JSON.parse(localStorage.getItem(STORAGE_MISS_KEY)) || {}; }
-    catch (e) { missCounts = {}; }
-    try { bestScores = JSON.parse(localStorage.getItem(STORAGE_BEST_KEY)) || {}; }
-    catch (e) { bestScores = {}; }
-  }
-
-  function saveMissCounts() {
-    try { localStorage.setItem(STORAGE_MISS_KEY, JSON.stringify(missCounts)); }
-    catch (e) { /* storage unavailable, fail silently */ }
-  }
-
-  function saveBestScores() {
-    try { localStorage.setItem(STORAGE_BEST_KEY, JSON.stringify(bestScores)); }
-    catch (e) { /* storage unavailable, fail silently */ }
-  }
-
-  function bestKey() {
-    return `${selectedDifficulty}:${selectedMode}`;
-  }
-
-  // ---------- Data load ----------
-  fetch("/assets/data/capitals.json")
-    .then(res => res.json())
-    .then(data => {
-      capitalsData = data;
-      loadStorage();
-      buildDifficultyButtons();
-    })
-    .catch(err => {
-      startScreen.innerHTML = "<p>Couldn't load capitals data.</p>";
-      console.error(err);
-    });
-
-  function buildDifficultyButtons() {
-    const counts = { easy: 0, medium: 0, hard: 0 };
-    capitalsData.forEach(c => counts[c.difficulty]++);
-
-    const options = [
-      { key: "easy", label: "Easy", count: counts.easy },
-      { key: "medium", label: "Medium", count: counts.medium },
-      { key: "hard", label: "Hard", count: counts.hard },
-      { key: "all", label: "All", count: capitalsData.length }
-    ];
-
-    diffOptionsEl.innerHTML = "";
-    options.forEach(opt => {
-      const btn = document.createElement("button");
-      btn.className = `opt-btn ${opt.key}`;
-      btn.innerHTML = `${opt.label}<span class="meta">${opt.count} countries</span>`;
-      btn.addEventListener("click", () => {
-        selectedDifficulty = opt.key;
-        showModeScreen();
-      });
-      diffOptionsEl.appendChild(btn);
-    });
-  }
-
-  function showModeScreen() {
-    startScreen.classList.add("hidden");
-    modeScreen.classList.remove("hidden");
-    modeHeading.textContent = `Mode (${capitalize(selectedDifficulty)})`;
-
-    const modes = [
-      { key: "round", label: `Round of ${ROUND_LENGTH}`, meta: "Fixed number of questions" },
-      { key: "timed", label: `Timed (${TIMED_DURATION}s)`, meta: "As many as you can in 60 seconds" },
-      { key: "endless", label: "Endless", meta: "No end, just practice" }
-    ];
-
-    modeOptionsEl.innerHTML = "";
-    modes.forEach(m => {
-      const btn = document.createElement("button");
-      btn.className = "opt-btn all";
-      const best = bestScores[`${selectedDifficulty}:${m.key}`];
-      const bestText = best !== undefined ? ` &middot; best ${best}` : "";
-      btn.innerHTML = `${m.label}<span class="meta">${m.meta}${bestText}</span>`;
-      btn.addEventListener("click", () => {
-        selectedMode = m.key;
-        startQuiz();
-      });
-      modeOptionsEl.appendChild(btn);
-    });
-  }
-
-  function capitalize(s) {
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  }
-
-  backToDiffBtn.addEventListener("click", () => {
-    modeScreen.classList.add("hidden");
-    startScreen.classList.remove("hidden");
-  });
-
-  // ---------- Quiz flow ----------
-  function startQuiz() {
-    pool = selectedDifficulty === "all"
-      ? capitalsData.slice()
-      : capitalsData.filter(c => c.difficulty === selectedDifficulty);
-
-    score = 0;
-    streak = 0;
-    bestStreak = 0;
-    totalAnswered = 0;
-    missedThisSession = [];
-    lastCountry = null;
-    timeLeft = TIMED_DURATION;
-
-    streakEl.textContent = streak;
-
-    modeScreen.classList.add("hidden");
-    resultsScreen.classList.add("hidden");
-    quizScreen.classList.remove("hidden");
-
-    if (selectedMode === "timed") {
-      statLeftEl.innerHTML = `Time: <strong id="score">${timeLeft}s</strong>`;
-      startTimer();
-    } else if (selectedMode === "round") {
-      statLeftEl.innerHTML = `Question: <strong id="score">1</strong>/${ROUND_LENGTH}`;
-    } else {
-      statLeftEl.innerHTML = `Score: <strong id="score">0</strong>`;
+    try {
+      const parsed = JSON.parse(localStorage.getItem(STORAGE_REVIEW_KEY));
+      if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) reviewData = parsed;
+    } catch (_) {
+      reviewData = {};
     }
 
+    try {
+      const parsed = JSON.parse(localStorage.getItem(STORAGE_MISS_KEY));
+      if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) oldMissCounts = parsed;
+    } catch (_) {
+      oldMissCounts = {};
+    }
+
+    // Bring forward the old version's miss counts without discarding the new schedule.
+    for (const [country, count] of Object.entries(oldMissCounts)) {
+      if (!reviewData[country] && Number(count) > 0) {
+        reviewData[country] = {
+          attempts: 0,
+          correct: 0,
+          misses: Number(count) || 0,
+          consecutiveCorrect: 0,
+          lastSeen: 0,
+          dueAt: 0,
+          intervalDays: 0
+        };
+      }
+    }
+  }
+
+  function saveReviewData() {
+    try {
+      localStorage.setItem(STORAGE_REVIEW_KEY, JSON.stringify(reviewData));
+    } catch (_) {
+      // The quiz remains playable if browser storage is unavailable or full.
+    }
+  }
+
+  function getReviewRecord(country) {
+    if (!reviewData[country] || typeof reviewData[country] !== "object") {
+      reviewData[country] = {
+        attempts: 0,
+        correct: 0,
+        misses: Number(oldMissCounts[country]) || 0,
+        consecutiveCorrect: 0,
+        lastSeen: 0,
+        dueAt: 0,
+        intervalDays: 0
+      };
+    }
+    return reviewData[country];
+  }
+
+  // ---------- Load data ----------
+  fetch("/assets/data/capitals.json")
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      if (!Array.isArray(data) || data.length === 0) throw new Error("The capitals file is empty or invalid.");
+      capitalsData = data.filter(item => item && typeof item.country === "string" && Array.isArray(item.capital) && item.capital.length);
+      if (!capitalsData.length) throw new Error("No valid country entries were found.");
+      loadStorage();
+      startBtn.disabled = false;
+      startBtn.textContent = "Start practising";
+      document.querySelector(".start-facts").insertAdjacentHTML("beforeend", `<span class="fact">${capitalsData.length} countries</span>`);
+    })
+    .catch(error => {
+      startBtn.disabled = true;
+      startBtn.textContent = "Unable to load quiz";
+      loadErrorEl.textContent = "Couldn't load /assets/data/capitals.json. Check the file path and JSON syntax.";
+      loadErrorEl.classList.remove("hidden");
+      console.error("Failed to load capitals data:", error);
+    });
+
+  // ---------- Session flow ----------
+  function startSession() {
+    clearTimeout(sessionTimeout);
+    sessionTimeout = null;
+    score = 0;
+    totalAnswered = 0;
+    streak = 0;
+    bestStreak = 0;
+    spellingAccepted = 0;
+    currentPair = null;
+    sessionReviewQueue = {};
+    recentCountries = [];
+    missedThisSession = new Map();
+    isWaitingForNext = false;
+
+    startScreen.classList.add("hidden");
+    resultsScreen.classList.add("hidden");
+    quizScreen.classList.remove("hidden");
+    inputEl.disabled = false;
+    skipBtn.disabled = false;
+    finishBtn.disabled = false;
+    updateStats();
     nextQuestion();
   }
 
-  function startTimer() {
-    clearInterval(timerInterval);
-    timerInterval = setInterval(() => {
-      timeLeft--;
-      const scoreDisplay = document.getElementById("score");
-      if (scoreDisplay) scoreDisplay.textContent = `${Math.max(timeLeft, 0)}s`;
-      if (timeLeft <= 0) {
-        clearInterval(timerInterval);
-        endSession();
+  function finishSession() {
+    clearTimeout(sessionTimeout);
+    sessionTimeout = null;
+    isWaitingForNext = true;
+    inputEl.disabled = true;
+    skipBtn.disabled = true;
+    finishBtn.disabled = true;
+    quizScreen.classList.add("hidden");
+    startScreen.classList.add("hidden");
+    resultsScreen.classList.remove("hidden");
+
+    resultScoreEl.textContent = `${score}/${totalAnswered}`;
+    const accuracy = totalAnswered ? Math.round((score / totalAnswered) * 100) : 0;
+    resultSubEl.textContent = `${accuracy}% correct · best streak ${bestStreak} · ${spellingAccepted} spelling ${spellingAccepted === 1 ? "correction" : "corrections"} accepted`;
+
+    missedListEl.replaceChildren();
+    if (missedThisSession.size) {
+      missedPanel.classList.remove("hidden");
+      allCorrectMessage.classList.add("hidden");
+      for (const [country, details] of missedThisSession) {
+        const row = document.createElement("div");
+        row.className = "missed-item";
+        const countrySpan = document.createElement("span");
+        countrySpan.className = "missed-country";
+        countrySpan.textContent = `${country}${details.count > 1 ? ` (${details.count} misses)` : ""}`;
+        const capitalSpan = document.createElement("span");
+        capitalSpan.className = "missed-capital";
+        capitalSpan.textContent = details.capital;
+        row.append(countrySpan, capitalSpan);
+        missedListEl.appendChild(row);
       }
-    }, 1000);
-  }
-
-  function updateStatDisplay() {
-    const scoreDisplay = document.getElementById("score");
-    if (!scoreDisplay) return;
-    if (selectedMode === "round") {
-      scoreDisplay.textContent = `${Math.min(totalAnswered + 1, ROUND_LENGTH)}`;
-    } else if (selectedMode === "endless") {
-      scoreDisplay.textContent = score;
+    } else {
+      missedPanel.classList.add("hidden");
+      allCorrectMessage.classList.remove("hidden");
     }
-    // timed mode's number is driven by the interval, not here
   }
 
-  // Weighted pick: countries missed more often (persisted across sessions)
-  // come up more frequently. Weight decays back down as you get them right.
-  function pickWeighted(choices) {
-    const weights = choices.map(c => 1 + (missCounts[c.country] || 0) * 2);
-    const total = weights.reduce((a, b) => a + b, 0);
-    let r = Math.random() * total;
+  function updateStats() {
+    answeredCountEl.textContent = totalAnswered;
+    correctCountEl.textContent = score;
+    streakCountEl.textContent = streak;
+  }
+
+  function scheduleNextQuestion() {
+    isWaitingForNext = true;
+    inputEl.disabled = true;
+    skipBtn.disabled = true;
+    sessionTimeout = setTimeout(() => {
+      sessionTimeout = null;
+      nextQuestion();
+    }, FEEDBACK_DELAY_MS);
+  }
+
+  function nextQuestion() {
+    clearTimeout(sessionTimeout);
+    sessionTimeout = null;
+    isWaitingForNext = false;
+    inputEl.value = "";
+    inputEl.disabled = false;
+    skipBtn.disabled = false;
+    feedbackEl.textContent = "";
+    feedbackEl.className = "feedback";
+
+    currentPair = pickNextCountry();
+    if (!currentPair) {
+      countryEl.textContent = "No countries available";
+      return;
+    }
+
+    countryEl.textContent = `${currentPair.emoji ? currentPair.emoji + " " : ""}${currentPair.country}`;
+    updateStats();
+    inputEl.focus();
+  }
+
+  // ---------- Adaptive selection ----------
+  function pickNextCountry() {
+    const now = Date.now();
+    const queued = Object.entries(sessionReviewQueue)
+      .filter(([country, item]) => item.eligibleAfter <= totalAnswered && country !== (currentPair && currentPair.country))
+      .map(([country]) => capitalsData.find(item => item.country === country))
+      .filter(Boolean);
+
+    // A missed answer returns after several other questions, while it is still fresh.
+    if (queued.length) {
+      const chosen = weightedPick(queued, now, true);
+      delete sessionReviewQueue[chosen.country];
+      rememberCountry(chosen.country);
+      return chosen;
+    }
+
+    let choices = capitalsData.filter(item => item.country !== (currentPair && currentPair.country));
+    if (choices.length > RECENT_COUNTRY_LIMIT) {
+      const notRecent = choices.filter(item => !recentCountries.includes(item.country));
+      if (notRecent.length) choices = notRecent;
+    }
+
+    const chosen = weightedPick(choices.length ? choices : capitalsData, now, false);
+    rememberCountry(chosen.country);
+    return chosen;
+  }
+
+  function weightedPick(choices, now, isReviewPick) {
+    const weights = choices.map(item => {
+      const record = getReviewRecord(item.country);
+      const misses = Math.max(0, Number(record.misses) || 0);
+      const lastSeen = Number(record.lastSeen) || 0;
+      const dueAt = Number(record.dueAt) || 0;
+      const daysSinceSeen = lastSeen ? (now - lastSeen) / 86400000 : 30;
+      const missWeight = Math.min(misses, 8) * 1.25;
+      const dueWeight = dueAt && dueAt <= now ? 2.5 : 0;
+      const staleWeight = Math.min(Math.max(daysSinceSeen - 3, 0) / 14, 2);
+      // Every country retains a base chance; review history only changes frequency.
+      return 1 + missWeight + dueWeight + staleWeight + (isReviewPick ? 1 : 0);
+    });
+
+    const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+    let pick = Math.random() * totalWeight;
     for (let i = 0; i < choices.length; i++) {
-      r -= weights[i];
-      if (r <= 0) return choices[i];
+      pick -= weights[i];
+      if (pick <= 0) return choices[i];
     }
     return choices[choices.length - 1];
   }
 
-  function nextQuestion() {
-    isWaitingForNext = false;
-    inputEl.value = "";
-    inputEl.disabled = false;
-    feedbackEl.textContent = "";
-    feedbackEl.className = "feedback";
-
-    let choices = pool;
-    if (pool.length > 1 && lastCountry) {
-      choices = pool.filter(c => c.country !== lastCountry);
-    }
-    currentPair = pickWeighted(choices);
-    lastCountry = currentPair.country;
-
-    countryEl.textContent = `${currentPair.emoji} ${currentPair.country}`;
-    updateStatDisplay();
-    inputEl.focus();
+  function rememberCountry(country) {
+    recentCountries.push(country);
+    if (recentCountries.length > RECENT_COUNTRY_LIMIT) recentCountries.shift();
   }
 
-  // ---------- Matching ----------
-  function sanitize(str) {
-    return str
+  // ---------- Answer matching ----------
+  function sanitize(value) {
+    return String(value)
       .trim()
-      .toLowerCase()
+      .toLocaleLowerCase()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[łŁ]/g, "l")
       .replace(/[^a-z0-9]/g, "");
   }
 
   function editDistance(a, b) {
-    const m = a.length, n = b.length;
-    if (m === 0) return n;
-    if (n === 0) return m;
-    const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
-    for (let i = 0; i <= m; i++) dp[i][0] = i;
-    for (let j = 0; j <= n; j++) dp[0][j] = j;
-    for (let i = 1; i <= m; i++) {
-      for (let j = 1; j <= n; j++) {
-        if (a[i - 1] === b[j - 1]) {
-          dp[i][j] = dp[i - 1][j - 1];
-        } else {
-          dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
-        }
+    if (a === b) return 0;
+    if (!a.length) return b.length;
+    if (!b.length) return a.length;
+    let previous = Array.from({ length: b.length + 1 }, (_, index) => index);
+    for (let i = 1; i <= a.length; i++) {
+      const current = [i];
+      for (let j = 1; j <= b.length; j++) {
+        const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        current[j] = Math.min(
+          current[j - 1] + 1,
+          previous[j] + 1,
+          previous[j - 1] + cost
+        );
       }
+      previous = current;
     }
-    return dp[m][n];
+    return previous[b.length];
   }
 
-  function toleranceFor(len) {
-    if (len <= 4) return 0;
-    if (len <= 7) return 1;
+  function typoTolerance(length) {
+    if (length <= 4) return 0;
+    if (length <= 9) return 1;
     return 2;
   }
 
-  function matchQuality(guess, variants) {
-    let bestDist = Infinity;
-    for (const variant of variants) {
-      const clean = sanitize(variant);
-      if (guess === clean) return "exact";
-      const dist = editDistance(guess, clean);
-      const tolerance = toleranceFor(clean.length);
-      if (dist <= tolerance && dist < bestDist) bestDist = dist;
+  function matchAnswer(rawGuess, variants) {
+    const guess = sanitize(rawGuess);
+    if (!guess) return null;
+
+    const cleanVariants = variants
+      .filter(value => typeof value === "string")
+      .map(value => ({ original: value, clean: sanitize(value) }))
+      .filter(value => value.clean);
+
+    const exact = cleanVariants.find(value => value.clean === guess);
+    if (exact) return { type: "exact", answer: exact.original };
+
+    let closest = null;
+    for (const variant of cleanVariants) {
+      const distance = editDistance(guess, variant.clean);
+      const tolerance = typoTolerance(variant.clean.length);
+      if (distance > 0 && distance <= tolerance && (!closest || distance < closest.distance)) {
+        closest = { type: "typo", answer: variant.original, distance };
+      }
     }
-    return bestDist <= toleranceFor(10) ? "close" : null;
+    return closest;
   }
 
-  function recordMiss(country) {
-    missCounts[country] = (missCounts[country] || 0) + 1;
-    saveMissCounts();
+  // ---------- Learning history ----------
+  function recordCorrect(country) {
+    const now = Date.now();
+    const record = getReviewRecord(country);
+    record.attempts = (Number(record.attempts) || 0) + 1;
+    record.correct = (Number(record.correct) || 0) + 1;
+    record.misses = Math.max(0, (Number(record.misses) || 0) - 1);
+    record.consecutiveCorrect = (Number(record.consecutiveCorrect) || 0) + 1;
+    record.lastSeen = now;
+
+    // Correct recall progressively pushes the next scheduled review further out.
+    const intervals = [1, 3, 7, 14, 30, 60];
+    const index = Math.min(record.consecutiveCorrect - 1, intervals.length - 1);
+    record.intervalDays = intervals[index];
+    record.dueAt = now + record.intervalDays * 86400000;
+
+    // A correct retry clears this session's pending review for the country.
+    delete sessionReviewQueue[country];
+    saveReviewData();
   }
 
-  function recordHit(country) {
-    if (missCounts[country]) {
-      missCounts[country] = Math.max(0, missCounts[country] - 1);
-      saveMissCounts();
+  function recordIncorrect(country) {
+    const now = Date.now();
+    const record = getReviewRecord(country);
+    record.attempts = (Number(record.attempts) || 0) + 1;
+    record.misses = (Number(record.misses) || 0) + 1;
+    record.consecutiveCorrect = 0;
+    record.lastSeen = now;
+    record.intervalDays = 0.25;
+    record.dueAt = now + REVIEW_DELAY_MS;
+    sessionReviewQueue[country] = { eligibleAfter: totalAnswered + REVIEW_DELAY_QUESTIONS };
+    saveReviewData();
+  }
+
+  function rememberMiss(country) {
+    const capital = currentPair.capital.join(" / ");
+    const existing = missedThisSession.get(country);
+    if (existing) existing.count++;
+    else missedThisSession.set(country, { capital, count: 1 });
+  }
+
+  function showFeedback(type, message, answerDetail) {
+    feedbackEl.replaceChildren();
+    feedbackEl.className = `feedback ${type}`;
+    feedbackEl.appendChild(document.createTextNode(message));
+    if (answerDetail) {
+      const detail = document.createElement("span");
+      detail.className = "answer-detail";
+      detail.textContent = answerDetail;
+      feedbackEl.appendChild(detail);
     }
   }
 
-  function handleAnswer(result) {
+  function submitAnswer(rawGuess) {
+    if (isWaitingForNext || !currentPair) return;
+    const result = matchAnswer(rawGuess, currentPair.capital);
+
     totalAnswered++;
     const country = currentPair.country;
-
-    if (result === "exact" || result === "close") {
+    if (result && (result.type === "exact" || result.type === "typo")) {
       score++;
       streak++;
       bestStreak = Math.max(bestStreak, streak);
-      recordHit(country);
-      if (result === "exact") {
-        feedbackEl.textContent = "Correct!";
-        feedbackEl.classList.add("correct");
+      recordCorrect(country);
+
+      if (result.type === "typo") {
+        spellingAccepted++;
+        showFeedback("correct", "Correct. Spelling accepted.", `Standard spelling: ${result.answer}`);
       } else {
-        feedbackEl.textContent = `Almost! (${currentPair.capital[0]})`;
-        feedbackEl.classList.add("almost");
+        showFeedback("correct", "Correct!", "");
       }
     } else {
       streak = 0;
-      missedThisSession.push({ country, capital: currentPair.capital[0] });
-      recordMiss(country);
-      feedbackEl.textContent = `Incorrect. Capital: ${currentPair.capital.join(" / ")}`;
-      feedbackEl.classList.add("incorrect");
+      rememberMiss(country);
+      recordIncorrect(country);
+      showFeedback("incorrect", "Not quite.", `Accepted answer${currentPair.capital.length === 1 ? "" : "s"}: ${currentPair.capital.join(" / ")}`);
     }
 
-    streakEl.textContent = streak;
-    if (selectedMode === "endless") updateStatDisplay();
-
-    if (selectedMode === "round" && totalAnswered >= ROUND_LENGTH) {
-      setTimeout(endSession, 1400);
-      return;
-    }
-
-    isWaitingForNext = true;
-    setTimeout(nextQuestion, 1400);
+    updateStats();
+    scheduleNextQuestion();
   }
 
-  formEl.addEventListener("submit", (e) => {
-    e.preventDefault();
+  formEl.addEventListener("submit", event => {
+    event.preventDefault();
     if (isWaitingForNext) return;
-
-    const userGuess = sanitize(inputEl.value);
-    if (userGuess === "") return;
-
+    const guess = inputEl.value.trim();
+    if (!guess) return;
     inputEl.disabled = true;
-    const result = matchQuality(userGuess, currentPair.capital);
-    handleAnswer(result);
+    skipBtn.disabled = true;
+    submitAnswer(guess);
   });
 
   skipBtn.addEventListener("click", () => {
-    if (isWaitingForNext) return;
-    inputEl.disabled = true;
-    const country = currentPair.country;
-    streak = 0;
-    missedThisSession.push({ country, capital: currentPair.capital[0] });
-    recordMiss(country);
+    if (isWaitingForNext || !currentPair) return;
     totalAnswered++;
-    feedbackEl.textContent = `Skipped. Capital: ${currentPair.capital.join(" / ")}`;
-    feedbackEl.classList.add("incorrect");
-    streakEl.textContent = streak;
-    if (selectedMode === "endless") updateStatDisplay();
-
-    if (selectedMode === "round" && totalAnswered >= ROUND_LENGTH) {
-      setTimeout(endSession, 1400);
-      return;
-    }
-    isWaitingForNext = true;
-    setTimeout(nextQuestion, 1400);
+    streak = 0;
+    rememberMiss(currentPair.country);
+    recordIncorrect(currentPair.country);
+    showFeedback("incorrect", "Skipped.", `Accepted answer${currentPair.capital.length === 1 ? "" : "s"}: ${currentPair.capital.join(" / ")}`);
+    updateStats();
+    scheduleNextQuestion();
   });
 
-  changeDiffBtn.addEventListener("click", () => {
-    clearInterval(timerInterval);
+  startBtn.addEventListener("click", startSession);
+  finishBtn.addEventListener("click", finishSession);
+  playAgainBtn.addEventListener("click", startSession);
+  homeBtn.addEventListener("click", () => {
+    clearTimeout(sessionTimeout);
+    sessionTimeout = null;
+    resultsScreen.classList.add("hidden");
     quizScreen.classList.add("hidden");
     startScreen.classList.remove("hidden");
-  });
-
-  // ---------- Results ----------
-  function endSession() {
-    clearInterval(timerInterval);
-    quizScreen.classList.add("hidden");
-    resultsScreen.classList.remove("hidden");
-
-    resultScoreEl.textContent = score;
-    const accuracy = totalAnswered > 0 ? Math.round((score / totalAnswered) * 100) : 0;
-    resultSubEl.textContent = `${totalAnswered} answered · ${accuracy}% accuracy · best streak ${bestStreak}`;
-
-    const key = bestKey();
-    const prevBest = bestScores[key];
-    bestBadgeSlot.innerHTML = "";
-    if (prevBest === undefined || score > prevBest) {
-      bestScores[key] = score;
-      saveBestScores();
-      if (prevBest !== undefined) {
-        const badge = document.createElement("div");
-        badge.className = "best-badge";
-        badge.textContent = "New best!";
-        bestBadgeSlot.appendChild(badge);
-      }
-    }
-
-    if (missedThisSession.length > 0) {
-      missedWrap.classList.remove("hidden");
-      missedListEl.innerHTML = missedThisSession
-        .map(m => `<div>${m.country} <span class="cap">— ${m.capital}</span></div>`)
-        .join("");
-    } else {
-      missedWrap.classList.add("hidden");
-    }
-  }
-
-  playAgainBtn.addEventListener("click", () => {
-    resultsScreen.classList.add("hidden");
-    startQuiz();
-  });
-
-  changeSettingsBtn.addEventListener("click", () => {
-    resultsScreen.classList.add("hidden");
-    startScreen.classList.remove("hidden");
+    inputEl.disabled = false;
+    skipBtn.disabled = false;
+    finishBtn.disabled = false;
   });
 </script>
-
 </body>
 </html>
