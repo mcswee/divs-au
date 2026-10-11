@@ -55,7 +55,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=
 }).addTo(map);
 
 let divisionsData = {};   // divisions_output.json -- static profile + full holder history, keyed by 4-letter ID
-let partyColours = {};    // party_colours.json -- 3-letter code -> hex colour
+let parties = {};          // parties.json -- 3-letter code -> { name, colour (hex without #) }
 let boundaryIndex = {};   // boundary_index.json -- { year: { state: filename } }
 let electionDates = {};   // election_dates.json -- { year: ISO polling date }
 let geoJsonLayer = null;
@@ -110,12 +110,12 @@ function openPopupFor(layer, byKeyboard) {
 // --- 3. DATA LOADING ---
 Promise.all([
     fetch('/assets/data/divisions_output.json').then(r => r.json()),
-    fetch('/assets/data/party_colours.json').then(r => r.json()),
+    fetch('/assets/data/parties.json').then(r => r.json()),
     fetch('/assets/data/boundary_index.json').then(r => r.json()),
     fetch('/assets/data/election_dates.json').then(r => r.json()),
-]).then(([divisions, colours, boundaries, dates]) => {
+]).then(([divisions, partyData, boundaries, dates]) => {
     divisionsData = divisions;
-    partyColours = colours;
+    parties = partyData;
     boundaryIndex = boundaries;
     electionDates = dates;
     sortedElectionYears = Object.entries(electionDates).sort((a, b) => a[1].localeCompare(b[1]));
@@ -213,6 +213,26 @@ function loadYear(year) {
 const NEUTRAL_GREY = '#b0b0b0';   // no member on record, or no colour known for the party
 const MULTI_GREY = '#666666';     // more than one member elected to the division
 
+function partyColour(code) {
+    const p = parties[code];
+    return p && p.colour ? `#${p.colour}` : NEUTRAL_GREY;
+}
+
+function escHtml(text) {
+    return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function partyName(code) {
+    const p = parties[code];
+    return p && p.name ? p.name : '';
+}
+
+// "Australian Labor Party (ALP)", or just the code until a name has been added
+function partyLabel(code) {
+    const name = partyName(code);
+    return name ? `${name} (${code})` : code;
+}
+
 // Both colours for a division in the selected year, worked out once and kept
 function getOutline(feature) {
     const seatIndex = String(feature.properties.index || feature.properties.Index).trim();
@@ -230,7 +250,7 @@ function getOutline(feature) {
     } else if (holders.length === 1) {
         const code = holders[0].parties.length ? holders[0].parties[0].party : 'IND';
         outline.partyCode = code;
-        outline.party = partyColours[code] ? `#${partyColours[code]}` : NEUTRAL_GREY;
+        outline.party = partyColour(code);
     }
 
     outlineCache.set(key, outline);
@@ -290,6 +310,18 @@ function initOutlineToggle() {
     });
 }
 
+function tooltipHtml(feature, division, sStyle) {
+    let html = `<strong>${division.name}</strong> (${sStyle.short})`;
+    if (outlineMode === 'party') {
+        const code = getOutline(feature).partyCode;
+        const label = code === 'MULTI' ? 'Multiple members'
+                    : code === 'NONE' ? 'No member on record'
+                    : partyLabel(code);
+        html += `<br>${escHtml(label)}`;
+    }
+    return html;
+}
+
 // --- 5. GEOJSON & INTERACTIVITY ---
 function renderGeoJson(geoData, year) {
     currentYear = year;
@@ -320,7 +352,8 @@ function renderGeoJson(geoData, year) {
             if (division.islinked === "TRUE") { badgesList += '<span class="badge linked">LINKED</span>'; badgeCount++; }
             if (division.islinked === "FALSE") { badgesList += '<span class="badge drifted">DRIFTED</span>'; badgeCount++; }
 
-            layer.bindTooltip(`<strong>${division.name}</strong> (${sStyle.short})`, {
+            // built when it opens, so it follows the State / Party choice
+            layer.bindTooltip(() => tooltipHtml(feature, division, sStyle), {
                 sticky: true,
                 direction: 'top',
                 className: 'modern-tooltip',
@@ -332,11 +365,12 @@ function renderGeoJson(geoData, year) {
             const memberRows = holders.length
                 ? holders.map(h => {
                     const party = h.parties.length ? h.parties[0].party : 'IND';
-                    const colour = partyColours[party] ? `#${partyColours[party]}` : NEUTRAL_GREY;
+                    const colour = partyColour(party);
+                    const name = escHtml(partyName(party));
                     return `<div class="member-row">
                         <strong>${h.given || ''} ${(h.family || '').toUpperCase()}</strong>
                         <span class="party-pill" style="--party-color: ${colour}">${party}</span>
-                     </div>`;
+                     </div>${name ? `<div class="member-party-name">${name}</div>` : ''}`;
                 }).join('')
                 : `<div class="member-row"><em>No member on record for this election.</em></div>`;
 
@@ -556,6 +590,14 @@ function partyLegendHtml() {
     let html = '<span class="legend-title">Parties</span>' + codes.map(c => legendItem(found[c].colour, c, true)).join('');
     if (found.MULTI) html += legendItem(MULTI_GREY, 'Multiple members', true);
     if (found.NONE) html += legendItem(NEUTRAL_GREY, 'None on record', true);
+
+    // the key stays narrow: full names sit in a fold-out list underneath
+    const named = codes.filter(c => partyName(c));
+    if (named.length) {
+        html += '<details class="legend-names"><summary>Party names</summary><dl>' +
+            named.map(c => `<dt>${c}</dt><dd>${escHtml(partyName(c))}</dd>`).join('') +
+            '</dl></details>';
+    }
     return html;
 }
 
@@ -568,6 +610,11 @@ function updateLegend() {
         div.setAttribute('role', 'group');
         div.setAttribute('aria-label', outlineMode === 'party' ? 'Map key: outline colour by party' : 'Map key: outline colour by state');
         div.innerHTML = outlineMode === 'party' ? partyLegendHtml() : stateLegendHtml();
+        // the key can be opened and scrolled without moving or zooming the map
+        if (L.DomEvent) {
+            L.DomEvent.disableClickPropagation(div);
+            L.DomEvent.disableScrollPropagation(div);
+        }
         return div;
     };
     legendControl.addTo(map);
