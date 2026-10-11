@@ -1,5 +1,26 @@
 [
   {
+    "id": "c07a9190-fd2f-5e05-84bb-15ae1135709b",
+    "first_seen": "2026-10-11T21:40:31.726163+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes, now clearing after an earlier trespasser in the Coolaroo area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "f220179d-95fc-5d33-8230-be6011ea04a3",
+    "first_seen": "2026-10-11T21:40:31.726163+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a police request in the Eltham area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
     "id": "ce2d2b42-15fd-550c-942d-fd6f3cbc5ba7",
     "first_seen": "2026-10-11T17:36:04.029700+00:00",
     "header": "Suspended",
