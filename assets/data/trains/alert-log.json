@@ -1,5 +1,16 @@
 [
   {
+    "id": "f48391ee-3320-50a1-876d-10c36126eeaf",
+    "first_seen": "2026-10-12T21:51:03.507386+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a trespasser in the Lilydale area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
     "id": "1112383a-963c-54e1-bdb9-d35ba6a1dc2d",
     "first_seen": "2026-10-12T13:28:40.944216+00:00",
     "header": "Planned Works",
