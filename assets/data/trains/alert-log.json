@@ -1,5 +1,48 @@
 [
   {
+    "id": "bb878eba-b450-5b84-9a75-9d69ef509c54",
+    "first_seen": "2026-10-12T05:29:10.444734+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a trespasser in the Moorabbin area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "ecb25820-129d-5a09-a65f-b70e48880362",
+    "first_seen": "2026-10-12T05:29:10.444734+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes due to a train fault in the Newport area. Trains may remain stationary at or in-between stations for extended period of time. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "550df6ed-743d-59eb-a0c0-78fd457192e7",
+    "first_seen": "2026-10-12T05:29:10.444734+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes citybound now clearing after an earlier police request in the Southern Cross area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "5f44d1f3-a9a0-5ee8-a8df-7ce3cc483f60",
+    "first_seen": "2026-10-12T05:29:10.444734+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes citybound now clearing after an earlier police request in the Southern Cross area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-UFD-R:",
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
     "id": "c07a9190-fd2f-5e05-84bb-15ae1135709b",
     "first_seen": "2026-10-11T21:40:31.726163+00:00",
     "header": "Minor Delay",
