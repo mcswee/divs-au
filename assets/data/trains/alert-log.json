@@ -1,5 +1,47 @@
 [
   {
+    "id": "93cc9430-47c1-5d27-8c1f-59d12af0970e",
+    "first_seen": "2026-10-13T06:26:38.497949+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier police request in the Box Hill area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "5e67dc34-b35b-503e-814c-155d385e46dc",
+    "first_seen": "2026-10-13T06:26:38.497949+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier police request in the Box Hill area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "85a53104-1d2b-53e3-bed1-0d74f3a1f759",
+    "first_seen": "2026-10-13T06:26:38.497949+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier police request in the Springvale area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "acf127c2-b949-593a-92c1-791a4bc87d48",
+    "first_seen": "2026-10-13T06:26:38.497949+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier police request in the Springvale area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
     "id": "f48391ee-3320-50a1-876d-10c36126eeaf",
     "first_seen": "2026-10-12T21:51:03.507386+00:00",
     "header": "Minor Delay",
