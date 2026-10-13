@@ -54,10 +54,9 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=
     maxZoom: 20
 }).addTo(map);
 
-let divisionsData = {};   // divisions_output.json -- static profile + full holder history, keyed by 4-letter ID
+let divisionsData = {};   // divisions.json -- each division's profile and its result for every election, keyed by 4-letter ID
 let parties = {};          // parties.json -- 3-letter code -> { name, colour (hex without #) }
 let boundaryIndex = {};   // boundary_index.json -- { year: { state: filename } }
-let electionDates = {};   // election_dates.json -- { year: ISO polling date }
 let geoJsonLayer = null;
 let currentOpenPopup = null;
 let lastKeyboardLayer = null;   // division whose popup was opened from the keyboard
@@ -109,16 +108,13 @@ function openPopupFor(layer, byKeyboard) {
 
 // --- 3. DATA LOADING ---
 Promise.all([
-    fetch('/assets/data/divisions_output.json').then(r => r.json()),
+    fetch('/assets/data/divisions.json').then(r => r.json()),
     fetch('/assets/data/parties.json').then(r => r.json()),
     fetch('/assets/data/boundary_index.json').then(r => r.json()),
-    fetch('/assets/data/election_dates.json').then(r => r.json()),
-]).then(([divisions, partyData, boundaries, dates]) => {
+]).then(([divisions, partyData, boundaries]) => {
     divisionsData = divisions;
     parties = partyData;
     boundaryIndex = boundaries;
-    electionDates = dates;
-    sortedElectionYears = Object.entries(electionDates).sort((a, b) => a[1].localeCompare(b[1]));
 
     const yearSelector = document.getElementById('year-select');
     loadYear(yearSelector.value);
@@ -132,45 +128,14 @@ Promise.all([
     if (status) status.textContent = 'The map data could not be loaded.';
 });
 
-// Build a chronologically sorted list of [year, isoDate] once the data loads,
-// so we can find "the next general election after this one" for windowing.
-let sortedElectionYears = [];
-
-// For a selected election year, the relevant window runs from that election's
-// date up to (but not including) the *next* general election's date. Everything
-// that happened to this division within that window belongs to this selection --
-// e.g. selecting the year a member was elected should also surface their death
-// mid-term and the by-election that followed, even though the by-election itself
-// isn't its own entry in the year dropdown.
-function getWindowForYear(year) {
-    const idx = sortedElectionYears.findIndex(([y]) => y === year);
-    if (idx === -1) return null;
-    const startDate = sortedElectionYears[idx][1];
-    const endDate = idx + 1 < sortedElectionYears.length ? sortedElectionYears[idx + 1][1] : null; // null = ongoing, no next election yet
-    return { startDate, endDate };
-}
-
+// Each division lists its own result for every election it existed in
 function findHolderInfoForYear(division, year) {
-    const window = getWindowForYear(year);
-    if (!window || !division || !division.holders) return null;
-
-    const inWindow = division.holders.filter(h =>
-        h.start >= window.startDate && (window.endDate === null || h.start < window.endDate)
-    );
-    if (inWindow.length === 0) return null;
-
-    inWindow.sort((a, b) => a.start.localeCompare(b.start));
-
-    // multi-member seats (e.g. South Australia and Tasmania's single state-wide
-    // electorate at Federation) can return several people simultaneously --
-    // anyone sharing the earliest start date in this window was a co-equal
-    // winner, not a single headline winner followed by colleagues
-    const earliestStart = inWindow[0].start;
-    const electedHolders = inWindow.filter(h => h.start === earliestStart);
-
-    const notes = inWindow.flatMap(h => h.notes || []); // full story of the term, in order
-
-    return { electedHolders, notes };
+    const result = division && division.results && division.results[year];
+    if (!result) return null;
+    return {
+        electedHolders: result.members.map(m => ({ given: m.given, family: m.family, parties: [{ party: m.party }] })),
+        notes: result.notes || []
+    };
 }
 
 function loadYear(year) {
@@ -322,6 +287,11 @@ function tooltipHtml(feature, division, sStyle) {
     return html;
 }
 
+// Each category badge links to its entry on the naming page
+function badgeHtml(key, label) {
+    return `<a class="badge ${key}" href="/naming/#category-${key}" target="_blank" rel="noopener">${label}<span class="sr-only"> (what this means; opens in a new tab)</span></a>`;
+}
+
 // --- 5. GEOJSON & INTERACTIVITY ---
 function renderGeoJson(geoData, year) {
     currentYear = year;
@@ -336,21 +306,23 @@ function renderGeoJson(geoData, year) {
             if (!division) return;
 
             const info = findHolderInfoForYear(division, year);
+            if (!info) console.warn(`No result recorded for ${division.name} in ${year}`);
             const holders = info ? info.electedHolders : [];
             const windowNotes = info ? info.notes : [];
             const sStyle = getStateStyle(division.state);
 
             let badgeCount = 0;
             let badgesList = '';
-            if (division.isfed === "TRUE") { badgesList += '<span class="badge fed">FEDERATION</span>'; badgeCount++; }
-            if (division.ispm === "TRUE") { badgesList += '<span class="badge pm">PRIME MINISTER</span>'; badgeCount++; }
-            if (division.isfem === "TRUE") { badgesList += '<span class="badge fem">WOMAN</span>'; badgeCount++; }
-            if (division.isind === "TRUE") { badgesList += '<span class="badge ind">INDIGENOUS</span>'; badgeCount++; }
-            if (division.isgeo === "TRUE") { badgesList += '<span class="badge geo">GEOGRAPHIC</span>'; badgeCount++; }
-            if (division.isaus === "FALSE") { badgesList += '<span class="badge nonaus">NON-AUSTRALIAN</span>'; badgeCount++; }
-            if (division.iscol === "TRUE") { badgesList += '<span class="badge old">COLONIAL</span>'; badgeCount++; }
-            if (division.islinked === "TRUE") { badgesList += '<span class="badge linked">LINKED</span>'; badgeCount++; }
-            if (division.islinked === "FALSE") { badgesList += '<span class="badge drifted">DRIFTED</span>'; badgeCount++; }
+            const cats = division.categories || [];
+            if (cats.includes('fed')) { badgesList += badgeHtml('fed', 'FEDERATION'); badgeCount++; }
+            if (cats.includes('pm')) { badgesList += badgeHtml('pm', 'PRIME MINISTER'); badgeCount++; }
+            if (cats.includes('fem')) { badgesList += badgeHtml('fem', 'WOMAN'); badgeCount++; }
+            if (cats.includes('ind')) { badgesList += badgeHtml('ind', 'INDIGENOUS'); badgeCount++; }
+            if (cats.includes('geo')) { badgesList += badgeHtml('geo', 'GEOGRAPHIC'); badgeCount++; }
+            if (cats.includes('nonaus')) { badgesList += badgeHtml('nonaus', 'NON-AUSTRALIAN'); badgeCount++; }
+            if (cats.includes('old')) { badgesList += badgeHtml('old', 'COLONIAL'); badgeCount++; }
+            if (cats.includes('linked')) { badgesList += badgeHtml('linked', 'LINKED'); badgeCount++; }
+            if (cats.includes('drifted')) { badgesList += badgeHtml('drifted', 'DRIFTED'); badgeCount++; }
 
             // built when it opens, so it follows the State / Party choice
             layer.bindTooltip(() => tooltipHtml(feature, division, sStyle), {
