@@ -764,6 +764,9 @@ input::-webkit-search-results-decoration {
 .badge.linked { background: #22828e; }
 .badge.drifted { background: #3457d5; }
 
+.map-popup .tags a.badge { color: white; text-decoration: underline dotted; text-underline-offset: 2px; }
+.map-popup .tags a.badge:hover { text-decoration-style: solid; filter: brightness(0.92); }
+
 /* Legend Container */
 .info.legend {
     padding: 10px;
@@ -2122,7 +2125,6 @@ main:has(.tool-page) { overflow: hidden; }
 }
 
 .tool-page #sidebar-header h1 {
-    font-family: "Vollkorn", serif;
     font-size: 1.3rem;
     color: var(--brand-main);
     margin-bottom: 4px;
