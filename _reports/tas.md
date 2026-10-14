@@ -74,4 +74,4 @@ divisions:
     change: "New division. Gains Clarence from Franklin, Glenorchy from Clark, and small part of Hobart, east of the Brooker Hwy."
 ---
 
-The 2024 Tasmsnin redistribution has been completed and was determined on 8 October 2026. The Committee decided to not change the name of the division of Franklin, but made substantial changes to the make up of Clark, Franklin and Lyons.
+The 2024 Tasmsnin redistribution has been completed and was determined on 8 October 2026. The Committee decided to not change the name of the division of Franklin, but made substantial changes to the make up of Clark, Franklin and Lyons. You can view the new boundaries within my interactive <a href ="/tool">redistribution tool</a>. 

@@ -250,4 +250,3 @@ divisions:
 ---
 The redistribution of Queensland officially commemced on 28 July 2026.
 Enrollment data is available within my interactive <a href ="/tool">redistribution tool</a>.
-I am preparing the map and it will be available soon.

@@ -102,4 +102,4 @@ divisions:
     change: "Adds some of Vale Park."
 ---
 
-The 2025 South Australian redistribution has been completed and was determined on 8 October 2026. The Committee made few changes beyond necessary,  it significantly retired the name Grey in favour of a division named O'Donoghue.
+The 2025 South Australian redistribution has been completed and was determined on 8 October 2026. The Committee made few changes beyond necessary,  it significantly retired the name Grey in favour of a division named O'Donoghue. You can view the new boundaries within my interactive <a href ="/tool">redistribution tool</a>. 
