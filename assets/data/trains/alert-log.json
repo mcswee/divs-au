@@ -1,5 +1,91 @@
 [
   {
+    "id": "c9ff55aa-c3d8-5e01-83b8-0e79a9437a03",
+    "first_seen": "2026-10-14T09:41:24.487413+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between North Melbourne and Upfield from 8.15pm to last train tonight, while maintenance and renewal works take place. Replacement buses are subject to local traffic conditions. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-UFD-R:",
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
+    "id": "477c7297-5d54-569e-bcec-3f33adb326fb",
+    "first_seen": "2026-10-14T09:41:24.487413+00:00",
+    "header": "Other Information",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From Southern Cross Take a train from either platforms 12 &amp; 13 and change at Flinders Street. To Southern Cross Change at Flinders Street and take a train from platforms 9 &amp; 10. To City Loop Change at Richmond and take a train from Platform 3. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "98eaa10e-ad01-5a82-804c-5daf3d7d074e",
+    "first_seen": "2026-10-14T09:41:24.487413+00:00",
+    "header": "Other Information",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From Southern Cross Take a train from either platforms 12 &amp; 13 and change at Flinders Street. To Southern Cross Change at Flinders Street and take a train from platforms 9 &amp; 10. To City Loop Change at Richmond and take a train from Platform 3. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
+    "id": "2715d26c-9391-54e1-9e0e-336562bd5694",
+    "first_seen": "2026-10-14T09:41:24.487413+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From Southern Cross Take a train from either platforms 12 &amp; 13 and change at Flinders Street. To Southern Cross Change at Flinders Street and take a train from platforms 9 &amp; 10. To City Loop Change at Flinders Street and take a City Circle Bus. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-MDD-R:"
+    ]
+  },
+  {
+    "id": "acc1fc60-2337-54a7-9896-6faa8fdbb9ab",
+    "first_seen": "2026-10-14T09:41:24.487413+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From Southern Cross Take a train from either platforms 12 &amp; 13 and change at Flinders Street. To Southern Cross Change at Flinders Street and take a train from platforms 9 &amp; 10. To City Loop Change at Flinders Street and take a City Circle Bus. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "b2a2d1a6-6e93-527c-ae8b-82ae6fcc31d4",
+    "first_seen": "2026-10-14T09:41:24.487413+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. To City Loop Change at Flinders Street and take a City Circle Bus. From City Loop Take a train from Platform 2 and change at either Southern Cross, or Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "e6d49570-0166-54d3-a65f-d0e6486c3853",
+    "first_seen": "2026-10-14T09:41:24.487413+00:00",
+    "header": "Other Information",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 9pm to last train tonight, while maintenance and renewal works take place. From Southern Cross Take a train from either platforms 12 &amp; 13 and change at Flinders Street. To Southern Cross Change at Flinders Street and take a train from platforms 9 &amp; 10. To City Loop Change at Richmond and take a train from Platform 3. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-GWY:",
+      "aus:vic:vic-02-GWY-R:"
+    ]
+  },
+  {
+    "id": "884c9659-cdbf-5a2d-bd60-2e804d0557ab",
+    "first_seen": "2026-10-14T09:41:24.487413+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a police request in the Croydon area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
     "id": "19543c9f-5d80-51e5-96c0-6b8202e13ac7",
     "first_seen": "2026-10-14T01:21:14.520974+00:00",
     "header": "Minor Delay",
