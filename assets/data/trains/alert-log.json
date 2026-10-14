@@ -1,5 +1,47 @@
 [
   {
+    "id": "19543c9f-5d80-51e5-96c0-6b8202e13ac7",
+    "first_seen": "2026-10-14T01:21:14.520974+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a vehicle hitting the Wantirna Road overpass near Ringwood. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "d92fb6e9-3a68-552e-ba15-d2b504dede2a",
+    "first_seen": "2026-10-14T01:21:14.520974+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a vehicle hitting the Wantirna Road overpass near Ringwood. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "8e13784d-e19e-5664-a223-9d5c6f5c7ea7",
+    "first_seen": "2026-10-14T01:21:14.520974+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the South Kensington area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "88999044-7317-5564-b0e4-94065856e148",
+    "first_seen": "2026-10-14T01:21:14.520974+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the South Kensington area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
     "id": "216febc6-e90f-5468-a7f8-020cba821ee3",
     "first_seen": "2026-10-13T14:31:05.255804+00:00",
     "header": "Planned Works",
