@@ -1,5 +1,47 @@
 [
   {
+    "id": "c219dad5-f4c3-5c3a-9a3a-61baa4a27f3b",
+    "first_seen": "2026-10-14T14:58:32.445579+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Newport and Werribee from 11:50pm to last train tonight, and each night until Thursday 15th of October, while project works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "63a22bbe-8752-59eb-b903-91a000317b9c",
+    "first_seen": "2026-10-14T14:58:32.445579+00:00",
+    "header": "Planned work: Clifton Hill Station car space closure",
+    "description": "11pm Wednesday 14 October to 5pm Monday 19 October Up to 70 spaces in the Clifton Hill Station carpark are closed, due to maintenance works. For your safety, please observe any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD-R:",
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-HBE-R:"
+    ]
+  },
+  {
+    "id": "f1971b62-50ab-57a6-a0e9-23cd18b27a3f",
+    "first_seen": "2026-10-14T14:58:32.445579+00:00",
+    "header": "Planned work: Southern Cross Station lift works",
+    "description": "5am Thursday 15 October to 11pm Friday 20 November Due to upgrade works at Southern Cross Station, the lift on Platforms 9 and 10 located on Collins Street end will be out of service. If you need lift access, please exit via the lift at the Bourke Street end.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-GWY:",
+      "aus:vic:vic-02-GWY-R:",
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-ALM-R:",
+      "aus:vic:vic-02-MDD-R:",
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
     "id": "c9ff55aa-c3d8-5e01-83b8-0e79a9437a03",
     "first_seen": "2026-10-14T09:41:24.487413+00:00",
     "header": "Planned Works",
