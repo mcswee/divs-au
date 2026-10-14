@@ -1,5 +1,40 @@
 [
   {
+    "id": "222770ab-e496-5fc1-8c62-e984e3d6a00a",
+    "first_seen": "2026-10-14T21:25:32.210053+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the Bell area.  Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-MDD-R:"
+    ]
+  },
+  {
+    "id": "4a8baf46-7be9-535e-a36f-984aa25176d5",
+    "first_seen": "2026-10-14T21:25:32.210053+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an earlier operational incident in the Newport area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "1af428b2-f67d-5ca1-9394-a5d51408505c",
+    "first_seen": "2026-10-14T21:25:32.210053+00:00",
+    "header": "Planned work: North Richmond Station car space closures",
+    "description": "6am Thursday 15 October to 6am Monday 19 October There will be temporary on-street car space closures on Jonas Street and Regent Street due to project works.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-MDD-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
     "id": "c219dad5-f4c3-5c3a-9a3a-61baa4a27f3b",
     "first_seen": "2026-10-14T14:58:32.445579+00:00",
     "header": "Planned Works",
