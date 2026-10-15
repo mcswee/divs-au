@@ -1,5 +1,27 @@
 [
   {
+    "id": "1d19fec6-e93d-5eb8-8558-d9547a69e8d0",
+    "first_seen": "2026-10-15T14:21:44.965020+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Newport and Werribee from 11:50pm to last train tonight, and each night until Thursday 15th of October, while project works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "72b1c644-bee9-5c19-a143-9de0a9ad9b74",
+    "first_seen": "2026-10-15T14:21:44.965020+00:00",
+    "header": "Planned work: Heidelberg Station car space closures",
+    "description": "11pm Thursday 15 October to 6pm Monday 19 October 40 car spaces in the Bell/Burgundy Street car park will be closed due to project works.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
     "id": "16c6a76f-9c98-5af4-906c-8c235f46e8d8",
     "first_seen": "2026-10-15T04:10:21.842973+00:00",
     "header": "Minor Delay",
