@@ -31,11 +31,23 @@
       center: [-42.0, 146.8],
       zoom: 7
     },
+    nt: {
+      geojson: "/assets/data/nt_sa1.geojson",
+      csv: "/assets/data/nt_sa1.csv",
+      center: [-42.0, 146.8],
+      zoom: 7
+    },
         qld: {
       geojson: "/assets/data/qld_sa1.geojson",
       csv: "/assets/data/qld_sa1.csv",
       center: [-23.0, 144.5], 
       zoom: 5                 
+    },
+        nt: {
+     geojson: "/assets/data/nt_sa1.geojson",
+     csv: "/assets/data/nt_sa1.csv",
+     center: [-19.5, 133.5],
+     zoom: 5
     }
 
   };
