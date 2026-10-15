@@ -704,28 +704,6 @@ input::-webkit-search-results-decoration {
     border: 2px solid var(--party-color, #666666);
 }
 
-.info.legend .legend-names {
-    margin-top: 6px;
-    padding-top: 6px;
-    border-top: 1px solid var(--text-accent);
-}
-
-.info.legend .legend-names summary {
-    cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--brand-main);
-}
-
-.info.legend .legend-names summary:focus-visible {
-    outline: 3px solid var(--brand-accent);
-    outline-offset: 2px;
-}
-
-.info.legend .legend-names dl { margin: 6px 0 0; padding: 0; }
-.info.legend .legend-names dt { margin: 0; padding: 0; border: 0; font-weight: 700; }
-.info.legend .legend-names dd { margin: 0 0 4px; padding: 0; border: 0; color: var(--text-highlight); }
-
 .map-popup .member-party-name {
     margin: 2px 0 0;
     font-size: 0.75rem;
@@ -764,9 +742,6 @@ input::-webkit-search-results-decoration {
 .badge.linked { background: #22828e; }
 .badge.drifted { background: #3457d5; }
 
-.map-popup .tags a.badge { color: white; text-decoration: underline dotted; text-underline-offset: 2px; }
-.map-popup .tags a.badge:hover { text-decoration-style: solid; filter: brightness(0.92); }
-
 /* Legend Container */
 .info.legend {
     padding: 10px;
@@ -775,7 +750,7 @@ input::-webkit-search-results-decoration {
     box-shadow: var(--shadow-main, 0 0 15px rgba(0,0,0,0.2));
     border-radius: 5px;
     color: var(--text-main, #333);
-    max-width: 200px;
+    max-width: 250px;
     max-height: 45vh;
     overflow-y: auto;
 }
@@ -2125,6 +2100,7 @@ main:has(.tool-page) { overflow: hidden; }
 }
 
 .tool-page #sidebar-header h1 {
+    font-family: "Vollkorn", serif;
     font-size: 1.3rem;
     color: var(--brand-main);
     margin-bottom: 4px;
@@ -2462,6 +2438,455 @@ main:has(.tool-page) { overflow: hidden; }
 
 .tool-page .colour-picker { top: 100%; left: 0; }
 .tool-page .colour-option { padding: 0; appearance: none; }
+
+/* Melbourne train departures: projects/metro.html (script: assets/js/metro.js) */
+.metro-page { flex: 1 0 auto; }
+
+.metro-page {
+    --bg: #ffffff;
+    --text: #111111;
+    --dim: #666666;
+    --border: #e0e0e0;
+    --row-hover: #f7f7f7;
+    --plat-bg: #f2f2f2;
+    --pat-bg: #f8f8f8;
+    --font: "Inter", system-ui, sans-serif;
+}
+
+.metro-page {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+}
+
+.metro-page .metro-app {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 1.25rem 3rem;
+}
+
+.metro-page .metro-head {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem 0 1.25rem;
+    border-bottom: 2px solid var(--text);
+    margin-bottom: 1.75rem;
+}
+
+.metro-page .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.metro-page #clock {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.05em;
+    border-radius: 3px;
+    line-height: 1;
+    background-color: #1a1a1a;
+    color: #efefef;
+    padding: 0.2rem 0.425rem;
+    margin-top: 0.85rem;
+}
+
+.metro-page .wordmark {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.metro-page .site-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+}
+
+.metro-page h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+}
+
+.metro-page .selector-wrap {
+    position: relative;
+}
+
+.metro-page .selector-wrap::after {
+    content: "▾";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--dim);
+    pointer-events: none;
+    font-size: 0.85rem;
+}
+
+.metro-page #station-select {
+    width: 100%;
+    font-family: var(--font);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #767676;
+    padding: 0.35rem 1.5rem 0.35rem 0;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    }
+
+.metro-page #station-select:focus-visible { outline: 3px solid var(--brand-accent); outline-offset: 2px; }
+
+.metro-page .msg {
+    padding: 2rem 0;
+    color: var(--dim);
+    font-size: 0.9rem;
+}
+
+.metro-page .alerts {
+    margin-bottom: 1.25rem;
+}
+
+.metro-page .alert {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
+    gap: 0.6rem;
+    padding: 0.7rem 0.875rem 0.7rem 1.35rem;
+    border: 2px solid #e67e00;
+    border-left: none;
+    border-radius: 2px;
+    background: #1a1a1a;
+    color: #ffffff;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 3px;
+    overflow: hidden;    width: 100%;
+    font: inherit;
+    text-align: left;
+}
+
+.metro-page .alert::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 12px;
+    background: repeating-linear-gradient(
+        135deg,
+        #e67e00 0 8px,
+        #1a1a1a 8px 16px
+      );
+}
+
+.metro-page .alert-icon {
+    display: flex;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    color: #e67e00;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.metro-page .alert-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.metro-page .alert-hdr {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #ffffff;
+}
+
+.metro-page .alert-desc {
+    font-size: 0.8rem;
+    color: #f0f0f0;
+    line-height: 1.4;
+    margin-top: 0.25rem;
+    display: none;
+    grid-column: 2;
+}
+
+.metro-page .alert.expanded .alert-desc {
+    display: block;
+}
+
+.metro-page .alert-caret {
+    font-size: 0.75rem;
+    color: #aaaaaa;
+    padding-top: 0.2rem;
+}
+
+.metro-page .platform {
+    margin-bottom: 1.25rem;
+}
+
+.metro-page .platform-hdr {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    background: var(--plat-bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.4rem 0.75rem;
+}
+
+.metro-page .dep {
+    display: grid;
+    grid-template-columns: 2.75rem 3.8rem 1fr auto;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.8rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    border-left: 4px solid var(--lc, #ccc);
+    cursor: pointer;
+    transition: background 0.08s;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.metro-page .dep:hover,
+.metro-page .dep.open {
+    background: var(--row-hover);
+}
+
+.metro-page .dep-time {
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.metro-page .dep-time.delayed .sched {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--dim);
+    text-decoration: line-through;
+    display: block;
+}
+
+.metro-page .dep-time .actual {
+    display: block;
+}
+
+.metro-page .dep-mins {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    background: #111111;
+    color: #ffffff;
+    padding: 0.15rem 0.4rem;
+    margin: 0rem 0.2rem;
+    border-radius: 2px;
+    letter-spacing: 0.02em;
+    text-align: center;
+}
+
+.metro-page .dep-mins.soon {
+    color: #e67e00;
+}
+
+.metro-page .dep-info {
+    min-width: 0;
+}
+
+.metro-page .dep-dest {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.metro-page .dep-route {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--dim);
+    margin-top: 0.1rem;
+}
+
+.metro-page .route-badge {
+    display: inline-block;
+    color: #ffffff;
+    background-color: var(--lc, #ccc);
+    padding: 0.1rem 0.35rem;
+    border-radius: 2px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.metro-page .dep-caret {
+    font-size: 0.75rem;
+    color: var(--dim);
+    padding-left: 0.25rem;
+}
+
+.metro-page .rt-ontime {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.metro-page .rt-late {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #a85400;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+}
+
+.metro-page .rt-early {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--dim);
+    margin-left: 0.4rem;
+    vertical-align: middle;
+}
+
+.metro-page .pattern {
+    background: var(--pat-bg);
+    border-bottom: 1px solid var(--border);
+    border-left: 4px solid var(--lc, #ccc);
+    padding: 0.5rem 0;
+}
+
+.metro-page .pat-stop {
+    display: grid;
+    grid-template-columns: 2.75rem 1fr;
+    gap: 0.875rem;
+    padding: 0.275rem 0.75rem;
+    font-size: 0.83rem;
+}
+
+.metro-page .pat-stop.is-here {
+    font-weight: 700;
+}
+
+.metro-page .pat-stop.is-end {
+    font-weight: 600;
+}
+
+.metro-page .pat-time {
+    font-variant-numeric: tabular-nums;
+    color: var(--dim);
+}
+
+.metro-page .pat-stop.is-here .pat-time,
+.metro-page .pat-stop.is-end .pat-time {
+    color: var(--text);
+}
+
+.metro-page .pat-express {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.78rem;
+    font-style: italic;
+    color: var(--dim);
+    border-top: 1px dashed var(--border);
+    border-bottom: 1px dashed var(--border);
+    margin: 0.1rem 0;
+}
+
+.metro-page .pat-loading {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.83rem;
+    color: var(--dim);
+}
+
+.metro-page .metro-foot {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--dim);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.metro-page .metro-foot a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.metro-page .live-status-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--dim);
+}
+
+.metro-page .live-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ccc;
+    flex-shrink: 0;
+    transition: background 0.3s;
+}
+
+.metro-page .live-dot.connected {
+    background: #22c55e;
+}
+
+@media (max-width: 480px) {
+    .metro-page .dep {
+        grid-template-columns: 2.5rem 3.5rem 1fr auto;
+        gap: 0.45rem;
+        padding: 0.7rem 0.45rem;
+    }
+    .metro-page h1,
+    .metro-page #clock {
+        font-size: 1.25rem;
+    }
+    .metro-page .dep-dest {
+        font-size: 0.875rem;
+    }
+}
+
+
+/* alerts are buttons: their text blocks are spans */
+.metro-page .alert-main,
+.metro-page .alert-hdr { display: block; }
+
+.metro-page .dep:focus-visible { outline: 3px solid var(--brand-accent); outline-offset: -3px; }
+.metro-page .alert:focus-visible { outline: 3px solid #ffffff; outline-offset: -5px; }
+
+@media (prefers-reduced-motion: reduce) {
+    .metro-page *, .metro-page *::before, .metro-page *::after { transition: none !important; }
+}
 
 /* 12. RESPONSIVENESS */
 @media (max-width: 600px) {
