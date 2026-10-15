@@ -1,5 +1,26 @@
 [
   {
+    "id": "16c6a76f-9c98-5af4-906c-8c235f46e8d8",
+    "first_seen": "2026-10-15T04:10:21.842973+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an earlier train fault in the Sandringham area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SHM:"
+    ]
+  },
+  {
+    "id": "f425c12a-9ed9-5b76-9066-27432b3c55db",
+    "first_seen": "2026-10-15T04:10:21.842973+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a police request in the Northcote area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-MDD-R:"
+    ]
+  },
+  {
     "id": "222770ab-e496-5fc1-8c62-e984e3d6a00a",
     "first_seen": "2026-10-14T21:25:32.210053+00:00",
     "header": "Minor Delay",
