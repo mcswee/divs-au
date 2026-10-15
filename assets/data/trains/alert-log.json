@@ -1,5 +1,16 @@
 [
   {
+    "id": "19e9776f-5e28-5f48-a176-0a2c8298491e",
+    "first_seen": "2026-10-15T21:07:02.482527+00:00",
+    "header": "Planned work: Ivanhoe Station car park closure",
+    "description": "6am Friday 16 October to 4am Monday 19 October Up to 40 spaces in the Ivanhoe Station carpark are temporarily closed, due to maintenance works. For your safety, please observe any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
     "id": "1d19fec6-e93d-5eb8-8558-d9547a69e8d0",
     "first_seen": "2026-10-15T14:21:44.965020+00:00",
     "header": "Planned Works",
