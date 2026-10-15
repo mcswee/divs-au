@@ -1,5 +1,25 @@
 [
   {
+    "id": "0b9ab8b8-b1a9-5c5a-933f-95afd1f05888",
+    "first_seen": "2026-10-15T23:46:45.067648+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after an earlier police request. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "b219156e-def4-53a1-b1d0-5094e5db757f",
+    "first_seen": "2026-10-15T23:46:45.067648+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after an earlier police request. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
     "id": "19e9776f-5e28-5f48-a176-0a2c8298491e",
     "first_seen": "2026-10-15T21:07:02.482527+00:00",
     "header": "Planned work: Ivanhoe Station car park closure",
