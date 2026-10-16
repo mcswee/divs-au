@@ -1,5 +1,16 @@
 [
   {
+    "id": "fc47a69f-f9a0-5c17-bf93-e33bf3531e45",
+    "first_seen": "2026-10-16T23:21:11.392420+00:00",
+    "header": "Suspended",
+    "description": "Buses replace trains between Sunshine and Watergardens due to vandalism in the Sunshine area.  Replacement buses have been ordered, however will take over 60 minutes to arrive A train service will operate between Flinders Street \u2013 Sunshine and Watergardens \u2013 Sunbury, with delays to the service Allow extra travel time  Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
     "id": "8db27fdb-3d6d-542c-b30f-038f42899da8",
     "first_seen": "2026-10-16T14:08:57.461984+00:00",
     "header": "Minor Delay",
