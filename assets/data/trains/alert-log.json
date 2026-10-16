@@ -1,5 +1,89 @@
 [
   {
+    "id": "487d2853-eec8-5d05-82ad-8619160cf862",
+    "first_seen": "2026-10-16T09:13:33.974841+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Reservoir from 8:30pm Friday 16th of October until last service Sunday 18th of October, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-MDD-R:"
+    ]
+  },
+  {
+    "id": "ba4cc2f7-11e2-51a3-a4ce-d911fb3bca8c",
+    "first_seen": "2026-10-16T09:13:33.974841+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Macleod from 8:15pm Friday 16th of October until last service Sunday 18th of October, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-HBE-R:"
+    ]
+  },
+  {
+    "id": "34e6d799-c662-55f0-aa83-c9251aa15295",
+    "first_seen": "2026-10-16T09:13:33.974841+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between North Melbourne and Broadmeadows from 8.30pm Friday 16th of October to last train Sunday 18th of October, while project works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "8131366e-8736-5536-bc81-1fa5e3b48cb3",
+    "first_seen": "2026-10-16T09:13:33.974841+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes, now clearing after an earlier V/Line train fault in the Kensington area.  Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "a6f6a2b6-c55b-5922-9827-6536e02d16fe",
+    "first_seen": "2026-10-16T09:13:33.974841+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from Friday 16th October 9pm to last train Sunday 18th of October, while maintenance and renewal works take place. From Southern Cross Take a train from either platforms 11, 12 or 13 and change at Flinders Street. To Southern Cross Friday \u2013 Change at Flinders Street and take a train from Platform 10. Saturday &amp; Sunday \u2013 Change at Flinders Street and take a train from platforms 9 or 10. To City Loop Change at Flinders Street and take a train from Platform 5. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "48698621-7e0a-50fe-acb6-6a168a62e8f0",
+    "first_seen": "2026-10-16T09:13:33.974841+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from Friday 16th October 9pm to last train Sunday 18th of October, while maintenance and renewal works take place. From Southern Cross Take a train from either platforms 11, 12 or 13 and change at Flinders Street. To Southern Cross Friday \u2013 Change at Flinders Street and take a train from Platform 10. Saturday &amp; Sunday \u2013 Change at Flinders Street and take a train from platforms 9 or 10. To City Loop Change at Flinders Street and take a train from Platform 5. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
+    "id": "46da77d5-b40e-52a8-be0f-04e77197ca9a",
+    "first_seen": "2026-10-16T09:13:33.974841+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from Friday 16th October 9pm to last train Sunday 18th of October, while maintenance and renewal works take place. From Southern Cross Take a train from either platforms 11, 12 or 13 and change at Flinders Street. To Southern Cross Friday \u2013 Change at Flinders Street and take a train from Platform 10. Saturday &amp; Sunday \u2013 Change at Flinders Street and take a train from platforms 9 or 10. To City Loop Change at Flinders Street and take a train from Platform 5. From City Loop Take a train from Platform 2 and change at Flinders Street. Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "6d780e6b-3359-570a-9566-3268e5027023",
+    "first_seen": "2026-10-16T09:13:33.974841+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes due to a police request in the Sunshine area.  Select services may hold at available platforms or in between stations. Select services may terminate/originate at intermediate locations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SUY-R:",
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
     "id": "0b9ab8b8-b1a9-5c5a-933f-95afd1f05888",
     "first_seen": "2026-10-15T23:46:45.067648+00:00",
     "header": "Minor Delay",
