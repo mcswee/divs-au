@@ -1,5 +1,106 @@
 [
   {
+    "id": "8db27fdb-3d6d-542c-b30f-038f42899da8",
+    "first_seen": "2026-10-16T14:08:57.461984+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after an earlier police request in the Sunshine area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "f4003416-19b8-5f67-a908-266f03d790a6",
+    "first_seen": "2026-10-16T14:08:57.461984+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after an earlier police request in the Sunshine area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "499dc4cb-763b-5581-986f-33d92a2a9859",
+    "first_seen": "2026-10-16T14:08:57.461984+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after an earlier police request in the Sunshine area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "885ae61f-75d7-5bcb-a71a-6de6f7fc8ae9",
+    "first_seen": "2026-10-16T14:08:57.461984+00:00",
+    "header": "Planned work: Werribee Station platform closure",
+    "description": "11.30pm Friday 16 October to 6pm Sunday 18 October Due to project works, Platform 2 at Werribee Station will be closed. All city trains will depart from platforms 1 and 3. For your safety, please observe any signage and instructions in place during this time",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "bf6803af-a943-5411-954b-02ed033f677a",
+    "first_seen": "2026-10-16T14:08:57.461984+00:00",
+    "header": "Planned work: Buses replace trains between North Melbourne and Broadmeadows",
+    "description": "8.30pm Friday 16 October to last service Sunday 18 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "382bf3d4-99dd-59a4-9b71-935601b99534",
+    "first_seen": "2026-10-16T14:08:57.461984+00:00",
+    "header": "Planned work: Trains run direct to and from Flinders Street, not via the City Loop",
+    "description": "9pm Friday 16 October to last service Sunday 18 October\u00a0 \u00a0 From Southern Cross  Take a train from either platforms 11, 12 or 13 and change at Flinders Street. To Southern Cross  (Friday) Change at Flinders Street and take a train from Platform 10. (Saturday &amp; Sunday) Change at Flinders Street and take a train from platforms 9 or 10. To City Loop  Change at Flinders Street and take a train from Platform 5. From City Loop  Take a train from Platform 2 and change at Flinders Street.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-GWY-R:",
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
+    "id": "b9542db1-e678-56fa-8129-d9ab4b6b9062",
+    "first_seen": "2026-10-16T14:08:57.461984+00:00",
+    "header": "Planned work: Buses replace trains between Parliament and Reservoir",
+    "description": "8.30pm Friday 16 October to last service Sunday 18 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-MDD-R:"
+    ]
+  },
+  {
+    "id": "38529a71-77d0-57c9-91f1-e09f9ee5a69d",
+    "first_seen": "2026-10-16T14:08:57.461984+00:00",
+    "header": "Planned work: Buses replace trains between Parliament and Macleod",
+    "description": "8.15pm Friday 16 October to last service Sunday 18 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "c9ddfce7-38b5-5afb-931f-074f7e5aeba7",
+    "first_seen": "2026-10-16T14:08:57.461984+00:00",
+    "header": "Planned work: Weekend works between Flinders Street, Reservoir and Macleod",
+    "description": "9pm Friday 16 October to 4am Monday 19 October  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Hurstbridge and Mernda lines. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-MDD-R:"
+    ]
+  },
+  {
     "id": "487d2853-eec8-5d05-82ad-8619160cf862",
     "first_seen": "2026-10-16T09:13:33.974841+00:00",
     "header": "Planned Works",
