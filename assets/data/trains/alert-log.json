@@ -1,5 +1,16 @@
 [
   {
+    "id": "7b180768-775c-590b-a750-9d9431956148",
+    "first_seen": "2026-10-17T20:20:33.227896+00:00",
+    "header": "Planned work: Moreland Station car park closure",
+    "description": "7am to 5pm, Sunday 18 October All spaces in the Camerson Street commuter car park are temporarily closed while essential power works take place. Alternative parking is available at Coburg Station. For your safety, please follow signage and instructions in place during this time. The timing of these works may change due to weather or unavoidable circumstances.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-UFD-R:",
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
     "id": "50fc5bb5-0bb0-50ab-a109-fa8b24c36b60",
     "first_seen": "2026-10-17T12:22:09.325177+00:00",
     "header": "Major Delay",
