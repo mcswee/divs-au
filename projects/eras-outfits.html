@@ -1,38 +1,39 @@
 ---
 layout: default
 title: Taylor Swift Eras Tour outfits
-description: A show-by-show catalogue of Taylor Swift's Eras Tour outfits, instruments and microphones.
+description: A show-by-show visual archive of Taylor Swift's Eras Tour outfits, instruments and microphones.
 permalink: /eras-tour/
 extra_head: '<link rel="stylesheet" href="/assets/css/eras-outfits.css">'
 extra_scripts: '<script src="/assets/js/eras-outfits.js" defer></script>'
 ---
 <div class="eras-catalogue" id="eras-catalogue">
   <header class="eras-intro">
-    <p class="eras-eyebrow">Tour archive</p>
+    <p class="eras-eyebrow">Tour archive · 152 planned shows</p>
     <h1>Taylor Swift’s Eras Tour</h1>
-    <p>A visual catalogue of the outfits, instruments and microphones used across the 152 planned shows.</p>
+    <p>Choose a show to see its complete set of outfits, instruments, microphones and surprise songs.</p>
   </header>
 
-  <section class="eras-controls" aria-label="Catalogue controls">
-    <label class="eras-search-label" for="eras-search">Search the catalogue</label>
-    <input id="eras-search" type="search" placeholder="Search an outfit, colour, instrument or show…" autocomplete="off">
-    <div class="eras-filter-row">
-      <label for="eras-section-filter">Catalogue</label>
-      <select id="eras-section-filter">
-        <option value="all">Everything</option>
-        <option value="wardrobe">Outfits and clothing</option>
-        <option value="gear">Guitars and microphones</option>
-        <option value="shows">Shows</option>
-      </select>
+  <section class="eras-show-browser" aria-label="Find a show">
+    <div class="eras-show-picker">
+      <label for="eras-show-search">Find a show</label>
+      <input id="eras-show-search" type="search" placeholder="Search by sequence, city, date or venue…" autocomplete="off">
+      <p class="eras-result-count" id="eras-show-count" aria-live="polite">Loading shows…</p>
+      <div id="eras-show-list" class="eras-show-listbox" role="listbox" aria-label="Shows"></div>
+    </div>
+    <section id="eras-show-detail" class="eras-show-detail" aria-live="polite">
+      <p>Select a show from the list to view its details.</p>
+    </section>
+  </section>
+
+  <details class="eras-secondary-catalogue">
+    <summary>Browse the outfit and equipment catalogue instead</summary>
+    <div class="eras-secondary-controls">
+      <label for="eras-catalogue-search">Search catalogue</label>
+      <input id="eras-catalogue-search" type="search" placeholder="Search outfit, colour or equipment…" autocomplete="off">
       <label for="eras-era-filter">Era</label>
       <select id="eras-era-filter"><option value="all">All eras</option></select>
     </div>
-    <p class="eras-result-count" id="eras-result-count" aria-live="polite">Loading catalogue…</p>
-  </section>
-
-  <nav class="eras-jump-links" aria-label="Jump to an era" id="eras-jump-links"></nav>
-  <div id="eras-results" class="eras-results" aria-live="polite">
-    <p>Loading the catalogue…</p>
-  </div>
-  <noscript><p>This catalogue needs JavaScript enabled to load its show data.</p></noscript>
+    <div id="eras-catalogue-results" class="eras-results"></div>
+  </details>
+  <noscript><p>This archive needs JavaScript enabled to load its show data.</p></noscript>
 </div>
