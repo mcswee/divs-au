@@ -1,5 +1,15 @@
 [
   {
+    "id": "50fc5bb5-0bb0-50ab-a109-fa8b24c36b60",
+    "first_seen": "2026-10-17T12:22:09.325177+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after an earlier ill passenger requiring medical assistance at Berwick. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
     "id": "441de66d-e42d-5d9f-9524-da289de01923",
     "first_seen": "2026-10-17T08:28:52.887918+00:00",
     "header": "Minor Delay",
