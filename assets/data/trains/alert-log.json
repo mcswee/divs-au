@@ -1,5 +1,68 @@
 [
   {
+    "id": "441de66d-e42d-5d9f-9524-da289de01923",
+    "first_seen": "2026-10-17T08:28:52.887918+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes, now clearing after an earlier police request in the Flinders Street area.  Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "e022530c-bff3-54e4-b339-d67b9476b2eb",
+    "first_seen": "2026-10-17T08:28:52.887918+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes, now clearing after an earlier police request in the Flinders Street area.  Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "4f93449b-67b9-5f9e-9a32-09c4160b8372",
+    "first_seen": "2026-10-17T08:28:52.887918+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes, now clearing after an earlier police request in the Flinders Street area.  Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-UFD:",
+      "aus:vic:vic-02-UFD-R:"
+    ]
+  },
+  {
+    "id": "267f1875-192f-571c-a8c9-a83f3a16db5b",
+    "first_seen": "2026-10-17T08:28:52.887918+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes, now clearing after an earlier police request in the Flinders Street area.  Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "b7e05a4c-7cea-51e3-938f-8bfd5e169f21",
+    "first_seen": "2026-10-17T08:28:52.887918+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes, now clearing after an earlier ill passenger at Springvale. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "2137cf44-48a9-56ff-a647-4d6f4593062c",
+    "first_seen": "2026-10-17T08:28:52.887918+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes, now clearing after an earlier police request in the Flinders Street area.  Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
     "id": "b76e74d4-a002-50c0-9030-e0c5279e6cea",
     "first_seen": "2026-10-17T01:27:21.719078+00:00",
     "header": "Minor Delay",
