@@ -1,5 +1,36 @@
 [
   {
+    "id": "b76e74d4-a002-50c0-9030-e0c5279e6cea",
+    "first_seen": "2026-10-17T01:27:21.719078+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to vandalism in the Sunshine area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "8dbba98a-9c85-5341-b761-341b7f800a61",
+    "first_seen": "2026-10-17T01:27:21.719078+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to vandalism in the Sunshine area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "e9124aea-c53d-5dea-b8ff-19c272dc9a81",
+    "first_seen": "2026-10-17T01:27:21.719078+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes due to vandalism in the Sunshine area.  Trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
     "id": "fc47a69f-f9a0-5c17-bf93-e33bf3531e45",
     "first_seen": "2026-10-16T23:21:11.392420+00:00",
     "header": "Suspended",
