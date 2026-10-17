@@ -40,3 +40,142 @@
 .eras-show-card p { margin: .25rem 0; font-size: .9rem; }
 .eras-empty { padding: 1.25rem; border: 1px dashed var(--border, #bbb); border-radius: 8px; }
 @media (max-width: 560px) { .eras-catalogue { padding-inline: .75rem; } .eras-section-heading { display: block; } .eras-section-heading p { margin-top: .3rem; } .eras-gear-list { font-size: .84rem; } .eras-gear-list th, .eras-gear-list td { padding: .55rem .3rem; } }
+
+/* Show-first archive layout */
+.eras-show-browser { display: grid; grid-template-columns: minmax(250px, .78fr) minmax(0, 2fr); gap: 1.25rem; align-items: start; }
+.eras-show-picker, .eras-show-detail { min-width: 0; border: 1px solid var(--border, #d8d8d8); border-radius: 12px; background: var(--background, #fff); }
+.eras-show-picker { padding: 1rem; position: sticky; top: 1rem; }
+.eras-show-picker > label, .eras-secondary-controls label { display: block; font-weight: 700; margin-bottom: .4rem; }
+.eras-show-picker input, .eras-secondary-controls input, .eras-secondary-controls select { box-sizing: border-box; width: 100%; padding: .7rem .75rem; border: 1px solid var(--border, #aaa); border-radius: 8px; font: inherit; background: var(--background, #fff); color: var(--text, #222); }
+.eras-show-listbox { max-height: 62vh; overflow-y: auto; margin-top: .75rem; }
+.eras-show-option { width: 100%; display: flex; gap: .7rem; align-items: center; text-align: left; padding: .7rem .5rem; border: 0; border-top: 1px solid var(--border, #eee); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.eras-show-option:hover, .eras-show-option:focus-visible { background: var(--surface, #f4f2f0); }
+.eras-show-option.is-selected { background: var(--surface, #f0eeeb); box-shadow: inset 3px 0 var(--text, #333); }
+.eras-show-option-seq { flex: 0 0 2rem; font: 700 .9rem "Atkinson Hyperlegible Mono", monospace; }
+.eras-show-option-main { display: block; min-width: 0; }
+.eras-show-option-main strong, .eras-show-option-main small { display: block; }
+.eras-show-option-main strong { font-size: .92rem; }
+.eras-show-option-main small { margin-top: .15rem; opacity: .72; font-size: .76rem; line-height: 1.35; }
+.eras-show-detail { padding: clamp(1rem, 2.5vw, 1.6rem); }
+.eras-selected-show { border-bottom: 1px solid var(--border, #ddd); padding-bottom: 1rem; margin-bottom: 1.25rem; }
+.eras-selected-show h2 { margin: 0 0 .25rem; }
+.eras-show-meta, .eras-show-venue { margin: .25rem 0; opacity: .8; }
+.eras-show-navigation { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.eras-show-navigation button { padding: .55rem .75rem; border: 1px solid var(--border, #bbb); border-radius: 7px; background: var(--background, #fff); color: inherit; font: inherit; cursor: pointer; }
+.eras-show-navigation button:disabled { opacity: .4; cursor: default; }
+.eras-detail-section { margin: 1.5rem 0 2rem; }
+.eras-detail-section > h3 { border-bottom: 1px solid var(--border, #ddd); padding-bottom: .45rem; }
+.eras-detail-era { margin: 1.25rem 0 1.6rem; }
+.eras-detail-era h4 { margin: 0 0 .7rem; }
+.eras-detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 175px), 1fr)); gap: .8rem; }
+.eras-detail-item { min-width: 0; overflow: hidden; border: 1px solid var(--border, #ddd); border-radius: 9px; }
+.eras-detail-art { display: grid; place-items: center; min-height: 155px; aspect-ratio: 4 / 5; padding: .75rem; box-sizing: border-box; background: var(--surface, #f4f2f0); color: var(--muted, #686868); text-align: center; font-size: .8rem; }
+.eras-detail-item-copy { padding: .7rem; }
+.eras-detail-item-copy h5 { margin: 0 0 .25rem; font-size: .9rem; }
+.eras-detail-item-copy p { margin: 0; font-size: .88rem; }
+.eras-detail-facts { margin: .5rem 0; }
+.eras-detail-facts > div { display: grid; grid-template-columns: minmax(125px, .8fr) minmax(0, 1.5fr); gap: .75rem; padding: .6rem 0; border-bottom: 1px solid var(--border, #eee); }
+.eras-detail-facts dt { font-weight: 700; }
+.eras-detail-facts dd { margin: 0; overflow-wrap: anywhere; }
+.eras-cancelled-note { padding: 1rem; border: 1px solid var(--border, #ddd); border-radius: 9px; }
+.eras-cancelled-note h3, .eras-cancelled-note p { margin-top: 0; }
+.eras-cancelled-note p { margin-bottom: 0; }
+.eras-secondary-catalogue { margin-top: 2rem; border-top: 1px solid var(--border, #ddd); padding-top: 1rem; }
+.eras-secondary-catalogue > summary { cursor: pointer; font-weight: 700; }
+.eras-secondary-controls { display: grid; grid-template-columns: 1fr minmax(150px, .45fr); gap: .5rem .8rem; margin: 1rem 0; }
+.eras-secondary-controls label { grid-row: 1; }
+.eras-secondary-controls input, .eras-secondary-controls select { grid-row: 2; }
+.eras-catalogue-family { margin: 1.5rem 0; }
+.eras-inline-show { border: 0; background: none; color: inherit; text-decoration: underline; cursor: pointer; padding: .15rem .25rem; font: inherit; }
+@media (max-width: 760px) { .eras-show-browser { grid-template-columns: 1fr; } .eras-show-picker { position: static; } .eras-show-listbox { max-height: 260px; } .eras-detail-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr)); } }
+@media (max-width: 480px) { .eras-detail-facts > div { grid-template-columns: 1fr; gap: .2rem; } .eras-secondary-controls { grid-template-columns: 1fr; } .eras-secondary-controls label, .eras-secondary-controls input, .eras-secondary-controls select { grid-row: auto; } }/* Eras Tour catalogue. Scoped to this page so it does not alter the rest of divs.au. */
+.eras-catalogue { max-width: 1200px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+.eras-intro { max-width: 760px; margin: 0 auto 2rem; }
+.eras-eyebrow { margin: 0 0 .45rem; font: 700 .78rem/1.3 "Atkinson Hyperlegible Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+.eras-intro h1 { margin: 0 0 .75rem; }
+.eras-intro p:last-child { max-width: 62ch; }
+.eras-controls { padding: 1rem; margin: 0 0 1.25rem; border: 1px solid var(--border, #d8d8d8); border-radius: 12px; }
+.eras-search-label { display: block; font-weight: 700; margin-bottom: .4rem; }
+.eras-controls input[type="search"] { box-sizing: border-box; width: 100%; padding: .75rem .85rem; border: 1px solid var(--border, #aaa); border-radius: 8px; font: inherit; background: var(--background, #fff); color: var(--text, #222); }
+.eras-filter-row { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem .75rem; margin-top: .8rem; }
+.eras-filter-row label { font-weight: 700; }
+.eras-filter-row select { max-width: 100%; padding: .55rem .7rem; border: 1px solid var(--border, #aaa); border-radius: 7px; font: inherit; background: var(--background, #fff); color: var(--text, #222); }
+.eras-result-count { margin: .75rem 0 0; font-size: .9rem; opacity: .8; }
+.eras-jump-links { display: flex; flex-wrap: wrap; gap: .45rem; margin: 0 0 1.5rem; }
+.eras-jump-links a { display: inline-block; padding: .35rem .65rem; border: 1px solid var(--border, #ccc); border-radius: 999px; text-decoration: none; font-size: .88rem; }
+.eras-section { margin: 2rem 0 2.5rem; scroll-margin-top: 1rem; }
+.eras-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--border, #ddd); padding-bottom: .55rem; margin-bottom: 1rem; }
+.eras-section-heading h2 { margin: 0; }
+.eras-section-heading p { margin: 0; font-size: .88rem; opacity: .75; }
+.eras-subsection { margin: 1.5rem 0 2rem; }
+.eras-subsection h3 { margin: 0 0 .8rem; }
+.eras-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 1rem; }
+.eras-variant-card { min-width: 0; border: 1px solid var(--border, #ddd); border-radius: 10px; overflow: hidden; background: var(--background, #fff); }
+.eras-art-placeholder { aspect-ratio: 4 / 5; display: grid; place-items: center; padding: 1rem; box-sizing: border-box; background: var(--surface, #f4f2f0); color: var(--muted, #686868); text-align: center; }
+.eras-art-placeholder span { display: block; max-width: 13rem; font-size: .85rem; }
+.eras-card-body { padding: .85rem; }
+.eras-card-body h4 { margin: 0 0 .35rem; font-size: 1rem; }
+.eras-card-meta { margin: 0 0 .6rem; font-size: .84rem; opacity: .8; }
+.eras-show-list { margin: .55rem 0 0; padding-top: .55rem; border-top: 1px solid var(--border, #eee); font-size: .82rem; overflow-wrap: anywhere; }
+.eras-show-list summary { cursor: pointer; font-weight: 700; }
+.eras-show-list ol { padding-left: 1.4rem; margin: .45rem 0 0; }
+.eras-show-list li { margin: .2rem 0; }
+.eras-gear-list { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.eras-gear-list th, .eras-gear-list td { text-align: left; vertical-align: top; padding: .7rem .55rem; border-bottom: 1px solid var(--border, #ddd); }
+.eras-gear-list th { font-size: .82rem; }
+.eras-gear-list td:last-child { overflow-wrap: anywhere; }
+.eras-1989-card .eras-art-placeholder { aspect-ratio: 4 / 3; }
+.eras-show-card { padding: .85rem 1rem; border: 1px solid var(--border, #ddd); border-radius: 9px; margin: .55rem 0; }
+.eras-show-card h3 { margin: 0 0 .25rem; font-size: 1rem; }
+.eras-show-card p { margin: .25rem 0; font-size: .9rem; }
+.eras-empty { padding: 1.25rem; border: 1px dashed var(--border, #bbb); border-radius: 8px; }
+@media (max-width: 560px) { .eras-catalogue { padding-inline: .75rem; } .eras-section-heading { display: block; } .eras-section-heading p { margin-top: .3rem; } .eras-gear-list { font-size: .84rem; } .eras-gear-list th, .eras-gear-list td { padding: .55rem .3rem; } }
+
+/* Show-first archive layout */
+.eras-show-browser { display: grid; grid-template-columns: minmax(250px, .78fr) minmax(0, 2fr); gap: 1.25rem; align-items: start; }
+.eras-show-picker, .eras-show-detail { min-width: 0; border: 1px solid var(--border, #d8d8d8); border-radius: 12px; background: var(--background, #fff); }
+.eras-show-picker { padding: 1rem; position: sticky; top: 1rem; }
+.eras-show-picker > label, .eras-secondary-controls label { display: block; font-weight: 700; margin-bottom: .4rem; }
+.eras-show-picker input, .eras-secondary-controls input, .eras-secondary-controls select { box-sizing: border-box; width: 100%; padding: .7rem .75rem; border: 1px solid var(--border, #aaa); border-radius: 8px; font: inherit; background: var(--background, #fff); color: var(--text, #222); }
+.eras-show-listbox { max-height: 62vh; overflow-y: auto; margin-top: .75rem; }
+.eras-show-option { width: 100%; display: flex; gap: .7rem; align-items: center; text-align: left; padding: .7rem .5rem; border: 0; border-top: 1px solid var(--border, #eee); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.eras-show-option:hover, .eras-show-option:focus-visible { background: var(--surface, #f4f2f0); }
+.eras-show-option.is-selected { background: var(--surface, #f0eeeb); box-shadow: inset 3px 0 var(--text, #333); }
+.eras-show-option-seq { flex: 0 0 2rem; font: 700 .9rem "Atkinson Hyperlegible Mono", monospace; }
+.eras-show-option-main { display: block; min-width: 0; }
+.eras-show-option-main strong, .eras-show-option-main small { display: block; }
+.eras-show-option-main strong { font-size: .92rem; }
+.eras-show-option-main small { margin-top: .15rem; opacity: .72; font-size: .76rem; line-height: 1.35; }
+.eras-show-detail { padding: clamp(1rem, 2.5vw, 1.6rem); }
+.eras-selected-show { border-bottom: 1px solid var(--border, #ddd); padding-bottom: 1rem; margin-bottom: 1.25rem; }
+.eras-selected-show h2 { margin: 0 0 .25rem; }
+.eras-show-meta, .eras-show-venue { margin: .25rem 0; opacity: .8; }
+.eras-show-navigation { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.eras-show-navigation button { padding: .55rem .75rem; border: 1px solid var(--border, #bbb); border-radius: 7px; background: var(--background, #fff); color: inherit; font: inherit; cursor: pointer; }
+.eras-show-navigation button:disabled { opacity: .4; cursor: default; }
+.eras-detail-section { margin: 1.5rem 0 2rem; }
+.eras-detail-section > h3 { border-bottom: 1px solid var(--border, #ddd); padding-bottom: .45rem; }
+.eras-detail-era { margin: 1.25rem 0 1.6rem; }
+.eras-detail-era h4 { margin: 0 0 .7rem; }
+.eras-detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 175px), 1fr)); gap: .8rem; }
+.eras-detail-item { min-width: 0; overflow: hidden; border: 1px solid var(--border, #ddd); border-radius: 9px; }
+.eras-detail-art { display: grid; place-items: center; min-height: 155px; aspect-ratio: 4 / 5; padding: .75rem; box-sizing: border-box; background: var(--surface, #f4f2f0); color: var(--muted, #686868); text-align: center; font-size: .8rem; }
+.eras-detail-item-copy { padding: .7rem; }
+.eras-detail-item-copy h5 { margin: 0 0 .25rem; font-size: .9rem; }
+.eras-detail-item-copy p { margin: 0; font-size: .88rem; }
+.eras-detail-facts { margin: .5rem 0; }
+.eras-detail-facts > div { display: grid; grid-template-columns: minmax(125px, .8fr) minmax(0, 1.5fr); gap: .75rem; padding: .6rem 0; border-bottom: 1px solid var(--border, #eee); }
+.eras-detail-facts dt { font-weight: 700; }
+.eras-detail-facts dd { margin: 0; overflow-wrap: anywhere; }
+.eras-cancelled-note { padding: 1rem; border: 1px solid var(--border, #ddd); border-radius: 9px; }
+.eras-cancelled-note h3, .eras-cancelled-note p { margin-top: 0; }
+.eras-cancelled-note p { margin-bottom: 0; }
+.eras-secondary-catalogue { margin-top: 2rem; border-top: 1px solid var(--border, #ddd); padding-top: 1rem; }
+.eras-secondary-catalogue > summary { cursor: pointer; font-weight: 700; }
+.eras-secondary-controls { display: grid; grid-template-columns: 1fr minmax(150px, .45fr); gap: .5rem .8rem; margin: 1rem 0; }
+.eras-secondary-controls label { grid-row: 1; }
+.eras-secondary-controls input, .eras-secondary-controls select { grid-row: 2; }
+.eras-catalogue-family { margin: 1.5rem 0; }
+.eras-inline-show { border: 0; background: none; color: inherit; text-decoration: underline; cursor: pointer; padding: .15rem .25rem; font: inherit; }
+@media (max-width: 760px) { .eras-show-browser { grid-template-columns: 1fr; } .eras-show-picker { position: static; } .eras-show-listbox { max-height: 260px; } .eras-detail-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr)); } }
+@media (max-width: 480px) { .eras-detail-facts > div { grid-template-columns: 1fr; gap: .2rem; } .eras-secondary-controls { grid-template-columns: 1fr; } .eras-secondary-controls label, .eras-secondary-controls input, .eras-secondary-controls select { grid-row: auto; } }
