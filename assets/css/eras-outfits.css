@@ -91,9 +91,19 @@
 @media (max-width: 480px) { .eras-detail-facts > div { grid-template-columns: 1fr; gap: .2rem; } .eras-secondary-controls { grid-template-columns: 1fr; } .eras-secondary-controls label, .eras-secondary-controls input, .eras-secondary-controls select { grid-row: auto; } }
 
 /* The two main areas can be opened or collapsed independently. */
-.eras-show-data, .eras-secondary-catalogue { margin-top: 1.25rem; border: 1px solid var(--border, #d8d8d8); border-radius: 10px; padding: .9rem 1rem 1rem; }
+.eras-show-data, .eras-secondary-catalogue { display: block; box-sizing: border-box; width: 100%; min-width: 0; margin-top: 1.25rem; border: 1px solid var(--border, #d8d8d8); border-radius: 10px; padding: .9rem 1rem 1rem; }
 .eras-show-data > summary, .eras-secondary-catalogue > summary { cursor: pointer; font-weight: 700; font-size: 1.05rem; }
 .eras-show-data[open] > summary, .eras-secondary-catalogue[open] > summary { margin-bottom: 1rem; }
-.eras-show-data .eras-show-browser { margin-top: .25rem; }
+.eras-show-data .eras-show-browser { box-sizing: border-box; width: 100%; min-width: 0; margin-top: .25rem; }
 .eras-cancelled-image { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto 1rem; }
 .eras-cancelled-note p { text-align: center; }
+
+/* Selected-show refinements */
+.eras-selected-show .eras-eyebrow { font-family: inherit; letter-spacing: normal; }
+.eras-nav-mobile { display: none; }
+@media (max-width: 560px) {
+  .eras-show-navigation { flex-wrap: nowrap; gap: .4rem; }
+  .eras-show-navigation button { flex: 1 1 0; min-width: 0; padding: .55rem .45rem; white-space: nowrap; }
+  .eras-nav-desktop { display: none; }
+  .eras-nav-mobile { display: inline; }
+}
