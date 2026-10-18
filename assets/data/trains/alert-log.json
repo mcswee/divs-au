@@ -1,5 +1,47 @@
 [
   {
+    "id": "01117f41-5dcf-51e0-8d23-90e9497b36ad",
+    "first_seen": "2026-10-18T22:32:32.691809+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier equipment fault in the Diamond Creek area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-HBE-R:"
+    ]
+  },
+  {
+    "id": "2df48dd6-1ec0-52b0-a527-52a306fe58ba",
+    "first_seen": "2026-10-18T22:32:32.691809+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier equipment fault in the State Library area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "24abdb97-8fb5-5209-9c6c-90219022cf87",
+    "first_seen": "2026-10-18T22:32:32.691809+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier equipment fault in the State Library area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "afd95406-3c74-5f46-a986-32f165f66a96",
+    "first_seen": "2026-10-18T22:32:32.691809+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to an equipment fault in the Lalor area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-MDD-R:"
+    ]
+  },
+  {
     "id": "1097b8f0-8585-5566-ae60-0e00ecf31a19",
     "first_seen": "2026-10-18T16:48:42.391366+00:00",
     "header": "Planned work: Burwood Station carpark closure",
