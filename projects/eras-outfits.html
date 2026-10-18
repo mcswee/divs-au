@@ -8,25 +8,27 @@ extra_scripts: '<script src="/assets/js/eras-outfits.js" defer></script>'
 ---
 <div class="eras-catalogue" id="eras-catalogue">
   <header class="eras-intro">
-    <p class="eras-eyebrow">Tour archive · 152 planned shows</p>
-    <h1>Taylor Swift’s Eras Tour</h1>
+      <h1>Taylor Swift’s Eras Tour</h1>
     <p>Choose a show to see its complete set of outfits, instruments, microphones and surprise songs.</p>
   </header>
 
-  <section class="eras-show-browser" aria-label="Find a show">
+  <details class="eras-show-data" open>
+    <summary>Shows</summary>
+    <section class="eras-show-browser" aria-label="Find a show">
     <div class="eras-show-picker">
       <label for="eras-show-search">Find a show</label>
-      <input id="eras-show-search" type="search" placeholder="Search by sequence, city, date or venue…" autocomplete="off">
+      <input id="eras-show-search" type="search" placeholder="Search city, night, date or venue…" autocomplete="off">
       <p class="eras-result-count" id="eras-show-count" aria-live="polite">Loading shows…</p>
       <div id="eras-show-list" class="eras-show-listbox" role="listbox" aria-label="Shows"></div>
     </div>
     <section id="eras-show-detail" class="eras-show-detail" aria-live="polite">
       <p>Select a show from the list to view its details.</p>
     </section>
-  </section>
+    </section>
+  </details>
 
   <details class="eras-secondary-catalogue">
-    <summary>Browse the outfit and equipment catalogue instead</summary>
+    <summary>Outfits</summary>
     <div class="eras-secondary-controls">
       <label for="eras-catalogue-search">Search catalogue</label>
       <input id="eras-catalogue-search" type="search" placeholder="Search outfit, colour or equipment…" autocomplete="off">
