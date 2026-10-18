@@ -26,23 +26,21 @@
     ['Midnights', ['Midnights Coat','Midnights T-Shirt Dress','Midnights Bodysuit','Midnights Garter','Midnights Jacket']]
   ];
   const gearFields = ['Lover Guitar','Fearless Guitar','Red Guitar','Speak Now Guitar','Folklore Guitar','Accoustic Guitar','Lover Mic','Lover Stand Mic','Fearless Mic','Evermore Mic','Red Mic','Red ATW Mic','Speak Now Mic','Reputation Mic','Folklore Mic','1989 Mic','TTPD Mic','TTPD ICDIWABH Mic','Accoustic Guitar Mic','Accoustic Piano Mic','Midnights Mic'];
-  const displayField = field => ({'Accoustic Guitar':'Acoustic guitar','Accoustic Guitar Mic':'Acoustic guitar microphone','Accoustic Piano Mic':'Acoustic piano microphone','Red ATW Mic':'Red / All Too Well microphone','TTPD ICDIWABH Mic':'TTPD “I Can Do It With a Broken Heart” microphone','1989 v1':'1989 outfit · version 1','1989 v2':'1989 outfit · version 2'})[field] || field;
-  const labelShow = s => `${s.seq}. ${s.city} ${s.night || ''}`.trim();
+  const displayField = field => ({'Accoustic Guitar':'Acoustic guitar','Accoustic Guitar Mic':'Acoustic guitar microphone','Accoustic Piano Mic':'Acoustic piano microphone','Red ATW Mic':'Red / All Too Well microphone','TTPD ICDIWABH Mic':'TTPD “I Can Do It With a Broken Heart” microphone','1989 v1':'1989 set','1989 v2':'1989 set'})[field] || field;
+  const labelShow = s => `${s.city} ${s.night || ''}`.trim();
   const allShows = () => data.showDetails.map(s => ({...s, ...(data.shows.find(x => x.seq === s.seq) || {})})).sort((a,b)=>a.seq-b.seq);
   const shows = () => allShows();
 
   function renderShowList() {
     const q = showSearch.value.trim().toLowerCase();
-    const matches = shows().filter(s => `${s.seq} ${s.city} ${s.night} ${s.date} ${s.territory} ${s.venue}`.toLowerCase().includes(q));
+    const matches = shows().filter(s => `${s.city} ${s.night} ${s.date} ${s.territory} ${s.venue} ${s.seq}`.toLowerCase().includes(q));
     showCount.textContent = `${matches.length} of ${data.showDetails.length} shows`;
-    showList.innerHTML = matches.map(s => `<button type="button" class="eras-show-option${s.seq===selectedSeq?' is-selected':''}" role="option" aria-selected="${s.seq===selectedSeq?'true':'false'}" data-seq="${s.seq}"><span class="eras-show-option-seq">${s.seq}</span><span class="eras-show-option-main"><strong>${esc(s.city)} ${esc(s.night || '')}</strong><small>${esc(s.date)} · ${esc(s.venue)}</small></span></button>`).join('') || '<p class="eras-empty">No shows match that search.</p>';
+    showList.innerHTML = matches.map(s => `<button type="button" class="eras-show-option${s.seq===selectedSeq?' is-selected':''}" role="option" aria-selected="${s.seq===selectedSeq?'true':'false'}" data-seq="${s.seq}"><span class="eras-show-option-main"><strong>${esc(s.city)} ${esc(s.night || '')}</strong><small>Show ${s.seq} of 152 · ${esc(s.date)} · ${esc(s.venue)}</small></span></button>`).join('') || '<p class="eras-empty">No shows match that search.</p>';
   }
 
   function outfitValue(show, field) {
     if (field === '1989 v2') {
-      const parts = ['1989 Top','1989 Skirt','1989 Left Shoe','1989 Right Shoe'];
-      if (parts.some(p => !isNA(show[p]))) return parts.filter(p=>!isNA(show[p])).map(p=>`${p.replace('1989 ','')}: ${show[p]}`).join(' · ');
-      return '';
+      return ['1989 Top','1989 Skirt','1989 Left Shoe','1989 Right Shoe'].some(p => !isNA(show[p])) ? 'Pink and Blue' : '';
     }
     const value = show[field];
     return value != null && !isNA(value) ? value : '';
@@ -52,11 +50,11 @@
     if (!show) return;
     selectedSeq = show.seq;
     renderShowList();
-    const cancelled = show['Lover Bodysuit'] == null || Object.keys(show).filter(k=>outfitGroups.some(([,fields])=>fields.includes(k))).every(k=>isNA(show[k]));
+    const cancelled = Object.keys(show).filter(k=>outfitGroups.some(([,fields])=>fields.includes(k))).every(k=>isNA(show[k]));
     let html = `<header class="eras-selected-show"><p class="eras-eyebrow">Show ${show.seq} of 152</p><h2>${esc(show.city)} ${esc(show.night || '')}</h2><p class="eras-show-meta">${esc(show.date)}${show.territory ? ` · ${esc(show.territory)}` : ''}</p><p class="eras-show-venue">${esc(show.venue || '')}</p><div class="eras-show-navigation"><button type="button" data-step="-1" ${show.seq<=1?'disabled':''}>← Previous show</button><button type="button" data-step="1" ${show.seq>=152?'disabled':''}>Next show →</button></div></header>`;
     if (show.firstAct || show.secondAct) html += `<div class="eras-show-support"><h3>Opening acts</h3><p>${[show.firstAct,show.secondAct].filter(Boolean).map(esc).join(' · ') || 'Not recorded'}</p></div>`;
     if (cancelled) {
-      html += `<div class="eras-cancelled-note"><h3>No performance</h3><p>This planned show was cancelled, so no performance outfits or equipment were used.</p></div>`;
+      html += `<div class="eras-cancelled-note"><img class="eras-cancelled-image" src="/assets/images/eras-tour-cancelled.svg" alt="Cancelled show"><p>This show was cancelled.</p></div>`;
     } else {
       html += '<section class="eras-detail-section"><h3>Outfits</h3>';
       for (const [era, fields] of outfitGroups) {
@@ -67,11 +65,21 @@
       html += '</section>';
       const gear = gearFields.map(field=>({field,value:show[field]})).filter(x=>x.value!=null&&!isNA(x.value)&&String(x.value).toLowerCase()!=='none');
       html += `<section class="eras-detail-section"><h3>Instruments and microphones</h3>${gear.length?`<dl class="eras-detail-facts">${gear.map(x=>`<div><dt>${esc(displayField(x.field))}</dt><dd>${esc(x.value)}</dd></div>`).join('')}</dl>`:'<p>No instrument or microphone details recorded.</p>'}</section>`;
-      const songs = [
-        ['Guitar First Song','Guitar first song'],['Guitar Second Song','Guitar second song'],['Guitar Third Song','Guitar third song'],['Guitar Mashup','Guitar mashup'],
-        ['Piano First Song','Piano first song'],['Piano Second Song','Piano second song'],['Piano Third Song','Piano third song'],['Piano Mashup','Piano mashup']
-      ].map(([field,label])=>({label,value:show[field]})).filter(x=>x.value!=null&&!isNA(x.value)&&String(x.value).toLowerCase()!=='false');
+      const surpriseSong = (instrument) => {
+        const prefix = instrument === 'Guitar' ? 'Guitar' : 'Piano';
+        const tracks = [`${prefix} First Song`, `${prefix} Second Song`, `${prefix} Third Song`].map(k=>show[k]).filter(v=>v!=null&&!isNA(v));
+        if (!tracks.length) return '';
+        return String(show[`${prefix} Mashup`]).toLowerCase() === 'true' ? `${tracks.join(' × ')} mashup` : tracks.join(' · ');
+      };
+      const songs = [{label:'Guitar',value:surpriseSong('Guitar')},{label:'Piano',value:surpriseSong('Piano')}].filter(x=>x.value);
       if (songs.length) html += `<section class="eras-detail-section"><h3>Surprise songs</h3><dl class="eras-detail-facts">${songs.map(x=>`<div><dt>${esc(x.label)}</dt><dd>${esc(x.value)}</dd></div>`).join('')}</dl></section>`;
+      const moments = [
+        {label:'“Oh Hi!”', value:show['Oh Hi!']},
+        {label:'“Like Ever!”', value:show['Like Ever!']},
+        {label:'Ovation', value:show.Ovation},
+        {label:'Guy on the screen', value:show['Guy on the']}
+      ].filter(x=>x.value!=null&&!isNA(x.value));
+      if (moments.length) html += `<section class="eras-detail-section"><h3>Show moments</h3><dl class="eras-detail-facts">${moments.map(x=>`<div><dt>${esc(x.label)}</dt><dd>${esc(x.value)}</dd></div>`).join('')}</dl></section>`;
       const guests = ['Special Guest','Second Guest','Third Guest'].map(k=>show[k]).filter(v=>v&&!isNA(v));
       if (guests.length) html += `<section class="eras-detail-section"><h3>Special guests</h3><p>${guests.map(esc).join(' · ')}</p></section>`;
     }
