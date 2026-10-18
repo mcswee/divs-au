@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-11T19:26:18.802036",
+  "generated": "2026-10-18T17:57:09.862131",
   "groups": {
     "frankston": "Frankston / Stony Point",
     "burnley": "Burnley",
@@ -755,6 +755,13 @@
       "name": "Flemington Bridge",
       "groups": [
         "northern"
+      ]
+    },
+    {
+      "id": "vic:rail:RCE",
+      "name": "Flemington Racecourse",
+      "groups": [
+        "showgrounds"
       ]
     },
     {
