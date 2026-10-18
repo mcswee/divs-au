@@ -13186,7 +13186,7 @@
     {
       "from": "N_Em_984",
       "to": "X_Gfu_1004",
-      "type": "secondary"
+      "type": "primary"
     },
     {
       "from": "Swy",
@@ -13291,7 +13291,7 @@
     {
       "from": "N_Em_984",
       "to": "K_Ghda_1020",
-      "type": "secondary"
+      "type": "primary"
     },
     {
       "from": "Cnut",
@@ -14266,7 +14266,7 @@
     {
       "from": "HyVII",
       "to": "T_Art_1486",
-      "type": "secondary"
+      "type": "primary"
     },
     {
       "from": "Y_Eliz_1466",
@@ -14276,7 +14276,7 @@
     {
       "from": "HyVII",
       "to": "HyVIII",
-      "type": "secondary"
+      "type": "primary"
     },
     {
       "from": "Y_Eliz_1466",
@@ -14286,7 +14286,7 @@
     {
       "from": "HyVII",
       "to": "T_Edw_1498",
-      "type": "secondary"
+      "type": "primary"
     },
     {
       "from": "Y_Eliz_1466",
@@ -14296,7 +14296,7 @@
     {
       "from": "HyVII",
       "to": "T_Edm_1499",
-      "type": "secondary"
+      "type": "primary"
     },
     {
       "from": "Y_Eliz_1466",
@@ -14306,7 +14306,7 @@
     {
       "from": "HyVII",
       "to": "T_Meg_1489",
-      "type": "secondary"
+      "type": "primary"
     },
     {
       "from": "Y_Eliz_1466",
@@ -14316,7 +14316,7 @@
     {
       "from": "HyVII",
       "to": "T_Eliz_1492",
-      "type": "secondary"
+      "type": "primary"
     },
     {
       "from": "Y_Eliz_1466",
@@ -14326,7 +14326,7 @@
     {
       "from": "HyVII",
       "to": "T_My_1496",
-      "type": "secondary"
+      "type": "primary"
     },
     {
       "from": "Y_Eliz_1466",
@@ -14336,7 +14336,7 @@
     {
       "from": "HyVII",
       "to": "T_Kath_1503",
-      "type": "secondary"
+      "type": "primary"
     },
     {
       "from": "HyVIII",
