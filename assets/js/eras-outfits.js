@@ -26,7 +26,7 @@
     ['Midnights', ['Midnights Coat','Midnights T-Shirt Dress','Midnights Bodysuit','Midnights Garter','Midnights Jacket']]
   ];
   const gearFields = ['Lover Guitar','Fearless Guitar','Red Guitar','Speak Now Guitar','Folklore Guitar','Accoustic Guitar','Lover Mic','Lover Stand Mic','Fearless Mic','Evermore Mic','Red Mic','Red ATW Mic','Speak Now Mic','Reputation Mic','Folklore Mic','1989 Mic','TTPD Mic','TTPD ICDIWABH Mic','Accoustic Guitar Mic','Accoustic Piano Mic','Midnights Mic'];
-  const displayField = field => ({'Accoustic Guitar':'Acoustic guitar','Accoustic Guitar Mic':'Acoustic guitar microphone','Accoustic Piano Mic':'Acoustic piano microphone','Red ATW Mic':'Red / All Too Well microphone','TTPD ICDIWABH Mic':'TTPD “I Can Do It With a Broken Heart” microphone','1989 v1':'1989 set','1989 v2':'1989 set'})[field] || field;
+  const displayField = field => ({'Accoustic Guitar':'Acoustic guitar','Accoustic Guitar Mic':'Acoustic guitar mic','Accoustic Piano Mic':'Acoustic piano mic','Red ATW Mic':'Red / All Too Well mic','TTPD ICDIWABH Mic':'TTPD “I Can Do It With a Broken Heart” mic','1989 v1':'1989 set','1989 v2':'1989 set'})[field] || field;
   const labelShow = s => `${s.city} ${s.night || ''}`.trim();
   const allShows = () => data.showDetails.map(s => ({...s, ...(data.shows.find(x => x.seq === s.seq) || {})})).sort((a,b)=>a.seq-b.seq);
   const shows = () => allShows();
@@ -51,8 +51,9 @@
     selectedSeq = show.seq;
     renderShowList();
     const cancelled = Object.keys(show).filter(k=>outfitGroups.some(([,fields])=>fields.includes(k))).every(k=>isNA(show[k]));
-    let html = `<header class="eras-selected-show"><p class="eras-eyebrow">Show ${show.seq} of 152</p><h2>${esc(show.city)} ${esc(show.night || '')}</h2><p class="eras-show-meta">${esc(show.date)}${show.territory ? ` · ${esc(show.territory)}` : ''}</p><p class="eras-show-venue">${esc(show.venue || '')}</p><div class="eras-show-navigation"><button type="button" data-step="-1" ${show.seq<=1?'disabled':''}>← Previous show</button><button type="button" data-step="1" ${show.seq>=152?'disabled':''}>Next show →</button></div></header>`;
-    if (show.firstAct || show.secondAct) html += `<div class="eras-show-support"><h3>Opening acts</h3><p>${[show.firstAct,show.secondAct].filter(Boolean).map(esc).join(' · ') || 'Not recorded'}</p></div>`;
+    let html = `<header class="eras-selected-show"><p class="eras-eyebrow">Show ${show.seq} of 152</p><h2>${esc(show.city)} ${esc(show.night || '')}</h2><p class="eras-show-meta">${esc(show.date)}${show.territory ? ` · ${esc(show.territory)}` : ''}</p><p class="eras-show-venue">${esc(show.venue || '')}</p><div class="eras-show-navigation"><button type="button" data-step="-1" ${show.seq<=1?'disabled':''}><span class="eras-nav-desktop">← Previous show</span><span class="eras-nav-mobile">◀ Prev show</span></button><button type="button" data-step="1" ${show.seq>=152?'disabled':''}><span class="eras-nav-desktop">Next show →</span><span class="eras-nav-mobile">Next show ▶</span></button></div></header>`;
+    const openingActs = [show.firstAct, show.secondAct].filter(v => v && !isNA(v) && String(v).trim().toLowerCase() !== 'none');
+    if (!cancelled) html += `<div class="eras-show-support"><h3>Opening acts</h3><p>${openingActs.length ? openingActs.map(esc).join(' · ') : 'None'}</p></div>`;
     if (cancelled) {
       html += `<div class="eras-cancelled-note"><img class="eras-cancelled-image" src="/assets/images/eras-tour-cancelled.svg" alt="Cancelled show"><p>This show was cancelled.</p></div>`;
     } else {
@@ -64,7 +65,7 @@
       }
       html += '</section>';
       const gear = gearFields.map(field=>({field,value:show[field]})).filter(x=>x.value!=null&&!isNA(x.value)&&String(x.value).toLowerCase()!=='none');
-      html += `<section class="eras-detail-section"><h3>Instruments and microphones</h3>${gear.length?`<dl class="eras-detail-facts">${gear.map(x=>`<div><dt>${esc(displayField(x.field))}</dt><dd>${esc(x.value)}</dd></div>`).join('')}</dl>`:'<p>No instrument or microphone details recorded.</p>'}</section>`;
+      html += `<section class="eras-detail-section"><h3>Instruments and mics</h3>${gear.length?`<dl class="eras-detail-facts">${gear.map(x=>`<div><dt>${esc(displayField(x.field))}</dt><dd>${esc(x.value)}</dd></div>`).join('')}</dl>`:'<p>No instrument or mic details recorded.</p>'}</section>`;
       const surpriseSong = (instrument) => {
         const prefix = instrument === 'Guitar' ? 'Guitar' : 'Piano';
         const tracks = [`${prefix} First Song`, `${prefix} Second Song`, `${prefix} Third Song`].map(k=>show[k]).filter(v=>v!=null&&!isNA(v));
