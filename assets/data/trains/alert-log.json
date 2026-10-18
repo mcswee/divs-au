@@ -1,5 +1,16 @@
 [
   {
+    "id": "ad80220f-4710-5222-8823-80275fd04b69",
+    "first_seen": "2026-10-18T04:03:09.958041+00:00",
+    "header": "Suspended",
+    "description": "Buses replace trains between Mooroolbark and Lilydale due to an equipment fault.  Replacement buses have been ordered, however will take over 60 minutes to arrive A train service will operate between Flinders Street and Mooroolbark, with delays to the service Allow extra travel time  Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
     "id": "7b180768-775c-590b-a750-9d9431956148",
     "first_seen": "2026-10-17T20:20:33.227896+00:00",
     "header": "Planned work: Moreland Station car park closure",
