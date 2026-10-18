@@ -1,5 +1,16 @@
 [
   {
+    "id": "1097b8f0-8585-5566-ae60-0e00ecf31a19",
+    "first_seen": "2026-10-18T16:48:42.391366+00:00",
+    "header": "Planned work: Burwood Station carpark closure",
+    "description": "3am Monday 19 October to 5pm Monday 26 October The Trent Street car park will temporarily be closed for essential maintenance and renewal works to be completed. All other commuter and accessible parking remain open. Alternative parking is available at the Bardolph Street West car park at Burwood. For your safety, please observe any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-ALM-R:"
+    ]
+  },
+  {
     "id": "ad80220f-4710-5222-8823-80275fd04b69",
     "first_seen": "2026-10-18T04:03:09.958041+00:00",
     "header": "Suspended",
