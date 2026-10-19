@@ -1,5 +1,27 @@
 [
   {
+    "id": "94c4eed4-a763-5029-a3a4-56fec1ed803b",
+    "first_seen": "2026-10-19T00:57:26.461203+00:00",
+    "header": "Major Delay",
+    "description": "Trains are resuming between Clifton Hill and Reservoir after an earlier equipment fault in the Clifton Hill area. First trains to resume will be:  The 9:47 am Flinders Street to Mernda.  Replacement buses may supplement train services as we restore the regular frequency. We anticipate major delays as we recover the timetable. Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-MDD-R:"
+    ]
+  },
+  {
+    "id": "a3d19e50-6a1e-5d95-94da-58418ffafecc",
+    "first_seen": "2026-10-19T00:57:26.461203+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 40 minutes now clearing after an earlier equipment fault in the Clifton Hill area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
     "id": "01117f41-5dcf-51e0-8d23-90e9497b36ad",
     "first_seen": "2026-10-18T22:32:32.691809+00:00",
     "header": "Minor Delay",
