@@ -1,5 +1,95 @@
 [
   {
+    "id": "3e193200-f1a5-5972-be40-6c3060daa6ac",
+    "first_seen": "2026-10-19T10:11:17.872197+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Box Hill from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "8281c29c-ccba-5f56-9e5b-ad8147837666",
+    "first_seen": "2026-10-19T10:11:17.872197+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Box Hill from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "f3a8aa6d-f8ac-5fe9-9285-e20ef4b913fd",
+    "first_seen": "2026-10-19T10:11:17.872197+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Camberwell and Alamein from 8:45pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-ALM-R:"
+    ]
+  },
+  {
+    "id": "d905d52c-7967-5b41-ab91-5861b13f32bf",
+    "first_seen": "2026-10-19T10:11:17.872197+00:00",
+    "header": "Planned work: Night works between Burnley to Box Hill",
+    "description": "9pm to 4am each night, Monday 19 October to Thursday 22 October  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Belgrave and Lilydale lines. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "fb0a35de-750d-541e-9bbe-7aa5caeb0f56",
+    "first_seen": "2026-10-19T10:11:17.872197+00:00",
+    "header": "Planned work: Night works between Camberwell to Alamein",
+    "description": "9pm to 4am each night, Monday 19 October to Thursday 22 October  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Alamein Line. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-ALM-R:"
+    ]
+  },
+  {
+    "id": "96d0489b-802e-59b8-a07e-c3c64f810281",
+    "first_seen": "2026-10-19T10:11:17.872197+00:00",
+    "header": "Planned work: Buses replace trains between Camberwell and Alamein",
+    "description": "8.45pm to last service each night, Monday 19 October to Wednesday 21 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-ALM-R:"
+    ]
+  },
+  {
+    "id": "fc888722-c175-578b-936c-b6db9f575151",
+    "first_seen": "2026-10-19T10:11:17.872197+00:00",
+    "header": "Planned work: Buses replace trains between Parliament and Box Hill",
+    "description": "8.30pm to last service each night, Monday 19 October to Wednesday 21 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "c92ff0c7-ead6-5c0c-960d-c4883d4a5da8",
+    "first_seen": "2026-10-19T10:11:17.872197+00:00",
+    "header": "Planned work: Canterbury Station car space closure",
+    "description": "4pm Monday 19 October to 4am Monday 26 October Up to 30 spaces in the Canterbury Station carpark are closed, due to maintenance works. For your safety, please observe any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
     "id": "94c4eed4-a763-5029-a3a4-56fec1ed803b",
     "first_seen": "2026-10-19T00:57:26.461203+00:00",
     "header": "Major Delay",
