@@ -6,30 +6,43 @@
   const showCount = document.getElementById('eras-show-count');
   const showDetail = document.getElementById('eras-show-detail');
   const catalogueSearch = document.getElementById('eras-catalogue-search');
+  const catalogueType = document.getElementById('eras-catalogue-type');
   const eraFilter = document.getElementById('eras-era-filter');
+  const catalogueCount = document.getElementById('eras-catalogue-count');
   const catalogueResults = document.getElementById('eras-catalogue-results');
   const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const isNA = value => String(value ?? '').trim().toLowerCase() === 'n/a';
   let data, selectedSeq = 1;
 
-  const outfitGroups = [
-    ['Lover', ['Lover Bodysuit','Lover Jacket']],
-    ['Fearless', ['Fearless Dress']],
-    ['Evermore', ['Evermore Dress','Evermore Cloak']],
-    ['Red', ['Red T-Shirt','Red Romper','Red Jacket']],
-    ['Speak Now', ['Speak Now Dress']],
-    ['Reputation', ['Reputation Bodysuit']],
-    ['Folklore', ['Folklore Dress','Folklore Cloak']],
-    ['1989', ['1989 v1','1989 v2']],
-    ['The Tortured Poets Department', ['TTPD Dress','TTPD Gloves','TTPD Jacket','TTPD Necklace','TTPD Two Piece','TTPD Tailcoat']],
-    ['Acoustic / surprise songs', ['Acoustic Dress']],
-    ['Midnights', ['Midnights Coat','Midnights T-Shirt Dress','Midnights Bodysuit','Midnights Garter','Midnights Jacket']]
-  ];
-  const gearFields = ['Lover Guitar','Fearless Guitar','Red Guitar','Speak Now Guitar','Folklore Guitar','Accoustic Guitar','Lover Mic','Lover Stand Mic','Fearless Mic','Evermore Mic','Red Mic','Red ATW Mic','Speak Now Mic','Reputation Mic','Folklore Mic','1989 Mic','TTPD Mic','TTPD ICDIWABH Mic','Accoustic Guitar Mic','Accoustic Piano Mic','Midnights Mic'];
-  const displayField = field => ({'Accoustic Guitar':'Acoustic guitar','Accoustic Guitar Mic':'Acoustic guitar mic','Accoustic Piano Mic':'Acoustic piano mic','Red ATW Mic':'Red / All Too Well mic','TTPD ICDIWABH Mic':'TTPD “I Can Do It With a Broken Heart” mic','1989 v1':'1989 set','1989 v2':'1989 set'})[field] || field;
+  const displayField = field => ({
+    'Accoustic Guitar':'Acoustic guitar',
+    'Accoustic Guitar Mic':'Acoustic guitar mic',
+    'Accoustic Piano Mic':'Acoustic piano mic',
+    'Red ATW Mic':'Red / All Too Well mic',
+    'TTPD ICDIWABH Mic':'TTPD “I Can Do It With a Broken Heart” mic',
+    '1989 v1':'1989 set',
+    '1989 v2':'1989 pieces',
+    'TTPD Two Piece':'TTPD two-piece',
+    'Red Jacket':'Red coat'
+  })[field] || field;
   const labelShow = s => `${s.city} ${s.night || ''}`.trim();
   const allShows = () => data.showDetails.map(s => ({...s, ...(data.shows.find(x => x.seq === s.seq) || {})})).sort((a,b)=>a.seq-b.seq);
   const shows = () => allShows();
+  const imageTag = (src, alt, className='eras-art-image') => `<img class="${className}" src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async">`;
+  root.addEventListener('error', e => {
+    if (!e.target.matches || !e.target.matches('.eras-art-image')) return;
+    const img = e.target;
+    img.hidden = true;
+    const parent = img.parentElement;
+    if (parent && !parent.querySelector('.eras-image-fallback')) {
+      const fallback = document.createElement('span');
+      fallback.className = 'eras-image-fallback';
+      fallback.textContent = 'Illustration to be added';
+      parent.appendChild(fallback);
+    }
+  }, true);
+  const showButtonList = ids => ids.map(id => `<button type="button" class="eras-inline-show" data-open-show="${id}">${id}</button>`).join(' ');
+  const card = (item, compact=false) => `<article class="${compact?'eras-detail-item eras-detail-visual':'eras-variant-card'}"><div class="${compact?'eras-detail-art':'eras-art-placeholder'}">${imageTag(item.src,item.label)}</div><div class="${compact?'eras-detail-item-copy':'eras-card-body'}"><h${compact?'5':'4'}>${esc(item.label)}</h${compact?'5':'4'}>${item.value && compact?`<p>${esc(item.value)}</p>`:''}${!compact?`<p>${item.showIds.length} ${item.showIds.length===1?'show':'shows'}</p><details><summary>Shows worn</summary><p>${showButtonList(item.showIds)}</p></details>`:''}</div></article>`;
 
   function renderShowList() {
     const q = showSearch.value.trim().toLowerCase();
@@ -38,35 +51,35 @@
     showList.innerHTML = matches.map(s => `<button type="button" class="eras-show-option${s.seq===selectedSeq?' is-selected':''}" role="option" aria-selected="${s.seq===selectedSeq?'true':'false'}" data-seq="${s.seq}"><span class="eras-show-option-main"><strong>${esc(s.city)} ${esc(s.night || '')}</strong><small>Show ${s.seq} of 152 · ${esc(s.date)} · ${esc(s.venue)}</small></span></button>`).join('') || '<p class="eras-empty">No shows match that search.</p>';
   }
 
-  function outfitValue(show, field) {
-    if (field === '1989 v2') {
-      return ['1989 Top','1989 Skirt','1989 Left Shoe','1989 Right Shoe'].some(p => !isNA(show[p])) ? 'Pink and Blue' : '';
-    }
-    const value = show[field];
-    return value != null && !isNA(value) ? value : '';
+  function renderVisualSection(title, items, className='eras-detail-grid') {
+    if (!items || !items.length) return '';
+    return `<section class="eras-detail-section"><h3>${esc(title)}</h3><div class="${className}">${items.map(item=>card(item,true)).join('')}</div></section>`;
   }
+
   function renderDetail(seq) {
     const show = shows().find(s=>s.seq===Number(seq));
     if (!show) return;
     selectedSeq = show.seq;
     renderShowList();
-    const cancelled = Object.keys(show).filter(k=>outfitGroups.some(([,fields])=>fields.includes(k))).every(k=>isNA(show[k]));
+    const outfitKeys = ['Lover Bodysuit','Lover Jacket','Fearless Dress','Evermore Dress','Evermore Cloak','Red T-Shirt','Red Romper','Red Jacket','Speak Now Dress','Reputation Bodysuit','Folklore Dress','Folklore Cloak','1989 v1','1989 Top','1989 Skirt','1989 Left Shoe','1989 Right Shoe','TTPD Dress','TTPD Jacket','TTPD Two Piece','Acoustic Dress','Midnights T-Shirt Dress','Midnights Bodysuit','Midnights Jacket'];
+    const cancelled = outfitKeys.every(k=>isNA(show[k]));
     let html = `<header class="eras-selected-show"><p class="eras-eyebrow">Show ${show.seq} of 152</p><h2>${esc(show.city)} ${esc(show.night || '')}</h2><p class="eras-show-meta">${esc(show.date)}${show.territory ? ` · ${esc(show.territory)}` : ''}</p><p class="eras-show-venue">${esc(show.venue || '')}</p><div class="eras-show-navigation"><button type="button" data-step="-1" ${show.seq<=1?'disabled':''}><span class="eras-nav-desktop">← Previous show</span><span class="eras-nav-mobile">◀ Prev show</span></button><button type="button" data-step="1" ${show.seq>=152?'disabled':''}><span class="eras-nav-desktop">Next show →</span><span class="eras-nav-mobile">Next show ▶</span></button></div></header>`;
     const openingActs = [show.firstAct, show.secondAct].filter(v => v && !isNA(v) && String(v).trim().toLowerCase() !== 'none');
     if (!cancelled) html += `<div class="eras-show-support"><h3>Opening acts</h3><p>${openingActs.length ? openingActs.map(esc).join(' · ') : 'None'}</p></div>`;
     if (cancelled) {
       html += `<div class="eras-cancelled-note"><img class="eras-cancelled-image" src="/assets/images/eras-tour-cancelled.svg" alt="Cancelled show"><p>This show was cancelled.</p></div>`;
     } else {
+      const visuals = show.visuals || {outfits:[],guitars:[],microphones:[]};
+      const byEra = new Map();
+      visuals.outfits.forEach(item => { if (!byEra.has(item.era)) byEra.set(item.era,[]); byEra.get(item.era).push(item); });
       html += '<section class="eras-detail-section"><h3>Outfits</h3>';
-      for (const [era, fields] of outfitGroups) {
-        const items = fields.map(field=>({field,value:outfitValue(show,field)})).filter(x=>x.value);
-        if (!items.length) continue;
-        html += `<div class="eras-detail-era"><h4>${esc(era)}</h4><div class="eras-detail-grid">${items.map(({field,value})=>`<article class="eras-detail-item"><div class="eras-detail-art"><span>Illustration to be added</span></div><div class="eras-detail-item-copy"><h5>${esc(displayField(field))}</h5><p>${esc(value)}</p></div></article>`).join('')}</div></div>`;
-      }
+      if (byEra.size) {
+        for (const [era,items] of byEra) html += `<div class="eras-detail-era"><h4>${esc(era)}</h4><div class="eras-detail-grid">${items.map(item=>card(item,true)).join('')}</div></div>`;
+      } else html += '<p>No outfit details recorded.</p>';
       html += '</section>';
-      const gear = gearFields.map(field=>({field,value:show[field]})).filter(x=>x.value!=null&&!isNA(x.value)&&String(x.value).toLowerCase()!=='none');
-      html += `<section class="eras-detail-section"><h3>Instruments and mics</h3>${gear.length?`<dl class="eras-detail-facts">${gear.map(x=>`<div><dt>${esc(displayField(x.field))}</dt><dd>${esc(x.value)}</dd></div>`).join('')}</dl>`:'<p>No instrument or mic details recorded.</p>'}</section>`;
-      const surpriseSong = (instrument) => {
+      html += renderVisualSection('Guitars',visuals.guitars);
+      html += renderVisualSection('Microphones',visuals.microphones);
+      const surpriseSong = instrument => {
         const prefix = instrument === 'Guitar' ? 'Guitar' : 'Piano';
         const tracks = [`${prefix} First Song`, `${prefix} Second Song`, `${prefix} Third Song`].map(k=>show[k]).filter(v=>v!=null&&!isNA(v));
         if (!tracks.length) return '';
@@ -88,26 +101,31 @@
   }
 
   function renderCatalogue() {
-    const q = catalogueSearch.value.trim().toLowerCase(), era = eraFilter.value;
-    const families = data.families.filter(f=>era==='all'||f.era===era);
-    const html = families.map(f=>{
-      const variants=f.variants.filter(v=>`${f.era} ${f.field} ${v.label}`.toLowerCase().includes(q));
-      if(!variants.length)return '';
-      return `<section class="eras-catalogue-family"><h3>${esc(f.era)} · ${esc(displayField(f.field))}</h3><div class="eras-card-grid">${variants.map(v=>`<article class="eras-variant-card"><div class="eras-art-placeholder"><span>Illustration to be added</span></div><div class="eras-card-body"><h4>${esc(v.label)}</h4><p>${v.count} ${v.count===1?'show':'shows'}</p><details><summary>Shows worn</summary><p>${v.showIds.map(id=>`<button type="button" class="eras-inline-show" data-open-show="${id}">${id}</button>`).join(' ')}</p></details></div></article>`).join('')}</div></section>`;
-    }).join('');
-    catalogueResults.innerHTML = html || '<p class="eras-empty">No catalogue entries match that search.</p>';
+    const q = catalogueSearch.value.trim().toLowerCase();
+    const type = catalogueType.value;
+    const era = eraFilter.value;
+    const items = data.imageCatalog.filter(item => (type==='all'||item.category===type) && (era==='all'||item.era===era||item.era==='All eras') && `${item.era} ${item.family} ${item.label} ${item.code}`.toLowerCase().includes(q));
+    catalogueCount.textContent = `${items.length} illustrations`;
+    const groups = new Map();
+    items.forEach(item=>{
+      const group = item.category==='microphone' ? 'Microphones' : item.era;
+      if(!groups.has(group)) groups.set(group,[]);
+      groups.get(group).push(item);
+    });
+    catalogueResults.innerHTML = [...groups].map(([group,groupItems])=>`<section class="eras-catalogue-family"><h3>${esc(group)}</h3><div class="eras-card-grid">${groupItems.map(item=>card(item,false)).join('')}</div></section>`).join('') || '<p class="eras-empty">No catalogue entries match that search.</p>';
   }
 
   showList.addEventListener('click', e=>{const btn=e.target.closest('[data-seq]');if(btn)renderDetail(Number(btn.dataset.seq));});
   showSearch.addEventListener('input', renderShowList);
   showDetail.addEventListener('click', e=>{const step=e.target.closest('[data-step]');if(step)renderDetail(selectedSeq+Number(step.dataset.step));});
   catalogueSearch.addEventListener('input',renderCatalogue);
+  catalogueType.addEventListener('change',renderCatalogue);
   eraFilter.addEventListener('change',renderCatalogue);
   catalogueResults.addEventListener('click',e=>{const btn=e.target.closest('[data-open-show]');if(btn){renderDetail(Number(btn.dataset.openShow));document.querySelector('.eras-show-browser').scrollIntoView({behavior:'smooth',block:'start'});}});
 
   fetch('/assets/data/eras-catalogue.json').then(r=>{if(!r.ok)throw new Error('Could not load show data');return r.json();}).then(loaded=>{
     data=loaded;
-    [...new Set(data.families.map(f=>f.era))].forEach(era=>{const opt=document.createElement('option');opt.value=era;opt.textContent=era;eraFilter.appendChild(opt);});
+    [...new Set(data.imageCatalog.map(item=>item.era).filter(era=>era!=='All eras'))].forEach(era=>{const opt=document.createElement('option');opt.value=era;opt.textContent=era;eraFilter.appendChild(opt);});
     renderShowList();renderDetail(1);renderCatalogue();
   }).catch(err=>{showCount.textContent='Show data unavailable';showDetail.innerHTML=`<p class="eras-empty">${esc(err.message)}.</p>`;});
 })();
