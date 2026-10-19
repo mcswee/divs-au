@@ -30,17 +30,19 @@ extra_scripts: '<script src="/assets/js/eras-outfits.js" defer></script>'
   <details class="eras-secondary-catalogue">
     <summary>Outfit, guitar and microphone catalogue</summary>
     <div class="eras-secondary-controls">
-      <label for="eras-catalogue-search">Search catalogue</label>
-      <input id="eras-catalogue-search" type="search" placeholder="Search outfit, colour or equipment…" autocomplete="off">
-      <label for="eras-catalogue-type">Type</label>
-      <select id="eras-catalogue-type">
-        <option value="all">All items</option>
-        <option value="outfit">Outfits</option>
-        <option value="guitar">Guitars</option>
-        <option value="microphone">Microphones</option>
-      </select>
-      <label for="eras-era-filter">Era</label>
-      <select id="eras-era-filter"><option value="all">All eras</option></select>
+      <div class="eras-control-group">
+        <label for="eras-catalogue-type">Type</label>
+        <select id="eras-catalogue-type">
+          <option value="all">All items</option>
+          <option value="outfit">Outfits</option>
+          <option value="guitar">Guitars</option>
+          <option value="microphone">Microphones</option>
+        </select>
+      </div>
+      <div class="eras-control-group">
+        <label for="eras-era-filter">Era</label>
+        <select id="eras-era-filter"><option value="all">All eras</option></select>
+      </div>
     </div>
     <p class="eras-result-count" id="eras-catalogue-count" aria-live="polite"></p>
     <div id="eras-catalogue-results" class="eras-results"></div>
