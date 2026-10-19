@@ -58,9 +58,9 @@
   const micLabels = {
     'Lover Mic':'Lover microphone','Lover Stand Mic':'Lover stand microphone','Fearless Mic':'Fearless microphone',
     'Evermore Mic':'Evermore microphone','Reputation Mic':'Reputation microphone','Speak Now Mic':'Speak Now microphone',
-    'Red Mic':'Red microphone','Red ATW Mic':'Red / All Too Well microphone','Folklore Mic':'Folklore microphone',
+    'Red Mic':'Red microphone','Red ATW Mic':'All Too Well microphone','Folklore Mic':'Folklore microphone',
     '1989 Mic':'1989 microphone','TTPD Mic':'TTPD microphone',
-    'TTPD ICDIWABH Mic':'TTPD “I Can Do It With a Broken Heart” microphone',
+    'TTPD ICDIWABH Mic':'I Can Do It With a Broken Heart microphone',
     'Accoustic Guitar Mic':'Acoustic guitar microphone','Accoustic Piano Mic':'Acoustic piano microphone',
     'Midnights Mic':'Midnights microphone'
   };
@@ -78,7 +78,7 @@
     if (parent && !parent.querySelector('.eras-image-fallback')) {
       const fallback = document.createElement('span');
       fallback.className = 'eras-image-fallback';
-      fallback.textContent = 'SVG unavailable';
+      fallback.textContent = 'No image yet';
       parent.appendChild(fallback);
     }
   }, true);
@@ -93,7 +93,7 @@
     const headingTag = compact ? 'h5' : 'h4';
     const art = item.src
       ? imageTag(item.src, item.alt || item.label || item.code)
-      : '<span class="eras-image-fallback">SVG unavailable</span>';
+      : '<span class="eras-image-fallback">No image yet</span>';
     let meta = '';
     let details = '';
     if (!compact) {
@@ -223,7 +223,7 @@
 
       const moments = [
         {label:'“Oh Hi!”',value:show['Oh Hi!']},{label:'“Like Ever!”',value:show['Like Ever!']},
-        {label:'Ovation',value:show.Ovation},{label:'Guy on the screen',value:show['Guy on the']}
+        {label:'Ovation',value:show.Ovation},{label:'Guy on the...',value:show['Guy on the']}
       ].filter(item => !isNA(item.value));
       if (moments.length) html += `<section class="eras-detail-section"><h3>Show moments</h3><dl class="eras-detail-facts">${moments.map(item => `<div><dt>${esc(item.label)}</dt><dd>${esc(item.value)}</dd></div>`).join('')}</dl></section>`;
       const guests = ['Special Guest','Second Guest','Third Guest'].map(key => show[key]).filter(value => !isNA(value));
