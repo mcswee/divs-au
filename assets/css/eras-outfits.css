@@ -107,3 +107,11 @@
   .eras-nav-desktop { display: none; }
   .eras-nav-mobile { display: inline; }
 }
+
+/* SVG illustrations */
+.eras-art-image { display: block; width: 100%; height: 100%; object-fit: contain; }
+.eras-art-placeholder, .eras-detail-art { overflow: hidden; }
+.eras-variant-card .eras-art-placeholder { aspect-ratio: 4 / 5; }
+.eras-detail-visual .eras-detail-art { aspect-ratio: 4 / 5; }
+.eras-result-count { margin: .75rem 0; font-size: .9rem; opacity: .8; }
+.eras-image-fallback { display: block; max-width: 13rem; padding: 1rem; color: var(--muted, #686868); text-align: center; font-size: .85rem; }
