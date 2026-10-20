@@ -1,5 +1,37 @@
 [
   {
+    "id": "0d78ab1e-cd31-5265-b27b-7d900c7025b7",
+    "first_seen": "2026-10-20T09:35:18.914313+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Box Hill from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "7aaeca65-6be0-5dfe-91a5-dafab25683e2",
+    "first_seen": "2026-10-20T09:35:18.914313+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Box Hill from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
+    "id": "80a6fbec-53a1-5660-8d47-ec2973d0db5a",
+    "first_seen": "2026-10-20T09:35:18.914313+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Camberwell and Alamein from 8:45pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-ALM-R:",
+      "aus:vic:vic-02-ALM:"
+    ]
+  },
+  {
     "id": "28b50a5a-2424-5687-9add-756c84dccf52",
     "first_seen": "2026-10-19T17:07:39.624565+00:00",
     "header": "Planned work: Buses replace trains from Newport to Werribee",
