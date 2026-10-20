@@ -1,5 +1,27 @@
 [
   {
+    "id": "936f1d76-7aa6-5903-9989-a4177a2eb0ca",
+    "first_seen": "2026-10-20T21:24:51.764593+00:00",
+    "header": "Planned work: Pakenham Station stair works",
+    "description": "6am Wednesday 21 October to 6pm Friday 6 November One set of stairs will be intermittently closed. Please use the lift or alternate stairs.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "3fe7b8e2-5ae8-5194-aba3-dc0d3c3046b3",
+    "first_seen": "2026-10-20T21:24:51.764593+00:00",
+    "header": "Planned work: Pakenham Station car space closures",
+    "description": "6am Wednesday 21 October to 6pm Friday 6 November 16 car spaces in the station car park are intermittently closed due to project works. For your safety, please follow signage in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
     "id": "ff1f5c28-06a5-54a2-aeea-a4c5e1b2cc8d",
     "first_seen": "2026-10-20T14:53:21.813836+00:00",
     "header": "Planned Works",
