@@ -186,7 +186,7 @@
     html += `<div class="eras-show-support"><h3>Opening acts</h3><p>${openingActs.length ? openingActs.map(esc).join(' · ') : 'None'}</p></div>`;
 
     if (cancelled) {
-      html += '<div class="eras-cancelled-note"><img class="eras-cancelled-image" src="/assets/images/eras-tour-cancelled.svg" alt="Cancelled show"><p>This show was cancelled.</p></div>';
+      html += '<div class="eras-cancelled-note"><img class="eras-cancelled-image" src="/assets/images/eras-tour/cancelled.svg" alt="Cancelled show"><p>This show was cancelled.</p></div>';
     } else {
       const refs = show.visualRefs || {outfits:[],guitars:[],microphones:[]};
       const outfitRefs = new Map((refs.outfits || []).map(ref => [ref.f,ref]));
@@ -222,8 +222,8 @@
       if (songs.length) html += `<section class="eras-detail-section"><h3>Surprise songs</h3><dl class="eras-detail-facts">${songs.map(item => `<div><dt>${esc(item.label)}</dt><dd>${esc(item.value)}</dd></div>`).join('')}</dl></section>`;
 
       const moments = [
-        {label:'“Oh Hi!”',value:show['Oh Hi!']},{label:'“Like Ever!”',value:show['Like Ever!']},
-        {label:'Ovation',value:show.Ovation},{label:'Guy on the...',value:show['Guy on the']}
+        {label:'“Oh Hi!”',value:show['Oh Hi!']},{label:'“Kam’s Like Ever!”',value:show['Like Ever!']},
+        {label:'Champagne Problems Ovation',value:show.Ovation},{label:'Guy on the...',value:show['Guy on the']}
       ].filter(item => !isNA(item.value));
       if (moments.length) html += `<section class="eras-detail-section"><h3>Show moments</h3><dl class="eras-detail-facts">${moments.map(item => `<div><dt>${esc(item.label)}</dt><dd>${esc(item.value)}</dd></div>`).join('')}</dl></section>`;
       const guests = ['Special Guest','Second Guest','Third Guest'].map(key => show[key]).filter(value => !isNA(value));
