@@ -1,5 +1,69 @@
 [
   {
+    "id": "e1cf8e88-695a-546e-b6c6-ca5eae2c099c",
+    "first_seen": "2026-10-21T21:26:04.582367+00:00",
+    "header": "Planned work: Essendon Station car space closure",
+    "description": "6am to 6pm, Thursday 22 October Up to 30 spaces in the Rose Street carpark at Essendon Station are closed, due to maintenance works. For your safety, please observe any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB-R:",
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "6f2de589-d593-560e-837a-f333d1541453",
+    "first_seen": "2026-10-21T21:26:04.582367+00:00",
+    "header": "Other Information",
+    "description": "Select services may operate direct to/from Flinders St (not via the City Loop) due to an equipment fault in the Southern Cross area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "a5c4c405-f372-54e5-9bbd-bb0171ff0eb3",
+    "first_seen": "2026-10-21T21:26:04.582367+00:00",
+    "header": "Other Information",
+    "description": "Select services may operate direct to/from Flinders St (not via the City Loop) due to an equipment fault in the Southern Cross area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
+    "id": "328f687e-1133-5f5f-8df0-d58e7a060d2c",
+    "first_seen": "2026-10-21T21:26:04.582367+00:00",
+    "header": "Other Information",
+    "description": "Select services may operate direct to/from Flinders St (not via the City Loop) due to an equipment fault in the Southern Cross area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-ALM-R:"
+    ]
+  },
+  {
+    "id": "14fb2841-5543-5bf5-ba92-418077133183",
+    "first_seen": "2026-10-21T21:26:04.582367+00:00",
+    "header": "Other Information",
+    "description": "Select services may operate direct to/from Flinders St (not via the City Loop) due to an equipment fault in the Southern Cross area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "e29397ab-6964-5129-9fe1-0239ad757956",
+    "first_seen": "2026-10-21T21:26:04.582367+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier equipment fault in the South Morang area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-MDD-R:"
+    ]
+  },
+  {
     "id": "3e7f9ed5-03eb-59b7-b16d-3be4a99ce481",
     "first_seen": "2026-10-21T14:59:59.482931+00:00",
     "header": "Planned Works",
