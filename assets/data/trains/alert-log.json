@@ -1,5 +1,25 @@
 [
   {
+    "id": "f2be50b2-869c-531f-bef3-4384ec546a9c",
+    "first_seen": "2026-10-21T00:03:26.945392+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier police request in the Dandenong area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "9719bb3f-b112-5717-8580-95a304d3c65e",
+    "first_seen": "2026-10-21T00:03:26.945392+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier police request in the Dandenong area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
     "id": "936f1d76-7aa6-5903-9989-a4177a2eb0ca",
     "first_seen": "2026-10-20T21:24:51.764593+00:00",
     "header": "Planned work: Pakenham Station stair works",
