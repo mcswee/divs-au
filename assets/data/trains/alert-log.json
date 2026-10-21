@@ -1,5 +1,47 @@
 [
   {
+    "id": "53adb65e-ddea-565a-a3d5-0fbde834a45b",
+    "first_seen": "2026-10-21T09:31:16.167837+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Box Hill from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "87b21ed7-a46c-50e9-9f98-0c3f9a56148b",
+    "first_seen": "2026-10-21T09:31:16.167837+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Box Hill from 8:30pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "b92b2221-9a74-57e7-b83c-6bc769529800",
+    "first_seen": "2026-10-21T09:31:16.167837+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Camberwell and Alamein from 8:45pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-ALM-R:",
+      "aus:vic:vic-02-ALM:"
+    ]
+  },
+  {
+    "id": "3371e099-f528-5c6d-9266-3bff683f755d",
+    "first_seen": "2026-10-21T09:31:16.167837+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a police request in the Mordialloc area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
     "id": "f2be50b2-869c-531f-bef3-4384ec546a9c",
     "first_seen": "2026-10-21T00:03:26.945392+00:00",
     "header": "Minor Delay",
