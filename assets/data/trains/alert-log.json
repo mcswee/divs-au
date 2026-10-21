@@ -1,5 +1,16 @@
 [
   {
+    "id": "3e7f9ed5-03eb-59b7-b16d-3be4a99ce481",
+    "first_seen": "2026-10-21T14:59:59.482931+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Newport and Werribee from 11:50pm to last train tonight, while project works take place. Note: Buses operate in one direction from Newport to Werribee during this time. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
     "id": "53adb65e-ddea-565a-a3d5-0fbde834a45b",
     "first_seen": "2026-10-21T09:31:16.167837+00:00",
     "header": "Planned Works",
