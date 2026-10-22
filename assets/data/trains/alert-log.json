@@ -1,5 +1,15 @@
 [
   {
+    "id": "9e9939bf-e4f3-5eb5-9878-ecfd0b6c3eb0",
+    "first_seen": "2026-10-22T04:15:02.672130+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes due to a vehicle hit by a train. Trains may remain stationary at or in-between stations for extended period of time. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
     "id": "e1cf8e88-695a-546e-b6c6-ca5eae2c099c",
     "first_seen": "2026-10-21T21:26:04.582367+00:00",
     "header": "Planned work: Essendon Station car space closure",
