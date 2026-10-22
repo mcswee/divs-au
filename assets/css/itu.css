@@ -1,0 +1,102 @@
+/* ITU explorer: uses the divs.au site variables and type system */
+.itu-page { max-width: 1100px; padding-top: 28px; padding-bottom: 36px; }
+.itu-page * { box-sizing: border-box; }
+.itu-page .itu-kicker, .itu-page .itu-eyebrow { color: var(--text-highlight); font-size: .72rem; font-weight: 750; letter-spacing: .12em; }
+.itu-title-row { display:flex; justify-content:space-between; align-items:center; gap:24px; margin: 8px 0 24px; }
+.itu-title-row h1 { margin: 7px 0 8px; font-size: clamp(2rem, 4vw, 3.15rem); letter-spacing: -.045em; line-height:1.05; }
+.itu-intro { max-width: 650px; color: var(--text-highlight); font-size: 1.05rem; line-height:1.6; }
+.itu-mark { display:flex; flex-direction:column; justify-content:center; align-items:center; width:100px; height:100px; flex-shrink:0; border:1px solid #c9c9dc; border-radius:50%; color:var(--brand-main); font-family:'Atkinson Hyperlegible Mono',monospace; font-size:1.65rem; font-weight:800; letter-spacing:-.08em; transform:rotate(-8deg); }
+.itu-mark span { font-size:.55rem; letter-spacing:.19em; font-weight:700; }
+.itu-mode-nav { display:flex; gap:6px; border-bottom:1px solid var(--text-accent); margin-bottom:20px; }
+.itu-mode-nav a { display:block; padding:12px 16px; color:var(--text-highlight); text-decoration:none; font-weight:650; border-bottom:3px solid transparent; }
+.itu-mode-nav a:hover, .itu-mode-nav a.selected { color:var(--brand-main); border-bottom-color:var(--brand-main); }
+.itu-panel { background:var(--highlight); border:1px solid #d7d7df; border-radius:12px; padding:clamp(18px, 3vw, 30px); margin:0 0 20px; box-shadow:var(--shadow-main); scroll-margin-top:16px; }
+.itu-section-head { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:22px; }
+.itu-section-head h2 { font-size:1.45rem; border:0; padding:0; margin:5px 0 0; letter-spacing:-.025em; }
+.itu-year-readout { display:flex; flex-direction:column; align-items:flex-end; }
+.itu-year-readout > span:first-child { font-family:'Atkinson Hyperlegible Mono',monospace; font-size:2.3rem; line-height:1; font-weight:750; color:var(--brand-main); }
+.itu-year-range { margin-top:6px; color:var(--text-highlight); font-size:.72rem; letter-spacing:.04em; }
+.itu-year-controls { display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:8px 20px; align-items:center; }
+.itu-year-controls input[type=range] { width:100%; accent-color:var(--brand-main); cursor:pointer; }
+.itu-range-labels { grid-column:1; display:flex; justify-content:space-between; font-family:'Atkinson Hyperlegible Mono',monospace; font-size:.7rem; color:var(--text-highlight); }
+.itu-year-controls > label:not(.itu-sr-only) { grid-column:2; grid-row:1; font-size:.78rem; color:var(--text-highlight); font-weight:650; }
+.itu-year-controls select { grid-column:2; grid-row:2; width:100%; padding:10px 12px; border:1px solid #aaaabd; border-radius:6px; background:white; color:var(--text-main); font:inherit; }
+.itu-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin:24px 0 28px; background:var(--brand-highlight); border-radius:8px; overflow:hidden; }
+.itu-stats > div { padding:16px 18px; display:flex; flex-direction:column; gap:4px; border-right:1px solid #d9d9e8; }
+.itu-stats > div:last-child { border-right:0; }
+.itu-stats strong { color:var(--brand-main); font-family:'Atkinson Hyperlegible Mono',monospace; font-size:1.6rem; line-height:1.1; }
+.itu-stats span { color:var(--text-highlight); font-size:.77rem; line-height:1.35; }
+.itu-list-head { display:flex; justify-content:space-between; align-items:end; gap:18px; margin-bottom:12px; }
+.itu-list-head h3 { font-size:1.08rem; padding:0 0 4px; }
+.itu-list-head p { color:var(--text-highlight); font-size:.82rem; }
+.itu-search input, .itu-prefix-search input { width:100%; border:1px solid #a9a9b8; border-radius:6px; background:#fff; color:var(--text-main); padding:11px 12px; font:inherit; min-width:0; }
+.itu-search { width:min(100%,300px); flex-shrink:0; }
+.itu-results-meta { color:var(--text-highlight); font-size:.78rem; margin:8px 0; }
+.itu-allocation-list { border-top:1px solid var(--accent); }
+.itu-allocation-row { display:grid; grid-template-columns:76px minmax(0,1fr) 22px; gap:12px; align-items:center; padding:11px 10px; border-bottom:1px solid var(--accent); text-decoration:none; color:inherit; border-radius:3px; }
+.itu-allocation-row:hover, .itu-allocation-row:focus-visible { background:var(--brand-highlight); outline-offset:-2px; }
+.itu-prefix-code { font-family:'Atkinson Hyperlegible Mono',monospace; font-size:.95rem; font-weight:800; color:var(--brand-main); letter-spacing:.02em; }
+.itu-allocation-entity { font-size:.9rem; font-weight:600; line-height:1.3; }
+.itu-allocation-entity small { display:block; font-size:.72rem; color:var(--text-highlight); font-weight:450; margin-top:2px; }
+.itu-row-arrow { color:#85859b; font-size:1.1rem; text-align:right; }
+.itu-more { display:block; margin:14px auto 0; border:1px solid #aaaabd; border-radius:6px; background:transparent; color:var(--brand-main); padding:10px 18px; font:inherit; font-size:.85rem; font-weight:700; cursor:pointer; }
+.itu-more:hover { background:var(--brand-highlight); }
+.itu-section-icon { display:grid; place-items:center; width:42px; height:42px; border-radius:50%; background:var(--brand-highlight); color:var(--brand-main); font-size:1.4rem; }
+.itu-prefix-search { max-width:640px; }
+.itu-prefix-search > label { display:block; margin-bottom:7px; font-size:.8rem; font-weight:700; }
+.itu-prefix-search-row { display:flex; gap:8px; }
+.itu-prefix-search-row input { flex:1; }
+.itu-prefix-search-row button { border:1px solid var(--brand-main); border-radius:6px; padding:0 18px; color:white; background:var(--brand-main); font:inherit; font-size:.85rem; font-weight:700; cursor:pointer; white-space:nowrap; }
+.itu-prefix-search-row button:hover { background:var(--brand-accent); }
+.itu-suggestions { margin-top:6px; max-height:180px; overflow:auto; border:1px solid #d0d0dd; border-radius:6px; background:white; }
+.itu-suggestions button { display:flex; width:100%; padding:9px 12px; gap:12px; border:0; background:white; color:var(--text-main); text-align:left; cursor:pointer; font:inherit; }
+.itu-suggestions button:hover, .itu-suggestions button:focus { background:var(--brand-highlight); }
+.itu-suggestions strong { width:48px; color:var(--brand-main); font-family:'Atkinson Hyperlegible Mono',monospace; }
+.itu-suggestions span { color:var(--text-highlight); font-size:.82rem; }
+.itu-history { margin-top:24px; }
+.itu-empty-state { padding:26px 10px 12px; text-align:center; color:var(--text-highlight); }
+.itu-empty-glyph { display:block; color:#aaaac6; font-size:2.8rem; line-height:1.2; margin-bottom:8px; }
+.itu-empty-state p { color:var(--text-main); font-weight:650; margin-bottom:5px; }
+.itu-empty-state > span:last-child { font-size:.8rem; }
+.itu-history-top { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; padding-bottom:16px; border-bottom:1px solid var(--accent); }
+.itu-history-top h3 { font-family:'Atkinson Hyperlegible Mono',monospace; font-size:2rem; color:var(--brand-main); padding:0; }
+.itu-history-top p { font-size:.95rem; color:var(--text-highlight); }
+.itu-history-count { flex-shrink:0; border-radius:5px; background:var(--brand-highlight); color:var(--brand-main); padding:7px 10px; font-size:.75rem; font-weight:700; }
+.itu-timeline { margin:24px 0 12px; }
+.itu-timeline-years { display:flex; justify-content:space-between; color:var(--text-highlight); font-family:'Atkinson Hyperlegible Mono',monospace; font-size:.7rem; padding-bottom:8px; }
+.itu-timeline-track { position:relative; height:26px; background:repeating-linear-gradient(90deg,#e9e9ef 0,#e9e9ef 1px,transparent 1px,transparent 8.333%); border-radius:4px; margin-bottom:18px; }
+.itu-timeline-segment { position:absolute; top:0; height:100%; min-width:3px; border-radius:3px; cursor:pointer; border:1px solid rgba(255,255,255,.7); transition:filter .15s,transform .15s; }
+.itu-timeline-segment:hover, .itu-timeline-segment:focus-visible { filter:brightness(.88); transform:translateY(-2px); outline:2px solid var(--brand-main); outline-offset:1px; }
+.itu-periods { display:grid; gap:0; }
+.itu-period { display:grid; grid-template-columns:110px minmax(0,1fr); gap:14px; padding:12px 0; border-top:1px solid var(--accent); }
+.itu-period-dates { font-family:'Atkinson Hyperlegible Mono',monospace; font-size:.78rem; font-weight:750; color:var(--brand-main); }
+.itu-period-name { font-weight:650; font-size:.9rem; }
+.itu-period-code { display:inline-block; margin-left:7px; padding:2px 6px; border-radius:3px; background:var(--accent); color:var(--text-highlight); font-family:'Atkinson Hyperlegible Mono',monospace; font-size:.68rem; }
+.itu-period-note { margin-top:3px; color:var(--text-highlight); font-size:.76rem; }
+.itu-period.gap .itu-period-dates, .itu-period.gap .itu-period-name { color:var(--text-highlight); }
+.itu-footnote { display:flex; gap:12px; align-items:flex-start; padding:12px 4px 4px; color:var(--text-highlight); }
+.itu-footnote-mark { display:grid; place-items:center; width:20px; height:20px; flex-shrink:0; border:1px solid #aaaabd; border-radius:50%; font-family:serif; font-style:italic; font-weight:700; }
+.itu-footnote p { font-size:.76rem; line-height:1.55; color:var(--text-highlight); }
+.itu-sr-only { position:absolute!important; width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+.itu-empty-results { padding:24px 10px; text-align:center; color:var(--text-highlight); font-size:.9rem; }
+@media (max-width:650px) {
+  .itu-page { padding:20px 14px; }
+  .itu-title-row { align-items:flex-start; }
+  .itu-title-row h1 { font-size:2.1rem; }
+  .itu-mark { width:68px; height:68px; font-size:1.2rem; margin-top:12px; }
+  .itu-mark span { font-size:.45rem; }
+  .itu-panel { padding:17px 14px; }
+  .itu-section-head h2 { font-size:1.2rem; }
+  .itu-year-readout > span:first-child { font-size:1.8rem; }
+  .itu-year-controls { grid-template-columns:minmax(0,1fr) 112px; gap:8px 12px; }
+  .itu-stats > div { padding:12px 8px; }
+  .itu-stats strong { font-size:1.25rem; }
+  .itu-stats span { font-size:.68rem; }
+  .itu-list-head { align-items:stretch; flex-direction:column; }
+  .itu-search { width:100%; }
+  .itu-allocation-row { grid-template-columns:54px minmax(0,1fr) 14px; gap:8px; padding:10px 4px; }
+  .itu-prefix-search-row { flex-direction:column; }
+  .itu-prefix-search-row button { padding:12px; }
+  .itu-history-top h3 { font-size:1.7rem; }
+  .itu-period { grid-template-columns:88px minmax(0,1fr); gap:8px; }
+}
