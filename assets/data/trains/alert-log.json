@@ -1,5 +1,25 @@
 [
   {
+    "id": "3ab9a667-e850-52df-9f9e-5320dd853c67",
+    "first_seen": "2026-10-22T05:09:31.951672+00:00",
+    "header": "Suspended",
+    "description": "Buses replace trains between Mordialloc and Carrum due to vehicle across rail lines.  Replacement buses are in operation A train service will operate between Mordialloc \u2013 Flinders Street, and Carrum \u2013 Frankston with delays to the service Allow an extra 45 minutes for your journey.  Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "5bee64da-8cb8-59db-ae6b-8ee679d17ecf",
+    "first_seen": "2026-10-22T05:09:31.951672+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a train fault in the Windsor area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SHM:"
+    ]
+  },
+  {
     "id": "9e9939bf-e4f3-5eb5-9878-ecfd0b6c3eb0",
     "first_seen": "2026-10-22T04:15:02.672130+00:00",
     "header": "Major Delay",
