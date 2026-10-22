@@ -1,5 +1,27 @@
 [
   {
+    "id": "a0aa9b3e-1137-59f6-9fdc-281e9715cb4a",
+    "first_seen": "2026-10-22T14:59:47.445914+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Newport and Werribee from 11:50pm to last train tonight, while project works take place. Note: Buses operate in one direction from Newport to Werribee during this time. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "1c9cdb22-e391-5cf4-b142-dd1bf3e1072e",
+    "first_seen": "2026-10-22T14:59:47.445914+00:00",
+    "header": "Planned work: Macleod Station car space closures",
+    "description": "10pm Thursday 22 October to 3am Monday 26 October Macleod Station car park is closed, due to project works. Accessible car spaces are temporarily closed. Alternative accessible car spaces remain available across the road from the station car park on Birdwood Avenue. For your safety, please follow signage in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
     "id": "3ab9a667-e850-52df-9f9e-5320dd853c67",
     "first_seen": "2026-10-22T05:09:31.951672+00:00",
     "header": "Suspended",
