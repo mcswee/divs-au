@@ -732,6 +732,9 @@ input::-webkit-search-results-decoration {
     text-transform: uppercase;
 }
 
+.map-popup .tags a.badge { color: white; text-decoration: underline dotted; text-underline-offset: 2px; }
+.map-popup .tags a.badge:hover { text-decoration-style: solid; filter: brightness(0.92); }
+
 .badge.fed { background: #30855f; }
 .badge.pm { background: #a56a05; }
 .badge.fem { background: #7209b7; }
@@ -2100,7 +2103,6 @@ main:has(.tool-page) { overflow: hidden; }
 }
 
 .tool-page #sidebar-header h1 {
-    font-family: "Vollkorn", serif;
     font-size: 1.3rem;
     color: var(--brand-main);
     margin-bottom: 4px;
