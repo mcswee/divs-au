@@ -1,82 +1,89 @@
 ---
 layout: default
-title: "Side projects"
-permalink: /projects/
+title: "ITU radio prefix history"
+description: "Explore historical ITU radio prefix allocations from 1906 to 2026."
+category: projects
+permalink: /itu/
+extra_head: '<link rel="stylesheet" href="/assets/css/itu.css">'
+extra_scripts: '<script src="/assets/js/itu.js" defer></script>'
 ---
-        <header class="page-element">
-            <h1>Side projects</h1>
-            <p>This is a collection of my random experiments, including linguistics, vexillology, and infrastructure.</p>
-        </header>
+<div class="page-element itu-page">
+  <div class="itu-kicker">HISTORICAL REFERENCE · 1906–2026</div>
+  <div class="itu-title-row">
+    <div>
+      <h1>Radio prefix history</h1>
+      <p class="itu-intro">Explore how international radio call-sign prefixes have been allocated, year by year.</p>
+    </div>
+    <div class="itu-mark" aria-hidden="true">ITU<span>RADIO</span></div>
+  </div>
 
-        <section class="page-element">
-            <h2>Current projects</h2>
-            <nav class="card-grid">
-                <a href="/projects/afl.html" class="project-card">
-                    <h3>AFL Power Rating</h3>
-                    <p>Customised Power Rating for AFL team performances.</p>
-                </a>    
-                <a href="/suburbs/" class="project-card">
-                    <h3>Melbourne suburb pronunciations</h3>
-                    <p>A guide to speaking like a real Melburnian.</p>
-                </a>
-                <a href="/metro/" class="project-card">
-                    <h3>Melbourne train departures</h3>
-                    <p>Real-time easy-to-access train departures for Metro and V/Line.</p>
-                </a>    
-                <a href="/projects/radio.html" class="project-card">
-                    <h3>History of Melbourne radio</h3>
-                    <p>Interactive timeline of Melbourne's radio stations.</p>
-              </a>
-               <a href="/english/" class="project-card">
-                    <h3>Australian English orthography</h3>
-                    <p>A custom orthography chart for Australian English.</p>
-               </a>
-            
-                 <a href="/au-flags/" class="project-card">
-                    <h3>Australian flag redesigns</h3>
-                    <p>New concepts for the national flag, state flags, and the vice-regal standards.</p>
-                </a>
-            
-                <a href="/us-flags/" class="project-card">
-                    <h3>US state flag redesigns</h3>
-                    <p>A massive audit and overhaul of American state flags, sorting the "seals on bedsheets" from the icons.</p>
-                </a>
+  <nav class="itu-mode-nav" aria-label="Explore the archive">
+    <a href="#by-year" class="selected" data-mode-link="year">Browse by year</a>
+    <a href="#by-prefix" data-mode-link="prefix">Trace a prefix</a>
+  </nav>
 
-                <a href="/projects/hsr.html" class="project-card">
-                    <h3>Australian Rapid Overland Rail</h3>
-                    <p>A concept for a full-scale rail network connecting the Australian continent, including high-speed rail.</p>
-                </a>
-              
-                <a href="/colours/" class="project-card">
-                    <h3>List of named colours</h3>
-                    <p>Colours with real, established names, with their values and contrast ratios.</p>
-                </a>
-              
-                <!--
-                <a href="#" class="project-card disabled">
-                    <h3>Melbourne fantasy rail map</h3>
-                    <p><span class="status deferred">Coming soon</span>A concept for an expanded Melbourne railway network.</p>
-                </a>
-                -->
-                <a href="/royal/" class="project-card">
-                    <h3>Royal family tree</h3>
-                    <p>The complete line of succession from Wessex to today.</p>
-                </a>
+  <section class="itu-panel itu-year-panel" id="by-year" aria-labelledby="year-heading">
+    <div class="itu-section-head">
+      <div>
+        <p class="itu-eyebrow">ANNUAL SNAPSHOT</p>
+        <h2 id="year-heading">Explore an allocation year</h2>
+      </div>
+      <div class="itu-year-readout"><span id="year-display">2026</span><span class="itu-year-range">1906 — 2026</span></div>
+    </div>
+    <div class="itu-year-controls">
+      <label class="itu-sr-only" for="year-slider">Select year</label>
+      <input id="year-slider" type="range" min="1906" max="2026" value="2026" step="1">
+      <div class="itu-range-labels"><span>1906</span><span>2026</span></div>
+      <label for="year-select">Jump to year</label>
+      <select id="year-select"></select>
+    </div>
+    <div class="itu-stats" aria-live="polite">
+      <div><strong id="allocation-count">—</strong><span>allocated prefixes</span></div>
+      <div><strong id="entity-count">—</strong><span>entities represented</span></div>
+      <div><strong id="year-change-count">—</strong><span>prefixes changed since prior year</span></div>
+    </div>
+    <div class="itu-list-head">
+      <div>
+        <h3>Allocations in <span id="list-year">2026</span></h3>
+        <p>Search the prefixes and the entity names assigned to them.</p>
+      </div>
+      <label class="itu-search">
+        <span class="itu-sr-only">Filter allocations</span>
+        <input id="allocation-search" type="search" placeholder="Find prefix or entity…" autocomplete="off">
+      </label>
+    </div>
+    <div class="itu-results-meta" id="results-meta" aria-live="polite"></div>
+    <div class="itu-allocation-list" id="allocation-list"></div>
+    <button class="itu-more" id="show-more" type="button" hidden>Show more allocations</button>
+  </section>
 
-                <a href="/projects/itu.html" class="project-card">
-                    <h3>International radio prefixes</h3>
-                    <p>History of radio letter prefixes assigned by the ITU.</p>
-                </a>
-                <a href="/eras-tour/" class="project-card">
-                    <h3>The Eras Tour</h3>
-                    <p>Show and outfit tracker for Taylor Swift's Eras Tour.</p>
-                </a>    
-                    
-                <!--
-                <a href="#" class="project-card disabled">
-                    <h3>AFL Players</h3>
-                    <p><span class="status deferred">Coming soon</span>A history of AFL players and games.</p>
-                </a>
-                -->
-            </nav>
-        </section>
+  <section class="itu-panel itu-prefix-panel" id="by-prefix" aria-labelledby="prefix-heading">
+    <div class="itu-section-head">
+      <div>
+        <p class="itu-eyebrow">ALLOCATION HISTORY</p>
+        <h2 id="prefix-heading">Follow a prefix through time</h2>
+      </div>
+      <span class="itu-section-icon" aria-hidden="true">↗</span>
+    </div>
+    <div class="itu-prefix-search">
+      <label for="prefix-search">Radio prefix</label>
+      <div class="itu-prefix-search-row">
+        <input id="prefix-search" type="search" placeholder="e.g. AA, VK, ZL…" autocomplete="off" spellcheck="false">
+        <button id="prefix-go" type="button">View history</button>
+      </div>
+      <div class="itu-suggestions" id="prefix-suggestions" role="listbox" aria-label="Matching prefixes" hidden></div>
+    </div>
+    <div id="prefix-history" class="itu-history" aria-live="polite">
+      <div class="itu-empty-state">
+        <span class="itu-empty-glyph" aria-hidden="true">⌁</span>
+        <p>Choose a prefix to see its allocation history.</p>
+        <span>Continuous assignments are grouped into periods; gaps remain visible.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="itu-footnote">
+    <span class="itu-footnote-mark">i</span>
+    <p>Annual allocations are shown as recorded in the source dataset. Timeline periods are derived by grouping consecutive years with the same entity code.</p>
+  </div>
+</div>
