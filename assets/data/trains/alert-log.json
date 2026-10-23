@@ -1,5 +1,80 @@
 [
   {
+    "id": "9f7b84dd-1043-5bb4-85f6-3ea3afea0653",
+    "first_seen": "2026-10-23T09:30:45.043053+00:00",
+    "header": "Planned Works",
+    "description": "Sunbury line services will originate from and terminate at Footscray, from 8:30pm Friday 23 October to last train Sunday 25 October, while maintenance and renewal works take place. Note: Passengers are advised no trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. Shuttle buses will operate North Melbourne to Parkville and Arden, except during night network. To City All Sunbury line trains will end at Footscray. Take a Werribee or Williamstown line train to the City. From City All Sunbury line trains will start from Footscray. Take a Werribee or Williamstown line train and change at Footscray. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY-R:",
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "f37b7944-e0f3-5433-980d-d4ca29369b74",
+    "first_seen": "2026-10-23T09:30:45.043053+00:00",
+    "header": "Planned Works",
+    "description": "Pakenham and Cranbourne line services will originate from and terminate at South Yarra, from 8:30pm Friday 23 October to last train Sunday 25 October, while maintenance and renewal works take place. Note: Passengers are advised no trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. Shuttle buses will operate North Melbourne to Parkville and Arden, except during night network. To City All Pakenham and Cranbourne line trains will end at South Yarra. Take a Frankston or Sandringham line train to the City. From City All Pakenham and Cranbourne line trains will start from South Yarra. Take a Frankston or Sandringham line train and change at South Yarra. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "89ca9202-e5de-5d2e-a4fa-b58f45036927",
+    "first_seen": "2026-10-23T09:30:45.043053+00:00",
+    "header": "Planned Works",
+    "description": "Pakenham and Cranbourne line services will originate from and terminate at South Yarra, from 8:30pm Friday 23 October to last train Sunday 25 October, while maintenance and renewal works take place. Note: Passengers are advised no trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. Shuttle buses will operate North Melbourne to Parkville and Arden, except during night network. To City All Pakenham and Cranbourne line trains will end at South Yarra. Take a Frankston or Sandringham line train to the City. From City All Pakenham and Cranbourne line trains will start from South Yarra. Take a Frankston or Sandringham line train and change at South Yarra. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "44828a59-4731-52d1-b9e9-f65a1f7cd868",
+    "first_seen": "2026-10-23T09:30:45.043053+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Heidelberg and Greensborough from 8:30pm Friday 23 October to last train Sunday 25 October, while project works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-HBE-R:"
+    ]
+  },
+  {
+    "id": "0968b8d4-d462-5edc-90e2-d67b2314754e",
+    "first_seen": "2026-10-23T09:30:45.043053+00:00",
+    "header": "Planned work: Sunbury services start and end at Footscray",
+    "description": "8.30pm Friday 23 October to last service Sunday 25 October To Metro Tunnel All Sunbury Line trains will end at Footscray. Take a Werribee or Williamstown Line train to North Melbourne. Change to take a city loop train to Melbourne Central then transfer to State Library. Take a Werribee or Williamstown Line train to Flinders Street to transfer to Town Hall. To City All Sunbury Line trains will end at Footscray. Take a Werribee or Williamstown Line train to the city. From Metro Tunnel All Sunbury Line trains will start from Footscray. If at State Library, go to Melbourne Central and take a Frankston Line train to Southern Cross. Change to take a Werribee or Williamstown Line train to Footscray. If at Town Hall, go to Flinders Street and take a Werribee or Williamstown Line train to Footscray. From City All Sunbury Line trains will start from Footscray. Take a Werribee or Williamstown Line train and change at Footscray. Allow extra time to change trains.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY-R:",
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "f3f81b63-ee79-5aae-adce-0d05f9f1c78b",
+    "first_seen": "2026-10-23T09:30:45.043053+00:00",
+    "header": "Planned work: Cranbourne and Pakenham services start and end at South Yarra",
+    "description": "8.30pm Friday 23 October to last service Sunday 25 October To Metro Tunnel All Pakenham &amp; Cranbourne Line trains will end at South Yarra. Take a Frankston Line train to Melbourne Central to transfer to State Library. Take a Frankston or Sandringham Line train to Flinders Street to transfer to Town Hall. To City All Pakenham &amp; Cranbourne Line trains will end at South Yarra. Take a Frankston or Sandringham Line train to the city. \u00a0 From Metro Tunnel All Pakenham &amp; Cranbourne Line trains will start from South Yarra. If at State Library, go to Melbourne Central and take a Frankston Line train to South Yarra. If at Town Hall, go to Flinders Street and take a Frankston or Sandringham Line train to South Yarra. From City All Pakenham &amp; Cranbourne Line trains will start from South Yarra. Take a Frankston or Sandringham Line train and change at South Yarra. Allow extra time to change trains.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "13325e14-3902-5ad5-8582-8701c369074a",
+    "first_seen": "2026-10-23T09:30:45.043053+00:00",
+    "header": "Planned work: Buses replace trains between Heidelberg to Greensborough",
+    "description": "8.30pm Friday 23 October to last service Sunday 25 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-HBE-R:"
+    ]
+  },
+  {
     "id": "9e5b2522-3686-51ad-b350-96e886d39699",
     "first_seen": "2026-10-23T04:18:53.534010+00:00",
     "header": "Minor Delay",
