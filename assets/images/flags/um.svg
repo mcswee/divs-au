@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 7410 3900"><path fill="#b22234" d="M0 0h7410v3900H0z"/><path d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0" stroke="#fff" stroke-width="300"/><path fill="#3c3b6e" d="M0 0h2964v2100H0z"/><g fill="#fff"><g id="d"><g id="c"><g id="e"><g id="b"><path id="a" d="M247 90l70.534 217.082-184.66-134.164h228.253L176.466 307.082z"/><use xlink:href="#a" y="420"/><use xlink:href="#a" y="840"/><use xlink:href="#a" y="1260"/></g><use xlink:href="#a" y="1680"/></g><use xlink:href="#b" x="247" y="210"/></g><use xlink:href="#c" x="494"/></g><use xlink:href="#d" x="988"/><use xlink:href="#c" x="1976"/><use xlink:href="#e" x="2470"/></g></svg>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2400" height="1440" viewBox="0 0 2400 1440">
+<g id="Grupo-1">
+<path id="Rectángulo-1-cop" d="M-0.000,774.667 L2400.000,774.667 L2400.000,884.000 L-0.000,884.000 L-0.000,774.667 z" fill="#FFFFFF" />
+<path id="Rectángulo-1-cop" d="M-0.000,665.333 L2400.000,665.333 L2400.000,774.667 L-0.000,774.667 L-0.000,665.333 z" fill="#BF0A30" />
+<path id="Rectángulo-1-cop" d="M-0.000,556.000 L2400.000,556.000 L2400.000,665.333 L-0.000,665.333 L-0.000,556.000 z" fill="#FFFFFF" />
+</g>
+<path id="Rectángulo-1-cop" d="M-0.000,884.000 L2400.000,884.000 L2400.000,1440.000 L-0.000,1440.000 L-0.000,884.000 z" fill="#002868" />
+<path id="Rectángulo-1-cop" d="M-0.000,-0.000 L2400.000,-0.000 L2400.000,556.000 L-0.000,556.000 L-0.000,-0.000 z" fill="#002868" />
+<path id="Polígono-1" d="M630.000,298.558 L651.372,362.107 L715.488,363.830 L664.581,404.828 L682.834,469.442 L630.000,431.231 L577.166,469.442 L595.419,404.828 L544.512,363.830 L608.628,362.107 L630.000,298.558 z" fill="#FFFFFF" />
+<path id="Polígono-1-copia" d="M349.500,125.558 L370.872,189.107 L434.988,190.830 L384.081,231.828 L402.334,296.442 L349.500,258.231 L296.666,296.442 L314.919,231.828 L264.012,190.830 L328.128,189.107 L349.500,125.558 z" fill="#FFFFFF" />
+<path id="Polígono-1-copia" d="M1881.500,1044.121 L1902.872,1107.670 L1966.988,1109.392 L1916.081,1150.391 L1934.334,1215.004 L1881.500,1176.794 L1828.666,1215.004 L1846.919,1150.391 L1796.012,1109.392 L1860.128,1107.670 L1881.500,1044.121 z" fill="#FFFFFF" />
+</svg>

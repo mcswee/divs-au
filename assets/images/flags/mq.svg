@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><path fill="#EC1920" d="M0 0h3v2H0z"/><path fill="#fff" d="M0 0h2v2H0z"/><path fill="#051440" d="M0 0h1v2H0z"/></svg>
+<svg width="900" height="600" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <rect fill="#231f1e" height="600" width="900" id="noir"/>
+  <rect fill="#00a650" height="300" width="900" id="vert"/>
+  <polygon id="tri_rouge" fill="#ef1923" points="0,0 450,300 0,600"/>
+</g>
+</svg>
