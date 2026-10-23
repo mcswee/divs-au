@@ -157,14 +157,14 @@ PG,Papua New Guinea
 PH,Philippines
 PK,Pakistan
 PL,Poland
-PS,"Palestine, State of"
+PS,Palestine
 PT,Portugal
 PW,Palau
 PY,Paraguay
 QA,Qatar
 RO,Romania
 RS,Serbia
-RU,Russian
+RU,Russia
 RW,Rwanda
 SA,Saudi Arabia
 SB,Solomon Islands
@@ -199,6 +199,7 @@ TW,Taiwan
 TZ,Tanzania
 UA,Ukraine
 UG,Uganda
+UN,United Nations
 US,United States of America
 UY,Uruguay
 UZ,Uzbekistan
@@ -210,7 +211,6 @@ VU,Vanuatu
 WS,Samoa
 XA,International Civil Aviation Organization
 XM,World Meteorological Organization
-XU,United Nations
 YD,Yemen DPR
 YE,Yemen
 YU,Yugoslavia
