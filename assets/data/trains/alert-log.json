@@ -1,5 +1,27 @@
 [
   {
+    "id": "9e5b2522-3686-51ad-b350-96e886d39699",
+    "first_seen": "2026-10-23T04:18:53.534010+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the Macleod area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "65042541-678b-5343-8959-dfb1968fa183",
+    "first_seen": "2026-10-23T04:18:53.534010+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the Macleod area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
     "id": "55e787ab-3800-5a0f-ac31-321de510ab2e",
     "first_seen": "2026-10-23T00:05:36.114782+00:00",
     "header": "Major Delay",
