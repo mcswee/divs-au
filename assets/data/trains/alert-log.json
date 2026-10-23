@@ -1,5 +1,16 @@
 [
   {
+    "id": "65d6ca52-84db-54ac-90f3-1ee2f5e1e472",
+    "first_seen": "2026-10-23T21:11:57.764174+00:00",
+    "header": "Planned work: Rosanna Station car space closures",
+    "description": "Saturday 24 October 15 spaces in this car park are closed due to project works. For your safety, please follow signage in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
     "id": "9cce6219-fdff-5ab3-be1f-b4707ec1fdf0",
     "first_seen": "2026-10-23T14:50:41.075842+00:00",
     "header": "Planned work: Buses replace trains between Parliament and Box Hill",
