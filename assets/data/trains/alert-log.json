@@ -1,5 +1,15 @@
 [
   {
+    "id": "55e787ab-3800-5a0f-ac31-321de510ab2e",
+    "first_seen": "2026-10-23T00:05:36.114782+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 40 minutes now clearing after an earlier vandalised train at Flemington Bridge.  Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
     "id": "a0aa9b3e-1137-59f6-9fdc-281e9715cb4a",
     "first_seen": "2026-10-22T14:59:47.445914+00:00",
     "header": "Planned Works",
