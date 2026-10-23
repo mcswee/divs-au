@@ -8,27 +8,27 @@ extra_head: '<link rel="stylesheet" href="/assets/css/itu.css">'
 extra_scripts: '<script src="/assets/js/itu.js" defer></script>'
 ---
 <div class="page-element itu-page">
-  <div class="itu-kicker">HISTORICAL REFERENCE · 1906–2026</div>
-  <div class="itu-title-row">
-    <div>
-      <h1>Radio prefix history</h1>
-      <p class="itu-intro">Explore how international radio call-sign prefixes have been allocated, year by year.</p>
-    </div>
-    <div class="itu-mark" aria-hidden="true">ITU<span>RADIO</span></div>
+  <header class="itu-page-header">
+    <h1>Radio prefix history</h1>
+    <p class="itu-intro">Explore how international radio call-sign prefixes have been allocated over time.</p>
+  </header>
+
+  <div class="itu-global-search-wrap">
+    <label for="itu-global-search">Search prefixes and countries</label>
+    <input id="itu-global-search" type="search" placeholder="Enter a prefix, country name or entity code…" autocomplete="off" spellcheck="false" aria-controls="itu-search-results" aria-expanded="false">
+    <div class="itu-search-results" id="itu-search-results" role="listbox" aria-label="Search results" hidden></div>
+    <p class="itu-search-hint">Search results distinguish radio prefixes from country/entity codes.</p>
   </div>
 
   <nav class="itu-mode-nav" aria-label="Explore the archive">
     <a href="#by-year" class="selected" data-mode-link="year">Browse by year</a>
-    <a href="#by-prefix" data-mode-link="prefix">Trace a prefix</a>
+    <a href="#by-prefix" data-mode-link="prefix">Prefix history</a>
   </nav>
 
   <section class="itu-panel itu-year-panel" id="by-year" aria-labelledby="year-heading">
     <div class="itu-section-head">
-      <div>
-        <p class="itu-eyebrow">ANNUAL SNAPSHOT</p>
-        <h2 id="year-heading">Explore an allocation year</h2>
-      </div>
-      <div class="itu-year-readout"><span id="year-display">2026</span><span class="itu-year-range">1906 — 2026</span></div>
+      <h2 id="year-heading">Explore an allocation year</h2>
+      <div class="itu-year-readout"><span id="year-display">2026</span><span class="itu-year-range">1906–2026</span></div>
     </div>
     <div class="itu-year-controls">
       <label class="itu-sr-only" for="year-slider">Select year</label>
@@ -37,20 +37,11 @@ extra_scripts: '<script src="/assets/js/itu.js" defer></script>'
       <label for="year-select">Jump to year</label>
       <select id="year-select"></select>
     </div>
-    <div class="itu-stats" aria-live="polite">
-      <div><strong id="allocation-count">—</strong><span>allocated prefixes</span></div>
-      <div><strong id="entity-count">—</strong><span>entities represented</span></div>
-      <div><strong id="year-change-count">—</strong><span>prefixes changed since prior year</span></div>
-    </div>
     <div class="itu-list-head">
       <div>
-        <h3>Allocations in <span id="list-year">2026</span></h3>
-        <p>Search the prefixes and the entity names assigned to them.</p>
+        <h3 id="list-heading">Allocations in <span id="list-year">2026</span></h3>
+        <p id="list-description">Prefixes allocated in this year.</p>
       </div>
-      <label class="itu-search">
-        <span class="itu-sr-only">Filter allocations</span>
-        <input id="allocation-search" type="search" placeholder="Find prefix or entity…" autocomplete="off">
-      </label>
     </div>
     <div class="itu-results-meta" id="results-meta" aria-live="polite"></div>
     <div class="itu-allocation-list" id="allocation-list"></div>
@@ -59,31 +50,12 @@ extra_scripts: '<script src="/assets/js/itu.js" defer></script>'
 
   <section class="itu-panel itu-prefix-panel" id="by-prefix" aria-labelledby="prefix-heading">
     <div class="itu-section-head">
-      <div>
-        <p class="itu-eyebrow">ALLOCATION HISTORY</p>
-        <h2 id="prefix-heading">Follow a prefix through time</h2>
-      </div>
-      <span class="itu-section-icon" aria-hidden="true">↗</span>
-    </div>
-    <div class="itu-prefix-search">
-      <label for="prefix-search">Radio prefix</label>
-      <div class="itu-prefix-search-row">
-        <input id="prefix-search" type="search" placeholder="e.g. AA, VK, ZL…" autocomplete="off" spellcheck="false">
-        <button id="prefix-go" type="button">View history</button>
-      </div>
-      <div class="itu-suggestions" id="prefix-suggestions" role="listbox" aria-label="Matching prefixes" hidden></div>
+      <h2 id="prefix-heading">Follow a prefix through time</h2>
     </div>
     <div id="prefix-history" class="itu-history" aria-live="polite">
       <div class="itu-empty-state">
-        <span class="itu-empty-glyph" aria-hidden="true">⌁</span>
-        <p>Choose a prefix to see its allocation history.</p>
-        <span>Continuous assignments are grouped into periods; gaps remain visible.</span>
+        <p>Choose a radio prefix from the search results or annual list to see its allocation history.</p>
       </div>
     </div>
   </section>
-
-  <div class="itu-footnote">
-    <span class="itu-footnote-mark">i</span>
-    <p>Annual allocations are shown as recorded in the source dataset. Timeline periods are derived by grouping consecutive years with the same entity code.</p>
-  </div>
 </div>
