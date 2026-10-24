@@ -1,5 +1,38 @@
 [
   {
+    "id": "334c5588-d708-5625-8069-62601ea05b3f",
+    "first_seen": "2026-10-24T13:32:09.575926+00:00",
+    "header": "Planned work: Weekend works between Box Hill and Ringwood",
+    "description": "12am to 7pm, Sunday 25 October\u00a0  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Lilydale and Belgrave lines. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "971db086-83dc-525c-9105-af3b408b6fe6",
+    "first_seen": "2026-10-24T13:32:09.575926+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to inclement weather in the metropolitan area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "93878ffd-4106-535e-8ffb-102fc9906300",
+    "first_seen": "2026-10-24T13:32:09.575926+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes due to a police request in the Kooyong area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
     "id": "80709f25-7a6a-5fbb-bf2a-bb797ef3623e",
     "first_seen": "2026-10-24T09:03:15.043972+00:00",
     "header": "Other Information",
