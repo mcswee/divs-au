@@ -1,5 +1,26 @@
 [
   {
+    "id": "80709f25-7a6a-5fbb-bf2a-bb797ef3623e",
+    "first_seen": "2026-10-24T09:03:15.043972+00:00",
+    "header": "Other Information",
+    "description": "Trains may run from different platforms that normally scheduled at Newport due to additional services running today. Listen for announcements and check information displays.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "fac7719c-d843-5f16-8a6a-be5500259508",
+    "first_seen": "2026-10-24T09:03:15.043972+00:00",
+    "header": "Other Information",
+    "description": "Trains may run from different platforms that normally scheduled at Newport due to additional services running today. Listen for announcements and check information displays.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
     "id": "e738dc8f-d409-522a-86c6-f4be46106d3f",
     "first_seen": "2026-10-24T04:09:54.006761+00:00",
     "header": "Suspended",
