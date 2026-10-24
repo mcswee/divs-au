@@ -1,28 +1,41 @@
 ---
+
 layout: default
-title: Flags
+title: Flags and country codes
 permalink: /flags/
----
 
 <div class="flags-page">
   <header class="flags-header">
-    <h1>Flags</h1>
+    <h1>Flags and country codes</h1>
     <p>Flags for the countries and territories in the code list.</p>
-  </header>
-
-  <div class="flags-toolbar">
-    <label for="flags-search">Find a country or code</label>
-    <input id="flags-search" type="search" placeholder="Search by name or code" autocomplete="off">
-    <p id="flags-count" class="flags-count" aria-live="polite"></p>
+  </header>  <div class="flags-toolbar">
+    <div class="flags-controls">
+      <div class="flags-field flags-search-field">
+        <label for="flags-search">Find a country or code</label>
+        <input id="flags-search" type="search" placeholder="Search by name or code" autocomplete="off">
+      </div>  <div class="flags-field">
+    <label for="flags-category">Category</label>
+    <select id="flags-category">
+      <option value="">All categories</option>
+    </select>
   </div>
 
-  <div id="flags-list" class="flags-grid" aria-live="polite">
+  <div class="flags-field">
+    <label for="flags-sort">Sort by</label>
+    <select id="flags-sort">
+      <option value="name">Name</option>
+      <option value="code">Code</option>
+    </select>
+  </div>
+</div>
+
+<p id="flags-count" class="flags-count" aria-live="polite"></p>
+
+  </div>  <div id="flags-list" class="flags-grid" aria-live="polite">
     <p class="flags-status">Loading flags…</p>
   </div>
   <p id="flags-error" class="flags-status flags-error" hidden></p>
-</div>
-
-<style>
+</div><style>
   .flags-page {
     max-width: 1100px;
     margin: 0 auto;
@@ -49,17 +62,28 @@ permalink: /flags/
 
   .flags-toolbar { margin-bottom: 18px; }
 
-  .flags-toolbar label {
+  .flags-controls {
+    display: grid;
+    grid-template-columns: minmax(220px, 2fr) minmax(180px, 1fr) minmax(130px, .7fr);
+    gap: 14px;
+    align-items: end;
+  }
+
+  .flags-field { min-width: 0; }
+
+  .flags-field label {
     display: block;
     margin-bottom: 7px;
     font-size: .88rem;
     font-weight: 700;
   }
 
-  .flags-toolbar input {
+  .flags-field input,
+  .flags-field select {
     display: block;
     width: 100%;
-    padding: 12px 14px;
+    min-height: 44px;
+    padding: 10px 12px;
     border: 1px solid #a9a9b8;
     border-radius: 5px;
     background: var(--highlight, #fff);
@@ -67,13 +91,14 @@ permalink: /flags/
     font: inherit;
   }
 
-  .flags-toolbar input:focus {
+  .flags-field input:focus,
+  .flags-field select:focus {
     outline: 2px solid var(--brand-main, #4d5792);
     outline-offset: 1px;
   }
 
   .flags-count {
-    margin: 8px 0 0;
+    margin: 10px 0 0;
     color: var(--text-highlight, #626276);
     font-size: .8rem;
   }
@@ -97,6 +122,12 @@ permalink: /flags/
     box-shadow: var(--shadow-main, 0 2px 8px rgb(30 30 60 / 7%));
   }
 
+  .flag-image-link {
+    display: block;
+    width: 78px;
+    border-radius: 2px;
+  }
+
   .flag-card img {
     display: block;
     width: 78px;
@@ -105,6 +136,11 @@ permalink: /flags/
     border: 1px solid rgb(0 0 0 / 12%);
     border-radius: 2px;
     background: #fff;
+  }
+
+  .flag-image-link:focus-visible {
+    outline: 2px solid var(--brand-main, #4d5792);
+    outline-offset: 3px;
   }
 
   .flag-card-code {
@@ -125,6 +161,20 @@ permalink: /flags/
     overflow-wrap: anywhere;
   }
 
+  .flag-card-category {
+    display: block;
+    margin-top: 5px;
+    color: var(--text-highlight, #626276);
+    font-size: .76rem;
+    line-height: 1.3;
+  }
+
+  .flag-card-no-image {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .flag-card-no-image .flag-image-link { display: none; }
+
   .flags-status {
     grid-column: 1 / -1;
     margin: 0;
@@ -134,32 +184,58 @@ permalink: /flags/
 
   .flags-error { color: #a33131; }
 
-  @media (max-width: 650px) {
+  @media (max-width: 700px) {
     .flags-page { padding-top: 18px; }
-    .flags-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr)); }
-    .flag-card { grid-template-columns: 68px minmax(0, 1fr); gap: 10px; padding: 10px; }
+
+    .flags-controls {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .flags-search-field { grid-column: 1 / -1; }
+
+    .flags-grid {
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+    }
+
+    .flag-card {
+      grid-template-columns: 68px minmax(0, 1fr);
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .flag-image-link,
     .flag-card img { width: 68px; }
   }
-</style>
 
-<script>
+  @media (max-width: 380px) {
+    .flags-controls { grid-template-columns: minmax(0, 1fr); }
+    .flags-search-field { grid-column: auto; }
+  }
+</style><script>
 (() => {
   "use strict";
 
   const csvUrl = "{{ '/assets/data/cc.csv' | relative_url }}";
   const flagBase = "{{ '/assets/images/flags/' | relative_url }}";
+
   const list = document.getElementById("flags-list");
   const search = document.getElementById("flags-search");
+  const categorySelect = document.getElementById("flags-category");
+  const sortSelect = document.getElementById("flags-sort");
   const count = document.getElementById("flags-count");
   const error = document.getElementById("flags-error");
 
   function parseCSV(text) {
     const rows = [];
-    let row = [], field = "", quoted = false;
+    let row = [];
+    let field = "";
+    let quoted = false;
+
     text = text.replace(/^\uFEFF/, "");
 
     for (let i = 0; i < text.length; i++) {
       const ch = text[i];
+
       if (quoted) {
         if (ch === '"' && text[i + 1] === '"') {
           field += '"';
@@ -189,17 +265,74 @@ permalink: /flags/
       rows.push(row);
     }
 
-    return rows
-      .filter(cells => cells.some(cell => cell.trim() !== ""))
+    const nonEmptyRows = rows.filter(cells =>
+      cells.some(cell => cell.trim() !== "")
+    );
+
+    if (
+      nonEmptyRows.length &&
+      nonEmptyRows[0][0]?.trim().toLowerCase() === "code"
+    ) {
+      nonEmptyRows.shift();
+    }
+
+    return nonEmptyRows
       .map(cells => ({
         code: (cells[0] || "").trim().toUpperCase(),
-        name: (cells[1] || "").trim()
+        name: (cells[1] || "").trim(),
+        category: (cells[2] || "").trim()
       }))
-      .filter(item => item.code && item.name)
-      .sort((a, b) => a.name.localeCompare(b.name));
+      .filter(item => item.code && item.name);
   }
 
-  function render(items) {
+  function populateCategories() {
+    const categories = [...new Set(
+      entries.map(item => item.category).filter(Boolean)
+    )].sort((a, b) => a.localeCompare(b));
+
+    categorySelect.replaceChildren();
+
+    const allOption = document.createElement("option");
+    allOption.value = "";
+    allOption.textContent = "All categories";
+    categorySelect.append(allOption);
+
+    categories.forEach(category => {
+      const option = document.createElement("option");
+      option.value = category;
+      option.textContent = category;
+      categorySelect.append(option);
+    });
+  }
+
+  function getFilteredEntries() {
+    const query = search.value.trim().toLocaleLowerCase();
+    const selectedCategory = categorySelect.value;
+    const sortBy = sortSelect.value;
+
+    return entries
+      .filter(item => {
+        const matchesQuery =
+          item.code.toLocaleLowerCase().includes(query) ||
+          item.name.toLocaleLowerCase().includes(query);
+
+        const matchesCategory =
+          !selectedCategory || item.category === selectedCategory;
+
+        return matchesQuery && matchesCategory;
+      })
+      .sort((a, b) => {
+        if (sortBy === "code") {
+          return a.code.localeCompare(b.code);
+        }
+
+        return a.name.localeCompare(b.name) ||
+          a.code.localeCompare(b.code);
+      });
+  }
+
+  function render() {
+    const items = getFilteredEntries();
     list.replaceChildren();
 
     if (!items.length) {
@@ -214,14 +347,27 @@ permalink: /flags/
         const card = document.createElement("article");
         card.className = "flag-card";
 
+        const imageUrl =
+          flagBase + encodeURIComponent(item.code.toLowerCase()) + ".svg";
+
+        const imageLink = document.createElement("a");
+        imageLink.className = "flag-image-link";
+        imageLink.href = imageUrl;
+        imageLink.target = "_blank";
+        imageLink.rel = "noopener";
+        imageLink.setAttribute("aria-label", `Open full-size ${item.name} flag`);
+
         const image = document.createElement("img");
-        image.src = flagBase + encodeURIComponent(item.code.toLowerCase()) + ".svg";
-        image.alt = item.name + " flag";
+        image.src = imageUrl;
+        image.alt = `${item.name} flag`;
         image.loading = "lazy";
         image.width = 78;
         image.height = 52;
 
+        imageLink.append(image);
+
         const details = document.createElement("div");
+
         const code = document.createElement("span");
         code.className = "flag-card-code";
         code.textContent = item.code;
@@ -231,11 +377,19 @@ permalink: /flags/
         name.textContent = item.name;
 
         details.append(code, name);
-        card.append(image, details);
+
+        if (item.category) {
+          const category = document.createElement("span");
+          category.className = "flag-card-category";
+          category.textContent = item.category;
+          details.append(category);
+        }
+
+        card.append(imageLink, details);
         fragment.append(card);
 
         image.addEventListener("error", () => {
-          image.hidden = true;
+          imageLink.remove();
           card.classList.add("flag-card-no-image");
         }, { once: true });
       });
@@ -243,32 +397,34 @@ permalink: /flags/
       list.append(fragment);
     }
 
-    count.textContent = `${items.length} ${items.length === 1 ? "entry" : "entries"}`;
+    count.textContent =
+      `${items.length} of ${entries.length} ${entries.length === 1 ? "entry" : "entries"}`;
   }
 
   let entries = [];
 
-  search.addEventListener("input", () => {
-    const query = search.value.trim().toLocaleLowerCase();
-    render(entries.filter(item =>
-      item.code.toLocaleLowerCase().includes(query) ||
-      item.name.toLocaleLowerCase().includes(query)
-    ));
-  });
+  search.addEventListener("input", render);
+  categorySelect.addEventListener("change", render);
+  sortSelect.addEventListener("change", render);
 
   fetch(csvUrl)
     .then(response => {
-      if (!response.ok) throw new Error(`Could not load ${csvUrl} (${response.status}).`);
+      if (!response.ok) {
+        throw new Error(`Could not load ${csvUrl} (${response.status}).`);
+      }
+
       return response.text();
     })
     .then(text => {
       entries = parseCSV(text);
-      render(entries);
+      populateCategories();
+      render();
     })
     .catch(err => {
       list.replaceChildren();
       error.hidden = false;
-      error.textContent = `The flag list could not be loaded. ${err.message}`;
+      error.textContent =
+        `The flag list could not be loaded. ${err.message}`;
     });
 })();
 </script>
