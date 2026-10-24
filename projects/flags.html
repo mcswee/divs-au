@@ -1,0 +1,274 @@
+---
+layout: default
+title: Flags
+permalink: /flags/
+---
+
+<div class="flags-page">
+  <header class="flags-header">
+    <h1>Flags</h1>
+    <p>Flags for the countries and territories in the code list.</p>
+  </header>
+
+  <div class="flags-toolbar">
+    <label for="flags-search">Find a country or code</label>
+    <input id="flags-search" type="search" placeholder="Search by name or code" autocomplete="off">
+    <p id="flags-count" class="flags-count" aria-live="polite"></p>
+  </div>
+
+  <div id="flags-list" class="flags-grid" aria-live="polite">
+    <p class="flags-status">Loading flags…</p>
+  </div>
+  <p id="flags-error" class="flags-status flags-error" hidden></p>
+</div>
+
+<style>
+  .flags-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 0 36px;
+    color: var(--text-main, #252535);
+  }
+
+  .flags-page * { box-sizing: border-box; }
+
+  .flags-header { margin-bottom: 26px; }
+
+  .flags-header h1 {
+    margin: 0 0 8px;
+    font-size: clamp(1.9rem, 4vw, 2.7rem);
+    letter-spacing: -.035em;
+    line-height: 1.12;
+  }
+
+  .flags-header p {
+    margin: 0;
+    color: var(--text-highlight, #626276);
+    max-width: 680px;
+  }
+
+  .flags-toolbar { margin-bottom: 18px; }
+
+  .flags-toolbar label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: .88rem;
+    font-weight: 700;
+  }
+
+  .flags-toolbar input {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #a9a9b8;
+    border-radius: 5px;
+    background: var(--highlight, #fff);
+    color: var(--text-main, #252535);
+    font: inherit;
+  }
+
+  .flags-toolbar input:focus {
+    outline: 2px solid var(--brand-main, #4d5792);
+    outline-offset: 1px;
+  }
+
+  .flags-count {
+    margin: 8px 0 0;
+    color: var(--text-highlight, #626276);
+    font-size: .8rem;
+  }
+
+  .flags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 245px), 1fr));
+    gap: 10px;
+  }
+
+  .flag-card {
+    display: grid;
+    grid-template-columns: 78px minmax(0, 1fr);
+    align-items: center;
+    gap: 13px;
+    min-height: 76px;
+    padding: 12px;
+    border: 1px solid #d7d7df;
+    border-radius: 7px;
+    background: var(--highlight, #fff);
+    box-shadow: var(--shadow-main, 0 2px 8px rgb(30 30 60 / 7%));
+  }
+
+  .flag-card img {
+    display: block;
+    width: 78px;
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
+    border: 1px solid rgb(0 0 0 / 12%);
+    border-radius: 2px;
+    background: #fff;
+  }
+
+  .flag-card-code {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--brand-main, #4d5792);
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .03em;
+  }
+
+  .flag-card-name {
+    display: block;
+    font-size: .9rem;
+    font-weight: 650;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .flags-status {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 16px 4px;
+    color: var(--text-highlight, #626276);
+  }
+
+  .flags-error { color: #a33131; }
+
+  @media (max-width: 650px) {
+    .flags-page { padding-top: 18px; }
+    .flags-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr)); }
+    .flag-card { grid-template-columns: 68px minmax(0, 1fr); gap: 10px; padding: 10px; }
+    .flag-card img { width: 68px; }
+  }
+</style>
+
+<script>
+(() => {
+  "use strict";
+
+  const csvUrl = "{{ '/assets/data/cc.csv' | relative_url }}";
+  const flagBase = "{{ '/assets/images/flags/' | relative_url }}";
+  const list = document.getElementById("flags-list");
+  const search = document.getElementById("flags-search");
+  const count = document.getElementById("flags-count");
+  const error = document.getElementById("flags-error");
+
+  function parseCSV(text) {
+    const rows = [];
+    let row = [], field = "", quoted = false;
+    text = text.replace(/^\uFEFF/, "");
+
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      if (quoted) {
+        if (ch === '"' && text[i + 1] === '"') {
+          field += '"';
+          i++;
+        } else if (ch === '"') {
+          quoted = false;
+        } else {
+          field += ch;
+        }
+      } else if (ch === '"') {
+        quoted = true;
+      } else if (ch === ",") {
+        row.push(field);
+        field = "";
+      } else if (ch === "\n") {
+        row.push(field);
+        rows.push(row);
+        row = [];
+        field = "";
+      } else if (ch !== "\r") {
+        field += ch;
+      }
+    }
+
+    if (field.length || row.length) {
+      row.push(field);
+      rows.push(row);
+    }
+
+    return rows
+      .filter(cells => cells.some(cell => cell.trim() !== ""))
+      .map(cells => ({
+        code: (cells[0] || "").trim().toUpperCase(),
+        name: (cells[1] || "").trim()
+      }))
+      .filter(item => item.code && item.name)
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  function render(items) {
+    list.replaceChildren();
+
+    if (!items.length) {
+      const empty = document.createElement("p");
+      empty.className = "flags-status";
+      empty.textContent = "No matching flags.";
+      list.append(empty);
+    } else {
+      const fragment = document.createDocumentFragment();
+
+      items.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "flag-card";
+
+        const image = document.createElement("img");
+        image.src = flagBase + encodeURIComponent(item.code.toLowerCase()) + ".svg";
+        image.alt = item.name + " flag";
+        image.loading = "lazy";
+        image.width = 78;
+        image.height = 52;
+
+        const details = document.createElement("div");
+        const code = document.createElement("span");
+        code.className = "flag-card-code";
+        code.textContent = item.code;
+
+        const name = document.createElement("span");
+        name.className = "flag-card-name";
+        name.textContent = item.name;
+
+        details.append(code, name);
+        card.append(image, details);
+        fragment.append(card);
+
+        image.addEventListener("error", () => {
+          image.hidden = true;
+          card.classList.add("flag-card-no-image");
+        }, { once: true });
+      });
+
+      list.append(fragment);
+    }
+
+    count.textContent = `${items.length} ${items.length === 1 ? "entry" : "entries"}`;
+  }
+
+  let entries = [];
+
+  search.addEventListener("input", () => {
+    const query = search.value.trim().toLocaleLowerCase();
+    render(entries.filter(item =>
+      item.code.toLocaleLowerCase().includes(query) ||
+      item.name.toLocaleLowerCase().includes(query)
+    ));
+  });
+
+  fetch(csvUrl)
+    .then(response => {
+      if (!response.ok) throw new Error(`Could not load ${csvUrl} (${response.status}).`);
+      return response.text();
+    })
+    .then(text => {
+      entries = parseCSV(text);
+      render(entries);
+    })
+    .catch(err => {
+      list.replaceChildren();
+      error.hidden = false;
+      error.textContent = `The flag list could not be loaded. ${err.message}`;
+    });
+})();
+</script>
