@@ -1,4 +1,7 @@
-﻿AD,Andorra
+AA,Australian Antarctic Territory﻿
+AB,Scotland
+AC,Ascension Island
+AD,Andorra
 AE,United Arab Emirates
 AF,Afghanistan
 AG,Antigua and Barbuda
@@ -31,6 +34,7 @@ BY,Belarus
 BZ,Belize
 CA,Canada
 CD,Democratic Republic of the Congo
+CE,Ceuta
 CF,Central African Republic
 CG,Congo
 CH,Switzerland
@@ -55,10 +59,12 @@ DM,Dominica
 DN,Netherlands New Guinea
 DO,Dominican Republic
 DZ,Algeria
+EA,Melilla
 EC,Ecuador
 ED,Egypt/Sudan (split allocation)
 EE,Estonia
 EG,Egypt
+EN,England
 ER,Eritrea
 ES,Spain
 ET,Ethiopia
@@ -67,7 +73,7 @@ FM,Federated States of Micronesia
 FR,France
 FZ,Fiji/Eswatini (split allocation)
 GA,Gabon
-GB,United Kingdom of Great Britain and Northern Ireland
+GB,United Kingdom
 GD,Grenada
 GE,Georgia
 GH,Ghana
@@ -80,11 +86,14 @@ GT,Guatemala
 GW,Guinea-Bissau
 GY,Guyana
 HK,Hong Kong
+HM,Heard and McDonald Islands
 HN,Honduras
 HR,Croatia
 HT,Haiti
 HU,Hungary
+IA,Azores
 IB,British India and Persian Gulf coloies
+IC,Canary Islands
 ID,Indonesia
 IE,Ireland
 IL,Israel
@@ -139,6 +148,7 @@ MX,Mexico
 MY,Malaysia
 MZ,Mozambique
 NA,Namibia
+ND,Northern Ireland
 NE,Niger
 NG,Nigeria
 NI,Nicaragua
@@ -199,6 +209,7 @@ TW,Taiwan
 TZ,Tanzania
 UA,Ukraine
 UG,Uganda
+UM,Howland Bsker and Jarvis Islands
 UN,United Nations
 US,United States of America
 UY,Uruguay
@@ -208,6 +219,8 @@ VC,Saint Vincent and the Grenadines
 VE,Venezuela
 VN,Viet Nam
 VU,Vanuatu
+WK,Wake Island
+WL,Wales
 WS,Samoa
 XA,International Civil Aviation Organization
 XM,World Meteorological Organization
