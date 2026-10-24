@@ -6,8 +6,8 @@ AF,Afghanistan
 AG,Antigua and Barbuda
 AH,Austria-Hungary
 AI,Anguilla
-AL,Albania
 AK,Australian Antarctic Territory
+AL,Albania
 AM,Armenia
 AO,Angola
 AQ,Antarctica
@@ -57,7 +57,7 @@ CP,Clipperton Island
 CQ,Sark
 CR,Costa Rica
 CS,Czechoslovakia
-CT,Chilean Antarctic Territory 
+CT,Chilean Antarctic Territory
 CU,Cuba
 CV,Cabo Verde
 CW,Curaçao
@@ -103,13 +103,13 @@ GG,Guernsey
 GH,Ghana
 GI,Gibraltar
 GK,Danzig/Gdansk
-GL,Greenland 
+GL,Greenland
 GM,Gambia
 GN,Guinea
-GO,Guadeloupe
+GP,Guadeloupe
 GQ,Equatorial Guinea
 GR,Greece
-GS, South Georgia and the South Sandwich Islands 
+GS,South Georgia and the South Sandwich Islands
 GT,Guatemala
 GU,Guam
 GW,Guinea-Bissau
@@ -121,14 +121,14 @@ HR,Croatia
 HT,Haiti
 HU,Hungary
 IA,Azores
-IB,British India and Persian Gulf coloies
+IB,British India and Persian Gulf colonies
 IC,Canary Islands
 ID,Indonesia
 IE,Ireland
 IL,Israel
 IN,India
 IM,Isle of Man
-IO, British Indian Ocean Territory
+IO,British Indian Ocean Territory
 IQ,Iraq
 IR,Iran
 IS,Iceland
@@ -204,7 +204,7 @@ NW,Newfoundland
 NZ,New Zealand
 OM,Oman
 PA,Panama
-PC,Portugese colonies
+PC,Portuguese colonies
 PE,Peru
 PF,French Polynesia
 PG,Papua New Guinea
@@ -213,7 +213,7 @@ PK,Pakistan
 PL,Poland
 PM,Saint Pierre and Miquelon
 PN,Pitcairn
-PR,Puerto Rico 
+PR,Puerto Rico
 PS,Palestine
 PT,Portugal
 PU,Palmyra Atoll and Kingman Reef
@@ -234,7 +234,7 @@ SD,Sudan
 SE,Sweden
 SG,Singapore
 SH,Saint Helena
-SJ,Svalbard and Jan Mayern
+SJ,Svalbard and Jan Mayen
 SI,Slovenia
 SK,Slovakia
 SL,Sierra Leone
@@ -244,7 +244,7 @@ SO,Somalia
 SQ,Saba
 SR,Suriname
 SS,South Sudan
-ST,Sao Tome and Principe
+ST,São Tomé and Príncipe
 SU,Soviet Union
 SV,El Salvador
 SX,Sint Maarten
@@ -269,7 +269,7 @@ TW,Taiwan
 TZ,Tanzania
 UA,Ukraine
 UG,Uganda
-UM,Baker Howland and Jarvis Islands
+UM,"Baker, Howland and Jarvis Islands"
 UN,United Nations
 US,United States of America
 UY,Uruguay
@@ -281,7 +281,7 @@ VG,British Virgin Islands
 VI,US Virgin Islands
 VN,Viet Nam
 VU,Vanuatu
-WF,Wallis and Futuna 
+WF,Wallis and Futuna
 WK,Wake Island
 WL,Wales
 WS,Samoa
