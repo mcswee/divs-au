@@ -1,5 +1,49 @@
 [
   {
+    "id": "b6e5a8df-9b44-519f-81b0-fc6a71b29bc9",
+    "first_seen": "2026-10-24T17:18:34.504997+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament, Ringwood and Alamein from 3am Sunday 25 October to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-ALM-R:",
+      "aus:vic:vic-02-ALM:"
+    ]
+  },
+  {
+    "id": "e18bf89d-ca8d-595d-a115-298dac19a0d3",
+    "first_seen": "2026-10-24T17:18:34.504997+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament, Ringwood and Alamein from 3am Sunday 25 October to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "2a787e67-06e6-5f8b-a0be-944263c4603f",
+    "first_seen": "2026-10-24T17:18:34.504997+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament, Ringwood and Alamein from 3am Sunday 25 October to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "46e38acb-47a5-523b-8fe7-9a5c0bf44702",
+    "first_seen": "2026-10-24T17:18:34.504997+00:00",
+    "header": "Planned work: Buses replace trains between Parliament and Ringwood",
+    "description": "3am to last service, Sunday 25 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
     "id": "334c5588-d708-5625-8069-62601ea05b3f",
     "first_seen": "2026-10-24T13:32:09.575926+00:00",
     "header": "Planned work: Weekend works between Box Hill and Ringwood",
