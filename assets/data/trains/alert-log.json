@@ -1,5 +1,27 @@
 [
   {
+    "id": "e738dc8f-d409-522a-86c6-f4be46106d3f",
+    "first_seen": "2026-10-24T04:09:54.006761+00:00",
+    "header": "Suspended",
+    "description": "Buses replace trains between Laverton and Werribee due to an equipment fault in the Hoppers Crossing area.  Buses have been ordered but may take over 50 minutes to arrive Allow extra travel time  Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "84934717-7350-5351-830d-5af1d34bf9ed",
+    "first_seen": "2026-10-24T04:09:54.006761+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier police request in the Epping area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD-R:",
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
     "id": "fabc6219-e00b-5d9d-b102-385791bc148c",
     "first_seen": "2026-10-23T23:56:34.288081+00:00",
     "header": "Minor Delay",
