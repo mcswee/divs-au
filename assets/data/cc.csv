@@ -1,300 +1,301 @@
-AB,Scotland
-AC,Ascension Island
-AD,Andorra
-AE,United Arab Emirates
-AF,Afghanistan
-AG,Antigua and Barbuda
-AH,Austria-Hungary
-AI,Anguilla
-AK,Australian Antarctic Territory
-AL,Albania
-AM,Armenia
-AO,Angola
-AQ,Antarctica
-AR,Argentina
-AS,American Samoa
-AT,Austria
-AU,Australia
-AW,Aruba
-AX,Åland Islands
-AZ,Azerbaijan
-BA,Bosnia and Herzegovina
-BB,Barbados
-BC,British colonies and overseas territories
-BD,Bangladesh
-BE,Belgium
-BF,Burkina Faso
-BG,Bulgaria
-BH,Bahrain
-BI,Burundi
-BJ,Benin
-BL,Saint Barthélemy
-BM,Bermuda
-BN,Brunei Darussalam
-BO,Bolivia
-BQ,Bonaire
-BR,Brazil
-BS,Bahamas
-BT,Bhutan
-BV,Bouvet Island
-BW,Botswana
-BY,Belarus
-BZ,Belize
-CA,Canada
-CC,Cocos (Keeling) Islands
-CD,Democratic Republic of the Congo
-CE,Ceuta
-CF,Central African Republic
-CG,Congo
-CH,Switzerland
-CI,Côte d'Ivoire
-CK,Cook Islands
-CL,Chile
-CM,Cameroon
-CN,China
-CO,Colombia
-CP,Clipperton Island
-CQ,Sark
-CR,Costa Rica
-CS,Czechoslovakia
-CT,Chilean Antarctic Territory
-CU,Cuba
-CV,Cabo Verde
-CW,Curaçao
-CX,Christmas Island
-CY,Cyprus
-CZ,Czechia
-DD,German Democratic Republic
-DE,Germany
-DG,Diego Garcia
-DJ,Djibouti
-DK,Denmark
-DM,Dominica
-DN,Netherlands New Guinea
-DO,Dominican Republic
-DZ,Algeria
-EA,Melilla
-EC,Ecuador
-ED,Egypt/Sudan (split allocation)
-EE,Estonia
-EG,Egypt
-EH,Western Sahara
-EN,England
-EQ,Sint Eustatius
-ER,Eritrea
-ES,Spain
-ET,Ethiopia
-EU,European Union
-FI,Finland
-FJ,Fiji
-FK,Falkland Islands
-FM,Federated States of Micronesia
-FO,Faroe Islands
-FR,France
-FQ,Adélie Land
-FT,Argentine Antarctica
-FZ,Fiji/Eswatini (split allocation)
-GA,Gabon
-GB,United Kingdom
-GD,Grenada
-GE,Georgia
-GF,French Guiana
-GG,Guernsey
-GH,Ghana
-GI,Gibraltar
-GK,Danzig/Gdansk
-GL,Greenland
-GM,Gambia
-GN,Guinea
-GP,Guadeloupe
-GQ,Equatorial Guinea
-GR,Greece
-GS,South Georgia and the South Sandwich Islands
-GT,Guatemala
-GU,Guam
-GW,Guinea-Bissau
-GY,Guyana
-HK,Hong Kong
-HM,Heard and McDonald Islands
-HN,Honduras
-HR,Croatia
-HT,Haiti
-HU,Hungary
-IA,Azores
-IB,British India and Persian Gulf colonies
-IC,Canary Islands
-ID,Indonesia
-IE,Ireland
-IL,Israel
-IN,India
-IM,Isle of Man
-IO,British Indian Ocean Territory
-IQ,Iraq
-IR,Iran
-IS,Iceland
-IT,Italy
-JE,Jersey
-JM,Jamaica
-JO,Jordan
-JP,Japan
-JT,Johnston Atoll
-KE,Kenya
-KG,Kyrgyzstan
-KH,Cambodia
-KI,Kiribati
-KM,Comoros
-KN,Saint Kitts and Nevis
-KO,Korean Peninsula
-KP,Korea DPR
-KR,Republic of Korea
-KV,Kosovo
-KW,Kuwait
-KZ,Kazakhstan
-LA,Laos
-LB,Lebanon
-LC,Saint Lucia
-LE,The Levant
-LI,Liechtenstein
-LK,Sri Lanka
-LR,Liberia
-LS,Lesotho
-LT,Lithuania
-LU,Luxembourg
-LV,Latvia
-LY,Libya
-MA,Morocco
-MC,Monaco
-MD,Moldova
-ME,Montenegro
-MF,Saint Martin
-MG,Madagascar
-MH,Marshall Islands
-MI,Midway Atoll
-MK,North Macedonia
-ML,Mali
-MM,Myanmar
-MN,Mongolia
-MO,Macao
-MP,Northern Mariana Islands
-MQ,Martinique
-MR,Mauritania
-MS,Montserrat
-MT,Malta
-MU,Mauritius
-MV,Maldives
-MW,Malawi
-MX,Mexico
-MY,Malaysia
-MZ,Mozambique
-NA,Namibia
-NC,New Caledonia
-ND,Northern Ireland
-NE,Niger
-NF,Norfolk Island
-NG,Nigeria
-NI,Nicaragua
-NL,Netherlands
-NO,Norway
-NP,Nepal
-NQ,Queen Maud Land
-NR,Naoero
-NS,Navassa Island
-NU,Niue
-NW,Newfoundland
-NZ,New Zealand
-OM,Oman
-PA,Panama
-PC,Portuguese colonies
-PE,Peru
-PF,French Polynesia
-PG,Papua New Guinea
-PH,Philippines
-PK,Pakistan
-PL,Poland
-PM,Saint Pierre and Miquelon
-PN,Pitcairn
-PR,Puerto Rico
-PS,Palestine
-PT,Portugal
-PU,Palmyra Atoll and Kingman Reef
-PW,Palau
-PY,Paraguay
-QA,Qatar
-QE,British Antarctic Territory
-RE,Réunion
-RM,Madeira
-RO,Romania
-RS,Serbia
-RU,Russia
-RW,Rwanda
-SA,Saudi Arabia
-SB,Solomon Islands
-SC,Seychelles
-SD,Sudan
-SE,Sweden
-SG,Singapore
-SH,Saint Helena
-SJ,Svalbard and Jan Mayen
-SI,Slovenia
-SK,Slovakia
-SL,Sierra Leone
-SM,San Marino
-SN,Senegal
-SO,Somalia
-SQ,Saba
-SR,Suriname
-SS,South Sudan
-ST,São Tomé and Príncipe
-SU,Soviet Union
-SV,El Salvador
-SX,Sint Maarten
-SY,Syria
-SZ,Eswatini
-TA,Tristan da Cunha
-TC,Turks and Caicos Islands
-TD,Chad
-TF,French Southern Territories
-TG,Togo
-TH,Thailand
-TJ,Tajikistan
-TK,Tokelau
-TL,Timor-Leste
-TM,Turkmenistan
-TN,Tunisia
-TO,Tonga
-TR,Türkiye
-TT,Trinidad and Tobago
-TV,Tuvalu
-TW,Taiwan
-TZ,Tanzania
-UA,Ukraine
-UG,Uganda
-UM,"Baker, Howland and Jarvis Islands"
-UN,United Nations
-US,United States of America
-UY,Uruguay
-UZ,Uzbekistan
-VA,Holy See
-VC,Saint Vincent and the Grenadines
-VE,Venezuela
-VG,British Virgin Islands
-VI,US Virgin Islands
-VN,Viet Nam
-VU,Vanuatu
-WF,Wallis and Futuna
-WK,Wake Island
-WL,Wales
-WS,Samoa
-XA,International Civil Aviation Organization
-XM,World Meteorological Organization
-YD,Yemen DPR
-YE,Yemen
-YT,Mayotte
-YU,Yugoslavia
-ZA,South Africa
-ZL,Saar Land
-ZM,Zambia
-ZR,Ross Dependency
-ZT,Transkei
-ZW,Zimbabwe
-ZZ,Unassigned
+Code,Name,Category
+AB,Scotland,Constituent country
+AC,Ascension Island,Territory or dependency
+AD,Andorra,Sovereign state
+AE,United Arab Emirates,Sovereign state
+AF,Afghanistan,Sovereign state
+AG,Antigua and Barbuda,Sovereign state
+AH,Austria-Hungary,Historical entity
+AI,Anguilla,Territory or dependency
+AK,Australian Antarctic Territory,Antarctic claim
+AL,Albania,Sovereign state
+AM,Armenia,Sovereign state
+AO,Angola,Sovereign state
+AQ,Antarctica,Geographic region
+AR,Argentina,Sovereign state
+AS,American Samoa,Territory or dependency
+AT,Austria,Sovereign state
+AU,Australia,Sovereign state
+AW,Aruba,Territory or dependency
+AX,Åland Islands,Territory or dependency
+AZ,Azerbaijan,Sovereign state
+BA,Bosnia and Herzegovina,Sovereign state
+BB,Barbados,Sovereign state
+BC,British colonies and overseas territories,Historical entity
+BD,Bangladesh,Sovereign state
+BE,Belgium,Sovereign state
+BF,Burkina Faso,Sovereign state
+BG,Bulgaria,Sovereign state
+BH,Bahrain,Sovereign state
+BI,Burundi,Sovereign state
+BJ,Benin,Sovereign state
+BL,Saint Barthélemy,Territory or dependency
+BM,Bermuda,Territory or dependency
+BN,Brunei Darussalam,Sovereign state
+BO,Bolivia,Sovereign state
+BQ,Bonaire,Territory or dependency
+BR,Brazil,Sovereign state
+BS,Bahamas,Sovereign state
+BT,Bhutan,Sovereign state
+BV,Bouvet Island,Territory or dependency
+BW,Botswana,Sovereign state
+BY,Belarus,Sovereign state
+BZ,Belize,Sovereign state
+CA,Canada,Sovereign state
+CC,Cocos (Keeling) Islands,Territory or dependency
+CD,Democratic Republic of the Congo,Sovereign state
+CE,Ceuta,Territory or dependency
+CF,Central African Republic,Sovereign state
+CG,Congo,Sovereign state
+CH,Switzerland,Sovereign state
+CI,Côte d'Ivoire,Sovereign state
+CK,Cook Islands,Territory or dependency
+CL,Chile,Sovereign state
+CM,Cameroon,Sovereign state
+CN,China,Sovereign state
+CO,Colombia,Sovereign state
+CP,Clipperton Island,Territory or dependency
+CQ,Sark,Territory or dependency
+CR,Costa Rica,Sovereign state
+CS,Czechoslovakia,Historical entity
+CT,Chilean Antarctic Territory,Antarctic claim
+CU,Cuba,Sovereign state
+CV,Cabo Verde,Sovereign state
+CW,Curaçao,Territory or dependency
+CX,Christmas Island,Territory or dependency
+CY,Cyprus,Sovereign state
+CZ,Czechia,Sovereign state
+DD,German Democratic Republic,Historical entity
+DE,Germany,Sovereign state
+DG,Diego Garcia,Territory or dependency
+DJ,Djibouti,Sovereign state
+DK,Denmark,Sovereign state
+DM,Dominica,Sovereign state
+DN,Netherlands New Guinea,Historical entity
+DO,Dominican Republic,Sovereign state
+DZ,Algeria,Sovereign state
+EA,Melilla,Territory or dependency
+EC,Ecuador,Sovereign state
+ED, Egypt/Sudan (split allocation),Special allocation
+EE,Estonia,Sovereign state
+EG,Egypt,Sovereign state
+EH,Western Sahara,Territory or dependency
+EN,England,Constituent country
+EQ,Sint Eustatius,Territory or dependency
+ER,Eritrea,Sovereign state
+ES,Spain,Sovereign state
+ET,Ethiopia,Sovereign state
+EU,European Union,Organisation
+FI,Finland,Sovereign state
+FJ,Fiji,Sovereign state
+FK,Falkland Islands,Territory or dependency
+FM,Federated States of Micronesia,Sovereign state
+FO,Faroe Islands,Territory or dependency
+FR,France,Sovereign state
+FQ,Adélie Land,Antarctic claim
+FT,Argentine Antarctica,Antarctic claim
+FZ,Fiji/Eswatini (split allocation),Special allocation
+GA,Gabon,Sovereign state
+GB,United Kingdom,Sovereign state
+GD,Grenada,Sovereign state
+GE,Georgia,Sovereign state
+GF,French Guiana,Territory or dependency
+GG,Guernsey,Territory or dependency
+GH,Ghana,Sovereign state
+GI,Gibraltar,Territory or dependency
+GK,Danzig/Gdansk,Historical entity
+GL,Greenland,Territory or dependency
+GM,Gambia,Sovereign state
+GN,Guinea,Sovereign state
+GP,Guadeloupe,Territory or dependency
+GQ,Equatorial Guinea,Sovereign state
+GR,Greece,Sovereign state
+GS,South Georgia and the South Sandwich Islands,Territory or dependency
+GT,Guatemala,Sovereign state
+GU,Guam,Territory or dependency
+GW,Guinea-Bissau,Sovereign state
+GY,Guyana,Sovereign state
+HK,Hong Kong,Territory or dependency
+HM,Heard and McDonald Islands,Territory or dependency
+HN,Honduras,Sovereign state
+HR,Croatia,Sovereign state
+HT,Haiti,Sovereign state
+HU,Hungary,Sovereign state
+IA,Azores,Territory or dependency
+IB,British India and Persian Gulf colonies,Historical entity
+IC,Canary Islands,Territory or dependency
+ID,Indonesia,Sovereign state
+IE,Ireland,Sovereign state
+IL,Israel,Sovereign state
+IN,India,Sovereign state
+IM,Isle of Man,Territory or dependency
+IO,British Indian Ocean Territory,Territory or dependency
+IQ,Iraq,Sovereign state
+IR,Iran,Sovereign state
+IS,Iceland,Sovereign state
+IT,Italy,Sovereign state
+JE,Jersey,Territory or dependency
+JM,Jamaica,Sovereign state
+JO,Jordan,Sovereign state
+JP,Japan,Sovereign state
+JT,Johnston Atoll,Territory or dependency
+KE,Kenya,Sovereign state
+KG,Kyrgyzstan,Sovereign state
+KH,Cambodia,Sovereign state
+KI,Kiribati,Sovereign state
+KM,Comoros,Sovereign state
+KN,Saint Kitts and Nevis,Sovereign state
+KO,Korean Peninsula,Geographic region
+KP,Korea DPR,Sovereign state
+KR,Republic of Korea,Sovereign state
+KV,Kosovo,Sovereign state
+KW,Kuwait,Sovereign state
+KZ,Kazakhstan,Sovereign state
+LA,Laos,Sovereign state
+LB,Lebanon,Sovereign state
+LC,Saint Lucia,Sovereign state
+LE,The Levant,Geographic region
+LI,Liechtenstein,Sovereign state
+LK,Sri Lanka,Sovereign state
+LR,Liberia,Sovereign state
+LS,Lesotho,Sovereign state
+LT,Lithuania,Sovereign state
+LU,Luxembourg,Sovereign state
+LV,Latvia,Sovereign state
+LY,Libya,Sovereign state
+MA,Morocco,Sovereign state
+MC,Monaco,Sovereign state
+MD,Moldova,Sovereign state
+ME,Montenegro,Sovereign state
+MF,Saint Martin,Territory or dependency
+MG,Madagascar,Sovereign state
+MH,Marshall Islands,Sovereign state
+MI,Midway Atoll,Territory or dependency
+MK,North Macedonia,Sovereign state
+ML,Mali,Sovereign state
+MM,Myanmar,Sovereign state
+MN,Mongolia,Sovereign state
+MO,Macao,Territory or dependency
+MP,Northern Mariana Islands,Territory or dependency
+MQ,Martinique,Territory or dependency
+MR,Mauritania,Sovereign state
+MS,Montserrat,Territory or dependency
+MT,Malta,Sovereign state
+MU,Mauritius,Sovereign state
+MV,Maldives,Sovereign state
+MW,Malawi,Sovereign state
+MX,Mexico,Sovereign state
+MY,Malaysia,Sovereign state
+MZ,Mozambique,Sovereign state
+NA,Namibia,Sovereign state
+NC,New Caledonia,Territory or dependency
+ND,Northern Ireland,Constituent country
+NE,Niger,Sovereign state
+NF,Norfolk Island,Territory or dependency
+NG,Nigeria,Sovereign state
+NI,Nicaragua,Sovereign state
+NL,Netherlands,Sovereign state
+NO,Norway,Sovereign state
+NP,Nepal,Sovereign state
+NQ,Queen Maud Land,Antarctic claim
+NR,Naoero,Sovereign state
+NS,Navassa Island,Territory or dependency
+NU,Niue,Territory or dependency
+NW,Newfoundland,Historical entity
+NZ,New Zealand,Sovereign state
+OM,Oman,Sovereign state
+PA,Panama,Sovereign state
+PC,Portuguese colonies,Historical entity
+PE,Peru,Sovereign state
+PF,French Polynesia,Territory or dependency
+PG,Papua New Guinea,Sovereign state
+PH,Philippines,Sovereign state
+PK,Pakistan,Sovereign state
+PL,Poland,Sovereign state
+PM,Saint Pierre and Miquelon,Territory or dependency
+PN,Pitcairn,Territory or dependency
+PR,Puerto Rico,Territory or dependency
+PS,Palestine,Sovereign state
+PT,Portugal,Sovereign state
+PU,Palmyra Atoll and Kingman Reef,Territory or dependency
+PW,Palau,Sovereign state
+PY,Paraguay,Sovereign state
+QA,Qatar,Sovereign state
+QE,British Antarctic Territory,Antarctic claim
+RE,Réunion,Territory or dependency
+RM,Madeira,Territory or dependency
+RO,Romania,Sovereign state
+RS,Serbia,Sovereign state
+RU,Russia,Sovereign state
+RW,Rwanda,Sovereign state
+SA,Saudi Arabia,Sovereign state
+SB,Solomon Islands,Sovereign state
+SC,Seychelles,Sovereign state
+SD,Sudan,Sovereign state
+SE,Sweden,Sovereign state
+SG,Singapore,Sovereign state
+SH,Saint Helena,Territory or dependency
+SJ,Svalbard and Jan Mayen,Territory or dependency
+SI,Slovenia,Sovereign state
+SK,Slovakia,Sovereign state
+SL,Sierra Leone,Sovereign state
+SM,San Marino,Sovereign state
+SN,Senegal,Sovereign state
+SO,Somalia,Sovereign state
+SQ,Saba,Territory or dependency
+SR,Suriname,Sovereign state
+SS,South Sudan,Sovereign state
+ST,São Tomé and Príncipe,Sovereign state
+SU,Soviet Union,Historical entity
+SV,El Salvador,Sovereign state
+SX,Sint Maarten,Territory or dependency
+SY,Syria,Sovereign state
+SZ,Eswatini,Sovereign state
+TA,Tristan da Cunha,Territory or dependency
+TC,Turks and Caicos Islands,Territory or dependency
+TD,Chad,Sovereign state
+TF,French Southern Territories,Territory or dependency
+TG,Togo,Sovereign state
+TH,Thailand,Sovereign state
+TJ,Tajikistan,Sovereign state
+TK,Tokelau,Territory or dependency
+TL,Timor-Leste,Sovereign state
+TM,Turkmenistan,Sovereign state
+TN,Tunisia,Sovereign state
+TO,Tonga,Sovereign state
+TR,Türkiye,Sovereign state
+TT,Trinidad and Tobago,Sovereign state
+TV,Tuvalu,Sovereign state
+TW,Taiwan,Sovereign state
+TZ,Tanzania,Sovereign state
+UA,Ukraine,Sovereign state
+UG,Uganda,Sovereign state
+UM,"Baker, Howland and Jarvis Islands",Territory or dependency
+UN,United Nations,Organisation
+US,United States of America,Sovereign state
+UY,Uruguay,Sovereign state
+UZ,Uzbekistan,Sovereign state
+VA,Holy See,Sovereign state
+VC,Saint Vincent and the Grenadines,Sovereign state
+VE,Venezuela,Sovereign state
+VG,British Virgin Islands,Territory or dependency
+VI,US Virgin Islands,Territory or dependency
+VN,Viet Nam,Sovereign state
+VU,Vanuatu,Sovereign state
+WF,Wallis and Futuna,Territory or dependency
+WK,Wake Island,Territory or dependency
+WL,Wales,Constituent country
+WS,Samoa,Sovereign state
+XA,International Civil Aviation Organization,Organisation
+XM,World Meteorological Organization,Organisation
+YD,Yemen DPR,Historical entity
+YE,Yemen,Sovereign state
+YT,Mayotte,Territory or dependency
+YU,Yugoslavia,Historical entity
+ZA,South Africa,Sovereign state
+ZL,Saar Land,Historical entity
+ZM,Zambia,Sovereign state
+ZR,Ross Dependency,Antarctic claim
+ZT,Transkei,Historical entity
+ZW,Zimbabwe,Sovereign state
+ZZ,Unassigned,Special allocation
