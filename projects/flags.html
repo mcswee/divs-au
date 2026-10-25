@@ -7,34 +7,52 @@ permalink: /flags/
   <header class="flags-header">
     <h1>Flags and country codes</h1>
     <p>This list is maintained for administrative and coding purposes. Some territories use unofficial or locally representative flags rather than the flag of the sovereign state that administers them. Inclusion in the list reflects administrative requirements only and does not constitute an endorsement of any country or entity as a sovereign nation, nor support for any claim to independence or sovereignty.</p>
-  </header>  <div class="flags-toolbar">
+  </header>
+
+  <div class="flags-toolbar">
     <div class="flags-controls">
       <div class="flags-field flags-search-field">
         <label for="flags-search">Find a country or code</label>
         <input id="flags-search" type="search" placeholder="Search by name or code" autocomplete="off">
-      </div>  <div class="flags-field">
-    <label for="flags-category">Category</label>
-    <select id="flags-category">
-      <option value="">All categories</option>
-    </select>
+      </div>
+
+      <div class="flags-field">
+        <label for="flags-category">Category</label>
+        <select id="flags-category">
+          <option value="">All categories</option>
+        </select>
+      </div>
+
+      <div class="flags-field">
+        <label for="flags-sort">Sort by</label>
+        <select id="flags-sort">
+          <option value="name">Name</option>
+          <option value="code">Code</option>
+        </select>
+      </div>
+    </div>
+
+    <p id="flags-count" class="flags-count" aria-live="polite"></p>
   </div>
 
-  <div class="flags-field">
-    <label for="flags-sort">Sort by</label>
-    <select id="flags-sort">
-      <option value="name">Name</option>
-      <option value="code">Code</option>
-    </select>
-  </div>
-</div>
-
-<p id="flags-count" class="flags-count" aria-live="polite"></p>
-
-  </div>  <div id="flags-list" class="flags-grid" aria-live="polite">
+  <div id="flags-list" class="flags-grid" aria-live="polite">
     <p class="flags-status">Loading flags…</p>
   </div>
+
   <p id="flags-error" class="flags-status flags-error" hidden></p>
-</div><style>
+</div>
+
+<div id="flag-lightbox" class="flag-lightbox" role="dialog"
+     aria-modal="true" aria-label="Enlarged flag" aria-hidden="true" hidden>
+  <button id="flag-lightbox-close" class="flag-lightbox-close"
+          type="button" aria-label="Close enlarged flag">&times;</button>
+  <figure class="flag-lightbox-figure">
+    <img id="flag-lightbox-image" src="" alt="">
+    <figcaption id="flag-lightbox-caption"></figcaption>
+  </figure>
+</div>
+
+<style>
   .flags-page {
     max-width: 1200px;
     margin: 0 auto;
@@ -56,7 +74,7 @@ permalink: /flags/
   .flags-header p {
     margin: 0;
     color: var(--text-highlight, #626276);
-    max-width: 680px;
+    max-width: 800px;
   }
 
   .flags-toolbar { margin-bottom: 18px; }
@@ -126,6 +144,7 @@ permalink: /flags/
     width: 78px;
     aspect-ratio: 3 / 2;
     border-radius: 2px;
+    cursor: zoom-in;
   }
 
   .flag-card img {
@@ -141,6 +160,11 @@ permalink: /flags/
   .flag-image-link:focus-visible {
     outline: 2px solid var(--brand-main, #4d5792);
     outline-offset: 3px;
+  }
+
+  .flag-image-link.flag-missing {
+    visibility: hidden;
+    cursor: default;
   }
 
   .flag-card-code {
@@ -178,6 +202,73 @@ permalink: /flags/
 
   .flags-error { color: #a33131; }
 
+  .flag-lightbox[hidden] { display: none !important; }
+
+  .flag-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 24px 32px;
+    background: rgb(0 0 0 / 82%);
+    cursor: zoom-out;
+  }
+
+  .flag-lightbox-close {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 1px solid rgb(255 255 255 / 45%);
+    border-radius: 50%;
+    background: rgb(0 0 0 / 35%);
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .flag-lightbox-close:hover {
+    background: rgb(255 255 255 / 18%);
+  }
+
+  .flag-lightbox-close:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+
+  .flag-lightbox-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+    cursor: default;
+  }
+
+  .flag-lightbox-figure img {
+    display: block;
+    max-width: min(100%, 1000px);
+    max-height: calc(100dvh - 150px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    background: #fff;
+    box-shadow: 0 8px 36px rgb(0 0 0 / 35%);
+  }
+
+  .flag-lightbox-figure figcaption {
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+  }
+
   @media (max-width: 700px) {
     .flags-page { padding-top: 18px; }
 
@@ -197,8 +288,20 @@ permalink: /flags/
       padding: 10px;
     }
 
-    .flag-image-link {
-      width: 68px;
+    .flag-image-link { width: 68px; }
+
+    .flag-lightbox {
+      padding: 64px 12px 24px;
+    }
+
+    .flag-lightbox-close {
+      top: 10px;
+      right: 12px;
+    }
+
+    .flag-lightbox-figure img {
+      max-width: 100%;
+      max-height: calc(100dvh - 130px);
     }
   }
 
@@ -206,7 +309,9 @@ permalink: /flags/
     .flags-controls { grid-template-columns: minmax(0, 1fr); }
     .flags-search-field { grid-column: auto; }
   }
-</style><script>
+</style>
+
+<script>
 (() => {
   "use strict";
 
@@ -219,6 +324,58 @@ permalink: /flags/
   const sortSelect = document.getElementById("flags-sort");
   const count = document.getElementById("flags-count");
   const error = document.getElementById("flags-error");
+
+  const lightbox = document.getElementById("flag-lightbox");
+  const lightboxImage = document.getElementById("flag-lightbox-image");
+  const lightboxCaption = document.getElementById("flag-lightbox-caption");
+  const lightboxClose = document.getElementById("flag-lightbox-close");
+
+  let lastFocusedElement = null;
+  let entries = [];
+
+  function openLightbox(url, name) {
+    lastFocusedElement = document.activeElement;
+    lightboxImage.src = url;
+    lightboxImage.alt = `${name} flag`;
+    lightboxCaption.textContent = name;
+    lightbox.hidden = false;
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    lightboxClose.focus();
+  }
+
+  function closeLightbox() {
+    if (lightbox.hidden) return;
+
+    lightbox.hidden = true;
+    lightbox.setAttribute("aria-hidden", "true");
+    lightboxImage.removeAttribute("src");
+    lightboxImage.alt = "";
+    lightboxCaption.textContent = "";
+    document.body.style.overflow = "";
+
+    if (lastFocusedElement && document.contains(lastFocusedElement)) {
+      lastFocusedElement.focus();
+    }
+  }
+
+  lightboxClose.addEventListener("click", closeLightbox);
+
+  lightbox.addEventListener("click", event => {
+    if (event.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener("keydown", event => {
+    if (lightbox.hidden) return;
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeLightbox();
+    } else if (event.key === "Tab") {
+      event.preventDefault();
+      lightboxClose.focus();
+    }
+  });
 
   function parseCSV(text) {
     const rows = [];
@@ -279,8 +436,6 @@ permalink: /flags/
       }))
       .filter(item => item.code && item.name);
   }
-
-  let entries = [];
 
   function populateCategories() {
     const categories = [...new Set(
@@ -350,9 +505,7 @@ permalink: /flags/
         const imageLink = document.createElement("a");
         imageLink.className = "flag-image-link";
         imageLink.href = imageUrl;
-        imageLink.target = "_blank";
-        imageLink.rel = "noopener";
-        imageLink.setAttribute("aria-label", `Open full-size ${item.name} flag`);
+        imageLink.setAttribute("aria-label", `Enlarge ${item.name} flag`);
 
         const image = document.createElement("img");
         image.src = imageUrl;
@@ -362,6 +515,21 @@ permalink: /flags/
         image.height = 52;
 
         imageLink.append(image);
+
+        imageLink.addEventListener("click", event => {
+          event.preventDefault();
+          if (!imageLink.classList.contains("flag-missing")) {
+            openLightbox(imageUrl, item.name);
+          }
+        });
+
+        image.addEventListener("error", () => {
+          imageLink.removeAttribute("href");
+          imageLink.setAttribute("aria-hidden", "true");
+          imageLink.setAttribute("tabindex", "-1");
+          imageLink.classList.add("flag-missing");
+          image.remove();
+        }, { once: true });
 
         const details = document.createElement("div");
 
@@ -384,16 +552,6 @@ permalink: /flags/
 
         card.append(imageLink, details);
         fragment.append(card);
-
-        image.addEventListener("error", () => {
-          imageLink.removeAttribute("href");
-          imageLink.removeAttribute("target");
-          imageLink.removeAttribute("rel");
-          imageLink.setAttribute("aria-hidden", "true");
-          imageLink.setAttribute("tabindex", "-1");
-          image.remove();
-          card.classList.add("flag-card-no-image");
-        }, { once: true });
       });
 
       list.append(fragment);
