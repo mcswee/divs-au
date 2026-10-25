@@ -1,5 +1,47 @@
 [
   {
+    "id": "8439edce-2f4b-53c7-9a1e-f8e0908c6b9d",
+    "first_seen": "2026-10-25T13:52:02.968214+00:00",
+    "header": "Other Information",
+    "description": "Trains are resuming between North Melbourne and Newport after emergency services earlier attending to a serious incident. First train to resume will be:  The 12:20pm Flinders Street to Werribee.  The last citybound services will be replaced by buses. Replacement buses may supplement train services as we restore the regular frequency. Check information displays and listen for announcements.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "ef82de5a-f2fa-5619-845c-7aca515a9c86",
+    "first_seen": "2026-10-25T13:52:02.968214+00:00",
+    "header": "Other Information",
+    "description": "Trains are resuming between North Melbourne and Newport after emergency services earlier attending to a serious incident. First train to resume will be:  The 12:20pm Flinders Street to Werribee.  The last citybound services will be replaced by buses. Replacement buses may supplement train services as we restore the regular frequency. Check information displays and listen for announcements.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
+    "id": "0e831dd7-5e34-58d7-8c4e-5ea76f559bc0",
+    "first_seen": "2026-10-25T13:52:02.968214+00:00",
+    "header": "Planned work: Night works between Brighton Beach and Hampton",
+    "description": "9pm to 4am each night, Sunday 25 October to Thursday 29 October  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Sandringham Line. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SHM:"
+    ]
+  },
+  {
+    "id": "93a6ffb0-c9a3-554f-9ad6-b2cb9a9c3477",
+    "first_seen": "2026-10-25T13:52:02.968214+00:00",
+    "header": "Planned work: Night works between Epping and South Morang",
+    "description": "12am to 4am each night, Sunday 25 October to Thursday 29 October  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Mernda Line. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-MDD-R:"
+    ]
+  },
+  {
     "id": "d846f1d7-cae3-508a-9fb1-501861e51820",
     "first_seen": "2026-10-25T09:19:21.343898+00:00",
     "header": "Minor Delay",
