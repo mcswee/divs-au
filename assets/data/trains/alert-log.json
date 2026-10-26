@@ -1,5 +1,79 @@
 [
   {
+    "id": "a577a8cf-b1aa-5bbd-be95-fa5cece06fe5",
+    "first_seen": "2026-10-26T10:25:22.983090+00:00",
+    "header": "Planned work: Cranbourne and Pakenham services start and end at South Yarra",
+    "description": "8.30pm to last service Monday 26 October To Metro Tunnel All Pakenham &amp; Cranbourne Line trains will end at South Yarra. Take a Frankston Line train to Melbourne Central to transfer to State Library. Take a Frankston or Sandringham Line train to Flinders Street to transfer to Town Hall. To City All Pakenham &amp; Cranbourne Line trains will end at South Yarra. Take a Frankston or Sandringham Line train to the city. From Metro Tunnel All Pakenham &amp; Cranbourne Line trains will start from South Yarra. If at State Library, go to Melbourne Central and take a Frankston Line train to South Yarra. If at Town Hall, go to Flinders Street and take a Frankston or Sandringham Line train to South Yarra. From City All Pakenham &amp; Cranbourne Line trains will start from South Yarra. Take a Frankston or Sandringham Line train and change at South Yarra. Allow extra time to change trains.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "4f5026e3-867c-590d-9f38-0431f60e74bf",
+    "first_seen": "2026-10-26T10:25:22.983090+00:00",
+    "header": "Planned work: Buses replace trains between North Melbourne and Sunshine",
+    "description": "8.30pm to last service Monday 26 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "71161336-eb5b-57f7-bb3d-aa64eedeab62",
+    "first_seen": "2026-10-26T10:25:22.983090+00:00",
+    "header": "Planned Works",
+    "description": "Pakenham and Cranbourne line services will operate as a shuttle service between South Yarra and East Pakenham/Cranbourne from 8:30pm to last train tonight, while maintenance and renewal works take place. Note:  No trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. Shuttle buses will operate North Melbourne to Parkville and Arden, except during night network.  To Metro Tunnel  \u00a0Take a Frankston train to Melbourne Central and transfer to State Library. \u00a0Take a Frankston or Sandringham train to Flinders St and transfer to Town Hall.  To City  \u00a0Take a Frankston or Sandringham train to the City.  From Metro Tunnel  From State Library, go to Melbourne Central and take a Frankston train to South Yarra. From Town Hall, go to Flinders St and take a Frankston or Sandringham train to South Yarra.  From City  Take a Frankston or Sandringham train and change at South Yarra.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "8b2b5b9b-327c-505c-910f-de2202fd2f2c",
+    "first_seen": "2026-10-26T10:25:22.983090+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between North Melbourne and Sunshine from 8:30pm to last train tonight, while maintenance and renewal works take place. Note:  No trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. A shuttle bus will operate between Parkville, Arden, North Melbourne and stopping all stations to Sunshine. An express bus will operate between North Melbourne and Sunshine, not stopping at Footscray.  Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "c2141c9e-da18-5965-8e7c-669f2d953918",
+    "first_seen": "2026-10-26T10:25:22.983090+00:00",
+    "header": "Planned Works",
+    "description": "Pakenham and Cranbourne line services will operate as a shuttle service between South Yarra and East Pakenham/Cranbourne from 8:30pm to last train tonight, while maintenance and renewal works take place. Note:  No trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. Shuttle buses will operate North Melbourne to Parkville and Arden, except during night network.  To Metro Tunnel  \u00a0Take a Frankston train to Melbourne Central and transfer to State Library. \u00a0Take a Frankston or Sandringham train to Flinders St and transfer to Town Hall.  To City  \u00a0Take a Frankston or Sandringham train to the City.  From Metro Tunnel  From State Library, go to Melbourne Central and take a Frankston train to South Yarra. From Town Hall, go to Flinders St and take a Frankston or Sandringham train to South Yarra.  From City  Take a Frankston or Sandringham train and change at South Yarra.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "87d30fca-1e63-527e-8cfd-71cb4c74db42",
+    "first_seen": "2026-10-26T10:25:22.983090+00:00",
+    "header": "Other Information",
+    "description": "Trains may depart from altered platforms between Box Hill and Camberwell due to an equipment fault in the Union area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "3a3111f5-45ec-5e0f-acfb-98b59b56a167",
+    "first_seen": "2026-10-26T10:25:22.983090+00:00",
+    "header": "Other Information",
+    "description": "Trains may depart from altered platforms between Box Hill and Camberwell due to an equipment fault in the Union area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
     "id": "b61b68ae-dcd8-5533-a753-0015a11ee892",
     "first_seen": "2026-10-26T01:32:02.591169+00:00",
     "header": "Other Information",
