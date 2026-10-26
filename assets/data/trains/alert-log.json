@@ -1,5 +1,26 @@
 [
   {
+    "id": "b61b68ae-dcd8-5533-a753-0015a11ee892",
+    "first_seen": "2026-10-26T01:32:02.591169+00:00",
+    "header": "Other Information",
+    "description": "Trains may depart from an altered platform for stations between Box Hill and Camberwell due to an equipment fault in the Union area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "b880e593-0e14-58c2-97fd-150cfd749540",
+    "first_seen": "2026-10-26T01:32:02.591169+00:00",
+    "header": "Other Information",
+    "description": "Trains may depart from an altered platform for stations between Box Hill and Camberwell due to an equipment fault in the Union area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
     "id": "8439edce-2f4b-53c7-9a1e-f8e0908c6b9d",
     "first_seen": "2026-10-25T13:52:02.968214+00:00",
     "header": "Other Information",
