@@ -1,5 +1,16 @@
 [
   {
+    "id": "e12a1f3c-2418-57d3-8624-62f4a3df6a5e",
+    "first_seen": "2026-10-26T16:54:28.953497+00:00",
+    "header": "Planned work: Buses replace trains from Newport to Werribee",
+    "description": "11.50pm to last service each night, Monday 26 October to Thursday 29 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
     "id": "a577a8cf-b1aa-5bbd-be95-fa5cece06fe5",
     "first_seen": "2026-10-26T10:25:22.983090+00:00",
     "header": "Planned work: Cranbourne and Pakenham services start and end at South Yarra",
