@@ -1,5 +1,26 @@
 [
   {
+    "id": "07124143-bd32-5d6e-bbea-49053f4772b3",
+    "first_seen": "2026-10-27T04:35:23.870178+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier equipment fault in the Bayswater area. Select services may terminate/originate from intermediate stations. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "8b9266ed-e93c-5fde-b161-bdeda5f2856b",
+    "first_seen": "2026-10-27T04:35:23.870178+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes due to an ill passenger requiring medical assistance at Croydon. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
     "id": "600ecb67-8c5d-511d-aa90-552044a89d52",
     "first_seen": "2026-10-27T01:36:09.573332+00:00",
     "header": "Other Information",
