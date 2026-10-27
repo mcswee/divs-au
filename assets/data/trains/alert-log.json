@@ -1,5 +1,26 @@
 [
   {
+    "id": "600ecb67-8c5d-511d-aa90-552044a89d52",
+    "first_seen": "2026-10-27T01:36:09.573332+00:00",
+    "header": "Other Information",
+    "description": "Trains may run via an an altered platform for stations between Camberwell \u2013 Box Hill due to an equipment fault in the East Camberwell area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "cc2f2310-d95b-5aa5-b72b-767f820e8b49",
+    "first_seen": "2026-10-27T01:36:09.573332+00:00",
+    "header": "Other Information",
+    "description": "Trains may run via an an altered platform for stations between Camberwell \u2013 Box Hill due to an equipment fault in the East Camberwell area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
     "id": "e12a1f3c-2418-57d3-8624-62f4a3df6a5e",
     "first_seen": "2026-10-26T16:54:28.953497+00:00",
     "header": "Planned work: Buses replace trains from Newport to Werribee",
