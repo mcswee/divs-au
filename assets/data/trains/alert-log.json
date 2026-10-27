@@ -1,5 +1,16 @@
 [
   {
+    "id": "38e09371-924c-5102-93f3-66cc433ddbd0",
+    "first_seen": "2026-10-27T15:59:05.698822+00:00",
+    "header": "Planned work: Buses replace trains between Caulfield and Moorabbin",
+    "description": "12am to last service each night, Tuesday 27 October to Thursday 29 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
     "id": "07124143-bd32-5d6e-bbea-49053f4772b3",
     "first_seen": "2026-10-27T04:35:23.870178+00:00",
     "header": "Minor Delay",
