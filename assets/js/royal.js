@@ -140,6 +140,7 @@ function render(data){
   const cards=ng.selectAll('g.node-card')
     .data(data.nodes).join('g')
     .attr('class','node-card')
+    .classed('sovereign', d => d.is_sovereign)
     .attr('transform',d=>`translate(${d.px},${d.py})`);
 
   cards.append('rect').attr('class','bg')
