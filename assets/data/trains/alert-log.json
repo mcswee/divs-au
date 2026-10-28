@@ -1,5 +1,16 @@
 [
   {
+    "id": "87f297e9-47e1-55e4-a0ec-60ad8bb2c7e8",
+    "first_seen": "2026-10-28T05:07:57.924485+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier trespasser in the Hoppers Crossing area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
     "id": "38e09371-924c-5102-93f3-66cc433ddbd0",
     "first_seen": "2026-10-27T15:59:05.698822+00:00",
     "header": "Planned work: Buses replace trains between Caulfield and Moorabbin",
