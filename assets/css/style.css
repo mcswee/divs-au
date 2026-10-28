@@ -3121,6 +3121,15 @@ main:has(.tool-page) { overflow: hidden; }
     opacity: 0.15;
 }
 
+.royal-page .node-card.sovereign .card-name {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.royal-page .node-card.sovereign .bg {
+    stroke-width: 2.5px;
+}
+
 .royal-page .node-card text {
     font-family: Inter, sans-serif;
 }
