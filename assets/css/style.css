@@ -3122,12 +3122,12 @@ main:has(.tool-page) { overflow: hidden; }
 }
 
 .royal-page .node-card.sovereign .card-name {
-    font-size: 13px;
+    font-size: 1.1em;
     font-weight: 700;
 }
 
 .royal-page .node-card.sovereign .bg {
-    stroke-width: 2.5px;
+    stroke-width: 4px;
 }
 
 .royal-page .node-card text {
