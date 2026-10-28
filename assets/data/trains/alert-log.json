@@ -1,5 +1,59 @@
 [
   {
+    "id": "c36ae81f-b393-5404-afc5-27e760c3e546",
+    "first_seen": "2026-10-28T22:22:50.001203+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the Newport area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
+    "id": "31428981-9a19-5d52-9ea8-f00cf39598e6",
+    "first_seen": "2026-10-28T22:22:50.001203+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the Newport area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "ebf6688d-caf6-587d-8e1f-999699c86f92",
+    "first_seen": "2026-10-28T22:22:50.001203+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an earlier trespasser. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "9a64f57a-2476-51c8-840c-da253d46fc44",
+    "first_seen": "2026-10-28T22:22:50.001203+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an earlier trespasser. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD-R:",
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
+    "id": "3e8bdfd5-b229-5b23-83f4-94198f5d92fc",
+    "first_seen": "2026-10-28T22:22:50.001203+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes after an earlier police request in the Seaford area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
     "id": "53005e2b-e9b4-5a0d-8f2d-6cd4ad6ec641",
     "first_seen": "2026-10-28T11:32:18.966811+00:00",
     "header": "Planned work: Cranbourne and Pakenham services start and end at South Yarra",
