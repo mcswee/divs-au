@@ -1,7 +1,7 @@
 // Royal family tree (projects/royal.html)
 // Data: /assets/data/royal.json (nodes, edges, house_colours)   Chart: D3
 
-const CW=148, CH=98, SG=158, GG=156;
+const CW=172, CH=108, SG=186, GG=160;
 
 // Text on a card is whichever of dark or cream reads better on that house colour;
 // the "dim" lines are as close to the card colour as still passes 4.5:1
@@ -32,26 +32,30 @@ function cardBg(d){
   return c.member;
 }
 
+
 function buildLines(d){
   const L=[];
+
   if(d.is_sovereign){
-    L.push({t:trunc(d.name,20),      cinzel:true,  sz:10.5, bold:true });
-    if(d.sobriquet)  L.push({t:trunc(d.sobriquet,24), italic:true, sz:9.5, dim:true});
-    if(d.birth_line) L.push({t:d.birth_line,           sz:9.5, dim:true});
-    if(d.reign)       L.push({t:d.reign,                sz:9.5, dim:true});
+    L.push({t:trunc(d.name,24), cls:'card-name'});
+    if(d.sobriquet) L.push({t:trunc(d.sobriquet,26), cls:'card-sobriquet'});
+    if(d.birth_line) L.push({t:d.birth_line, cls:'card-detail'});
+    if(d.reign) L.push({t:d.reign, cls:'card-detail'});
   } else if(d.gender==='F'){
-    L.push({t:trunc(d.name,22),      cinzel:true,  sz:10,   bold:true });
-    if(d.sobriquet)  L.push({t:trunc(d.sobriquet,24), italic:true, sz:9.5, dim:true});
-    if(d.birth_line) L.push({t:d.birth_line,           sz:9.5, dim:true});
-    if(d.marriage)   L.push({t:trunc('m. '+d.marriage,24), italic:true, sz:9, dim:true});
+    L.push({t:trunc(d.name,26), cls:'card-name'});
+    if(d.sobriquet) L.push({t:trunc(d.sobriquet,26), cls:'card-sobriquet'});
+    if(d.birth_line) L.push({t:d.birth_line, cls:'card-detail'});
+    if(d.marriage) L.push({t:trunc('m. '+d.marriage,26), cls:'card-sobriquet'});
   } else {
-    L.push({t:trunc(d.name,22),      cinzel:true,  sz:10,   bold:true });
-    if(d.sobriquet)    L.push({t:trunc(d.sobriquet,24),   italic:true, sz:9.5, dim:true});
-    if(d.designation) L.push({t:trunc(d.designation,24),  sz:9,   dim:true});
-    if(d.birth_line)  L.push({t:d.birth_line,             sz:9.5, dim:true});
+    L.push({t:trunc(d.name,26), cls:'card-name'});
+    if(d.sobriquet) L.push({t:trunc(d.sobriquet,26), cls:'card-sobriquet'});
+    if(d.designation) L.push({t:trunc(d.designation,26), cls:'card-detail'});
+    if(d.birth_line) L.push({t:d.birth_line, cls:'card-detail'});
   }
+
   return L.slice(0,5);
 }
+
 
 // ── Layout: use manual Column field directly from spreadsheet ────────────
 function computeLayout(data){
@@ -124,7 +128,7 @@ function render(data){
     const x1=p.px+CW/2, y1=p.py+CH;
     const x2=c.px+CW/2, y2=c.py;
     const my=y2-(GG-CH)*0.5;
-    const col=(p.colours&&p.colours.border)||'#666';
+    const col='#555';
     eg.append('path')
       .attr('class',e.type==='primary'?'ep':'es')
       .attr('stroke',col)
@@ -143,33 +147,29 @@ function render(data){
     .attr('fill',d=>cardBg(d))
     .attr('stroke',d=>(d.colours&&d.colours.border)||'#555')
     .attr('stroke-width',1.5)
-    .style('filter','drop-shadow(0 2px 5px #00000055)');
-
-  // Sovereign accent bar
-  cards.filter(d=>d.is_sovereign).append('rect')
-    .attr('width',CW).attr('height',3).attr('rx',3)
-    .attr('fill',d=>(d.colours&&d.colours.border)||'#888');
 
   // Text
   cards.each(function(d){
-    const el=d3.select(this);
-    const bg=cardBg(d), {fill, dim:fillDim}=cardText(bg);
-    const lines=buildLines(d);
-    const lh=13.5, total=lines.length*lh;
-    let y=(CH-total)/2+(d.is_sovereign?4:2);
-    lines.forEach(ln=>{
-      el.append('text')
-        .attr('x',CW/2).attr('y',y)
-        .attr('text-anchor','middle').attr('dominant-baseline','hanging')
-        .attr('font-family',ln.cinzel?"'Cinzel',serif":"'Cormorant Garamond',Georgia,serif")
-        .attr('font-size',ln.sz||10)
-        .attr('font-weight',ln.bold?600:400)
-        .attr('font-style',ln.italic?'italic':'normal')
-        .attr('fill',ln.dim?fillDim:fill)
-        .text(ln.t);
-      y+=lh;
-    });
+  const el=d3.select(this);
+  const bg=cardBg(d), {fill, dim:fillDim}=cardText(bg);
+  const lines=buildLines(d);
+  const lh=17;
+  const total=lines.length*lh;
+  let y=(CH-total)/2+(d.is_sovereign?2:0);
+
+  lines.forEach(ln=>{
+    el.append('text')
+      .attr('class',ln.cls)
+      .attr('x',CW/2)
+      .attr('y',y)
+      .attr('text-anchor','middle')
+      .attr('dominant-baseline','hanging')
+      .attr('fill',ln.cls==='card-name'?fill:fillDim)
+      .text(ln.t);
+
+    y+=lh;
   });
+});
 
   // d.s.p. markers — short downward arrow + label for nodes with no issue
   const dspG=g.append('g').attr('pointer-events','none');
