@@ -1,5 +1,91 @@
 [
   {
+    "id": "53005e2b-e9b4-5a0d-8f2d-6cd4ad6ec641",
+    "first_seen": "2026-10-28T11:32:18.966811+00:00",
+    "header": "Planned work: Cranbourne and Pakenham services start and end at South Yarra",
+    "description": "8.30pm to last service Wednesday 28 October To Metro Tunnel All Pakenham &amp; Cranbourne Line trains will end at South Yarra. Take a Frankston Line train to Melbourne Central to transfer to State Library. Take a Frankston or Sandringham Line train to Flinders Street to transfer to Town Hall. To City All Pakenham &amp; Cranbourne Line trains will end at South Yarra. Take a Frankston or Sandringham Line train to the city. From Metro Tunnel All Pakenham &amp; Cranbourne Line trains will start from South Yarra. If at State Library, go to Melbourne Central and take a Frankston Line train to South Yarra. If at Town Hall, go to Flinders Street and take a Frankston or Sandringham Line train to South Yarra. From City All Pakenham &amp; Cranbourne Line trains will start from South Yarra. Take a Frankston or Sandringham Line train and change at South Yarra. Allow extra time to change trains.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "76cc289e-7245-5b13-b0e8-984fd4ebbfcc",
+    "first_seen": "2026-10-28T11:32:18.966811+00:00",
+    "header": "Planned work: Buses replace trains between North Melbourne and Sunshine",
+    "description": "8.30pm to last service Wednesday 28 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY-R:",
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "567b3a76-d48f-537f-8522-a51265f5da86",
+    "first_seen": "2026-10-28T11:32:18.966811+00:00",
+    "header": "Planned Works",
+    "description": "Pakenham and Cranbourne line services will operate as a shuttle service between South Yarra and East Pakenham/Cranbourne from 8:30pm to last train tonight, while maintenance and renewal works take place. Note:  No trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. Shuttle buses will operate North Melbourne to Parkville and Arden, except during night network.  To Metro Tunnel  \u00a0Take a Frankston train to Melbourne Central and transfer to State Library. \u00a0Take a Frankston or Sandringham train to Flinders St and transfer to Town Hall.  To City  \u00a0Take a Frankston or Sandringham train to the City.  From Metro Tunnel  From State Library, go to Melbourne Central and take a Frankston train to South Yarra. From Town Hall, go to Flinders St and take a Frankston or Sandringham train to South Yarra.  From City  Take a Frankston or Sandringham train and change at South Yarra.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "d52b1244-4031-563c-b23f-86168e746012",
+    "first_seen": "2026-10-28T11:32:18.966811+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between North Melbourne and Sunshine from 8:30pm to last train tonight, while maintenance and renewal works take place. Note:  No trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. A shuttle bus will operate between Parkville, Arden, North Melbourne and stopping all stations to Sunshine. An express bus will operate between North Melbourne and Sunshine, not stopping at Footscray.  Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-SUY-R:",
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "2e6ea037-4cc1-5cd6-9a33-43f04d49dbbb",
+    "first_seen": "2026-10-28T11:32:18.966811+00:00",
+    "header": "Planned Works",
+    "description": "Pakenham and Cranbourne line services will operate as a shuttle service between South Yarra and East Pakenham/Cranbourne from 8:30pm to last train tonight, while maintenance and renewal works take place. Note:  No trains will be running through Arden, Parkville, State Library, Town Hall and Anzac stations. Shuttle buses will operate North Melbourne to Parkville and Arden, except during night network.  To Metro Tunnel  \u00a0Take a Frankston train to Melbourne Central and transfer to State Library. \u00a0Take a Frankston or Sandringham train to Flinders St and transfer to Town Hall.  To City  \u00a0Take a Frankston or Sandringham train to the City.  From Metro Tunnel  From State Library, go to Melbourne Central and take a Frankston train to South Yarra. From Town Hall, go to Flinders St and take a Frankston or Sandringham train to South Yarra.  From City  Take a Frankston or Sandringham train and change at South Yarra.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "ed6ca287-cbde-551d-8d16-7b736b478d02",
+    "first_seen": "2026-10-28T11:32:18.966811+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Newport and Werribee from 11:50pm to last train tonight, while project works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "30342715-aa3c-53e4-931e-f6e2601b1f7b",
+    "first_seen": "2026-10-28T11:32:18.966811+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Caulfield and Moorabbin from 12am to last train tonight, while project works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
+    "id": "3d93c5e5-b190-5183-a4b1-82acafe9c7ed",
+    "first_seen": "2026-10-28T11:32:18.966811+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a police request in the Newport area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
     "id": "87f297e9-47e1-55e4-a0ec-60ad8bb2c7e8",
     "first_seen": "2026-10-28T05:07:57.924485+00:00",
     "header": "Minor Delay",
