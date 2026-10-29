@@ -104,7 +104,10 @@
     const childX = GUTTER + (Number(child.column) || 0) * COL_STEP + CARD_W / 2;
     const parentY = ((Number(parent.generation) || 1) - 1) * GEN_STEP + CARD_H;
     const childY = ((Number(child.generation) || 1) - 1) * GEN_STEP;
-    const midY = (parentY + childY) / 2;
+    // For non-adjacent generations, route the horizontal branch just above the
+    // child card. A midpoint can land halfway through an unrelated generation.
+    const generationGap = (Number(child.generation) || 1) - (Number(parent.generation) || 1);
+    const midY = generationGap > 1 ? childY - 12 : (parentY + childY) / 2;
     const typeClass = edgeClass(edge);
 
     const vertical = (x, y1, y2) => {
@@ -265,7 +268,15 @@
     if (!person) return;
     selectedId = id;
     panelName.textContent = person.name;
-    panelHouse.textContent = person.house ? `House of ${person.house}` : '';
+    panelHouse.replaceChildren();
+    if (person.house) {
+      const swatch = document.createElement('span');
+      swatch.className = 'royal-house-swatch';
+      swatch.style.background = person.colours?.member || '#d9d0b8';
+      swatch.style.borderColor = person.colours?.border || '#555555';
+      swatch.setAttribute('aria-hidden', 'true');
+      panelHouse.append(swatch, document.createTextNode(`House of ${person.house}`));
+    }
     panelDetails.replaceChildren();
     panelRelations.replaceChildren();
 
