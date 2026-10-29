@@ -1,0 +1,251 @@
+/* Royal lineage: HTML/CSS Grid renderer. All rules are scoped to this page. */
+.royal-page {
+  --royal-card-width: 172px;
+  --royal-card-height: 108px;
+  --royal-column-gap: 14px;
+  --royal-column-step: 186px;
+  --royal-generation-step: 160px;
+  --royal-gutter: 90px;
+  color: var(--text-main, #26251f);
+  position: relative;
+}
+
+.royal-page *,
+.royal-page *::before,
+.royal-page *::after { box-sizing: border-box; }
+
+.royal-heading {
+  padding: 1rem 0 .8rem;
+  background: var(--highlight, #fafaf8);
+}
+.royal-heading h1 { margin: 0 0 .2rem; font-size: clamp(1.6rem, 3vw, 2.1rem); }
+.royal-heading p { margin: 0; opacity: .8; }
+
+.royal-legend-wrap { margin: .7rem 0; }
+.royal-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .35rem .45rem;
+}
+.royal-legend-button {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  max-width: 100%;
+  border: 1px solid var(--border, #bcbab3);
+  border-radius: 3px;
+  padding: .28rem .5rem;
+  background: var(--background, #fff);
+  color: var(--text-main, #26251f);
+  font: inherit;
+  font-size: .82rem;
+  line-height: 1.25;
+  cursor: pointer;
+}
+.royal-legend-button[aria-pressed="true"] { outline: 2px solid var(--brand-accent, #8b6d2f); outline-offset: 1px; }
+.royal-legend-swatch { width: .8rem; height: .8rem; flex: 0 0 .8rem; border: 1px solid; }
+
+.royal-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: .35rem; margin: .7rem 0 .5rem; }
+.royal-control {
+  min-width: 2.35rem;
+  min-height: 2.2rem;
+  padding: .25rem .65rem;
+  border: 1px solid var(--border, #bcbab3);
+  border-radius: 3px;
+  background: var(--highlight, #fafaf8);
+  color: var(--text-main, #26251f);
+  font: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.royal-fit { font-size: .85rem; }
+.royal-hint { margin-left: .45rem; font-size: .82rem; opacity: .75; }
+.royal-page button:focus-visible { outline: 3px solid var(--brand-accent, #8b6d2f); outline-offset: 2px; }
+
+.royal-viewport {
+  position: relative;
+  width: 100%;
+  height: min(74vh, 820px);
+  min-height: 440px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--border, #c9c7bf);
+  background-color: var(--background, #fff);
+  background-image: radial-gradient(var(--border, #dedbd2) .7px, transparent .7px);
+  background-size: 18px 18px;
+  scrollbar-gutter: stable;
+}
+.royal-viewport:focus-visible { outline: 2px solid var(--brand-accent, #8b6d2f); outline-offset: 2px; }
+.royal-world-shell { position: relative; flex: none; }
+.royal-world {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  align-content: start;
+  justify-content: start;
+  padding-left: var(--royal-gutter);
+  box-sizing: content-box;
+  transform-origin: top left;
+  isolation: isolate;
+}
+.royal-generation-label {
+  position: absolute;
+  left: 0;
+  width: calc(var(--royal-gutter) - 12px);
+  padding-right: 8px;
+  text-align: right;
+  color: var(--text-main, #26251f);
+  opacity: .58;
+  font-size: 11px;
+  line-height: 1.2;
+  transform: translateY(-50%);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.royal-connector {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  background: #625e53;
+  opacity: .72;
+  pointer-events: none;
+}
+.royal-connector.vertical { width: 1.5px; }
+.royal-connector.horizontal { height: 1.5px; }
+.royal-connector.secondary {
+  background: transparent;
+}
+.royal-connector.secondary.vertical {
+  background: repeating-linear-gradient(to bottom, #777064 0 4px, transparent 4px 8px);
+}
+.royal-connector.secondary.horizontal {
+  background: repeating-linear-gradient(to right, #777064 0 4px, transparent 4px 8px);
+}
+.royal-connector.dim { opacity: .12; }
+.royal-connector.related { opacity: 1; }
+
+.royal-person {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-column: var(--royal-column);
+  grid-row: var(--royal-generation);
+  width: var(--royal-card-width);
+  height: var(--royal-card-height);
+  margin: 0;
+  padding: 7px 5px;
+  overflow: hidden;
+  border: 1.5px solid var(--royal-border, #555);
+  border-radius: 3px;
+  background: var(--royal-card, #d9d0b8);
+  color: var(--royal-text, #111);
+  text-align: center;
+  font: inherit;
+  line-height: 1.22;
+  cursor: pointer;
+  box-shadow: 0 1px 2px #00000012;
+}
+.royal-person:hover { filter: brightness(.97); }
+.royal-person.sovereign { border-width: 2px; }
+.royal-person.selected {
+  z-index: 4;
+  outline: 3px solid var(--brand-accent, #8b6d2f);
+  outline-offset: 2px;
+  box-shadow: 0 2px 8px #00000035;
+}
+.royal-person.related { z-index: 3; border-width: 2.5px; }
+.royal-person.dim { opacity: .2; filter: grayscale(.5); }
+.royal-person-name { display: block; max-width: 100%; font-weight: 700; font-size: 12px; overflow-wrap: anywhere; }
+.royal-person-sobriquet { display: block; max-width: 100%; margin-top: 2px; font-family: Georgia, serif; font-size: 11px; font-style: italic; overflow-wrap: anywhere; }
+.royal-person-detail { display: block; max-width: 100%; margin-top: 3px; font-size: 10px; overflow-wrap: anywhere; }
+.royal-person-detail + .royal-person-detail { margin-top: 1px; }
+.royal-dsp {
+  position: absolute;
+  z-index: 2;
+  width: 36px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #3a3220;
+  font: italic 10px/1 Georgia, serif;
+  pointer-events: none;
+}
+.royal-dsp-arrow { font: 14px/13px sans-serif; }
+
+.royal-person-panel {
+  position: absolute;
+  z-index: 20;
+  top: 5.6rem;
+  right: .75rem;
+  width: min(360px, calc(100% - 1.5rem));
+  max-height: min(64vh, 540px);
+  overflow: auto;
+  padding: 1rem 1.1rem .9rem;
+  border: 1px solid var(--border, #c9c7bf);
+  border-radius: 4px;
+  background: var(--highlight, #fff);
+  color: var(--text-main, #26251f);
+  box-shadow: 0 4px 18px #00000020;
+}
+.royal-person-panel[hidden] { display: none; }
+.royal-panel-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  margin: -.35rem -.4rem .2rem .5rem;
+  padding: 0 .2rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.royal-person-panel h2 { margin: 0 1.5rem .25rem 0; font-size: 1.1rem; }
+.royal-person-house { margin: 0 0 .65rem; font-size: .82rem; opacity: .75; }
+.royal-person-details { font-size: .88rem; line-height: 1.45; }
+.royal-detail-row + .royal-detail-row { margin-top: .25rem; }
+.royal-person-relations { margin-top: .75rem; padding-top: .65rem; border-top: 1px solid var(--border, #d2d0c8); }
+.royal-relation-group + .royal-relation-group { margin-top: .65rem; }
+.royal-relation-heading { margin: 0 0 .25rem; font-size: .82rem; font-weight: 700; }
+.royal-relation-list { display: flex; flex-wrap: wrap; gap: .25rem; }
+.royal-relation-link {
+  border: 1px solid var(--border, #c9c7bf);
+  border-radius: 3px;
+  padding: .2rem .4rem;
+  background: var(--background, #fff);
+  color: var(--text-main, #26251f);
+  text-align: left;
+  font: inherit;
+  font-size: .8rem;
+  cursor: pointer;
+}
+.royal-error { padding: .75rem; border-left: 3px solid #9b2c24; background: var(--highlight, #fff); }
+.royal-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@media (max-width: 700px) {
+  .royal-viewport { height: 68vh; min-height: 380px; }
+  .royal-person-panel { position: sticky; top: .5rem; left: .5rem; right: auto; width: calc(100% - 1rem); max-height: 34vh; margin: .5rem 0; }
+  .royal-hint { flex-basis: 100%; margin: .2rem 0 0; }
+  .royal-legend-button { font-size: .76rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .royal-page *, .royal-page *::before, .royal-page *::after { scroll-behavior: auto !important; }
+}
