@@ -62,7 +62,7 @@
 
   function personLines(person) {
     const lines = [];
-    if (person.sobriquet) lines.push({ text: `“${person.sobriquet}”`, className: 'royal-person-sobriquet' });
+    if (person.sobriquet) lines.push({ text: person.sobriquet, className: 'royal-person-sobriquet' });
     if (person.is_sovereign && person.reign) {
       if (person.birth_line) lines.push({ text: person.birth_line, className: 'royal-person-detail' });
       lines.push({ text: person.reign, className: 'royal-person-detail' });
@@ -107,7 +107,7 @@
     // For non-adjacent generations, route the horizontal branch just above the
     // child card. A midpoint can land halfway through an unrelated generation.
     const generationGap = (Number(child.generation) || 1) - (Number(parent.generation) || 1);
-    const midY = generationGap > 1 ? childY - 12 : (parentY + childY) / 2;
+    const midY = generationGap > 1 ? childY - 16 : (parentY + childY) / 2;
     const typeClass = edgeClass(edge);
 
     const vertical = (x, y1, y2) => {
@@ -160,7 +160,7 @@
       const marker = document.createElement('span');
       marker.className = 'royal-dsp';
       marker.style.left = `${GUTTER + (Number(person.column) || 0) * COL_STEP + CARD_W / 2 - 18}px`;
-      marker.style.top = `${((Number(person.generation) || 1) - 1) * GEN_STEP + CARD_H + 1}px`;
+      marker.style.top = `${((Number(person.generation) || 1) - 1) * GEN_STEP + CARD_H - 7}px`;
       marker.setAttribute('aria-label', 'Died without issue');
       marker.innerHTML = '<span class="royal-dsp-arrow" aria-hidden="true">↓</span><span aria-hidden="true">d.s.p.</span>';
       world.appendChild(marker);
@@ -231,10 +231,10 @@
     });
   }
 
-  function addDetail(text) {
+  function addDetail(text, extraClass = '') {
     if (!text) return;
     const row = document.createElement('div');
-    row.className = 'royal-detail-row';
+    row.className = `royal-detail-row${extraClass ? ` ${extraClass}` : ''}`;
     row.textContent = text;
     panelDetails.appendChild(row);
   }
@@ -280,7 +280,7 @@
     panelDetails.replaceChildren();
     panelRelations.replaceChildren();
 
-    if (person.sobriquet) addDetail(`“${person.sobriquet}”`);
+    if (person.sobriquet) addDetail(person.sobriquet, 'sobriquet');
     if (person.designation) addDetail(person.designation);
     if (person.birth_line) addDetail(person.birth_line);
     if (person.death_line) addDetail(person.death_line);
