@@ -163,23 +163,22 @@
 .royal-person.related { z-index: 3; border-width: 2.5px; }
 .royal-person.dim { opacity: .2; filter: grayscale(.5); }
 .royal-person-name { display: block; max-width: 100%; font-weight: 700; font-size: 12px; overflow-wrap: anywhere; }
-.royal-person-sobriquet { display: block; max-width: 100%; margin-top: 2px; font-family: Georgia, serif; font-size: 11px; font-style: italic; overflow-wrap: anywhere; }
+.royal-person-sobriquet { display: block; max-width: 100%; margin-top: 2px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-style: italic; overflow-wrap: anywhere; }
 .royal-person-detail { display: block; max-width: 100%; margin-top: 3px; font-size: 10px; overflow-wrap: anywhere; }
 .royal-person-detail + .royal-person-detail { margin-top: 1px; }
 .royal-dsp {
   position: absolute;
   z-index: 2;
   width: 36px;
-  height: 30px;
+  height: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #3a3220;
-  font: italic 10px/1.1 inherit;
-  font-family: inherit;
+  font: italic 8px/1.05 Arial, Helvetica, sans-serif;
   pointer-events: none;
 }
-.royal-dsp-arrow { font: 14px/13px sans-serif; }
+.royal-dsp-arrow { font: 11px/10px sans-serif; }
 
 .royal-person-panel {
   position: absolute;
@@ -215,6 +214,7 @@
 .royal-house-swatch { display: inline-block; width: .8rem; height: .8rem; flex: 0 0 .8rem; border: 1px solid; border-radius: 50%; }
 .royal-person-details { font-size: .88rem; line-height: 1.45; }
 .royal-detail-row + .royal-detail-row { margin-top: .25rem; }
+.royal-detail-row.sobriquet { font-family: Arial, Helvetica, sans-serif; font-style: italic; }
 .royal-person-relations { margin-top: .75rem; padding-top: .65rem; border-top: 1px solid var(--border, #d2d0c8); }
 .royal-relation-group + .royal-relation-group { margin-top: .65rem; }
 .royal-relation-heading { margin: 0 0 .25rem; font-size: .82rem; font-weight: 700; }
