@@ -34,8 +34,8 @@
   gap: .4rem;
   max-width: 100%;
   border: 1px solid var(--border, #bcbab3);
-  border-radius: 3px;
-  padding: .28rem .5rem;
+  border-radius: 999px;
+  padding: .28rem .65rem .28rem .5rem;
   background: var(--background, #fff);
   color: var(--text-main, #26251f);
   font: inherit;
@@ -44,7 +44,7 @@
   cursor: pointer;
 }
 .royal-legend-button[aria-pressed="true"] { outline: 2px solid var(--brand-accent, #8b6d2f); outline-offset: 1px; }
-.royal-legend-swatch { width: .8rem; height: .8rem; flex: 0 0 .8rem; border: 1px solid; }
+.royal-legend-swatch { width: .8rem; height: .8rem; flex: 0 0 .8rem; border: 1px solid; border-radius: 50%; }
 
 .royal-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: .35rem; margin: .7rem 0 .5rem; }
 .royal-control {
@@ -152,7 +152,8 @@
   box-shadow: 0 1px 2px #00000012;
 }
 .royal-person:hover { filter: brightness(.97); }
-.royal-person.sovereign { border-width: 2px; }
+.royal-person.sovereign { border-width: 3px; }
+.royal-person.sovereign .royal-person-name { font-size: 14px; }
 .royal-person.selected {
   z-index: 4;
   outline: 3px solid var(--brand-accent, #8b6d2f);
@@ -174,7 +175,8 @@
   flex-direction: column;
   align-items: center;
   color: #3a3220;
-  font: italic 10px/1 Georgia, serif;
+  font: italic 10px/1.1 inherit;
+  font-family: inherit;
   pointer-events: none;
 }
 .royal-dsp-arrow { font: 14px/13px sans-serif; }
@@ -209,7 +211,8 @@
   cursor: pointer;
 }
 .royal-person-panel h2 { margin: 0 1.5rem .25rem 0; font-size: 1.1rem; }
-.royal-person-house { margin: 0 0 .65rem; font-size: .82rem; opacity: .75; }
+.royal-person-house { display: flex; align-items: center; gap: .4rem; margin: 0 0 .65rem; font-size: .82rem; }
+.royal-house-swatch { display: inline-block; width: .8rem; height: .8rem; flex: 0 0 .8rem; border: 1px solid; border-radius: 50%; }
 .royal-person-details { font-size: .88rem; line-height: 1.45; }
 .royal-detail-row + .royal-detail-row { margin-top: .25rem; }
 .royal-person-relations { margin-top: .75rem; padding-top: .65rem; border-top: 1px solid var(--border, #d2d0c8); }
