@@ -1,342 +1,444 @@
-// Royal family tree (projects/royal.html)
-// Data: /assets/data/royal.json (nodes, edges, house_colours)   Chart: D3
+// Royal lineage rendered as semantic HTML and CSS Grid.
+// Data: /assets/data/royal.json (nodes, edges, house_colours).
+(() => {
+  'use strict';
 
-const CW=172, CH=108, SG=186, GG=160;
+  const CARD_W = 172;
+  const CARD_H = 108;
+  const COL_STEP = 186;
+  const GEN_STEP = 160;
+  const GUTTER = 90;
+  const MIN_SCALE = 0.035;
+  const MAX_SCALE = 1.35;
+  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
-// Text on a card is whichever of dark or cream reads better on that house colour;
-// the "dim" lines are as close to the card colour as still passes 4.5:1
-const DARK='#111111', LIGHT='#f5edd8';
-const textCache={};
-function toRgb(hex){ const h=hex.replace('#',''); return [0,2,4].map(i=>parseInt(h.slice(i,i+2),16)); }
-function relLum(hex){ const [r,g,b]=toRgb(hex).map(v=>{ v/=255; return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4); }); return 0.2126*r+0.7152*g+0.0722*b; }
-function contrast(a,b){ const x=relLum(a), y=relLum(b); return (Math.max(x,y)+0.05)/(Math.min(x,y)+0.05); }
-function mixHex(a,b,t){ const A=toRgb(a), B=toRgb(b); return '#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join(''); }
-function cardText(bg){
-  if(textCache[bg]) return textCache[bg];
-  let fill = contrast(DARK,bg) >= contrast(LIGHT,bg) ? DARK : LIGHT;
-  if(contrast(fill,bg) < 4.5) fill = contrast('#000000',bg) >= contrast('#ffffff',bg) ? '#000000' : '#ffffff';   // mid-tone colours
-  let dim = fill;
-  for(let t=0.05; t<=0.6; t+=0.05){
-    const m = mixHex(fill,bg,t);
-    if(contrast(m,bg) < 4.5) break;
-    dim = m;
-  }
-  return (textCache[bg] = { fill, dim });
-}
-function trunc(s,n){ return s&&s.length>n ? s.slice(0,n-1)+'…' : (s||''); }
+  const $ = id => document.getElementById(id);
+  const page = $('royal-page');
+  if (!page) return;
 
-function cardBg(d){
-  const c=d.colours; if(!c||!c.member) return '#2a2518';
-  if(d.state==='excluded') return c.excluded;
-  if(d.state==='reigning') return c.reigning;
-  return c.member;
-}
+  const viewport = $('royal-viewport');
+  const shell = $('royal-world-shell');
+  const world = $('royal-world');
+  const legend = $('royal-legend');
+  const panel = $('royal-person-panel');
+  const panelName = $('royal-person-name');
+  const panelHouse = $('royal-person-house');
+  const panelDetails = $('royal-person-details');
+  const panelRelations = $('royal-person-relations');
+  const status = $('royal-status');
+  const error = $('royal-error');
 
+  let data;
+  let byId = new Map();
+  let edgesByParent = new Map();
+  let edgesByChild = new Map();
+  let cards = new Map();
+  let connectorElements = [];
+  let selectedId = null;
+  let houseFilter = null;
+  let savedView = null;
+  let scale = 0.85;
+  let worldWidth = 0;
+  let worldHeight = 0;
 
-function buildLines(d){
-  const L=[];
+  const announce = message => { status.textContent = message; };
+  const safeText = value => value == null ? '' : String(value);
 
-  if(d.is_sovereign){
-    L.push({t:trunc(d.name,24), cls:'card-name'});
-    if(d.sobriquet) L.push({t:trunc(d.sobriquet,26), cls:'card-sobriquet'});
-    if(d.birth_line) L.push({t:d.birth_line, cls:'card-detail'});
-    if(d.reign) L.push({t:d.reign, cls:'card-detail'});
-  } else if(d.gender==='F'){
-    L.push({t:trunc(d.name,26), cls:'card-name'});
-    if(d.sobriquet) L.push({t:trunc(d.sobriquet,26), cls:'card-sobriquet'});
-    if(d.birth_line) L.push({t:d.birth_line, cls:'card-detail'});
-    if(d.marriage) L.push({t:trunc('m. '+d.marriage,26), cls:'card-sobriquet'});
-  } else {
-    L.push({t:trunc(d.name,26), cls:'card-name'});
-    if(d.sobriquet) L.push({t:trunc(d.sobriquet,26), cls:'card-sobriquet'});
-    if(d.designation) L.push({t:trunc(d.designation,26), cls:'card-detail'});
-    if(d.birth_line) L.push({t:d.birth_line, cls:'card-detail'});
-  }
-
-  return L.slice(0,5);
-}
-
-
-// ── Layout: use manual Column field directly from spreadsheet ────────────
-function computeLayout(data){
-  data.nodes.forEach(n=>{
-    n.px = (n.column || 0) * SG;
-    n.py = ((n.generation || 1) - 1) * GG;
-  });
-}
-
-const tree=document.getElementById('royal-tree');
-const reduceMotion=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-function viewSize(){ const r=tree.getBoundingClientRect(); return { w:r.width||window.innerWidth, h:r.height||window.innerHeight }; }
-
-function announce(message){
-  const region=document.getElementById('royal-status');
-  if(!region) return;
-  region.textContent='';
-  setTimeout(()=>{ region.textContent=message; },30);
-}
-
-// ── Main ──────────────────────────────────────────────────────────────────
-fetch('/assets/data/royal.json')
-  .then(r=>{ if(!r.ok) throw new Error('royal.json '+r.status); return r.json(); })
-  .then(data=>{
-    computeLayout(data);
-    render(data);
-    buildTextVersion(data);
-  })
-  .catch(e=>{
-    console.error('Could not load the family tree data:', e);
-    const msg=document.getElementById('royal-error');
-    msg.textContent='The family tree data could not be loaded. Please try again later.';
-    msg.hidden=false;
-  });
-
-function render(data){
-  const nm={};
-  data.nodes.forEach(n=>{ nm[n.id]=n; });
-
-  const allX=data.nodes.map(n=>n.px), allY=data.nodes.map(n=>n.py);
-  const minX=Math.min(...allX)-80,  maxX=Math.max(...allX)+CW+80;
-  const minY=Math.min(...allY)-80,  maxY=Math.max(...allY)+CH+80;
-
-  const svg=d3.select('#canvas')
-    .attr('width',viewSize().w).attr('height',viewSize().h);
-
-  const g=svg.append('g');
-
-  const zoom=d3.zoom().scaleExtent([0.02,3])
-    .on('start',()=>svg.classed('drag',true))
-    .on('zoom', e=>g.attr('transform',e.transform))
-    .on('end',  ()=>svg.classed('drag',false));
-  svg.call(zoom).on('dblclick.zoom',null);
-
-  const sg=g.append('g');
-  const maxGen = Math.max(...data.nodes.map(n=>n.generation||1));
-  for(let gen=1; gen<=maxGen; gen++){
-    const y = (gen-1)*GG;
-    sg.append('text').attr('class','era-lbl')
-      .attr('x',minX+8).attr('y',y+CH/2)
-      .attr('dominant-baseline','middle')
-      .text(`Gen ${gen}`);
+  function textColour(hex) {
+    const value = String(hex || '#d9d0b8').replace('#', '');
+    if (!/^[0-9a-f]{6}$/i.test(value)) return '#111111';
+    const channels = [0, 2, 4].map(i => parseInt(value.slice(i, i + 2), 16) / 255)
+      .map(v => v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
+    const luminance = 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+    return luminance > 0.42 ? '#111111' : '#f8f3e8';
   }
 
-  // Edges
-  const eg=g.append('g');
-  data.edges.forEach(e=>{
-    const p=nm[e.from], c=nm[e.to];
-    if(!p||!c) return;
-    const x1=p.px+CW/2, y1=p.py+CH;
-    const x2=c.px+CW/2, y2=c.py;
-    const my=y2-(GG-CH)*0.5;
-    const col='#555';
-    eg.append('path')
-      .attr('class',e.type==='primary'?'ep':'es')
-      .attr('stroke',col)
-      .attr('d',`M${x1},${y1} L${x1},${my} L${x2},${my} L${x2},${y2}`);
-  });
+  function cardColour(person) {
+    const colours = person.colours || {};
+    if (person.state === 'excluded') return colours.excluded || colours.member || '#d9d0b8';
+    if (person.state === 'reigning') return colours.reigning || colours.member || '#d9d0b8';
+    return colours.member || '#d9d0b8';
+  }
 
-  // Nodes
-  const ng=g.append('g');
-  const cards=ng.selectAll('g.node-card')
-    .data(data.nodes).join('g')
-    .attr('class','node-card')
-    .classed('sovereign', d => d.is_sovereign)
-    .attr('transform',d=>`translate(${d.px},${d.py})`);
+  function personLines(person) {
+    const lines = [];
+    if (person.sobriquet) lines.push({ text: `“${person.sobriquet}”`, className: 'royal-person-sobriquet' });
+    if (person.is_sovereign && person.reign) {
+      if (person.birth_line) lines.push({ text: person.birth_line, className: 'royal-person-detail' });
+      lines.push({ text: person.reign, className: 'royal-person-detail' });
+    } else {
+      if (person.designation) lines.push({ text: person.designation, className: 'royal-person-detail' });
+      if (person.birth_line) lines.push({ text: person.birth_line, className: 'royal-person-detail' });
+      if (person.gender === 'F' && person.marriage) lines.push({ text: `m. ${person.marriage}`, className: 'royal-person-detail' });
+    }
+    return lines.slice(0, 4);
+  }
 
-  cards.append('rect').attr('class','bg')
-    .attr('width',CW).attr('height',CH).attr('rx',3).attr('ry',3)
-    .attr('fill',d=>cardBg(d))
-    .attr('stroke',d=>(d.colours&&d.colours.border)||'#555')
-    .attr('stroke-width',1.5)
+  function addText(parent, text, className) {
+    const el = document.createElement('span');
+    el.className = className;
+    el.textContent = safeText(text);
+    parent.appendChild(el);
+    return el;
+  }
 
-  // Text
-  cards.each(function(d){
-  const el=d3.select(this);
-  const bg=cardBg(d), {fill, dim:fillDim}=cardText(bg);
-  const lines=buildLines(d);
-  const lh=17;
-  const total=lines.length*lh;
-  let y=(CH-total)/2+(d.is_sovereign?2:0);
-
-  lines.forEach(ln=>{
-    el.append('text')
-      .attr('class',ln.cls)
-      .attr('x',CW/2)
-      .attr('y',y)
-      .attr('text-anchor','middle')
-      .attr('dominant-baseline','hanging')
-      .attr('fill',ln.cls==='card-name'?fill:fillDim)
-      .text(ln.t);
-
-    y+=lh;
-  });
-});
-
-  // d.s.p. markers — short downward arrow + label for nodes with no issue
-  const dspG=g.append('g').attr('pointer-events','none');
-
-  // Arrow marker definition
-  svg.append('defs').append('marker')
-    .attr('id','dsp-arrow').attr('viewBox','0 -4 8 8')
-    .attr('refX',7).attr('refY',0)
-    .attr('markerWidth',5).attr('markerHeight',5)
-    .attr('orient','auto')
-    .append('path').attr('d','M0,-3.5 L7,0 L0,3.5').attr('fill','#3a3220');
-
-  data.nodes.filter(n=>n.issue==='no issue').forEach(n=>{
-    const x=n.px+CW/2, y=n.py+CH;
-    const lineLen=9;
-    dspG.append('line')
-      .attr('x1',x).attr('y1',y+1)
-      .attr('x2',x).attr('y2',y+lineLen)
-      .attr('stroke','#3a3220').attr('stroke-width',1.2)
-      .attr('marker-end','url(#dsp-arrow)');
-    dspG.append('text')
-      .attr('x',x).attr('y',y+lineLen+3)
-      .attr('text-anchor','middle').attr('dominant-baseline','hanging')
-      .attr('font-family',"'Cormorant Garamond',Georgia,serif")
-      .attr('font-style','italic').attr('font-size',8.5)
-      .attr('fill','#3a3220')
-      .text('d.s.p.');
-  });
-
-  // Tooltip
-  const tip=document.getElementById('tip');
-  const tn=document.getElementById('tn');
-  const tl=document.getElementById('tl');
-  const th=document.getElementById('th');
-
-  cards.on('mouseenter',(event,d)=>{
-    const rows=[];
-    if(d.sobriquet)  rows.push(`"${d.sobriquet}"`);
-    if(d.designation) rows.push(d.designation);
-    if(d.birth_line) rows.push(d.birth_line);
-    if(d.reign) rows.push(`Reign: ${d.reign}`);
-    if(d.marriage) rows.push(`m. ${d.marriage}`);
-    if(d.is_excluded) rows.push('Excluded from succession');
-    if(d.issue==='no issue') rows.push('d.s.p. — died without issue');
-    tn.textContent=d.name;
-    tl.innerHTML=rows.map(r=>`<div>${r}</div>`).join('');
-    th.textContent=`House of ${d.house}`;
-    tip.classList.add('on');
-  })
-  .on('mousemove',event=>{
-    const tw=tip.offsetWidth, tth=tip.offsetHeight;
-    let tx=event.clientX+16, ty=event.clientY-tth/2;
-    if(tx+tw>window.innerWidth-8) tx=event.clientX-tw-16;
-    ty=Math.max(8,Math.min(ty,window.innerHeight-tth-8));
-    tip.style.left=tx+'px'; tip.style.top=ty+'px';
-  })
-  .on('mouseleave',()=>tip.classList.remove('on'))
-  .on('click',(event,d)=>{
-    event.stopPropagation();
-    const rel=new Set([d.id]);
-    data.edges.forEach(e=>{
-      if(e.from===d.id) rel.add(e.to);
-      if(e.to===d.id)   rel.add(e.from);
+  function buildIndex() {
+    byId = new Map(data.nodes.map(person => [person.id, person]));
+    edgesByParent = new Map();
+    edgesByChild = new Map();
+    data.edges.forEach(edge => {
+      if (!byId.has(edge.from) || !byId.has(edge.to)) return;
+      if (!edgesByParent.has(edge.from)) edgesByParent.set(edge.from, []);
+      if (!edgesByChild.has(edge.to)) edgesByChild.set(edge.to, []);
+      edgesByParent.get(edge.from).push(edge);
+      edgesByChild.get(edge.to).push(edge);
     });
-    cards.classed('dim',n=>!rel.has(n.id));
-  });
-
-  svg.on('click',()=>cards.classed('dim',false));
-
-  // Legend: each house is a button that filters the chart
-  let legFilter=null;
-  const legEl=document.getElementById('legend');
-  const legItems={};
-  function setLegendState(name){
-    legFilter=name;
-    Object.entries(legItems).forEach(([n,b])=>b.setAttribute('aria-pressed',n===name?'true':'false'));
   }
-  Object.entries(data.house_colours).forEach(([name,c])=>{
-    const item=document.createElement('button');
-    item.type='button';
-    item.className='leg';
-    item.setAttribute('aria-pressed','false');
-    item.innerHTML=`<span class="swatch" aria-hidden="true" style="background:${c.member};border-color:${c.border}"></span><span>${name}</span>`;
-    item.addEventListener('click',()=>{
-      if(legFilter===name){ cards.classed('dim',false); setLegendState(null); announce('Showing all houses.'); }
-      else { cards.classed('dim',n=>n.house!==name); setLegendState(name); announce(`Showing the House of ${name} only.`); }
+
+  function edgeClass(edge) {
+    return edge.type === 'primary' ? 'primary' : 'secondary';
+  }
+
+  function addConnector(edge, parent, child) {
+    const parentX = GUTTER + (Number(parent.column) || 0) * COL_STEP + CARD_W / 2;
+    const childX = GUTTER + (Number(child.column) || 0) * COL_STEP + CARD_W / 2;
+    const parentY = ((Number(parent.generation) || 1) - 1) * GEN_STEP + CARD_H;
+    const childY = ((Number(child.generation) || 1) - 1) * GEN_STEP;
+    const midY = (parentY + childY) / 2;
+    const typeClass = edgeClass(edge);
+
+    const vertical = (x, y1, y2) => {
+      if (y2 <= y1) return;
+      const line = document.createElement('span');
+      line.className = `royal-connector vertical ${typeClass}`;
+      line.style.left = `${x - 0.75}px`;
+      line.style.top = `${y1}px`;
+      line.style.height = `${Math.max(1, y2 - y1)}px`;
+      line.dataset.from = edge.from;
+      line.dataset.to = edge.to;
+      world.appendChild(line);
+      connectorElements.push(line);
+    };
+    const horizontal = document.createElement('span');
+    horizontal.className = `royal-connector horizontal ${typeClass}`;
+    horizontal.style.left = `${Math.min(parentX, childX)}px`;
+    horizontal.style.top = `${midY - 0.75}px`;
+    horizontal.style.width = `${Math.max(1.5, Math.abs(childX - parentX))}px`;
+    horizontal.dataset.from = edge.from;
+    horizontal.dataset.to = edge.to;
+    world.appendChild(horizontal);
+    connectorElements.push(horizontal);
+    vertical(parentX, parentY, midY);
+    vertical(childX, midY, childY);
+  }
+
+  function buildPersonCard(person) {
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = `royal-person${person.is_sovereign ? ' sovereign' : ''}`;
+    card.style.setProperty('--royal-column', String((Number(person.column) || 0) + 1));
+    card.style.setProperty('--royal-generation', String(Number(person.generation) || 1));
+    const background = cardColour(person);
+    card.style.setProperty('--royal-card', background);
+    card.style.setProperty('--royal-text', textColour(background));
+    card.style.setProperty('--royal-border', person.colours?.border || '#555555');
+    card.setAttribute('aria-label', `${person.name}${person.house ? `, House of ${person.house}` : ''}`);
+    card.dataset.personId = person.id;
+    card.dataset.house = person.house || '';
+    card.dataset.issue = person.issue || '';
+
+    addText(card, person.name, 'royal-person-name');
+    personLines(person).forEach(line => addText(card, line.text, line.className));
+    card.addEventListener('click', () => showPerson(person.id, false));
+    world.appendChild(card);
+    cards.set(person.id, card);
+
+    if (person.issue === 'no issue') {
+      const marker = document.createElement('span');
+      marker.className = 'royal-dsp';
+      marker.style.left = `${GUTTER + (Number(person.column) || 0) * COL_STEP + CARD_W / 2 - 18}px`;
+      marker.style.top = `${((Number(person.generation) || 1) - 1) * GEN_STEP + CARD_H + 1}px`;
+      marker.setAttribute('aria-label', 'Died without issue');
+      marker.innerHTML = '<span class="royal-dsp-arrow" aria-hidden="true">↓</span><span aria-hidden="true">d.s.p.</span>';
+      world.appendChild(marker);
+    }
+  }
+
+  function buildGenerationLabels(maxGeneration) {
+    for (let generation = 1; generation <= maxGeneration; generation++) {
+      const label = document.createElement('span');
+      label.className = 'royal-generation-label';
+      label.style.top = `${(generation - 1) * GEN_STEP + CARD_H / 2}px`;
+      label.textContent = `Gen ${generation}`;
+      world.appendChild(label);
+    }
+  }
+
+  function buildLegend() {
+    legend.replaceChildren();
+    const houses = data.house_colours || {};
+    Object.entries(houses).forEach(([house, colours]) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'royal-legend-button';
+      button.setAttribute('aria-pressed', 'false');
+      const swatch = document.createElement('span');
+      swatch.className = 'royal-legend-swatch';
+      swatch.style.background = colours.member || '#d9d0b8';
+      swatch.style.borderColor = colours.border || '#555';
+      swatch.setAttribute('aria-hidden', 'true');
+      const label = document.createElement('span');
+      label.textContent = house;
+      button.append(swatch, label);
+      button.addEventListener('click', () => toggleHouse(house, button));
+      legend.appendChild(button);
     });
-    legItems[name]=item;
-    legEl.appendChild(item);
-  });
-
-  // Controls
-  const zBy=f=>svg.transition().duration(reduceMotion?0:300).call(zoom.scaleBy,f);
-  const zTo=t=>svg.transition().duration(reduceMotion?0:700).call(zoom.transform,t);
-  const zMove=(dx,dy)=>svg.transition().duration(reduceMotion?0:200).call(zoom.translateBy,dx,dy);
-
-  function fitAll(){
-    const {w:vw, h:vh}=viewSize();
-    const tw=maxX-minX, th=maxY-minY;
-    const sc=Math.min(vw/tw,vh/th)*.88;
-    zTo(d3.zoomIdentity.translate((vw-tw*sc)/2-minX*sc,(vh-th*sc)/2-minY*sc).scale(sc));
   }
 
-  function goWindsor(){
-    const ws=data.nodes.filter(n=>n.house==='Windsor');
-    const wxs=ws.map(n=>n.px), wys=ws.map(n=>n.py);
-    const cx=(Math.min(...wxs)+Math.max(...wxs))/2+CW/2;
-    const cy=(Math.min(...wys)+Math.max(...wys))/2+CH/2;
-    const sc=1.1, {w:vw, h:vh}=viewSize();
-    zTo(d3.zoomIdentity.translate(vw/2-cx*sc,vh/2-cy*sc).scale(sc));
+  function updateLegendState() {
+    legend.querySelectorAll('.royal-legend-button').forEach(button => {
+      button.setAttribute('aria-pressed', button.textContent.trim() === houseFilter ? 'true' : 'false');
+    });
   }
 
-  document.getElementById('bin').addEventListener('click',()=>zBy(1.5));
-  document.getElementById('bout').addEventListener('click',()=>zBy(0.67));
-  document.getElementById('bfit').addEventListener('click',fitAll);
-  document.getElementById('bw').addEventListener('click',goWindsor);
-  window.addEventListener('resize',()=>svg.attr('width',viewSize().w).attr('height',viewSize().h));
+  function updateEmphasis() {
+    const related = new Set();
+    if (selectedId !== null) {
+      related.add(selectedId);
+      (edgesByParent.get(selectedId) || []).forEach(edge => related.add(edge.to));
+      (edgesByChild.get(selectedId) || []).forEach(edge => related.add(edge.from));
+    }
+    cards.forEach((card, id) => {
+      const isRelated = related.has(id);
+      const isSelected = selectedId === id;
+      const houseMatches = houseFilter === null || card.dataset.house === houseFilter;
+      card.classList.toggle('selected', isSelected);
+      card.classList.toggle('related', isRelated && !isSelected);
+      card.classList.toggle('dim', !houseMatches || (selectedId !== null && !isRelated));
+    });
+    connectorElements.forEach(line => {
+      const from = line.dataset.from;
+      const to = line.dataset.to;
+      const fromPerson = byId.get(from);
+      const toPerson = byId.get(to);
+      const houseMatches = houseFilter === null || fromPerson?.house === houseFilter || toPerson?.house === houseFilter;
+      const relationMatches = selectedId === null || related.has(from) && related.has(to);
+      line.classList.toggle('dim', !houseMatches || !relationMatches);
+      line.classList.toggle('related', selectedId !== null && related.has(from) && related.has(to));
+    });
+  }
 
-  // With the chart focused: arrow keys pan, + and - zoom, 0 fits everything
-  tree.addEventListener('keydown',e=>{
-    if(e.target!==tree) return;
-    const k=d3.zoomTransform(svg.node()).k, step=120/k;
-    const move={ ArrowLeft:[step,0], ArrowRight:[-step,0], ArrowUp:[0,step], ArrowDown:[0,-step] }[e.key];
-    if(move){ e.preventDefault(); zMove(move[0],move[1]); }
-    else if(e.key==='+'||e.key==='='){ e.preventDefault(); zBy(1.5); }
-    else if(e.key==='-'||e.key==='_'){ e.preventDefault(); zBy(0.67); }
-    else if(e.key==='0'){ e.preventDefault(); fitAll(); }
-  });
+  function addDetail(text) {
+    if (!text) return;
+    const row = document.createElement('div');
+    row.className = 'royal-detail-row';
+    row.textContent = text;
+    panelDetails.appendChild(row);
+  }
 
-  setTimeout(goWindsor,150);
-}
+  function relationGroup(title, edges, relatedIdKey) {
+    if (!edges.length) return;
+    const group = document.createElement('section');
+    group.className = 'royal-relation-group';
+    const heading = document.createElement('h3');
+    heading.className = 'royal-relation-heading';
+    heading.textContent = title;
+    const list = document.createElement('div');
+    list.className = 'royal-relation-list';
+    edges.forEach(edge => {
+      const id = edge[relatedIdKey];
+      const person = byId.get(id);
+      if (!person) return;
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'royal-relation-link';
+      button.textContent = `${person.name}${edge.type === 'primary' ? '' : ' · secondary link'}`;
+      button.addEventListener('click', () => showPerson(id, true));
+      list.appendChild(button);
+    });
+    if (list.childElementCount) group.append(heading, list);
+    if (group.childElementCount) panelRelations.appendChild(group);
+  }
 
-// ── Text version: the same people, as a table (the chart itself is drawn in SVG) ─
-function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function showPerson(id, moveToPerson) {
+    const person = byId.get(id);
+    if (!person) return;
+    selectedId = id;
+    panelName.textContent = person.name;
+    panelHouse.textContent = person.house ? `House of ${person.house}` : '';
+    panelDetails.replaceChildren();
+    panelRelations.replaceChildren();
 
-function buildTextVersion(data){
-  const byId={}; data.nodes.forEach(n=>{ byId[n.id]=n; });
-  const parents={}, children={};
-  data.edges.forEach(e=>{
-    if(!byId[e.from]||!byId[e.to]) return;
-    const label=byId[e.from].name+(e.type==='primary'?'':' (dashed link)');
-    const child=byId[e.to].name+(e.type==='primary'?'':' (dashed link)');
-    (parents[e.to]=parents[e.to]||[]).push(label);
-    (children[e.from]=children[e.from]||[]).push(child);
-  });
-  const people=data.nodes.slice().sort((a,b)=>(a.generation-b.generation)||(a.column-b.column));
-  const rows=people.map(d=>{
-    const details=[];
-    if(d.designation) details.push(d.designation);
-    if(d.birth_line) details.push(d.birth_line);
-    if(d.reign) details.push('Reign: '+d.reign);
-    if(d.marriage) details.push('m. '+d.marriage);
-    if(d.is_excluded) details.push('Excluded from succession');
-    if(d.issue==='no issue') details.push('Died without issue');
-    return `<tr><th scope="row">${esc(d.name)}${d.sobriquet?` <em>(${esc(d.sobriquet)})</em>`:''}</th>`+
-      `<td>${esc(d.house)}</td><td>${details.map(esc).join('; ')}</td>`+
-      `<td>${(parents[d.id]||[]).map(esc).join('; ')}</td><td>${(children[d.id]||[]).map(esc).join('; ')}</td></tr>`;
-  }).join('');
-  document.getElementById('royal-text-body').innerHTML=
-    '<div class="royal-table-wrap"><table class="royal-table"><caption class="sr-only">Everyone on the chart, from Alfred the Great to Charles III, in generation order</caption>'+
-    '<thead><tr><th scope="col">Person</th><th scope="col">House</th><th scope="col">Details</th><th scope="col">Parents</th><th scope="col">Children</th></tr></thead>'+
-    `<tbody>${rows}</tbody></table></div>`;
+    if (person.sobriquet) addDetail(`“${person.sobriquet}”`);
+    if (person.designation) addDetail(person.designation);
+    if (person.birth_line) addDetail(person.birth_line);
+    if (person.death_line) addDetail(person.death_line);
+    if (person.reign) addDetail(`Reign: ${person.reign}`);
+    if (person.marriage) addDetail(`Marriage: ${person.marriage}`);
+    if (person.is_excluded) addDetail('Excluded from succession');
+    if (person.issue === 'no issue') addDetail('Died without issue');
 
-  // "Text version" link in the header opens the list
-  const details=document.getElementById('royal-text');
-  const link=document.querySelector('.royal-skip');
-  if(link) link.addEventListener('click',()=>{ details.open=true; });
-  if(location.hash==='#royal-text') details.open=true;
-}
+    relationGroup('Parents', edgesByChild.get(id) || [], 'from');
+    relationGroup('Children', edgesByParent.get(id) || [], 'to');
+    panel.hidden = false;
+    updateEmphasis();
+    if (moveToPerson) scrollToPerson(id);
+    announce(`${person.name} selected.`);
+  }
+
+  function closePanel() {
+    selectedId = null;
+    panel.hidden = true;
+    updateEmphasis();
+  }
+
+  function setScale(nextScale, centreX, centreY) {
+    const oldScale = scale;
+    const next = Math.max(MIN_SCALE, Math.min(MAX_SCALE, nextScale));
+    if (centreX === undefined) centreX = (viewport.scrollLeft + viewport.clientWidth / 2) / oldScale;
+    if (centreY === undefined) centreY = (viewport.scrollTop + viewport.clientHeight / 2) / oldScale;
+    scale = next;
+    world.style.transform = `scale(${scale})`;
+    shell.style.width = `${worldWidth * scale}px`;
+    shell.style.height = `${worldHeight * scale}px`;
+    viewport.scrollLeft = Math.max(0, centreX * scale - viewport.clientWidth / 2);
+    viewport.scrollTop = Math.max(0, centreY * scale - viewport.clientHeight / 2);
+  }
+
+  function scrollToPerson(id) {
+    const person = byId.get(id);
+    if (!person) return;
+    const x = GUTTER + (Number(person.column) || 0) * COL_STEP + CARD_W / 2;
+    const y = ((Number(person.generation) || 1) - 1) * GEN_STEP + CARD_H / 2;
+    viewport.scrollTo({
+      left: Math.max(0, x * scale - viewport.clientWidth / 2),
+      top: Math.max(0, y * scale - viewport.clientHeight / 2),
+      behavior: reduceMotion ? 'auto' : 'smooth'
+    });
+  }
+
+  function houseBounds(house) {
+    const members = data.nodes.filter(person => person.house === house);
+    if (!members.length) return null;
+    const xs = members.map(person => GUTTER + (Number(person.column) || 0) * COL_STEP);
+    const ys = members.map(person => ((Number(person.generation) || 1) - 1) * GEN_STEP);
+    const xe = members.map(person => GUTTER + (Number(person.column) || 0) * COL_STEP + CARD_W);
+    const ye = members.map(person => ((Number(person.generation) || 1) - 1) * GEN_STEP + CARD_H);
+    return { x1: Math.min(...xs), y1: Math.min(...ys), x2: Math.max(...xe), y2: Math.max(...ye) };
+  }
+
+  function toggleHouse(house) {
+    closePanel();
+    if (houseFilter === house) {
+      houseFilter = null;
+      updateLegendState();
+      updateEmphasis();
+      const restore = savedView;
+      savedView = null;
+      if (restore) {
+        setScale(restore.scale, restore.centreX, restore.centreY);
+        viewport.scrollLeft = restore.scrollLeft;
+        viewport.scrollTop = restore.scrollTop;
+      }
+      announce('Showing all royal houses.');
+      return;
+    }
+    if (houseFilter === null) {
+      savedView = {
+        scale,
+        centreX: (viewport.scrollLeft + viewport.clientWidth / 2) / scale,
+        centreY: (viewport.scrollTop + viewport.clientHeight / 2) / scale,
+        scrollLeft: viewport.scrollLeft,
+        scrollTop: viewport.scrollTop
+      };
+    }
+    houseFilter = house;
+    updateLegendState();
+    updateEmphasis();
+    const bounds = houseBounds(house);
+    if (bounds) {
+      const width = Math.max(CARD_W, bounds.x2 - bounds.x1);
+      const height = Math.max(CARD_H, bounds.y2 - bounds.y1);
+      const fitScale = Math.min(MAX_SCALE, (viewport.clientWidth - 72) / width, (viewport.clientHeight - 96) / height);
+      setScale(Math.max(MIN_SCALE, fitScale), (bounds.x1 + bounds.x2) / 2, (bounds.y1 + bounds.y2) / 2);
+    }
+    announce(`Showing the House of ${house}. Select the same house again to restore the previous view.`);
+  }
+
+  function fitAll() {
+    houseFilter = null;
+    savedView = null;
+    selectedId = null;
+    panel.hidden = true;
+    updateLegendState();
+    updateEmphasis();
+    const fitScale = Math.min((viewport.clientWidth - 24) / worldWidth, (viewport.clientHeight - 24) / worldHeight);
+    setScale(Math.max(MIN_SCALE, fitScale), worldWidth / 2, worldHeight / 2);
+    viewport.scrollLeft = 0;
+    viewport.scrollTop = 0;
+    announce('Showing the whole family tree.');
+  }
+
+  function buildTree() {
+    const maxColumn = Math.max(...data.nodes.map(person => Number(person.column) || 0));
+    const maxGeneration = Math.max(...data.nodes.map(person => Number(person.generation) || 1));
+    const columns = maxColumn + 1;
+    worldWidth = GUTTER + columns * COL_STEP;
+    worldHeight = maxGeneration * GEN_STEP;
+
+    world.style.width = `${columns * COL_STEP}px`;
+    world.style.height = `${worldHeight}px`;
+    world.style.gridTemplateColumns = `repeat(${columns}, ${COL_STEP}px)`;
+    world.style.gridTemplateRows = `repeat(${maxGeneration}, ${GEN_STEP}px)`;
+    world.style.setProperty('--royal-gutter', `${GUTTER}px`);
+    world.style.setProperty('--royal-card-width', `${CARD_W}px`);
+    world.style.setProperty('--royal-card-height', `${CARD_H}px`);
+    world.style.setProperty('--royal-column-step', `${COL_STEP}px`);
+    world.style.setProperty('--royal-generation-step', `${GEN_STEP}px`);
+
+    buildGenerationLabels(maxGeneration);
+    // Connectors sit behind cards; create them first, then add the person cards.
+    data.edges.forEach(edge => {
+      const parent = byId.get(edge.from);
+      const child = byId.get(edge.to);
+      if (parent && child) addConnector(edge, parent, child);
+    });
+    data.nodes.forEach(buildPersonCard);
+
+    shell.style.width = `${worldWidth * scale}px`;
+    shell.style.height = `${worldHeight * scale}px`;
+    world.style.transform = `scale(${scale})`;
+  }
+
+  $('royal-panel-close').addEventListener('click', closePanel);
+  $('royal-zoom-in').addEventListener('click', () => setScale(scale * 1.25));
+  $('royal-zoom-out').addEventListener('click', () => setScale(scale / 1.25));
+  $('royal-fit').addEventListener('click', fitAll);
+
+  fetch('/assets/data/royal.json')
+    .then(response => {
+      if (!response.ok) throw new Error(`royal.json returned ${response.status}`);
+      return response.json();
+    })
+    .then(json => {
+      if (!Array.isArray(json.nodes) || !Array.isArray(json.edges)) throw new Error('The family tree data has an unexpected format.');
+      data = json;
+      buildIndex();
+      buildTree();
+      buildLegend();
+      updateEmphasis();
+
+      // Begin at Ecgberht, rather than shrinking 1,100 years into an unreadable overview.
+      const root = data.nodes.find(person => person.name === 'Ecgberht') || data.nodes.reduce((first, person) =>
+        (Number(person.generation) || 1) < (Number(first.generation) || 1) ? person : first, data.nodes[0]);
+      if (root) {
+        setScale(0.85, GUTTER + (Number(root.column) || 0) * COL_STEP + CARD_W / 2, CARD_H / 2);
+        viewport.scrollTop = 0;
+      }
+    })
+    .catch(loadError => {
+      console.error('Could not load the royal family tree:', loadError);
+      error.textContent = 'The family tree data could not be loaded. Check that /assets/data/royal.json is available, then reload the page.';
+      error.hidden = false;
+    });
+})();
