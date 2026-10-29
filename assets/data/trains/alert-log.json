@@ -1,5 +1,38 @@
 [
   {
+    "id": "0a035e2d-9bfa-58e0-b923-13899d3bb8cd",
+    "first_seen": "2026-10-29T11:41:24.206129+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Newport and Werribee from 11:50pm to last train tonight, while project works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "5eb56996-fc91-5484-ae03-bc10b026427a",
+    "first_seen": "2026-10-29T11:41:24.206129+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a police request in the Oak Park area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:",
+      "aus:vic:vic-02-CGB-R:"
+    ]
+  },
+  {
+    "id": "550b20f7-8cb7-5b7e-81ba-3cee943a0eb0",
+    "first_seen": "2026-10-29T11:41:24.206129+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Caulfield and Moorabbin from 12am to last train tonight, while project works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN:",
+      "aus:vic:vic-02-FKN-R:"
+    ]
+  },
+  {
     "id": "c36ae81f-b393-5404-afc5-27e760c3e546",
     "first_seen": "2026-10-28T22:22:50.001203+00:00",
     "header": "Minor Delay",
