@@ -1,5 +1,15 @@
 [
   {
+    "id": "08c7a6ef-44c6-59fe-a05a-26e1f16fdb87",
+    "first_seen": "2026-10-29T18:19:51.562922+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the Macaulay area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
     "id": "0a035e2d-9bfa-58e0-b923-13899d3bb8cd",
     "first_seen": "2026-10-29T11:41:24.206129+00:00",
     "header": "Planned Works",
