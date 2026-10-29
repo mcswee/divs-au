@@ -3,35 +3,43 @@ layout: default
 title: "Royal lineage of England"
 category: projects
 permalink: /royal/
-description: "An interactive family tree of the English and British royal houses, from Ecgberht to Charles III, with a text version."
+description: "An interactive family tree of the English and British royal houses, from Ecgberht to Charles III, with an HTML and CSS Grid layout."
 ---
-<div class="royal-page">
-  <div class="royal-tree" id="royal-tree" role="region" aria-label="Royal family tree chart" aria-describedby="royal-help" tabindex="0">
-    <div id="header">
-      <h1>Royal Lineage</h1>
-      <p>Ecgberht to Charles III &mdash; 1,100 years</p>
-      <a class="royal-skip" href="#royal-text">Text version</a>
-    </div>
-    <div id="legend" role="group" aria-label="Show one house only"></div>
-    <div id="controls" role="group" aria-label="Chart controls">
-      <button class="btn" id="bin" type="button" aria-label="Zoom in">+</button>
-      <button class="btn" id="bout" type="button" aria-label="Zoom out">&minus;</button>
-      <button class="btn" id="bfit" type="button" aria-label="Fit the whole tree" title="Fit all">&#8862;</button>
-      <button class="btn" id="bw" type="button" aria-label="Go to the House of Windsor" title="Go to Windsor">W</button>
-    </div>
-    <div id="tip" aria-hidden="true"><div class="tn" id="tn"></div><div class="tl" id="tl"></div><div class="th" id="th"></div></div>
-    <svg id="canvas" aria-hidden="true" focusable="false"></svg>
-    <p id="royal-error" class="royal-error" role="alert" hidden></p>
+<link rel="stylesheet" href="/assets/css/royal-grid.css">
+
+<div class="royal-page" id="royal-page">
+  <header class="royal-heading">
+    <h1>Royal Lineage</h1>
+    <p>Ecgberht to Charles III &mdash; 1,100 years</p>
+  </header>
+
+  <div class="royal-legend-wrap">
+    <div id="royal-legend" class="royal-legend" role="group" aria-label="Filter by royal house"></div>
   </div>
 
-  <p id="royal-help" class="sr-only">A drawn family tree. Drag to move it and use the buttons to zoom. With the chart selected, the arrow keys move it, plus and minus zoom, and 0 fits the whole tree. The same information is in the text version below.</p>
-  <div id="royal-status" class="sr-only" role="status"></div>
+  <div class="royal-toolbar" role="group" aria-label="Tree controls">
+    <button class="royal-control" id="royal-zoom-in" type="button" aria-label="Zoom in" title="Zoom in">+</button>
+    <button class="royal-control" id="royal-zoom-out" type="button" aria-label="Zoom out" title="Zoom out">&minus;</button>
+    <button class="royal-control royal-fit" id="royal-fit" type="button" aria-label="Fit the whole tree" title="Fit the whole tree">Fit all</button>
+    <span class="royal-hint">Scroll to explore; select a person for details.</span>
+  </div>
 
-  <details class="royal-text" id="royal-text">
-    <summary>Text version of the family tree</summary>
-    <div id="royal-text-body"></div>
-  </details>
+  <section id="royal-viewport" class="royal-viewport" tabindex="0" role="region" aria-label="Royal family tree. Scroll horizontally and vertically to explore the generations.">
+    <div id="royal-world-shell" class="royal-world-shell">
+      <div id="royal-world" class="royal-world" aria-label="Family tree"></div>
+    </div>
+  </section>
+
+  <aside id="royal-person-panel" class="royal-person-panel" aria-labelledby="royal-person-name" aria-live="polite" hidden>
+    <button id="royal-panel-close" class="royal-panel-close" type="button" aria-label="Close person details">&times;</button>
+    <h2 id="royal-person-name"></h2>
+    <p id="royal-person-house" class="royal-person-house"></p>
+    <div id="royal-person-details" class="royal-person-details"></div>
+    <div id="royal-person-relations" class="royal-person-relations"></div>
+  </aside>
+
+  <p id="royal-error" class="royal-error" role="alert" hidden></p>
+  <p id="royal-status" class="royal-sr-only" role="status" aria-live="polite"></p>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script src="/assets/js/royal.js"></script>
