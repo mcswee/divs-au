@@ -140,12 +140,24 @@
       text-transform: uppercase;
     }
     .country-display {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       min-height: 2.5em;
       margin: 0 0 26px;
       font-size: clamp(1.65rem, 6vw, 2.15rem);
       font-weight: 700;
       line-height: 1.2;
       overflow-wrap: anywhere;
+    }
+    .country-flag {
+      display: block;
+      flex: 0 0 auto;
+      width: 42px;
+      max-height: 30px;
+      object-fit: contain;
+      border-radius: 2px;
+      box-shadow: 0 0 0 1px #ffffff18;
     }
 
     #user-input {
@@ -230,10 +242,10 @@
   <main class="quiz-card">
     <section id="start-screen">
       <h1>World Capitals Quiz</h1>
-      <p class="subtitle">Free-response practice using the full country list. Missed capitals come back during the session and receive extra attention in future sessions.</p>
+      <p class="subtitle">Free-response practice using the capital data in the country and entity list. Missed capitals return during the session and receive extra attention in future sessions.</p>
       <div class="start-facts" aria-label="Quiz features">
         <span class="fact">Untimed</span>
-        <span class="fact">All countries</span>
+        <span class="fact">All listed places</span>
         <span class="fact">Spelling-tolerant</span>
         <span class="fact">Progress saved on this device</span>
       </div>
@@ -345,10 +357,17 @@
       oldMissCounts = {};
     }
 
-    // Bring forward the old version's miss counts without discarding the new schedule.
-    for (const [country, count] of Object.entries(oldMissCounts)) {
-      if (!reviewData[country] && Number(count) > 0) {
-        reviewData[country] = {
+    // Migrate records from the earlier version, which used country names as keys.
+    const codeByName = new Map(capitalsData.map(item => [item.country.toLocaleLowerCase(), item.code]));
+    for (const [oldKey, record] of Object.entries(reviewData)) {
+      const code = codeByName.get(oldKey.toLocaleLowerCase());
+      if (code && code !== oldKey && !reviewData[code]) reviewData[code] = record;
+    }
+    // Bring forward the older miss-count-only store as well.
+    for (const [oldKey, count] of Object.entries(oldMissCounts)) {
+      const code = codeByName.get(oldKey.toLocaleLowerCase()) || oldKey;
+      if (!reviewData[code] && Number(count) > 0) {
+        reviewData[code] = {
           attempts: 0,
           correct: 0,
           misses: Number(count) || 0,
@@ -385,24 +404,85 @@
   }
 
   // ---------- Load data ----------
-  fetch("/assets/data/capitals.json")
+  const CAPITALS_CSV_URL = "/assets/data/cc.csv";
+
+  // Read CSV safely, including quoted names and quoted fields containing commas.
+  function parseCSV(text) {
+    const rows = [];
+    let row = [], field = "", quoted = false;
+    text = text.replace(/^\uFEFF/, "");
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      if (quoted) {
+        if (ch === '"' && text[i + 1] === '"') { field += '"'; i++; }
+        else if (ch === '"') quoted = false;
+        else field += ch;
+      } else if (ch === '"') quoted = true;
+      else if (ch === ",") { row.push(field); field = ""; }
+      else if (ch === "\n") { row.push(field); rows.push(row); row = []; field = ""; }
+      else if (ch !== "\r") field += ch;
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    return rows.filter(r => r.some(cell => cell.trim() !== ""));
+  }
+
+  function normaliseHeader(value) {
+    return String(value || "").trim().toLowerCase().replace(/[^a-z0-9]/g, "");
+  }
+
+  function splitAcceptedAnswers(value) {
+    return String(value || "").split(/[;|]/).map(answer => answer.trim()).filter(Boolean);
+  }
+
+  function loadCapitalsFromCSV(text) {
+    const rows = parseCSV(text);
+    if (rows.length < 2) throw new Error("The country code CSV is empty or has no data rows.");
+    const headers = rows[0].map(normaliseHeader);
+    const column = (...names) => headers.findIndex(header => names.includes(header));
+    const codeIndex = column("code", "countrycode", "entitycode");
+    const nameIndex = column("name", "country", "countryname", "entity", "entityname");
+    const capitalIndex = column("capital", "primarycapital");
+    const aliasesIndex = column("capitalaliases", "capitalalternatives", "aliases", "alternativecapitals", "capitalalias");
+    const difficultyIndex = column("difficulty", "level");
+    if (codeIndex < 0 || nameIndex < 0 || capitalIndex < 0) {
+      throw new Error("Expected CSV columns for Code, Name and Capital. CapitalAliases and Difficulty are optional.");
+    }
+
+    const seen = new Set();
+    return rows.slice(1).map(row => {
+      const code = (row[codeIndex] || "").trim().toUpperCase();
+      const country = (row[nameIndex] || "").trim();
+      const primary = (row[capitalIndex] || "").trim();
+      const aliases = aliasesIndex < 0 ? [] : splitAcceptedAnswers(row[aliasesIndex]);
+      const capital = [...new Set([primary, ...aliases].filter(Boolean))];
+      if (!code || !country || !capital.length || seen.has(code)) return null;
+      seen.add(code);
+      return {
+        code,
+        country,
+        capital,
+        difficulty: difficultyIndex < 0 ? "" : (row[difficultyIndex] || "").trim()
+      };
+    }).filter(Boolean);
+  }
+
+  fetch(CAPITALS_CSV_URL)
     .then(response => {
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return response.json();
+      return response.text();
     })
-    .then(data => {
-      if (!Array.isArray(data) || data.length === 0) throw new Error("The capitals file is empty or invalid.");
-      capitalsData = data.filter(item => item && typeof item.country === "string" && Array.isArray(item.capital) && item.capital.length);
-      if (!capitalsData.length) throw new Error("No valid country entries were found.");
+    .then(text => {
+      capitalsData = loadCapitalsFromCSV(text);
+      if (!capitalsData.length) throw new Error("No entries with capital answers were found in cc.csv.");
       loadStorage();
       startBtn.disabled = false;
       startBtn.textContent = "Start practising";
-      document.querySelector(".start-facts").insertAdjacentHTML("beforeend", `<span class="fact">${capitalsData.length} countries</span>`);
+      document.querySelector(".start-facts").insertAdjacentHTML("beforeend", `<span class="fact">${capitalsData.length} places</span>`);
     })
     .catch(error => {
       startBtn.disabled = true;
       startBtn.textContent = "Unable to load quiz";
-      loadErrorEl.textContent = "Couldn't load /assets/data/capitals.json. Check the file path and JSON syntax.";
+      loadErrorEl.textContent = "Couldn’t load capital data from /assets/data/cc.csv. Check that the CSV has Code, Name and Capital columns.";
       loadErrorEl.classList.remove("hidden");
       console.error("Failed to load capitals data:", error);
     });
@@ -456,7 +536,8 @@
         row.className = "missed-item";
         const countrySpan = document.createElement("span");
         countrySpan.className = "missed-country";
-        countrySpan.textContent = `${country}${details.count > 1 ? ` (${details.count} misses)` : ""}`;
+        const item = capitalsData.find(entry => entry.code === country);
+        countrySpan.textContent = `${item ? item.country : country}${details.count > 1 ? ` (${details.count} misses)` : ""}`;
         const capitalSpan = document.createElement("span");
         capitalSpan.className = "missed-capital";
         capitalSpan.textContent = details.capital;
@@ -501,7 +582,14 @@
       return;
     }
 
-    countryEl.textContent = `${currentPair.emoji ? currentPair.emoji + " " : ""}${currentPair.country}`;
+    countryEl.replaceChildren();
+    const flag = document.createElement("img");
+    flag.className = "country-flag";
+    flag.src = `/assets/images/flags/${currentPair.code.toLowerCase()}.svg`;
+    flag.alt = "";
+    flag.setAttribute("aria-hidden", "true");
+    flag.addEventListener("error", () => flag.remove(), { once: true });
+    countryEl.append(flag, document.createTextNode(currentPair.country));
     updateStats();
     inputEl.focus();
   }
@@ -510,32 +598,32 @@
   function pickNextCountry() {
     const now = Date.now();
     const queued = Object.entries(sessionReviewQueue)
-      .filter(([country, item]) => item.eligibleAfter <= totalAnswered && country !== (currentPair && currentPair.country))
-      .map(([country]) => capitalsData.find(item => item.country === country))
+      .filter(([key, item]) => item.eligibleAfter <= totalAnswered && key !== (currentPair && currentPair.code))
+      .map(([key]) => capitalsData.find(item => item.code === key))
       .filter(Boolean);
 
     // A missed answer returns after several other questions, while it is still fresh.
     if (queued.length) {
       const chosen = weightedPick(queued, now, true);
-      delete sessionReviewQueue[chosen.country];
-      rememberCountry(chosen.country);
+      delete sessionReviewQueue[chosen.code];
+      rememberCountry(chosen.code);
       return chosen;
     }
 
-    let choices = capitalsData.filter(item => item.country !== (currentPair && currentPair.country));
+    let choices = capitalsData.filter(item => item.code !== (currentPair && currentPair.code));
     if (choices.length > RECENT_COUNTRY_LIMIT) {
-      const notRecent = choices.filter(item => !recentCountries.includes(item.country));
+      const notRecent = choices.filter(item => !recentCountries.includes(item.code));
       if (notRecent.length) choices = notRecent;
     }
 
     const chosen = weightedPick(choices.length ? choices : capitalsData, now, false);
-    rememberCountry(chosen.country);
+    rememberCountry(chosen.code);
     return chosen;
   }
 
   function weightedPick(choices, now, isReviewPick) {
     const weights = choices.map(item => {
-      const record = getReviewRecord(item.country);
+      const record = getReviewRecord(item.code);
       const misses = Math.max(0, Number(record.misses) || 0);
       const lastSeen = Number(record.lastSeen) || 0;
       const dueAt = Number(record.dueAt) || 0;
@@ -679,7 +767,7 @@
     const result = matchAnswer(rawGuess, currentPair.capital);
 
     totalAnswered++;
-    const country = currentPair.country;
+    const country = currentPair.code;
     if (result && (result.type === "exact" || result.type === "typo")) {
       score++;
       streak++;
@@ -717,8 +805,8 @@
     if (isWaitingForNext || !currentPair) return;
     totalAnswered++;
     streak = 0;
-    rememberMiss(currentPair.country);
-    recordIncorrect(currentPair.country);
+    rememberMiss(currentPair.code);
+    recordIncorrect(currentPair.code);
     showFeedback("incorrect", "Skipped.", `Accepted answer${currentPair.capital.length === 1 ? "" : "s"}: ${currentPair.capital.join(" / ")}`);
     updateStats();
     scheduleNextQuestion();
