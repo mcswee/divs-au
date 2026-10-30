@@ -10,11 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialise using Front Matter values
     const map = L.map('state-map').setView([lat, lng], parseInt(zoom));
-
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; <a href="https://www.esri.com">Esri</a> Data: &copy; <a href="/copyright">ABS</a>',
-        maxZoom: 19,
-        maxNativeZoom: 16
+    L.tileLayer("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png?key=cb1_3li0_1_3bd3e03fbf5a91dbb6cb9f61", {
+       attribution: 'Tiles &copy; <a href="https://carto.com/attributions">CARTO</a> | Data <a href="/copyright/">ABS</a>',
+       maxZoom: 19
     }).addTo(map);
 
     map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
