@@ -1,5 +1,119 @@
 [
   {
+    "id": "088fcfd5-b60f-52b3-83aa-8cb612a7c686",
+    "first_seen": "2026-10-30T17:54:48.728269+00:00",
+    "header": "Planned work: Trains run direct to and from Flinders Street, not via the City Loop",
+    "description": "10pm Friday 30 October to 5am Saturday 31 October\u00a0 \u00a0 To City Loop  Change at Southern Cross or Flinders Street and take a City Circle Bus. From City Loop  Take a train from Platform 2 and change at either Southern Cross or Flinders Street.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-UFD:",
+      "aus:vic:vic-02-CGB:",
+      "aus:vic:vic-02-CGB-R:"
+    ]
+  },
+  {
+    "id": "95968336-de3c-52ae-9852-7aa618706c1c",
+    "first_seen": "2026-10-30T17:54:48.728269+00:00",
+    "header": "Planned work: Trains run direct to and from Flinders Street, not via the City Loop",
+    "description": "10pm Friday 30 October to 5am Saturday 31 October\u00a0 \u00a0 From Southern Cross  Take a train from either platforms 12 or 13 and change at Flinders Street. To Southern Cross  Change at Flinders Street and take a train from platforms 9 and 10. To City Loop  Change at Richmond and take a train from Platform 3. From City Loop  Take a train from Platform 2 and change at Flinders Street.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
+    "id": "23b87492-5bb2-5e7e-86fa-0fc41263336b",
+    "first_seen": "2026-10-30T17:54:48.728269+00:00",
+    "header": "Planned work: Buses replace trains between Parliament and Clifton Hill",
+    "description": "9.45pm Friday 30 October to 5am Saturday 31 October",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-MDD-R:",
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "c44423c6-b912-5695-a18d-2898dffa3d92",
+    "first_seen": "2026-10-30T17:54:48.728269+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Clifton Hill from 9:45pm Friday 30 October to 5am Saturday 31 October, while project works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "82f49210-3f56-5985-9e67-3671e51fc7fc",
+    "first_seen": "2026-10-30T17:54:48.728269+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament and Clifton Hill from 9:45pm Friday 30 October to 5am Saturday 31 October, while project works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-MDD-R:",
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
+    "id": "6915523a-87ef-567a-9b03-c49de18d81c4",
+    "first_seen": "2026-10-30T17:54:48.728269+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 10pm Friday 30 October to 5am Saturday 31 October, while maintenance and renewal works take place.  From Southern Cross: Take a train from platform 12 or 13 and change at Flinders St. To Southern Cross: Change at Flinders St and take a train from platform 9 or 10. To City Loop: Change at Richmond and take a train from platform 3. From City Loop: Take a train from platform 2 and change at Flinders St.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-BEG-R:"
+    ]
+  },
+  {
+    "id": "54fa0cbb-69a1-5970-9bfd-d2eb3bc2a383",
+    "first_seen": "2026-10-30T17:54:48.728269+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 10pm Friday 30 October to 5am Saturday 31 October, while maintenance and renewal works take place.  From Southern Cross: Take a train from platform 12 or 13 and change at Flinders St. To Southern Cross: Change at Flinders St and take a train from platform 9 or 10. To City Loop: Change at Richmond and take a train from platform 3. From City Loop: Take a train from platform 2 and change at Flinders St.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
+    "id": "648b6821-add6-50af-ab38-6c9b0a248216",
+    "first_seen": "2026-10-30T17:54:48.728269+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 10pm Friday 30 October to 5am Saturday 31 October, while maintenance and renewal works take place.  From Southern Cross: Take a train from platform 12 or 13 and change at Flinders St. To Southern Cross: Change at Flinders St and take a train from platform 9 or 10. To City Loop: Change at Richmond and take a train from platform 3. From City Loop: Take a train from platform 2 and change at Flinders St.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "67efdc5e-cc1c-52d2-b3b1-a438fc12da41",
+    "first_seen": "2026-10-30T17:54:48.728269+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 10pm Friday 30 October to 5am Saturday 31 October, while maintenance and renewal works take place.  To City Loop: Change at Southern Cross or Flinders St and take a City Circle bus. From City Loop: Take a train from platform 2 and change at Southern Cross or Flinders St.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-CGB:",
+      "aus:vic:vic-02-CGB-R:"
+    ]
+  },
+  {
+    "id": "14258530-85fc-56ae-8053-88e0db03d417",
+    "first_seen": "2026-10-30T17:54:48.728269+00:00",
+    "header": "Planned Works",
+    "description": "All trains will run direct to/from Flinders Street, not via the City Loop from 10pm Friday 30 October to 5am Saturday 31 October, while maintenance and renewal works take place.  To City Loop: Change at Southern Cross or Flinders St and take a City Circle bus. From City Loop: Take a train from platform 2 and change at Southern Cross or Flinders St.  Allow extra travel time. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
     "id": "08c7a6ef-44c6-59fe-a05a-26e1f16fdb87",
     "first_seen": "2026-10-29T18:19:51.562922+00:00",
     "header": "Minor Delay",
