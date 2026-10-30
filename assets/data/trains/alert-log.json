@@ -1,5 +1,16 @@
 [
   {
+    "id": "6cf8603a-8542-5019-b42a-667f2d803ffa",
+    "first_seen": "2026-10-30T22:04:29.031804+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 40 minutes due to an earlier operational issue at Werribee. Select trains may terminate and originate at / from Laverton. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
     "id": "088fcfd5-b60f-52b3-83aa-8cb612a7c686",
     "first_seen": "2026-10-30T17:54:48.728269+00:00",
     "header": "Planned work: Trains run direct to and from Flinders Street, not via the City Loop",
