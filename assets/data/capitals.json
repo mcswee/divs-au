@@ -21,9 +21,7 @@
   {
     "country": "Netherlands",
     "capital": [
-      "Amsterdam",
-      "The Hague",
-      "Den Haag"
+      "Amsterdam"
     ],
     "emoji": "🇳🇱",
     "difficulty": "easy"
@@ -31,8 +29,7 @@
   {
     "country": "Ivory Coast",
     "capital": [
-      "Yamoussoukro",
-      "Abidjan"
+      "Yamoussoukro"
     ],
     "emoji": "🇨🇮",
     "difficulty": "medium"
@@ -50,8 +47,7 @@
   {
     "country": "United States",
     "capital": [
-      "Washington, D.C.",
-      "Washington DC",
+      "Washigton, D.C."
       "Washington"
     ],
     "emoji": "🇺🇸",
@@ -69,8 +65,7 @@
   {
     "country": "Malaysia",
     "capital": [
-      "Kuala Lumpur",
-      "Putrajaya"
+      "Kuala Lumpur"
     ],
     "emoji": "🇲🇾",
     "difficulty": "medium"
@@ -79,7 +74,6 @@
     "country": "Palestine",
     "capital": [
       "Ramallah",
-      "Jerusalem",
       "East Jerusalem"
     ],
     "emoji": "🇵🇸",
@@ -96,8 +90,7 @@
   {
     "country": "Chile",
     "capital": [
-      "Santiago",
-      "Valparaiso"
+      "Santiago"
     ],
     "emoji": "🇨🇱",
     "difficulty": "medium"
@@ -163,7 +156,7 @@
     "country": "Antigua and Barbuda",
     "capital": [
       "Saint John's",
-      "St John's"
+      "St. John's"
     ],
     "emoji": "🇦🇬",
     "difficulty": "hard"
@@ -195,8 +188,7 @@
   {
     "country": "Austria",
     "capital": [
-      "Vienna",
-      "Wien"
+      "Vienna"
     ],
     "emoji": "🇦🇹",
     "difficulty": "easy"
