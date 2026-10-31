@@ -6,6 +6,7 @@
   --royal-column-step: 186px;
   --royal-generation-step: 160px;
   --royal-gutter: 90px;
+  --royal-ctl: #767676;   /* control borders: 3:1+ against the page */
   color: var(--text-main, #26251f);
   position: relative;
 }
@@ -33,17 +34,22 @@
   align-items: center;
   gap: .4rem;
   max-width: 100%;
-  border: 1px solid var(--border, #bcbab3);
+  border: 1px solid var(--royal-ctl);
   border-radius: 999px;
   padding: .28rem .65rem .28rem .5rem;
-  background: var(--background, #fff);
+  background: var(--highlight, #fafaf8);
   color: var(--text-main, #26251f);
   font: inherit;
   font-size: .82rem;
   line-height: 1.25;
   cursor: pointer;
 }
-.royal-legend-button[aria-pressed="true"] { outline: 2px solid var(--brand-accent, #8b6d2f); outline-offset: 1px; }
+/* the pressed state is a filled button, not just an outline */
+.royal-legend-button[aria-pressed="true"] {
+  background: var(--brand-main, #336);
+  border-color: var(--brand-main, #336);
+  color: var(--highlight, #fafaf8);
+}
 .royal-legend-swatch { width: .8rem; height: .8rem; flex: 0 0 .8rem; border: 1px solid; border-radius: 50%; }
 
 .royal-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: .35rem; margin: .7rem 0 .5rem; }
@@ -51,7 +57,7 @@
   min-width: 2.35rem;
   min-height: 2.2rem;
   padding: .25rem .65rem;
-  border: 1px solid var(--border, #bcbab3);
+  border: 1px solid var(--royal-ctl);
   border-radius: 3px;
   background: var(--highlight, #fafaf8);
   color: var(--text-main, #26251f);
@@ -59,9 +65,36 @@
   font-size: 1rem;
   cursor: pointer;
 }
+.royal-control[aria-pressed="true"] {
+  background: var(--brand-main, #336);
+  border-color: var(--brand-main, #336);
+  color: var(--highlight, #fafaf8);
+}
+.royal-control[aria-disabled="true"],
+.royal-control:disabled { opacity: .45; cursor: not-allowed; }
 .royal-fit { font-size: .85rem; }
 .royal-hint { margin-left: .45rem; font-size: .82rem; opacity: .75; }
-.royal-page button:focus-visible { outline: 3px solid var(--brand-accent, #8b6d2f); outline-offset: 2px; }
+.royal-page button:focus-visible,
+.royal-page a:focus-visible,
+.royal-person-panel h2:focus-visible { outline: 3px solid var(--brand-accent, #448); outline-offset: 2px; }
+
+/* skip link: hidden until it takes keyboard focus */
+.royal-skip {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+}
+.royal-skip:focus {
+  position: static;
+  display: inline-block;
+  margin: .2rem 0 .5rem;
+  padding: .4rem .8rem;
+  border-radius: 4px;
+  background: var(--brand-main, #336);
+  color: var(--highlight, #fafaf8);
+  font-weight: 600;
+  text-decoration: none;
+}
 
 .royal-viewport {
   position: relative;
@@ -70,13 +103,13 @@
   min-height: 440px;
   overflow: auto;
   overscroll-behavior: contain;
-  border: 1px solid var(--border, #c9c7bf);
-  background-color: var(--background, #fff);
-  background-image: radial-gradient(var(--border, #dedbd2) .7px, transparent .7px);
+  border: 1px solid var(--text-accent, #c9c7bf);
+  background-color: var(--highlight, #fafaf8);
+  background-image: radial-gradient(var(--text-accent, #dedbd2) .7px, transparent .7px);
   background-size: 18px 18px;
   scrollbar-gutter: stable;
 }
-.royal-viewport:focus-visible { outline: 2px solid var(--brand-accent, #8b6d2f); outline-offset: 2px; }
+.royal-viewport:focus-visible { outline: 3px solid var(--brand-accent, #448); outline-offset: 2px; }
 .royal-world-shell { position: relative; flex: none; }
 .royal-world {
   position: absolute;
@@ -96,8 +129,7 @@
   width: calc(var(--royal-gutter) - 12px);
   padding-right: 8px;
   text-align: right;
-  color: var(--text-main, #26251f);
-  opacity: .58;
+  color: var(--text-highlight, #666);
   font-size: 11px;
   line-height: 1.2;
   transform: translateY(-50%);
@@ -110,7 +142,7 @@
   z-index: 1;
   display: block;
   background: #625e53;
-  opacity: .72;
+  opacity: .85;
   pointer-events: none;
 }
 .royal-connector.vertical { width: 1.5px; }
@@ -119,12 +151,12 @@
   background: transparent;
 }
 .royal-connector.secondary.vertical {
-  background: repeating-linear-gradient(to bottom, #777064 0 4px, transparent 4px 8px);
+  background: repeating-linear-gradient(to bottom, #625e53 0 4px, transparent 4px 8px);
 }
 .royal-connector.secondary.horizontal {
-  background: repeating-linear-gradient(to right, #777064 0 4px, transparent 4px 8px);
+  background: repeating-linear-gradient(to right, #625e53 0 4px, transparent 4px 8px);
 }
-.royal-connector.dim { opacity: .12; }
+.royal-connector.dim { opacity: .15; }
 .royal-connector.related { opacity: 1; }
 
 .royal-person {
@@ -156,12 +188,15 @@
 .royal-person.sovereign .royal-person-name { font-size: 14px; }
 .royal-person.selected {
   z-index: 4;
-  outline: 3px solid var(--brand-accent, #8b6d2f);
+  outline: 3px solid var(--brand-accent, #448);
   outline-offset: 2px;
   box-shadow: 0 2px 8px #00000035;
 }
 .royal-person.related { z-index: 3; border-width: 2.5px; }
-.royal-person.dim { opacity: .2; filter: grayscale(.5); }
+.royal-person.dim { opacity: .3; filter: grayscale(.5); }
+/* a dimmed card the keyboard or pointer reaches comes back to full strength, focus ring included */
+.royal-person.dim:focus-visible,
+.royal-person.dim:hover { opacity: 1; filter: none; }
 .royal-person-name { display: block; max-width: 100%; font-weight: 700; font-size: 12px; overflow-wrap: anywhere; }
 .royal-person-sobriquet { display: block; max-width: 100%; margin-top: 2px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-style: italic; overflow-wrap: anywhere; }
 .royal-person-detail { display: block; max-width: 100%; margin-top: 3px; font-size: 10px; overflow-wrap: anywhere; }
@@ -180,6 +215,30 @@
 }
 .royal-dsp-arrow { font: 11px/10px sans-serif; }
 
+/* text list view */
+.royal-list { margin: .7rem 0; }
+.royal-list-generation h2 { margin: 1.4rem 0 .6rem; font-size: 1.15rem; }
+.royal-list-generation:first-child h2 { margin-top: 0; }
+.royal-list-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: .6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.royal-list-item {
+  margin: 0;
+  padding: .7rem .9rem;
+  background: var(--highlight, #fafaf8);
+  border: 1px solid var(--text-accent, #ccc);
+  border-left: 8px solid var(--royal-card, #d9d0b8);
+  border-radius: 4px;
+}
+.royal-list-name { display: block; font-weight: 700; }
+.royal-list-house { display: block; font-size: .82rem; color: var(--text-highlight, #666); }
+.royal-list-fact { display: block; margin-top: .2rem; font-size: .88rem; line-height: 1.4; }
+
 .royal-person-panel {
   position: absolute;
   z-index: 20;
@@ -189,7 +248,7 @@
   max-height: min(64vh, 540px);
   overflow: auto;
   padding: 1rem 1.1rem .9rem;
-  border: 1px solid var(--border, #c9c7bf);
+  border: 1px solid var(--text-accent, #c9c7bf);
   border-radius: 4px;
   background: var(--highlight, #fff);
   color: var(--text-main, #26251f);
@@ -200,6 +259,8 @@
   position: sticky;
   top: 0;
   float: right;
+  min-width: 2rem;
+  min-height: 2rem;
   margin: -.35rem -.4rem .2rem .5rem;
   padding: 0 .2rem;
   border: 0;
@@ -215,15 +276,16 @@
 .royal-person-details { font-size: .88rem; line-height: 1.45; }
 .royal-detail-row + .royal-detail-row { margin-top: .25rem; }
 .royal-detail-row.sobriquet { font-family: Arial, Helvetica, sans-serif; font-style: italic; }
-.royal-person-relations { margin-top: .75rem; padding-top: .65rem; border-top: 1px solid var(--border, #d2d0c8); }
+.royal-person-relations { margin-top: .75rem; padding-top: .65rem; border-top: 1px solid var(--text-accent, #d2d0c8); }
 .royal-relation-group + .royal-relation-group { margin-top: .65rem; }
 .royal-relation-heading { margin: 0 0 .25rem; font-size: .82rem; font-weight: 700; }
 .royal-relation-list { display: flex; flex-wrap: wrap; gap: .25rem; }
 .royal-relation-link {
-  border: 1px solid var(--border, #c9c7bf);
+  min-height: 1.75rem;
+  border: 1px solid var(--royal-ctl);
   border-radius: 3px;
   padding: .2rem .4rem;
-  background: var(--background, #fff);
+  background: var(--highlight, #fff);
   color: var(--text-main, #26251f);
   text-align: left;
   font: inherit;
@@ -231,17 +293,6 @@
   cursor: pointer;
 }
 .royal-error { padding: .75rem; border-left: 3px solid #9b2c24; background: var(--highlight, #fff); }
-.royal-sr-only {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-}
 
 @media (max-width: 700px) {
   .royal-viewport { height: 68vh; min-height: 380px; }
