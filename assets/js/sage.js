@@ -111,7 +111,7 @@ function renderRankings(rankings) {
           <span class="rank-num ${r.rank <= 3 ? 'top3' : ''}">${r.rank}</span>
           <span class="rank-main">
             <span class="rank-team">${esc(r.team)}</span>
-            <span class="rank-bar-bg" aria-hidden="true"><span class="rank-bar-fill ${isNeg ? 'negative' : ''}" style="width:${pct}%"></span></span>
+            <span class="rank-bar-bg" aria-hidden="true"><span class="rank-bar-fill ${isNeg ? 'negative' : ''}" style="width:${pct / 2}%"></span></span>
           </span>
           <span class="rank-rating ${isNeg ? 'neg' : 'pos'}">${signed(r.rating)}</span>
         </button>
