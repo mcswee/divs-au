@@ -77,8 +77,10 @@ def get_games(year: int) -> list:
 def get_upcoming_games(year: int) -> list:
     data = fetch(f"q=games;year={year};complete=!100")
     games = data.get("games", [])
-    # Filter out byes (no ateam) and in-progress
-    return [g for g in games if g.get("ateam") and g.get("complete", 0) == 0]
+    # Filter out byes (no ateam), fixtures with a team still to be decided,
+    # and in-progress games
+    return [g for g in games
+            if g.get("hteam") and g.get("ateam") and g.get("complete", 0) == 0]
 
 
 # ── SAGE Model ────────────────────────────────────────────────────────────────
@@ -283,8 +285,12 @@ def process_completed_game(game: dict, ratings: dict, history: list, prior_ratin
     }
 
 
-def predict_game(game: dict, ratings: dict, history: list) -> dict:
-    """Generate prediction for an upcoming game."""
+def predict_game(game: dict, ratings: dict, history: list, prior_ratings: dict = None) -> dict:
+    """Generate prediction for an upcoming game.
+
+    Uses the same seeding rule as completed games: a team whose current-season
+    rating is still 0.0 is seeded with last season's final rating.
+    """
     hteam = game["hteam"]
     ateam = game["ateam"]
     venue = VENUE_ALIASES.get(game.get("venue", ""), game.get("venue", ""))
@@ -297,11 +303,14 @@ def predict_game(game: dict, ratings: dict, history: list) -> dict:
     h_rest = compute_rest(hteam, game_dt, history)
     a_rest = compute_rest(ateam, game_dt, history)
 
-    h_rating = ratings.get(hteam, 0)
-    a_rating = ratings.get(ateam, 0)
+    prior = prior_ratings or {}
+    h_rating = ratings.get(hteam, 0.0)
+    a_rating = ratings.get(ateam, 0.0)
+    h_seed = h_rating if h_rating != 0.0 else prior.get(hteam, 0.0)
+    a_seed = a_rating if a_rating != 0.0 else prior.get(ateam, 0.0)
 
-    h_output = h_r11 + h_v11 + h_rest + h_rating
-    a_output = a_r11 + a_v11 + a_rest + a_rating
+    h_output = h_r11 + h_v11 + h_rest + h_seed
+    a_output = a_r11 + a_v11 + a_rest + a_seed
 
     h_sf = surprise_factor(h_output, a_output)
     a_sf = surprise_factor(a_output, h_output)
@@ -322,8 +331,8 @@ def predict_game(game: dict, ratings: dict, history: list) -> dict:
         "ateam":    ateam,
         "h_pred":   round(h_pred * 100, 1),
         "a_pred":   round(a_pred * 100, 1),
-        "h_rating": r(h_rating),
-        "a_rating": r(a_rating),
+        "h_rating": r(h_seed),
+        "a_rating": r(a_seed),
         "h_r11":    r(h_r11),
         "a_r11":    r(a_r11),
         "h_v11":    r(h_v11),
@@ -347,6 +356,8 @@ def main():
     all_history = []      # all completed games in chronological order
     game_records = []     # per-game SAGE records
     ratings_by_round = [] # snapshot after each round
+    last_rated_year = None  # most recent season with completed games
+    season_prior = dict(prior_ratings)  # prior_ratings as they were at the start of that season
 
     for year in range(START_YEAR, CURRENT_YEAR + 1):
         print(f"  Fetching {year}...")
@@ -362,6 +373,8 @@ def main():
         # Reset all ratings to zero at the start of each season.
         # prior_ratings holds last season's finals for round 1 team output.
         ratings = {team: 0.0 for team in ALL_TEAMS}
+        season_prior = dict(prior_ratings)
+        last_rated_year = year
 
         # Sort by date
         games.sort(key=lambda g: g.get("date") or "")
@@ -411,17 +424,35 @@ def main():
         for i, (t, v) in enumerate(ranked)
     ]
 
-    # Upcoming predictions
+    # Upcoming predictions: this year's remaining games, or if the season is
+    # finished, next year's fixture once Squiggle has it
     print("  Fetching upcoming games...")
     predictions = []
-    try:
-        upcoming = get_upcoming_games(CURRENT_YEAR)
+    upcoming, upcoming_year = [], None
+    for year in (CURRENT_YEAR, CURRENT_YEAR + 1):
+        try:
+            games = get_upcoming_games(year)
+        except Exception as e:
+            print(f"  Could not fetch upcoming games for {year}: {e}")
+            continue
+        if games:
+            upcoming, upcoming_year = games, year
+            break
+        time.sleep(0.5)
+
+    if upcoming:
+        print(f"  Found {len(upcoming)} upcoming games in {upcoming_year}")
+        if last_rated_year is not None and upcoming_year > last_rated_year:
+            # New season with nothing played: everyone starts on zero and is
+            # seeded from last season's final ratings
+            pred_ratings = {team: 0.0 for team in ALL_TEAMS}
+            pred_prior = dict(ratings)
+        else:
+            pred_ratings = ratings
+            pred_prior = season_prior
         for game in upcoming:
-            pred = predict_game(game, ratings, all_history)
-            predictions.append(pred)
+            predictions.append(predict_game(game, pred_ratings, all_history, pred_prior))
         predictions.sort(key=lambda g: g.get("date") or "")
-    except Exception as e:
-        print(f"  Could not fetch upcoming games: {e}")
 
     # Determine current round
     current_round = None
