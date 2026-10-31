@@ -213,25 +213,42 @@
     color: var(--brand-main);
 }
 
+/* diverging bar: zero sits at the centre, positives extend right, negatives left */
 .sage-page .rank-bar-bg {
+    position: relative;
     display: block;
-    height: 6px;
+    height: 8px;
     overflow: hidden;
     background: var(--accent);
-    border-radius: 3px;
+    border-radius: 4px;
+}
+
+.sage-page .rank-bar-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 1px);
+    width: 2px;
+    background: var(--text-highlight);
 }
 
 .sage-page .rank-bar-fill {
-    display: block;
-    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
     background: var(--sage-lime);
-    border-radius: 3px;
+    border-radius: 0 4px 4px 0;
     box-shadow: inset 0 0 0 1px var(--sage-pos);
     transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sage-page .rank-bar-fill.negative {
+    left: auto;
+    right: 50%;
     background: var(--sage-orange);
+    border-radius: 4px 0 0 4px;
     box-shadow: inset 0 0 0 1px var(--sage-neg);
 }
 
