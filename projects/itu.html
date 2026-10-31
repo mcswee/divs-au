@@ -9,42 +9,44 @@ extra_scripts: '<script src="/assets/js/itu.js" defer></script>'
 ---
 <div class="page-element itu-page">
   <header class="itu-page-header">
-    <h1>ITU Radio prefix history</h1>
-    <p class="itu-intro">Explore how international radio call-sign prefixes have been allocated by the International Telecommunicatioms Union over time.</p>
+    <h1>ITU radio prefix history</h1>
+    <p class="itu-intro">Explore how international radio call-sign prefixes have been allocated by the International Telecommunication Union over time.</p>
   </header>
 
   <div class="itu-global-search-wrap">
     <label for="itu-global-search">Search prefixes and countries</label>
-    <input id="itu-global-search" type="search" placeholder="Enter a prefix, country name or entity code…" autocomplete="off" spellcheck="false" aria-controls="itu-search-results" aria-expanded="false">
-    <div class="itu-search-results" id="itu-search-results" role="listbox" aria-label="Search results" hidden></div>
-    <p class="itu-search-hint">Search results distinguish radio prefixes from country codes.</p>
+    <div class="itu-search-box">
+      <input id="itu-global-search" type="search" role="combobox" aria-autocomplete="list" aria-controls="itu-search-results" aria-expanded="false" aria-describedby="itu-search-hint" placeholder="Enter a prefix, country name or entity code…" autocomplete="off" spellcheck="false">
+      <div class="itu-search-results" id="itu-search-results" role="listbox" aria-label="Search results" hidden></div>
+    </div>
+    <p class="itu-search-hint" id="itu-search-hint">Search results distinguish radio prefixes from country codes. Use the up and down arrow keys to choose a result and Enter to open it.</p>
   </div>
 
   <nav class="itu-mode-nav" aria-label="Explore the archive">
-    <a href="#by-year" class="selected" data-mode-link="year">Browse by year</a>
+    <a href="#by-year" aria-current="true" data-mode-link="year">Browse by year</a>
     <a href="#by-prefix" data-mode-link="prefix">Prefix history</a>
   </nav>
 
   <section class="itu-panel itu-year-panel" id="by-year" aria-labelledby="year-heading">
     <div class="itu-section-head">
       <h2 id="year-heading">Explore an allocation year</h2>
-      <div class="itu-year-readout"><span id="year-display">2026</span><span class="itu-year-range">1906–2026</span></div>
+      <div class="itu-year-readout"><span id="year-display" aria-hidden="true">2026</span><span class="itu-year-range">1906–2026</span></div>
     </div>
     <div class="itu-year-controls">
-      <label class="itu-sr-only" for="year-slider">Select year</label>
+      <label class="sr-only" for="year-slider">Select year</label>
       <input id="year-slider" type="range" min="1906" max="2026" value="2026" step="1">
-      <div class="itu-range-labels"><span>1906</span><span>2026</span></div>
+      <div class="itu-range-labels" aria-hidden="true"><span>1906</span><span>2026</span></div>
       <label for="year-select">Jump to year</label>
       <select id="year-select"></select>
     </div>
     <div class="itu-list-head">
       <div>
-        <h3 id="list-heading">Allocations in <span id="list-year">2026</span></h3>
+        <h3 id="list-heading" tabindex="-1">Allocations in 2026</h3>
         <p id="list-description">Prefixes allocated in this year.</p>
       </div>
     </div>
-    <div class="itu-results-meta" id="results-meta" aria-live="polite"></div>
-    <div class="itu-allocation-list" id="allocation-list"></div>
+    <div class="itu-results-meta" id="results-meta"></div>
+    <ul class="itu-allocation-list" id="allocation-list"></ul>
     <button class="itu-more" id="show-more" type="button" hidden>Show more allocations</button>
   </section>
 
@@ -52,10 +54,12 @@ extra_scripts: '<script src="/assets/js/itu.js" defer></script>'
     <div class="itu-section-head">
       <h2 id="prefix-heading">Follow a prefix through time</h2>
     </div>
-    <div id="prefix-history" class="itu-history" aria-live="polite">
+    <div id="prefix-history" class="itu-history">
       <div class="itu-empty-state">
         <p>Choose a radio prefix from the search results or annual list to see its allocation history.</p>
       </div>
     </div>
   </section>
+
+  <p class="sr-only" id="itu-status" role="status" aria-live="polite"></p>
 </div>
