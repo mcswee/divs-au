@@ -21,15 +21,34 @@
   const globalSearch = $("itu-global-search");
   const searchResults = $("itu-search-results");
   const prefixHistory = $("prefix-history");
-  const palette = ["#4d5792", "#397c78", "#b58a47", "#6f789d", "#b26f5b", "#5989a3", "#7d6b9e", "#8c8b58"];
+  const statusEl = $("itu-status");
+  const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+  // Every colour here is at least 3:1 against the light timeline track
+  const palette = ["#4d5792", "#397c78", "#9a7230", "#6f789d", "#b26f5b", "#5989a3", "#7d6b9e", "#7a7a45"];
   const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
   let data = null;
+  let ready = false;
   let currentYear = 2026;
   let visibleLimit = 50;
   let filteredAllocations = [];
   let activePrefix = "";
   let activeEntity = "";
   let searchItems = [];
+  let activeOption = -1;
+  let announceTimer;
+
+  // Debounced announcement, so dragging the slider or typing doesn't read out every step
+  function announce(message, delay = 600) {
+    clearTimeout(announceTimer);
+    statusEl.textContent = "";
+    announceTimer = setTimeout(() => { statusEl.textContent = message; }, delay);
+  }
+
+  // Scroll to a section and move keyboard/screen reader focus to its heading
+  function goTo(section, focusTarget) {
+    section.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    if (focusTarget) focusTarget.focus({ preventScroll: true });
+  }
 
   // CSV reader supporting quoted fields and escaped quotes.
   function parseCSV(text) {
@@ -119,7 +138,10 @@
   }
 
   function setSelectedMode(mode) {
-    document.querySelectorAll("[data-mode-link]").forEach(link => link.classList.toggle("selected", link.dataset.modeLink === mode));
+    document.querySelectorAll("[data-mode-link]").forEach(link => {
+      if (link.dataset.modeLink === mode) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+    });
   }
 
   function renderYear(updateHistory = true) {
@@ -129,7 +151,7 @@
     activeEntity = "";
     const active = data.prefixes.filter(prefix => getAssignment(prefix, currentYear));
     filteredAllocations = active;
-    listHeading.innerHTML = `Allocations in <span id="list-year">${currentYear}</span>`;
+    listHeading.textContent = `Allocations in ${currentYear}`;
     listDescription.textContent = "Prefixes allocated in this year.";
     visibleLimit = 50;
     renderAllocationRows();
@@ -156,14 +178,15 @@
       const label = activeEntity ? entityName(activeEntity) : entityName(currentCode);
       const range = activeEntity ? firstLastForEntity(prefix, activeEntity) : null;
       const secondary = activeEntity && range ? `<span class="itu-entity-range">${range.first === range.last ? range.first : `${range.first}–${range.last}`}</span>` : "";
-      return `<a class="itu-allocation-row" href="#by-prefix" data-prefix="${esc(prefix.prefix)}"><span class="itu-prefix-code">${esc(prefix.prefix)}</span><span class="itu-allocation-entity">${flagMarkup(currentCode)}<span class="itu-entity-name">${esc(label)}</span>${codeBadge(currentCode)}${secondary}</span><span class="itu-history-link">${historyIcon}<span>See prefix history</span></span></a>`;
-    }).join("") : `<div class="itu-empty-results">No allocations recorded${activeEntity ? ` for ${esc(entityName(activeEntity))}` : ` in ${currentYear}`}.</div>`;
+      return `<li><a class="itu-allocation-row" href="#by-prefix" data-prefix="${esc(prefix.prefix)}"><span class="itu-prefix-code">${esc(prefix.prefix)}</span><span class="itu-allocation-entity">${flagMarkup(currentCode)}<span class="itu-entity-name">${esc(label)}</span>${codeBadge(currentCode)}${secondary}</span><span class="itu-history-link">${historyIcon}<span>See prefix history</span></span></a></li>`;
+    }).join("") : `<li class="itu-empty-results">No allocations recorded${activeEntity ? ` for ${esc(entityName(activeEntity))}` : ` in ${currentYear}`}.</li>`;
     if (!activeEntity) {
       const represented = new Set(filteredAllocations.map(prefix => getAssignment(prefix, currentYear)).filter(Boolean)).size;
       resultsMeta.textContent = `${filteredAllocations.length.toLocaleString("en-AU")} allocated prefix${filteredAllocations.length === 1 ? "" : "es"} across ${represented.toLocaleString("en-AU")} entit${represented === 1 ? "y" : "ies"}`;
     }
     showMore.hidden = filteredAllocations.length <= visibleLimit;
     showMore.textContent = `Show more allocations (${Math.max(0, filteredAllocations.length - visibleLimit).toLocaleString("en-AU")} remaining)`;
+    if (ready) announce(resultsMeta.textContent);
   }
 
   function firstLastForEntity(prefix, code) {
@@ -171,11 +194,30 @@
     return years.length ? { first: years[0], last: years[years.length - 1] } : null;
   }
 
+  // ── Search combobox ─────────────────────────────────────────────────────────
+  function closeSearch() {
+    searchResults.hidden = true;
+    globalSearch.setAttribute("aria-expanded", "false");
+    globalSearch.removeAttribute("aria-activedescendant");
+    activeOption = -1;
+  }
+
+  function setActiveOption(index) {
+    const options = [...searchResults.querySelectorAll("[data-search-index]")];
+    options.forEach((option, i) => option.setAttribute("aria-selected", String(i === index)));
+    activeOption = index;
+    if (index >= 0 && options[index]) {
+      globalSearch.setAttribute("aria-activedescendant", options[index].id);
+      options[index].scrollIntoView({ block: "nearest" });
+    } else {
+      globalSearch.removeAttribute("aria-activedescendant");
+    }
+  }
+
   function renderSearchResults() {
     const query = globalSearch.value.trim().toLocaleLowerCase();
     if (!query) {
-      searchResults.hidden = true;
-      globalSearch.setAttribute("aria-expanded", "false");
+      closeSearch();
       searchItems = [];
       activeEntity = "";
       renderYear(false);
@@ -193,12 +235,16 @@
       .filter(item => item.code.toLocaleLowerCase().includes(query) || item.name.toLocaleLowerCase().includes(query))
       .sort((a, b) => matchRank(a.code, query) - matchRank(b.code, query) || a.name.localeCompare(b.name)).slice(0, 8);
     searchItems = [...prefixMatches, ...entityMatches];
+
     const sections = [];
-    if (prefixMatches.length) sections.push(`<div class="itu-search-group-label">Radio prefixes</div>${prefixMatches.map((item, i) => `<button type="button" class="itu-search-result" role="option" data-search-index="${i}"><span class="itu-search-result-code">${esc(item.code)}</span><span class="itu-search-result-main"><span class="itu-search-result-name">${esc(item.name)}</span><span class="itu-search-result-type">Radio prefix</span></span></button>`).join("")}`);
-    if (entityMatches.length) sections.push(`<div class="itu-search-group-label">Countries and entities</div>${entityMatches.map((item, i) => `<button type="button" class="itu-search-result" role="option" data-search-index="${prefixMatches.length + i}"><span class="itu-search-result-code">${esc(item.code)}</span><span class="itu-search-result-main">${flagMarkup(item.code)}<span class="itu-search-result-name">${esc(item.name)}</span><span class="itu-search-result-type">Entity code</span></span></button>`).join("")}`);
-    searchResults.innerHTML = sections.join("") || `<div class="itu-search-empty">No prefixes or entities match “${esc(globalSearch.value.trim())}”.</div>`;
+    if (prefixMatches.length) sections.push(`<div role="group" aria-labelledby="itu-group-prefix"><div class="itu-search-group-label" id="itu-group-prefix">Radio prefixes</div>${prefixMatches.map((item, i) => `<div class="itu-search-result" role="option" id="itu-option-${i}" aria-selected="false" data-search-index="${i}"><span class="itu-search-result-code">${esc(item.code)}</span><span class="itu-search-result-main"><span class="itu-search-result-name">${esc(item.name)}</span><span class="itu-search-result-type">Radio prefix</span></span></div>`).join("")}</div>`);
+    if (entityMatches.length) sections.push(`<div role="group" aria-labelledby="itu-group-entity"><div class="itu-search-group-label" id="itu-group-entity">Countries and entities</div>${entityMatches.map((item, i) => { const n = prefixMatches.length + i; return `<div class="itu-search-result" role="option" id="itu-option-${n}" aria-selected="false" data-search-index="${n}"><span class="itu-search-result-code">${esc(item.code)}</span><span class="itu-search-result-main">${flagMarkup(item.code)}<span class="itu-search-result-name">${esc(item.name)}</span><span class="itu-search-result-type">Entity code</span></span></div>`; }).join("")}</div>`);
+    searchResults.innerHTML = sections.join("") || `<div class="itu-search-empty" role="option" aria-disabled="true">No prefixes or entities match “${esc(globalSearch.value.trim())}”.</div>`;
     searchResults.hidden = false;
     globalSearch.setAttribute("aria-expanded", "true");
+    globalSearch.removeAttribute("aria-activedescendant");
+    activeOption = -1;
+    announce(searchItems.length ? `${searchItems.length} result${searchItems.length === 1 ? "" : "s"} available` : "No results");
   }
 
   function matchRank(value, query) {
@@ -206,6 +252,23 @@
     return lower === query ? 0 : lower.startsWith(query) ? 1 : lower.includes(query) ? 2 : 3;
   }
 
+  function chooseSearchItem(index) {
+    const item = searchItems[index];
+    if (!item) return;
+    closeSearch();
+    globalSearch.value = item.code;
+    if (item.type === "prefix") {
+      showPrefix(item.code);
+      setSelectedMode("prefix");
+      goTo($("by-prefix"), prefixHistory.querySelector("h3"));
+    } else {
+      renderEntityPrefixes(item.code);
+      setSelectedMode("year");
+      goTo($("by-year"), listHeading);
+    }
+  }
+
+  // ── Prefix history ──────────────────────────────────────────────────────────
   function runsFor(prefix) {
     const runs = [];
     let start = null, lastYear = null, lastCode = null;
@@ -228,7 +291,7 @@
     const key = String(prefixText || "").trim().toUpperCase();
     const prefix = data.prefixes.find(item => item.prefix === key);
     if (!prefix) {
-      prefixHistory.innerHTML = `<div class="itu-empty-results">No prefix “${esc(key)}” was found.</div>`;
+      prefixHistory.innerHTML = `<div class="itu-empty-results"><h3 tabindex="-1">No prefix “${esc(key)}” was found.</h3></div>`;
       if (updateHistory) updateUrl({ prefix: key || null, entity: null });
       return;
     }
@@ -237,20 +300,19 @@
     const runs = runsFor(prefix);
     const first = runs.length ? runs[0].start : null;
     const last = runs.length ? runs[runs.length - 1].end : null;
-    const activeYears = data.years.filter(year => getAssignment(prefix, year)).length;
     const span = data.years[data.years.length - 1] - data.years[0] + 1;
     const segments = runs.map((run, i) => {
       const left = ((run.start - data.years[0]) / span) * 100;
       const width = ((run.end - run.start + 1) / span) * 100;
       const label = run.start === run.end ? String(run.start) : `${run.start}–${run.end}`;
-      return `<button class="itu-timeline-segment" style="left:${left}%;width:${Math.max(width, .4)}%;background:${palette[i % palette.length]}" title="${esc(label)}: ${esc(entityName(run.code))}" aria-label="${esc(`${label}, ${entityName(run.code)}`)}" data-start="${run.start}" data-code="${esc(run.code)}"></button>`;
+      return `<button class="itu-timeline-segment" style="left:${left}%;width:${Math.max(width, .4)}%;background:${palette[i % palette.length]}" title="${esc(label)}: ${esc(entityName(run.code))}" aria-label="${esc(`${entityName(run.code)}, ${label}. Show allocations for ${run.start}`)}" data-start="${run.start}" data-code="${esc(run.code)}"></button>`;
     }).join("");
     const periods = runs.map(run => `<div class="itu-period"><div class="itu-period-dates">${run.start === run.end ? run.start : `${run.start}–${run.end}`}</div><div><div class="itu-period-name">${flagMarkup(run.code)}<span>${esc(entityName(run.code))}</span>${codeBadge(run.code)}</div><div class="itu-period-note">${run.start === run.end ? "Recorded for one year" : `${run.end - run.start + 1} consecutive years`}</div></div></div>`).join("");
     const ticks = [0, .25, .5, .75, 1].map(position => Math.round(data.years[0] + (data.years[data.years.length - 1] - data.years[0]) * position));
     prefixHistory.innerHTML = `
-      <div class="itu-history-top"><div><h3>${esc(key)}</h3><p>${first ? `Recorded from ${first} to ${last}` : "No recorded assignments"} · ${runs.length} allocation period${runs.length === 1 ? "" : "s"}</p></div></div>
+      <div class="itu-history-top"><div><h3 tabindex="-1">${esc(key)}</h3><p>${first ? `Recorded from ${first} to ${last}` : "No recorded assignments"} · ${runs.length} allocation period${runs.length === 1 ? "" : "s"}</p></div></div>
       <div class="itu-timeline" role="group" aria-label="Timeline of ${esc(key)} allocations">
-        <div class="itu-timeline-years">${ticks.map(year => `<span>${year}</span>`).join("")}</div>
+        <div class="itu-timeline-years" aria-hidden="true">${ticks.map(year => `<span>${year}</span>`).join("")}</div>
         <div class="itu-timeline-track">${segments}</div>
       </div>
       <div class="itu-periods">${periods || '<div class="itu-empty-results">No allocation periods recorded.</div>'}</div>`;
@@ -259,29 +321,15 @@
       slider.value = button.dataset.start;
       renderYear();
       setSelectedMode("year");
-      $("by-year").scrollIntoView({ behavior: "smooth", block: "start" });
+      goTo($("by-year"), listHeading);
     }));
     if (updateHistory) updateUrl({ prefix: key, entity: null });
   }
 
+  // ── Events ──────────────────────────────────────────────────────────────────
   searchResults.addEventListener("click", event => {
-    const button = event.target.closest("[data-search-index]");
-    if (!button) return;
-    const item = searchItems[Number(button.dataset.searchIndex)];
-    if (!item) return;
-    searchResults.hidden = true;
-    globalSearch.setAttribute("aria-expanded", "false");
-    if (item.type === "prefix") {
-      globalSearch.value = item.code;
-      showPrefix(item.code);
-      setSelectedMode("prefix");
-      $("by-prefix").scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      globalSearch.value = item.code;
-      renderEntityPrefixes(item.code);
-      setSelectedMode("year");
-      $("by-year").scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    const option = event.target.closest("[data-search-index]");
+    if (option) chooseSearchItem(Number(option.dataset.searchIndex));
   });
 
   allocationList.addEventListener("click", event => {
@@ -289,38 +337,58 @@
     if (!link) return;
     event.preventDefault();
     globalSearch.value = link.dataset.prefix;
-    searchResults.hidden = true;
-    globalSearch.setAttribute("aria-expanded", "false");
+    closeSearch();
     showPrefix(link.dataset.prefix);
     setSelectedMode("prefix");
-    $("by-prefix").scrollIntoView({ behavior: "smooth", block: "start" });
+    goTo($("by-prefix"), prefixHistory.querySelector("h3"));
   });
 
   root.addEventListener("error", event => {
     if (event.target instanceof HTMLImageElement && event.target.matches("[data-flag-code]")) event.target.hidden = true;
   }, true);
+
   globalSearch.addEventListener("input", renderSearchResults);
   globalSearch.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-      searchResults.hidden = true;
-      globalSearch.setAttribute("aria-expanded", "false");
-    }
-    if (event.key === "Enter" && !searchResults.hidden) {
-      const first = searchResults.querySelector("[data-search-index]");
-      if (first) { event.preventDefault(); first.click(); }
+    const open = !searchResults.hidden;
+    const count = searchItems.length;
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      if (!globalSearch.value.trim()) return;
+      event.preventDefault();
+      if (!open) renderSearchResults();
+      if (!searchItems.length) return;
+      const step = event.key === "ArrowDown" ? 1 : -1;
+      setActiveOption(activeOption === -1 ? (step === 1 ? 0 : searchItems.length - 1) : (activeOption + step + searchItems.length) % searchItems.length);
+    } else if (event.key === "Enter" && open && count) {
+      event.preventDefault();
+      chooseSearchItem(activeOption >= 0 ? activeOption : 0);
+    } else if (event.key === "Escape") {
+      if (open) {
+        event.preventDefault();
+        closeSearch();
+      } else if (globalSearch.value) {
+        // Chrome's clear button is hidden site-wide, so a second Escape clears the field
+        event.preventDefault();
+        globalSearch.value = "";
+        renderSearchResults();
+      }
     }
   });
   document.addEventListener("click", event => {
-    if (!event.target.closest(".itu-global-search-wrap")) {
-      searchResults.hidden = true;
-      globalSearch.setAttribute("aria-expanded", "false");
-    }
+    if (!event.target.closest(".itu-global-search-wrap")) closeSearch();
   });
+
   slider.addEventListener("input", () => { activeEntity = ""; renderYear(); });
   yearSelect.addEventListener("change", () => { slider.value = yearSelect.value; activeEntity = ""; renderYear(); });
-  showMore.addEventListener("click", () => { visibleLimit += 50; renderAllocationRows(); });
+  showMore.addEventListener("click", () => {
+    const previous = visibleLimit;
+    visibleLimit += 50;
+    renderAllocationRows();
+    // The button may disappear, so move focus to the first newly added row
+    allocationList.querySelectorAll("a")[previous]?.focus();
+  });
   document.querySelectorAll("[data-mode-link]").forEach(link => link.addEventListener("click", () => setSelectedMode(link.dataset.modeLink)));
 
+  // ── Load ────────────────────────────────────────────────────────────────────
   const dataPromise = window.ITU_CSV_TEXT != null && window.CC_CSV_TEXT != null
     ? Promise.resolve([window.ITU_CSV_TEXT, window.CC_CSV_TEXT])
     : Promise.all([
@@ -345,7 +413,8 @@
       globalSearch.value = requestedEntity.toUpperCase();
       renderEntityPrefixes(requestedEntity.toUpperCase(), false);
     }
+    ready = true;
   }).catch(error => {
-    root.insertAdjacentHTML("afterbegin", `<p class="itu-load-error">The archive data could not be loaded. ${esc(error.message)} Check that both CSV files are present in <code>/assets/data/</code>.</p>`);
+    root.insertAdjacentHTML("afterbegin", `<p class="itu-load-error" role="alert">The archive data could not be loaded. ${esc(error.message)} Check that both CSV files are present in <code>/assets/data/</code>.</p>`);
   });
 })();
