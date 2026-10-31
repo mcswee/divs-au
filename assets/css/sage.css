@@ -4,16 +4,24 @@
     --sage-lime: #c8f135;
     --sage-orange: #f1a035;
     --sage-ink: #0d0f12;
-    /* lime and orange darkened so they pass 4.5:1 as text on the light surfaces;
-       the bright versions are used for fills (bars, icons, wordmark, graph) */
-    --sage-pos: #4a6600;
-    --sage-neg: #9a4f00;
+    /* lime and orange are only used as fills: boxes with black text on the light page,
+       or lines and text on the dark wordmark and graph */
     width: 100%;
     flex: 0 0 auto;
 }
 
-.sage-page .pos { color: var(--sage-pos); }
-.sage-page .neg { color: var(--sage-neg); }
+/* positive and negative values: lime or orange box with black text */
+.sage-page .pos,
+.sage-page .neg {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    color: var(--sage-ink);
+}
+
+.sage-page .pos { background: var(--sage-lime); }
+.sage-page .neg { background: var(--sage-orange); }
 
 /* header and wordmark */
 .sage-page .sage-head {
@@ -202,7 +210,14 @@
     color: var(--text-highlight);
 }
 
-.sage-page .rank-num.top3 { font-weight: 800; color: var(--sage-pos); }
+.sage-page .rank-num.top3 {
+    padding: 1px 0;
+    border-radius: 4px;
+    background: var(--sage-lime);
+    text-align: center;
+    font-weight: 800;
+    color: var(--sage-ink);
+}
 .sage-page .rank-main { flex: 1 1 auto; min-width: 0; }
 
 .sage-page .rank-team {
@@ -240,7 +255,7 @@
     left: 50%;
     background: var(--sage-lime);
     border-radius: 0 4px 4px 0;
-    box-shadow: inset 0 0 0 1px var(--sage-pos);
+    box-shadow: inset 0 0 0 1px rgba(13, 15, 18, 0.4);
     transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -249,12 +264,12 @@
     right: 50%;
     background: var(--sage-orange);
     border-radius: 4px 0 0 4px;
-    box-shadow: inset 0 0 0 1px var(--sage-neg);
+    box-shadow: inset 0 0 0 1px rgba(13, 15, 18, 0.4);
 }
 
 .sage-page .rank-rating {
     flex: 0 0 72px;
-    text-align: right;
+    text-align: center;
     font-family: 'Atkinson Hyperlegible Mono', monospace;
     font-size: 0.9rem;
     font-weight: 700;
@@ -299,7 +314,14 @@
     color: var(--text-main);
 }
 
-.sage-page .pred-team.fav { font-weight: 800; color: var(--sage-pos); }
+.sage-page .pred-team.fav {
+    display: inline-block;
+    padding: 0 10px;
+    border-radius: 4px;
+    background: var(--sage-lime);
+    font-weight: 800;
+    color: var(--sage-ink);
+}
 .sage-page .pred-team.away,
 .sage-page .pred-conf.away { text-align: right; }
 
@@ -311,9 +333,10 @@
 }
 
 .sage-page .pred-conf strong { font-size: 0.95rem; }
-.sage-page .pred-conf.high strong { color: var(--sage-pos); }
-.sage-page .pred-conf.mid strong { color: var(--sage-neg); }
-.sage-page .pred-conf.low strong { color: var(--text-highlight); }
+.sage-page .pred-conf strong { padding: 1px 8px; border-radius: 4px; }
+.sage-page .pred-conf.high strong { background: var(--sage-lime); color: var(--sage-ink); }
+.sage-page .pred-conf.mid strong { background: var(--sage-orange); color: var(--sage-ink); }
+.sage-page .pred-conf.low strong { color: var(--text-main); }
 
 .sage-page .pred-vs {
     text-align: center;
@@ -378,8 +401,8 @@
 }
 
 .sage-page .math-line .val { color: var(--text-main); }
-.sage-page .math-line .val.pos { color: var(--sage-pos); }
-.sage-page .math-line .val.neg { color: var(--sage-neg); }
+.sage-page .math-line .val.pos,
+.sage-page .math-line .val.neg { color: var(--sage-ink); }
 .sage-page .math-line .eq { font-weight: 700; }
 
 .sage-page .math-result {
@@ -387,23 +410,43 @@
     font-family: 'Atkinson Hyperlegible Mono', monospace;
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--sage-pos);
+    color: var(--text-main);
 }
 
 /* results table (uses the site table styles) */
 .sage-page td.team-name { font-weight: 700; color: var(--brand-main); }
-.sage-page td.winner { font-weight: 800; color: var(--sage-pos); }
+.sage-page td.winner { font-weight: 800; }
 
-.sage-page td.delta-pos,
-.sage-page td.delta-neg {
-    text-align: right;
-    font-family: 'Atkinson Hyperlegible Mono', monospace;
-    font-size: 0.85rem;
-    white-space: nowrap;
+/* winner marker: a solid W badge after the team name */
+.sage-page .win-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: var(--brand-main);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: var(--highlight);
+    vertical-align: 0.1em;
 }
 
-.sage-page td.delta-pos { color: var(--sage-pos); }
-.sage-page td.delta-neg { color: var(--sage-neg); }
+/* rating change: bright lime or orange box with black text */
+.sage-page .delta {
+    display: inline-block;
+    min-width: 4.6em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-align: center;
+    font-family: 'Atkinson Hyperlegible Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+    color: var(--sage-ink);
+}
+
+.sage-page .delta-pos { background: var(--sage-lime); }
+.sage-page .delta-neg { background: var(--sage-orange); }
 
 .sage-page td.dv {
     font-family: 'Atkinson Hyperlegible Mono', monospace;
@@ -416,8 +459,8 @@
 .sage-page td.tip-result { width: 40px; padding: 6px 8px; text-align: center; }
 .sage-page td.empty { padding: 48px 0; text-align: center; }
 .sage-page .tip-svg { display: inline-block; width: 20px; height: 20px; vertical-align: middle; }
-.sage-page .tip-ok circle { fill: var(--sage-lime); stroke: var(--sage-pos); stroke-width: 1; }
-.sage-page .tip-bad circle { fill: var(--sage-orange); stroke: var(--sage-neg); stroke-width: 1; }
+.sage-page .tip-ok circle { fill: var(--sage-lime); stroke: rgba(13, 15, 18, 0.45); stroke-width: 1; }
+.sage-page .tip-bad circle { fill: var(--sage-orange); stroke: rgba(13, 15, 18, 0.45); stroke-width: 1; }
 .sage-page .tip-none circle { fill: #d5d5d5; stroke: #767676; stroke-width: 1; }
 
 /* row headers in the graph data table */
@@ -510,6 +553,8 @@
 }
 
 .sage-page .tooltip-row .t-name { color: #f0f2f5; }
+.sage-page .tooltip-row .t-val.pos,
+.sage-page .tooltip-row .t-val.neg { padding: 0; border-radius: 0; background: none; font-weight: 400; }
 .sage-page .tooltip-row .t-val.pos { color: var(--sage-lime); }
 .sage-page .tooltip-row .t-val.neg { color: var(--sage-orange); }
 
