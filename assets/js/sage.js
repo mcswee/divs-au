@@ -302,8 +302,8 @@ function initResultsYearFilter() {
 }
 
 function deltaCell(v) {
-    if (v === undefined || v === null) return '<td class="delta-pos">—</td>';
-    return `<td class="${v >= 0 ? 'delta-pos' : 'delta-neg'}">${signed(v)}</td>`;
+    if (v === undefined || v === null) return '<td class="num">—</td>';
+    return `<td class="num"><span class="delta ${v >= 0 ? 'delta-pos' : 'delta-neg'}">${signed(v)}</span></td>`;
 }
 
 function renderResults(records) {
@@ -337,7 +337,7 @@ function renderResults(records) {
         const { tipped, correct: tipCorrect } = getTipResult(g);
         const tipIcon = tipped === null ? SVG_DASH : (tipCorrect ? SVG_TICK : SVG_CROSS);
         const date = g.date ? new Date(g.date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short' }) : '—';
-        const won = '<span class="sr-only"> (won)</span>';
+        const won = '<span class="win-badge" aria-hidden="true">W</span><span class="sr-only"> (won)</span>';
 
         return `
       <tr>
