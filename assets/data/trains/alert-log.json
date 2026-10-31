@@ -1,5 +1,16 @@
 [
   {
+    "id": "e82133a7-9822-5001-9bea-bff64e9941c7",
+    "first_seen": "2026-10-31T21:13:40.850309+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an overhead power fault in the Bentleigh area. Services may depart from altered platforms between Caulfield and Moorabbin. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
     "id": "2ae91693-c300-5574-b9aa-c6b445ff3fa1",
     "first_seen": "2026-10-31T16:16:02.667709+00:00",
     "header": "Minor Delay",
