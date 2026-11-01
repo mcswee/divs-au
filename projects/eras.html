@@ -1,15 +1,15 @@
 ---
 layout: default
-title: Taylor Swift Eras Tour outfits
+title: Taylor Swift The Eras Tour outfit tracker
 description: A show-by-show visual archive of Taylor Swift's Eras Tour outfits, instruments and microphones.
 category: projects
-permalink: /eras-tour/
+permalink: /eras/
 extra_head: '<link rel="stylesheet" href="/assets/css/eras-outfits.css">'
 extra_scripts: '<script src="/assets/js/eras-outfits.js" defer></script>'
 ---
 <div class="eras-catalogue" id="eras-catalogue">
   <header class="eras-intro">
-    <h1>Taylor Swift’s Eras Tour</h1>
+    <h1>Taylor Swift The Eras Tour</h1>
     <p>Choose a show to see its outfits, instruments, microphones and surprise songs.</p>
   </header>
 
@@ -19,10 +19,10 @@ extra_scripts: '<script src="/assets/js/eras-outfits.js" defer></script>'
       <div class="eras-show-picker">
         <label for="eras-show-search">Find a show</label>
         <input id="eras-show-search" type="search" placeholder="Search city, night, date or venue…" autocomplete="off">
-        <p class="eras-result-count" id="eras-show-count" aria-live="polite">Loading shows…</p>
-        <div id="eras-show-list" class="eras-show-listbox" role="listbox" aria-label="Shows"></div>
+        <p class="eras-result-count" id="eras-show-count">Loading shows…</p>
+        <div id="eras-show-list" class="eras-show-listbox"></div>
       </div>
-      <section id="eras-show-detail" class="eras-show-detail" aria-live="polite">
+      <section id="eras-show-detail" class="eras-show-detail" aria-label="Show details">
         <p>Select a show from the list to view its details.</p>
       </section>
     </section>
@@ -45,8 +45,10 @@ extra_scripts: '<script src="/assets/js/eras-outfits.js" defer></script>'
         <select id="eras-era-filter"><option value="all">All eras</option></select>
       </div>
     </div>
-    <p class="eras-result-count" id="eras-catalogue-count" aria-live="polite"></p>
+    <p class="eras-result-count" id="eras-catalogue-count"></p>
     <div id="eras-catalogue-results" class="eras-results"></div>
   </details>
+
+  <p class="sr-only" id="eras-status" role="status" aria-live="polite"></p>
   <noscript><p>This archive needs JavaScript enabled to load its show data.</p></noscript>
 </div>
