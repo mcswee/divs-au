@@ -1,5 +1,58 @@
 [
   {
+    "id": "703e51f3-2f0d-5419-9707-37f82dfed278",
+    "first_seen": "2026-11-01T18:30:05.468496+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier police request in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
+    "id": "5ba5303b-1fd5-55da-a338-7fe49fd4dc4a",
+    "first_seen": "2026-11-01T18:30:05.468496+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier police request in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "f21e1cc0-8ba2-5a10-ad97-82d5e57ff0d4",
+    "first_seen": "2026-11-01T18:30:05.468496+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier police request in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
+    "id": "ceddb219-6fdc-5ef1-ad6b-6e4885d4af4c",
+    "first_seen": "2026-11-01T18:30:05.468496+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier police request in the North Melbourne area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:",
+      "aus:vic:vic-02-CGB-R:"
+    ]
+  },
+  {
+    "id": "b04124a4-c508-5cda-81ca-6131473c76ec",
+    "first_seen": "2026-11-01T18:30:05.468496+00:00",
+    "header": "Planned work: Night works between Epping and South Morang",
+    "description": "12am to 4am each night, Sunday 1 November to Wednesday 4 November  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Mernda Line. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-MDD-R:"
+    ]
+  },
+  {
     "id": "e82133a7-9822-5001-9bea-bff64e9941c7",
     "first_seen": "2026-10-31T21:13:40.850309+00:00",
     "header": "Minor Delay",
