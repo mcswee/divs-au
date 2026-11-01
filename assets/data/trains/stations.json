@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-25T18:18:37.373302",
+  "generated": "2026-11-01T19:27:50.827676",
   "groups": {
     "frankston": "Frankston / Stony Point",
     "burnley": "Burnley",
@@ -1802,13 +1802,6 @@
       ]
     },
     {
-      "id": "vic:rail:SGS",
-      "name": "Showgrounds",
-      "groups": [
-        "showgrounds"
-      ]
-    },
-    {
       "id": "vic:rail:SVE",
       "name": "Somerville",
       "groups": [
@@ -1841,8 +1834,7 @@
       "name": "South Yarra",
       "groups": [
         "bayside",
-        "frankston",
-        "yarra"
+        "frankston"
       ]
     },
     {
