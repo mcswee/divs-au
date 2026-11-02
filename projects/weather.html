@@ -10,27 +10,32 @@ extra_scripts: '<script src="https://cdn.jsdelivr.net/npm/globe.gl@2.46.2/dist/g
 <div class="weather-page" id="weather-page">
   <div class="weather-globe" id="globe-container" aria-hidden="true"></div>
 
-  <div class="weather-caption">
-    <h1 class="weather-title">Global weather tour</h1>
-    <p class="sr-only">The globe tours the world automatically. Use the pause button before reading the weather list, or step between regions with the previous and next buttons.</p>
-    <div class="weather-caption-row">
-      <button type="button" class="weather-mode" id="weather-mode"><span id="weather-mode-text">NOW</span><span class="sr-only" id="weather-mode-sr">: showing current temperatures. Switch to today's forecast.</span></button>
-      <p class="weather-region" id="weather-region">Loading…</p>
-    </div>
-    <p class="weather-note" id="weather-note" hidden></p>
-  </div>
+  <p class="sr-only">The globe tours the world automatically. Use the pause button before reading the weather list, or step between regions with the previous and next buttons.</p>
 
-  <div class="weather-controls" role="group" aria-label="Tour controls">
-    <button type="button" class="weather-control" id="weather-prev" aria-label="Previous region">
+  <!-- one graphic: title, region and the NOW / FORECAST switch -->
+  <div class="weather-strip">
+    <h1 class="weather-title">Global weather tour</h1>
+    <p class="weather-region" id="weather-region">Loading…</p>
+    <button type="button" class="weather-mode" id="weather-mode"><span id="weather-mode-text">NOW</span><span class="sr-only" id="weather-mode-sr">: showing current temperatures. Switch to today's forecast.</span></button>
+  </div>
+  <p class="weather-note" id="weather-note" hidden></p>
+
+  <div class="weather-controls weather-fade" role="group" aria-label="Tour controls">
+    <button type="button" class="weather-control" id="weather-prev" aria-label="Previous region" title="Previous region">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 5h2v14H6zM20 5v14L9.5 12z"/></svg>
     </button>
-    <button type="button" class="weather-control" id="weather-pause" aria-label="Pause tour">
+    <button type="button" class="weather-control" id="weather-pause" aria-label="Pause tour" title="Pause tour">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
     </button>
-    <button type="button" class="weather-control" id="weather-next" aria-label="Next region">
+    <button type="button" class="weather-control" id="weather-next" aria-label="Next region" title="Next region">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 5h2v14h-2zM4 5v14l10.5-7z"/></svg>
     </button>
-    <button type="button" class="weather-control weather-list-toggle" id="weather-list-toggle" aria-pressed="false">List</button>
+    <button type="button" class="weather-control" id="weather-list-toggle" aria-label="Weather list" aria-pressed="false" title="Weather list">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16v2H4zM4 11h16v2H4zM4 16h16v2H4z"/></svg>
+    </button>
+    <button type="button" class="weather-control" id="weather-fullscreen" aria-label="Full screen" title="Full screen">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5h5v2H7v3H5zM14 5h5v5h-2V7h-3zM5 14h2v3h3v2H5zM17 14h2v5h-5v-2h3z"/></svg>
+    </button>
   </div>
 
   <section class="weather-panel" id="weather-panel" aria-labelledby="weather-panel-title">
@@ -38,7 +43,15 @@ extra_scripts: '<script src="https://cdn.jsdelivr.net/npm/globe.gl@2.46.2/dist/g
     <ul class="weather-list" id="weather-list"></ul>
   </section>
 
-  <p class="weather-credit">Temperatures in °C. Weather data by <a href="https://open-meteo.com/">Open-Meteo.com</a>.</p>
+  <button type="button" class="weather-credits-button weather-fade" popovertarget="weather-credits">Credits</button>
+  <div class="weather-credits" id="weather-credits" popover>
+    <h2>About this page</h2>
+    <p>Weather data by <a href="https://open-meteo.com/">Open-Meteo.com</a>.</p>
+    <p>Earth imagery from NASA's Blue Marble collection.</p>
+    <p>Temperatures are in degrees Celsius. The tour shows each city's current temperature, or today's low and high.</p>
+    <button type="button" class="weather-credits-close" popovertarget="weather-credits" popovertargetaction="hide">Close</button>
+  </div>
+
   <p class="sr-only" id="weather-status" role="status" aria-live="polite"></p>
   <noscript><p class="weather-noscript">The weather tour needs JavaScript to draw the globe and load the weather.</p></noscript>
 </div>
