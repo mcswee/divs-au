@@ -15,6 +15,7 @@
   const prevButton = $('weather-prev');
   const nextButton = $('weather-next');
   const listToggle = $('weather-list-toggle');
+  const fullscreenButton = $('weather-fullscreen');
   const panel = $('weather-panel');
   const panelTitle = $('weather-panel-title');
   const listEl = $('weather-list');
@@ -363,23 +364,29 @@
       return wrapper;
     }
 
+    // The offsets were tuned for a page REFERENCE_HEIGHT tall; the CSS multiplies them (and the
+    // badge itself) by --w-scale, so the labels keep their spacing as the page gets taller or shorter
     const el = document.createElement('div');
     el.className = 'weather-badge';
-    const offsetY = d.offsetY || 0;
-    const shiftX = displayMode === 'forecast' ? (d.forecastShiftX ?? 0) : 0;
-    el.style.position = 'absolute';
-    el.style.left = '0';
-    el.style.top = '0';
-    el.style.transform = `translate(calc(-50% + ${shiftX}px), calc(-100% + ${offsetY}px))`;
+    el.style.setProperty('--oy', `${d.offsetY || 0}px`);
+    el.style.setProperty('--sx', `${displayMode === 'forecast' ? (d.forecastShiftX ?? 0) : 0}px`);
     el.innerHTML = `<strong>${esc(d.name)}</strong>${tempBoxes(d).map(box => boxHtml(box, 'weather-temp-box')).join('')}`;
     wrapper.appendChild(el);
     return wrapper;
   }
 
+  // Page height the label offsets in STOPS were tuned for. If the labels look too big or too
+  // small overall, this is the one number to change (smaller = bigger labels).
+  const REFERENCE_HEIGHT = 950;
+  function updateScale() {
+    const scale = Math.min(1.5, Math.max(0.75, (container.clientHeight || REFERENCE_HEIGHT) / REFERENCE_HEIGHT));
+    page.style.setProperty('--w-scale', scale.toFixed(3));
+  }
+
   let world;
   if (typeof Globe === 'function') {
     world = Globe()(container)
-      .globeImageUrl('/assets/images/earth.jpg')
+      .globeImageUrl('/assets/images/Blue_Marble_2002.png')
       .backgroundImageUrl('/assets/images/night-sky.png')
       .width(container.clientWidth)
       .height(container.clientHeight)
@@ -387,8 +394,12 @@
       .htmlElement(badgeFor);
     // The globe sits inside the site frame, so follow its size rather than the window
     if (window.ResizeObserver) {
-      new ResizeObserver(() => world.width(container.clientWidth).height(container.clientHeight)).observe(container);
+      new ResizeObserver(() => {
+        world.width(container.clientWidth).height(container.clientHeight);
+        updateScale();
+      }).observe(container);
     }
+    updateScale();
   } else {
     // The globe library did not load: keep the weather list working and show it
     world = { htmlElementsData() { return world; }, pointOfView() { return world; } };
@@ -446,7 +457,7 @@
   // ── Weather list (always read by screen readers; shown on request and on phones) ──
   function renderList() {
     const stop = STOPS[currentStopIndex];
-    panelTitle.textContent = `${stop.region}: ${displayMode === 'forecast' ? "today's low and high" : 'current'} temperatures (°C)`;
+    panelTitle.textContent = `${stop.region}: ${displayMode === 'forecast' ? "today's low and high" : 'current'} temperatures`;
     listEl.innerHTML = latestWeatherData.map(d =>
       `<li class="weather-row"><span class="weather-city">${esc(d.name)}</span><span class="weather-temp">${tempBoxes(d).map(box => boxHtml(box, 'weather-temp-box')).join('')}</span></li>`
     ).join('');
@@ -546,6 +557,7 @@
   pauseButton.addEventListener('click', () => {
     manualPaused = !manualPaused;
     renderPause();
+    wakeControls();
     announce(manualPaused ? 'Tour paused' : 'Tour resumed', 100);
   });
   prevButton.addEventListener('click', () => goToStop(-1));
@@ -575,6 +587,51 @@
     announce(displayMode === 'forecast' ? "Showing today's low and high" : 'Showing current temperatures');
   });
 
+  // ── Full screen: hides the site header, acknowledgement and footer, and asks the browser for ──
+  // real full screen where it allows it (iPhones don't, so there it is the hidden-chrome view only)
+  const ICON_ENTER = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5h5v2H7v3H5zM14 5h5v5h-2V7h-3zM5 14h2v3h3v2H5zM17 14h2v5h-5v-2h3z"/></svg>';
+  const ICON_EXIT = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5h2v5H5V8h3zM14 5h2v3h3v2h-5zM5 14h5v5H8v-3H5zM14 14h5v2h-3v3h-2z"/></svg>';
+  let immersive = false;
+
+  async function setImmersive(on) {
+    immersive = on;
+    document.body.classList.toggle('weather-immersive', on);
+    fullscreenButton.innerHTML = on ? ICON_EXIT : ICON_ENTER;
+    const label = on ? 'Exit full screen' : 'Full screen';
+    fullscreenButton.setAttribute('aria-label', label);
+    fullscreenButton.title = label;
+    try {
+      if (on && page.requestFullscreen) await page.requestFullscreen();
+      else if (!on && document.fullscreenElement) await document.exitFullscreen();
+    } catch (_) { /* the hidden-chrome view still works without real full screen */ }
+    wakeControls();
+    announce(on ? 'Full screen. Press Escape to exit.' : 'Full screen off');
+  }
+
+  // Escape closes the credits popover first, so it shouldn't also leave full screen
+  function popoverOpen() {
+    try { return !!page.querySelector(':popover-open'); } catch (_) { return false; }
+  }
+
+  fullscreenButton.addEventListener('click', () => setImmersive(!immersive));
+  // Escape in real full screen is handled by the browser; this catches it for the hidden-chrome view
+  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && immersive) setImmersive(false); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && immersive && !document.fullscreenElement && !popoverOpen()) setImmersive(false);
+    else if ((event.key === 'f' || event.key === 'F') && !event.ctrlKey && !event.metaKey && !event.altKey && !/^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName)) setImmersive(!immersive);
+  });
+
+  // ── Controls fade when nobody is using them (never while paused) and return on any movement,
+  // touch, key press or focus ───────────────────────────────────────────────────────────────────
+  const CONTROLS_IDLE_MS = 4000;
+  let idleTimer;
+  function wakeControls() {
+    page.classList.remove('controls-idle');
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => { if (!manualPaused) page.classList.add('controls-idle'); }, CONTROLS_IDLE_MS);
+  }
+  ['pointermove', 'pointerdown', 'keydown', 'touchstart', 'focusin'].forEach(type => page.addEventListener(type, wakeControls, { passive: true }));
+
   // Switching between phone and desktop changes the marker type
   mobileQuery.addEventListener('change', () => {
     if (!latestWeatherData.length) return;
@@ -587,6 +644,10 @@
   if (isMobile() || typeof Globe !== 'function') setList(true);
   renderMode();
   renderPause();
+  wakeControls();
+  // ?immersive starts with the header and footer hidden, for a TV or kiosk. (Browsers only allow
+  // real full screen after a click, so this is the hidden-chrome view.)
+  if (new URLSearchParams(location.search).has('immersive')) setImmersive(true);
   if (reduceMotion) announce('The tour starts paused. Use the resume button or the next and previous buttons to move between regions.', 800);
   runTour(0);
 
