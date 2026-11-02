@@ -379,7 +379,7 @@
   let world;
   if (typeof Globe === 'function') {
     world = Globe()(container)
-      .globeImageUrl('/assets/images/Blue_Marble_2002.png')
+      .globeImageUrl('/assets/images/earth.jpg')
       .backgroundImageUrl('/assets/images/night-sky.png')
       .width(container.clientWidth)
       .height(container.clientHeight)
