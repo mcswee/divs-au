@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Global weather tour
+title: World weather
 description: A TV-style tour of the world's weather. A spinning globe shows current temperatures and today's highs and lows for cities on every continent.
 category: projects
 permalink: /weather/
@@ -12,11 +12,13 @@ extra_scripts: '<script src="https://cdn.jsdelivr.net/npm/globe.gl@2.46.2/dist/g
 
   <p class="sr-only">The globe tours the world automatically. Use the pause button before reading the weather list, or step between regions with the previous and next buttons.</p>
 
-  <!-- one graphic: title, region and the NOW / FORECAST switch -->
+  <!-- one graphic in two lines: [title | NOW/FORECAST] over [region]. The region never changes the width of line one. -->
   <div class="weather-strip">
-    <h1 class="weather-title">Global weather tour</h1>
+    <div class="weather-strip-row">
+      <h1 class="weather-title">World weather</h1>
+      <button type="button" class="weather-mode" id="weather-mode"><span id="weather-mode-text">NOW</span><span class="sr-only" id="weather-mode-sr">: showing current temperatures. Switch to today's forecast.</span></button>
+    </div>
     <p class="weather-region" id="weather-region">Loading…</p>
-    <button type="button" class="weather-mode" id="weather-mode"><span id="weather-mode-text">NOW</span><span class="sr-only" id="weather-mode-sr">: showing current temperatures. Switch to today's forecast.</span></button>
   </div>
   <p class="weather-note" id="weather-note" hidden></p>
 
@@ -47,7 +49,7 @@ extra_scripts: '<script src="https://cdn.jsdelivr.net/npm/globe.gl@2.46.2/dist/g
   <div class="weather-credits" id="weather-credits" popover>
     <h2>About this page</h2>
     <p>Weather data by <a href="https://open-meteo.com/">Open-Meteo.com</a>.</p>
-    <p>Earth imagery from NASA's Blue Marble collection.</p>
+    <p>Earth imagery from Natural Earth (public domain).</p>
     <p>Temperatures are in degrees Celsius. The tour shows each city's current temperature, or today's low and high.</p>
     <button type="button" class="weather-credits-close" popovertarget="weather-credits" popovertargetaction="hide">Close</button>
   </div>
