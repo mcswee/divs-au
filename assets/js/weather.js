@@ -337,9 +337,10 @@
     const box = (value, prefix) => {
       const has = typeof value === 'number';
       const style = temperatureStyle(value);
+      // A real minus sign keeps the digits aligned; spoken as "minus" so it is never lost
       return {
-        visible: has ? `${value}°` : '--',
-        spoken: has ? `${prefix}${value} degrees Celsius` : `${prefix}unavailable`,
+        visible: has ? `${value < 0 ? '\u2212' : ''}${Math.abs(value)}°` : '--',
+        spoken: has ? `${prefix}${value < 0 ? 'minus ' : ''}${Math.abs(value)} degrees Celsius` : `${prefix}unavailable`,
         ...style
       };
     };
@@ -386,7 +387,7 @@
   let world;
   if (typeof Globe === 'function') {
     world = Globe()(container)
-      .globeImageUrl('/assets/images/Blue_Marble_2002.png')
+      .globeImageUrl(isMobile() ? '/assets/images/earth-4096.jpg' : '/assets/images/earth.jpg')   // phones get the smaller texture
       .backgroundImageUrl('/assets/images/night-sky.png')
       .width(container.clientWidth)
       .height(container.clientHeight)
