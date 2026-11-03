@@ -133,7 +133,9 @@ body.weather-immersive .weather-page.controls-idle { cursor: none; }
 .weather-badge .weather-temp-box:last-child { border-radius: 0 4px 4px 0; }
 
 /* city placemarks on the globe (phones) */
-.mobile-city-marker { display: flex; align-items: center; gap: 4px; pointer-events: none; white-space: nowrap; }
+/* The globe puts the centre of a zero-size wrapper on the city, so the marker is pulled back by
+   half the dot (3px) and half its own height, which puts the dot exactly on the city */
+.mobile-city-marker { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 4px; transform: translate(-3px, -50%); pointer-events: none; white-space: nowrap; }
 .mobile-city-dot { flex: 0 0 auto; box-sizing: border-box; width: 6px; height: 6px; border: 1px solid rgba(20, 30, 40, 0.8); border-radius: 50%; background: rgba(255, 255, 255, 0.85); }
 .mobile-city-label { padding: 2px 4px; border-radius: 3px; background: rgba(20, 30, 40, 0.8); color: #fff; font-size: 11px; font-weight: 500; line-height: 1.2; }
 
