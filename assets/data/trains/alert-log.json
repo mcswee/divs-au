@@ -1,5 +1,37 @@
 [
   {
+    "id": "0c256a7e-6031-55ab-8fbf-12ce933c3da2",
+    "first_seen": "2026-11-03T06:11:14.228404+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes due to a track fault in the Clifton Hill area.  Trains may be held on or between available platforms. Trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-MDD-R:"
+    ]
+  },
+  {
+    "id": "b429c367-12b7-5a7c-af3a-5e6502ac67f6",
+    "first_seen": "2026-11-03T06:11:14.228404+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after a trespasser in the Prahran area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SHM:"
+    ]
+  },
+  {
+    "id": "75ee08f0-6215-5d31-9ea8-8bb0186f573f",
+    "first_seen": "2026-11-03T06:11:14.228404+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a track fault in the Clifton Hill area.  Trains may be held on or between available platforms.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-HBE-R:"
+    ]
+  },
+  {
     "id": "703e51f3-2f0d-5419-9707-37f82dfed278",
     "first_seen": "2026-11-01T18:30:05.468496+00:00",
     "header": "Minor Delay",
