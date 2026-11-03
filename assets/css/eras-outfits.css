@@ -85,6 +85,33 @@
 .eras-cancelled-note { padding: 1rem; border: 1px solid var(--text-accent); border-radius: 9px; }
 .eras-cancelled-note p { margin: 0; text-align: center; }
 .eras-cancelled-image { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto 1rem; }
+.eras-song {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.15rem 0;
+}
+
+.eras-song-era {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.3rem;
+  background: var(--song-era-colour);
+  color: #111;
+  font-size: 0.72em;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.eras-song-separator {
+  display: inline-block;
+  margin: 0 0.25rem;
+}
+
+.eras-song-mashup-label {
+  white-space: nowrap;
+}
 
 /* catalogue */
 .eras-secondary-controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem .8rem; margin: 1rem 0; }
