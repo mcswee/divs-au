@@ -343,8 +343,8 @@
       }
 
       const moments = [
-        {label:'“Oh Hi!”',value:show.ohHi},{label:'“Kam’s Like Ever!”',value:show.likeEver},
-        {label:'Champagne Problems Ovation',value:show.ovation},{label:'Guy on the...',value:show.guyOn}
+        {label:'Oh Hi!',value:show.ohHi},{label:'Kam’s "Like Ever!”',value:show.likeEver},
+        {label:'Champagne Problems ovation length',value:show.ovation},{label:'Guy on the...',value:show.guyOn}
       ].filter(item => item.value);
 
       if (moments.length) html += `<section class="eras-detail-section"><h3>Show moments</h3><dl class="eras-detail-facts">${moments.map(item => `<div><dt>${esc(item.label)}</dt><dd>${esc(item.value)}</dd></div>`).join('')}</dl></section>`;
