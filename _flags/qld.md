@@ -11,7 +11,7 @@ symbolism:
   - title: "Maroon and gold"
     text: "Maroon is the official state colour, paired here with the yellow-gold traditionally associated with Queensland's sun and resources."
   - title: "The state badge"
-    text: "The light blue Maltese Cross is retained from the existing state badge, with an updated Victorian-era St. Edward's Crown. This represents the tine period the state was proclaimed."
+    text: "The light blue Maltese Cross is retained from the existing state badge, with an updated Victorian-era St. Edward's Crown. This represents the time period the state was proclaimed."
   - title: "Unique Southern Cross"
     text: "The Southern Cross is rendered with a bold display of stars of 7 and 8 points, deliberately omitting 6-pointed stars, emphasising the vastness of the state."
 

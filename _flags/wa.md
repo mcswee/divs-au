@@ -18,5 +18,5 @@ symbolism:
     text: "The inclusion of a nine-pointed star specifically represents Western Australia’s status as the nation's largest state by land area. The lack of a six-pointed star in the design emphasises the sheer vastness of the state."
 viceregal:
   image: "/assets/images/flags/au/vr/vrw.svg"
-  text: "The vice-regal standard for the Governor of Western Australia utilises the official heraldic colours of the state. Reversing the colours o the state flag, with gold pale with black stars, while the fly is black, featuring the red and green kangaroo paw within a gold disc."
+  text: "The vice-regal standard for the Governor of Western Australia utilises the official heraldic colours of the state. Reversing the colours of the state flag, with gold pale with black stars, while the fly is black, featuring the red and green kangaroo paw within a gold disc."
 ---
