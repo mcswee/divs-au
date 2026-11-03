@@ -98,7 +98,7 @@
   padding: 0.15rem 0.45rem;
   border-radius: 0.3rem;
   background: var(--song-era-colour);
-  color: #111;
+  color: var(--song-era-text);
   font-size: 0.72em;
   font-weight: 600;
   line-height: 1.4;
