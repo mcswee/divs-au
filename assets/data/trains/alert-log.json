@@ -1,5 +1,36 @@
 [
   {
+    "id": "4f1e021e-4941-5d39-9bfa-a4ece6abfd5e",
+    "first_seen": "2026-11-04T23:25:54.865339+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes now clearing after an earlier trespasser in the Tottenham area.  Trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "448c9d68-dabb-51cd-bd02-6a84154c0f6a",
+    "first_seen": "2026-11-04T23:25:54.865339+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes now clearing after an earlier trespasser in the Tottenham area.  Trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "8c199684-d915-5cf6-a87c-3537ed6bab88",
+    "first_seen": "2026-11-04T23:25:54.865339+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes now clearing after an earlier trespasser in the Tottenham area.  Trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SUY-R:",
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
     "id": "39905e88-bd91-5df4-9ee1-59cf9a3371a2",
     "first_seen": "2026-11-04T20:53:51.411134+00:00",
     "header": "Planned work: Tottenham Station car space closures",
