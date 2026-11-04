@@ -1,5 +1,27 @@
 [
   {
+    "id": "8542a3c8-609e-5f42-a72b-0e598969d6e8",
+    "first_seen": "2026-11-04T03:07:46.112778+00:00",
+    "header": "Other Information",
+    "description": "Select services may depart from altered platforms at Southern Cross due to an equipment fault. Check information displays and listen for announcements.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-FKN-R:",
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "9a95a445-1d0a-566f-8ec3-f6f11cddbe1b",
+    "first_seen": "2026-11-04T03:07:46.112778+00:00",
+    "header": "Other Information",
+    "description": "Select services may depart from altered platforms at Southern Cross due to an equipment fault. Check information displays and listen for announcements.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
     "id": "0c256a7e-6031-55ab-8fbf-12ce933c3da2",
     "first_seen": "2026-11-03T06:11:14.228404+00:00",
     "header": "Major Delay",
