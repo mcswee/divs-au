@@ -57,7 +57,10 @@ extra_scripts: '<script src="/assets/js/sage.js"></script>'
       <h2 class="section-label">Completed games</h2>
       <label class="sr-only" for="results-year-select">Season</label>
       <select id="results-year-select"></select>
-      <p class="section-label push" id="tips-summary" aria-live="polite"></p>
+    </div>
+    <div class="tip-stat" aria-live="polite">
+      <span class="tip-stat-value" id="tip-stat-value">—</span>
+      <span class="tip-stat-text"><strong>Tipped correctly</strong><span class="tip-stat-detail" id="tip-stat-detail"></span></span>
     </div>
     <p class="panel-note">The block under each team shows how that team's SAGE rating changed after the game. The tip is the team SAGE gave the better chance of winning before the game.</p>
     <div class="results-head" aria-hidden="true"><span>Round</span><span>Match and rating change</span><span>SAGE tip</span></div>
@@ -95,6 +98,7 @@ extra_scripts: '<script src="/assets/js/sage.js"></script>'
     <div class="team-toggles" id="team-toggles" role="group" aria-label="Teams shown on the graph"></div>
     <details class="graph-data" id="graph-data">
       <summary>View graph data as a table</summary>
+      <ul class="graph-key" id="graph-key" aria-hidden="true"></ul>
       <div class="table-wrapper" tabindex="0" role="region" aria-label="Graph data table">
         <table>
           <caption class="sr-only" id="graph-table-caption"></caption>
