@@ -26,9 +26,10 @@ const signedChip = (v, d = 3) => chip(signed(v, d), tone(v));
 // space, so it becomes a T, and the result is shown as the same wall-clock time.
 const parseLocal = s => new Date(String(s).replace(' ', 'T'));
 
-// One line of "working": a label, a plain-English explanation, and the value as a block
-const workingRow = (label, calc, valueHtml, extra = '') =>
-    `<li class="working-row${extra ? ' ' + extra : ''}"><span class="working-text"><span class="working-label">${esc(label)}</span><span class="working-calc">${esc(calc)}</span></span>${valueHtml}</li>`;
+// One line of "working": a label, a plain-English description, an optional calculation (shown as
+// code, like the About page), and the value as a block
+const workingRow = (label, desc, valueHtml, { code = '', total = false } = {}) =>
+    `<li class="working-row${total ? ' total' : ''}"><span class="working-text"><span class="working-label">${esc(label)}</span>${desc ? `<span class="working-calc">${esc(desc)}</span>` : ''}${code ? `<code class="working-code">${esc(code)}</code>` : ''}</span>${valueHtml}</li>`;
 
 // ── Fetch ───────────────────────────────────────────────────────────────────
 async function loadData() {
@@ -80,7 +81,6 @@ $('tabs').addEventListener('keydown', e => {
     selectTab(next, true);
 });
 
-
 // ── Render ──────────────────────────────────────────────────────────────────
 function render() {
     renderMeta();
@@ -123,10 +123,8 @@ function renderRankings(rankings) {
         <button type="button" class="rank-card" style="animation-delay:${i * 30}ms"
                 data-team="${esc(r.team)}" data-rank="${r.rank}" data-rating="${r.rating}" aria-haspopup="dialog">
           <span class="rank-num">${r.rank}</span>
-          <span class="rank-main">
-            <span class="rank-team">${esc(r.team)}</span>
-            <span class="rank-bar-bg" aria-hidden="true"><span class="rank-bar-fill ${isNeg ? 'negative' : ''}" style="width:${pct / 2}%"></span></span>
-          </span>
+          <span class="rank-team">${esc(r.team)}</span>
+          <span class="rank-bar-bg" aria-hidden="true"><span class="rank-bar-fill ${isNeg ? 'negative' : ''}" style="width:${pct / 2}%"></span></span>
           ${signedChip(r.rating)}
         </button>
       </li>`;
@@ -189,13 +187,18 @@ function workingTeam(p, side) {
         workingRow('Venue record', `Average result of the last 11 games at ${p.venue}`, signedChip(f('v11')))
     ];
     if (f('rest')) rows.push(workingRow('Short break', 'Fewer than 7 days since their last game', signedChip(f('rest'))));
-    rows.push(workingRow('Team output', 'The rows above added together', signedChip(f('output')), 'total'));
-    rows.push(workingRow('Surprise factor', `1 + tanh((${fmt(p[`${other}_output`])} \u2212 ${fmt(f('output'))}) \u00f7 30)`.replace('\u2212 \u2212', '+ '), chip(f('sf').toFixed(3))));
+    rows.push(workingRow('Team output', 'The rows above added together', signedChip(f('output')), { total: true }));
+    rows.push(workingRow('Surprise factor', '', chip(f('sf').toFixed(3)),
+        { code: `1 + tanh((${fmt(p[`${other}_output`])} \u2212 ${fmt(f('output'))}) \u00f7 30)`.replace('\u2212 \u2212', '+ ') }));
     const pct = f('pred');
     const opponentPct = p[`${other}_pred`];
-    rows.push(workingRow('Chance to win', `1 \u2212 (${f('sf').toFixed(3)} \u00f7 2)`, chip(`${pct.toFixed(1)}%`, pct > opponentPct ? 'pos' : pct < opponentPct ? 'neg' : '')));
+    rows.push(workingRow('Chance to win', '', chip(`${pct.toFixed(1)}%`, pct > opponentPct ? 'pos' : pct < opponentPct ? 'neg' : ''),
+        { code: `1 \u2212 (${f('sf').toFixed(3)} \u00f7 2)` }));
     return `<section class="working-team"><h4>${esc(own)}</h4><ul class="working-list">${rows.join('')}</ul></section>`;
 }
+
+// The same green tick as the Results tab, with its own spoken label
+const tickSvg = label => SVG_TICK.replace('aria-label="Correct tip"', `aria-label="${esc(label)}"`);
 
 function predictionCard(p) {
     const hFav = p.h_pred > p.a_pred;
@@ -204,7 +207,7 @@ function predictionCard(p) {
     const day = when ? when.toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' }) : '';
     const time = when ? when.toLocaleTimeString('en-AU', { hour: 'numeric', minute: '2-digit' }) : '';
     const team = (name, pct, fav, underdog) =>
-        `<li class="pred-team${fav ? ' fav' : ''}"><span class="pred-name">${esc(name)}${fav ? '<span class="sr-only"> (favourite)</span>' : ''}</span>${chip(`${pct.toFixed(1)}%`, fav ? 'pos' : underdog ? 'neg' : '')}</li>`;
+        `<li class="pred-team${fav ? ' fav' : ''}"><span class="pred-name">${esc(name)}${fav ? tickSvg('SAGE tip') : ''}</span>${chip(`${pct.toFixed(1)}%`, fav ? 'pos' : underdog ? 'neg' : '')}</li>`;
     const homeBar = hFav ? 'bar-lime' : aFav ? 'bar-orange' : 'bar-grey';
     const awayBar = aFav ? 'bar-lime' : hFav ? 'bar-orange' : 'bar-grey';
     const working = p.h_output !== undefined
@@ -294,7 +297,7 @@ function resultRow(g) {
     const chance = Math.max(g.h_pred ?? 50, g.a_pred ?? 50);
     return `
       <li class="result-row">
-        <div class="result-when"><strong>${esc(g.roundname || 'Round ' + g.round)}</strong>${esc(day)}${g.venue ? ` \u00b7 ${esc(g.venue)}` : ''}</div>
+        <div class="result-when"><strong>${esc(g.roundname || 'Round ' + g.round)}</strong><span>${esc(day)}</span><span>${esc(g.venue || '')}</span></div>
         <div class="result-match">
           <span class="result-team home${hWon ? ' won' : ''}">${esc(g.hteam)}${hWon ? won : ''}</span>
           <span class="result-score"><span class="${hWon ? 'won' : ''}">${g.hscore}</span><span aria-hidden="true">\u2013</span><span class="sr-only"> to </span><span class="${aWon ? 'won' : ''}">${g.ascore}</span></span>
@@ -318,7 +321,8 @@ function renderResults(records) {
 
     if (!filtered.length) {
         list.innerHTML = '<li class="empty">No data.</li>';
-        $('tips-summary').textContent = '';
+        $('tip-stat-value').textContent = '\u2014';
+        $('tip-stat-detail').textContent = '';
         return;
     }
 
@@ -329,9 +333,9 @@ function renderResults(records) {
         total++;
         if (c) correct++;
     });
-    const pct = total > 0 ? ((correct / total) * 100).toFixed(1) : '\u2014';
-    $('tips-summary').textContent =
-        `Tipped ${correct} of ${total} correctly (${pct}%)${noTip > 0 ? `, ${noTip} with no tip` : ''}`;
+    $('tip-stat-value').textContent = total > 0 ? `${((correct / total) * 100).toFixed(1)}%` : '\u2014';
+    $('tip-stat-detail').textContent =
+        `${correct} of ${total} games${noTip > 0 ? `, plus ${noTip} with no tip` : ''}`;
 
     list.innerHTML = filtered.map(resultRow).join('');
 }
@@ -361,8 +365,7 @@ function openTeamPopup(team, rank, rating) {
         const own = isHome ? g.hscore : g.ascore;
         const opp = isHome ? g.ascore : g.hscore;
         const margin = own - opp;
-        const verb = own > opp ? 'Won' : own < opp ? 'Lost' : 'Drew';
-        const link = own > opp ? 'against' : own < opp ? 'to' : 'with';
+        const result = own > opp ? `Beat ${esc(opponent)} ${own}\u2013${opp}` : own < opp ? `Lost to ${esc(opponent)} ${own}\u2013${opp}` : `Drew with ${esc(opponent)} ${own}\u2013${opp}`;
         const when = g.date ? parseLocal(g.date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
         const delta = isHome ? g.h_delta : g.a_delta;
         const om = isHome ? g.h_outcome_multiple : g.a_outcome_multiple;
@@ -372,25 +375,28 @@ function openTeamPopup(team, rank, rating) {
         const sf = isHome ? g.h_sf : g.a_sf;
 
         html += `<section class="popup-last"><h3>Last game</h3>
-          <p class="popup-last-result">${verb} ${own}\u2013${opp} ${link} ${esc(opponent)}<span>${esc(g.roundname)}${when ? `, ${esc(when)}` : ''}</span></p>`;
+          <p class="popup-last-result">${result}<span>${esc(g.roundname)}${when ? `, ${esc(when)}` : ''}</span></p>`;
 
         if (om !== undefined) {
-            const outcome = own > opp ? 'won (+1)' : own < opp ? 'lost (\u22121)' : 'drew (0)';
+            const word = own > opp ? 'win' : own < opp ? 'loss' : 'draw';
+            const outcome = own > opp ? '+1' : own < opp ? '\u22121' : '0';
+            const m = margin >= 0 ? `+${margin}` : `\u2212${Math.abs(margin)}`;
             html += `<ul class="working-list">
-              ${workingRow('Result', `Surprise factor ${sf.toFixed(3)} \u00d7 ${outcome}`, signedChip(om))}
-              ${workingRow('Margin', `${margin >= 0 ? '+' : '\u2212'}${Math.abs(margin)} points \u00f7 60`, signedChip(mc))}
-              ${workingRow('Century bonus', `Scored ${own} points (${own >= 100 ? '100 or more' : 'under 100'})`, signedChip(cb))}
-              ${workingRow('Travel bonus', tb > 0 ? `Played at ${g.venue}, away from home state or a remote venue` : 'Home state, not a remote venue', signedChip(tb))}
-              ${workingRow('Rating change', 'The four rows above added together', signedChip(delta), 'total')}
+              ${workingRow('Surprise factor (SF) before the game', '', chip(sf.toFixed(3)))}
+              ${workingRow('Result', '', signedChip(om), { code: `SF (${sf.toFixed(3)}) \u00d7 outcome (${word}) ${outcome}` })}
+              ${workingRow('Margin (M)', '', signedChip(mc), { code: `margin (${m}) \u00f7 60` })}
+              ${workingRow('Century bonus (C)', `Scored ${own} points (${own >= 100 ? '100 or more' : 'under 100'})`, signedChip(cb))}
+              ${workingRow('Travel bonus (T)', tb > 0 ? (isHome ? 'Played at a remote venue' : 'Played away from home state or at a remote venue') : 'Played in home state, not at a remote venue', signedChip(tb))}
+              ${workingRow('Rating change (\u0394)', 'The four rows above, added together', signedChip(delta), { total: true, code: '(SF \u00d7 outcome) + M + C + T' })}
             </ul>`;
         } else {
-            html += `<ul class="working-list">${workingRow('Rating change', 'From that game', signedChip(delta), 'total')}</ul>`;
+            html += `<ul class="working-list">${workingRow('Rating change (\u0394)', 'From that game', signedChip(delta), { total: true })}</ul>`;
         }
         html += '</section>';
     }
 
     $('popup-team').textContent = team;
-    $('popup-rank').textContent = `Rank ${rank} \u00b7 ${ctx.roundname || ''} ${ctxYear}`;
+    $('popup-rank').textContent = `Rank ${rank} at ${ctx.roundname || ''} ${ctxYear}`;
     $('popup-stats').innerHTML = html;
 
     if (typeof popup.showModal === 'function') popup.showModal();
@@ -431,6 +437,13 @@ const TEAM_COLOURS = {
 };
 
 const ALL_TEAMS_LIST = Object.keys(TEAM_COLOURS);
+// Two-letter headings keep the graph data table narrow; a key under the table gives the full names
+const TEAM_ABBR = {
+    'Adelaide': 'AD', 'Brisbane Lions': 'BL', 'Carlton': 'CA', 'Collingwood': 'CW', 'Essendon': 'ES',
+    'Fremantle': 'FR', 'Geelong': 'GE', 'Gold Coast': 'GC', 'Greater Western Sydney': 'GW', 'Hawthorn': 'HW',
+    'Melbourne': 'ME', 'North Melbourne': 'NM', 'Port Adelaide': 'PA', 'Richmond': 'RI', 'St Kilda': 'SK',
+    'Sydney': 'SY', 'West Coast': 'WC', 'Western Bulldogs': 'WB'
+};
 const PAD = { top: 20, right: 20, bottom: 36, left: 48 };
 
 // The AFL's finals series became a top 10 (a wildcard round) from 2026; before that it was a top 8
@@ -577,10 +590,12 @@ function renderGraphTable() {
     if (!teams.length || !graphRounds.length) {
         $('graph-table-head').innerHTML = '';
         $('graph-table-body').innerHTML = '<tr><td class="empty">No teams selected or no data for this season.</td></tr>';
+        $('graph-key').innerHTML = '';
         return;
     }
     $('graph-table-head').innerHTML =
-        '<tr><th scope="col">Round</th>' + teams.map(t => `<th scope="col" class="num">${esc(t)}</th>`).join('') + '</tr>';
+        '<tr><th scope="col">Round</th>' + teams.map(t => `<th scope="col" class="num"><span aria-hidden="true">${TEAM_ABBR[t]}</span><span class="sr-only">${esc(t)}</span></th>`).join('') + '</tr>';
+    $('graph-key').innerHTML = teams.map(t => `<li><strong>${TEAM_ABBR[t]}</strong> ${esc(t)}</li>`).join('');
     $('graph-table-body').innerHTML = graphRounds.map(r =>
         `<tr><th scope="row">${esc(roundLabel(r))}</th>` +
         teams.map(t => {
