@@ -1,5 +1,16 @@
 [
   {
+    "id": "39905e88-bd91-5df4-9ee1-59cf9a3371a2",
+    "first_seen": "2026-11-04T20:53:51.411134+00:00",
+    "header": "Planned work: Tottenham Station car space closures",
+    "description": "Thursday 5 November to Wednesday 13 January To facilitate underground service relocation works, sections of the Tottenham Station car park off Rupert Street will close.  Access to platforms, drop off and pick up zones remain open during this time. Alternative parking is available in the overflow car park off Rupert Street. For your safety, please observe any signage and instructions in place during this time.  Accessible car spaces  Five accessible car spaces remain available in the car park off Sunshine Road.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY-R:",
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
     "id": "9a08faca-f121-58d2-b75f-2a6bc7250847",
     "first_seen": "2026-11-04T14:11:36.129929+00:00",
     "header": "Planned Works",
