@@ -1,5 +1,27 @@
 [
   {
+    "id": "f27039aa-8ddc-5460-bcbc-c911dac1ed90",
+    "first_seen": "2026-11-05T23:27:39.004134+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a police request in the Clifton Hill area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "c01b9b2b-6f1d-595e-b277-55c251dc7dcc",
+    "first_seen": "2026-11-05T23:27:39.004134+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a police request in the Clifton Hill area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:",
+      "aus:vic:vic-02-MDD-R:"
+    ]
+  },
+  {
     "id": "51661a29-c681-5f3b-81fe-bde263bd7a70",
     "first_seen": "2026-11-05T03:39:55.253735+00:00",
     "header": "Minor Delay",
