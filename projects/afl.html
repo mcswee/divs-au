@@ -32,8 +32,7 @@ extra_scripts: '<script src="/assets/js/sage.js"></script>'
   <section class="panel" id="panel-rankings" role="tabpanel" aria-labelledby="tab-rankings">
     <div class="panel-bar">
       <h2 class="section-label" id="rankings-label" aria-live="polite">SAGE Ratings</h2>
-      <label class="sr-only" for="rankings-year-select">Season</label>
-      <select id="rankings-year-select"></select>
+      <div class="season-picker" data-season-picker></div>
       <label class="sr-only" for="rankings-round-select">Round</label>
       <select id="rankings-round-select"><option value="">Select round…</option></select>
     </div>
@@ -55,8 +54,7 @@ extra_scripts: '<script src="/assets/js/sage.js"></script>'
   <section class="panel" id="panel-results" role="tabpanel" aria-labelledby="tab-results" hidden>
     <div class="panel-bar">
       <h2 class="section-label">Completed games</h2>
-      <label class="sr-only" for="results-year-select">Season</label>
-      <select id="results-year-select"></select>
+      <div class="season-picker" data-season-picker></div>
     </div>
     <div class="tip-stat" aria-live="polite">
       <span class="tip-stat-value" id="tip-stat-value">—</span>
@@ -73,11 +71,7 @@ extra_scripts: '<script src="/assets/js/sage.js"></script>'
   <section class="panel" id="panel-graph" role="tabpanel" aria-labelledby="tab-graph" hidden>
     <h2 class="sr-only">Season graph</h2>
     <div class="graph-controls">
-      <div class="year-slider-wrap">
-        <label for="year-slider">Season</label>
-        <input type="range" id="year-slider" min="2010" max="2026" value="2026" step="1">
-        <output class="year-label" id="year-display" for="year-slider">2026</output>
-      </div>
+      <div class="season-picker" data-season-picker></div>
       <div class="highlight-wrap">
         <label for="highlight-select">Highlight</label>
         <select id="highlight-select"><option value="">None</option></select>
