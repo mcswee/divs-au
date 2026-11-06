@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="rounded">
+      <rect width="20" height="20" rx="2" ry="2"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#rounded)">
+  <rect width="20" height="20" fill="#FFFFFF"/>
+  <path fill="#1C3C63" d="M0 4h20v4H0z M0 12h20v4H0z"/>
+  </g>
+</svg>
