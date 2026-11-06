@@ -1,5 +1,36 @@
 [
   {
+    "id": "27d91852-76f4-514f-b7f0-ac8baecc969c",
+    "first_seen": "2026-11-06T22:53:08.690614+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to an equipment fault in the Sunshine area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY:",
+      "aus:vic:vic-02-SUY-R:"
+    ]
+  },
+  {
+    "id": "3696e248-9a73-5fde-9a22-210bfc9ffb56",
+    "first_seen": "2026-11-06T22:53:08.690614+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to an equipment fault in the Sunshine area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "696867fd-a1e0-56ea-8934-bef181d238cb",
+    "first_seen": "2026-11-06T22:53:08.690614+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to an equipment fault in the Sunshine area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
     "id": "34f01a45-1074-55a3-ac25-8628f498a6f2",
     "first_seen": "2026-11-06T03:36:07.539955+00:00",
     "header": "Minor Delay",
