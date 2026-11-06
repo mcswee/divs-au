@@ -1,5 +1,16 @@
 [
   {
+    "id": "34f01a45-1074-55a3-ac25-8628f498a6f2",
+    "first_seen": "2026-11-06T03:36:07.539955+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a trespasser in the Hoppers Crossing area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
     "id": "f27039aa-8ddc-5460-bcbc-c911dac1ed90",
     "first_seen": "2026-11-05T23:27:39.004134+00:00",
     "header": "Minor Delay",
