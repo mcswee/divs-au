@@ -81,6 +81,51 @@ $('tabs').addEventListener('keydown', e => {
     selectTab(next, true);
 });
 
+
+// ── Season: one value shared by the Power Rankings, Results and Season Graph tabs ──────────────
+// Each of those tabs shows the same picker (a slider and a drop-down); changing it in one changes all.
+let seasonYears = [];
+let season = null;
+const seasonControls = [];
+
+function buildSeasonPickers() {
+    seasonYears = [...new Set([
+        ...(data.ratings_by_round || []).map(r => r.year),
+        ...(data.game_records || []).map(g => g.year)
+    ])].sort((a, b) => a - b);
+    const latest = data.current_round ? data.current_round.year : seasonYears[seasonYears.length - 1];
+    season = seasonYears.includes(latest) ? latest : seasonYears[seasonYears.length - 1];
+
+    document.querySelectorAll('[data-season-picker]').forEach((host, n) => {
+        host.innerHTML =
+            `<label for="season-select-${n}">Season</label>` +
+            `<input type="range" id="season-range-${n}" aria-label="Season, slider" min="${seasonYears[0]}" max="${seasonYears[seasonYears.length - 1]}" step="1" value="${season}">` +
+            `<select id="season-select-${n}">${[...seasonYears].reverse().map(y => `<option value="${y}">${y}</option>`).join('')}</select>`;
+        const range = host.querySelector('input');
+        const select = host.querySelector('select');
+        range.addEventListener('input', () => setSeason(Number(range.value)));
+        select.addEventListener('change', () => setSeason(Number(select.value)));
+        seasonControls.push({ range, select });
+    });
+    syncSeasonControls();
+}
+
+function syncSeasonControls() {
+    seasonControls.forEach(({ range, select }) => {
+        range.value = season;
+        range.setAttribute('aria-valuetext', String(season));
+        select.value = season;
+    });
+}
+
+function setSeason(year) {
+    if (seasonYears.includes(year)) season = year;
+    syncSeasonControls();
+    showRankingsSeason();
+    renderResults(data.game_records || []);
+    if (graphInited) loadGraphYear(season);
+}
+
 // ── Render ──────────────────────────────────────────────────────────────────
 function render() {
     renderMeta();
@@ -93,8 +138,9 @@ function render() {
     }
     renderRankings(data.power_rankings);
     renderPredictions(data.predictions || []);
-    initResultsYearFilter();            // sets the year first, then draws the results for it
-    initRankingsSelector();
+    buildSeasonPickers();
+    initRankingsSelector();             // the round drop-down; draws the rankings for the season
+    renderResults(data.game_records || []);
 }
 
 function renderMeta() {
@@ -136,65 +182,60 @@ $('rankings-grid').addEventListener('click', e => {
     if (btn) openTeamPopup(btn.dataset.team, Number(btn.dataset.rank), Number(btn.dataset.rating));
 });
 
-function initRankingsSelector() {
-    const yearSel = $('rankings-year-select');
-    const roundSel = $('rankings-round-select');
-    const rounds = data.ratings_by_round || [];
-    let yearRounds = [];
+let rankingRounds = [];
 
-    const years = [...new Set(rounds.map(r => r.year))].sort((a, b) => b - a);
-    yearSel.innerHTML = years.map(y => `<option value="${y}">${y}</option>`).join('');
-    const currentYear = data.current_round ? data.current_round.year : years[0];
-    if (currentYear !== undefined) yearSel.value = currentYear;
-
-    function applyRoundSelection() {
-        const r = yearRounds[Number(roundSel.value)];
-        if (!r) return;
-        selectedRoundContext = { year: r.year, roundname: r.roundname, round: r.round ?? null };
-        const ranked = Object.entries(r.ratings)
-            .sort((a, b) => b[1] - a[1])
-            .map(([team, rating], i) => ({ rank: i + 1, team, rating }));
-        $('rankings-label').textContent = `SAGE Ratings \u2014 ${r.roundname} ${r.year}`;
-        renderRankings(ranked);
-    }
-
-    function populateRounds(year) {
-        yearRounds = rounds.filter(r => r.year === parseInt(year)).reverse();
-        roundSel.innerHTML = yearRounds.map((r, i) => `<option value="${i}">${esc(r.roundname)}</option>`).join('');
-        roundSel.value = '0';
-        applyRoundSelection();
-    }
-
-    yearSel.addEventListener('change', () => populateRounds(yearSel.value));
-    roundSel.addEventListener('change', applyRoundSelection);
-    populateRounds(currentYear);
+function applyRoundSelection() {
+    const r = rankingRounds[Number($('rankings-round-select').value)];
+    if (!r) return;
+    selectedRoundContext = { year: r.year, roundname: r.roundname, round: r.round ?? null };
+    const ranked = Object.entries(r.ratings)
+        .sort((a, b) => b[1] - a[1])
+        .map(([team, rating], i) => ({ rank: i + 1, team, rating }));
+    $('rankings-label').textContent = `SAGE Ratings \u2014 ${r.roundname} ${r.year}`;
+    renderRankings(ranked);
 }
 
+// The round list for the chosen season, starting at its last round
+function showRankingsSeason() {
+    const roundSel = $('rankings-round-select');
+    rankingRounds = (data.ratings_by_round || []).filter(r => r.year === season).reverse();
+    roundSel.innerHTML = rankingRounds.map((r, i) => `<option value="${i}">${esc(r.roundname)}</option>`).join('');
+    roundSel.value = '0';
+    applyRoundSelection();
+}
 
+function initRankingsSelector() {
+    $('rankings-round-select').addEventListener('change', applyRoundSelection);
+    showRankingsSeason();
+}
 
 // ── Predictions ─────────────────────────────────────────────────────────────
 // The two teams' working: SAGE rating + head-to-head + venue record (+ short break) = team output,
 // then the surprise factor and the chance of winning that follow from it.
-function workingTeam(p, side) {
-    const other = side === 'h' ? 'a' : 'h';
-    const own = side === 'h' ? p.hteam : p.ateam;
-    const opp = side === 'h' ? p.ateam : p.hteam;
-    const f = key => p[`${side}_${key}`];
+function workingSteps(p) {
     const fmt = v => v.toFixed(3).replace('-', '\u2212');
-    const rows = [
-        workingRow('SAGE rating', `${own}'s rating so far this season`, signedChip(f('rating'))),
-        workingRow('Head-to-head', `Average result of the last 11 games against ${opp}`, signedChip(f('r11'))),
-        workingRow('Venue record', `Average result of the last 11 games at ${p.venue}`, signedChip(f('v11')))
+    const diff = (a, b) => (b < 0 ? `${fmt(a)} + ${fmt(-b)}` : `${fmt(a)} \u2212 ${fmt(b)}`);
+    const sides = [{ k: 'h', name: p.hteam, o: 'a' }, { k: 'a', name: p.ateam, o: 'h' }];
+    const row = (s, valueHtml, code = '') =>
+        `<li class="working-team-row"><span class="working-name">${esc(s.name)}</span>${code ? `<code class="working-code">${esc(code)}</code>` : ''}${valueHtml}</li>`;
+    const step = (title, desc, rows) =>
+        `<section class="working-step"><h4>${esc(title)}</h4>${desc ? `<p>${esc(desc)}</p>` : ''}<ul class="working-list">${rows.join('')}</ul></section>`;
+    const signedRows = key => sides.map(s => row(s, signedChip(p[`${s.k}_${key}`])));
+    const steps = [
+        step('SAGE rating', "Each team's rating so far this season", signedRows('rating')),
+        step('Head-to-head', `Average result of the last 11 games between ${p.hteam} and ${p.ateam}`, signedRows('r11')),
+        step('Venue record', `Average result of the last 11 games at ${p.venue}`, signedRows('v11'))
     ];
-    if (f('rest')) rows.push(workingRow('Short break', 'Fewer than 7 days since their last game', signedChip(f('rest'))));
-    rows.push(workingRow('Team output', 'The rows above added together', signedChip(f('output')), { total: true }));
-    rows.push(workingRow('Surprise factor', '', chip(f('sf').toFixed(3)),
-        { code: `1 + tanh((${fmt(p[`${other}_output`])} \u2212 ${fmt(f('output'))}) \u00f7 30)`.replace('\u2212 \u2212', '+ ') }));
-    const pct = f('pred');
-    const opponentPct = p[`${other}_pred`];
-    rows.push(workingRow('Chance to win', '', chip(`${pct.toFixed(1)}%`, pct > opponentPct ? 'pos' : pct < opponentPct ? 'neg' : ''),
-        { code: `1 \u2212 (${f('sf').toFixed(3)} \u00f7 2)` }));
-    return `<section class="working-team"><h4>${esc(own)}</h4><ul class="working-list">${rows.join('')}</ul></section>`;
+    if (p.h_rest || p.a_rest) steps.push(step('Short break', "Fewer than 7 days since the team's last game", signedRows('rest')));
+    steps.push(step('Team output', "Each team's strength, from the rows above added together", signedRows('output')));
+    steps.push(step('Surprise factor (SF)', 'How unexpected it would be for each team to win',
+        sides.map(s => row(s, chip(p[`${s.k}_sf`].toFixed(3)), `1 + tanh((${diff(p[`${s.o}_output`], p[`${s.k}_output`])}) \u00f7 30)`))));
+    steps.push(step('Chance of winning', '',
+        sides.map(s => {
+            const mine = p[`${s.k}_pred`], theirs = p[`${s.o}_pred`];
+            return row(s, chip(`${mine.toFixed(1)}%`, mine > theirs ? 'pos' : mine < theirs ? 'neg' : ''), `1 \u2212 (${p[`${s.k}_sf`].toFixed(3)} \u00f7 2)`);
+        })));
+    return steps.join('');
 }
 
 // The same green tick as the Results tab, with its own spoken label
@@ -211,7 +252,7 @@ function predictionCard(p) {
     const homeBar = hFav ? 'bar-lime' : aFav ? 'bar-orange' : 'bar-grey';
     const awayBar = aFav ? 'bar-lime' : hFav ? 'bar-orange' : 'bar-grey';
     const working = p.h_output !== undefined
-        ? `<details class="pred-working"><summary>Show working</summary><div class="working-teams">${workingTeam(p, 'h')}${workingTeam(p, 'a')}</div></details>`
+        ? `<details class="pred-working"><summary>Show working</summary><div class="working-steps">${workingSteps(p)}</div></details>`
         : '';
     return `
       <li class="pred-card">
@@ -276,15 +317,6 @@ function getTipResult(g) {
     return { tipped, correct: tippedWon && !isDraw };
 }
 
-function initResultsYearFilter() {
-    const sel = $('results-year-select');
-    const years = [...new Set((data.game_records || []).map(g => g.year))].sort((a, b) => b - a);
-    sel.innerHTML = years.map(y => `<option value="${y}">${y}</option>`).join('');
-    sel.value = data.current_round ? data.current_round.year : years[0];
-    sel.addEventListener('change', () => renderResults(data.game_records || []));
-    renderResults(data.game_records || []);
-}
-
 function resultRow(g) {
     const hWon = g.hscore > g.ascore;
     const aWon = g.ascore > g.hscore;
@@ -312,7 +344,7 @@ function resultRow(g) {
 
 function renderResults(records) {
     const list = $('results-list');
-    const selectedYear = parseInt($('results-year-select').value) || null;
+    const selectedYear = season;
 
     // Newest first
     const filtered = [...records]
@@ -333,9 +365,9 @@ function renderResults(records) {
         total++;
         if (c) correct++;
     });
-    $('tip-stat-value').textContent = total > 0 ? `${((correct / total) * 100).toFixed(1)}%` : '\u2014';
+    $('tip-stat-value').textContent = String(correct);
     $('tip-stat-detail').textContent =
-        `${correct} of ${total} games${noTip > 0 ? `, plus ${noTip} with no tip` : ''}`;
+        `from ${total} games \u00b7 ${total > 0 ? ((correct / total) * 100).toFixed(1) : '0.0'}%${noTip > 0 ? ` \u00b7 ${noTip} with no tip` : ''}`;
 
     list.innerHTML = filtered.map(resultRow).join('');
 }
@@ -386,7 +418,7 @@ function openTeamPopup(team, rank, rating) {
               ${workingRow('Result', '', signedChip(om), { code: `SF (${sf.toFixed(3)}) \u00d7 outcome (${word}) ${outcome}` })}
               ${workingRow('Margin (M)', '', signedChip(mc), { code: `margin (${m}) \u00f7 60` })}
               ${workingRow('Century bonus (C)', `Scored ${own} points (${own >= 100 ? '100 or more' : 'under 100'})`, signedChip(cb))}
-              ${workingRow('Travel bonus (T)', tb > 0 ? (isHome ? 'Played at a remote venue' : 'Played away from home state or at a remote venue') : 'Played in home state, not at a remote venue', signedChip(tb))}
+              ${workingRow('Travel bonus (T)', tb > 0 ? 'Played away from home state or at a remote venue' : 'Played in home state, not at a remote venue', signedChip(tb))}
               ${workingRow('Rating change (\u0394)', 'The four rows above, added together', signedChip(delta), { total: true, code: '(SF \u00d7 outcome) + M + C + T' })}
             </ul>`;
         } else {
@@ -439,8 +471,8 @@ const TEAM_COLOURS = {
 const ALL_TEAMS_LIST = Object.keys(TEAM_COLOURS);
 // Two-letter headings keep the graph data table narrow; a key under the table gives the full names
 const TEAM_ABBR = {
-    'Adelaide': 'AD', 'Brisbane Lions': 'BL', 'Carlton': 'CA', 'Collingwood': 'CW', 'Essendon': 'ES',
-    'Fremantle': 'FR', 'Geelong': 'GE', 'Gold Coast': 'GC', 'Greater Western Sydney': 'GW', 'Hawthorn': 'HW',
+    'Adelaide': 'AD', 'Brisbane Lions': 'BL', 'Carlton': 'CA', 'Collingwood': 'CO', 'Essendon': 'ES',
+    'Fremantle': 'FR', 'Geelong': 'GE', 'Gold Coast': 'GC', 'Greater Western Sydney': 'GW', 'Hawthorn': 'HA',
     'Melbourne': 'ME', 'North Melbourne': 'NM', 'Port Adelaide': 'PA', 'Richmond': 'RI', 'St Kilda': 'SK',
     'Sydney': 'SY', 'West Coast': 'WC', 'Western Bulldogs': 'WB'
 };
@@ -477,20 +509,6 @@ function getTopN(year, n) {
 
 function initGraph() {
     graphInited = true;
-    const slider = $('year-slider');
-
-    const years = [...new Set((data.ratings_by_round || []).map(r => r.year))].sort();
-    if (years.length) {
-        slider.min = years[0];
-        slider.max = years[years.length - 1];
-        slider.value = years[years.length - 1];
-    }
-    $('year-display').textContent = slider.value;
-
-    slider.addEventListener('input', () => {
-        $('year-display').textContent = slider.value;
-        loadGraphYear(parseInt(slider.value));
-    });
 
     $('btn-all-on').addEventListener('click', () => {
         ALL_TEAMS_LIST.forEach(t => activeTeams.add(t));
@@ -501,7 +519,7 @@ function initGraph() {
         refreshGraph();
     });
     $('btn-top').addEventListener('click', () => {
-        const year = graphYear || parseInt(slider.value);
+        const year = graphYear || season;
         activeTeams.clear();
         getTopN(year, finalsSize(year)).forEach(t => activeTeams.add(t));
         refreshGraph();
@@ -512,7 +530,7 @@ function initGraph() {
     setupCanvasEvents();
     $('graph-data').addEventListener('toggle', renderGraphTable);
 
-    const startYear = parseInt(slider.value);
+    const startYear = season;
     getTopN(startYear, finalsSize(startYear)).forEach(t => activeTeams.add(t));
     loadGraphYear(startYear);
 }
