@@ -365,9 +365,9 @@ function resultRow(g) {
       <li class="result-row">
         <div class="result-when"><strong>${esc(g.roundname || 'Round ' + g.round)}</strong><span>${esc(day)}</span><span>${esc(g.venue || '')}</span></div>
         <div class="result-match">
-          <span class="result-team home${hWon ? ' won' : ''}">${esc(g.hteam)}${hWon ? won : ''}${kit(g.hteam)}</span>
+          <span class="result-team home${hWon ? ' won' : ''}"><span class="result-name">${esc(g.hteam)}${hWon ? won : ''}</span>${kit(g.hteam)}</span>
           <span class="result-score"><span class="${hWon ? 'won' : ''}">${g.hscore}</span><span aria-hidden="true">\u2013</span><span class="sr-only"> to </span><span class="${aWon ? 'won' : ''}">${g.ascore}</span></span>
-          <span class="result-team away${aWon ? ' won' : ''}">${kit(g.ateam)}${esc(g.ateam)}${aWon ? won : ''}</span>
+          <span class="result-team away${aWon ? ' won' : ''}">${kit(g.ateam)}<span class="result-name">${esc(g.ateam)}${aWon ? won : ''}</span></span>
           <span class="result-delta home">${delta(g.hteam, g.h_delta)}</span>
           <span aria-hidden="true"></span>
           <span class="result-delta away">${delta(g.ateam, g.a_delta)}</span>
