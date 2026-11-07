@@ -113,7 +113,9 @@
 .sage-page .rank-card:hover { border-color: var(--brand-main); }
 .sage-page .rank-num { grid-area: num; text-align: right; font-size: 0.95rem; font-weight: 600; color: var(--text-highlight); }
 .sage-page .rank-card .chip { grid-area: chip; }
-.sage-page .rank-team { grid-area: team; min-width: 0; font-size: 1rem; font-weight: 700; color: var(--brand-main); }
+.sage-page .kit { display: inline-block; flex: 0 0 auto; width: 20px; height: 20px; overflow: hidden; border-radius: 2px; box-shadow: 0 0 0 1px rgba(13, 15, 18, 0.3); }
+.sage-page .kit svg { display: block; width: 100%; height: 100%; }
+.sage-page .rank-team { grid-area: team; display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 1rem; font-weight: 700; color: var(--brand-main); }
 /* diverging bar: zero in the centre, positives extend right, negatives left */
 .sage-page .rank-bar-bg { grid-area: bar; position: relative; display: block; height: 8px; overflow: hidden; background: var(--accent); border-radius: 4px; }
 .sage-page .rank-bar-bg::after { content: ''; position: absolute; top: 0; bottom: 0; left: calc(50% - 1px); width: 2px; background: var(--text-highlight); }
@@ -195,7 +197,8 @@
 .sage-page .result-when strong { display: block; font-size: 0.95rem; font-weight: 700; color: var(--text-main); }
 .sage-page .result-match { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); column-gap: 14px; row-gap: 6px; align-items: center; }
 .sage-page .result-team { font-size: 1rem; font-weight: 500; color: var(--text-main); }
-.sage-page .result-team.home { text-align: right; }
+.sage-page .result-team { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.sage-page .result-team.home { justify-content: flex-end; text-align: right; }
 .sage-page .result-team.won, .sage-page .result-score .won { font-weight: 800; }
 .sage-page .result-score { display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 6.5rem; font-size: 1.15rem; }
 .sage-page .result-delta.home { justify-self: end; }
