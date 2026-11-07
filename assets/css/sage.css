@@ -199,6 +199,7 @@
 .sage-page .result-team { font-size: 1rem; font-weight: 500; color: var(--text-main); }
 .sage-page .result-team { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .sage-page .result-team.home { justify-content: flex-end; text-align: right; }
+.sage-page .result-name { min-width: 0; overflow-wrap: anywhere; }
 .sage-page .result-team.won, .sage-page .result-score .won { font-weight: 800; }
 .sage-page .result-score { display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 6.5rem; font-size: 1.15rem; }
 .sage-page .result-delta.home { justify-self: end; }
@@ -292,11 +293,26 @@
     .sage-page .tab[aria-selected="true"] { border-color: var(--sage-ink); background: var(--sage-ink); color: var(--sage-lime); }
     .sage-page .tab:focus-visible { outline-offset: 2px; }
 }
-@media (max-width: 760px) {
+@media (max-width: 900px) {
     .sage-page .results-head { display: none; }
     .sage-page .results-list { border-top: 1px solid var(--text-accent); border-radius: 8px; }
-    .sage-page .result-row { grid-template-columns: minmax(0, 1fr); row-gap: 10px; }
+    .sage-page .result-row { grid-template-columns: minmax(0, 1fr); row-gap: 12px; }
     .sage-page .result-when strong { display: inline; margin-right: 8px; }
+    /* Narrow screens: the score on its own line, then each team in its own half of the width with
+       its rating block underneath, so no name has to squeeze in beside the score */
+    .sage-page .result-match {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-areas: "score score" "home away" "homechip awaychip";
+        column-gap: 16px;
+        row-gap: 8px;
+        padding: 0 6px;
+    }
+    .sage-page .result-match > span[aria-hidden="true"] { display: none; }
+    .sage-page .result-score { grid-area: score; min-width: 0; }
+    .sage-page .result-team.home { grid-area: home; flex-direction: row-reverse; justify-content: flex-end; text-align: left; }
+    .sage-page .result-team.away { grid-area: away; justify-content: flex-end; text-align: right; }
+    .sage-page .result-delta.home { grid-area: homechip; justify-self: start; }
+    .sage-page .result-delta.away { grid-area: awaychip; justify-self: end; }
 }
 @media (max-width: 600px) {
     .sage-page .working-team-row { grid-template-columns: minmax(0, 1fr) var(--chip-w); grid-template-areas: "name chip" "code code"; row-gap: 4px; }
