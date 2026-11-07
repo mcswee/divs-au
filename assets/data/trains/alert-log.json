@@ -1,5 +1,15 @@
 [
   {
+    "id": "0f21101b-9fb4-5453-aa60-074babb2f021",
+    "first_seen": "2026-11-07T05:33:53.995485+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a police request in the Merylnston area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
     "id": "11f49021-f960-5986-8131-ca68fba22869",
     "first_seen": "2026-11-07T02:37:27.586093+00:00",
     "header": "Major Delay",
