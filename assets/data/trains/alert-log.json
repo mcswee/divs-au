@@ -1,5 +1,36 @@
 [
   {
+    "id": "11f49021-f960-5986-8131-ca68fba22869",
+    "first_seen": "2026-11-07T02:37:27.586093+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 35 minutes now clearing after an earlier equipment fault in the Sunshine area.  Trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "451a2acc-cb9c-568a-bf59-7796e707ff83",
+    "first_seen": "2026-11-07T02:37:27.586093+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 35 minutes now clearing after an earlier equipment fault in the Sunshine area.  Trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "8ad3e8c5-b713-5129-86f2-48f486fcf144",
+    "first_seen": "2026-11-07T02:37:27.586093+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 35 minutes now clearing after an earlier equipment fault in the Sunshine area.  Trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SUY-R:",
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
     "id": "27d91852-76f4-514f-b7f0-ac8baecc969c",
     "first_seen": "2026-11-06T22:53:08.690614+00:00",
     "header": "Minor Delay",
