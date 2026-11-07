@@ -82,6 +82,40 @@ $('tabs').addEventListener('keydown', e => {
 });
 
 
+
+// ── Team icons: a 20px square in each team's jumper colours and pattern ─────────────────────────
+// Each entry is the inside of a 20 x 20 SVG. The rounded corners come from the .kit wrapper in the
+// CSS. The icons are decorative (the team name is always beside them), so they are hidden from
+// screen readers. Teams with no entry simply show no icon.
+const TASMANIA_KIT = '<rect width="20" height="20" fill="#013B37"/><rect y="6" width="20" height="4" fill="#F4D611"/><rect y="10" width="20" height="4" fill="#AA0C38"/>';
+const TEAM_KITS = {
+    'Adelaide': '<path fill="#002B5C" d="M0 0h20v4H0z M0 8h20v4H0z M0 16h20v4H0z"/><path fill="#C8102E" d="M0 4h20v4H0z"/><path fill="#FFD200" d="M0 12h20v4H0z"/>',
+    'Brisbane Lions': '<path fill="#0055A4" d="M0 0h20v6H0z"/><path fill="#FDBE57" d="M0 6h20v4H0z"/><path fill="#7C2638" d="M0 10h20v10H0z"/>',
+    'Carlton': '<rect width="20" height="20" fill="#031A29"/>',
+    'Collingwood': '<rect width="20" height="20" fill="#FFFFFF"/><path fill="#000000" d="M0 0h4v20H0z M8 0h4v20H8z M16 0h4v20h-4z"/>',
+    'Essendon': '<rect width="20" height="20" fill="#000000"/><path fill="#CC2031" d="M20 0h-5L0 15v5h5L20 5z"/>',
+    'Fremantle': '<rect width="20" height="20" fill="#2A0D54"/><path d="M0 0L10 10L20 0" fill="none" stroke="#FFFFFF" stroke-width="4"/>',
+    'Geelong': '<rect width="20" height="20" fill="#FFFFFF"/><path fill="#1C3C63" d="M0 4h20v4H0z M0 12h20v4H0z"/>',
+    'Gold Coast': '<rect width="20" height="20" fill="#D71920"/><path fill="#F5B335" d="M0 0h3v20H0z M17 0h3v20h-3z"/>',
+    'Greater Western Sydney': '<rect width="20" height="20" fill="#FFFFFF"/><path fill="#F15C22" d="M0 0L20 20H0Z"/><rect width="20" height="6" fill="#333F48"/>',
+    'Hawthorn': '<rect width="20" height="20" fill="#4D2004"/><path fill="#E6AB2C" d="M0 0h4v20H0z M8 0h4v20H8z M16 0h4v20h-4z"/>',
+    'Melbourne': '<rect width="20" height="20" fill="#061A33"/><path fill="#CC2031" d="M0 0h20L10 10z"/>',
+    'North Melbourne': '<rect width="20" height="20" fill="#FFFFFF"/><path fill="#013B9F" d="M0 0h4v20H0z M8 0h4v20H8z M16 0h4v20h-4z"/>',
+    'Port Adelaide': '<rect width="20" height="20" fill="#000000"/><path fill="#008AAB" d="M0 0H20L10 10Z"/><path d="M0 0L10 10L20 0" fill="none" stroke="#FFFFFF" stroke-width="4"/>',
+    'Richmond': '<rect width="20" height="20" fill="#000000"/><path fill="#FFD200" d="M20 0h-5L0 15v5h5L20 5z"/>',
+    'St Kilda': '<rect width="6.667" height="20" fill="#000000"/><rect x="6.667" width="6.666" height="20" fill="#FFFFFF"/><rect x="13.333" width="6.667" height="20" fill="#CC2031"/>',
+    'Sydney': '<rect width="20" height="20" fill="#FFFFFF"/><path d="M0 0L10 10L20 0" fill="none" stroke="#D71920" stroke-width="4"/>',
+    'Tasmania': TASMANIA_KIT,            // joins the AFL in 2028
+    'Tasmania Devils': TASMANIA_KIT,
+    'Western Bulldogs': '<rect width="20" height="20" fill="#014896"/><rect y="6" width="20" height="4" fill="#CC2031"/><rect y="10" width="20" height="4" fill="#FFFFFF"/>',
+    'West Coast': '<rect width="20" height="20" fill="#F2C500"/><path fill="#0030A7" d="M0 0h5v20H0z M15 0h5v20h-5z"/>'
+};
+
+function kit(team) {
+    const shapes = TEAM_KITS[team];
+    return shapes ? `<span class="kit" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false">${shapes}</svg></span>` : '';
+}
+
 // ── Season: one value shared by the Power Rankings, Results and Season Graph tabs ──────────────
 // Each of those tabs shows the same picker (a slider and a drop-down); changing it in one changes all.
 let seasonYears = [];
@@ -169,7 +203,7 @@ function renderRankings(rankings) {
         <button type="button" class="rank-card" style="animation-delay:${i * 30}ms"
                 data-team="${esc(r.team)}" data-rank="${r.rank}" data-rating="${r.rating}" aria-haspopup="dialog">
           <span class="rank-num">${r.rank}</span>
-          <span class="rank-team">${esc(r.team)}</span>
+          <span class="rank-team">${kit(r.team)}${esc(r.team)}</span>
           <span class="rank-bar-bg" aria-hidden="true"><span class="rank-bar-fill ${isNeg ? 'negative' : ''}" style="width:${pct / 2}%"></span></span>
           ${signedChip(r.rating)}
         </button>
@@ -248,7 +282,7 @@ function predictionCard(p) {
     const day = when ? when.toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' }) : '';
     const time = when ? when.toLocaleTimeString('en-AU', { hour: 'numeric', minute: '2-digit' }) : '';
     const team = (name, pct, fav, underdog) =>
-        `<li class="pred-team${fav ? ' fav' : ''}"><span class="pred-name">${esc(name)}${fav ? tickSvg('SAGE tip') : ''}</span>${chip(`${pct.toFixed(1)}%`, fav ? 'pos' : underdog ? 'neg' : '')}</li>`;
+        `<li class="pred-team${fav ? ' fav' : ''}"><span class="pred-name">${kit(name)}${esc(name)}${fav ? tickSvg('SAGE tip') : ''}</span>${chip(`${pct.toFixed(1)}%`, fav ? 'pos' : underdog ? 'neg' : '')}</li>`;
     const homeBar = hFav ? 'bar-lime' : aFav ? 'bar-orange' : 'bar-grey';
     const awayBar = aFav ? 'bar-lime' : hFav ? 'bar-orange' : 'bar-grey';
     const working = p.h_output !== undefined
@@ -331,9 +365,9 @@ function resultRow(g) {
       <li class="result-row">
         <div class="result-when"><strong>${esc(g.roundname || 'Round ' + g.round)}</strong><span>${esc(day)}</span><span>${esc(g.venue || '')}</span></div>
         <div class="result-match">
-          <span class="result-team home${hWon ? ' won' : ''}">${esc(g.hteam)}${hWon ? won : ''}</span>
+          <span class="result-team home${hWon ? ' won' : ''}">${esc(g.hteam)}${hWon ? won : ''}${kit(g.hteam)}</span>
           <span class="result-score"><span class="${hWon ? 'won' : ''}">${g.hscore}</span><span aria-hidden="true">\u2013</span><span class="sr-only"> to </span><span class="${aWon ? 'won' : ''}">${g.ascore}</span></span>
-          <span class="result-team away${aWon ? ' won' : ''}">${esc(g.ateam)}${aWon ? won : ''}</span>
+          <span class="result-team away${aWon ? ' won' : ''}">${kit(g.ateam)}${esc(g.ateam)}${aWon ? won : ''}</span>
           <span class="result-delta home">${delta(g.hteam, g.h_delta)}</span>
           <span aria-hidden="true"></span>
           <span class="result-delta away">${delta(g.ateam, g.a_delta)}</span>
