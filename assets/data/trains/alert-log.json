@@ -1,5 +1,68 @@
 [
   {
+    "id": "611650c4-ec02-5b87-b900-366e0160cc79",
+    "first_seen": "2026-11-08T13:06:14.541709+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament, Lilydale, Belgrave and Alamein from 11:15pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
+    "id": "b0d60516-e361-51d8-9c7a-be6819a72d2d",
+    "first_seen": "2026-11-08T13:06:14.541709+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament, Lilydale, Belgrave and Alamein from 11:15pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "59123258-f7c4-5d9d-85a5-62abd3e90ab5",
+    "first_seen": "2026-11-08T13:06:14.541709+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament, Lilydale, Belgrave and Alamein from 11:15pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-ALM-R:"
+    ]
+  },
+  {
+    "id": "0959e7e4-7134-522c-9073-062339dc8287",
+    "first_seen": "2026-11-08T13:06:14.541709+00:00",
+    "header": "Planned work: Night works between Burnley, Belgrave, Lilydale and Alamein",
+    "description": "9pm to 4am each night, Sunday 8 November to Tuesday 10 November  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Belgrave, Lilydale and Alamein lines. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-ALM-R:"
+    ]
+  },
+  {
+    "id": "c82a5c10-4bcc-5cff-98ff-f8d08156e4b4",
+    "first_seen": "2026-11-08T13:06:14.541709+00:00",
+    "header": "Planned work: Buses replace trains between Parliament, Lilydale, Belgrave and Alamein",
+    "description": "11.15pm to last service each night, Sunday 8 November to Tuesday 10 November",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-ALM-R:"
+    ]
+  },
+  {
     "id": "90b1eb0f-07ce-5b5a-8c8f-e495f2556bbc",
     "first_seen": "2026-11-08T05:35:50.458233+00:00",
     "header": "Minor Delay",
