@@ -4,7 +4,6 @@
   const REVIEW_DELAY_QUESTIONS = 4;
   const REVIEW_DELAY_MS = 6 * 60 * 60 * 1000;
   const RECENT_COUNTRY_LIMIT = 8;
-  const FEEDBACK_DELAY_MS = 1250;
 
   let capitalsData = [];
   let currentPair = null;
@@ -13,7 +12,6 @@
   let sessionReviewQueue = {};
   let recentCountries = [];
   let missedThisSession = new Map();
-  let sessionTimeout = null;
   let isWaitingForNext = false;
 
   let score = 0;
@@ -21,6 +19,8 @@
   let streak = 0;
   let bestStreak = 0;
   let spellingAccepted = 0;
+  let skipped = 0;
+  let answerShownAt = 0;
 
   const startScreen = document.getElementById("start-screen");
   const quizScreen = document.getElementById("quiz-screen");
@@ -42,8 +42,8 @@
   const missedListEl = document.getElementById("missed-list");
   const allCorrectMessage = document.getElementById("all-correct-message");
   const playAgainBtn = document.getElementById("play-again-btn");
-  const homeBtn = document.getElementById("home-btn");
-  const startHeading = document.getElementById("start-heading");
+  const skippedCountEl = document.getElementById("skipped-count");
+  const submitBtn = document.getElementById("submit-btn");
   const resultsHeading = document.getElementById("results-heading");
 
   // ---------- Storage ----------
@@ -74,6 +74,7 @@
       if (!reviewData[code] && Number(count) > 0) {
         reviewData[code] = {
           attempts: 0,
+          skips: 0,
           correct: 0,
           misses: Number(count) || 0,
           consecutiveCorrect: 0,
@@ -97,6 +98,7 @@
     if (!reviewData[country] || typeof reviewData[country] !== "object") {
       reviewData[country] = {
         attempts: 0,
+        skips: 0,
         correct: 0,
         misses: Number(oldMissCounts[country]) || 0,
         consecutiveCorrect: 0,
@@ -181,8 +183,7 @@
       if (!capitalsData.length) throw new Error("No entries with capital answers were found in cc.csv.");
       loadStorage();
       startBtn.disabled = false;
-      startBtn.textContent = "Start practising";
-      document.querySelector(".start-facts").insertAdjacentHTML("beforeend", `<li class="fact">${capitalsData.length} places</li>`);
+      startBtn.textContent = "Start quiz";
     })
     .catch(error => {
       startBtn.disabled = true;
@@ -193,11 +194,14 @@
     });
 
   // ---------- Session flow ----------
+  function questionsAsked() {
+    return totalAnswered + skipped;
+  }
+
   function startSession() {
-    clearTimeout(sessionTimeout);
-    sessionTimeout = null;
     score = 0;
     totalAnswered = 0;
+    skipped = 0;
     streak = 0;
     bestStreak = 0;
     spellingAccepted = 0;
@@ -205,45 +209,41 @@
     sessionReviewQueue = {};
     recentCountries = [];
     missedThisSession = new Map();
-    isWaitingForNext = false;
 
     startScreen.classList.add("hidden");
     resultsScreen.classList.add("hidden");
     quizScreen.classList.remove("hidden");
-    inputEl.readOnly = false;
-    skipBtn.disabled = false;
-    finishBtn.disabled = false;
     updateStats();
     nextQuestion();
   }
 
   function finishSession() {
-    clearTimeout(sessionTimeout);
-    sessionTimeout = null;
     isWaitingForNext = true;
-    inputEl.readOnly = true;
-    skipBtn.disabled = true;
-    finishBtn.disabled = true;
     quizScreen.classList.add("hidden");
     startScreen.classList.add("hidden");
     resultsScreen.classList.remove("hidden");
     resultsHeading.focus();
 
-    resultScoreEl.textContent = `${score}/${totalAnswered}`;
-    const accuracy = totalAnswered ? Math.round((score / totalAnswered) * 100) : 0;
-    resultSubEl.textContent = `${accuracy}% correct · best streak ${bestStreak} · ${spellingAccepted} spelling ${spellingAccepted === 1 ? "correction" : "corrections"} accepted`;
+    const asked = questionsAsked();
+    resultScoreEl.textContent = `${score}/${asked}`;
+    const accuracy = asked ? Math.round((score / asked) * 100) : 0;
+    const summary = [`${accuracy}% correct`];
+    if (skipped) summary.push(`${skipped} skipped`);
+    summary.push(`best streak ${bestStreak}`);
+    if (spellingAccepted) summary.push(`${spellingAccepted} near-miss ${spellingAccepted === 1 ? "spelling" : "spellings"}`);
+    resultSubEl.textContent = summary.join(" · ");
 
     missedListEl.replaceChildren();
     if (missedThisSession.size) {
       missedPanel.classList.remove("hidden");
       allCorrectMessage.classList.add("hidden");
-      for (const [country, details] of missedThisSession) {
+      for (const [code, details] of missedThisSession) {
+        const item = capitalsData.find(entry => entry.code === code);
         const row = document.createElement("div");
         row.className = "missed-item";
         const countrySpan = document.createElement("span");
         countrySpan.className = "missed-country";
-        const item = capitalsData.find(entry => entry.code === country);
-        countrySpan.textContent = `${item ? item.country : country}${details.count > 1 ? ` (${details.count} misses)` : ""}`;
+        countrySpan.textContent = `${item ? item.country : code}${details.count > 1 ? ` (${details.count} misses)` : ""}`;
         const capitalSpan = document.createElement("span");
         capitalSpan.className = "missed-capital";
         capitalSpan.textContent = details.capital;
@@ -259,27 +259,27 @@
   function updateStats() {
     answeredCountEl.textContent = totalAnswered;
     correctCountEl.textContent = score;
+    skippedCountEl.textContent = skipped;
     streakCountEl.textContent = streak;
   }
 
-  function scheduleNextQuestion() {
+  // After an answer the result stays on screen until the person moves on (Next, or Enter).
+  function showAnswerState() {
     isWaitingForNext = true;
+    answerShownAt = Date.now();
     inputEl.readOnly = true;
     skipBtn.disabled = true;
-    sessionTimeout = setTimeout(() => {
-      sessionTimeout = null;
-      nextQuestion();
-    }, FEEDBACK_DELAY_MS);
+    submitBtn.textContent = "Next question";
+    inputEl.focus();
   }
 
   function nextQuestion() {
-    clearTimeout(sessionTimeout);
-    sessionTimeout = null;
     isWaitingForNext = false;
     inputEl.value = "";
     inputEl.readOnly = false;
     skipBtn.disabled = false;
-    feedbackEl.textContent = "";
+    submitBtn.textContent = "Submit answer";
+    feedbackEl.replaceChildren();
     feedbackEl.className = "feedback";
 
     currentPair = pickNextCountry();
@@ -304,7 +304,7 @@
   function pickNextCountry() {
     const now = Date.now();
     const queued = Object.entries(sessionReviewQueue)
-      .filter(([key, item]) => item.eligibleAfter <= totalAnswered && key !== (currentPair && currentPair.code))
+      .filter(([key, item]) => item.eligibleAfter <= questionsAsked() && key !== (currentPair && currentPair.code))
       .map(([key]) => capitalsData.find(item => item.code === key))
       .filter(Boolean);
 
@@ -436,99 +436,124 @@
     saveReviewData();
   }
 
-  function recordIncorrect(country) {
+  // ---------- Learning history ----------
+  function recordCorrect(country) {
+    const now = Date.now();
+    const record = getReviewRecord(country);
+    record.attempts = (Number(record.attempts) || 0) + 1;
+    record.correct = (Number(record.correct) || 0) + 1;
+    record.misses = Math.max(0, (Number(record.misses) || 0) - 1);
+    record.consecutiveCorrect = (Number(record.consecutiveCorrect) || 0) + 1;
+    record.lastSeen = now;
+
+    // Correct recall progressively pushes the next scheduled review further out.
+    const intervals = [1, 3, 7, 14, 30, 60];
+    const index = Math.min(record.consecutiveCorrect - 1, intervals.length - 1);
+    record.intervalDays = intervals[index];
+    record.dueAt = now + record.intervalDays * 86400000;
+
+    // A correct retry clears this session's pending review for the country.
+    delete sessionReviewQueue[country];
+    saveReviewData();
+  }
+
+  function recordIncorrect(country, wasSkipped = false) {
     const now = Date.now();
     const record = getReviewRecord(country);
     record.attempts = (Number(record.attempts) || 0) + 1;
     record.misses = (Number(record.misses) || 0) + 1;
+    if (wasSkipped) record.skips = (Number(record.skips) || 0) + 1;
     record.consecutiveCorrect = 0;
     record.lastSeen = now;
     record.intervalDays = 0.25;
     record.dueAt = now + REVIEW_DELAY_MS;
-    sessionReviewQueue[country] = { eligibleAfter: totalAnswered + REVIEW_DELAY_QUESTIONS };
+    sessionReviewQueue[country] = { eligibleAfter: questionsAsked() + REVIEW_DELAY_QUESTIONS };
     saveReviewData();
   }
 
   function rememberMiss(country) {
-    const capital = currentPair.capital.join(" / ");
     const existing = missedThisSession.get(country);
     if (existing) existing.count++;
-    else missedThisSession.set(country, { capital, count: 1 });
+    else missedThisSession.set(country, { capital: currentPair.capital[0], count: 1 });
   }
 
-  function showFeedback(type, message, answerDetail) {
+  // type: correct | close | incorrect | skipped. The detail block lists the primary answer, then any alternatives.
+  function showFeedback(type, headline, primary, alternatives = []) {
     feedbackEl.replaceChildren();
     feedbackEl.className = `feedback ${type}`;
-    feedbackEl.appendChild(document.createTextNode(message));
-    if (answerDetail) {
-      const detail = document.createElement("span");
-      detail.className = "answer-detail";
-      detail.textContent = answerDetail;
-      feedbackEl.appendChild(detail);
-    }
+    const result = document.createElement("p");
+    result.className = "feedback-result";
+    result.textContent = headline;
+    feedbackEl.appendChild(result);
+    if (!primary) return;
+
+    const list = document.createElement("dl");
+    list.className = "feedback-detail";
+    const addRow = (label, value) => {
+      const row = document.createElement("div");
+      const term = document.createElement("dt");
+      term.textContent = label;
+      const definition = document.createElement("dd");
+      definition.textContent = value;
+      row.append(term, definition);
+      list.appendChild(row);
+    };
+    addRow("Correct answer", primary);
+    if (alternatives.length) addRow("Also accepted", alternatives.join(", "));
+    feedbackEl.appendChild(list);
   }
 
   function submitAnswer(rawGuess) {
-    if (isWaitingForNext || !currentPair) return;
     const result = matchAnswer(rawGuess, currentPair.capital);
+    const [primary, ...alternatives] = currentPair.capital;
+    const code = currentPair.code;
 
     totalAnswered++;
-    const country = currentPair.code;
-    if (result && (result.type === "exact" || result.type === "typo")) {
+    if (result) {
       score++;
       streak++;
       bestStreak = Math.max(bestStreak, streak);
-      recordCorrect(country);
-
+      recordCorrect(code);
       if (result.type === "typo") {
         spellingAccepted++;
-        showFeedback("correct", "Correct. Spelling accepted.", `Standard spelling: ${result.answer}`);
+        showFeedback("close", "Not quite", primary, alternatives);
+      } else if (result.answer !== primary) {
+        showFeedback("correct", "Correct!", primary, alternatives);
       } else {
-        showFeedback("correct", "Correct!", "");
+        showFeedback("correct", "Correct!");
       }
     } else {
       streak = 0;
-      rememberMiss(country);
-      recordIncorrect(country);
-      showFeedback("incorrect", "Not quite.", `Accepted answer${currentPair.capital.length === 1 ? "" : "s"}: ${currentPair.capital.join(" / ")}`);
+      rememberMiss(code);
+      recordIncorrect(code);
+      showFeedback("incorrect", "Incorrect", primary, alternatives);
     }
-
     updateStats();
-    scheduleNextQuestion();
+    showAnswerState();
   }
 
   formEl.addEventListener("submit", event => {
     event.preventDefault();
-    if (isWaitingForNext) return;
+    if (isWaitingForNext) {
+      if (Date.now() - answerShownAt > 300) nextQuestion();
+      return;
+    }
     const guess = inputEl.value.trim();
-    if (!guess) return;
-    inputEl.readOnly = true;
-    skipBtn.disabled = true;
-    submitAnswer(guess);
+    if (guess) submitAnswer(guess);
   });
 
   skipBtn.addEventListener("click", () => {
     if (isWaitingForNext || !currentPair) return;
-    totalAnswered++;
+    const [primary, ...alternatives] = currentPair.capital;
+    skipped++;
     streak = 0;
     rememberMiss(currentPair.code);
-    recordIncorrect(currentPair.code);
-    showFeedback("incorrect", "Skipped.", `Accepted answer${currentPair.capital.length === 1 ? "" : "s"}: ${currentPair.capital.join(" / ")}`);
+    recordIncorrect(currentPair.code, true);
+    showFeedback("skipped", "Skipped", primary, alternatives);
     updateStats();
-    scheduleNextQuestion();
+    showAnswerState();
   });
 
   startBtn.addEventListener("click", startSession);
   finishBtn.addEventListener("click", finishSession);
   playAgainBtn.addEventListener("click", startSession);
-  homeBtn.addEventListener("click", () => {
-    clearTimeout(sessionTimeout);
-    sessionTimeout = null;
-    resultsScreen.classList.add("hidden");
-    quizScreen.classList.add("hidden");
-    startScreen.classList.remove("hidden");
-    startHeading.focus();
-    inputEl.readOnly = false;
-    skipBtn.disabled = false;
-    finishBtn.disabled = false;
-  });
