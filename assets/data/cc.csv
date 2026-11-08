@@ -138,6 +138,7 @@ JE,Jersey,Territory or dependency,St. Helier,Saint Helier,easy
 JM,Jamaica,Sovereign state,Kingston,,easy
 JO,Jordan,Sovereign state,Amman,,easy
 JP,Japan,Sovereign state,Tokyo,,easy
+JS,Somaliland,Sovereign state,Hargeisa,Hargeysa,easy
 JT,Johnston Atoll,Territory or dependency,,,easy
 KE,Kenya,Sovereign state,Nairobi,,easy
 KG,Kyrgyzstan,Sovereign state,Bishkek,,easy
@@ -211,6 +212,7 @@ PE,Peru,Sovereign state,Lima,,easy
 PF,French Polynesia,Territory or dependency,Papeete,Pape'ete,easy
 PG,Papua New Guinea,Sovereign state,Port Moresby,,easy
 PH,Philippines,Sovereign state,Manila,,easy
+PI,Peter I Island,Territory or dependency,,,easy
 PK,Pakistan,Sovereign state,Islamabad,,easy
 PL,Poland,Sovereign state,Warsaw,,easy
 PM,Saint Pierre and Miquelon,Territory or dependency,St. Pierre,Saint Pierre,easy
@@ -282,6 +284,7 @@ VE,Venezuela,Sovereign state,Caracas,Santiago de León de Caracas;Santiago de Le
 VG,British Virgin Islands,Territory or dependency,Road Town,,easy
 VI,US Virgin Islands,Territory or dependency,Charlotte Amalie,,easy
 VN,Viet Nam,Sovereign state,Hanoi,,easy
+VS,South Vietnam, Historical entity,,,essy
 VU,Vanuatu,Sovereign state,Port Vila,,easy
 WF,Wallis and Futuna,Territory or dependency,Mata Utu,,easy
 WK,Wake Island,Territory or dependency,,,easy
@@ -294,8 +297,10 @@ YE,Yemen,Sovereign state,Sanaa,Aden,easy
 YT,Mayotte,Territory or dependency,Mamoudzou,,easy
 YU,Yugoslavia,Historical entity,,,easy
 ZA,South Africa,Sovereign state,Pretoria ,Cape Town;Bloemfontein,easy
+ZB,Biafra,Historical entity,,,easy
 ZL,Saar Land,Historical entity,,,easy
 ZM,Zambia,Sovereign state,Lusaka,,easy
+ZN,Zanzibar,Historical entity,,,easy
 ZR,Ross Dependency,Antarctic claim,,,easy
 ZT,Transkei,Historical entity,,,easy
 ZW,Zimbabwe,Sovereign state,Harare,,easy
