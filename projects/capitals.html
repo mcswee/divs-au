@@ -1,7 +1,7 @@
 ---
 layout: default
 title: World Capitals Quiz
-description: Free-response practice on the capitals of the world's countries and territories, with spelling tolerance and spaced review of missed answers.
+description: Name the capital city of countries and territories from around the world. Untimed, spelling-tolerant, with your progress saved on your device.
 permalink: /capitals/
 extra_head: '<link rel="stylesheet" href="/assets/css/capitals.css">'
 extra_scripts: '<script src="/assets/js/capitals.js"></script>'
@@ -10,12 +10,12 @@ extra_scripts: '<script src="/assets/js/capitals.js"></script>'
   <div class="quiz-card">
     <section id="start-screen" aria-labelledby="start-heading">
       <h1 id="start-heading" tabindex="-1">World Capitals Quiz</h1>
-      <p class="subtitle">Free-response practice using the capital data in the country and entity list. Missed capitals return during the session and receive extra attention in future sessions.</p>
-      <ul class="start-facts" aria-label="Quiz features">
-        <li class="fact">Untimed</li>
-        <li class="fact">All listed places</li>
-        <li class="fact">Spelling-tolerant</li>
-        <li class="fact">Progress saved on this device</li>
+      <p class="intro">Name the capital city of countries and territories from around the world.</p>
+      <ul class="how-list">
+        <li>Type the capital of each place shown. There is no timer.</li>
+        <li>Small spelling mistakes are accepted.</li>
+        <li>Skip any you don’t know, and finish whenever you like to see your results.</li>
+        <li>Capitals you miss or skip come back later in the quiz, and more often in future quizzes. Your progress is saved on this device.</li>
       </ul>
       <button id="start-btn" class="btn btn-primary full-width" type="button" disabled>Loading capitals…</button>
       <p id="load-error" class="error-message hidden" role="alert"></p>
@@ -26,19 +26,20 @@ extra_scripts: '<script src="/assets/js/capitals.js"></script>'
         <div class="stats">
           <span>Answered <strong id="answered-count">0</strong></span>
           <span>Correct <strong id="correct-count">0</strong></span>
+          <span>Skipped <strong id="skipped-count">0</strong></span>
           <span>Streak <strong id="streak-count">0</strong></span>
         </div>
         <button id="finish-btn" class="btn btn-quiet" type="button">Finish</button>
       </div>
 
-      <p class="question-label" id="question-label">What is the capital of…</p>
+      <p class="question-label">What is the capital of…</p>
       <p class="country-display" id="country-name">Loading…</p>
 
       <form id="quiz-form" autocomplete="off">
         <label class="sr-only" for="user-input">Capital city</label>
         <input type="text" id="user-input" name="answer" placeholder="Type the capital…" autocomplete="off" autocapitalize="words" spellcheck="false" required>
         <div class="button-group">
-          <button type="submit" class="btn btn-primary">Submit answer</button>
+          <button type="submit" class="btn btn-primary" id="submit-btn">Submit answer</button>
           <button type="button" class="btn" id="skip-btn">Skip</button>
         </div>
       </form>
@@ -56,10 +57,7 @@ extra_scripts: '<script src="/assets/js/capitals.js"></script>'
         <div class="missed-list" id="missed-list" tabindex="0" role="region" aria-label="Capitals to revisit"></div>
       </div>
       <p id="all-correct-message" class="empty-review hidden">No missed answers this session.</p>
-      <div class="button-group">
-        <button class="btn btn-primary" id="play-again-btn" type="button">Keep practising</button>
-        <button class="btn" id="home-btn" type="button">Back to start</button>
-      </div>
+      <button class="btn btn-primary full-width" id="play-again-btn" type="button">Start again</button>
     </section>
   </div>
 </div>
