@@ -1,5 +1,16 @@
 [
   {
+    "id": "90b1eb0f-07ce-5b5a-8c8f-e495f2556bbc",
+    "first_seen": "2026-11-08T05:35:50.458233+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier police request in the Lilydale area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
     "id": "0f21101b-9fb4-5453-aa60-074babb2f021",
     "first_seen": "2026-11-07T05:33:53.995485+00:00",
     "header": "Minor Delay",
