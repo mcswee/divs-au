@@ -1,0 +1,123 @@
+/* Capitals quiz: projects/capitals.html (script: assets/js/capitals.js; data: assets/data/cc.csv) */
+.capitals-page { --ctl-border: #767676; width: 100%; }
+
+.capitals-page .quiz-card {
+    max-width: 520px;
+    margin: 10px auto;
+    padding: clamp(20px, 5vw, 32px);
+    background: var(--highlight);
+    border: 1px solid var(--text-accent);
+    border-radius: 8px;
+    box-shadow: var(--shadow-main);
+}
+
+.capitals-page h1 { font-size: 1.6rem; margin-bottom: 8px; }
+.capitals-page h2 { margin: 0; padding: 0; border: none; font-size: 1.4rem; }
+.capitals-page [tabindex="-1"]:focus { outline: none; }
+.capitals-page .hidden { display: none !important; }
+.capitals-page .full-width { width: 100%; }
+
+.capitals-page .sr-only {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.capitals-page .subtitle { margin: 0 0 20px; font-size: 0.92rem; line-height: 1.5; color: var(--text-highlight); }
+
+.capitals-page .start-facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; padding: 0; list-style: none; }
+.capitals-page .fact { margin: 0; padding: 4px 8px; border-radius: 4px; background: var(--accent); font-size: 0.78rem; color: var(--text-main); }
+
+/* buttons */
+.capitals-page .btn {
+    min-height: 46px;
+    padding: 10px 16px;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--brand-main);
+    background: var(--accent);
+    border: 1px solid var(--ctl-border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.capitals-page .btn:hover:not(:disabled) { background: var(--brand-accent); border-color: var(--brand-accent); color: var(--highlight); }
+.capitals-page .btn-primary { background: var(--brand-main); border-color: var(--brand-main); color: var(--highlight); }
+.capitals-page .btn-quiet { min-height: 36px; padding: 6px 12px; background: transparent; }
+.capitals-page .btn:disabled { cursor: default; opacity: 0.55; }
+
+.capitals-page .button-group { display: flex; gap: 10px; margin-top: 12px; }
+.capitals-page .button-group .btn { flex: 1; }
+
+/* quiz screen */
+.capitals-page .quiz-topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+.capitals-page .stats { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 0.86rem; color: var(--text-highlight); }
+.capitals-page .stats strong { color: var(--text-main); }
+
+.capitals-page .question-label {
+    margin: 0 0 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-highlight);
+}
+
+.capitals-page .country-display {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 2.5em;
+    margin: 0 0 24px;
+    font-size: clamp(1.6rem, 6vw, 2.1rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--brand-main);
+    overflow-wrap: anywhere;
+}
+
+.capitals-page .country-flag { flex: 0 0 auto; width: 42px; max-height: 30px; object-fit: contain; border: 1px solid var(--text-accent); }
+
+.capitals-page #user-input {
+    width: 100%;
+    min-height: 50px;
+    padding: 10px 12px;
+    font: inherit;
+    font-size: 1.05rem;
+    color: var(--text-main);
+    background: var(--highlight);
+    border: 2px solid var(--ctl-border);
+    border-radius: 6px;
+}
+
+.capitals-page #user-input::placeholder { color: var(--text-highlight); opacity: 1; }
+.capitals-page #user-input:focus { border-color: var(--brand-main); outline: 2px solid var(--brand-accent); outline-offset: 1px; }
+
+.capitals-page .feedback { min-height: 54px; margin-top: 16px; padding: 10px 12px; border: 1px solid transparent; border-radius: 6px; font-size: 0.92rem; line-height: 1.45; overflow-wrap: anywhere; }
+.capitals-page .feedback.correct { color: #0b6b3a; background: #e6f4ec; border-color: #0b6b3a; }
+.capitals-page .feedback.incorrect { color: var(--error-main); background: var(--error-bg); border-color: var(--error-main); }
+.capitals-page .answer-detail { display: block; margin-top: 3px; color: var(--text-main); }
+
+/* results screen */
+.capitals-page .result-score { margin: 16px 0 4px; font-size: 3rem; font-weight: 700; line-height: 1; color: var(--brand-main); }
+.capitals-page .result-sub { margin: 0 0 16px; font-size: 0.92rem; line-height: 1.6; color: var(--text-highlight); }
+.capitals-page .result-panel { margin: 16px 0; padding: 12px 14px; background: var(--bg-main); border: 1px solid var(--text-accent); border-radius: 6px; }
+.capitals-page .result-panel h3 { padding-bottom: 6px; font-size: 0.95rem; }
+.capitals-page .missed-list { max-height: 240px; overflow-y: auto; }
+.capitals-page .missed-item { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--text-accent); font-size: 0.86rem; }
+.capitals-page .missed-item:last-child { border-bottom: 0; }
+.capitals-page .missed-capital { text-align: right; color: var(--text-highlight); }
+.capitals-page .empty-review { font-size: 0.9rem; font-weight: 600; color: #0b6b3a; }
+.capitals-page .error-message { margin-top: 12px; line-height: 1.5; color: var(--error-main); }
+
+.capitals-page button:focus-visible,
+.capitals-page .missed-list:focus-visible { outline: 3px solid var(--brand-accent); outline-offset: 2px; }
+
+@media (max-width: 380px) {
+    .capitals-page .button-group { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .capitals-page *, .capitals-page *::before, .capitals-page *::after { transition: none !important; }
+}
