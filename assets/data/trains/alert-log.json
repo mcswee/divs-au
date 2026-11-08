@@ -1,5 +1,16 @@
 [
   {
+    "id": "dae9fece-a13b-590e-ad54-245d900ac352",
+    "first_seen": "2026-11-08T21:51:26.079452+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an earlier train fault in the Roxburgh Park area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:",
+      "aus:vic:vic-02-CGB-R:"
+    ]
+  },
+  {
     "id": "611650c4-ec02-5b87-b900-366e0160cc79",
     "first_seen": "2026-11-08T13:06:14.541709+00:00",
     "header": "Planned Works",
