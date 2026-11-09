@@ -236,19 +236,19 @@
       lookAt: { lat: 18.0, lng: -80.0, altitude: 0.7 },
       cities: [
         { name: "Bridgetown", lat: 13.10, lng: -59.61 },
-        { name: "Cancún", lat: 21.16, lng: -86.85, offsetY: 6 },
+        { name: "Cancún", lat: 21.16, lng: -86.85 },
         { name: "Ciudad Juárez", lat: 31.75, lng: -106.49, offsetY: 18 },
         { name: "Guadalajara", lat: 20.67, lng: -103.39 },
         { name: "Guatemala City", lat: 14.63, lng: -90.50 },
         { name: "Havana", lat: 23.11, lng: -82.36, offsetY: 6 },
-        { name: "Kingston", lat: 17.97, lng: -76.79, offsetY: 6 },
+        { name: "Kingston", lat: 17.97, lng: -76.79, offsetY: 12 },
         { name: "Monterrey", lat: 25.68, lng: -100.31 },
         { name: "Nassau", lat: 24.08, lng: -77.34, offsetY: -12 },
         { name: "Panama City", lat: 8.98, lng: -79.51, offsetY: 12 },
         { name: "Port of Spain", lat: 10.67, lng: -61.52 },
         { name: "San José", lat: 9.93, lng: -84.08, offsetY: -12 },
-        { name: "San Juan", lat: 18.46, lng: -66.10, offsetY: 21 },
-        { name: "Santo Domingo", lat: 18.48, lng: -69.93, offsetY: -15 },
+        { name: "San Juan", lat: 18.46, lng: -66.10, offsetY: 27 },
+        { name: "Santo Domingo", lat: 18.48, lng: -69.93, offsetY: -12 },
         { name: "Tijuana", lat: 32.53, lng: -117.03, offsetY: -6 }
       ]
     },
