@@ -22,10 +22,9 @@ extra_scripts: '<script src="/assets/js/metro.js"></script>'
   </div>
 
   <div class="station-pick">
-    <label class="sr-only" for="station-select">Select station</label>
-    <select id="station-select">
-      <option value="">Select a station…</option>
-    </select>
+    <label class="sr-only" for="station-input">Station</label>
+    <input type="text" id="station-input" list="station-list" placeholder="Search for a station…" autocomplete="off" spellcheck="false" enterkeyhint="go">
+    <datalist id="station-list"></datalist>
   </div>
 
   <div id="board">
