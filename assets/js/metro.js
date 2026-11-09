@@ -1,4 +1,4 @@
-// Melbourne train departures (projects/metro.html)
+// Melbourne train departures (metro.html)
 // Data: /assets/data/trains/*.json   Live data: the Cloudflare Worker below (the API key lives there)
 
 // ── Config ────────────────────────────────────────────────────────────────────
@@ -117,16 +117,21 @@ async function pollRT() {
     buildRtLookup();
     const dot  = document.getElementById('live-dot');
     const text = document.getElementById('live-text');
-    if (dot)  dot.classList.add('connected');
-    if (text) text.textContent = 'LIVE';
+    if (dot) {
+      dot.classList.add('connected');
+      dot.classList.remove('pulse');
+      void dot.offsetWidth;            // restart the one-off pulse
+      dot.classList.add('pulse');
+    }
+    if (text) text.textContent = 'Live';
     if (liveOnline === false) announce('Live data is back.');
     liveOnline = true;
     if (stationData) render();
   } catch {
     const dot  = document.getElementById('live-dot');
     const text = document.getElementById('live-text');
-    if (dot)  dot.classList.remove('connected');
-    if (text) text.textContent = 'OFFLINE';
+    if (dot)  dot.classList.remove('connected', 'pulse');
+    if (text) text.textContent = 'Offline';
     if (liveOnline !== false) announce('Live data is offline. Showing scheduled times.');
     liveOnline = false;
   }
@@ -208,14 +213,16 @@ function render() {
     return;
   }
 
-  plats.forEach(p => frag.appendChild(buildPlatform(p, byPlat[p])));
+  const grid = el('div', 'platforms');
+  plats.forEach(p => grid.appendChild(buildPlatform(p, byPlat[p])));
   vlineKeys.forEach(k => {
     const g = vlineGroups[k];
     const label = isSouthernCross
       ? `V/Line: ${g.route}`
       : (g.dir === 'up' ? 'V/Line — to Southern Cross' : 'V/Line — Outbound');
-    frag.appendChild(buildPlatform(label, g.deps, true));
+    grid.appendChild(buildPlatform(label, g.deps, true));
   });
+  frag.appendChild(grid);
 
   swapBoard(frag);
 }
@@ -371,24 +378,27 @@ function buildAlerts(alerts) {
 // ── Platform ──────────────────────────────────────────────────────────────────
 function buildPlatform(plat, services, rawLabel) {
   const sec = el('section', 'platform');
-  const hdr = el('div', 'platform-hdr');
+  const hdr = el('h2', 'platform-hdr');
   hdr.textContent = rawLabel ? plat : (plat === '—' ? 'No platform data' : `Platform ${plat}`);
-  sec.appendChild(hdr);
-  services.forEach(dep => {
-    sec.appendChild(buildDep(dep));
-    if (openTrip === dep.trip_id) sec.appendChild(buildPattern(dep));
-  });
+  const list = el('ul', 'dep-list');
+  services.forEach(dep => list.appendChild(buildDep(dep)));
+  sec.append(hdr, list);
   return sec;
 }
 
 // ── Departure row ─────────────────────────────────────────────────────────────
 function buildDep(dep) {
-  const row = el('div', 'dep' + (openTrip === dep.trip_id ? ' open' : ''));
-  row.style.setProperty('--lc', dep.colour);
-  row.setAttribute('role', 'button');
-  row.setAttribute('tabindex', '0');
-  row.setAttribute('aria-expanded', openTrip === dep.trip_id ? 'true' : 'false');
-  if (openTrip === dep.trip_id) row.setAttribute('aria-controls', patternId(dep));
+  const isOpen = openTrip === dep.trip_id;
+  const colour = dep.colour || '#cccccc';
+
+  const item = el('li', 'dep-item');
+  item.style.setProperty('--lc', colour);
+  item.style.setProperty('--lc-text', readableText(colour));
+
+  const row = el('button', 'dep');
+  row.type = 'button';
+  row.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  if (isOpen) row.setAttribute('aria-controls', patternId(dep));
   row.dataset.focusKey = 'dep:' + dep.trip_id;
 
   const nowMin    = nowMins();
@@ -409,64 +419,56 @@ function buildDep(dep) {
     sched.innerHTML = '<span class="sr-only">Scheduled </span>' + escHtml(schedDisplay);
     const actual = el('span', 'actual');
     actual.innerHTML = '<span class="sr-only">Expected </span>' + escHtml(actualDisplay);
-    timeEl.append(sched, actual);
+    timeEl.append(sched, ' ', actual);
   } else {
     const actual = el('span', 'actual');
     actual.textContent = schedDisplay;
     timeEl.appendChild(actual);
   }
 
-  const minsEl = el('span', 'dep-mins' + (minsAway <= 2 ? ' soon' : ''));
-  minsEl.textContent = minsAway <= 0  ? 'Now'
-                     : minsAway === 1 ? '1 min'
-                     : minsAway >= 60 ? '1 hr +'
-                     : `${minsAway} min`;
+  const dest = el('span', 'dep-dest');
+  dest.textContent = dep.dest;
 
-  const info = el('div', 'dep-info');
-  const dest = el('div', 'dep-dest');
-
-  let badge = '';
-  if (delay !== null) {
-    if (!minuteChanged)
-      badge = '<span class="rt-ontime">on time</span>';
-    else if (delaySec >= 0)
-      badge = `<span class="rt-late">${Math.max(1, Math.round(delaySec/60))} min late</span>`;
-    else
-      badge = '<span class="rt-early">Early</span>';
-  }
-  dest.innerHTML = escHtml(dep.dest) + badge;
-
-  const route = el('div', 'dep-route');
-  const routeBadge = el('span', 'route-badge');
-  routeBadge.style.backgroundColor = dep.colour || '#ccc';
-  routeBadge.style.color = readableText(dep.colour);
-  routeBadge.textContent = dep.route;
+  const meta = el('span', 'dep-meta');
+  const route = el('span', 'chip chip-route');
+  route.textContent = dep.route;
+  meta.append(route, ' ');
   if (dep.stype) {
-    route.append(routeBadge, document.createTextNode(` · ${dep.stype}`));
-  } else {
-    route.appendChild(routeBadge);
+    const stype = el('span', 'dep-stype');
+    stype.textContent = dep.stype;
+    meta.append(stype, ' ');
   }
-  info.append(dest, route);
+  if (delay !== null) {
+    const status = !minuteChanged ? el('span', 'chip chip-ontime')
+                 : delaySec >= 0  ? el('span', 'chip chip-late')
+                 :                  el('span', 'chip chip-early');
+    status.textContent = !minuteChanged ? 'On time'
+                       : delaySec >= 0  ? `${Math.max(1, Math.round(delaySec / 60))} min late`
+                       :                  'Early';
+    meta.append(status, ' ');
+  }
+  const mins = el('span', 'chip chip-mins' + (minsAway <= 2 ? ' soon' : ''));
+  mins.textContent = minsAway <= 0  ? 'Now'
+                   : minsAway === 1 ? '1 min'
+                   : minsAway >= 60 ? '1 hr +'
+                   : `${minsAway} min`;
+  meta.appendChild(mins);
 
-  const caret = el('span', 'dep-caret');
-  caret.setAttribute('aria-hidden', 'true');
-  caret.textContent = openTrip === dep.trip_id ? '▲' : '▼';
+  const main = el('span', 'dep-main');
+  main.append(dest, ' ', meta);
+  row.append(timeEl, ' ', main);
 
-  row.append(timeEl, minsEl, info, caret);
-
-  const toggle = async () => {
+  row.addEventListener('click', async () => {
     if (openTrip === dep.trip_id) { openTrip = null; render(); return; }
     openTrip = dep.trip_id;
     render();
     await ensurePattern(dep.route);
     render();
-  };
-  row.addEventListener('click', toggle);
-  row.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
   });
 
-  return row;
+  item.appendChild(row);
+  if (isOpen) item.appendChild(buildPattern(dep));
+  return item;
 }
 
 // ── Stopping pattern ──────────────────────────────────────────────────────────
@@ -481,15 +483,14 @@ async function ensurePattern(route) {
 }
 
 function buildPattern(dep) {
-  const wrap = el('div', 'pattern');
+  const wrap = el('ul', 'pattern');
   wrap.id = patternId(dep);
-  wrap.style.setProperty('--lc', dep.colour);
 
   const trips = patCache[dep.route];
   const full  = trips && trips[dep.trip_id];
 
   if (!full) {
-    const loading = el('div', 'pat-loading');
+    const loading = el('li', 'pat-loading');
     loading.textContent = 'Loading stops…';
     wrap.appendChild(loading);
     return wrap;
@@ -507,12 +508,12 @@ function buildPattern(dep) {
 
   stops.forEach(([name, time], i) => {
     if (name === '__EXP__') {
-      const row = el('div', 'pat-express');
+      const row = el('li', 'pat-express');
       row.textContent = `Express: ${time}`;
       wrap.appendChild(row);
       return;
     }
-    const row = el('div', 'pat-stop' +
+    const row = el('li', 'pat-stop' +
       (i === 0    ? ' is-here' : '') +
       (i === last ? ' is-end'  : ''));
     const t = el('span', 'pat-time');
@@ -522,6 +523,14 @@ function buildPattern(dep) {
     row.append(t, n);
     wrap.appendChild(row);
   });
+
+  // the stop list can end before the service does (e.g. a train that carries on beyond the stops listed)
+  const norm = n => n.trim().toLowerCase();
+  if (!stops.some(([n]) => n !== '__EXP__' && norm(n) === norm(dep.dest))) {
+    const more = el('li', 'pat-express');
+    more.textContent = `Continues to ${dep.dest}`;
+    wrap.appendChild(more);
+  }
 
   return wrap;
 }
