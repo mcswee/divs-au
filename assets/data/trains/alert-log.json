@@ -1,5 +1,16 @@
 [
   {
+    "id": "55d9f9c1-6adc-58b4-9115-e688f4b431e5",
+    "first_seen": "2026-11-09T05:44:59.456898+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a police request in the Greensborough area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
     "id": "dae9fece-a13b-590e-ad54-245d900ac352",
     "first_seen": "2026-11-08T21:51:26.079452+00:00",
     "header": "Minor Delay",
