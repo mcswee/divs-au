@@ -4,40 +4,38 @@ title: "Melbourne train departures"
 category: projects
 permalink: /metro/
 description: "Upcoming Melbourne metropolitan and V/Line train departures by station, from GTFS schedule data with live running times and service alerts."
+extra_head: '<link rel="stylesheet" href="/assets/css/metro.css">'
+extra_scripts: '<script src="/assets/js/metro.js"></script>'
+
 ---
-<div class="metro-page">
-  <div class="metro-app">
-    <div class="metro-head">
-      <div class="header-top">
-        <div class="wordmark">
-          <h1>Melbourne Trains</h1>
-        </div>
-        <span class="clock-wrap"><span class="sr-only">Melbourne time: </span><span id="clock"></span></span>
-      </div>
-      <div class="selector-wrap">
-        <label for="station-select" class="sr-only">Select station</label>
-        <select id="station-select">
-          <option value="">Select a station…</option>
-        </select>
-      </div>
-    </div>
+<div class="page-element metro-page">
 
-    <div id="board">
-      <p class="msg">Select a station to see upcoming departures.</p>
-    </div>
-    <div id="board-status" class="sr-only" role="status"></div>
-
-    <div class="metro-foot">
-      <span>
-        Data: <a href="https://opendata.transport.vic.gov.au/dataset/gtfs-schedule" target="_blank" rel="noopener">GTFS Schedule<span class="sr-only"> (opens in a new tab)</span></a> &amp; <a href="https://opendata.transport.vic.gov.au/dataset/gtfs-realtime" target="_blank" rel="noopener">GTFS Realtime<span class="sr-only"> (opens in a new tab)</span></a>.
-        For official times and disruptions see <a href="https://www.transportvic.com.au" target="_blank" rel="noopener">Transport Victoria<span class="sr-only"> (opens in a new tab)</span></a>.
-      </span>
-      <span id="live-indicator" class="live-status-wrap">
+  <div class="metro-head">
+    <h1>Melbourne trains</h1>
+    <div class="metro-clock">
+      <p><span class="sr-only">Melbourne time: </span><span id="clock"></span></p>
+      <p class="live-status-wrap" id="live-indicator">
         <span class="live-dot" id="live-dot" aria-hidden="true"></span>
         <span id="live-text">Connecting…</span>
-      </span>
+      </p>
     </div>
   </div>
-</div>
 
-<script src="/assets/js/metro.js"></script>
+  <div class="station-pick">
+    <label class="sr-only" for="station-select">Select station</label>
+    <select id="station-select">
+      <option value="">Select a station…</option>
+    </select>
+  </div>
+
+  <div id="board">
+    <p class="msg">Select a station to see upcoming departures.</p>
+  </div>
+  <div id="board-status" class="sr-only" role="status"></div>
+
+  <p class="copyright">
+    Data: <a class="external-link" href="https://opendata.transport.vic.gov.au/dataset/gtfs-schedule" target="_blank" rel="noopener">GTFS Schedule<span class="sr-only"> (opens in a new tab)</span></a> and <a class="external-link" href="https://opendata.transport.vic.gov.au/dataset/gtfs-realtime" target="_blank" rel="noopener">GTFS Realtime<span class="sr-only"> (opens in a new tab)</span></a>.
+    For official times and disruptions see <a class="external-link" href="https://www.transportvic.com.au" target="_blank" rel="noopener">Transport Victoria<span class="sr-only"> (opens in a new tab)</span></a>.
+  </p>
+
+</div>
