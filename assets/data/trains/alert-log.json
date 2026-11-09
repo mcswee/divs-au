@@ -1,5 +1,16 @@
 [
   {
+    "id": "3186cac2-5c0b-53d5-a7b7-f7a3db402a77",
+    "first_seen": "2026-11-09T15:50:21.620395+00:00",
+    "header": "Planned work: Buses replace trains from Newport to Werribee",
+    "description": "11.50pm to last service each night, Monday 9 November and Tuesday 10 November",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
     "id": "55d9f9c1-6adc-58b4-9115-e688f4b431e5",
     "first_seen": "2026-11-09T05:44:59.456898+00:00",
     "header": "Minor Delay",
