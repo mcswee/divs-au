@@ -27,6 +27,7 @@
   border-radius: 10px;
   background: var(--highlight);
 }
+
 .eras-show-data > summary, .eras-secondary-catalogue > summary { cursor: pointer; font-weight: 700; font-size: 1.05rem; }
 .eras-show-data[open] > summary, .eras-secondary-catalogue[open] > summary { margin-bottom: 1rem; }
 
