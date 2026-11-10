@@ -49,14 +49,13 @@
     to   { box-shadow: 0 0 0 8px rgba(21, 128, 61, 0); }
 }
 
-/* ── Station filter and select (same rules as the suburbs page) ── */
-.metro-page .station-pick { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-bottom: 24px; }
-.metro-page .search-wrap { flex: 1 1 260px; max-width: 380px; }
-.metro-page .select-wrap { flex: 0 1 260px; }
-.metro-page input,
-.metro-page select {
+/* ── Station picker: a drop-down list you can also type into (looks like the site's select) ── */
+.metro-page .station-pick { margin-bottom: 24px; }
+.metro-page .combo { position: relative; max-width: 380px; }
+.metro-page .combo::after { content: "▼"; position: absolute; top: 50%; right: 12px; transform: translateY(-50%); font-size: 0.7rem; color: var(--text-highlight); pointer-events: none; }
+.metro-page input {
     width: 100%;
-    padding: 9px 12px;
+    padding: 9px 32px 9px 12px;
     font: inherit;
     font-size: 0.9rem;
     color: var(--text-main);
@@ -65,8 +64,27 @@
     border-radius: 6px;
 }
 .metro-page input::placeholder { color: var(--text-highlight); opacity: 1; }
-.metro-page input:focus,
-.metro-page select:focus { outline: 2px solid var(--brand-accent); outline-offset: 1px; border-color: var(--brand-main); }
+.metro-page input:focus { outline: 2px solid var(--brand-accent); outline-offset: 1px; border-color: var(--brand-main); }
+.metro-page #station-list {
+    position: absolute;
+    z-index: 20;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: min(50vh, 18rem);
+    margin: 2px 0 0;
+    padding: 0;
+    overflow-y: auto;
+    list-style: none;
+    background: var(--highlight);
+    border: 1px solid var(--ctl-border);
+    border-radius: 6px;
+    box-shadow: var(--shadow-deep);
+}
+.metro-page #station-list[hidden] { display: none; }
+.metro-page #station-list li { margin: 0; padding: 9px 12px; font-size: 0.9rem; cursor: pointer; }
+.metro-page #station-list li:hover { background: var(--brand-highlight); }
+.metro-page #station-list li[aria-selected="true"] { background: var(--brand-main); color: var(--highlight); }
 
 .metro-page .msg { padding: 2rem 0; font-size: 0.9rem; color: var(--text-highlight); }
 
@@ -207,8 +225,8 @@
 }
 .metro-page .chip-route { background: var(--lc, #ccc); color: var(--lc-text, #fff); }
 .metro-page .chip-mins { background: var(--ink); color: #ffffff; }
-.metro-page .chip-mins.soon { color: var(--amber); }
-.metro-page .chip-late { background: var(--amber); color: #000000; }
+.metro-page .chip-mins.soon { background: var(--amber); color: #000000; }
+.metro-page .chip-late { background: var(--ink); color: var(--amber); }
 .metro-page .chip-ontime,
 .metro-page .chip-early { background: var(--accent); border-color: var(--text-accent); color: var(--text-main); }
 
@@ -238,10 +256,6 @@
 
 /* ── Focus, small screens and motion ── */
 .metro-page .copyright a:focus-visible { outline: 3px solid var(--brand-accent); outline-offset: 2px; }
-
-@media (max-width: 600px) {
-    .metro-page .select-wrap { flex-basis: 100%; }
-}
 
 @media (max-width: 480px) {
     .metro-page { --left-w: 4.25rem; --right-w: 5.65rem; --gap: 6px; }
