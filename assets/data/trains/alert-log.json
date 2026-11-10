@@ -1,5 +1,16 @@
 [
   {
+    "id": "287a82a2-370f-515b-b777-5cb97b2edd82",
+    "first_seen": "2026-11-10T01:20:08.140884+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to an equipment fault in the Ginifer area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY-R:",
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
     "id": "3186cac2-5c0b-53d5-a7b7-f7a3db402a77",
     "first_seen": "2026-11-09T15:50:21.620395+00:00",
     "header": "Planned work: Buses replace trains from Newport to Werribee",
