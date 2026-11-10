@@ -22,15 +22,10 @@ extra_scripts: '<script src="/assets/js/metro.js"></script>'
   </div>
 
   <div class="station-pick">
-    <div class="search-wrap">
-      <label class="sr-only" for="station-filter">Filter stations</label>
-      <input type="search" id="station-filter" placeholder="Filter stations…" autocomplete="off" spellcheck="false" enterkeyhint="search">
-    </div>
-    <div class="select-wrap">
-      <label class="sr-only" for="station-select">Station</label>
-      <select id="station-select">
-        <option value="">Select a station…</option>
-      </select>
+    <div class="combo">
+      <label class="sr-only" for="station-input">Station</label>
+      <input type="text" id="station-input" role="combobox" aria-expanded="false" aria-controls="station-list" aria-autocomplete="list" placeholder="Select a station…" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go">
+      <ul id="station-list" role="listbox" aria-label="Stations" hidden></ul>
     </div>
   </div>
 
@@ -41,7 +36,7 @@ extra_scripts: '<script src="/assets/js/metro.js"></script>'
 
   <p class="copyright">
     Data: <a class="external-link" href="https://opendata.transport.vic.gov.au/dataset/gtfs-schedule" target="_blank" rel="noopener">GTFS Schedule<span class="sr-only"> (opens in a new tab)</span></a> and <a class="external-link" href="https://opendata.transport.vic.gov.au/dataset/gtfs-realtime" target="_blank" rel="noopener">GTFS Realtime<span class="sr-only"> (opens in a new tab)</span></a>.
-    For official times and disruptions see <a class="external-link" href="https://www.transportvic.com.au" target="_blank" rel="noopener">Transport Victoria<span class="sr-only"> (opens in a new tab)</span></a>.
+    For official times and disruptions see <a class="external-link" href="https://transport.vic.gov.au" target="_blank" rel="noopener">Transport Victoria<span class="sr-only"> (opens in a new tab)</span></a>.
   </p>
 
 </div>
