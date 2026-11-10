@@ -36,43 +36,120 @@ const expandedAlerts = new Set(); // alerts the visitor has opened
   } catch {
     setBoard('<p class="msg">Could not load station list.</p>');
   }
-  const filter = document.getElementById('station-filter');
-  let t;
-  filter.addEventListener('input', () => {
-    fillStations(filter.value);
-    clearTimeout(t);
-    t = setTimeout(() => announce(`${stationHits} station${stationHits === 1 ? '' : 's'} shown.`), 600);
-  });
-  document.getElementById('station-select').addEventListener('change', e => {
-    pickedId = e.target.value;
-    if (filter.value) { filter.value = ''; fillStations(''); }   // back to the full list once a station is chosen
-    loadStation(pickedId);
-  });
+  initPicker();
 })();
 
-// ── Station picker: the filter box narrows the stations listed in the select ──
+// ── Station picker ────────────────────────────────────────────────────────────
+// A drop-down list you can also type into: typing jumps to the first matching station
+// (name starts with what you typed, then name contains it). The list stays complete.
 let pickedId = '';
-let stationHits = 0;
+let pickerItems = [];
+let pickerActive = -1;
 
-function buildDropdown(list) { fillStations(''); }
+function pickerEls() {
+  return { input: document.getElementById('station-input'), list: document.getElementById('station-list') };
+}
 
-function fillStations(q) {
-  const sel = document.getElementById('station-select');
-  const f = q.trim().toLowerCase();
-  const hits = f ? stations.filter(s => s.name.toLowerCase().includes(f)) : stations;
-  stationHits = hits.length;
-  sel.textContent = '';
-  const first = document.createElement('option');
-  first.value = '';
-  first.textContent = !f ? 'Select a station…' : hits.length ? 'Select a station…' : 'No stations match';
-  sel.appendChild(first);
-  hits.forEach(s => {
-    const o = document.createElement('option');
-    o.value = s.id;
-    o.textContent = s.name;
-    sel.appendChild(o);
+function buildDropdown(list) {
+  const { list: ul } = pickerEls();
+  ul.textContent = '';
+  pickerItems = list.map((s, i) => {
+    const li = document.createElement('li');
+    li.id = 'station-opt-' + i;
+    li.setAttribute('role', 'option');
+    li.setAttribute('aria-selected', 'false');
+    li.textContent = s.name;
+    ul.appendChild(li);
+    return li;
   });
-  sel.value = hits.some(s => s.id === pickedId) ? pickedId : '';
+}
+
+function stationName(id) {
+  const s = stations.find(x => x.id === id);
+  return s ? s.name : '';
+}
+
+function pickerOpen() {
+  const { input, list } = pickerEls();
+  if (!list.hidden) return;
+  list.hidden = false;
+  input.setAttribute('aria-expanded', 'true');
+  const cur = stations.findIndex(s => s.id === pickedId);
+  pickerSetActive(cur, true);
+}
+
+function pickerClose() {
+  const { input, list } = pickerEls();
+  list.hidden = true;
+  input.setAttribute('aria-expanded', 'false');
+  input.removeAttribute('aria-activedescendant');
+  pickerSetActive(-1);
+}
+
+function pickerSetActive(i, jump) {
+  const { input, list } = pickerEls();
+  if (pickerItems[pickerActive]) pickerItems[pickerActive].setAttribute('aria-selected', 'false');
+  pickerActive = i;
+  const li = pickerItems[i];
+  if (!li) { input.removeAttribute('aria-activedescendant'); return; }
+  li.setAttribute('aria-selected', 'true');
+  input.setAttribute('aria-activedescendant', li.id);
+  if (jump) list.scrollTop = li.offsetTop;          // match goes to the top of the list, clear of the on-screen keyboard
+  else li.scrollIntoView({ block: 'nearest' });
+}
+
+function pickerMatch(q) {
+  const f = q.trim().toLowerCase();
+  if (!f) return -1;
+  const i = stations.findIndex(s => s.name.toLowerCase().startsWith(f));
+  return i >= 0 ? i : stations.findIndex(s => s.name.toLowerCase().includes(f));
+}
+
+function pickerChoose(i) {
+  const s = stations[i];
+  if (!s) return;
+  const { input } = pickerEls();
+  pickedId = s.id;
+  input.value = s.name;
+  pickerClose();
+  input.blur();
+  loadStation(s.id);
+}
+
+function initPicker() {
+  const { input, list } = pickerEls();
+  let t;
+  input.addEventListener('focus', () => { input.select(); pickerOpen(); });
+  input.addEventListener('click', pickerOpen);
+  input.addEventListener('input', () => {
+    pickerOpen();
+    const i = pickerMatch(input.value);
+    pickerSetActive(i, true);
+    clearTimeout(t);
+    if (i < 0 && input.value.trim()) t = setTimeout(() => announce('No stations match.'), 600);
+  });
+  input.addEventListener('keydown', e => {
+    const open = !list.hidden;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (!open) { pickerOpen(); return; }
+      const next = e.key === 'ArrowDown' ? pickerActive + 1 : pickerActive - 1;
+      if (next >= 0 && next < pickerItems.length) pickerSetActive(next);
+    } else if (e.key === 'Enter' && open && pickerActive >= 0) {
+      e.preventDefault();
+      pickerChoose(pickerActive);
+    } else if (e.key === 'Escape' && open) {
+      e.preventDefault();
+      input.value = stationName(pickedId);
+      pickerClose();
+    }
+  });
+  input.addEventListener('blur', () => { input.value = stationName(pickedId); pickerClose(); });
+  list.addEventListener('mousedown', e => e.preventDefault());      // keep focus in the box while choosing
+  list.addEventListener('click', e => {
+    const li = e.target.closest('li');
+    if (li) pickerChoose(pickerItems.indexOf(li));
+  });
 }
 
 // ── Load station ──────────────────────────────────────────────────────────────
@@ -499,6 +576,8 @@ async function ensurePattern(route) {
   }
 }
 
+const LOOP_STATIONS = ['southern cross', 'flagstaff', 'melbourne central', 'parliament'];
+
 function buildPattern(dep) {
   const wrap = el('ul', 'pattern');
   wrap.id = patternId(dep);
@@ -526,7 +605,12 @@ function buildPattern(dep) {
   stops.forEach(([name, time], i) => {
     if (name === '__EXP__') {
       const row = el('li', 'pat-express');
-      row.textContent = `Express: ${time}`;
+      // skipping only City Loop stations is a "direct" run, not an express one
+      const skipped = time.split(',').map(n => n.trim().toLowerCase());
+      const next = stops.slice(i + 1).find(([n]) => n !== '__EXP__');
+      row.textContent = next && skipped.every(n => LOOP_STATIONS.includes(n))
+        ? `Direct to ${next[0]}`
+        : `Express: ${time}`;
       wrap.appendChild(row);
       return;
     }
