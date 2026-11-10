@@ -36,34 +36,43 @@ const expandedAlerts = new Set(); // alerts the visitor has opened
   } catch {
     setBoard('<p class="msg">Could not load station list.</p>');
   }
-  const input = document.getElementById('station-input');
-  input.addEventListener('focus', () => input.select());
-  input.addEventListener('input', () => pickStation(false));
-  input.addEventListener('change', () => pickStation(true));
+  const filter = document.getElementById('station-filter');
+  let t;
+  filter.addEventListener('input', () => {
+    fillStations(filter.value);
+    clearTimeout(t);
+    t = setTimeout(() => announce(`${stationHits} station${stationHits === 1 ? '' : 's'} shown.`), 600);
+  });
+  document.getElementById('station-select').addEventListener('change', e => {
+    pickedId = e.target.value;
+    if (filter.value) { filter.value = ''; fillStations(''); }   // back to the full list once a station is chosen
+    loadStation(pickedId);
+  });
 })();
 
-// ── Station search (type to filter, tap a suggestion) ────────────────────────
+// ── Station picker: the filter box narrows the stations listed in the select ──
 let pickedId = '';
+let stationHits = 0;
 
-function buildDropdown(list) {
-  const dl = document.getElementById('station-list');
-  list.forEach(s => {
+function buildDropdown(list) { fillStations(''); }
+
+function fillStations(q) {
+  const sel = document.getElementById('station-select');
+  const f = q.trim().toLowerCase();
+  const hits = f ? stations.filter(s => s.name.toLowerCase().includes(f)) : stations;
+  stationHits = hits.length;
+  sel.textContent = '';
+  const first = document.createElement('option');
+  first.value = '';
+  first.textContent = !f ? 'Select a station…' : hits.length ? 'Select a station…' : 'No stations match';
+  sel.appendChild(first);
+  hits.forEach(s => {
     const o = document.createElement('option');
-    o.value = s.name;
-    dl.appendChild(o);
+    o.value = s.id;
+    o.textContent = s.name;
+    sel.appendChild(o);
   });
-}
-
-function pickStation(final) {
-  const q = document.getElementById('station-input').value.trim().toLowerCase();
-  const hit = q && stations.find(s => s.name.toLowerCase() === q);
-  if (hit) {
-    if (hit.id !== pickedId) { pickedId = hit.id; loadStation(hit.id); }
-  } else if (final) {
-    pickedId = '';
-    if (!q) loadStation('');
-    else setBoard(`<p class="msg">No station matches “${escHtml(document.getElementById('station-input').value.trim())}”.</p>`);
-  }
+  sel.value = hits.some(s => s.id === pickedId) ? pickedId : '';
 }
 
 // ── Load station ──────────────────────────────────────────────────────────────
@@ -423,55 +432,48 @@ function buildDep(dep) {
   const actualMin = schedMin + Math.round(delaySec / 60);
   const minsAway  = actualMin - nowMin;
 
-  const timeEl = el('span', 'dep-time');
+  // two lines: time | destination | countdown, then status | stopping type | route
   const schedDisplay  = dep.departs;
   const actualDisplay = toHHMM(actualMin);
   const minuteChanged = schedDisplay !== actualDisplay;
+  const late = delay !== null && delaySec !== 0 && minuteChanged;
 
-  if (delay !== null && delaySec !== 0 && minuteChanged) {
-    const sched = el('span', 'sched');
-    sched.innerHTML = '<span class="sr-only">Scheduled </span>' + escHtml(schedDisplay);
-    const actual = el('span', 'actual');
-    actual.innerHTML = '<span class="sr-only">Expected </span>' + escHtml(actualDisplay);
-    timeEl.append(sched, ' ', actual);       // shown actual-first by CSS
+  const timeEl = el('span', 'dep-time');
+  if (late) {
+    const sr = el('span', 'sr-only');
+    sr.textContent = `Scheduled ${schedDisplay}, expected `;
+    timeEl.append(sr, actualDisplay);
   } else {
-    const actual = el('span', 'actual');
-    actual.textContent = schedDisplay;
-    timeEl.appendChild(actual);
+    timeEl.textContent = schedDisplay;
   }
 
-  // countdown with the running-time status directly under it, same width
-  const stat = el('span', 'dep-stat');
+  const dest = el('span', 'dep-dest');
+  dest.textContent = dep.dest;
+
   const mins = el('span', 'chip chip-mins' + (minsAway <= 2 ? ' soon' : ''));
   mins.textContent = minsAway <= 0  ? 'Now'
                    : minsAway === 1 ? '1 min'
                    : minsAway >= 60 ? '1 hr +'
                    : `${minsAway} min`;
-  stat.append(mins, ' ');
+
+  row.append(timeEl, ' ', dest, ' ', mins, ' ');
+
   if (delay !== null) {
-    const status = !minuteChanged ? el('span', 'chip chip-ontime')
-                 : delaySec >= 0  ? el('span', 'chip chip-late')
-                 :                  el('span', 'chip chip-early');
+    const status = !minuteChanged ? el('span', 'chip chip-status chip-ontime')
+                 : delaySec >= 0  ? el('span', 'chip chip-status chip-late')
+                 :                  el('span', 'chip chip-status chip-early');
     status.textContent = !minuteChanged ? 'On time'
                        : delaySec >= 0  ? `${Math.max(1, Math.round(delaySec / 60))} min late`
                        :                  'Early';
-    stat.appendChild(status);
+    row.append(status, ' ');
   }
 
-  const dest = el('span', 'dep-dest');
-  dest.textContent = dep.dest;
-  const meta = el('span', 'dep-meta');
+  const stype = el('span', 'dep-stype');
+  stype.textContent = dep.stype || '';
+
   const route = el('span', 'chip chip-route');
   route.textContent = dep.route;
-  meta.append(route, ' ');
-  if (dep.stype) {
-    const stype = el('span', 'dep-stype');
-    stype.textContent = dep.stype;
-    meta.appendChild(stype);
-  }
-  const main = el('span', 'dep-main');
-  main.append(dest, ' ', meta);
-  row.append(timeEl, ' ', stat, ' ', main);
+  row.append(stype, ' ', route);
 
   row.addEventListener('click', async () => {
     if (openTrip === dep.trip_id) { openTrip = null; render(); return; }
