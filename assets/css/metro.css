@@ -5,7 +5,8 @@
     --ink: #1a1a1a;
     --row: 1.5rem;       /* height of every line and box in a departure row */
     --left-w: 5rem;      /* time and status column */
-    --right-w: 6.25rem;  /* countdown and route column */
+    --right-w: 3.75rem;  /* countdown column */
+    --route-w: 6.4rem;   /* route box: one width, so the stopping text lines up down the card */
     --gap: 12px;
     width: 100%;
     flex: 0 0 auto;
@@ -164,8 +165,8 @@
 .metro-page .dep-item:first-child { border-top: 0; }
 
 /* ── Departure row ──
-   Two lines, three columns:   time | destination | countdown
-                               status | stopping type | route
+   Two lines, three columns:   time   | destination         | countdown
+                               status | route + stopping type, across the last two columns
    Every line is one --row high, so the boxes on a line sit level and the columns line up down the card. */
 .metro-page .dep {
     display: grid;
@@ -193,8 +194,9 @@
 .metro-page .dep-dest  { grid-area: 1 / 2; font-size: 1rem; font-weight: 700; line-height: var(--row); overflow-wrap: anywhere; }
 .metro-page .chip-mins { grid-area: 1 / 3; }
 .metro-page .chip-status { grid-area: 2 / 1; }
+.metro-page .dep-meta { grid-area: 2 / 2 / 3 / 4; display: flex; align-items: center; gap: 8px; min-width: 0; }
 .metro-page .dep-stype {
-    grid-area: 2 / 2;
+    flex: 1 1 auto;
     min-width: 0;
     overflow: hidden;
     font-size: 0.8rem;
@@ -206,9 +208,8 @@
 /* caret: far right, centred across both lines, inside the row's right padding so it takes no width from the destination */
 .metro-page .dep::after { content: "▼"; content: "▼" / ""; position: absolute; top: 50%; right: 6px; transform: translateY(-50%); font-size: 0.75rem; color: var(--text-highlight); }
 .metro-page .dep[aria-expanded="true"]::after { content: "▲"; content: "▲" / ""; }
-.metro-page .chip-route { grid-area: 2 / 3; }
 
-/* every box is the same height; the two on the right share one width, as do the status box and the time above it */
+/* every box is the same height; the countdown and status boxes are as wide as the columns they sit in */
 .metro-page .chip {
     display: block;
     height: var(--row);
@@ -224,7 +225,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.metro-page .chip-route { background: var(--lc, #ccc); color: var(--lc-text, #fff); }
+.metro-page .chip-route { flex: 0 0 var(--route-w); background: var(--lc, #ccc); color: var(--lc-text, #fff); }
 .metro-page .chip-mins { background: var(--ink); color: #ffffff; }
 .metro-page .chip-mins.soon { background: var(--amber); color: #000000; }
 .metro-page .chip-late { background: var(--ink); color: var(--amber); }
@@ -259,12 +260,11 @@
 .metro-page .copyright a:focus-visible { outline: 3px solid var(--brand-accent); outline-offset: 2px; }
 
 @media (max-width: 480px) {
-    .metro-page { --left-w: 4.25rem; --right-w: 5.65rem; --gap: 6px; }
+    .metro-page { --left-w: 4.25rem; --right-w: 3.5rem; --gap: 6px; }
     .metro-page #clock { font-size: 1.25rem; }
     .metro-page .dep { padding: 10px 17px 10px 4px; }
     .metro-page .dep::after { right: 4px; }
     .metro-page .chip { padding: 0 1px; }
-    .metro-page .dep-dest { font-size: 0.95rem; }
     .metro-page .pat-stop { padding-left: 4px; padding-right: 6px; }
     .metro-page .pat-express,
     .metro-page .pat-loading { padding-left: calc(4px + var(--left-w) + var(--gap)); padding-right: 6px; }
