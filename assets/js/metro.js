@@ -509,7 +509,7 @@ function buildDep(dep) {
   const actualMin = schedMin + Math.round(delaySec / 60);
   const minsAway  = actualMin - nowMin;
 
-  // two lines: time | destination | countdown, then status | stopping type | route
+  // two lines: time | destination | countdown, then status | route and stopping type
   const schedDisplay  = dep.departs;
   const actualDisplay = toHHMM(actualMin);
   const minuteChanged = schedDisplay !== actualDisplay;
@@ -545,12 +545,13 @@ function buildDep(dep) {
     row.append(status, ' ');
   }
 
-  const stype = el('span', 'dep-stype');
-  stype.textContent = dep.stype || '';
-
   const route = el('span', 'chip chip-route');
   route.textContent = dep.route;
-  row.append(stype, ' ', route);
+  const stype = el('span', 'dep-stype');
+  stype.textContent = dep.stype || '';
+  const meta = el('span', 'dep-meta');
+  meta.append(route, ' ', stype);
+  row.appendChild(meta);
 
   row.addEventListener('click', async () => {
     if (openTrip === dep.trip_id) { openTrip = null; render(); return; }
