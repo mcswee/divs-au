@@ -1,5 +1,27 @@
 [
   {
+    "id": "8be4b847-acff-55b4-98e0-d88568049020",
+    "first_seen": "2026-11-10T22:59:32.070095+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a police request in the Clifton Hill area.  Trains may be held on or between available platforms.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD-R:",
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
+    "id": "53686fcb-3300-564b-a6f8-19cc6404a3a1",
+    "first_seen": "2026-11-10T22:59:32.070095+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a police request in the Clifton Hill area.  Trains may be held on or between available platforms.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-HBE-R:"
+    ]
+  },
+  {
     "id": "46d09f63-8ff7-59e7-829f-4da85917896e",
     "first_seen": "2026-11-10T15:30:02.860990+00:00",
     "header": "Planned Works",
