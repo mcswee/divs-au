@@ -164,17 +164,18 @@
 .metro-page .dep-item:first-child { border-top: 0; }
 
 /* ── Departure row ──
-   Two lines, three columns:   time | destination | countdown  ▼
+   Two lines, three columns:   time | destination | countdown
                                status | stopping type | route
    Every line is one --row high, so the boxes on a line sit level and the columns line up down the card. */
 .metro-page .dep {
     display: grid;
-    grid-template-columns: var(--left-w) minmax(0, 1fr) var(--right-w) 0.75rem;
+    grid-template-columns: var(--left-w) minmax(0, 1fr) var(--right-w);
     grid-auto-rows: minmax(var(--row), auto);
     align-items: start;
     gap: 4px var(--gap);
+    position: relative;
     width: 100%;
-    padding: 12px 12px 12px 10px;
+    padding: 12px 22px 12px 10px;
     border: 0;
     border-left: 6px solid var(--lc, #ccc);
     background: none;
@@ -202,8 +203,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-/* caret: far right, centred across both lines */
-.metro-page .dep::after { content: "▼"; content: "▼" / ""; grid-area: 1 / 4 / 3 / 5; align-self: center; font-size: 0.75rem; color: var(--text-highlight); }
+/* caret: far right, centred across both lines, inside the row's right padding so it takes no width from the destination */
+.metro-page .dep::after { content: "▼"; content: "▼" / ""; position: absolute; top: 50%; right: 6px; transform: translateY(-50%); font-size: 0.75rem; color: var(--text-highlight); }
 .metro-page .dep[aria-expanded="true"]::after { content: "▲"; content: "▲" / ""; }
 .metro-page .chip-route { grid-area: 2 / 3; }
 
@@ -260,7 +261,8 @@
 @media (max-width: 480px) {
     .metro-page { --left-w: 4.25rem; --right-w: 5.65rem; --gap: 6px; }
     .metro-page #clock { font-size: 1.25rem; }
-    .metro-page .dep { padding: 10px 6px 10px 4px; }
+    .metro-page .dep { padding: 10px 17px 10px 4px; }
+    .metro-page .dep::after { right: 4px; }
     .metro-page .chip { padding: 0 1px; }
     .metro-page .dep-dest { font-size: 0.95rem; }
     .metro-page .pat-stop { padding-left: 4px; padding-right: 6px; }
