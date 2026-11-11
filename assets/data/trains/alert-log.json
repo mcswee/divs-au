@@ -1,5 +1,15 @@
 [
   {
+    "id": "a18b5ca5-cf2b-5fa5-ada4-4f94ca764f0c",
+    "first_seen": "2026-11-11T21:12:28.109535+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 35 minutes due to a train fault in the South Yarra area.  Trains may be held on or between available platforms.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SHM:"
+    ]
+  },
+  {
     "id": "2c77476e-d292-5d4c-a608-c0236665e73f",
     "first_seen": "2026-11-11T13:56:11.232995+00:00",
     "header": "Minor Delay",
