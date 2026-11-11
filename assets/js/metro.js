@@ -577,7 +577,45 @@ async function ensurePattern(route) {
   }
 }
 
-const LOOP_STATIONS = ['southern cross', 'flagstaff', 'melbourne central', 'parliament'];
+// City Loop: a train that stops at any of these is running the loop; one that touches Flinders Street
+// without doing so is running direct. Only the lines that can do either are labelled.
+const LOOP_ONLY      = ['parliament', 'melbourne central', 'flagstaff'];
+const DIRECT_PARTNER = { burnley: 'richmond', frankston: 'richmond', clifton_hill: 'jolimont', northern: 'southern cross' };
+
+// Returns the stops with a "Direct to X" row where a non-loop train avoids the loop
+function markDirect(dep, full, stops) {
+  const partner = DIRECT_PARTNER[dep.group];
+  if (!partner) return stops;
+  const real = full.map(([n]) => n.toLowerCase()).filter(n => n !== '__exp__');
+  const viaLoop = real.some(n => LOOP_ONLY.includes(n)) || (dep.group !== 'northern' && real.includes('southern cross'));
+  if (viaLoop) return stops;
+
+  const out = [];
+  let prev = null;                                    // last real stop added
+  for (let i = 0; i < stops.length; i++) {
+    const [name] = stops[i];
+    if (name === '__EXP__') {
+      // an "express" row at a direct hop is replaced by the label below
+      const next = stops.slice(i + 1).find(([n]) => n !== '__EXP__');
+      if (prev && next && isDirectHop(dep.group, prev, next[0], partner)) continue;
+      out.push(stops[i]);
+      continue;
+    }
+    if (prev && isDirectHop(dep.group, prev, name, partner)) out.push(['__DIRECT__', name]);
+    out.push(stops[i]);
+    prev = name;
+  }
+  return out;
+}
+
+// Northern lines: the hop into Southern Cross from Flinders Street or North Melbourne (either way round),
+// where a loop train would go to Parliament or Flagstaff instead.
+// Other lines: the hop between Flinders Street and its direct partner.
+function isDirectHop(group, a, b, partner) {
+  const [x, y] = [a.toLowerCase(), b.toLowerCase()];
+  if (group === 'northern') return y === 'southern cross' && (x === 'flinders street' || x === 'north melbourne');
+  return (x === 'flinders street' && y.startsWith(partner)) || (y === 'flinders street' && x.startsWith(partner));
+}
 
 function buildPattern(dep) {
   const wrap = el('ul', 'pattern');
@@ -601,17 +639,19 @@ function buildPattern(dep) {
   }
 
   const stops = full.slice(realIdx);
-  const last  = stops.reduce((acc, [n], i) => n !== '__EXP__' ? i : acc, 0);
+  const view  = markDirect(dep, full, stops);
+  const last  = view.reduce((acc, [n], i) => n !== '__EXP__' && n !== '__DIRECT__' ? i : acc, 0);
 
-  stops.forEach(([name, time], i) => {
+  view.forEach(([name, time], i) => {
+    if (name === '__DIRECT__') {
+      const row = el('li', 'pat-express');
+      row.textContent = `Direct to ${time}`;
+      wrap.appendChild(row);
+      return;
+    }
     if (name === '__EXP__') {
       const row = el('li', 'pat-express');
-      // skipping only City Loop stations is a "direct" run, not an express one
-      const skipped = time.split(',').map(n => n.trim().toLowerCase());
-      const next = stops.slice(i + 1).find(([n]) => n !== '__EXP__');
-      row.textContent = next && skipped.every(n => LOOP_STATIONS.includes(n))
-        ? `Direct to ${next[0]}`
-        : `Express: ${time}`;
+      row.textContent = `Express: ${time}`;
       wrap.appendChild(row);
       return;
     }
