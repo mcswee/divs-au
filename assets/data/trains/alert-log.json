@@ -1,5 +1,47 @@
 [
   {
+    "id": "76b02043-ace7-5a3a-9782-b7e98106797e",
+    "first_seen": "2026-11-11T05:42:37.611281+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a track fault in the North Melbourne area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB-R:",
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "c091f020-c244-5dfb-a374-7734bc64dcff",
+    "first_seen": "2026-11-11T05:42:37.611281+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a track fault in the North Melbourne area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
+    "id": "30982247-6543-5381-8c7e-b7e31c665b1a",
+    "first_seen": "2026-11-11T05:42:37.611281+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a track fault in the North Melbourne area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "58712afb-856d-596a-9e74-f4bb047e80be",
+    "first_seen": "2026-11-11T05:42:37.611281+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a track fault in the North Melbourne area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
     "id": "8be4b847-acff-55b4-98e0-d88568049020",
     "first_seen": "2026-11-10T22:59:32.070095+00:00",
     "header": "Minor Delay",
