@@ -1,5 +1,15 @@
 [
   {
+    "id": "2c77476e-d292-5d4c-a608-c0236665e73f",
+    "first_seen": "2026-11-11T13:56:11.232995+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the Darling area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-GWY:"
+    ]
+  },
+  {
     "id": "76b02043-ace7-5a3a-9782-b7e98106797e",
     "first_seen": "2026-11-11T05:42:37.611281+00:00",
     "header": "Minor Delay",
