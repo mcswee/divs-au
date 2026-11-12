@@ -1,5 +1,16 @@
 [
   {
+    "id": "3b8ee012-a309-50e5-bda8-40cd0037472b",
+    "first_seen": "2026-11-12T00:17:25.280151+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes after an ill passenger required medical assistance at Glenbervie. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB-R:",
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
     "id": "a18b5ca5-cf2b-5fa5-ada4-4f94ca764f0c",
     "first_seen": "2026-11-11T21:12:28.109535+00:00",
     "header": "Major Delay",
