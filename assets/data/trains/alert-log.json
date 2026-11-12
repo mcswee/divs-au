@@ -1,5 +1,40 @@
 [
   {
+    "id": "5dc982c6-80f1-5ae2-9553-04e4535020e4",
+    "first_seen": "2026-11-12T15:53:49.604427+00:00",
+    "header": "Planned work: Buses replace trains between Parliament, Lilydale, Belgrave and Alamein",
+    "description": "11.15pm to last service, Thursday 12 November",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-ALM-R:"
+    ]
+  },
+  {
+    "id": "303f4684-6d84-55c0-a5e9-8800eaabbd53",
+    "first_seen": "2026-11-12T15:53:49.604427+00:00",
+    "header": "Major Delay",
+    "description": "Delays over 60 minutes while police attend to a trespasser in the Clayton area.  A replacement bus will operate between South Yarra \u2013 East Pakenham, stopping all stations. A replacement bus will operate between South Yarra \u2013 Cranbourne, stopping all stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "f41a48f9-dbd2-535b-88a2-c323d5fde95e",
+    "first_seen": "2026-11-12T15:53:49.604427+00:00",
+    "header": "Major Delay",
+    "description": "Delays over 60 minutes while police attend to a trespasser in the Clayton area.  A replacement bus will operate between South Yarra \u2013 East Pakenham, stopping all stations. A replacement bus will operate between South Yarra \u2013 Cranbourne, stopping all stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
     "id": "6b679160-e229-5ead-979a-bb4e8c59454a",
     "first_seen": "2026-11-12T06:48:55.257624+00:00",
     "header": "Minor Delay",
