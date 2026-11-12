@@ -1,5 +1,16 @@
 [
   {
+    "id": "6b679160-e229-5ead-979a-bb4e8c59454a",
+    "first_seen": "2026-11-12T06:48:55.257624+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the Upper Ferntree Gully area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
     "id": "3b8ee012-a309-50e5-bda8-40cd0037472b",
     "first_seen": "2026-11-12T00:17:25.280151+00:00",
     "header": "Minor Delay",
