@@ -1,5 +1,25 @@
 [
   {
+    "id": "57c77763-63f9-5c5a-a971-49e365d308ca",
+    "first_seen": "2026-11-12T23:22:10.153452+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to network congestion in the Greensborough area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "2287edf8-3bbb-5268-a94a-a6a9b87eb097",
+    "first_seen": "2026-11-12T23:22:10.153452+00:00",
+    "header": "Planned work: Seaford Station car space closures",
+    "description": "Friday 13 November to Friday 18 December  Up to 14 spaces in this car park are intermittently closed due to project works. For your safety, please follow signage in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
     "id": "5dc982c6-80f1-5ae2-9553-04e4535020e4",
     "first_seen": "2026-11-12T15:53:49.604427+00:00",
     "header": "Planned work: Buses replace trains between Parliament, Lilydale, Belgrave and Alamein",
