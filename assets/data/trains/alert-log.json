@@ -1,5 +1,16 @@
 [
   {
+    "id": "b86b2453-6dd4-53bf-98ab-af8742bfba85",
+    "first_seen": "2026-11-13T14:50:28.924003+00:00",
+    "header": "Suspended",
+    "description": "Buses replace trains between Bayswater and Upper Ferntree Gully due to vehicle across rail lines.  Replacement buses are in operation A train service will operate between Upper Ferntree Gully \u2013 Belgrave, and Bayswater \u2013 Flinders Street with delays to the service Allow an extra 30 minutes for your journey.  Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
     "id": "57c77763-63f9-5c5a-a971-49e365d308ca",
     "first_seen": "2026-11-12T23:22:10.153452+00:00",
     "header": "Minor Delay",
