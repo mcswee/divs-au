@@ -1,5 +1,27 @@
 [
   {
+    "id": "7f893c7a-ee19-5c53-a185-677b94ebf679",
+    "first_seen": "2026-11-14T18:48:44.278871+00:00",
+    "header": "Other Information",
+    "description": "Services will run direct between Laverton and Newport, bypassing the Altona Loop, due to a track fault at Seaholme. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
+    "id": "655321fb-d119-592a-abf3-1bf81544df2b",
+    "first_seen": "2026-11-14T18:48:44.278871+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to a police request in the Aircraft area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
     "id": "b86b2453-6dd4-53bf-98ab-af8742bfba85",
     "first_seen": "2026-11-13T14:50:28.924003+00:00",
     "header": "Suspended",
