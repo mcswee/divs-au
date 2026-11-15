@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-08T19:27:20.074769",
+  "generated": "2026-11-15T20:15:39.472397",
   "groups": {
     "frankston": "Frankston / Stony Point",
     "burnley": "Burnley",
@@ -645,6 +645,7 @@
       "id": "vic:rail:EPH",
       "name": "East Pakenham",
       "groups": [
+        "vline",
         "yarra"
       ]
     },
@@ -755,13 +756,6 @@
       "name": "Flemington Bridge",
       "groups": [
         "northern"
-      ]
-    },
-    {
-      "id": "vic:rail:RCE",
-      "name": "Flemington Racecourse",
-      "groups": [
-        "showgrounds"
       ]
     },
     {
@@ -1644,7 +1638,8 @@
         "bayside",
         "burnley",
         "frankston",
-        "vline"
+        "vline",
+        "yarra"
       ]
     },
     {
@@ -1802,6 +1797,13 @@
       ]
     },
     {
+      "id": "vic:rail:SGS",
+      "name": "Showgrounds",
+      "groups": [
+        "showgrounds"
+      ]
+    },
+    {
       "id": "vic:rail:SVE",
       "name": "Somerville",
       "groups": [
@@ -1834,7 +1836,8 @@
       "name": "South Yarra",
       "groups": [
         "bayside",
-        "frankston"
+        "frankston",
+        "yarra"
       ]
     },
     {
