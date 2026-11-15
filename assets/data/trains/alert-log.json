@@ -1,5 +1,45 @@
 [
   {
+    "id": "841f3f57-c190-585d-bc82-0ee8aef79976",
+    "first_seen": "2026-11-15T19:39:48.282742+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier track fault in the Hawksburn area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "66519bc7-2906-5564-bf7d-72a93bbcf9d6",
+    "first_seen": "2026-11-15T19:39:48.282742+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier track fault in the Hawksburn area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "1c98811a-3b55-5e7f-922e-dafd73000733",
+    "first_seen": "2026-11-15T19:39:48.282742+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier track fault in the Hawksburn area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
+    "id": "c4879b95-0ca8-5632-8d02-33fefcb6e3a2",
+    "first_seen": "2026-11-15T19:39:48.282742+00:00",
+    "header": "Planned work: Moreland Station car park closure",
+    "description": "6am Monday 16 November to mid-January 2027 12 car spaces in the Cameron Street commuter car park are temporarily closed while essential power works take place. All accessible parking remains open during this time. Alternative parking is available at Coburg Station. For your safety, please follow signage and instructions in place during this time. The timing of these works may change due to weather or unavoidable circumstances.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
     "id": "3394952d-a746-59ac-9577-efecdc61b0a3",
     "first_seen": "2026-11-15T13:47:00.763411+00:00",
     "header": "Planned Works",
