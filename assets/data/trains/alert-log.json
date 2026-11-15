@@ -1,5 +1,76 @@
 [
   {
+    "id": "3394952d-a746-59ac-9577-efecdc61b0a3",
+    "first_seen": "2026-11-15T13:47:00.763411+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament, Lilydale, Belgrave and Alamein from 11:15pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-ALM-R:"
+    ]
+  },
+  {
+    "id": "bc9f9663-6ae9-5afd-b4d4-8ba5f0f1420e",
+    "first_seen": "2026-11-15T13:47:00.763411+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament, Lilydale, Belgrave and Alamein from 11:15pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
+    "id": "30730db7-826b-5bb3-89b0-5dd561904b65",
+    "first_seen": "2026-11-15T13:47:00.763411+00:00",
+    "header": "Planned Works",
+    "description": "Buses replace trains between Parliament, Lilydale, Belgrave and Alamein from 11:15pm to last train tonight, while maintenance and renewal works take place. Allow extra travel time. Replacement buses are subject to local traffic conditions. Visit our Planned Works page for more information. Plan your journey at transport.vic.gov.au or call 1800 800 007.",
+    "effect": "REDUCED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "fefe7a6c-fe29-55e9-b37a-e6f07ea81331",
+    "first_seen": "2026-11-15T13:47:00.763411+00:00",
+    "header": "Planned work: Night works between Burnley, Belgrave, Lilydale and Alamein",
+    "description": "9pm to 4am each night, Monday 16 November to Thursday 19 November\u00a0  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Belgrave, Lilydale and Alamein lines. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-ALM-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "85b06a2f-9498-51e3-a3ed-ca71a0ccbaa9",
+    "first_seen": "2026-11-15T13:47:00.763411+00:00",
+    "header": "Planned work: Buses replace trains between Parliament, Lilydale, Belgrave and Alamein",
+    "description": "11.15pm to last service each night, Sunday 15 November to Thursday 19 November",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "17d40083-23f9-5eda-a877-77687a3a0359",
+    "first_seen": "2026-11-15T13:47:00.763411+00:00",
+    "header": "Planned work: West Footscray Station car park closure",
+    "description": "Monday 16 November to Sunday 6 December Sections of the Sunshine Road car park at West Footscray Station will temporarily close due to project works Access to platforms remain open during this time Alternative parking is available on Cross Street and at Tottenham station on Rupert street  Accessible car spaces  Five accessible spaces within the Sunshine Road car park will relocate to the opposite side of the station, within the Cross Street car park",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SUY:"
+    ]
+  },
+  {
     "id": "7f893c7a-ee19-5c53-a185-677b94ebf679",
     "first_seen": "2026-11-14T18:48:44.278871+00:00",
     "header": "Other Information",
