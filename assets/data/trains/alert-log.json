@@ -1,5 +1,16 @@
 [
   {
+    "id": "afb094f5-62a5-5b0b-b7b5-4686bbf8624c",
+    "first_seen": "2026-11-16T05:54:12.678966+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an earlier train fault in the Footscray area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
     "id": "841f3f57-c190-585d-bc82-0ee8aef79976",
     "first_seen": "2026-11-15T19:39:48.282742+00:00",
     "header": "Minor Delay",
