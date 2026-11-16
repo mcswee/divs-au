@@ -1,5 +1,27 @@
 [
   {
+    "id": "38143cd0-01ab-57a1-86e8-4c9995a67e31",
+    "first_seen": "2026-11-16T15:27:02.180073+00:00",
+    "header": "Planned work: Buses replace trains from Newport to Werribee",
+    "description": "11.50pm to last service each night, Monday 16 November and Tuesday 17 November",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "8ccfbd3c-0770-5735-8096-07fc14365758",
+    "first_seen": "2026-11-16T15:27:02.180073+00:00",
+    "header": "Planned work: Erica Avenue carpark closure at Boronia Station",
+    "description": "Tuesday 17 November to Saturday 21 November The Erica Avenue car park at Boronia Station is temporarily closed, including four accessible car spaces. Seven accessible car spaces remain available on the top level of the Boronia Station multi-deck car park.  Additional parking is available in the car parks off Chandler Road, and in the station multi-deck car park.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-BEG-R:"
+    ]
+  },
+  {
     "id": "afb094f5-62a5-5b0b-b7b5-4686bbf8624c",
     "first_seen": "2026-11-16T05:54:12.678966+00:00",
     "header": "Minor Delay",
