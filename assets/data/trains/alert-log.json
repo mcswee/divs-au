@@ -1,5 +1,36 @@
 [
   {
+    "id": "3b56be36-46d9-549c-bc72-0b0697d96b5a",
+    "first_seen": "2026-11-17T07:31:00.992628+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an equipment fault in the Brighton Beach area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-SHM:"
+    ]
+  },
+  {
+    "id": "9e266f8e-327d-5b29-8799-5e10979dd6b2",
+    "first_seen": "2026-11-17T07:31:00.992628+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier fire brigade request in the Oak Park area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "b19a849f-3a3b-5a8a-b09d-e7438121eb21",
+    "first_seen": "2026-11-17T07:31:00.992628+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to a track fault in the Upper Ferntree Gully area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG:",
+      "aus:vic:vic-02-BEG-R:"
+    ]
+  },
+  {
     "id": "794439dc-5e39-53e0-9698-967e75e01a33",
     "first_seen": "2026-11-17T01:45:01.334951+00:00",
     "header": "Minor Delay",
