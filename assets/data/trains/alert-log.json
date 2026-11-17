@@ -1,5 +1,26 @@
 [
   {
+    "id": "794439dc-5e39-53e0-9698-967e75e01a33",
+    "first_seen": "2026-11-17T01:45:01.334951+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after police attended to a trespasser in the Bayswater area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "fd542a5e-44bb-5903-8d45-a50c36403622",
+    "first_seen": "2026-11-17T01:45:01.334951+00:00",
+    "header": "Planned work: Pakenham Station car space closures",
+    "description": "Friday 17 November to Friday 18 December  Up to 80 spaces in the station car park are intermittently closed. Pedestrian path intermittently closed. A detour is available through the station concourse. For your safety, please follow signage in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
     "id": "38143cd0-01ab-57a1-86e8-4c9995a67e31",
     "first_seen": "2026-11-16T15:27:02.180073+00:00",
     "header": "Planned work: Buses replace trains from Newport to Werribee",
