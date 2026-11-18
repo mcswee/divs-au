@@ -1,5 +1,68 @@
 [
   {
+    "id": "8e85b1d0-ad09-5e4b-afda-645f43b025a5",
+    "first_seen": "2026-11-18T06:55:23.323208+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier equipment fault in the Box Hill area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
+    "id": "917b6b53-6415-5cb6-b55a-b06d50b8ebe0",
+    "first_seen": "2026-11-18T06:55:23.323208+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier equipment fault in the Box Hill area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-LIL-R:"
+    ]
+  },
+  {
+    "id": "36e149a2-77c0-5887-b84b-b05cdc72a0c7",
+    "first_seen": "2026-11-18T06:55:23.323208+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 25 minutes now clearing after an earlier operational incident in the Prahran area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-SHM:"
+    ]
+  },
+  {
+    "id": "520f37c9-7b18-57d2-98c6-463b781252ae",
+    "first_seen": "2026-11-18T06:55:23.323208+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 20 minutes due to an earlier police request in the McKinnon area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "de4e493f-32b4-5da4-9d89-f5ea615b5f7c",
+    "first_seen": "2026-11-18T06:55:23.323208+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier trespasser in the Rushall area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
+    "id": "e139cd72-548a-5981-9fca-8f3d23e4759b",
+    "first_seen": "2026-11-18T06:55:23.323208+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier equipment fault in the Riversdale area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-ALM:",
+      "aus:vic:vic-02-ALM-R:"
+    ]
+  },
+  {
     "id": "3b56be36-46d9-549c-bc72-0b0697d96b5a",
     "first_seen": "2026-11-17T07:31:00.992628+00:00",
     "header": "Minor Delay",
