@@ -32,8 +32,8 @@ function getStateStyle(stateName) {
 
     const style = getComputedStyle(refEl);
     const color = style.getPropertyValue('--contrast').trim() ||
-                  style.getPropertyValue('--trad').trim() ||
-                  '#666';
+        style.getPropertyValue('--trad').trim() ||
+        '#666';
 
     return { color, short: id.toUpperCase() };
 }
@@ -65,7 +65,7 @@ let currentYear = null;
 const outlineCache = new Map();
 
 // --- KEYBOARD ACCESSIBILITY: Close popup with Escape ---
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && currentOpenPopup) {
         map.closePopup();
         currentOpenPopup = null;
@@ -280,8 +280,8 @@ function tooltipHtml(feature, division, sStyle) {
     if (outlineMode === 'party') {
         const code = getOutline(feature).partyCode;
         const label = code === 'MULTI' ? 'Multiple members'
-                    : code === 'NONE' ? 'No member on record'
-                    : partyLabel(code);
+            : code === 'NONE' ? 'No member on record'
+                : partyLabel(code);
         html += `<br>${escHtml(label)}`;
     }
     return html;
@@ -376,11 +376,11 @@ function renderGeoJson(geoData, year) {
             layer.bindPopup(popupContent);
             layer.divisionLabel = `${division.name}, ${division.state}`;
 
-            layer.on('popupopen', function() {
+            layer.on('popupopen', function () {
                 currentOpenPopup = layer;
             });
 
-            layer.on('popupclose', function() {
+            layer.on('popupclose', function () {
                 if (currentOpenPopup === layer) {
                     currentOpenPopup = null;
                 }
@@ -426,21 +426,24 @@ function makePathsKeyboardAccessible() {
         path.setAttribute('aria-label', layer.divisionLabel);
         path.setAttribute('aria-haspopup', 'dialog');
 
-        path.addEventListener('focus', function() {
+        path.addEventListener('focus', function () {
             if (currentOpenPopup && currentOpenPopup !== layer) {
                 map.closePopup();
             }
             highlightLayer(layer, 0.25);
-            map.fitBounds(layer.getBounds(), { padding: [50, 50], maxZoom: 10 });
+            // Zoom only for keyboard focus; mouse and touch clicks just highlight and open the popup
+            if (path.matches(':focus-visible')) {
+                map.fitBounds(layer.getBounds(), { padding: [50, 50], maxZoom: 10 });
+            }
         });
 
-        path.addEventListener('blur', function() {
+        path.addEventListener('blur', function () {
             if (!geoJsonLayer.searchActive || !layer.isSearchMatch) {
                 geoJsonLayer.resetStyle(layer);
             }
         });
 
-        path.addEventListener('keydown', function(e) {
+        path.addEventListener('keydown', function (e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 openPopupFor(layer, true);
