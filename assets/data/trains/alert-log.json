@@ -1,5 +1,26 @@
 [
   {
+    "id": "db0dac35-0555-506b-811b-7e3635d27a7c",
+    "first_seen": "2026-11-20T00:26:02.486668+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier equipment fault in the North Richmond area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-HBE-R:"
+    ]
+  },
+  {
+    "id": "db16cf36-a851-51c1-a99c-e38b16a9aecb",
+    "first_seen": "2026-11-20T00:26:02.486668+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier equipment fault in the North Richmond area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
     "id": "8e85b1d0-ad09-5e4b-afda-645f43b025a5",
     "first_seen": "2026-11-18T06:55:23.323208+00:00",
     "header": "Minor Delay",
