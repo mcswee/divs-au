@@ -1,5 +1,35 @@
 [
   {
+    "id": "edfc619a-dc98-5386-8b67-094ee9ab99bc",
+    "first_seen": "2026-11-20T23:49:16.668700+00:00",
+    "header": "Planned work: Fawkner Station carpark closure",
+    "description": "7am to 4pm, Saturday 21 November The Fawkner Station/Lorne Street carpark will be closed, due to maintenance works. For your safety, please observe any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
+    "id": "29105853-5aca-5775-9862-2dbf3ee3b9ad",
+    "first_seen": "2026-11-20T23:49:16.668700+00:00",
+    "header": "Suspended",
+    "description": "Stony Point services will be replaced by a bus due to a train fault.  Allow an extra 30 minutes for your journey. Replacement buses are expected to remain in operation until the final service today.  Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-STY:"
+    ]
+  },
+  {
+    "id": "7ad6494f-b6e8-5847-95b9-1ef31a95c580",
+    "first_seen": "2026-11-20T23:49:16.668700+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 30 minutes now clearing after an earlier track fault in the Moorabbin area.  Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
     "id": "db0dac35-0555-506b-811b-7e3635d27a7c",
     "first_seen": "2026-11-20T00:26:02.486668+00:00",
     "header": "Minor Delay",
