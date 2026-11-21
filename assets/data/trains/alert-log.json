@@ -1,5 +1,16 @@
 [
   {
+    "id": "2870fb66-2a6d-5e4c-85cf-8836a7062fb8",
+    "first_seen": "2026-11-21T22:55:27.159518+00:00",
+    "header": "Planned work: Berwick Station car space closure",
+    "description": "6am to 3pm, Sunday 22 November\u00a0 Up to 30 spaces in the Berwick Station carpark are closed, due to maintenance works. For your safety, please observe any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
     "id": "72a2d7b5-6c71-537c-81d9-fbca741156ae",
     "first_seen": "2026-11-21T06:40:32.524106+00:00",
     "header": "Major Delay",
