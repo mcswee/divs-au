@@ -1,5 +1,16 @@
 [
   {
+    "id": "72a2d7b5-6c71-537c-81d9-fbca741156ae",
+    "first_seen": "2026-11-21T06:40:32.524106+00:00",
+    "header": "Major Delay",
+    "description": "Trains are now resuming between Bayswater and Upper Ferntree Gully with some delays after emergency services attended to a serious incident. First trains to resume will be:  The 4:22 pm Belgrave to Flinders Street. The 3:32 pm Flinders Street to Belgrave.  Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
     "id": "edfc619a-dc98-5386-8b67-094ee9ab99bc",
     "first_seen": "2026-11-20T23:49:16.668700+00:00",
     "header": "Planned work: Fawkner Station carpark closure",
