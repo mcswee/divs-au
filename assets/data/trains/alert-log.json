@@ -1,5 +1,77 @@
 [
   {
+    "id": "cbe87e33-4864-5a06-aae7-4871d5e15074",
+    "first_seen": "2026-11-22T23:25:32.259825+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes, now clearing after an earlier overhead power fault in the Flinders Street \u2013 Jolimont area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE:",
+      "aus:vic:vic-02-HBE-R:"
+    ]
+  },
+  {
+    "id": "85df14e3-7244-59fd-8b1f-e1ef7a96e84f",
+    "first_seen": "2026-11-22T23:25:32.259825+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes, now clearing after an earlier overhead power fault in the Flinders Street \u2013 Jolimont area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
+    "id": "60e353d9-57d2-59d6-bac3-37b7a156fa50",
+    "first_seen": "2026-11-22T23:25:32.259825+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an earlier trespasser in the Caulfield area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "0600d5ef-45fd-5685-b45a-2336ed05742f",
+    "first_seen": "2026-11-22T23:25:32.259825+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an earlier trespasser in the Caulfield area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "8033eb3f-2eda-5b38-978c-94d066d83ba1",
+    "first_seen": "2026-11-22T23:25:32.259825+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes due to an earlier trespasser in the Caulfield area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
+    "id": "070344c7-e8c9-5207-976a-3f5dbd4313b3",
+    "first_seen": "2026-11-22T23:25:32.259825+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes due to an operational incident in the North Melbourne area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
+    "id": "4c2ec893-9f57-587e-8fa5-82b10d759622",
+    "first_seen": "2026-11-22T23:25:32.259825+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes due to an operational incident in the North Melbourne area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-UFD:"
+    ]
+  },
+  {
     "id": "c9532c0d-10c8-5672-b87f-c78c495ee2ba",
     "first_seen": "2026-11-22T14:49:27.646113+00:00",
     "header": "Planned work: Night works between Union and Laburnum",
