@@ -3,10 +3,14 @@
     --ctl-border: #767676;
     --amber: #e67e00;
     --ink: #1a1a1a;
-    --row: 1.5rem;       /* height of every line and box in a departure row */
-    --left-w: 5rem;      /* time and status column */
-    --right-w: 3.75rem;  /* countdown column */
-    --route-w: 6.4rem;   /* route box: one width, so the stopping text lines up down the card */
+    --row: 1.5rem;
+    /* height of every line and box in a departure row */
+    --left-w: 5rem;
+    /* time and status column */
+    --right-w: 3.75rem;
+    /* countdown column */
+    --route-w: 6.4rem;
+    /* route box: one width, so the stopping text lines up down the card */
     --gap: 12px;
     width: 100%;
     flex: 0 0 auto;
@@ -14,10 +18,30 @@
 }
 
 /* ── Header: title and clock on one line, live status under the clock ── */
-.metro-page .metro-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
-.metro-page .metro-head h1 { margin: 0; }
-.metro-page .metro-clock { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; margin-top: 0.3rem; }
-.metro-page .metro-clock p { margin: 0; }
+.metro-page .metro-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.metro-page .metro-head h1 {
+    margin: 0;
+}
+
+.metro-page .metro-clock {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    margin-top: 0.3rem;
+}
+
+.metro-page .metro-clock p {
+    margin: 0;
+}
 
 .metro-page #clock {
     display: inline-block;
@@ -41,19 +65,55 @@
     text-transform: uppercase;
     color: var(--text-highlight);
 }
-.metro-page .live-dot { width: 8px; height: 8px; flex-shrink: 0; border-radius: 50%; background: var(--ctl-border); }
-.metro-page .live-dot.connected { background: #15803d; }
+
+.metro-page .live-dot {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--ctl-border);
+}
+
+.metro-page .live-dot.connected {
+    background: #15803d;
+}
+
 /* one short pulse each time the live feed refreshes (under 2 seconds, so it never runs on its own indefinitely) */
-.metro-page .live-dot.pulse { animation: metro-pulse 1.5s ease-out 1; }
+.metro-page .live-dot.pulse {
+    animation: metro-pulse 1.5s ease-out 1;
+}
+
 @keyframes metro-pulse {
-    from { box-shadow: 0 0 0 0 rgba(21, 128, 61, 0.55); }
-    to   { box-shadow: 0 0 0 8px rgba(21, 128, 61, 0); }
+    from {
+        box-shadow: 0 0 0 0 rgba(21, 128, 61, 0.55);
+    }
+
+    to {
+        box-shadow: 0 0 0 8px rgba(21, 128, 61, 0);
+    }
 }
 
 /* ── Station picker: a drop-down list you can also type into (looks like the site's select) ── */
-.metro-page .station-pick { margin-bottom: 24px; }
-.metro-page .combo { position: relative; max-width: 380px; }
-.metro-page .combo::after { content: "▼"; position: absolute; top: 50%; right: 12px; transform: translateY(-50%); font-size: 0.7rem; color: var(--text-highlight); pointer-events: none; }
+.metro-page .station-pick {
+    margin-bottom: 24px;
+}
+
+.metro-page .combo {
+    position: relative;
+    max-width: 380px;
+}
+
+.metro-page .combo::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    font-size: 0.7rem;
+    color: var(--text-highlight);
+    pointer-events: none;
+}
+
 .metro-page input {
     width: 100%;
     padding: 9px 32px 9px 12px;
@@ -64,8 +124,18 @@
     border: 1px solid var(--ctl-border);
     border-radius: 6px;
 }
-.metro-page input::placeholder { color: var(--text-highlight); opacity: 1; }
-.metro-page input:focus { outline: 2px solid var(--brand-accent); outline-offset: 1px; border-color: var(--brand-main); }
+
+.metro-page input::placeholder {
+    color: var(--text-highlight);
+    opacity: 1;
+}
+
+.metro-page input:focus {
+    outline: 2px solid var(--brand-accent);
+    outline-offset: 1px;
+    border-color: var(--brand-main);
+}
+
 .metro-page #station-list {
     position: absolute;
     z-index: 20;
@@ -82,15 +152,37 @@
     border-radius: 6px;
     box-shadow: var(--shadow-deep);
 }
-.metro-page #station-list[hidden] { display: none; }
-.metro-page #station-list li { margin: 0; padding: 9px 12px; font-size: 0.9rem; cursor: pointer; }
-.metro-page #station-list li:hover { background: var(--brand-highlight); }
-.metro-page #station-list li[aria-selected="true"] { background: var(--brand-main); color: var(--highlight); }
 
-.metro-page .msg { padding: 2rem 0; font-size: 0.9rem; color: var(--text-highlight); }
+.metro-page #station-list[hidden] {
+    display: none;
+}
+
+.metro-page #station-list li {
+    margin: 0;
+    padding: 9px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.metro-page #station-list li:hover {
+    background: var(--brand-highlight);
+}
+
+.metro-page #station-list li[aria-selected="true"] {
+    background: var(--brand-main);
+    color: var(--highlight);
+}
+
+.metro-page .msg {
+    padding: 2rem 0;
+    font-size: 0.9rem;
+    color: var(--text-highlight);
+}
 
 /* ── Alerts (unchanged) ── */
-.metro-page .alerts { margin-bottom: 1.25rem; }
+.metro-page .alerts {
+    margin-bottom: 1.25rem;
+}
 
 .metro-page .alert {
     position: relative;
@@ -123,15 +215,69 @@
     background: repeating-linear-gradient(135deg, var(--amber) 0 8px, var(--ink) 8px 16px);
 }
 
-.metro-page .alert-icon { display: flex; align-items: center; flex-shrink: 0; width: 18px; height: 18px; margin-top: 0.1rem; color: var(--amber); }
-.metro-page .alert-icon svg { display: block; width: 100%; height: 100%; }
+.metro-page .alert-icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 0.1rem;
+    color: var(--amber);
+}
+
+.metro-page .alert-icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .metro-page .alert-main,
-.metro-page .alert-hdr { display: block; }
-.metro-page .alert-hdr { font-size: 0.9rem; font-weight: 600; line-height: 1.3; color: #ffffff; }
-.metro-page .alert-desc { display: none; margin-top: 0.25rem; font-size: 0.8rem; line-height: 1.4; color: #f0f0f0; }
-.metro-page .alert.expanded .alert-desc { display: block; }
-.metro-page .alert-caret { padding-top: 0.2rem; font-size: 0.75rem; color: #aaaaaa; }
-.metro-page .alert:focus-visible { outline: 3px solid #ffffff; outline-offset: -5px; }
+.metro-page .alert-hdr {
+    display: block;
+}
+
+.metro-page .alert-hdr {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #ffffff;
+}
+
+.metro-page .alert-desc {
+    display: none;
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #f0f0f0;
+}
+
+.metro-page .alert.expanded .alert-desc {
+    display: block;
+}
+
+.metro-page .alert-caret {
+    padding-top: 0.2rem;
+    font-size: 0.75rem;
+    color: #aaaaaa;
+}
+
+.metro-page .alert:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: -5px;
+}
+
+.metro-page .alert-line {
+    display: inline-block;
+    padding: 0 6px;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.4;
+    vertical-align: 1px;
+    background: var(--lc, #cccccc);
+    color: var(--lc-text, #ffffff);
+}
 
 /* ── Platform cards: one column, or two across on wide screens ── */
 .metro-page .platforms {
@@ -160,9 +306,20 @@
     color: var(--text-main);
 }
 
-.metro-page .dep-list { margin: 0; padding: 0; list-style: none; }
-.metro-page .dep-item { margin: 0; border-top: 1px solid var(--accent); }
-.metro-page .dep-item:first-child { border-top: 0; }
+.metro-page .dep-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.metro-page .dep-item {
+    margin: 0;
+    border-top: 1px solid var(--accent);
+}
+
+.metro-page .dep-item:first-child {
+    border-top: 0;
+}
 
 /* ── Departure row ──
    Two lines, three columns:   time   | destination         | countdown
@@ -186,15 +343,49 @@
     cursor: pointer;
     transition: background 0.1s;
 }
-.metro-page .dep:hover,
-.metro-page .dep[aria-expanded="true"] { background: var(--brand-highlight); }
-.metro-page .dep:focus-visible { outline: 3px solid var(--brand-accent); outline-offset: -3px; }
 
-.metro-page .dep-time  { grid-area: 1 / 1; text-align: center; font-size: 0.95rem; font-weight: 700; line-height: var(--row); }
-.metro-page .dep-dest  { grid-area: 1 / 2; font-size: 1rem; font-weight: 700; line-height: var(--row); overflow-wrap: anywhere; }
-.metro-page .chip-mins { grid-area: 1 / 3; }
-.metro-page .chip-status { grid-area: 2 / 1; }
-.metro-page .dep-meta { grid-area: 2 / 2 / 3 / 4; display: flex; align-items: center; gap: 8px; min-width: 0; }
+.metro-page .dep:hover,
+.metro-page .dep[aria-expanded="true"] {
+    background: var(--brand-highlight);
+}
+
+.metro-page .dep:focus-visible {
+    outline: 3px solid var(--brand-accent);
+    outline-offset: -3px;
+}
+
+.metro-page .dep-time {
+    grid-area: 1 / 1;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: var(--row);
+}
+
+.metro-page .dep-dest {
+    grid-area: 1 / 2;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: var(--row);
+    overflow-wrap: anywhere;
+}
+
+.metro-page .chip-mins {
+    grid-area: 1 / 3;
+}
+
+.metro-page .chip-status {
+    grid-area: 2 / 1;
+}
+
+.metro-page .dep-meta {
+    grid-area: 2 / 2 / 3 / 4;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
 .metro-page .dep-stype {
     flex: 1 1 auto;
     min-width: 0;
@@ -205,9 +396,23 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 /* caret: far right, centred across both lines, inside the row's right padding so it takes no width from the destination */
-.metro-page .dep::after { content: "▼"; content: "▼" / ""; position: absolute; top: 50%; right: 6px; transform: translateY(-50%); font-size: 0.75rem; color: var(--text-highlight); }
-.metro-page .dep[aria-expanded="true"]::after { content: "▲"; content: "▲" / ""; }
+.metro-page .dep::after {
+    content: "▼";
+    content: "▼" / "";
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    color: var(--text-highlight);
+}
+
+.metro-page .dep[aria-expanded="true"]::after {
+    content: "▲";
+    content: "▲" / "";
+}
 
 /* every box is the same height; the countdown and status boxes are as wide as the columns they sit in */
 .metro-page .chip {
@@ -225,12 +430,34 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.metro-page .chip-route { flex: 0 0 var(--route-w); background: var(--lc, #ccc); color: var(--lc-text, #fff); }
-.metro-page .chip-mins { background: var(--ink); color: #ffffff; }
-.metro-page .chip-mins.soon { background: var(--amber); color: #000000; }
-.metro-page .chip-late { background: var(--ink); color: var(--amber); }
+
+.metro-page .chip-route {
+    flex: 0 0 var(--route-w);
+    background: var(--lc, #ccc);
+    color: var(--lc-text, #fff);
+}
+
+.metro-page .chip-mins {
+    background: var(--ink);
+    color: #ffffff;
+}
+
+.metro-page .chip-mins.soon {
+    background: var(--amber);
+    color: #000000;
+}
+
+.metro-page .chip-late {
+    background: var(--ink);
+    color: var(--amber);
+}
+
 .metro-page .chip-ontime,
-.metro-page .chip-early { background: var(--accent); border-color: var(--text-accent); color: var(--text-main); }
+.metro-page .chip-early {
+    background: var(--accent);
+    border-color: var(--text-accent);
+    color: var(--text-main);
+}
 
 /* ── Stopping pattern: times under the time column, stop names under the destination ── */
 .metro-page .pattern {
@@ -240,36 +467,111 @@
     background: var(--bg-main);
     border-left: 6px solid var(--lc, #ccc);
 }
-.metro-page .pattern li { margin: 0; }
-.metro-page .pat-stop { display: grid; grid-template-columns: var(--left-w) minmax(0, 1fr); column-gap: var(--gap); padding: 4px 12px 4px 10px; font-size: 0.85rem; }
-.metro-page .pat-stop.is-here { font-weight: 700; }
-.metro-page .pat-stop.is-end { font-weight: 600; }
-.metro-page .pat-time { text-align: center; color: var(--text-highlight); }
+
+.metro-page .pattern li {
+    margin: 0;
+}
+
+.metro-page .pat-stop {
+    display: grid;
+    grid-template-columns: var(--left-w) minmax(0, 1fr);
+    column-gap: var(--gap);
+    padding: 4px 12px 4px 10px;
+    font-size: 0.85rem;
+}
+
+.metro-page .pat-stop.is-here {
+    font-weight: 700;
+}
+
+.metro-page .pat-stop.is-end {
+    font-weight: 600;
+}
+
+.metro-page .pat-time {
+    text-align: center;
+    color: var(--text-highlight);
+}
+
 .metro-page .pat-stop.is-here .pat-time,
-.metro-page .pat-stop.is-end .pat-time { color: var(--text-main); }
+.metro-page .pat-stop.is-end .pat-time {
+    color: var(--text-main);
+}
+
 .metro-page .pat-express,
-.metro-page .pat-loading { padding: 5px 12px 5px calc(10px + var(--left-w) + var(--gap)); font-size: 0.8rem; color: var(--text-highlight); }
-.metro-page .pat-express { margin: 2px 0; border-top: 1px dashed var(--text-accent); border-bottom: 1px dashed var(--text-accent); font-style: italic; }
-.metro-page .pat-loading { font-size: 0.85rem; }
+.metro-page .pat-loading {
+    padding: 5px 12px 5px calc(10px + var(--left-w) + var(--gap));
+    font-size: 0.8rem;
+    color: var(--text-highlight);
+}
+
+.metro-page .pat-express {
+    margin: 2px 0;
+    border-top: 1px dashed var(--text-accent);
+    border-bottom: 1px dashed var(--text-accent);
+    font-style: italic;
+}
+
+.metro-page .pat-loading {
+    font-size: 0.85rem;
+}
 
 /* ── Small print ── */
-.metro-page .copyright { margin-top: 1.5rem; }
-.metro-page .copyright a { color: var(--brand-main); }
+.metro-page .copyright {
+    margin-top: 1.5rem;
+}
+
+.metro-page .copyright a {
+    color: var(--brand-main);
+}
 
 /* ── Focus, small screens and motion ── */
-.metro-page .copyright a:focus-visible { outline: 3px solid var(--brand-accent); outline-offset: 2px; }
+.metro-page .copyright a:focus-visible {
+    outline: 3px solid var(--brand-accent);
+    outline-offset: 2px;
+}
 
 @media (max-width: 480px) {
-    .metro-page { --left-w: 4.25rem; --right-w: 3.5rem; --gap: 6px; }
-    .metro-page #clock { font-size: 1.25rem; }
-    .metro-page .dep { padding: 10px 17px 10px 4px; }
-    .metro-page .dep::after { right: 4px; }
-    .metro-page .chip { padding: 0 1px; }
-    .metro-page .pat-stop { padding-left: 4px; padding-right: 6px; }
+    .metro-page {
+        --left-w: 4.25rem;
+        --right-w: 3.5rem;
+        --gap: 6px;
+    }
+
+    .metro-page #clock {
+        font-size: 1.25rem;
+    }
+
+    .metro-page .dep {
+        padding: 10px 17px 10px 4px;
+    }
+
+    .metro-page .dep::after {
+        right: 4px;
+    }
+
+    .metro-page .chip {
+        padding: 0 1px;
+    }
+
+    .metro-page .pat-stop {
+        padding-left: 4px;
+        padding-right: 6px;
+    }
+
     .metro-page .pat-express,
-    .metro-page .pat-loading { padding-left: calc(4px + var(--left-w) + var(--gap)); padding-right: 6px; }
+    .metro-page .pat-loading {
+        padding-left: calc(4px + var(--left-w) + var(--gap));
+        padding-right: 6px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .metro-page *, .metro-page *::before, .metro-page *::after { animation: none !important; transition: none !important; }
+
+    .metro-page *,
+    .metro-page *::before,
+    .metro-page *::after {
+        animation: none !important;
+        transition: none !important;
+    }
 }

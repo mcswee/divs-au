@@ -3,21 +3,21 @@
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const DATA = '/assets/data/trains';
-const RT   = 'https://melb-trains-rt.dj-mcsw-ee.workers.dev/';
+const RT = 'https://melb-trains-rt.dj-mcsw-ee.workers.dev/';
 const POLL = 30_000;
 
 // Times are Melbourne time wherever the visitor is
 const MEL_FMT = new Intl.DateTimeFormat('en-AU', { timeZone: 'Australia/Melbourne', hourCycle: 'h23', hour: '2-digit', minute: '2-digit', weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit' });
 
 // ── State ─────────────────────────────────────────────────────────────────────
-let stations    = [];
+let stations = [];
 let stationData = null;
-let openTrip    = null;
-let patCache    = {};
-let rtData      = null;
-let rtLookup    = {};
+let openTrip = null;
+let patCache = {};
+let rtData = null;
+let rtLookup = {};
 let rtNumLookup = {};
-let liveOnline  = null;          // null until the first poll
+let liveOnline = null;          // null until the first poll
 const expandedAlerts = new Set(); // alerts the visitor has opened
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
@@ -216,7 +216,7 @@ async function pollRT() {
     const r = await fetch(RT);
     rtData = await r.json();
     buildRtLookup();
-    const dot  = document.getElementById('live-dot');
+    const dot = document.getElementById('live-dot');
     const text = document.getElementById('live-text');
     if (dot) {
       dot.classList.add('connected');
@@ -229,9 +229,9 @@ async function pollRT() {
     liveOnline = true;
     if (stationData) render();
   } catch {
-    const dot  = document.getElementById('live-dot');
+    const dot = document.getElementById('live-dot');
     const text = document.getElementById('live-text');
-    if (dot)  dot.classList.remove('connected', 'pulse');
+    if (dot) dot.classList.remove('connected', 'pulse');
     if (text) text.textContent = 'Offline';
     if (liveOnline !== false) announce('Live data is offline. Showing scheduled times.');
     liveOnline = false;
@@ -242,17 +242,17 @@ async function pollRT() {
 function render() {
   if (!stationData) return;
 
-  const nowMin   = nowMins();
-  const today    = dayType();
+  const nowMin = nowMins();
+  const today = dayType();
   const todayNum = todayDate();
 
   const raw = stationData.departures.filter(d => {
     if (!d.days[today]) return false;
-    if (d.days.from  && todayNum < d.days.from)  return false;
+    if (d.days.from && todayNum < d.days.from) return false;
     if (d.days.until && todayNum > d.days.until) return false;
     const t = hm2min(d.departs);
     if (t >= 1440) return false;
-    const delay  = rtDelay(d.trip_id) ?? 0;
+    const delay = rtDelay(d.trip_id) ?? 0;
     const actual = t + Math.round(delay / 60);
     return actual >= nowMin - 1;
   });
@@ -299,7 +299,7 @@ function render() {
     if (A.dir !== B.dir) return A.dir === 'up' ? -1 : 1;
     return 0;
   });
-  const frag  = document.createDocumentFragment();
+  const frag = document.createDocumentFragment();
 
   const stationAlerts = alertsForStation();
   if (stationAlerts.length) frag.appendChild(buildAlerts(stationAlerts));
@@ -358,9 +358,12 @@ function vlineDirection(route, dest) {
 // the alert box shows only the actual disruption info.
 const ALERT_BOILERPLATE = [
   'Check information displays and listen for announcements as services may be altered at short notice.',
+  'Check information displays and listen for announcements as some trains may be altered or delayed during recovery.',
+  'Check information displays and listen for announcements.',
   'Plan your journey at transport.vic.gov.au or call 1800 800 007.',
   'Visit our Planned Works page for more information.',
   'Allow extra travel time.',
+  'Allow extra travel time',
   'Replacement buses are subject to local traffic conditions.',
   'These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.',
   'Every effort will be made to carry out these works with respect for our valued neighbours.',
@@ -371,8 +374,9 @@ function cleanAlertText(desc) {
   let out = desc || '';
   ALERT_BOILERPLATE.forEach(s => { out = out.split(s).join(''); });
   return out
+    .replace(/&amp;/g, '&')
     .replace(/\s*•\s*/g, ' • ')
-    .replace(/[ \t]+/g, ' ')
+    .replace(/[ \t\u00a0]+/g, ' ')
     .replace(/\s+([.,])/g, '$1')
     .replace(/^•\s*/, '')
     .trim();
@@ -380,11 +384,11 @@ function cleanAlertText(desc) {
 
 // Consistent category per alert, used to pick an icon and to key deduplication.
 const ALERT_CATEGORY = {
-  'Cancellation':      'cancellation',
-  'Major Delay':       'delay_major',
-  'Minor Delay':       'delay_minor',
-  'Suspended':         'suspended',
-  'Planned Works':     'planned_works',
+  'Cancellation': 'cancellation',
+  'Major Delay': 'delay_major',
+  'Minor Delay': 'delay_minor',
+  'Suspended': 'suspended',
+  'Planned Works': 'planned_works',
   'Other Information': 'info_other',
 };
 const ALERT_ICON_SVG = {
@@ -416,8 +420,20 @@ function categoriseAlert(header) {
   return ALERT_CATEGORY[header] || 'other';
 }
 
+const TUNNEL_TERMINI = { Pakenham: 'PKM', Cranbourne: 'CBE' };
+const NAME_BY_CODE = Object.fromEntries(Object.entries(ROUTE_CODES).map(([n, c]) => [c, n]));
+
+// Line codes an alert applies to. Metro Tunnel trip cancellations use a
+// different route id (vic-05-…), so those are matched on the terminus named
+// in the description instead.
+const alertCodes = a => a.routes.some(r => r.includes('vic-05-'))
+  ? Object.entries(TUNNEL_TERMINI).filter(([n]) => a.description.includes(n)).map(([, c]) => c)
+  : [...new Set(a.routes.map(r => r.match(/^aus:vic:vic-02-([A-Za-z0-9]+)/)?.[1]).filter(Boolean))];
+
 function alertsForStation() {
   if (!rtData?.alerts?.length || !stationData) return [];
+  const colourOf = {};
+  stationData.departures.forEach(d => { colourOf[d.route] ??= d.colour || '#cccccc'; });
   const codes = new Set(
     stationData.departures.map(d => ROUTE_CODES[d.route]).filter(Boolean)
   );
@@ -427,38 +443,54 @@ function alertsForStation() {
       // Station car-park/car-space/night-works notices: real but don't affect
       // train running, so keep them out of the live board.
       if (a.effect === 'OTHER_EFFECT' && a.header.startsWith('Planned work')) return false;
-      return a.routes.some(r => [...codes].some(c => r.includes(`-${c}`)));
+      return alertCodes(a).some(c => codes.has(c));
     })
-    .map(a => ({ ...a, description: cleanAlertText(a.description), category: categoriseAlert(a.header) }));
+    .map(a => ({
+      ...a,
+      description: cleanAlertText(a.description),
+      category: categoriseAlert(a.header),
+      lines: alertCodes(a)
+        .filter(c => codes.has(c))
+        .map(c => ({ name: NAME_BY_CODE[c], colour: colourOf[NAME_BY_CODE[c]] })),
+    }));
 
   // Route-split alerts (the same disruption logged once per affected route)
-  // carry identical header+description text, so dedupe on that rather than
-  // on `id` — the id can differ per route for what's really one alert.
-  const seen = new Set();
-  return matched.filter(a => {
+  // carry identical header+description text, so merge on that rather than
+  // on `id` — the id can differ per route for what's really one alert — and
+  // combine the lines they affect.
+  const merged = new Map();
+  matched.forEach(a => {
     const key = `${a.header}|${a.description}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
+    const prev = merged.get(key);
+    if (!prev) { merged.set(key, a); return; }
+    a.lines.forEach(l => { if (!prev.lines.some(x => x.name === l.name)) prev.lines.push(l); });
   });
+  return [...merged.values()].map(a => ({ ...a, lines: a.lines.sort((x, y) => x.name.localeCompare(y.name)) }));
 }
 
 function buildAlerts(alerts) {
   const container = el('div', 'alerts');
   alerts.forEach(a => {
-    const key  = `${a.header}|${a.description}`;
+    const key = `${a.header}|${a.description}`;
     const open = expandedAlerts.has(key);
     const item = el('button', 'alert' + (open ? ' expanded' : ''));
     item.type = 'button';
     item.setAttribute('aria-expanded', open ? 'true' : 'false');
     item.dataset.focusKey = 'alert:' + key;
-    const icon  = el('span', 'alert-icon');
+    const icon = el('span', 'alert-icon');
     icon.setAttribute('aria-hidden', 'true');
     icon.innerHTML = ALERT_ICON_SVG[a.category] || ALERT_ICON_SVG.other;
-    const main  = el('span', 'alert-main');
-    const hdr   = el('span', 'alert-hdr');
-    hdr.textContent = a.header;
-    const desc  = el('span', 'alert-desc');
+    const main = el('span', 'alert-main');
+    const hdr = el('span', 'alert-hdr');
+    (a.lines || []).forEach(l => {
+      const chip = el('span', 'alert-line');
+      chip.style.setProperty('--lc', l.colour);
+      chip.style.setProperty('--lc-text', readableText(l.colour));
+      chip.textContent = l.name;
+      hdr.append(chip, ' ');
+    });
+    hdr.append(a.header);
+    const desc = el('span', 'alert-desc');
     desc.textContent = a.description;
     main.append(hdr, desc);
     const caret = el('span', 'alert-caret');
@@ -502,15 +534,15 @@ function buildDep(dep) {
   if (isOpen) row.setAttribute('aria-controls', patternId(dep));
   row.dataset.focusKey = 'dep:' + dep.trip_id;
 
-  const nowMin    = nowMins();
-  const schedMin  = hm2min(dep.departs);
-  const delay     = rtDelay(dep.trip_id);
-  const delaySec  = delay ?? 0;
+  const nowMin = nowMins();
+  const schedMin = hm2min(dep.departs);
+  const delay = rtDelay(dep.trip_id);
+  const delaySec = delay ?? 0;
   const actualMin = schedMin + Math.round(delaySec / 60);
-  const minsAway  = actualMin - nowMin;
+  const minsAway = actualMin - nowMin;
 
   // two lines: time | destination | countdown, then status | route and stopping type
-  const schedDisplay  = dep.departs;
+  const schedDisplay = dep.departs;
   const actualDisplay = toHHMM(actualMin);
   const minuteChanged = schedDisplay !== actualDisplay;
   const late = delay !== null && delaySec !== 0 && minuteChanged;
@@ -528,20 +560,20 @@ function buildDep(dep) {
   dest.textContent = dep.dest;
 
   const mins = el('span', 'chip chip-mins' + (minsAway <= 2 ? ' soon' : ''));
-  mins.textContent = minsAway <= 0  ? 'Now'
-                   : minsAway === 1 ? '1 min'
-                   : minsAway >= 60 ? '1 hr +'
-                   : `${minsAway} min`;
+  mins.textContent = minsAway <= 0 ? 'Now'
+    : minsAway === 1 ? '1 min'
+      : minsAway >= 60 ? '1 hr +'
+        : `${minsAway} min`;
 
   row.append(timeEl, ' ', dest, ' ', mins, ' ');
 
   if (delay !== null) {
     const status = !minuteChanged ? el('span', 'chip chip-status chip-ontime')
-                 : delaySec >= 0  ? el('span', 'chip chip-status chip-late')
-                 :                  el('span', 'chip chip-status chip-early');
+      : delaySec >= 0 ? el('span', 'chip chip-status chip-late')
+        : el('span', 'chip chip-status chip-early');
     status.textContent = !minuteChanged ? 'On time'
-                       : delaySec >= 0  ? `${Math.max(1, Math.round(delaySec / 60))} min late`
-                       :                  'Early';
+      : delaySec >= 0 ? `${Math.max(1, Math.round(delaySec / 60))} min late`
+        : 'Early';
     row.append(status, ' ');
   }
 
@@ -579,7 +611,7 @@ async function ensurePattern(route) {
 
 // City Loop: a train that stops at any of these is running the loop; one that touches Flinders Street
 // without doing so is running direct. Only the lines that can do either are labelled.
-const LOOP_ONLY      = ['parliament', 'melbourne central', 'flagstaff'];
+const LOOP_ONLY = ['parliament', 'melbourne central', 'flagstaff'];
 const DIRECT_PARTNER = { burnley: 'richmond', frankston: 'richmond', clifton_hill: 'jolimont', northern: 'southern cross' };
 
 // Returns the stops with a "Direct to X" row where a non-loop train avoids the loop
@@ -622,7 +654,7 @@ function buildPattern(dep) {
   wrap.id = patternId(dep);
 
   const trips = patCache[dep.route];
-  const full  = trips && trips[dep.trip_id];
+  const full = trips && trips[dep.trip_id];
 
   if (!full) {
     const loading = el('li', 'pat-loading');
@@ -639,8 +671,8 @@ function buildPattern(dep) {
   }
 
   const stops = full.slice(realIdx);
-  const view  = markDirect(dep, full, stops);
-  const last  = view.reduce((acc, [n], i) => n !== '__EXP__' && n !== '__DIRECT__' ? i : acc, 0);
+  const view = markDirect(dep, full, stops);
+  const last = view.reduce((acc, [n], i) => n !== '__EXP__' && n !== '__DIRECT__' ? i : acc, 0);
 
   view.forEach(([name, time], i) => {
     if (name === '__DIRECT__') {
@@ -656,8 +688,8 @@ function buildPattern(dep) {
       return;
     }
     const row = el('li', 'pat-stop' +
-      (i === 0    ? ' is-here' : '') +
-      (i === last ? ' is-end'  : ''));
+      (i === 0 ? ' is-here' : '') +
+      (i === last ? ' is-end' : ''));
     const t = el('span', 'pat-time');
     t.textContent = time;
     const n = el('span', 'pat-name');
@@ -690,11 +722,11 @@ function melNow() {
   MEL_FMT.formatToParts(new Date()).forEach(x => { p[x.type] = x.value; });
   return { h: Number(p.hour), m: Number(p.minute), wd: p.weekday, y: Number(p.year), mo: Number(p.month), d: Number(p.day) };
 }
-function nowMins()  { const n = melNow(); return n.h * 60 + n.m; }
-function dayType()  { const w = melNow().wd; return w === 'Sun' ? 'sunday' : w === 'Sat' ? 'saturday' : 'weekday'; }
-function todayDate(){ const n = melNow(); return n.y * 10000 + n.mo * 100 + n.d; }
-function hm2min(hhmm) { const [h,m] = hhmm.split(':').map(Number); return h*60+m; }
-function toHHMM(mins) { return `${pad(Math.floor(mins/60))}:${pad(mins%60)}`; }
+function nowMins() { const n = melNow(); return n.h * 60 + n.m; }
+function dayType() { const w = melNow().wd; return w === 'Sun' ? 'sunday' : w === 'Sat' ? 'saturday' : 'weekday'; }
+function todayDate() { const n = melNow(); return n.y * 10000 + n.mo * 100 + n.d; }
+function hm2min(hhmm) { const [h, m] = hhmm.split(':').map(Number); return h * 60 + m; }
+function toHHMM(mins) { return `${pad(Math.floor(mins / 60))}:${pad(mins % 60)}`; }
 
 function platSort(a, b) {
   if (a === '—') return 1;
@@ -704,9 +736,9 @@ function platSort(a, b) {
   return a.localeCompare(b, undefined, { numeric: true });
 }
 
-function safeFn(s)   { return s.replace(/[^A-Za-z0-9_\-]/g, '_'); }
-function pad(n)      { return String(n).padStart(2, '0'); }
-function el(t, c)    { const e = document.createElement(t); if (c) e.className = c; return e; }
+function safeFn(s) { return s.replace(/[^A-Za-z0-9_\-]/g, '_'); }
+function pad(n) { return String(n).padStart(2, '0'); }
+function el(t, c) { const e = document.createElement(t); if (c) e.className = c; return e; }
 function setBoard(h) {
   const board = document.getElementById('board');
   board.innerHTML = h;
@@ -746,4 +778,4 @@ function readableText(colour) {
   const L = 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
   return 1.05 / (L + 0.05) >= (L + 0.05) / 0.0556 ? '#ffffff' : '#111111';
 }
-function escHtml(s)  { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escHtml(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
