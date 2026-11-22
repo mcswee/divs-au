@@ -1,5 +1,18 @@
 [
   {
+    "id": "c9532c0d-10c8-5672-b87f-c78c495ee2ba",
+    "first_seen": "2026-11-22T14:49:27.646113+00:00",
+    "header": "Planned work: Night works between Union and Laburnum",
+    "description": "12am to 4am each night, Monday 23 November to Wednesday 25 November  To improve the safety and efficiency of Melbourne\u2019s metropolitan rail network, critical safety works will be undertaken along the Belgrave and Lilydale lines. These critical safety works form part of Metro\u2019s annual works program to maintain and renew the rail network.  What to expect:  medium to high level construction noise during the set up and use of the heavy machinery rail grinding works that will cause a short-term immediate increase in noise once completed, that will decrease over time increased noise, dust and local traffic in the works area or the rail corridor traffic management in place, as required.  Every effort will be made to carry out these works with respect for our valued neighbours. Works may be subject to change due to weather conditions and operational requirements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-BEG-R:",
+      "aus:vic:vic-02-LIL-R:",
+      "aus:vic:vic-02-LIL:",
+      "aus:vic:vic-02-BEG:"
+    ]
+  },
+  {
     "id": "2870fb66-2a6d-5e4c-85cf-8836a7062fb8",
     "first_seen": "2026-11-21T22:55:27.159518+00:00",
     "header": "Planned work: Berwick Station car space closure",
