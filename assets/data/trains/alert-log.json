@@ -1,5 +1,49 @@
 [
   {
+    "id": "6da16699-86f3-5fa8-a203-17c24e6077ca",
+    "first_seen": "2026-11-23T19:26:03.188975+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes, now clearing after an earlier equipment fault in the West Richmond area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
+    "id": "225c751c-183c-58ec-a6d9-b89863f84b14",
+    "first_seen": "2026-11-23T19:26:03.188975+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes, now clearing after an earlier equipment fault in the West Richmond area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-HBE-R:",
+      "aus:vic:vic-02-HBE:"
+    ]
+  },
+  {
+    "id": "6968732f-4271-5160-9581-80de4ed0ee71",
+    "first_seen": "2026-11-23T19:26:03.188975+00:00",
+    "header": "Planned work: Yarraman Station car space closure",
+    "description": "8pm Monday 23 November to 7am Thursday 26 November Up to 10 spaces in the Yarraman Station carpark are closed due to maintenance works. For your safety, please observe any signage and instructions in place during this time.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM-R:",
+      "aus:vic:vic-02-CBE:",
+      "aus:vic:vic-02-PKM:"
+    ]
+  },
+  {
+    "id": "bfd060a4-202b-5877-8c89-2dc49d08c1a0",
+    "first_seen": "2026-11-23T19:26:03.188975+00:00",
+    "header": "Planned work: Buses replace trains from Newport to Werribee",
+    "description": "11.50pm to last service each night, Monday 23 November to Thursday 26 November",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
     "id": "cbe87e33-4864-5a06-aae7-4871d5e15074",
     "first_seen": "2026-11-22T23:25:32.259825+00:00",
     "header": "Minor Delay",
