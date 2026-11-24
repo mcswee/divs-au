@@ -1,5 +1,26 @@
 [
   {
+    "id": "6a83271f-5ccf-5a5a-9291-8289ef09729a",
+    "first_seen": "2026-11-24T03:53:45.254988+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes now clearing after a police request in the Newport area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "e671a930-3245-5641-bf8a-0721cbd42373",
+    "first_seen": "2026-11-24T03:53:45.254988+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 30 minutes now clearing after a police request in the Newport area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
     "id": "6da16699-86f3-5fa8-a203-17c24e6077ca",
     "first_seen": "2026-11-23T19:26:03.188975+00:00",
     "header": "Minor Delay",
