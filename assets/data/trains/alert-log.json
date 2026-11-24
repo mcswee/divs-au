@@ -1,5 +1,26 @@
 [
   {
+    "id": "38f1773a-6a30-5201-a397-fe9bde869f46",
+    "first_seen": "2026-11-24T09:26:50.817391+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes due to a trespasser in the Footscray area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
+    "id": "bf7d838c-665b-5355-a0e0-a69117e0180a",
+    "first_seen": "2026-11-24T09:26:50.817391+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes due to a trespasser in the Footscray area. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-WIL:"
+    ]
+  },
+  {
     "id": "6a83271f-5ccf-5a5a-9291-8289ef09729a",
     "first_seen": "2026-11-24T03:53:45.254988+00:00",
     "header": "Major Delay",
