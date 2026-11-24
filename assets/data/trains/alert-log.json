@@ -1,5 +1,16 @@
 [
   {
+    "id": "9eb59400-d1fc-5268-956d-6e7e7f5120d7",
+    "first_seen": "2026-11-24T20:18:58.478583+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes due to an equipment fault in the Laverton area.  Trains may remain stationary for extended periods at platforms or between platforms. Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER-R:",
+      "aus:vic:vic-02-WER:"
+    ]
+  },
+  {
     "id": "38f1773a-6a30-5201-a397-fe9bde869f46",
     "first_seen": "2026-11-24T09:26:50.817391+00:00",
     "header": "Major Delay",
