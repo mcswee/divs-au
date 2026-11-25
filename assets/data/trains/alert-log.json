@@ -1,5 +1,16 @@
 [
   {
+    "id": "b7641187-f7c8-59f2-8d29-61bf272f9010",
+    "first_seen": "2026-11-25T07:58:42.860165+00:00",
+    "header": "Minor Delay",
+    "description": "Buses have resumed on the Altona Loop (Westona, Altona, Seaholme) after emergency services attended to a serious incident. First trains to resume will be:  The 6:00 pm Flinders Street to Laverton. The 6:30 pm Laverton to Flinders Street.  Replacement buses may supplement train services as we restore the regular frequency. Check information displays and listen for announcements.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-WER:",
+      "aus:vic:vic-02-WER-R:"
+    ]
+  },
+  {
     "id": "9eb59400-d1fc-5268-956d-6e7e7f5120d7",
     "first_seen": "2026-11-24T20:18:58.478583+00:00",
     "header": "Minor Delay",
