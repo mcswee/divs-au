@@ -1,5 +1,46 @@
 [
   {
+    "id": "e65132a3-3edd-525d-a9d5-3755e2b5df13",
+    "first_seen": "2026-11-26T01:41:46.288712+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier trespasser in the Clayton area.  Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-PKM:",
+      "aus:vic:vic-02-PKM-R:"
+    ]
+  },
+  {
+    "id": "dcd62407-c15c-5ea9-afa1-3e5a523bf124",
+    "first_seen": "2026-11-26T01:41:46.288712+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes now clearing after an earlier trespasser in the Clayton area.  Select trains may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-CBE:"
+    ]
+  },
+  {
+    "id": "f35405b4-a11a-55d7-8c30-80e5bd174ea4",
+    "first_seen": "2026-11-26T01:41:46.288712+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 15 minutes now clearing after an earlier equipment fault in the Moorabbin area.  Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-FKN:"
+    ]
+  },
+  {
+    "id": "baa4ef55-bb1c-519e-a429-428738380926",
+    "first_seen": "2026-11-26T01:41:46.288712+00:00",
+    "header": "Major Delay",
+    "description": "Delays up to 20 minutes due to a level crossing damaged by a vehicle in the Northcote area.  Select services may terminate/originate at intermediate stations.  Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-MDD:"
+    ]
+  },
+  {
     "id": "b7641187-f7c8-59f2-8d29-61bf272f9010",
     "first_seen": "2026-11-25T07:58:42.860165+00:00",
     "header": "Minor Delay",
