@@ -1,5 +1,16 @@
 [
   {
+    "id": "61587784-c32c-5a22-8810-85f8c2ed60bb",
+    "first_seen": "2026-11-27T18:00:21.947454+00:00",
+    "header": "Planned work: Southern Cross Station lift works",
+    "description": "Due to upgrade works at Southern Cross Station, passengers travelling to the Showground are advised of lift works on Platforms 11 &amp; 12. Passengers that require lift access are advised to start and end their journey at Flinders Street or North Melbourne Stations.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-UFD:",
+      "aus:vic:vic-02-CGB:"
+    ]
+  },
+  {
     "id": "e65132a3-3edd-525d-a9d5-3755e2b5df13",
     "first_seen": "2026-11-26T01:41:46.288712+00:00",
     "header": "Minor Delay",
