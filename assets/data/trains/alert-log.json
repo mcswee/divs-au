@@ -1,5 +1,25 @@
 [
   {
+    "id": "91af4bfb-e1b7-5e5a-910c-3a9142c9977f",
+    "first_seen": "2026-11-28T01:15:24.465599+00:00",
+    "header": "Suspended",
+    "description": "Buses replace trains between Frankston and Stony Point due to a freight train fault in the Leawarra area.  Replacement buses are in operation. Allow an extra 30 minutes for your journey. A train service will operate between Flinders Street and Frankston, with delays to the service  Check information displays and listen for announcements.",
+    "effect": "SIGNIFICANT_DELAYS",
+    "routes": [
+      "aus:vic:vic-02-STY:"
+    ]
+  },
+  {
+    "id": "3081949f-1862-5bfa-ab4e-9e753c9ed0d8",
+    "first_seen": "2026-11-28T01:15:24.465599+00:00",
+    "header": "Minor Delay",
+    "description": "Delays up to 10 minutes, now clearing after an earlier ill passenger at Lilydale. Check information displays and listen for announcements as services may be altered at short notice.",
+    "effect": "OTHER_EFFECT",
+    "routes": [
+      "aus:vic:vic-02-LIL:"
+    ]
+  },
+  {
     "id": "61587784-c32c-5a22-8810-85f8c2ed60bb",
     "first_seen": "2026-11-27T18:00:21.947454+00:00",
     "header": "Planned work: Southern Cross Station lift works",
