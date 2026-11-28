@@ -1,5 +1,15 @@
 [
   {
+    "id": "8d751bc7-c2fb-50f8-aa95-178af3f8b35a",
+    "first_seen": "2026-11-28T07:19:06.439497+00:00",
+    "header": "Other Information",
+    "description": "Trains are resuming between Frankston and Stony Point First trains to resume will be:  The 6:45 pm Stony Point to Frankston. The 5:15 pm Frankston to Stony Point.  Replacement buses may supplement train services as we restore the regular frequency. Check information displays and listen for announcements.",
+    "effect": "MODIFIED_SERVICE",
+    "routes": [
+      "aus:vic:vic-02-STY:"
+    ]
+  },
+  {
     "id": "91af4bfb-e1b7-5e5a-910c-3a9142c9977f",
     "first_seen": "2026-11-28T01:15:24.465599+00:00",
     "header": "Suspended",
